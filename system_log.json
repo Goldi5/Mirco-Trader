@@ -867,5 +867,39 @@
     "zeit": "2026-08-07T16:43:04.976248",
     "quelle": "watchdog",
     "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T16:45:23.394124",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Cron-Pipeline gestartet (mode=full, detached)"
+  },
+  {
+    "zeit": "2026-08-07T16:45:24.778039",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T16:45:24.786822",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ, 🇪🇺 Xetra, 🇬🇧 London, 🇪🇺 Euronext"
+  },
+  {
+    "zeit": "2026-08-07T16:46:23.538985",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Cron-Pipeline gestartet (mode=full, detached)"
+  },
+  {
+    "zeit": "2026-08-07T16:46:24.946173",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T16:46:24.956650",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ, 🇪🇺 Xetra, 🇬🇧 London, 🇪🇺 Euronext"
   }
 ]

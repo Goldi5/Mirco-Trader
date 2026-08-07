@@ -181,7 +181,7 @@ def tabelle(titel, zeilen, risk_label, pos_count=None, cash_count=None):
     data = [[risk_label, "Status", "Cash", "Pos", "letzter Trade", "Grund"]]
     for z in zeilen:
         data.append([str(z[0]), z[1], f"${z[2]}", str(z[3]), z[4], Paragraph(esc(z[5]), CELL)])
-    t = Table(data, colWidths=[26, 70, 38, 20, 44, 316], repeatRows=1)
+    t = Table(data, colWidths=[28, 66, 38, 18, 42, 322], repeatRows=1)
     st = [("FONTNAME", (0,0), (-1,-1), FONT), ("FONTSIZE", (0,0), (-1,-1), 7.5),
           ("BACKGROUND", (0,0), (-1,0), colors.HexColor("#1a3c5e")),
           ("TEXTCOLOR", (0,0), (-1,0), colors.white), ("VALIGN", (0,0), (-1,-1), "MIDDLE"),
