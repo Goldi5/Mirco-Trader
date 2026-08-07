@@ -1,7 +1,7 @@
 {
   "start_wert": 100,
   "risk": 85,
-  "bargeld": 56.282340599012365,
+  "bargeld": 28.140997895288454,
   "positions": {
     "WKHS": {
       "shares": 16.8258,
@@ -10,64 +10,17 @@
       "take_profit": 4.248150036334992,
       "kauf_datum": "2026-08-07T17:44:54.156357",
       "exchange": "US"
+    },
+    "ACHR": {
+      "shares": 5.1778,
+      "avg_price": 5.434999942779541,
+      "stop_loss": 4.809974949359894,
+      "take_profit": 6.902449927330017,
+      "kauf_datum": "2026-08-07T21:20:29.618793",
+      "exchange": "US"
     }
   },
   "historie": [
-    {
-      "zeit": "2026-08-07T17:03:52.677798",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:03:59.402264",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:17:05.200074",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:17:12.108963",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:17:55.501297",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:18:01.599333",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:18:05.641977",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:18:12.170214",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:32:08.818732",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:32:15.017820",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
-    {
-      "zeit": "2026-08-07T17:33:06.092573",
-      "wert": 112.56,
-      "bargeld": 112.56
-    },
     {
       "zeit": "2026-08-07T17:33:06.852660",
       "wert": 112.56,
@@ -512,308 +465,476 @@
       "zeit": "2026-08-07T21:03:07.560694",
       "wert": 111.3,
       "bargeld": 56.28
+    },
+    {
+      "zeit": "2026-08-07T21:20:29.619794",
+      "wert": 111.61,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:33:09.482621",
+      "wert": 111.52,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:33:17.143288",
+      "wert": 111.52,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:33:25.515103",
+      "wert": 112.2,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:33:35.136797",
+      "wert": 112.2,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:33:44.788187",
+      "wert": 112.2,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:52:50.603036",
+      "wert": 112.53,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:52:54.846641",
+      "wert": 112.55,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:53:04.214043",
+      "wert": 112.55,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:53:06.056502",
+      "wert": 112.57,
+      "bargeld": 28.14
+    },
+    {
+      "zeit": "2026-08-07T21:53:16.759520",
+      "wert": 112.52,
+      "bargeld": 28.14
     }
   ],
   "trades": [
     {
-      "typ": "kauf",
-      "ticker": "LCID",
-      "menge": 7.0,
-      "preis": 7.86,
-      "grund": "Score 106.3 (#3)",
-      "zeit": "2026-07-29T18:51:42.611880"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "ASTC",
-      "menge": 3.93,
-      "preis": 6.3,
-      "grund": "Score 107.4 (#3)",
-      "zeit": "2026-07-29T19:01:19.243780"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "RDW",
-      "menge": 1.41,
-      "preis": 7.95,
-      "grund": "Score 51.7 (#3)",
-      "zeit": "2026-07-29T20:01:50.199410"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "LCID",
-      "menge": 7.0,
-      "preis": 7.62,
-      "grund": "\ud83e\udd16 KI: Negative P&L und Kurs unter dem Einstiegspreis.",
-      "zeit": "2026-07-30T17:39:23.947981"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "RDW",
-      "menge": 0.705,
-      "preis": 9.42,
-      "grund": "\ud83e\udd16 KI: Starker Gewinn +18.53%, Teilgewinnmitnahme",
-      "zeit": "2026-08-03T18:56:57.633605"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "RDW",
-      "menge": 0.705,
-      "preis": 9.42,
-      "grund": "\ud83e\udd16 KI: Starker Gewinn +18.53%, Teilgewinnmitnahme",
-      "zeit": "2026-08-03T19:08:05.300035"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "ASTC",
-      "menge": 1.965,
-      "preis": 8.56,
-      "grund": "\ud83e\udd16 KI: Gewinn +35,8% realisieren. Teilverkauf (z.B. 50%) ",
-      "zeit": "2026-08-05T17:59:24.436479"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "ASTC",
-      "menge": 1.965,
-      "preis": 8.56,
-      "grund": "\ud83e\udd16 KI: Gewinn +35,8% realisieren. Teilverkauf (z.B. 50%) ",
-      "zeit": "2026-08-05T18:01:51.088314"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "LCID",
-      "menge": 16.1847,
-      "preis": 6.75,
-      "grund": "\ud83e\udd16 KI: 6% Cash, EV-Spekulation",
-      "zeit": "2026-08-05T19:02:21.117200"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "LCID",
-      "menge": 16.1847,
-      "preis": 6.95,
-      "grund": "\ud83e\udd16 KI: Nur +3% Gewinn bei fundamental schwacher Aktik (ho",
-      "zeit": "2026-08-06T20:34:10.222336"
-    },
-    {
-      "typ": "kauf",
+      "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
-      "grund": "\ud83e\udd16 KI: Zus\u00e4tzliche spekulative Position f\u00fcr Diversifikati",
-      "zeit": "2026-08-07T17:44:54.156357"
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:09.321597"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:09.362004"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:33:09.401428"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:09.442021"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:09.482621"
     },
     {
       "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T17:47:09.204755"
+      "zeit": "2026-08-07T21:33:16.988344"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:17.022474"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:33:17.059443"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:17.092321"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:17.143288"
     },
     {
       "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T17:47:18.198196"
+      "zeit": "2026-08-07T21:33:25.311778"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:25.352110"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:33:25.392049"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:25.436924"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:25.515103"
     },
     {
       "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T17:47:48.868422"
+      "zeit": "2026-08-07T21:33:34.959664"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:35.002738"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:33:35.045796"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:35.089451"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:35.136797"
     },
     {
       "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T17:47:59.331633"
+      "zeit": "2026-08-07T21:33:44.614130"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:44.654788"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:33:44.699225"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:44.746043"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:33:44.788187"
     },
     {
       "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T17:48:10.881453"
+      "zeit": "2026-08-07T21:52:50.405742"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:52:50.449061"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:52:50.493309"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:52:50.546063"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:52:50.603036"
     },
     {
       "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T17:48:17.591445"
+      "zeit": "2026-08-07T21:52:54.671597"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:52:54.714225"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:52:54.757245"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:52:54.802455"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:52:54.846641"
     },
     {
       "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:02:09.584209"
+      "zeit": "2026-08-07T21:53:04.019747"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:53:04.062883"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:53:04.112582"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:53:04.170132"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:53:04.214043"
     },
     {
       "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:02:17.226724"
+      "zeit": "2026-08-07T21:53:05.942335"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:53:05.973956"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:53:06.001404"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:53:06.029433"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
+      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
+      "zeit": "2026-08-07T21:53:06.056502"
     },
     {
       "typ": "kauf_blockiert",
       "ticker": "WKHS",
-      "menge": 16.8258,
+      "menge": 8.4129,
       "preis": 3.35,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:02:26.412192"
+      "zeit": "2026-08-07T21:53:16.573711"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
+      "ticker": "AMC",
+      "menge": 11.0142,
+      "preis": 2.56,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:03:09.718062"
+      "zeit": "2026-08-07T21:53:16.629837"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:03:18.306238"
+      "ticker": "DOMO",
+      "menge": 7.2622,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T21:53:16.677682"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
+      "ticker": "ALLO",
+      "menge": 14.0355,
+      "preis": 2.01,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:03:23.025174"
+      "zeit": "2026-08-07T21:53:16.719612"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
+      "ticker": "ACHR",
+      "menge": 5.1778,
+      "preis": 5.43,
       "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:03:30.217367"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:17:26.603806"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:17:33.846675"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:17:45.016615"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:17:55.018947"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:18:14.343953"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:18:26.873317"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:32:50.927927"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:32:59.767193"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:33:11.707245"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:33:20.959650"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:33:36.904640"
-    },
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 16.8258,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:33:47.050629"
+      "zeit": "2026-08-07T21:53:16.759520"
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T17:43:58.273015",
+    "zeit": "2026-08-07T21:20:26.714904",
     "aktion": "KI Risk 85",
     "konfidenz": 50,
     "analyse": "",
     "ticker": "Risk 85"
   },
-  "aktualisiert": "2026-08-07T21:03:07.560694",
+  "aktualisiert": "2026-08-07T21:53:16.759520",
   "exchanges": {
-    "WKHS": "US"
+    "WKHS": "US",
+    "ACHR": "US"
   }
 }

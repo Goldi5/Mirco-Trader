@@ -9,34 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T21:18:48.250535",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:20:07.774362",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:20:12.232621",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:33:57.287137",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:35:44.790598",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:48:28.518600",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:48:42.298591",
-      "wert": 100.0
-    },
-    {
       "zeit": "2026-08-04T21:49:55.117056",
       "wert": 100.0
     },
@@ -407,6 +379,34 @@
     {
       "zeit": "2026-08-07T21:02:19.877375",
       "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:17:27.128760",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.537695",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:32:40.964455",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.433177",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.184280",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.622135",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.801232",
+      "wert": 99.77
     }
   ],
   "trades": [
@@ -502,14 +502,12 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_COIN_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_215055_COIN_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "COIN",
-    "provider": "ALLE_PROVIDER_KALT",
-    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

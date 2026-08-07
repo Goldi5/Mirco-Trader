@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0",
   "_regelstand": {
-    "regelstand_version": 182,
+    "regelstand_version": 191,
     "regelstand_created_at": "2026-08-03T15:19:11",
-    "regelstand_last_sync": "2026-08-07T21:02:50",
+    "regelstand_last_sync": "2026-08-07T21:52:46",
     "regelstand_status": "shadow",
     "regelstand_hash": "c7149d508fa0"
   },
@@ -1695,7 +1695,7 @@
       "benchmark_ticker": null,
       "conf_cap": null,
       "created_at": "2026-08-07T17:46:56",
-      "updated_at": "2026-08-07T21:02:50",
+      "updated_at": "2026-08-07T21:52:46",
       "last_seen_at": "2026-08-07T17:46:56",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.5,

@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T16:32:20.515736",
-      "wert": 97.68
-    },
-    {
-      "zeit": "2026-08-05T16:48:33.912482",
-      "wert": 97.68
-    },
-    {
-      "zeit": "2026-08-05T17:34:11.430121",
-      "wert": 97.68
-    },
-    {
       "zeit": "2026-08-05T17:47:22.310071",
       "wert": 97.68
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T21:02:19.882377",
       "wert": 98.57
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.543625",
+      "wert": 98.77
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.438193",
+      "wert": 98.98
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.190425",
+      "wert": 99.05
     }
   ],
   "trades": [
@@ -468,11 +468,11 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_ETHA_aktien_na",
+    "decision_id": "d_20260807_215048_ETHA_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "ETHA",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

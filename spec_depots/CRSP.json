@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T21:34:31.909252",
-      "wert": 101.68
-    },
-    {
       "zeit": "2026-08-04T21:35:44.793130",
       "wert": 101.68
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T20:02:41.876775",
       "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.803676",
+      "wert": 101.33
     }
   ],
   "trades": [
@@ -574,14 +574,12 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_CRSP_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_215118_CRSP_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "CRSP",
-    "provider": "ALLE_PROVIDER_KALT",
-    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

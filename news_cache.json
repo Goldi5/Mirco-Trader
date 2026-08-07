@@ -1,103 +1,53 @@
 {
-  "zeit": "2026-08-07T21:02:48.067043",
+  "zeit": "2026-08-07T22:17:32.699155",
   "total": 55,
-  "relevant": 48,
-  "irrelevant": 4,
+  "relevant": 29,
   "headlines": [
     {
-      "title": "Here’s when Elon Musk’s Starlink internet is worth the steep monthly price — and $350 startup cost",
-      "link": "https://www.marketwatch.com/story/heres-when-elon-musks-starlink-internet-is-worth-the-steep-monthly-price-and-350-startup-cost-53735d59?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 18:13:00 GMT",
-      "topics": [],
-      "tickers": [
-        "MU"
-      ]
-    },
-    {
-      "title": "I’m an unemployed software developer who is skeptical of AI. Can I still find a job in tech?",
-      "link": "https://www.marketwatch.com/story/im-an-unemployed-software-developer-who-is-skeptical-of-ai-can-i-still-find-a-job-in-tech-4413875e?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 18:00:00 GMT",
-      "topics": [
-        "tech",
-        "geopolitik"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "If target date funds aren’t risky enough, Americans could miss out on retirement savings — especially as they live longer",
-      "link": "https://www.marketwatch.com/story/are-target-date-funds-hurting-americans-as-they-live-longer-929f4f92?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 17:49:00 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "SpaceX’s stock is having one of its best days ever — with the first lockup expiration now behind it",
-      "link": "https://www.marketwatch.com/story/spacexs-stock-is-having-one-of-its-best-days-ever-with-the-first-lockup-expiration-now-behind-it-cd55946c?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 16:54:00 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Should wealthier Americans forgo their Social Security benefits as a charitable gesture?",
-      "link": "https://www.marketwatch.com/story/should-wealthier-americans-forgo-their-social-security-benefits-as-a-charitable-gesture-2c7b6801?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 16:30:00 GMT",
-      "topics": [
-        "regulation"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "‘I don’t wish to be cold-hearted’: My elderly relative can no longer care for himself. Am I wrong to leave his care to the state?",
-      "link": "https://www.marketwatch.com/story/i-dont-wish-to-be-cold-hearted-my-elderly-relative-can-no-longer-care-for-himself-am-i-wrong-to-leave-his-care-to-the-state-8d546b32?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 16:16:00 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "‘This has been an emotionally difficult time’: My brother has cancer and my father is 94. How do I shoulder this responsibility?",
-      "link": "https://www.marketwatch.com/story/this-has-been-an-emotionally-difficult-time-my-brother-has-cancer-and-my-father-is-94-how-do-i-shoulder-this-responsibility-9da09dc4?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 16:00:00 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "This mom spent $2,000 on her kindergartner as viral ‘back-to-school hauls’ on TikTok and YouTube spin out of control",
-      "link": "https://www.marketwatch.com/story/this-mom-spent-2-000-on-her-kindergartner-as-viral-back-to-school-hauls-on-tiktok-and-youtube-spin-out-of-control-0be2949d?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 15:36:00 GMT",
-      "topics": [],
-      "tickers": [
-        "BAC",
-        "F"
-      ]
-    },
-    {
-      "title": "Doximity’s stock skyrockets 50% on medical AI excitement. Can the rally last?",
-      "link": "https://www.marketwatch.com/story/doximitys-stock-skyrockets-50-on-medical-ai-excitement-can-the-rally-last-1a5cedce?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 15:36:00 GMT",
+      "title": "I got two email invitations from friends. Is this a phishing scam \u2014 or am I suddenly popular?",
+      "link": "https://www.marketwatch.com/story/i-got-two-email-invitations-from-friends-is-this-a-phishing-scam-or-am-i-suddenly-popular-d9680aa8?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 20:15:00 GMT",
       "topics": [
         "tech"
-      ],
-      "tickers": []
+      ]
     },
     {
-      "title": "Tax-free weekends start in Texas, Florida and several other states today. Here’s what to know.",
-      "link": "https://www.marketwatch.com/story/these-16-states-are-offering-tax-holidays-as-back-to-school-costs-soar-to-over-800-per-student-0ec92464?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 15:09:00 GMT",
-      "topics": [],
+      "title": "Trump is trying to fire Lisa Cook again. He still wants to stack the Fed with allies.",
+      "link": "https://www.marketwatch.com/story/trump-is-trying-to-fire-lisa-cook-again-he-still-wants-to-stack-the-fed-with-allies-e6f40aa5?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 19:47:00 GMT",
+      "topics": [
+        "interest rate",
+        "tech"
+      ],
       "tickers": [
         "F"
+      ]
+    },
+    {
+      "title": "Palantir\u2019s stock stages best week since 2024, showing it\u2019s no longer an AI loser",
+      "link": "https://www.marketwatch.com/story/palantirs-stock-stages-best-week-since-2024-showing-its-no-longer-an-ai-loser-2fc6c32b?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 19:41:00 GMT",
+      "topics": [
+        "tech"
+      ]
+    },
+    {
+      "title": "Some of the urgency is gone for a Fed rate hike in September after a soft jobs report",
+      "link": "https://www.marketwatch.com/story/some-of-the-urgency-is-gone-for-a-fed-rate-hike-in-september-after-the-soft-jobs-report-19bc5565?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 19:36:00 GMT",
+      "topics": [
+        "interest rate"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "If I marry my girlfriend, 67, will she lose her Supplemental Security Income and divorced spouse benefits?",
+      "link": "https://www.marketwatch.com/story/if-i-marry-my-girlfriend-67-will-she-lose-her-supplemental-security-income-and-divorced-spouse-benefits-9340bab9?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 19:30:00 GMT",
+      "topics": [
+        "regulation"
       ]
     },
     {
@@ -105,128 +55,114 @@
       "link": "https://finance.yahoo.com/markets/stocks/articles/veteran-manager-buys-2-etfs-020300490.html",
       "date": "2026-08-07T02:03:00Z",
       "topics": [
-        "markt"
+        "market"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "SunTrust's $240 million overdraft fee settlement could pay you up to $1,000",
-      "link": "https://finance.yahoo.com/markets/articles/suntrusts-240-million-overdraft-fee-090000662.html",
-      "date": "2026-08-06T09:00:00Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "OpenAI seeks dismissal of Apple's trade secrets lawsuit",
-      "link": "https://finance.yahoo.com/technology/ai/articles/openai-asks-us-judge-dismiss-061124418.html",
-      "date": "2026-08-06T09:01:23Z",
+      "title": "CenterPoint Energy Stock Outlook: Is Wall Street Bullish or Bearish?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/centerpoint-energy-stock-outlook-wall-102955691.html",
+      "date": "2026-08-06T10:29:55Z",
       "topics": [
-        "regulation",
+        "energy"
+      ]
+    },
+    {
+      "title": "Trump doubles down on Credit Card Competition Act as merchants paid $198 billion in swipe fees last year",
+      "link": "https://finance.yahoo.com/economy/policy/articles/trump-doubles-down-credit-card-103000683.html",
+      "date": "2026-08-06T10:30:00Z",
+      "topics": [
+        "tech",
+        "market"
+      ]
+    },
+    {
+      "title": "Jamie Dimon personally contacts US CEOs as companies speed up AI adoption",
+      "link": "https://finance.yahoo.com/technology/ai/articles/jamie-dimon-personally-contacts-us-102807260.html",
+      "date": "2026-08-06T10:28:07Z",
+      "topics": [
         "tech"
+      ]
+    },
+    {
+      "title": "Are Wall Street Analysts Bullish on Marvell Technology Stock?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/wall-street-analysts-bullish-marvell-103509763.html",
+      "date": "2026-08-06T10:35:09Z",
+      "topics": [
+        "tech"
+      ]
+    },
+    {
+      "title": "Nasdaq Futures Slip as Western Digital and Sandisk Sink on Disappointing Guidance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-futures-slip-western-digital-103922429.html",
+      "date": "2026-08-06T10:39:22Z",
+      "topics": [
+        "market"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "I'm 65 With $1.1 Million Saved and $2,800 Monthly Social Security. What's My Retirement Budget?",
-      "link": "https://finance.yahoo.com/markets/articles/im-65-1-1-million-163410320.html",
-      "date": "2026-08-06T09:00:00Z",
+      "title": "How to pay zero taxes on Social Security \u2014 and it\u2019s got nothing to do with Trump\u2019s promises. Take 5 simple steps now",
+      "link": "https://finance.yahoo.com/markets/articles/pay-zero-taxes-social-security-104000799.html",
+      "date": "2026-08-06T10:40:00Z",
       "topics": [
         "regulation"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Investors see big dividends from TerraCycle, a US recycling firm that turns trash into shareholder treasure",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/investors-see-big-dividends-terracycle-093000687.html",
-      "date": "2026-08-06T09:30:00Z",
-      "topics": [],
-      "tickers": [
-        "F"
       ]
     },
     {
-      "title": "July layoffs plunged to lowest monthly level in two years: Challenger",
-      "link": "https://finance.yahoo.com/economy/policy/article/july-layoffs-plunged-to-lowest-monthly-level-in-two-years-challenger-093000310.html",
-      "date": "2026-08-06T09:30:00Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Nutrien misses profit estimates as lower volumes blunt higher fertilizer prices",
-      "link": "https://finance.yahoo.com/news/nutrien-misses-profit-estimates-lower-093426074.html",
-      "date": "2026-08-06T09:34:26Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "US Dollar Price Forecast: NFP Countdown Keeps DXY, EUR/USD and GBP/USD in Focus",
-      "link": "https://finance.yahoo.com/markets/currencies/articles/us-dollar-price-forecast-nfp-080927300.html",
-      "date": "2026-08-06T08:09:27Z",
+      "title": "Nvidia\u2019s (NVDA) Amkor (AMKR) Deal Adds Packaging Muscle Ahead Of Earnings",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-nvda-amkor-amkr-deal-104631781.html",
+      "date": "2026-08-06T10:46:31Z",
       "topics": [
-        "earnings",
-        "markt"
+        "earnings"
       ],
       "tickers": [
-        "F"
+        "NVDA"
       ]
     },
     {
-      "title": "Goodbye mansions, hello jail: Nevada woman stole $26 million from construction boss — then the IRS caught up with her",
-      "link": "https://finance.yahoo.com/small-business/articles/goodbye-mansions-hello-jail-nevada-100000078.html",
-      "date": "2026-08-06T10:00:00Z",
+      "title": "Walmart Earnings: Bull Put Spread Trade",
+      "link": "https://finance.yahoo.com/markets/options/articles/walmart-earnings-bull-put-spread-110002553.html",
+      "date": "2026-08-06T11:00:02Z",
       "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
+        "earnings"
       ]
     },
     {
-      "title": "Market Update: AMT, J, MSI, SHEL, SYK, FBIN",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47856_MarketUpdate_1786126266000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-07T18:11:06Z",
+      "title": "S&P 500 Has Best Week Since April After Jobs Data: Markets Wrap",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-06/stock-market-today-dow-s-p-live-updates",
+      "date": "Thu, 06 Aug 2026 22:10:21 GMT",
       "topics": [
-        "markt"
-      ],
-      "tickers": [
-        "F"
+        "market"
       ]
     },
     {
-      "title": "It’s SpaceX Lock-Up Day. Here’s What to Know With Millions of Shares Now Eligible to Trade",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/spacex-lock-day-know-millions-090000904.html",
-      "date": "2026-08-06T09:00:00Z",
-      "topics": [],
-      "tickers": [
-        "F"
+      "title": "Credit Card Balances at Pace with Inflation: Whitney",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-07/credit-card-balances-at-pace-with-inflation-whitney-video",
+      "date": "Fri, 07 Aug 2026 20:01:49 GMT",
+      "topics": [
+        "inflation"
       ]
     },
     {
-      "title": "Flagstar Bank data breach settlement: Find out if you qualify for up to $25,000",
-      "link": "https://finance.yahoo.com/personal-finance/banking/article/flagstar-bank-data-breach-settlement-find-out-if-you-qualify-for-up-to-25000-180712440.html",
-      "date": "2026-08-06T18:07:12Z",
-      "topics": [],
-      "tickers": [
-        "F"
+      "title": "Latest Oil Market News and Analysis for Aug. 7",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-06/latest-oil-market-news-and-analysis-for-aug-7",
+      "date": "Thu, 06 Aug 2026 22:01:46 GMT",
+      "topics": [
+        "energy",
+        "market"
       ]
     },
     {
-      "title": "How the Food Industry Is Dealing With the Cyclospora Outbreak",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-07/how-the-food-industry-is-dealing-with-cyclospora-crisis-video",
-      "date": "Fri, 07 Aug 2026 18:50:31 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
+      "title": "PGA Is Not Talking to LIV Golf About a Merger, Commissioner Says",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-07/innovation-doesn-t-happen-without-crisis-rolapp-video",
+      "date": "Fri, 07 Aug 2026 19:34:44 GMT",
+      "topics": [
+        "merger"
       ]
     },
     {
@@ -234,122 +170,8 @@
       "link": "https://www.bloomberg.com/news/videos/2026-08-07/treasuries-rally-as-jobs-data-trims-fed-rate-hike-bets-video",
       "date": "Fri, 07 Aug 2026 18:49:31 GMT",
       "topics": [
-        "zinsen"
+        "interest rate"
       ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Stocks and Bonds Rise as Jobs Ease Fed-Hike Wagers: Markets Wrap",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-06/stock-market-today-dow-s-p-live-updates",
-      "date": "Thu, 06 Aug 2026 22:10:21 GMT",
-      "topics": [
-        "zinsen",
-        "markt"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "US Stocks Pare Gains as Jobs Data Seen Easing Fed Rate Hike",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/us-futures-rise-as-trump-touts-iran-progress-awaiting-jobs-data",
-      "date": "Fri, 07 Aug 2026 11:44:11 GMT",
-      "topics": [
-        "zinsen",
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Phelan Confirmed to Lead Trump’s Council of Economic Advisers",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/phelan-confirmed-to-lead-trump-s-council-of-economic-advisers",
-      "date": "Fri, 07 Aug 2026 18:28:17 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Once-AAA Bonds on New York Megamall Face $350 Million Loss",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/once-aaa-bonds-on-new-york-megamall-face-over-350-million-loss",
-      "date": "Fri, 07 Aug 2026 15:34:16 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "DraftKings Blasts Prediction Bets on Earnings Calls Comments",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/draftkings-ceo-blasts-prediction-bets-on-earnings-call-comments",
-      "date": "Fri, 07 Aug 2026 17:30:04 GMT",
-      "topics": [
-        "earnings"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Big Tech Stocks Storm Back as AI Fears Fade and Euphoria Resumes",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/big-tech-stocks-storm-back-as-ai-fears-fade-and-euphoria-resumes",
-      "date": "Fri, 07 Aug 2026 10:30:01 GMT",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "BAC",
-        "F"
-      ]
-    },
-    {
-      "title": "US Treasury Sparks Debate Over Auction Cutbacks to Temper Yields",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/us-treasury-sparks-debate-over-auction-cutbacks-to-temper-yields",
-      "date": "Fri, 07 Aug 2026 17:33:44 GMT",
-      "topics": [],
-      "tickers": [
-        "BAC"
-      ]
-    },
-    {
-      "title": "The Free Money AI Bond Buildout Is Gone",
-      "link": "https://www.bloomberg.com/news/newsletters/2026-08-07/the-free-money-ai-bond-buildout-is-gone",
-      "date": "Fri, 07 Aug 2026 16:44:09 GMT",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Trump Tariffs ‘Tortuous’ to Soybean Trade, China Diplomat Says",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/trump-tariffs-tortuous-to-soybean-trade-china-diplomat-says",
-      "date": "Fri, 07 Aug 2026 16:43:10 GMT",
-      "topics": [
-        "geopolitik"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Under Armour Cuts Sales View on Softer Demand Around the World",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-07/under-armour-cuts-sales-view-on-softer-demand-video",
-      "date": "Fri, 07 Aug 2026 16:40:17 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Congo to Investigate Reports of Excess Uranium in Cobalt Exports",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/congo-to-investigate-reports-of-excess-uranium-in-cobalt-exports",
-      "date": "Fri, 07 Aug 2026 16:36:22 GMT",
-      "topics": [],
       "tickers": [
         "F"
       ]
@@ -359,10 +181,7 @@
       "link": "https://www.nytimes.com/2026/08/07/business/economy/jobs-report-interest-rates-fed.html",
       "date": "Fri, 07 Aug 2026 14:24:49 +0000",
       "topics": [
-        "zinsen"
-      ],
-      "tickers": [
-        "F"
+        "interest rate"
       ]
     },
     {
@@ -370,10 +189,7 @@
       "link": "https://www.nytimes.com/2026/08/07/business/economy/heres-the-latest.html",
       "date": "Fri, 07 Aug 2026 18:35:32 +0000",
       "topics": [
-        "markt"
-      ],
-      "tickers": [
-        "F"
+        "market"
       ]
     },
     {
@@ -381,28 +197,7 @@
       "link": "https://www.nytimes.com/2026/08/06/us/politics/trump-tariffs-solar-panels.html",
       "date": "Thu, 06 Aug 2026 21:53:18 +0000",
       "topics": [
-        "geopolitik"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "How Malta Became a Tax Haven for Crocs and Other U.S. Companies",
-      "link": "https://www.nytimes.com/2026/08/05/business/economy/crocs-malta-tax-haven.html",
-      "date": "Wed, 05 Aug 2026 18:38:58 +0000",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "What Are Companies Getting for All That A.I. Spending?",
-      "link": "https://www.nytimes.com/2026/08/03/business/economy/ai-spending-tokenomics.html",
-      "date": "Mon, 03 Aug 2026 18:56:22 +0000",
-      "topics": [],
-      "tickers": [
-        "F"
+        "geopolitics"
       ]
     },
     {
@@ -410,7 +205,7 @@
       "link": "https://www.nytimes.com/2026/07/31/business/economy/inflation-fed-dissent-interest-rates.html",
       "date": "Fri, 31 Jul 2026 16:16:55 +0000",
       "topics": [
-        "zinsen",
+        "interest rate",
         "inflation"
       ],
       "tickers": [
@@ -418,11 +213,11 @@
       ]
     },
     {
-      "title": "Bond Investors’ Inflation Angst Rises on Fed’s Lack of Guidance",
+      "title": "Bond Investors\u2019 Inflation Angst Rises on Fed\u2019s Lack of Guidance",
       "link": "https://www.nytimes.com/2026/07/30/business/federal-reserve-warsh-bonds.html",
       "date": "Thu, 30 Jul 2026 19:40:58 +0000",
       "topics": [
-        "zinsen",
+        "interest rate",
         "inflation"
       ],
       "tickers": [
@@ -430,16 +225,12 @@
       ]
     },
     {
-      "title": "Trump’s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
+      "title": "Trump\u2019s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
       "link": "https://www.nytimes.com/2026/07/30/business/economy/trump-tariffs-exemptions.html",
       "date": "Thu, 30 Jul 2026 20:24:37 +0000",
       "topics": [
         "energy",
-        "geopolitik"
-      ],
-      "tickers": [
-        "F",
-        "DIA"
+        "geopolitics"
       ]
     },
     {
@@ -448,37 +239,25 @@
       "date": "Thu, 30 Jul 2026 16:29:07 +0000",
       "topics": [
         "regulation"
-      ],
-      "tickers": [
-        "F"
       ]
-    },
-    {
-      "title": "China, Its Economy Stumbling, Signals Only Cautious Support",
-      "link": "https://www.nytimes.com/2026/07/30/business/china-economy-politburo.html",
-      "date": "Thu, 30 Jul 2026 13:59:54 +0000",
-      "topics": [
-        "geopolitik"
-      ],
-      "tickers": []
     },
     {
       "title": "Government Borrowing Cost Hits Two-Decade High After Fed Rate Decision",
       "link": "https://www.nytimes.com/2026/07/29/business/economy/treasury-yields-fed-inflation.html",
       "date": "Wed, 29 Jul 2026 21:33:46 +0000",
       "topics": [
-        "zinsen"
+        "interest rate"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "What to know about the Fed’s decision.",
+      "title": "What to know about the Fed\u2019s decision.",
       "link": "https://www.nytimes.com/live/2026/07/29/business/fed-meeting-rates-kevin-warsh/what-to-know-about-the-feds-decision",
       "date": "Wed, 29 Jul 2026 20:37:59 +0000",
       "topics": [
-        "zinsen"
+        "interest rate"
       ],
       "tickers": [
         "F"
@@ -489,7 +268,7 @@
       "link": "https://www.nytimes.com/2026/07/29/business/economy/fed-meeting-interest-rates-takeaways.html",
       "date": "Wed, 29 Jul 2026 19:41:04 +0000",
       "topics": [
-        "zinsen"
+        "interest rate"
       ],
       "tickers": [
         "F"

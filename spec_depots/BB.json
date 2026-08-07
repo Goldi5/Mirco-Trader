@@ -2,32 +2,12 @@
   "ticker": "BB",
   "name": "BlackBerry Ltd.",
   "kategorie": "meme",
-  "bargeld": 103.74,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 11.552339,
+  "avg_price": 8.98,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T15:37:43.788357",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-05T16:11:47.029048",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-05T16:19:17.885190",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-05T16:32:20.500232",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-05T16:33:36.571724",
-      "wert": 107.04
-    },
     {
       "zeit": "2026-08-05T16:48:33.901874",
       "wert": 107.04
@@ -407,6 +387,26 @@
     {
       "zeit": "2026-08-07T20:46:44.421731",
       "wert": 103.74
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.522495",
+      "wert": 103.74
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.418010",
+      "wert": 103.74
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.168978",
+      "wert": 103.74
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.609832",
+      "wert": 103.74
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.787917",
+      "wert": 103.74
     }
   ],
   "trades": [
@@ -624,20 +624,226 @@
       "preis": 8.91,
       "grund": "Klarer Abwärtstrend (Kurs < SMA20 < SMA50), niedriges Volumen (0.45x), RSI neutral bei 51.6, kein Cash für Nachkauf, Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz. Kleiner Verlust begrenzen und Kapital freisetzen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.609832",
+      "aktion": "kaufen",
+      "menge": 11.552339,
+      "preis": 8.98,
+      "grund": "Neutrales Setup (RSI 52.8, Kurs zwischen SMA20/50), Volumen-Ratio 0.53x über 0.3x-Schwelle, $103 Cash verfügbar für Diversifikation in kleine Position (<$30), VIX niedrig (14.9), keine harten Gegenregeln",
+      "ki_konfidenz": 58
     }
   ],
   "ki_letzte": {
+    "typ": "decision",
+    "zeit": "2026-08-07T21:50:37.629328",
+    "ticker": "BB",
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_BB_aktien_na",
+    "konfidenz": 55,
+    "grund": "Neutraler Trend (Kurs zwischen SMA20/50), RSI 52.7, Volumen 0.52x unter Durchschnitt. Kein klares Aufwärtssignal (Kurs > SMA20 > SMA50 fehlt), keine News. Meta-Regeln zeigen 0% Trefferquote bei Konfidenz ≥60. Warte auf klareres Setup.",
+    "menge": "voll",
+    "ziel_kurs": null,
+    "kurs": 8.98,
+    "rsi": 52.7,
+    "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
+    "p_pnl": 0,
+    "depot_rendite": 3.74,
+    "angewandte_regeln": [
+      {
+        "id": "r_20260802_32531",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_92036",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_09535",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_74417",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_79559",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_18173",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260801_07584",
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "typ": "swap",
+        "gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_1_87577",
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "typ": "anti",
+        "gewicht": -1.87,
+        "effektiv_gewicht": -1.81,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_2_74438",
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.81,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_5_20387",
+        "muster": "[Anti] halten bei ai-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.81,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_4_69646",
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "typ": "anti",
+        "gewicht": -1.71,
+        "effektiv_gewicht": -1.66,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_7_07487",
+        "muster": "[Anti] halten bei space-Titeln",
+        "typ": "anti",
+        "gewicht": -1.64,
+        "effektiv_gewicht": -1.59,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      }
+    ],
+    "decision_id": "d_20260807_215037_BB_aktien_na",
+    "provider": "zen-nemotron",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
-    "ticker": "BB",
-    "provider": "ALLE_PROVIDER_KALT",
-    "fallback": true,
-    "shadow": false,
-    "regelstand_ref": "v_legacy",
+    "quelle": "ki_decisions.entscheide_ticker",
+    "regime": "open",
+    "rohdaten": {
+      "kurs": 8.98,
+      "sma20": 8.98,
+      "sma50": 9.64,
+      "rsi": 52.7,
+      "atr_pct": 5.16,
+      "vol_ratio": 0.52,
+      "vix": 14.8,
+      "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
+      "depot_rendite": 3.74
+    },
+    "indikatoren": [
+      "SMA20>9.0",
+      "SMA50>9.6",
+      "RSI53",
+      "ATR5.2%"
+    ],
+    "news_score": null,
+    "regelstand_ref": "v_live",
     "konflikte": [],
     "prioritaetsreihenfolge": [
       "engine_bremse",
@@ -646,7 +852,24 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 0,
-    "konfidenz_nach_cap": 0
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
+    "konfidenz_cap": 60,
+    "erwarteter_ausgang": "unbekannt",
+    "shadow": false,
+    "regelstatus_beim_entscheid": {
+      "r_20260802_32531": "stabil",
+      "r_20260802_92036": "stabil",
+      "r_20260802_09535": "stabil",
+      "r_20260802_74417": "stabil",
+      "r_20260803_79559": "stabil",
+      "r_20260803_18173": "stabil",
+      "r_20260801_07584": "stabil",
+      "r_legacy_1_87577": "stabil",
+      "r_legacy_2_74438": "stabil",
+      "r_legacy_5_20387": "stabil",
+      "r_legacy_4_69646": "stabil",
+      "r_legacy_7_07487": "stabil"
+    }
   }
 }

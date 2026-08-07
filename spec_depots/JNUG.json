@@ -9,14 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T20:05:30.621240",
-      "wert": 90.04
-    },
-    {
-      "zeit": "2026-07-31T20:31:14.833294",
-      "wert": 90.04
-    },
-    {
       "zeit": "2026-07-31T20:34:50.790584",
       "wert": 90.04
     },
@@ -407,6 +399,14 @@
     {
       "zeit": "2026-08-07T20:33:10.263756",
       "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.567169",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.465192",
+      "wert": 90.57
     }
   ],
   "trades": [
@@ -535,11 +535,11 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_JNUG_aktien_na",
+    "decision_id": "d_20260807_215115_JNUG_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "JNUG",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

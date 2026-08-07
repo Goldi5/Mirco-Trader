@@ -2,36 +2,12 @@
   "ticker": "BOIL",
   "name": "ProShares Ultra NatGas 2x",
   "kategorie": "commodity",
-  "bargeld": 99.91,
+  "bargeld": 100.28,
   "shares": 0,
   "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T16:03:01.889139",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:03:35.081529",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:11:47.039057",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:19:17.895288",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:28:18.116655",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:48:33.907305",
-      "wert": 100.0
-    },
     {
       "zeit": "2026-08-05T16:49:54.849621",
       "wert": 100.0
@@ -407,6 +383,30 @@
     {
       "zeit": "2026-08-07T21:02:19.874834",
       "wert": 99.91
+    },
+    {
+      "zeit": "2026-08-07T21:17:27.126678",
+      "wert": 99.91
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.534651",
+      "wert": 99.91
+    },
+    {
+      "zeit": "2026-08-07T21:32:40.961589",
+      "wert": 99.91
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.430340",
+      "wert": 99.91
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.180726",
+      "wert": 100.28
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.619623",
+      "wert": 100.28
     }
   ],
   "trades": [
@@ -529,20 +529,234 @@
       "preis": 19.26,
       "grund": "Starker Abwärtstrend (Kurs < SMA20 < SMA50), 2x Hebel-ETF mit Volatilitätsverfall-Risiko, Anti-Hold-Regel für lev-bull-Titel (-1.81 Gewicht), RSI 36.8 noch nicht überverkauft, Volumen nur 0.49x, kein Cash für Nachkauf. Position minimal im Minus (-0.41%), Kapital freimachen für bessere Gelegenheiten. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T21:32:40.961589",
+      "aktion": "kaufen",
+      "menge": 5.23363,
+      "preis": 19.09,
+      "grund": "RSI 35.5 nähert sich überverkauft, kleine Position (max 30% Cash) erlaubt bei Hebel-ETF zum Lernen; aber klarer Abwärtstrend (Kurs < SMA20 < SMA50), Hebel-Verfall & VORSICHT-Regel gegen lev-bull-Titel begrenzen Konfidenz stark",
+      "ki_konfidenz": 45
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.180726",
+      "aktion": "verkaufen",
+      "menge": 5.23363,
+      "preis": 19.16,
+      "grund": "Downtrend intakt (Kurs < SMA20 < SMA50), RSI 36 noch nicht überverkauft genug, Hebel-ETF (lev-bull) mit historischen Warnregeln gegen Halten, Depot zu 100% in dieser einen riskanten Position konzentriert, kein Cash für Nachkäufe, kleine Gewinnmitnahme (+0.37%) befreit Kapital für Diversifikation [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
-    "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_BOIL_aktien_na",
+    "typ": "decision",
+    "zeit": "2026-08-07T21:51:02.932118",
+    "ticker": "BOIL",
+    "aktion": "verkaufen",
+    "konfidenz": 60,
+    "grund": "Abwärtstrend (Kurs < SMA20 < SMA50) bei 2x-Hebel-ETF: Volatilitätsverfall gefährlich. Anti-Hold-Regel für lev-bull-Titel (Gewicht -1.81). RSI 36 noch nicht überverkauft. Kein Cash für Nachkauf. Kleinen Gewinn (+0.37%) mitnehmen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "menge": "voll",
+    "ziel_kurs": null,
+    "kurs": 19.16,
+    "rsi": 36.0,
+    "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
+    "p_pnl": 0.37,
+    "depot_rendite": 0.28,
+    "angewandte_regeln": [
+      {
+        "id": "r_20260802_32531",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_92036",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_09535",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_74417",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_79559",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_18173",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.43,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260801_07584",
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "typ": "swap",
+        "gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_1_87577",
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "typ": "anti",
+        "gewicht": -1.87,
+        "effektiv_gewicht": -1.81,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_2_74438",
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.81,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_5_20387",
+        "muster": "[Anti] halten bei ai-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.81,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_4_69646",
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "typ": "anti",
+        "gewicht": -1.71,
+        "effektiv_gewicht": -1.66,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_7_07487",
+        "muster": "[Anti] halten bei space-Titeln",
+        "typ": "anti",
+        "gewicht": -1.64,
+        "effektiv_gewicht": -1.59,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      }
+    ],
+    "decision_id": "d_20260807_215102_BOIL_aktien_na",
+    "provider": "zen-nemotron",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
-    "ticker": "BOIL",
-    "provider": "ALLE_PROVIDER_KALT",
-    "fallback": true,
-    "shadow": false,
-    "regelstand_ref": "v_legacy",
+    "quelle": "ki_decisions.entscheide_ticker",
+    "regime": "open",
+    "rohdaten": {
+      "kurs": 19.16,
+      "sma20": 21.05,
+      "sma50": 24.91,
+      "rsi": 36.0,
+      "atr_pct": 4.07,
+      "vol_ratio": 0.85,
+      "vix": 14.9,
+      "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
+      "depot_rendite": 0.28
+    },
+    "indikatoren": [
+      "SMA20>21.1",
+      "SMA50>24.9",
+      "RSI36",
+      "ATR4.1%"
+    ],
+    "news_score": null,
+    "regelstand_ref": "v_live",
     "konflikte": [],
     "prioritaetsreihenfolge": [
       "engine_bremse",
@@ -551,7 +765,24 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 0,
-    "konfidenz_nach_cap": 0
+    "konfidenz_original": 65.0,
+    "konfidenz_nach_cap": 60,
+    "konfidenz_cap": 60,
+    "erwarteter_ausgang": "unbekannt",
+    "shadow": false,
+    "regelstatus_beim_entscheid": {
+      "r_20260802_32531": "stabil",
+      "r_20260802_92036": "stabil",
+      "r_20260802_09535": "stabil",
+      "r_20260802_74417": "stabil",
+      "r_20260803_79559": "stabil",
+      "r_20260803_18173": "stabil",
+      "r_20260801_07584": "stabil",
+      "r_legacy_1_87577": "stabil",
+      "r_legacy_2_74438": "stabil",
+      "r_legacy_5_20387": "stabil",
+      "r_legacy_4_69646": "stabil",
+      "r_legacy_7_07487": "stabil"
+    }
   }
 }

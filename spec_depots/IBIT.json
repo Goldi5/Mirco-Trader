@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T18:16:03.908289",
-      "wert": 97.72
-    },
-    {
-      "zeit": "2026-08-04T18:35:14.399982",
-      "wert": 97.72
-    },
-    {
-      "zeit": "2026-08-04T19:03:34.695507",
-      "wert": 97.72
-    },
-    {
       "zeit": "2026-08-04T21:20:07.792056",
       "wert": 97.72
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T21:02:19.893386",
       "wert": 97.51
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.557759",
+      "wert": 97.7
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.456001",
+      "wert": 97.86
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.208031",
+      "wert": 97.88
     }
   ],
   "trades": [
@@ -582,11 +582,11 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_IBIT_aktien_na",
+    "decision_id": "d_20260807_215119_IBIT_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "IBIT",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

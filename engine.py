@@ -246,9 +246,12 @@ def bewerte(aktien, budget, risk_params=None):
         if preis < 1.0:
             continue
 
-        # Budget-Anpassung: günstige Aktien bevorzugen (kontinuierlich)
+        # Budget-Anpassung (Hybrid v2.19.6): Penneys abwerten, qualitätsvolle bezahlbare bevorzugen
         if preis <= budget:
-            score += 15 * (1 - preis / budget)  # $5→+12.5, $15→+7.5, $25→+2.5
+            if preis < 5.0:
+                score -= 10  # Penny-Penalty: nicht ausschließen, aber abwerten (verhindert Dominanz)
+            else:
+                score += 10 * (preis / budget)  # $5→+0.6, $15→+1.8, $50→+5.9 (teurere = leicht besser)
         else:
             score -= 25  # zu teuer für Budget, kaum Chancen
 

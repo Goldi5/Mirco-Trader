@@ -1,8 +1,8 @@
 {
-  "version": "2.19.5",
-  "build": "2026-08-07_2115",
-  "released_at": "2026-08-07 21:15",
-  "codename": "Risiko-Rampe Stufe 1+2: Volumen offen, Hebel erlaubt",
+  "version": "2.19.6",
+  "build": "2026-08-07_2225",
+  "released_at": "2026-08-07 22:25",
+  "codename": "Risiko-Rampe Stufe 3: Penny-Penalty (Hybrid b+c)",
   "changes": [
     {
       "version": "2.19.3",

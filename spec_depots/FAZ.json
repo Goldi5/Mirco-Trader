@@ -9,26 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T16:19:17.910569",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T16:32:16.124746",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T16:49:54.859405",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T17:02:35.095198",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T17:17:46.904968",
-      "wert": 99.84
-    },
-    {
       "zeit": "2026-08-05T17:30:57.276578",
       "wert": 99.84
     },
@@ -407,6 +387,26 @@
     {
       "zeit": "2026-08-07T21:02:19.887579",
       "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.549774",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.447102",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.198964",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.632397",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.805862",
+      "wert": 100.42
     }
   ],
   "trades": [
@@ -502,14 +502,12 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_FAZ_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_215134_FAZ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "FAZ",
-    "provider": "ALLE_PROVIDER_KALT",
-    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

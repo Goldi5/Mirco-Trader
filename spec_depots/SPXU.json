@@ -420,7 +420,7 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_SPXU_aktien_na",
+    "decision_id": "d_20260807_215148_SPXU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SPXU",

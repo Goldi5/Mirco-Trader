@@ -2,24 +2,12 @@
   "ticker": "MRNA",
   "name": "Moderna Inc.",
   "kategorie": "biotech",
-  "bargeld": 103.5,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 1.750381,
+  "avg_price": 59.13,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-07-31T11:47:05.718740",
-      "wert": 103.63
-    },
-    {
-      "zeit": "2026-07-31T12:02:19.103737",
-      "wert": 103.63
-    },
-    {
-      "zeit": "2026-07-31T12:17:10.888702",
-      "wert": 103.63
-    },
     {
       "zeit": "2026-07-31T12:31:29.880594",
       "wert": 103.63
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T18:33:17.286309",
       "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.476669",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.226677",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.835281",
+      "wert": 103.45
     }
   ],
   "trades": [
@@ -558,18 +558,24 @@
       "preis": 56.03,
       "grund": "Abwärtstrend, extrem geringes Volumen, hohe Volatilität; Position mit kleinem Gewinn verkaufen.",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.226677",
+      "aktion": "kaufen",
+      "menge": 1.750381,
+      "preis": 59.13,
+      "grund": "Neutrales Setup (RSI 49, Trend seitwärts), aber Watchlist-Ticker mit verfügbarem Cash. Strategie bevorzugt mehrere kleine Positionen. Meta-Regeln warnen vor hoher Konfidenz, daher moderate Einstiegsgröße.",
+      "ki_konfidenz": 58
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_210242_MRNA_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_215151_MRNA_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "MRNA",
-    "provider": "ALLE_PROVIDER_KALT",
-    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],
