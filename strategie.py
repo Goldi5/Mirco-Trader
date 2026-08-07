@@ -100,7 +100,7 @@ if __name__ == "__main__":
     assert preis_score(15.0, 100) == SMALLCAP_BONUS
     assert preis_score(75.0, 100) == EXPENSIVE_BONUS
     assert volumen_pos_size(0.05) == 0.0
-    assert volumen_pos_size(0.20) == VOL_POS_SIZE_2
+    assert volumen_pos_size(0.10) == VOL_POS_SIZE_2
     assert volumen_pos_size(0.50) == 1.0
     assert ist_hebel_etf("TQQQ") == True
     assert ist_hebel_etf("AAPL") == False
