@@ -1339,6 +1339,33 @@ def api_ki_log():
     return []
 
 
+@app.route("/api/db_query")
+def api_db_query():
+    """Flexible DB-Abfrage für Analyse-Tab (Filter + Suche)."""
+    import sys as _sys
+    _sys.path.insert(0, BASE)
+    try:
+        from db import MTDB
+        typ = request.args.get("typ") or None
+        ticker = request.args.get("ticker") or None
+        aktion = request.args.get("aktion") or None
+        tage = request.args.get("tage", default=30, type=int)
+        limit = request.args.get("limit", default=200, type=int)
+        order = request.args.get("order", default="DESC")
+        mode = request.args.get("mode", default="trades")  # trades | ki
+        db = MTDB()
+        if mode == "ki":
+            rows = db.query_ki(typ=typ, ticker=ticker, aktion=aktion,
+                               tage=tage, limit=limit, order=order)
+        else:
+            rows = db.query_trades(typ=typ, ticker=ticker, aktion=aktion,
+                                   tage=tage, limit=limit, order=order)
+        db.close()
+        return {"count": len(rows), "rows": rows}
+    except Exception as e:
+        return {"error": str(e), "rows": []}
+
+
 @app.route("/depot_json")
 def depot_json():
     risk = request.args.get("risk", type=int)

@@ -246,6 +246,8 @@ class MTDB:
         rows = self.conn.execute(sql, params).fetchall()
         return [dict(r) for r in rows]
 
+    def close(self):
+        self.conn.close()
 
 
 if __name__ == "__main__":

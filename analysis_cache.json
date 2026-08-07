@@ -1,5 +1,5 @@
 {
-  "zeit": "2026-08-07T09:11:15.598386",
+  "zeit": "2026-08-07T09:27:20.146458",
   "aktien": {
     "name": "Aktien",
     "depots": 20,
@@ -538,12 +538,12 @@
       "Neutraler Trend, RSI": 14,
       "Gelernte Regeln verb": 8,
       "Watchlist-Ticker mit": 8,
-      "AbwÃ¤rtstrend intakt": 7,
       "Keine Position, Cash": 7,
       "downtrend": 6,
       "Neutraler Trend und ": 6,
-      "Anti-Hold-Regel fÃ¼r": 6,
-      "AufwÃ¤rtstrend und R": 5
+      "Anti-Hold-Regel für ": 6,
+      "Aufwärtstrend und RS": 5,
+      "Keine Position, Watc": 5
     },
     "risk_perf": [
       {
