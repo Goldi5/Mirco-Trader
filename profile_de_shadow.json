@@ -1,0 +1,27 @@
+{
+  "name": "DE_Test_Shadow",
+  "märkte": [
+    "DE"
+  ],
+  "depotarten": [
+    "aktien",
+    "etf",
+    "spekulation"
+  ],
+  "risk_model": "standard",
+  "news_sources": [
+    "finanzen_net",
+    "arivainvest"
+  ],
+  "data_sources": [
+    "yfinance"
+  ],
+  "base_currency": "EUR",
+  "handelszeiten": {
+    "DE": "09:00-17:30 CET (Xetra/Frankfurt)"
+  },
+  "regelstand_ref": "v2.16.12",
+  "modus": "live",
+  "freigegeben_am": "2026-08-06T20:31:51.701306",
+  "freigegeben_von": "user"
+}

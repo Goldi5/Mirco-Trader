@@ -1,0 +1,26 @@
+{
+  "name": "JP_Test_Shadow",
+  "märkte": [
+    "JP"
+  ],
+  "depotarten": [
+    "aktien",
+    "etf",
+    "spekulation"
+  ],
+  "risk_model": "standard",
+  "news_sources": [
+    "jp_news_feed"
+  ],
+  "data_sources": [
+    "yfinance"
+  ],
+  "base_currency": "JPY",
+  "handelszeiten": {
+    "JP": "09:00-11:30, 12:30-15:00 JST (TSE/Nikkei)"
+  },
+  "regelstand_ref": "v2.16.12",
+  "modus": "live",
+  "freigegeben_am": "2026-08-06T20:31:51.871450",
+  "freigegeben_von": "user"
+}

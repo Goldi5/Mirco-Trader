@@ -1,0 +1,415 @@
+{
+ "SPY": {
+  "aktuell": 729.46,
+  "tagesrendite": -1.54,
+  "woche": -1.18,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:28.874893"
+ },
+ "QQQ": {
+  "aktuell": 661.73,
+  "tagesrendite": -2.04,
+  "woche": -4.37,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:29.109071"
+ },
+ "IWM": {
+  "aktuell": 288.57,
+  "tagesrendite": -1.64,
+  "woche": -1.21,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:29.335100"
+ },
+ "DIA": {
+  "aktuell": 515.41,
+  "tagesrendite": -2.18,
+  "woche": -0.16,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:29.545254"
+ },
+ "VTI": {
+  "aktuell": 360.42,
+  "tagesrendite": -1.52,
+  "woche": -1.17,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:29.763865"
+ },
+ "VGK": {
+  "aktuell": 88.86,
+  "tagesrendite": -0.41,
+  "woche": 1.17,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:30.331157"
+ },
+ "EEM": {
+  "aktuell": 61.07,
+  "tagesrendite": -2.07,
+  "woche": -5.46,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:30.602051"
+ },
+ "TLT": {
+  "aktuell": 82.85,
+  "tagesrendite": -1.65,
+  "woche": -0.38,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:30.845264"
+ },
+ "SPXL": {
+  "aktuell": 250.2,
+  "tagesrendite": -4.66,
+  "woche": -3.79,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:31.230126"
+ },
+ "TQQQ": {
+  "aktuell": 57.75,
+  "tagesrendite": -6.19,
+  "woche": -12.9,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:31.413026"
+ },
+ "UDOW": {
+  "aktuell": 66.71,
+  "tagesrendite": -6.5,
+  "woche": -0.88,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:31.659919"
+ },
+ "URTY": {
+  "aktuell": 76.64,
+  "tagesrendite": -4.89,
+  "woche": -3.82,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:32.165928"
+ },
+ "FAS": {
+  "aktuell": 171.75,
+  "tagesrendite": -4.62,
+  "woche": 4.32,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:32.409036"
+ },
+ "LABU": {
+  "aktuell": 232.23,
+  "tagesrendite": -4.04,
+  "woche": -8.49,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:32.680664"
+ },
+ "SOXL": {
+  "aktuell": 91.99,
+  "tagesrendite": -16.02,
+  "woche": -41.59,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:32.905242"
+ },
+ "TECL": {
+  "aktuell": 150.12,
+  "tagesrendite": -7.92,
+  "woche": -19.07,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:33.187645"
+ },
+ "CURE": {
+  "aktuell": 126.52,
+  "tagesrendite": -2.21,
+  "woche": 8.98,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:33.666766"
+ },
+ "RETL": {
+  "aktuell": 10.08,
+  "tagesrendite": -0.3,
+  "woche": 17.62,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:34.117958"
+ },
+ "SPXS": {
+  "aktuell": 28.58,
+  "tagesrendite": 4.69,
+  "woche": 3.85,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:34.351081"
+ },
+ "SQQQ": {
+  "aktuell": 49.44,
+  "tagesrendite": 6.3,
+  "woche": 14.26,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:34.657462"
+ },
+ "SDOW": {
+  "aktuell": 25.22,
+  "tagesrendite": 6.41,
+  "woche": 0.28,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:34.914194"
+ },
+ "SRTY": {
+  "aktuell": 24.21,
+  "tagesrendite": 4.94,
+  "woche": 3.73,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:35.111705"
+ },
+ "FAZ": {
+  "aktuell": 33.25,
+  "tagesrendite": 4.59,
+  "woche": -4.59,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:35.343016"
+ },
+ "LABD": {
+  "aktuell": 9.24,
+  "tagesrendite": 3.7,
+  "woche": 9.22,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:35.806643"
+ },
+ "SOXS": {
+  "aktuell": 73.15,
+  "tagesrendite": 16.35,
+  "woche": 60.38,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:36.027550"
+ },
+ "SH": {
+  "aktuell": 33.93,
+  "tagesrendite": 1.53,
+  "woche": 1.22,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:36.562084"
+ },
+ "PSQ": {
+  "aktuell": 27.91,
+  "tagesrendite": 2.12,
+  "woche": 4.69,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:37.164695"
+ },
+ "UVXY": {
+  "aktuell": 26.94,
+  "tagesrendite": 9.16,
+  "woche": 5.03,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:37.308660"
+ },
+ "VXX": {
+  "aktuell": 23.42,
+  "tagesrendite": 6.31,
+  "woche": 4.0,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:37.577009"
+ },
+ "SVXY": {
+  "aktuell": 55.35,
+  "tagesrendite": -3.06,
+  "woche": -1.76,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:37.752838"
+ },
+ "VIXY": {
+  "aktuell": 22.53,
+  "tagesrendite": 6.07,
+  "woche": 3.44,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:37.952371"
+ },
+ "IBIT": {
+  "aktuell": 36.0,
+  "tagesrendite": -0.39,
+  "woche": -1.77,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:38.116804"
+ },
+ "FBTC": {
+  "aktuell": 55.29,
+  "tagesrendite": -0.45,
+  "woche": -1.95,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:38.336574"
+ },
+ "BITX": {
+  "aktuell": 11.91,
+  "tagesrendite": -1.0,
+  "woche": -4.11,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:38.563279"
+ },
+ "ETHA": {
+  "aktuell": 14.24,
+  "tagesrendite": -1.73,
+  "woche": 0.92,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:38.836714"
+ },
+ "MSTR": {
+  "aktuell": 93.33,
+  "tagesrendite": -2.94,
+  "woche": -0.32,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:39.064811"
+ },
+ "COIN": {
+  "aktuell": 160.09,
+  "tagesrendite": -4.65,
+  "woche": -0.66,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:39.287927"
+ },
+ "USO": {
+  "aktuell": 129.31,
+  "tagesrendite": 7.32,
+  "woche": -7.3,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:39.486335"
+ },
+ "UNG": {
+  "aktuell": 9.93,
+  "tagesrendite": 1.33,
+  "woche": -6.41,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:39.708363"
+ },
+ "GLD": {
+  "aktuell": 371.08,
+  "tagesrendite": 0.46,
+  "woche": -0.12,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:39.947733"
+ },
+ "SLV": {
+  "aktuell": 51.77,
+  "tagesrendite": 0.14,
+  "woche": -0.56,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:40.242419"
+ },
+ "DBC": {
+  "aktuell": 29.42,
+  "tagesrendite": 2.87,
+  "woche": -2.94,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:40.674296"
+ },
+ "COPX": {
+  "aktuell": 76.14,
+  "tagesrendite": -0.5,
+  "woche": -2.85,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:41.148806"
+ },
+ "URA": {
+  "aktuell": 37.52,
+  "tagesrendite": -3.67,
+  "woche": -8.78,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:41.417172"
+ },
+ "NVDA": {
+  "aktuell": 190.01,
+  "tagesrendite": -3.55,
+  "woche": -8.98,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:41.620498"
+ },
+ "AMD": {
+  "aktuell": 429.56,
+  "tagesrendite": -5.51,
+  "woche": -20.41,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:41.835318"
+ },
+ "SMCI": {
+  "aktuell": 25.7,
+  "tagesrendite": -9.67,
+  "woche": -17.63,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:42.355676"
+ },
+ "PLTR": {
+  "aktuell": 123.0,
+  "tagesrendite": -0.43,
+  "woche": -0.3,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:42.586150"
+ },
+ "AI": {
+  "aktuell": 8.85,
+  "tagesrendite": -0.56,
+  "woche": 8.59,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:42.874176"
+ },
+ "BOTZ": {
+  "aktuell": 33.68,
+  "tagesrendite": -0.88,
+  "woche": -1.84,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:43.163783"
+ },
+ "TSLA": {
+  "aktuell": 298.32,
+  "tagesrendite": -2.97,
+  "woche": -6.68,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:43.348438"
+ },
+ "RIVN": {
+  "aktuell": 16.33,
+  "tagesrendite": -2.16,
+  "woche": -0.79,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:43.524464"
+ },
+ "LCID": {
+  "aktuell": 7.96,
+  "tagesrendite": 0.76,
+  "woche": 23.41,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:43.715770"
+ },
+ "NIO": {
+  "aktuell": 4.76,
+  "tagesrendite": 1.71,
+  "woche": 2.59,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:43.914277"
+ },
+ "XBI": {
+  "aktuell": 147.91,
+  "tagesrendite": -1.25,
+  "woche": -2.84,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:44.117944"
+ },
+ "IBB": {
+  "aktuell": 188.53,
+  "tagesrendite": -1.04,
+  "woche": -0.24,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:44.339423"
+ },
+ "ARKX": {
+  "aktuell": 29.52,
+  "tagesrendite": -3.43,
+  "woche": -4.59,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:44.775922"
+ },
+ "RKLB": {
+  "aktuell": 58.6,
+  "tagesrendite": -8.28,
+  "woche": -16.27,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:45.030271"
+ },
+ "LUNR": {
+  "aktuell": 11.39,
+  "tagesrendite": -7.92,
+  "woche": -16.92,
+  "volatilitaet": 0,
+  "updated": "2026-07-30T08:41:45.546438"
+ }
+}

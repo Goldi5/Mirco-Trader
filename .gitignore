@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.db
+ki_cooldown.json
+.bak-*/
+.backup/
+.backups/
+backups/
+reports/
+*.log
+.env
+nous_auth.json
+whatsapp_config.json

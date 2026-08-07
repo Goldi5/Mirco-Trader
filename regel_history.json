@@ -1,0 +1,2112 @@
+[
+  {
+    "zeit": "2026-08-01T18:45:52.850648",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T19:00:53.241331",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T20:04:27.924527",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T20:16:08.106578",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T20:30:58.768434",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T20:46:00.247494",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T21:01:05.144274",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T21:16:06.030586",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T22:46:47.945017",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T22:59:10.086785",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-01T23:01:06.841400",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T08:08:26.716792",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T08:15:59.135191",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T08:30:57.600316",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T08:45:56.743169",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T09:01:10.356499",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T09:16:06.188755",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T09:31:00.898443",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T09:45:57.008015",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T10:02:07.691125",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T10:06:50.901159",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T10:16:12.438774",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T10:31:09.050050",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T10:46:06.684610",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T11:01:06.402131",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T11:16:09.138925",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T12:13:30.745721",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T12:16:53.987934",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T12:31:38.967345",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      }
+    ]
+  },
+  {
+    "zeit": "2026-08-02T12:46:52.658683",
+    "regeln": [
+      {
+        "muster": "[Exit] Verkauf bei laufendem Trend",
+        "gewicht": 0.9,
+        "anti": false
+      },
+      {
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "gewicht": -1.88,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "gewicht": -1.86,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "gewicht": -1.82,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ai-Titeln",
+        "gewicht": -1.69,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "gewicht": -1.67,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei space-Titeln",
+        "gewicht": -1.64,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei ev-Titeln",
+        "gewicht": -1.62,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "gewicht": -1.55,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei index-Titeln",
+        "gewicht": -1.47,
+        "anti": true
+      },
+      {
+        "muster": "[Anti] halten bei meme-Titeln",
+        "gewicht": -1.41,
+        "anti": true
+      },
+      {
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "gewicht": 2.0,
+        "anti": false
+      },
+      {
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
+        "gewicht": 2.5,
+        "anti": false
+      },
+      {
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
+        "gewicht": 2.5,
+        "anti": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,49 @@
+PROVIDER: nous-step
+
+[
+  {
+    "risk": 10,
+    "aktionen": [
+      {
+        "ticker": "AAPL",
+        "aktion": "halten",
+        "menge": "voll",
+        "grund": "Aktie notiert mit 0,5% im leichten Gewinn gegenüber dem Kaufkurs, keine fundamentalen oder technischen Gründe für einen Verkauf, solide Position behalten"
+      },
+      {
+        "ticker": "MSFT",
+        "aktion": "kaufen",
+        "menge": "teil",
+        "grund": "MSFT ist ein etablierter Wachstumswert mit starkem KI-Geschäft, das vorhandene Cash von 100 $ reicht nicht für den Kauf einer vollen Aktie (Kurs 410 $), daher Teilkauf des möglichen Anteils"
+      }
+    ]
+  },
+  {
+    "risk": 20,
+    "aktionen": [
+      {
+        "ticker": "TSLA",
+        "aktion": "halten",
+        "menge": "voll",
+        "grund": "TSLA notiert mit 3,7% im Gewinn gegenüber dem Kaufkurs, keine Gründe für einen Verkauf, Position behalten"
+      },
+      {
+        "ticker": "NVDA",
+        "aktion": "kaufen",
+        "menge": "teil",
+        "grund": "NVDA ist führend im KI-Chip-Markt mit hohem Wachstumspotenzial, das vorhandene Cash von 50 $ reicht nicht für den Kauf einer vollen Aktie (Kurs 120 $), daher Teilkauf des möglichen Anteils"
+      }
+    ]
+  },
+  {
+    "risk": 30,
+    "aktionen": [
+      {
+        "ticker": "AMZN",
+        "aktion": "kaufen",
+        "menge": "teil",
+        "grund": "AMZN ist ein stabiler Wachstumswert mit starkem E-Commerce und Cloud-Geschäft, das vorhandene Cash von 80 $ reicht nicht für den Kauf einer vollen Aktie (Kurs 180 $), daher Teilkauf des möglichen Anteils, da keine vorhandenen Positionen bestehen"
+      }
+    ]
+  }
+]

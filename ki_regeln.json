@@ -1,0 +1,331 @@
+[
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (0% Treffer bei n=60). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 3.0,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 80-100 (0% Treffer bei n=17). Konfidenz wird auf max. 80 gedeckelt.",
+    "gewicht": 3.0,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (0% Treffer bei n=50). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 3.0,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 80-100 (0% Treffer bei n=12). Konfidenz wird auf max. 80 gedeckelt.",
+    "gewicht": 3.0,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (0% Treffer bei n=36). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 3.0,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 80-100 (0% Treffer bei n=9). Konfidenz wird auf max. 80 gedeckelt.",
+    "gewicht": 3.0,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=14)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (0% Treffer bei n=14). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 3.0,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=12)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (0% Treffer bei n=12). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 3.0,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 1% Treffer, n=79)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (1% Treffer bei n=79). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.9,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 3% Treffer, n=78)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (3% Treffer bei n=78). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.7,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 4% Treffer, n=89)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (4% Treffer bei n=89). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.6,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 4% Treffer, n=46)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (4% Treffer bei n=46). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.6,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 5% Treffer, n=55)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (5% Treffer bei n=55). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.5,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 5% Treffer, n=73)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (5% Treffer bei n=73). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.5,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 5% Treffer, n=75)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (5% Treffer bei n=75). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.5,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 5% Treffer, n=80)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (5% Treffer bei n=80). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.5,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 5% Treffer, n=82)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (5% Treffer bei n=82). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.5,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 5% Treffer, n=86)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (5% Treffer bei n=86). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.5,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 5% Treffer, n=39)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (5% Treffer bei n=39). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.5,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 5% Treffer, n=42)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (5% Treffer bei n=42). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.5,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 5% Treffer, n=22)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (5% Treffer bei n=22). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.5,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 6% Treffer, n=68)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (6% Treffer bei n=68). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.4,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 6% Treffer, n=62)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (6% Treffer bei n=62). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.4,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 6% Treffer, n=64)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (6% Treffer bei n=64). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.4,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 6% Treffer, n=33)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (6% Treffer bei n=33). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.4,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 6% Treffer, n=50)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (6% Treffer bei n=50). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.4,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 6% Treffer, n=17)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (6% Treffer bei n=17). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.4,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 7% Treffer, n=54)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (7% Treffer bei n=54). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.3,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 7% Treffer, n=58)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (7% Treffer bei n=58). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.3,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 8% Treffer, n=53)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (8% Treffer bei n=53). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.2,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 8% Treffer, n=62)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (8% Treffer bei n=62). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.2,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 8% Treffer, n=61)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (8% Treffer bei n=61). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.2,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+    "regel": "Halte-Positionen liefen Ø +1.0% schlechter als SPY. Bei schwachen Setups in Benchmark-ETF umschichten.",
+    "gewicht": 2.0,
+    "anti": false,
+    "zeit": "2026-08-06T15:33:32"
+  },
+  {
+    "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 10% Treffer, n=31)",
+    "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (10% Treffer bei n=31). Konfidenz wird auf max. 60 gedeckelt.",
+    "gewicht": 2.0,
+    "anti": false,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei volatility-Titeln",
+    "regel": "NICHT halten bei volatility-Titeln – systematisch falsch (8/8 widerlegt, Ø -3.4). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.88,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei lev-bull-Titeln",
+    "regel": "NICHT halten bei lev-bull-Titeln – systematisch falsch (5/5 widerlegt, Ø -3.6). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.86,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei crypto-Titeln",
+    "regel": "NICHT halten bei crypto-Titeln – systematisch falsch (5/6 widerlegt, Ø -2.5). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.82,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei lev-bear-Titeln",
+    "regel": "NICHT halten bei lev-bear-Titeln – systematisch falsch (6/6 widerlegt, Ø -3.3). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.69,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei ai-Titeln",
+    "regel": "NICHT halten bei ai-Titeln – systematisch falsch (5/5 widerlegt, Ø -3.8). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.69,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei commodity-Titeln",
+    "regel": "NICHT halten bei commodity-Titeln – systematisch falsch (5/5 widerlegt, Ø -2.4). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.67,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei space-Titeln",
+    "regel": "NICHT halten bei space-Titeln – systematisch falsch (3/3 widerlegt, Ø -4.0). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.64,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei ev-Titeln",
+    "regel": "NICHT halten bei ev-Titeln – systematisch falsch (2/3 widerlegt, Ø -2.3). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.62,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei biotech-Titeln",
+    "regel": "NICHT halten bei biotech-Titeln – systematisch falsch (2/4 widerlegt, Ø -2.5). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.55,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei index-Titeln",
+    "regel": "NICHT halten bei index-Titeln – systematisch falsch (3/3 widerlegt, Ø -2.0). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.47,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[Anti] halten bei meme-Titeln",
+    "regel": "NICHT halten bei meme-Titeln – systematisch falsch (2/3 widerlegt, Ø -2.0). Ausnahme nur mit sehr starkem Grund",
+    "gewicht": -1.41,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[MTF] Vorsicht Kaufen bei 15min↑/1d↓ (RIVN)",
+    "regel": "KI kaufte RIVN bei kurzfristigem Anstieg (15min +2.0%) trotz fallendem Tagestrend (1d -5.2%). Oft eine Falle.",
+    "gewicht": -1.0,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  },
+  {
+    "muster": "[MTF] Vorsicht Kaufen bei 15min↑/1d↓ (ETHA)",
+    "regel": "KI kaufte ETHA bei kurzfristigem Anstieg (15min +0.3%) trotz fallendem Tagestrend (1d -2.7%). Oft eine Falle.",
+    "gewicht": -1.0,
+    "anti": true,
+    "zeit": "2026-08-04T16:40:26"
+  }
+]

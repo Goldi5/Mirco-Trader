@@ -1,0 +1,757 @@
+{
+  "ticker": "JDST",
+  "name": "Direxion Gold Miners Bear 2x",
+  "kategorie": "lev-bear",
+  "bargeld": 97.97,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-07-31T11:17:12.328142",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T11:32:17.677847",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T11:47:05.714087",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T12:02:19.098592",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T12:17:10.883584",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T12:31:29.874849",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T12:46:20.277122",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T13:01:52.476326",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T13:16:34.972574",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T13:31:56.964882",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T13:46:51.192053",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T14:01:55.676630",
+      "wert": 92.41
+    },
+    {
+      "zeit": "2026-07-31T15:33:42.088265",
+      "wert": 95.44
+    },
+    {
+      "zeit": "2026-07-31T20:05:30.621240",
+      "wert": 97.45
+    },
+    {
+      "zeit": "2026-07-31T20:31:14.827288",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-07-31T20:34:50.775776",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-07-31T21:05:07.881669",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-03T16:23:05.870693",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-03T22:33:49.980307",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-03T22:40:46.282060",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T16:54:38.465297",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T17:48:59.602378",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T17:50:11.633060",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T17:58:39.193850",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:11.279985",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:24.811454",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T18:12:36.112374",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T18:15:13.378606",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T18:16:03.910971",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T18:35:14.407741",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T21:18:48.277730",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T21:20:07.799382",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T21:20:12.248901",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T21:26:12.461546",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T21:33:57.324389",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T21:35:44.818700",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T21:48:28.571636",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T21:48:42.331720",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-04T21:49:55.135087",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T15:36:01.107065",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T15:56:40.804363",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T16:19:17.925307",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T16:49:54.867784",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T17:02:35.095198",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T17:17:46.927740",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T17:30:57.284281",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T17:34:36.017861",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T17:47:22.340319",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T18:02:16.834281",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T18:17:51.282331",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T18:32:34.040956",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T18:33:29.796154",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T19:17:43.221104",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T19:32:50.869708",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.962545",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T20:02:54.995868",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.207374",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T20:18:56.774191",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.708135",
+      "wert": 98.0
+    },
+    {
+      "zeit": "2026-08-05T20:49:26.715100",
+      "wert": 98.12
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.166978",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-05T21:18:28.245283",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-05T21:19:03.008196",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-05T21:32:50.540139",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-05T21:33:49.648663",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-05T21:49:02.361577",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-05T21:49:05.597425",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T15:47:04.333225",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.427629",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.595270",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.094502",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.507656",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.861886",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T16:47:44.551501",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T17:01:51.236476",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.987169",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T17:17:16.093648",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T17:18:02.139577",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T17:32:16.089085",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T17:32:33.547988",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.180470",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.338207",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.903421",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T19:33:20.156006",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.752834",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.682807",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T20:03:44.990066",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T20:48:26.290380",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.333345",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.609703",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T20:49:21.962977",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.205542",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.890200",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.557816",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T21:09:22.015849",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T21:17:54.870414",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.899865",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T21:28:50.577265",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.287555",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.458273",
+      "wert": 97.97
+    }
+  ],
+  "trades": [
+    {
+      "typ": "kauf",
+      "ticker": "JDST",
+      "menge": 2.1092,
+      "preis": 42.67,
+      "grund": "uptrend",
+      "zeit": "2026-07-30T13:59:39.968324"
+    },
+    {
+      "zeit": "2026-07-31T20:31:14.827288",
+      "aktion": "verkaufen",
+      "menge": 2.1092,
+      "preis": 41.72,
+      "grund": "Hebel-Short-ETF mit Volatilitätsverfall (ATR 6,34%), schwaches Volumen (0,57x), neutrale RSI 47,2 und schlechte Historie (1% Treffer) sprechen für Positionsauflösung vor weiterem Decay.",
+      "ki_konfidenz": 65,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.708135",
+      "aktion": "kaufen",
+      "menge": 3.102248,
+      "preis": 31.59,
+      "grund": "RSI überverkauft, steigendes Volumen, aber inverse Titel mit hoher Volatilität; Konfidenz wegen Meta-Cap begrenzt.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.166978",
+      "aktion": "verkaufen",
+      "menge": 3.102248,
+      "preis": 31.58,
+      "grund": "Anti-Halt-Regeln für Lev-Bear/Volatilität decken JDST ab; Überverkauftes RSI rechtfertigt kein Halten, Position auflösen.",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.427629",
+      "aktion": "kaufen",
+      "menge": 3.141071,
+      "preis": 31.19,
+      "grund": "RSI 28.5 überverkauft, Volumen 2.19x, aber inverser 2x ETF mit hoher Volatilität, daher begrenzte Konfidenz.",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.595270",
+      "aktion": "verkaufen",
+      "menge": 3.141071,
+      "preis": 31.19,
+      "grund": "JDST ist 2x Hebel-Bear-ETF; gelernte Regel verbietet Halten von lev-bear-Titeln (Volatilitätszerfall, struktureller Drag). RSI 28.5 überverkauft, aber Position gerade erst eröffnet (P&L 0%), kein Cash für Nachkauf. Depot -2.03%. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.094502",
+      "aktion": "kaufen",
+      "menge": 3.141071,
+      "preis": 31.19,
+      "grund": "RSI überverkauft (28.5), erhöhtes Volumen (2.19x) und ausdrücklicher Kundenwunsch; hohe Volatilität und Meta-Konfidenz-Caps begrenzen die Zuversicht.",
+      "ki_konfidenz": 50,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.507656",
+      "aktion": "verkaufen",
+      "menge": 3.141071,
+      "preis": 31.19,
+      "grund": "Gelernte Regel verbietet Halten von leveraged Bear-ETFs (Volatilitätsverfall); RSI 28.5 überverkauft aber Position erst neu, besser Exit vor Decay [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.861886",
+      "aktion": "kaufen",
+      "menge": 3.141071,
+      "preis": 31.19,
+      "grund": "RSI 28.5 überverkauft, hohes Volumen (2.19x), explizite Kaufaufforderung, aber hohe Volatilität und lev-bear-Titel begrenzen die Konfidenz.",
+      "ki_konfidenz": 50,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:01:51.236476",
+      "aktion": "verkaufen",
+      "menge": 3.141071,
+      "preis": 31.19,
+      "grund": "JDST ist ein 2x Hebel-Bear-ETF (lev-bear). Gelernte Anti-Regel verbietet explizit das Halten von lev-bear-Titeln (Gewicht -1.68). RSI 28.5 ist überverkauft, bietet guten Ausstieg. Hebel-ETFs unterliegen Volatilitätszerfall, nicht zum Halten geeignet. Position bei +/-0%, sofortiger Verkauf minimiert Risiko. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:32:33.547988",
+      "aktion": "kaufen",
+      "menge": 3.141071,
+      "preis": 31.19,
+      "grund": "RSI 28.5 überverkauft, hohes Volumen, Watchlist-Anfrage; Konfidenz wegen Lev-Bear-Risiko gedeckelt",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.180470",
+      "aktion": "verkaufen",
+      "menge": 3.141071,
+      "preis": 31.19,
+      "grund": "Gelernte Regeln verbieten Halten von leveraged-bear-ETFs (Volatilitätszerfall). RSI 28.5 überverkauft, aber Struktur ungünstig. Position auflösen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    }
+  ],
+  "ki_letzte": {
+    "typ": "decision",
+    "zeit": "2026-08-06T22:12:23.369703",
+    "ticker": "JDST",
+    "aktion": "halten",
+    "konfidenz": 35,
+    "grund": "Kein klarer Aufwärtstrend (Kurs zwischen SMA20/SMA50), RSI 27.5 überverkauft aber Hebel-Bear-ETF (lev-bear) mit Anti-Halt-Regel und Decay-Risiko. META-CAP zeigt 0% Treffer bei Konfidenz 60-100. Cash halten für besseres Setup.",
+    "menge": "voll",
+    "ziel_kurs": null,
+    "kurs": 31.17,
+    "rsi": 27.5,
+    "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
+    "p_pnl": 0,
+    "depot_rendite": -2.03,
+    "angewandte_regeln": [
+      {
+        "id": "r_20260802_32531",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_92036",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_09535",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_74417",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_79559",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_18173",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260801_07584",
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "typ": "swap",
+        "gewicht": 1.89,
+        "effektiv_gewicht": 1.89,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_1_87577",
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "typ": "anti",
+        "gewicht": -1.87,
+        "effektiv_gewicht": -1.83,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_2_74438",
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.82,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_5_20387",
+        "muster": "[Anti] halten bei ai-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.82,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_4_69646",
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "typ": "anti",
+        "gewicht": -1.71,
+        "effektiv_gewicht": -1.68,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_7_07487",
+        "muster": "[Anti] halten bei space-Titeln",
+        "typ": "anti",
+        "gewicht": -1.64,
+        "effektiv_gewicht": -1.61,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      }
+    ],
+    "decision_id": "d_20260806_221223_JDST_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "quelle": "ki_decisions.entscheide_ticker",
+    "regime": "closed",
+    "rohdaten": {
+      "kurs": 31.17,
+      "sma20": 40.37,
+      "sma50": 39.22,
+      "rsi": 27.5,
+      "atr_pct": 7.99,
+      "vol_ratio": 0.97,
+      "vix": 15.3,
+      "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
+      "depot_rendite": -2.03
+    },
+    "indikatoren": [
+      "SMA20>40.4",
+      "SMA50>39.2",
+      "RSI28",
+      "ATR8.0%"
+    ],
+    "news_score": null,
+    "regelstand_ref": "v_live",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 35,
+    "konfidenz_nach_cap": 35,
+    "konfidenz_cap": 60,
+    "erwarteter_ausgang": "unbekannt",
+    "shadow": false,
+    "regelstatus_beim_entscheid": {
+      "r_20260802_32531": "stabil",
+      "r_20260802_92036": "stabil",
+      "r_20260802_09535": "stabil",
+      "r_20260802_74417": "stabil",
+      "r_20260803_79559": "stabil",
+      "r_20260803_18173": "stabil",
+      "r_20260801_07584": "stabil",
+      "r_legacy_1_87577": "stabil",
+      "r_legacy_2_74438": "stabil",
+      "r_legacy_5_20387": "stabil",
+      "r_legacy_4_69646": "stabil",
+      "r_legacy_7_07487": "stabil"
+    }
+  }
+}

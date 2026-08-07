@@ -1,0 +1,27 @@
+[
+  {
+    "datum": "2026-08-06",
+    "ges_wert": 6125.12,
+    "ges_start": 7700.0,
+    "pnl": -1574.88,
+    "pnl_pct": -20.45,
+    "kategorien": {
+      "spec": {
+        "wert": 4187.28,
+        "start": 4200.0,
+        "pnl_pct": -0.3
+      },
+      "aktien": {
+        "wert": 1751.03,
+        "start": 3200,
+        "pnl_pct": -45.28
+      },
+      "etf": {
+        "wert": 186.81,
+        "start": 300.0,
+        "pnl_pct": -37.73
+      }
+    },
+    "ki_konfidenz": 57.8
+  }
+]

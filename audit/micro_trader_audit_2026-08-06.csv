@@ -1,0 +1,2 @@
+Datum,Ticker,Aktion,Menge,Kurs,Konfidenz,Grund,RSI,Trend,Depot-Typ,Risk,Regime,Decision-ID
+2026-08-06T22:06:20,ASTS,verkaufen,voll,67.36,60,"Anti-Regel für Space-Titel (-1.61), neutrale Trendlage, RSI 61.7 ohne Momentum, Volumen unterdurchsc",61.7,Neutral (Kurs zwischen SMA20/SMA50),aktien,,closed,d_20260806_220620_ASTS_aktien_na

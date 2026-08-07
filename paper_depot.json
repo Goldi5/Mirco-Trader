@@ -1,0 +1,21 @@
+{
+  "bargeld": 17.999699999999997,
+  "start_wert": 50.0,
+  "positions": {
+    "LCID": {
+      "shares": 1.8462,
+      "avg_price": 6.5
+    }
+  },
+  "trades": [
+    {
+      "zeit": "2026-07-29 15:10",
+      "symbol": "LCID",
+      "side": "BUY",
+      "shares": 1.8462,
+      "price": 6.5,
+      "value": 12.0,
+      "trade_id": 1
+    }
+  ]
+}

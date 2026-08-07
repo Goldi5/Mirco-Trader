@@ -1,0 +1,355 @@
+{
+  "ticker": "MSTR",
+  "name": "MicroStrategy Inc.",
+  "kategorie": "crypto",
+  "bargeld": 98.39,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100.0,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-07-30T00:00:00",
+      "wert": 100.0,
+      "bargeld": 100.0
+    },
+    {
+      "zeit": "2026-08-03T22:33:49.995748",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T09:23:19.502202",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:46:58.336676",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:48:10.171516",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:48:59.624691",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:49:03.193424",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:50:11.664109",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:58:39.212796",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:02:50.071144",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:02.361127",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:11.298794",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:24.893724",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:15:13.389731",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:20:07.811916",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:20:12.257371",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:26:12.472246",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:33:57.356543",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:35:44.843941",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:48:28.672289",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:48:42.367082",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:11:47.068072",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:32:16.145061",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:49:54.879897",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:20:59.986959",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:30:57.296074",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:34:11.454085",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:47:22.367505",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:49:24.155393",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:17:51.311233",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:32:34.054158",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:47:38.068024",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.978444",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.120816",
+      "wert": 99.72
+    },
+    {
+      "zeit": "2026-08-05T20:33:05.769031",
+      "wert": 99.72
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.177358",
+      "wert": 99.72
+    },
+    {
+      "zeit": "2026-08-05T21:18:28.255608",
+      "wert": 100.72
+    },
+    {
+      "zeit": "2026-08-05T21:32:50.551005",
+      "wert": 101.2
+    },
+    {
+      "zeit": "2026-08-05T21:33:49.659593",
+      "wert": 101.2
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.081013",
+      "wert": 101.2
+    },
+    {
+      "zeit": "2026-08-05T21:47:33.499705",
+      "wert": 101.2
+    },
+    {
+      "zeit": "2026-08-05T21:49:05.608655",
+      "wert": 101.12
+    },
+    {
+      "zeit": "2026-08-06T15:47:42.049396",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.604462",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.518244",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-06T16:47:06.249005",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.941137",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-06T17:01:53.023398",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-06T17:17:16.101196",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-06T17:32:16.101448",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.190844",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.914724",
+      "wert": 99.68
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.366478",
+      "wert": 99.07
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.625786",
+      "wert": 98.39
+    },
+    {
+      "zeit": "2026-08-06T20:49:21.988282",
+      "wert": 98.39
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.410638",
+      "wert": 98.39
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.669688",
+      "wert": 98.39
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.217454",
+      "wert": 98.39
+    },
+    {
+      "zeit": "2026-08-06T21:17:54.882094",
+      "wert": 98.39
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.910661",
+      "wert": 98.39
+    },
+    {
+      "zeit": "2026-08-06T21:28:50.587738",
+      "wert": 98.39
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.473077",
+      "wert": 98.39
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-05T19:45:22.978444",
+      "aktion": "kaufen",
+      "menge": 1.020721,
+      "preis": 97.97,
+      "grund": "Neutrales Setup (RSI 54.5, Trend seitwärts), niedriges Volumen (0.51x), aber Watchlist-Ticker mit verfügbarem Cash; Meta-Regeln warnen vor hoher Konfidenz",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.120816",
+      "aktion": "verkaufen",
+      "menge": 1.020721,
+      "preis": 97.7,
+      "grund": "MSTR ist Bitcoin-Proxy/Volatilitätstitel; gelernte Regeln warnen vor Halten von Volatilitätstiteln; Position leicht im Minus; niedriges Volumen (0.52x); neutraler Trend bietet kein klares Kaufsignal [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.177358",
+      "aktion": "kaufen",
+      "menge": 1.021721,
+      "preis": 97.6,
+      "grund": "Neutraler Trend, RSI 54, niedriges Volumen (0.6x). Meta-Regeln zeigen 0% Trefferquote bei Konfidenz >60, daher niedrige Konfidenz. Watchlist-Signal und Cash-Verfügbarkeit sprechen für kleinen Einstieg.",
+      "ki_konfidenz": 52,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:32:50.551005",
+      "aktion": "verkaufen",
+      "menge": 1.021721,
+      "preis": 99.05,
+      "grund": "Regel: Volatilitäts-Titel meiden (MSTR als Bitcoin-Proxy), neutraler Trend, niedriges Volumen, Kapital blockiert Benchmark",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:47:33.499705",
+      "aktion": "kaufen",
+      "menge": 1.026265,
+      "preis": 98.61,
+      "grund": "Watchlist-Ticker mit verfügbarem Cash ($101), neutrales Setup (RSI 55, Trend seitwärts), aber niedriges Volumen (0.67x) und MSTR als Volatilitäts-/Bitcoin-Proxy — Meta-Regeln warnen vor hoher Konfidenz (>60) und Volatilitätstiteln, daher kleine Position mit niedriger Konfidenz",
+      "ki_konfidenz": 50,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T15:47:42.049396",
+      "aktion": "verkaufen",
+      "menge": 1.026265,
+      "preis": 98.37,
+      "grund": "MSTR ist Volatilitätstitel (Bitcoin-Proxy); gelernte Regel 'Anti halten bei volatility-Titeln' (Gewicht -1.85) warnt vor Halten; neutraler Trend/RSI, keine Kaufsignale, Kapital blockiert Benchmark",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.604462",
+      "aktion": "kaufen",
+      "menge": 1.026228,
+      "preis": 98.37,
+      "grund": "Neutraler Trend, RSI 54.9, niedriger VIX, Watchlist-Signal mit Cash verfügbar. Meta-Regeln begrenzen Konfidenz auf <60 (0% Trefferquote in Bins 60-80/80-100). MSTR volatil (Bitcoin-Proxy), ATR 5.04%.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.625786",
+      "aktion": "verkaufen",
+      "menge": 1.026228,
+      "preis": 95.88,
+      "grund": "Klarer Abwärtstrend (Kurs < SMA20 < SMA50), niedriges Volumen (0.45x), RSI neutral bei 51.1, keine Cash-Reserve für Nachkauf. Gelernte Regeln warnen vor Halten bei Volatilitäts-/Hebel-Titeln (MSTR = Bitcoin-Proxy) und Kapitalbindung blockiert Benchmark. Kleiner Verlust (-2.53%) begrenzen und Liquidität freimachen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260806_221241_MSTR_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "MSTR",
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  }
+}

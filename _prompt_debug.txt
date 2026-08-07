@@ -1,0 +1,5 @@
+Analysiere 1 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
+
+Risk 90: Cash $124.0, Wert $124.0, Pos: keine, Kandidaten: LCID $6.7 (5% Cash), FUBO $10.7 (9% Cash), CRSR $11.2 (9% Cash), AMC $2.7 (2% Cash), NRGU $37.3 (30% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+
+Antworte NUR mit JSON [{"risk":0, "aktionen":[{"ticker":"AAPL","aktion":"kaufen"|"verkaufen"|"halten","menge":"voll"|"teil","grund":"..."}]}]

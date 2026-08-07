@@ -1,0 +1,42 @@
+{
+  "ticker": "VXX",
+  "name": "Barclays VIX ST ETN",
+  "kategorie": "volatility",
+  "bargeld": 100.0,
+  "shares": 0.0,
+  "avg_price": 0.0,
+  "start": 100.0,
+  "exchange": null,
+  "historie": [
+    {
+      "zeit": "2026-08-06T21:02:08.253332",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.608270",
+      "wert": 100.0
+    }
+  ],
+  "trades": [],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260806_214758_VXX_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "VXX",
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  }
+}

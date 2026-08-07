@@ -1,0 +1,25 @@
+{
+  "name": "DE_Test_Shadow",
+  "beschreibung": "DE/Xetra-Markt, Paper-Trading, Shadow",
+  "märkte": [
+    "DE"
+  ],
+  "depotarten": [
+    "aktien",
+    "etf",
+    "spec"
+  ],
+  "risk_model": "RISK_STUFEN",
+  "news_sources": [
+    "yfinance_news"
+  ],
+  "data_sources": [
+    "yfinance"
+  ],
+  "base_currency": "EUR",
+  "handelszeiten": "boersen.py",
+  "regelstand_ref": "latest",
+  "modus": "shadow",
+  "erstellt": "2026-08-05",
+  "version": "2.16.3"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "US_Test_Shadow",
+  "märkte": [
+    "US"
+  ],
+  "depotarten": [
+    "aktien",
+    "etf",
+    "spekulation"
+  ],
+  "risk_model": "standard",
+  "news_sources": [
+    "yfinance_news"
+  ],
+  "data_sources": [
+    "yfinance",
+    "finnhub",
+    "twelvedata",
+    "alphavantage"
+  ],
+  "base_currency": "USD",
+  "handelszeiten": {
+    "US": "09:30-16:00 EST (15:30-22:00 MEZ)"
+  },
+  "regelstand_ref": "v2.16.12",
+  "modus": "live",
+  "freigegeben_am": "2026-08-06T20:31:51.574386",
+  "freigegeben_von": "user"
+}

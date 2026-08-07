@@ -1,0 +1,38 @@
+{
+  "ticker": "MNMD",
+  "name": "Mind Medicine Inc.",
+  "kategorie": "biotech",
+  "bargeld": 100.0,
+  "shares": 0.0,
+  "avg_price": 0.0,
+  "start": 100.0,
+  "exchange": null,
+  "historie": [
+    {
+      "zeit": "2026-08-06T20:48:57.622262",
+      "wert": 100.0
+    }
+  ],
+  "trades": [],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260806_204749_MNMD_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "MNMD",
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "muster": "[Reflexion] halten bei core",
+    "regel": "Halten bei core-Titeln systematisch schlecht (52× LE≤−2, Ø -3.2)",
+    "typ": "positiv",
+    "gewicht": 2.0,
+    "support_count": 0,
+    "violation_count": 52,
+    "avg_effect_when_applied": -3.2,
+    "kontext": {
+      "asset_klasse": [
+        "core"
+      ],
+      "regime": [
+        "bear",
+        "seitwaerts",
+        "bull"
+      ]
+    },
+    "quellBERICHT": "wochenbericht"
+  },
+  {
+    "muster": "[Reflexion] halten bei lev-etf",
+    "regel": "Halten bei lev-etf-Titeln systematisch schlecht (15× LE≤−2, Ø -3.9)",
+    "typ": "anti",
+    "gewicht": 2.0,
+    "support_count": 0,
+    "violation_count": 15,
+    "avg_effect_when_applied": -3.9,
+    "kontext": {
+      "asset_klasse": [
+        "lev-etf"
+      ],
+      "regime": [
+        "bear",
+        "seitwaerts",
+        "bull"
+      ]
+    },
+    "quellBERICHT": "wochenbericht"
+  },
+  {
+    "muster": "[Reflexion] halten bei volatility",
+    "regel": "Halten bei volatility-Titeln systematisch schlecht (7× LE≤−2, Ø -4.4)",
+    "typ": "anti",
+    "gewicht": 1.9,
+    "support_count": 0,
+    "violation_count": 7,
+    "avg_effect_when_applied": -4.4,
+    "kontext": {
+      "asset_klasse": [
+        "volatility"
+      ],
+      "regime": [
+        "bear",
+        "seitwaerts",
+        "bull"
+      ]
+    },
+    "quellBERICHT": "wochenbericht"
+  }
+]

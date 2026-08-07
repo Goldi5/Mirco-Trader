@@ -1,0 +1,59 @@
+Monitoring startet, Ende 21:00 (53 min)
+
+============================================================
+MICRO-TRADER AUDIT — 20:06:14
+============================================================
+[1] Prozesse: 1 pythonw (PIDs: 11060)
+[2] Dashboard :5300 → HTTP 200
+[3] AKTIEN: 0 leer von 20
+[3] ETF: 0 leer von 21
+[3] SPEC: 7 leer von 86
+[4] KI (15min): 17 Entsch. | {'halten': 16, 'verkaufen': 1}
+[5] ETF: 13 depots <50$ bargeld | Summe 812/2000$ (41%)
+[6] 20:03:14 batch_trader.py        OK  5s
+[6] 20:03:16 batch_trader.py        OK  4s
+[6] 20:03:20 batch_trader.py        OK  5s
+
+============================================================
+MICRO-TRADER AUDIT — 20:21:14
+============================================================
+[1] Prozesse: 1 pythonw (PIDs: 11060)
+[2] Dashboard :5300 → HTTP 200
+[3] AKTIEN: 0 leer von 20
+[3] ETF: 0 leer von 21
+[3] SPEC: 7 leer von 86
+[4] KI (15min): 101 Entsch. | {'halten': 63, 'verkaufen': 15, 'kaufen': 3, '?': 20}
+[5] ETF: 13 depots <50$ bargeld | Summe 812/2000$ (41%)
+[6] 20:19:27 etf_trader.py          OK  2s
+[6] 20:19:32 batch_trader.py        OK  5s
+[6] 20:19:36 batch_trader.py        OK  5s
+
+============================================================
+MICRO-TRADER AUDIT — 20:36:16
+============================================================
+[1] Prozesse: 1 pythonw (PIDs: 11060)
+[2] Dashboard :5300 → HTTP 200
+[3] AKTIEN: 0 leer von 20
+[3] ETF: 0 leer von 21
+[3] SPEC: 7 leer von 86
+[4] KI (15min): 40 Entsch. | {'halten': 31, 'kaufen': 7, 'verkaufen': 2}
+[5] ETF: 13 depots <50$ bargeld | Summe 812/2000$ (41%)
+[6] 20:33:17 etf_trader.py          OK  3s
+[6] 20:33:21 batch_trader.py        OK  4s
+[6] 20:33:26 batch_trader.py        OK  5s
+
+============================================================
+MICRO-TRADER AUDIT — 20:51:17
+============================================================
+[1] Prozesse: 1 pythonw (PIDs: 11060)
+[2] Dashboard :5300 → HTTP 200
+[3] AKTIEN: 0 leer von 20
+[3] ETF: 0 leer von 21
+[3] SPEC: 7 leer von 86
+[4] KI (15min): 45 Entsch. | {'halten': 32, 'verkaufen': 7, 'kaufen': 6}
+[5] ETF: 13 depots <50$ bargeld | Summe 812/2000$ (41%)
+[6] 20:49:35 etf_trader.py          OK  2s
+[6] 20:49:39 batch_trader.py        OK  4s
+[6] 20:49:43 batch_trader.py        OK  4s
+
+✅ Monitoring beendet (21:00 erreicht)

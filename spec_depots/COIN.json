@@ -1,0 +1,652 @@
+{
+  "ticker": "COIN",
+  "name": "Coinbase Global",
+  "kategorie": "crypto",
+  "bargeld": 99.77,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100.0,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-07-30T00:00:00",
+      "wert": 100.0,
+      "bargeld": 100.0
+    },
+    {
+      "zeit": "2026-08-03T22:40:46.241201",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T16:54:38.453154",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:48:10.107036",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:50:11.525170",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:58:39.172189",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:11.255741",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:35:14.391863",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T19:03:35.675946",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:18:48.250535",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:20:07.774362",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:20:12.232621",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:33:57.287137",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:35:44.790598",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:48:28.518600",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:48:42.298591",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:49:55.117056",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T15:36:01.091972",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:19:17.895288",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:46:00.542085",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:48:33.909272",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:34:11.425951",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:34:36.000976",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:47:22.303505",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:49:24.127064",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:02:16.810579",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:17:41.052261",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:32:34.018515",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:33:56.354840",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:47:33.234732",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:47:38.038046",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:02:33.479341",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:18:16.568894",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:32:45.812910",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.939848",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:46:43.396015",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.093474",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-05T20:49:26.698415",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.147347",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T15:47:04.238124",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.395902",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:02:42.456915",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:02:45.487259",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.576551",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.934335",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.075900",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.490785",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:31:54.953848",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.832269",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:47:06.131846",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.861260",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:47:16.541212",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:47:44.505899",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T17:17:31.432149",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.163394",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.271371",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.315293",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.884875",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:17:41.318459",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.335483",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:33:46.601869",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:48:25.038278",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:02:18.588218",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:03:17.934641",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:33:20.080364",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.682553",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.621290",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:47:29.465799",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:48:00.231080",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T20:48:55.943945",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.310481",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.377367",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.876589",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:33:37.709254",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.266842",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:47:06.194076",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.431074",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T22:07:07.134703",
+      "wert": 99.77
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-05T19:45:22.939848",
+      "aktion": "kaufen",
+      "menge": 0.655566,
+      "preis": 152.54,
+      "grund": "Anweisung zum Kaufen, aber Abwärtstrend und niedriges Volumen; geringe Konfidenz",
+      "ki_konfidenz": 40,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.093474",
+      "aktion": "verkaufen",
+      "menge": 0.655566,
+      "preis": 152.19,
+      "grund": "Abwärtstrend, geringes Volumen, Halten laut Regeln negativ",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.395902",
+      "aktion": "kaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Kaufen gemäß Watchlist und verfügbarem Cash, aber Abwärtstrend und hohe Volatilität begrenzen die Konfidenz.",
+      "ki_konfidenz": 50,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:02:45.487259",
+      "aktion": "verkaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Abwärtstrend, hohe Volatilität, gelernte Regeln raten von Halten bei Volatilität ab.",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.934335",
+      "aktion": "kaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Kaufanweisung für Watchlist, Cash vorhanden; Abwärtstrend und hohe Volatilität begrenzen Konfidenz",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.490785",
+      "aktion": "verkaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Abwärtstrend bestätigt (Kurs < SMA20 < SMA50), Anti-Regel gegen Volatilitätstitel, Meta-Regeln zeigen hohe Konfidenz-Trades scheitern, Position neu mit 0% P&L [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:31:54.953848",
+      "aktion": "kaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Watchlist-Ticker, Cash verfügbar, aber Abwärtstrend und hohe Volatilität begrenzen Konfidenz.",
+      "ki_konfidenz": 60,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.832269",
+      "aktion": "verkaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Abwärtstrend, negative Haltungs-Regeln für Volatilitätstitel",
+      "ki_konfidenz": 40,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.163394",
+      "aktion": "kaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Watchlist und verfügbares Cash, aber Abwärtstrend/hohe Volatilität; Konfidenz wegen Meta-Caps gedeckelt.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.315293",
+      "aktion": "verkaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Abwärtstrend (Kurs < SMA20 < SMA50), hohe Volatilität und negative Regel für Halten bei Volatilitätstitle. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "typ": "decision",
+    "zeit": "2026-08-06T22:06:13.529062",
+    "ticker": "COIN",
+    "aktion": "halten",
+    "konfidenz": 60,
+    "grund": "Klarer Abwärtstrend (Kurs < SMA20 < SMA50), RSI bei 43 nicht überverkauft, Volumen 0.72x unterdurchschnittlich, kein News-Katalysator. Meta-Regeln zeigen geringe Zuverlässigkeit hoher Konfidenzwerte. Warten auf Trendwechsel oder Pullback-Setup. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "menge": "voll",
+    "ziel_kurs": null,
+    "kurs": 145.41,
+    "rsi": 43.1,
+    "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
+    "p_pnl": 0,
+    "depot_rendite": -0.23,
+    "angewandte_regeln": [
+      {
+        "id": "r_20260802_32531",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_92036",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_09535",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_74417",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_79559",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_18173",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.45,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260801_07584",
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "typ": "swap",
+        "gewicht": 1.89,
+        "effektiv_gewicht": 1.89,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_1_87577",
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "typ": "anti",
+        "gewicht": -1.87,
+        "effektiv_gewicht": -1.83,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_2_74438",
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.82,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_5_20387",
+        "muster": "[Anti] halten bei ai-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.82,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_4_69646",
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "typ": "anti",
+        "gewicht": -1.71,
+        "effektiv_gewicht": -1.68,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_7_07487",
+        "muster": "[Anti] halten bei space-Titeln",
+        "typ": "anti",
+        "gewicht": -1.64,
+        "effektiv_gewicht": -1.61,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      }
+    ],
+    "decision_id": "d_20260806_220613_COIN_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "quelle": "ki_decisions.entscheide_ticker",
+    "regime": "closed",
+    "rohdaten": {
+      "kurs": 145.41,
+      "sma20": 159.12,
+      "sma50": 161.2,
+      "rsi": 43.1,
+      "atr_pct": 6.14,
+      "vol_ratio": 0.72,
+      "vix": 15.4,
+      "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
+      "depot_rendite": -0.23
+    },
+    "indikatoren": [
+      "SMA20>159.1",
+      "SMA50>161.2",
+      "RSI43",
+      "ATR6.1%"
+    ],
+    "news_score": null,
+    "regelstand_ref": "v_live",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 80.0,
+    "konfidenz_nach_cap": 60,
+    "konfidenz_cap": 60,
+    "erwarteter_ausgang": "unbekannt",
+    "shadow": false,
+    "regelstatus_beim_entscheid": {
+      "r_20260802_32531": "stabil",
+      "r_20260802_92036": "stabil",
+      "r_20260802_09535": "stabil",
+      "r_20260802_74417": "stabil",
+      "r_20260803_79559": "stabil",
+      "r_20260803_18173": "stabil",
+      "r_20260801_07584": "stabil",
+      "r_legacy_1_87577": "stabil",
+      "r_legacy_2_74438": "stabil",
+      "r_legacy_5_20387": "stabil",
+      "r_legacy_4_69646": "stabil",
+      "r_legacy_7_07487": "stabil"
+    }
+  }
+}

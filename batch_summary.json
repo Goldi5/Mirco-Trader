@@ -1,0 +1,153 @@
+{
+  "zeit": "2026-08-06T21:48:33.424655",
+  "depots": 20,
+  "gesamtwert": 2090.82,
+  "gesamt_rendite": 4.54,
+  "best_risk": 90,
+  "best_rendite": 23.96,
+  "worst_risk": 45,
+  "worst_rendite": -3.06,
+  "trades": 469,
+  "detail": [
+    {
+      "risk": 0,
+      "wert": 98.91,
+      "rendite": -1.09,
+      "pos": 1,
+      "trades": 27
+    },
+    {
+      "risk": 5,
+      "wert": 98.11,
+      "rendite": -1.89,
+      "pos": 1,
+      "trades": 15
+    },
+    {
+      "risk": 10,
+      "wert": 100.2,
+      "rendite": 0.2,
+      "pos": 4,
+      "trades": 45
+    },
+    {
+      "risk": 15,
+      "wert": 98.82,
+      "rendite": -1.18,
+      "pos": 2,
+      "trades": 18
+    },
+    {
+      "risk": 20,
+      "wert": 100.09,
+      "rendite": 0.09,
+      "pos": 3,
+      "trades": 50
+    },
+    {
+      "risk": 25,
+      "wert": 101.59,
+      "rendite": 1.59,
+      "pos": 3,
+      "trades": 39
+    },
+    {
+      "risk": 30,
+      "wert": 102.01,
+      "rendite": 2.01,
+      "pos": 0,
+      "trades": 50
+    },
+    {
+      "risk": 35,
+      "wert": 102.5,
+      "rendite": 2.5,
+      "pos": 1,
+      "trades": 50
+    },
+    {
+      "risk": 40,
+      "wert": 100.53,
+      "rendite": 0.53,
+      "pos": 3,
+      "trades": 14
+    },
+    {
+      "risk": 45,
+      "wert": 96.94,
+      "rendite": -3.06,
+      "pos": 2,
+      "trades": 9
+    },
+    {
+      "risk": 50,
+      "wert": 106.51,
+      "rendite": 6.51,
+      "pos": 4,
+      "trades": 6
+    },
+    {
+      "risk": 55,
+      "wert": 106.54,
+      "rendite": 6.54,
+      "pos": 3,
+      "trades": 3
+    },
+    {
+      "risk": 60,
+      "wert": 99.51,
+      "rendite": -0.49,
+      "pos": 3,
+      "trades": 35
+    },
+    {
+      "risk": 65,
+      "wert": 99.68,
+      "rendite": -0.32,
+      "pos": 1,
+      "trades": 28
+    },
+    {
+      "risk": 70,
+      "wert": 107.22,
+      "rendite": 7.22,
+      "pos": 0,
+      "trades": 34
+    },
+    {
+      "risk": 75,
+      "wert": 116.23,
+      "rendite": 16.23,
+      "pos": 0,
+      "trades": 10
+    },
+    {
+      "risk": 80,
+      "wert": 117.46,
+      "rendite": 17.46,
+      "pos": 0,
+      "trades": 9
+    },
+    {
+      "risk": 85,
+      "wert": 112.56,
+      "rendite": 12.56,
+      "pos": 0,
+      "trades": 10
+    },
+    {
+      "risk": 90,
+      "wert": 123.96,
+      "rendite": 23.96,
+      "pos": 0,
+      "trades": 9
+    },
+    {
+      "risk": 95,
+      "wert": 101.44,
+      "rendite": 1.44,
+      "pos": 1,
+      "trades": 8
+    }
+  ]
+}

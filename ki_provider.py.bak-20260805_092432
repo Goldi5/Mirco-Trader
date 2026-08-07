@@ -1,0 +1,272 @@
+#!/usr/bin/env python3
+"""KI-Provider-Verwaltung mit automatischem Fallback.
+
+ZWEI getrennte Provider-Ketten:
+  A) CRON-Pool  (call_ki / call_ki_cron): VOLLE Rotation, deterministisch (temp=0.1).
+     zen → zen-nemotron → nous-step → nous-hy3 → openrouter
+  B) CHAT-Pool (call_ki_chat): KURZ + SCHNELL für User-Chat (temp=0.3).
+     zen-nemotron → zen → openrouter
+     Verbraucht bewusst NICHT die Nous-free-Quota, die der Cron braucht.
+
+Bei 401/429/Timeout wird automatisch der nächste Provider versucht.
+Der Nous-Zugang nutzt den Hermes-OAuth-Token (shared/nous_auth.json)
+und refresht ihn bei Ablauf über das Nous Portal.
+
+API:
+    call_ki(messages, ...)              → Cron-Pool (abwärtskompatibel)
+    call_ki_cron(messages, ...)         → Cron-Pool (explizit)
+    call_ki_chat(messages, ...)         → Chat-Pool (User-Facing)
+"""
+import os, json, time, urllib.request, urllib.parse
+from datetime import datetime, timezone, timedelta
+
+BASE = os.path.dirname(os.path.abspath(__file__))
+NOUS_AUTH = os.path.expanduser("~/AppData/Local/hermes/shared/nous_auth.json")
+NOUS_DEFAULT_BASE = "https://inference-api.nousresearch.com/v1"
+NOUS_DEFAULT_PORTAL = "https://portal.nousresearch.com"
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/126.0 Safari/537.36")
+
+# ─── Env laden (Hermes-Config) ─────────────────────────────
+def lade_env():
+    for cand in [os.path.join(BASE, ".env"),
+                 os.path.expanduser("~/AppData/Local/hermes/.env")]:
+        if os.path.exists(cand):
+            try:
+                with open(cand, encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if line and not line.startswith("#") and "=" in line:
+                            k, v = line.split("=", 1)
+                            os.environ.setdefault(k.strip(), v.strip())
+            except Exception:
+                pass
+
+
+lade_env()
+
+
+# ─── Nous-OAuth (Hermes-Token + Refresh) ───────────────────
+def _nous_creds():
+    """Liest Nous-Credentials, refresht bei Ablauf. → (token, base_url)."""
+    if not os.path.exists(NOUS_AUTH):
+        return None, None
+    try:
+        with open(NOUS_AUTH, encoding="utf-8") as f:
+            d = json.load(f)
+    except Exception:
+        return None, None
+    token = d.get("access_token") or ""
+    base = (d.get("inference_base_url") or NOUS_DEFAULT_BASE).rstrip("/")
+    exp = d.get("expires_at")
+    abgelaufen = False
+    if exp:
+        try:
+            exp_dt = datetime.fromisoformat(str(exp).replace("Z", "+00:00"))
+            if exp_dt.tzinfo is None:
+                exp_dt = exp_dt.replace(tzinfo=timezone.utc)
+            abgelaufen = datetime.now(timezone.utc) >= exp_dt - timedelta(seconds=120)
+        except Exception:
+            abgelaufen = True
+    if abgelaufen:
+        neu = _nous_refresh(d)
+        if neu:
+            token = neu
+    return token or None, base
+
+
+def _nous_refresh(d):
+    """Refresh-Token gegen das Nous Portal eintauschen. → neuer access_token."""
+    portal = (d.get("portal_base_url") or NOUS_DEFAULT_PORTAL).rstrip("/")
+    rt = d.get("refresh_token")
+    cid = d.get("client_id") or "hermes-cli"
+    if not rt:
+        return None
+    try:
+        body = urllib.parse.urlencode({
+            "grant_type": "refresh_token",
+            "refresh_token": rt,
+            "client_id": cid,
+        }).encode()
+        req = urllib.request.Request(
+            portal + "/api/oauth/token", data=body,
+            headers={"Content-Type": "application/x-www-form-urlencoded",
+                     "User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            payload = json.loads(r.read().decode())
+        neu = payload.get("access_token")
+        if neu:
+            d["access_token"] = neu
+            if payload.get("expires_at"):
+                d["expires_at"] = payload["expires_at"]
+            if payload.get("refresh_token"):
+                d["refresh_token"] = payload["refresh_token"]
+            try:
+                with open(NOUS_AUTH, "w", encoding="utf-8") as f:
+                    json.dump(d, f, ensure_ascii=False)
+            except Exception:
+                pass
+        return neu
+    except Exception:
+        return None
+
+
+# ─── Provider-Listen (Chat vs. Cron getrennt) ───────────────
+_PROVIDER_LISTE = None
+_PROVIDER_LISTE_CHAT = None
+
+
+def _baue_provider_liste_cron():
+    """VOLLE Rotation für Batch/KI-Cron (deterministisch, viele Calls)."""
+    liste = []
+    def add(name, base_url, api_key, model):
+        if api_key:
+            liste.append({"name": name, "base_url": base_url,
+                          "api_key": api_key, "model": model})
+    add("zen", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
+        os.environ.get("OPENCODE_ZEN_API_KEY"),
+        os.environ.get("KI_MODEL_ZEN", "deepseek-v4-flash-free"))
+    add("zen-nemotron", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
+        os.environ.get("OPENCODE_ZEN_API_KEY"),
+        os.environ.get("KI_MODEL_ZEN_NEMOTRON", "nemotron-3-ultra-free"))
+    ntoken, nbase = _nous_creds()
+    add("nous-step", nbase, ntoken, "stepfun/step-3.7-flash:free")
+    add("nous-hy3", nbase, ntoken, "tencent/hy3:free")
+    add("openrouter", "https://openrouter.ai/api/v1",
+        os.environ.get("OPENROUTER_API_KEY"),
+        os.environ.get("KI_MODEL_OPENROUTER", "nvidia/nemotron-3-ultra-550b-a55b:free"))
+    return liste
+
+
+def _baue_provider_liste_chat():
+    """KURZE, SCHNELLE Kette für User-Chat (Conversational, temp=0.3).
+    Primär nemotron/deepseek via zen (free, schnell), OpenRouter als Puffer.
+    Verbraucht NICHT die Nous-free-Quota, die der Cron braucht."""
+    liste = []
+    def add(name, base_url, api_key, model):
+        if api_key:
+            liste.append({"name": name, "base_url": base_url,
+                          "api_key": api_key, "model": model})
+    add("zen-nemotron", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
+        os.environ.get("OPENCODE_ZEN_API_KEY"),
+        os.environ.get("KI_MODEL_ZEN_NEMOTRON", "nemotron-3-ultra-free"))
+    add("zen", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
+        os.environ.get("OPENCODE_ZEN_API_KEY"),
+        os.environ.get("KI_MODEL_ZEN", "deepseek-v4-flash-free"))
+    add("openrouter", "https://openrouter.ai/api/v1",
+        os.environ.get("OPENROUTER_API_KEY"),
+        os.environ.get("KI_MODEL_OPENROUTER", "nvidia/nemotron-3-ultra-550b-a55b:free"))
+    return liste
+
+
+def _baue_provider_liste():
+    """Default = volle Cron-Liste (abwärtskompatibel zu call_ki())."""
+    global _PROVIDER_LISTE
+    _PROVIDER_LISTE = _baue_provider_liste_cron()
+
+
+def provider_liste():
+    if _PROVIDER_LISTE is None:
+        _baue_provider_liste()
+    return _PROVIDER_LISTE
+
+
+def provider_liste_chat():
+    global _PROVIDER_LISTE_CHAT
+    if _PROVIDER_LISTE_CHAT is None:
+        _PROVIDER_LISTE_CHAT = _baue_provider_liste_chat()
+    return _PROVIDER_LISTE_CHAT
+
+
+_client_cache = {}
+
+
+def get_client(provider):
+    """Liefert OpenAI-Client für einen Provider (gecacht)."""
+    name = provider["name"]
+    if name not in _client_cache:
+        from openai import OpenAI
+        _client_cache[name] = OpenAI(
+            api_key=provider["api_key"], base_url=provider["base_url"],
+            default_headers={"User-Agent": UA})
+    return _client_cache[name]
+
+
+def _ki_call(client, provider, messages, temperature, max_tokens, model):
+    """Führt den KI-Call aus (chat/completions für alle Provider).
+    Liefert (text, fehler) — text None bei Fehler."""
+    try:
+        r = client.chat.completions.create(
+            model=model, messages=messages, temperature=temperature,
+            max_tokens=max_tokens, timeout=90)
+        antwort = r.choices[0].message.content
+        if antwort and antwort.strip():
+            return antwort.strip(), None
+        return None, "leere Antwort"
+    except Exception as e:
+        return None, str(e)[:200]
+
+
+def _call_ki_with_pool(messages, temperature, max_tokens, pool, model_hint=None):
+    """Interne Rotation über eine gegebene Provider-Liste."""
+    providern = pool
+    if not providern:
+        return None, None
+    for provider in providern:
+        try:
+            client = get_client(provider)
+            antwort, fehler = _ki_call(client, provider, messages, temperature,
+                                       max_tokens, model_hint or provider["model"])
+            if antwort:
+                return antwort, provider["name"]
+        except Exception:
+            continue
+        # Nous-Token evtl. abgelaufen → einmal refreshen und erneut probieren
+        if provider["name"].startswith("nous-"):
+            global _PROVIDER_LISTE
+            _PROVIDER_LISTE = None
+            _baue_provider_liste()
+            for p in provider_liste():
+                if p["name"] == provider["name"]:
+                    provider = p
+                    break
+            try:
+                antwort, _ = _ki_call(get_client(provider), provider, messages,
+                                      temperature, max_tokens, provider["model"])
+                if antwort:
+                    return antwort, provider["name"]
+            except Exception:
+                pass
+    return None, None
+
+
+def call_ki(messages, temperature=0.1, max_tokens=2048, model_hint=None):
+    """Cron-Pool (abwärtskompatibel). Rotation über ALLE Provider."""
+    return _call_ki_with_pool(messages, temperature, max_tokens,
+                              provider_liste(), model_hint)
+
+
+def call_ki_cron(messages, temperature=0.1, max_tokens=2048, model_hint=None):
+    """Explizit Cron-Pool: volle Rotation, deterministisch."""
+    return _call_ki_with_pool(messages, temperature, max_tokens,
+                              provider_liste(), model_hint)
+
+
+def call_ki_chat(messages, temperature=0.3, max_tokens=1024, model_hint=None):
+    """Chat-Pool: kurze, schnelle Kette für User-Facing WhatsApp/Antworten."""
+    return _call_ki_with_pool(messages, temperature, max_tokens,
+                              provider_liste_chat(), model_hint)
+
+
+def ki_faehig():
+    """True wenn mindestens ein Provider mit Key existiert."""
+    return len(provider_liste()) > 0
+
+
+if __name__ == "__main__":
+    print("Cron-Kette:  ", " → ".join(p["name"] for p in provider_liste()))
+    print("Chat-Kette:  ", " → ".join(p["name"] for p in provider_liste_chat()))
+    antwort, provider = call_ki_cron(
+        [{"role": "user", "content": "Antworte NUR mit JSON: {\"ok\": true}"}],
+        max_tokens=50)
+    print(f"Cron-Test via '{provider}':", (antwort or "FEHLER")[:120])
