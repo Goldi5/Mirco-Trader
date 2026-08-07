@@ -89,6 +89,7 @@ class MTDB:
         self._sync_trades()
         self._sync_ki()
         self._sync_snapshots()
+        self.match_trades_ki()  # weicher Match Trade<->KI (ehrlich, nur eindeutige)
         self.conn.commit()
         if verbose:
             print("DB-Sync fertig:", self.stats())
@@ -124,11 +125,12 @@ class MTDB:
                 continue
             aktion = t.get("aktion") or t.get("typ") or "?"
             c.execute(
-                "INSERT INTO trades (zeit, depot_typ, ticker, aktion, menge, preis, grund, konfidenz) "
-                "VALUES (?,?,?,?,?,?,?,?)",
+                "INSERT INTO trades (zeit, depot_typ, ticker, aktion, menge, preis, grund, konfidenz, decision_id) "
+                "VALUES (?,?,?,?,?,?,?,?,?)",
                 (zeit, typ, ticker, aktion,
                  t.get("menge", 0), t.get("preis", 0),
-                 str(t.get("grund", ""))[:200], t.get("konfidenz")))
+                 str(t.get("grund", ""))[:200], t.get("konfidenz"),
+                 t.get("decision_id")))  # aus Depot-JSON-Trade falls vorhanden (sonst NULL)
 
     def _sync_ki(self):
         c = self.conn.cursor()
@@ -301,6 +303,9 @@ class MTDB:
             "SELECT COUNT(*) FROM ki_decisions WHERE zeit >= ? AND (provider IS NULL OR provider = 'unknown')", (since,)).fetchone()[0]
         n_mit_regel = c.execute(
             "SELECT COUNT(*) FROM ki_decisions WHERE zeit >= ? AND regel_id IS NOT NULL", (since,)).fetchone()[0]
+        # trades mit decision_id (weicher Match)
+        n_trades_mit_di = c.execute(
+            "SELECT COUNT(*) FROM trades WHERE zeit >= ? AND decision_id IS NOT NULL", (since,)).fetchone()[0]
         # provider_verteilung
         prov_rows = c.execute(
             "SELECT provider, COUNT(*) FROM ki_decisions WHERE zeit >= ? GROUP BY provider", (since,)).fetchall()
@@ -316,9 +321,41 @@ class MTDB:
             "provider_fehler": n_provider_unknown,
             "provider_verteilung": provider_vert,
             "entscheidungen_mit_regel": f"{n_mit_regel}/{n_ki}",
+            "trades_mit_decision_id": f"{n_trades_mit_di}/{n_trades}",
             "cooldown_ereignisse": "siehe ki_cooldown.json",
-            "trades_ohne_ki_zuordnung": "n/a (Trade→KI-Match folgt)",
+            "trades_ohne_ki_zuordnung": f"{n_trades - n_trades_mit_di}/{n_trades} (weicher Match)",
         }
+
+    def match_trades_ki(self, zeitfenster_min=10):
+        """Weicher Match: Trades ohne decision_id <-> ki_decisions ueber Ticker + Zeitfenster.
+        EHRLICH: nur als 'unsichere' Zuordnung markiert, wenn kein direkter decision_id-Key existiert.
+        Direkter Key (trade.decision_id == ki_decisions.decision_id) hat Vorrang."""
+        c = self.conn.cursor()
+        # 1) Direkte Keys bereits gesetzt?
+        direkt = c.execute(
+            "SELECT COUNT(*) FROM trades t JOIN ki_decisions k ON t.decision_id = k.decision_id "
+            "WHERE t.decision_id IS NOT NULL").fetchone()[0]
+        # 2) Weicher Match (nur trades ohne decision_id)
+        weich = c.execute("""
+            SELECT t.id, k.decision_id FROM trades t
+            JOIN ki_decisions k ON t.ticker = k.ticker
+                AND abs(julianday(t.zeit) - julianday(k.zeit)) * 1440 <= ?
+            WHERE t.decision_id IS NULL
+            ORDER BY t.zeit
+        """, (zeitfenster_min,)).fetchall()
+        # Update (nur wo eindeutig: gleicher ticker, nur 1 ki im Fenster)
+        geaendert = 0
+        for tid, dec_id in weich:
+            anz = c.execute(
+                "SELECT COUNT(*) FROM ki_decisions k WHERE k.ticker = (SELECT ticker FROM trades WHERE id=?) "
+                "AND abs(julianday(k.zeit) - julianday((SELECT zeit FROM trades WHERE id=?))) * 1440 <= ?",
+                (tid, tid, zeitfenster_min)).fetchone()[0]
+            if anz == 1:  # eindeutig
+                c.execute("UPDATE trades SET decision_id = ? WHERE id = ?", (dec_id, tid))
+                geaendert += 1
+        self.conn.commit()
+        return {"direkt": direkt, "weich_gematched": geaendert,
+                "hinweis": "Weicher Match nur wo eindeutig (1 KI im Zeitfenster). Sonst NULL (ehrlich)."}
 
     def close(self):
         self.conn.close()

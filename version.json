@@ -1,8 +1,8 @@
 {
-  "version": "2.19.1",
-  "build": "2026-08-07_1515",
-  "released_at": "2026-08-07 15:15",
-  "codename": "Audit-Felder (decision_id/provider/regel_id/fallback)",
+  "version": "2.19.2",
+  "build": "2026-08-07_1545",
+  "released_at": "2026-08-07 15:45",
+  "codename": "Trade→KI-Zuordnung (Infrastruktur)",
   "changes": [
     {
       "version": "2.19.0",

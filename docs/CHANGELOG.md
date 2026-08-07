@@ -1,3 +1,19 @@
+## [2.19.2] - 2026-08-07
+### Added (Trade→KI-Zuordnung — Infrastruktur)
+- **`db._sync_trades`**: liest `decision_id` aus Depot-JSON-Trade (falls vorhanden, sonst NULL).
+- **`db.match_trades_ki()`**: weicher Match Trade↔KI über Ticker + Zeitfenster (10min). Nur **eindeutige** Zuordnungen (1 KI im Fenster) werden gesetzt; sonst NULL (ehrlich, keine Erfindung). Direkter Key (`trade.decision_id == ki_decisions.decision_id`) hat Vorrang.
+- **`db.sync()`**: ruft `match_trades_ki()` nach dem Sync auf.
+- **`db.analyse_karten`**: `trades_mit_decision_id` + `trades_ohne_ki_zuordnung` (weicher Match) jetzt echt aus DB.
+
+### Ehrlichkeits-Hinweis (wichtig)
+- Bei **aktuellen/alten Daten** (vor v2.19.1) haben weder Trades noch ki_decisions eine `decision_id` → weicher Match findet zwar Ticker/Zeit-Treffer, aber KI-Seite `decision_id=NULL` →Trade bleibt NULL.
+- Bei **neuen Läufen** (ab v2.19.1): `ki_decisions.decision_id` wird befüllt → weicher Match ordnet sie den Trades zu.
+- **Offener Punkt:** `batch_trader.py`/`spec_trader.py` schreiben beim Trade-Export noch keine `decision_id` in Depot-JSON. Das ist ein größerer Umbau (decision_id durch Aktions-Pipeline tragen) → eigener Auftrag. Bis dahin: weicher Match als best-effort.
+
+### Verifiziert
+- `match_trades_ki()`: idempotent, 1 weicher Match bei aktuellen Daten (ki-Seite NULL → Trade NULL, ehrlich).
+- `analyse_karten`: `trades_mit_decision_id=0/927` (korrekt für alte Daten).
+
 ## [2.19.1] - 2026-08-07
 ### Added (Audit-Felder — echte DB-Spalten)
 - **DB-Schema-Migration** (`db._migrate_schema`, idempotent): `trades` + `ki_decisions` erhalten `decision_id`, `provider`, `regel_id`, `fallback` (TEXT, nullable). Bereits vorhandene Spalten werden übersprungen.
