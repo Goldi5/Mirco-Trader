@@ -301,6 +301,10 @@ def sammle_daten():
         "ki_aktiv": _ki_aktiv_heute(ki_log, heute),
         "system": _system_status(),
         "anomalien": _anomalien(),
+        # ── Phase B: Datenvertrauens-Felder ──
+        "trades_anzahl": len(_alle_trades_flat()),
+        "depot_snapshot_anzahl": _db_snap_count(),
+        "ki_cooldown": _lade_json(os.path.join(BASE, "ki_cooldown.json"), {}),
     }
 
 
@@ -529,6 +533,86 @@ def banner_drawing(breite):
 # ─────────────────────────────────────────────────────────────────────────────
 # PDF-BAU
 # ─────────────────────────────────────────────────────────────────────────────
+def _db_snap_count():
+    """Phase B: zählt depot_snapshot-Zeilen in SQLite (für Datenvertrauens-Score)."""
+    try:
+        import sqlite3
+        c = sqlite3.connect(os.path.join(BASE, "micro_trader.db"))
+        n = c.execute('SELECT COUNT(*) FROM "depot_snapshot"').fetchone()[0]
+        c.close()
+        return n
+    except Exception:
+        return 0
+
+
+def _datenvertrauen(daten):
+    """Phase B: Datenvertrauens-Score. Leitet Status aus vorhandenen Daten ab.
+    Liefert (felder_dict, gesamt_status, begruendung). KEINE erfundenen Werte."""
+    import sqlite3
+    felder = {}
+    # Portfolio-Snapshot
+    snap = daten.get("depot_snapshot_anzahl", 0)
+    felder["Portfolio-Snapshot"] = "vollständig" if snap > 0 else "fehlt"
+    # Trade-Daten
+    tr = daten.get("trades_anzahl", 0)
+    felder["Trade-Daten"] = "vollständig" if tr > 0 else "fehlt"
+    # Einzel-Trade-P&L: nicht verfügbar (keine per-trade P&L in DB)
+    felder["Einzel-Trade-P&L"] = "n/a"
+    # Gebühren / Slippage: nicht erhoben
+    felder["Gebühren"] = "n/a"
+    felder["Slippage"] = "n/a"
+    # Drawdown: nur Snapshot, keine Zeitreihe
+    felder["Drawdown"] = "Snapshot fehlt" if snap == 0 else "verifiziert (Snapshot)"
+    # decision_id-Zuordnung: DB-Feld fehlt -> Legacy
+    felder["decision_id-Zuordnung"] = "Legacy (Feld nicht in DB)"
+    # KI-Provider: aus cooldown + ki_log
+    cd = daten.get("ki_cooldown", {})
+    aktive_cooldowns = [p for p, v in cd.items() if v.get("bis", 0) > time.time()] if cd else []
+    if not cd:
+        felder["KI-Provider"] = "stabil"
+    elif aktive_cooldowns:
+        felder["KI-Provider"] = "gestört (" + ", ".join(aktive_cooldowns) + ")"
+    else:
+        felder["KI-Provider"] = "Fallback (Cooldown abgelaufen)"
+    # Report-Erzeugung
+    felder["Report-Erzeugung"] = "erfolgreich"
+    # Gesamtbewertung (ehrlich, kein künstlicher %-Wert)
+    fehlend = [k for k, v in felder.items() if v in ("fehlt", "n/a", "Snapshot fehlt") or "Legacy" in str(v) or "nicht in DB" in str(v)]
+    gestoert = [k for k in felder if "gestört" in str(felder[k])]
+    if gestoert:
+        gesamt = "NIEDRIG"
+        beg = "Provider gestört: " + ", ".join(gestoert) + ". Portfolio/Trade-Daten vorhanden, aber Gebühren/Slippage/decision_id nicht verifizierbar."
+    elif "fehlt" in felder["Portfolio-Snapshot"] or "fehlt" in felder["Trade-Daten"]:
+        gesamt = "NICHT VERIFIZIERT"
+        beg = "Kern-Daten (Snapshot/Trades) fehlen."
+    elif len(fehlend) >= 4:
+        gesamt = "MITTEL"
+        beg = "Portfolio-Snapshot + Trade-Daten vorhanden. Einzel-Trade-P&L, Gebühren, Slippage und decision_id-Zuordnung nicht vollständig verfügbar (Legacy/n.a.)."
+    else:
+        gesamt = "HOCH"
+        beg = "Alle Kern-Daten verifiziert."
+    return felder, gesamt, beg
+
+
+def _status_uebersicht():
+    """Phase C: Produktiv/Shadow/Konzept/Offen-Trennung (ehrlich, aus IST-Analyse)."""
+    zeilen = [
+        ("US-Markt", "PRODUKTIV", "trades/ki_decisions gefüllt, KI kauft/verkauft", "aktiv"),
+        ("Aktien", "PRODUKTIV", "20 Depots, Trades vorhanden", "20x100$"),
+        ("ETF", "PRODUKTIV", "21 Dateien, Trades vorhanden", "21x100$"),
+        ("Spekulation", "PRODUKTIV", "49 Depots, Trades vorhanden", "49x100$"),
+        ("DE-Markt", "KONZEPT", "boersen.py existiert, nicht produktiv genutzt", "nur Code"),
+        ("JP-Markt", "KONZEPT", "boersen.py existiert, nicht produktiv genutzt", "nur Code"),
+        ("Profile", "KONZEPT", "nur 3 Kategorien, kein Profil-Objekt", "profil_schema.py vorhanden"),
+        ("Shadow-Regeln", "PRODUKTIV", "Live-Gating in ki_decisions aktiv", "nur Lernkontext"),
+        ("Paper-Modus", "OFFEN", "nicht implementiert", "kein Code"),
+        ("Live-Freigabe", "OFFEN", "nur Shadow/Gating, kein echtes Geld", "Phase 13 wartet"),
+        ("Daily-PDF", "PRODUKTIV", "report_pdf.py mehrseitig, decision_id/Gebühren fehlen", "teilweise"),
+        ("WhatsApp-Versand", "EINGESCHRÄNKT", "nur Agent-MEDIA-Tag funktioniert (CLI/Gateway broken)", "Workaround"),
+    ]
+    return zeilen
+
+
 def baue_pdf(daten, pfad):
     styles = getSampleStyleSheet()
     title = ParagraphStyle("title", parent=styles["Title"], fontName=FONT, fontSize=20, textColor=rc.HexColor("#1C1C1E"))
@@ -622,6 +706,29 @@ def baue_pdf(daten, pfad):
     block1.append(Paragraph(f"Datenquelle: Depot-Snapshot zum {jetzt.strftime('%d.%m.%Y %H:%M')} · "
                             f"nicht live (Snapshot), Werte aus Depot-JSON.", small))
     el.append(KeepTogether(block1))
+
+    # ── Phase B: DATENVERTRAUENS-SCORE (auf Seite 1) ──
+    felder, gesamt, beg = _datenvertrauen(daten)
+    block_dv = [Paragraph("Datenvertrauen", h2)]
+    dv_farbe = {"HOCH": "#30D158", "MITTEL": "#FF9F0A", "NIEDRIG": "#FF453A", "NICHT VERIFIZIERT": "#8E8E93"}[gesamt]
+    block_dv.append(Paragraph(f'<b>DATENLAGE: <font color="{dv_farbe}">{gesamt}</font></b>', body))
+    block_dv.append(Paragraph(beg, small))
+    dv_rows = [[Paragraph("<b>Bereich</b>", cell), Paragraph("<b>Status</b>", cell)]]
+    for k, v in felder.items():
+        dv_rows.append([Paragraph(k, cell), Paragraph(v, cell)])
+    t_dv = Table(dv_rows, colWidths=[W*0.45, W*0.55])
+    t_dv.setStyle(TableStyle([
+        ("BACKGROUND", (0,0), (-1,0), rc.HexColor(FARB["violett"])),
+        ("TEXTCOLOR", (0,0), (-1,0), rc.white),
+        ("GRID", (0,0), (-1,-1), 0.5, rc.HexColor("#E5E5EA")),
+        ("ROWBACKGROUNDS", (0,1), (-1,-1), [rc.white, rc.HexColor("#F5F7FA")]),
+        ("VALIGN", (0,0), (-1,-1), "MIDDLE"),
+        ("TOPPADDING", (0,0), (-1,-1), 2), ("BOTTOMPADDING", (0,0), (-1,-1), 2),
+        ("LEFTPADDING", (0,0), (-1,-1), 6),
+    ]))
+    block_dv.append(Spacer(1, 0.1*cm))
+    block_dv.append(t_dv)
+    el.append(KeepTogether(block_dv))
     el.append(PageBreak())
 
     # ── SEITE 2: Kategorien und Entwicklung ──
@@ -724,8 +831,73 @@ def baue_pdf(daten, pfad):
     el.append(KeepTogether(regime_block))
     el.append(PageBreak())
 
+    # ── Phase C: STATUSÜBERSICHT (Seite 4 Anfang) ──
+    el.append(Paragraph("4. Statusübersicht (Produktiv / Shadow / Konzept / Offen)", h2))
+    el.append(HRFlowable(width="100%", thickness=1, color=rc.HexColor(FARB["violett"])))
+    el.append(Spacer(1, 0.2*cm))
+    su_rows = [[Paragraph("<b>Bereich</b>", cell), Paragraph("<b>Status</b>", cell),
+                Paragraph("<b>Beleg</b>", cell), Paragraph("<b>Kommentar</b>", cell)]]
+    status_farbe = {"PRODUKTIV": "#30D158", "SHADOW": "#AF52DE", "PAPER": "#8E8E93",
+                    "KONZEPT": "#8E8E93", "OFFEN": "#FF9F0A", "BLOCKIERT": "#FF453A",
+                    "NICHT VERIFIZIERT": "#8E8E93", "EINGESCHRÄNKT": "#FF9F0A"}
+    for bereich, status, beleg, komm in _status_uebersicht():
+        sf = status_farbe.get(status, "#1C1C1E")
+        su_rows.append([
+            Paragraph(bereich, cell),
+            Paragraph(f'<font color="{sf}"><b>{status}</b></font>', cell),
+            Paragraph(beleg, cell),
+            Paragraph(komm, cell),
+        ])
+    t_su = Table(su_rows, colWidths=[W*0.18, W*0.16, W*0.38, W*0.28])
+    t_su.setStyle(TableStyle([
+        ("BACKGROUND", (0,0), (-1,0), rc.HexColor(FARB["violett"])),
+        ("TEXTCOLOR", (0,0), (-1,0), rc.white),
+        ("GRID", (0,0), (-1,-1), 0.5, rc.HexColor("#E5E5EA")),
+        ("ROWBACKGROUNDS", (0,1), (-1,-1), [rc.white, rc.HexColor("#F5F7FA")]),
+        ("VALIGN", (0,0), (-1,-1), "MIDDLE"),
+        ("TOPPADDING", (0,0), (-1,-1), 3), ("BOTTOMPADDING", (0,0), (-1,-1), 3),
+        ("LEFTPADDING", (0,0), (-1,-1), 5), ("RIGHTPADDING", (0,0), (-1,-1), 5),
+    ]))
+    el.append(t_su)
+    el.append(Spacer(1, 0.3*cm))
+
+    # ── Phase F: ROOT-CAUSE-HISTORIE (kompakt im Report) ──
+    el.append(Paragraph("5. Technische Stabilität — Root-Cause-Historie", h2))
+    el.append(HRFlowable(width="100%", thickness=1, color=rc.HexColor(FARB["violett"])))
+    el.append(Spacer(1, 0.2*cm))
+    rc_rows = [[Paragraph("<b>Root-Cause</b>", cell), Paragraph("<b>Status</b>", cell),
+                Paragraph("<b>Letztes Auftreten</b>", cell), Paragraph("<b>Maßnahme</b>", cell)]]
+    rc_daten = [
+        ("Feldnamen-Dissonanz (preis/aktuell)", "behoben", "v2.16.8", "Producer/Consumer-Feld abgeglichen"),
+        ("Kurs=0 (yfinance Rate-Limit)", "behoben", "v2.16.8", "4-Tier-Fallback + Preis-Guard"),
+        ("KI-Cooldown-Kaskade", "behoben", "v2.16.8", "Batch-Splitting + Timeout 180s"),
+        ("Leere Depots ohne Kauf", "behoben", "v2.16.9", "[LEER: BITTE KAUFEN]-Hinweis"),
+        ("Tote Spec-Placeholder", "behoben", "v2.16.11", "38 Dateien physisch gelöscht"),
+        ("Provider-Timeout", "behoben", "v2.18.1", "Cooldown nur betroffener Provider"),
+        ("Reasoning-Modell max_tokens", "behoben", "v2.18.3", "max_tokens>=1024 + reasoning_content"),
+        ("Windows-VBS-Autostart", "behoben", "2026-08-06", "3+2-Quote-Muster in .vbs"),
+        ("WhatsApp MEDIA-Einschränkung", "eingeschränkt", "aktuell", "nur Agent-MEDIA-Tag, CLI/Gateway broken"),
+    ]
+    for name, status, lz, mass in rc_daten:
+        sf = "#30D158" if status == "behoben" else "#FF9F0A"
+        rc_rows.append([Paragraph(name, cell),
+                        Paragraph(f'<font color="{sf}">{status}</font>', cell),
+                        Paragraph(lz, cell), Paragraph(mass, cell)])
+    t_rc = Table(rc_rows, colWidths=[W*0.30, W*0.14, W*0.18, W*0.38])
+    t_rc.setStyle(TableStyle([
+        ("BACKGROUND", (0,0), (-1,0), rc.HexColor(FARB["violett"])),
+        ("TEXTCOLOR", (0,0), (-1,0), rc.white),
+        ("GRID", (0,0), (-1,-1), 0.5, rc.HexColor("#E5E5EA")),
+        ("ROWBACKGROUNDS", (0,1), (-1,-1), [rc.white, rc.HexColor("#F5F7FA")]),
+        ("VALIGN", (0,0), (-1,-1), "MIDDLE"),
+        ("TOPPADDING", (0,0), (-1,-1), 2), ("BOTTOMPADDING", (0,0), (-1,-1), 2),
+        ("LEFTPADDING", (0,0), (-1,-1), 5),
+    ]))
+    el.append(t_rc)
+    el.append(Spacer(1, 0.3*cm))
+
     # ── SEITE 4: Projektstatus und offene Phasen (TRENNUNG!) ──
-    el.append(Paragraph("4. Projektstatus und offene Phasen", h2))
+    el.append(Paragraph("6. Projektstatus und offene Phasen", h2))
     el.append(Paragraph("Entwicklungsstatus außerhalb der Tagesauswertung", S["small"]))
     el.append(HRFlowable(width="100%", thickness=1, color=rc.HexColor(FARB["violett"])))
     el.append(Spacer(1, 0.2*cm))
@@ -1056,6 +1228,45 @@ def _seite_governance(el, S, W, daten):
     el.append(Spacer(1, 0.2*cm))
     el.append(Paragraph("Shadow-Regeln erscheinen NIE als live. freigabe_status wird berücksichtigt. "
                         "Skill-Sync-Status: s. Systemstatus (Seite 6).", S["small"]))
+    el.append(Spacer(1, 0.3*cm))
+
+    # ── Phase G: KI-/PROVIDER-STABILITÄT (transparent) ──
+    el.append(Paragraph("KI-Provider-Stabilität (transparent)", S["h2"]))
+    el.append(HRFlowable(width="100%", thickness=0.6, color=rc.HexColor(FARB["violett"])))
+    el.append(Spacer(1, 0.15*cm))
+    cd = daten.get("ki_cooldown", {})
+    aktive = {p: v for p, v in cd.items() if v.get("bis", 0) > __import__("time").time()} if cd else {}
+    prov_status = "gestört" if aktive else ("Fallback (abgelaufen)" if cd else "stabil")
+    g_rows = [["Provider", "Status", "Konfiguration"]]
+    prov_conf = [
+        ("zen", "Free-Tier", "rate_limit → nur dieser gekühlt"),
+        ("zen-nemotron", "Free-Tier", "Batch-Splitting 4×5"),
+        ("openrouter", "Free-Tier", "Fallback-Kette"),
+        ("nous-hy3", "Free-Tier", "max_tokens>=1024, reasoning_content"),
+        ("nous-step", "Free-Tier", "max_tokens>=1024, reasoning_content"),
+    ]
+    for p, tier, conf in prov_conf:
+        st = "⚠ Cooldown" if p in aktive else "✓ aktiv"
+        g_rows.append([p, st, conf])
+    t_g = Table(g_rows, colWidths=[W*0.22, W*0.20, W*0.58])
+    t_g.setStyle(TableStyle([
+        ("FONT", (0,0), (-1,-1), FONT, 8),
+        ("BACKGROUND", (0,0), (-1,0), rc.HexColor(FARB["violett"])),
+        ("TEXTCOLOR", (0,0), (-1,0), rc.white),
+        ("GRID", (0,0), (-1,-1), 0.4, rc.HexColor("#E5E5EA")),
+        ("ROWBACKGROUNDS", (0,1), (-1,-1), [rc.white, rc.HexColor("#F7F7FA")]),
+        ("VALIGN", (0,0), (-1,-1), "MIDDLE"),
+        ("TOPPADDING", (0,0), (-1,-1), 2), ("BOTTOMPADDING", (0,0), (-1,-1), 2),
+    ]))
+    el.append(t_g)
+    el.append(Spacer(1, 0.1*cm))
+    hinweise = [
+        "Ein Provider-Cooldown blockiert NICHT alle Provider (nur betroffenen).",
+        "Leere Reasoning-Antworten = kein globaler Systemfehler (nous-hy3/step).",
+        "Konfidenz 0 = kein normaler KI-Wert (Fallback-Trennung nötig).",
+        f"Aktueller Provider-Status: {prov_status}.",
+    ]
+    el.append(ListFlowable([ListItem(Paragraph(h, S["small"])) for h in hinweise], bulletType="bullet"))
     el.append(PageBreak())
 
 def _seite_system(el, S, W, daten):

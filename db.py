@@ -246,6 +246,34 @@ class MTDB:
         rows = self.conn.execute(sql, params).fetchall()
         return [dict(r) for r in rows]
 
+    def analyse_karten(self, tage=30):
+        """Phase E: Kompakte Kennzahlen für Analyse-Tab (ehrlich, keine erfundenen Felder)."""
+        since = (datetime.now() - timedelta(days=tage)).isoformat()
+        c = self.conn
+        trades = c.execute("SELECT aktion, konfidenz FROM trades WHERE zeit >= ?", (since,)).fetchall()
+        kis = c.execute("SELECT aktion, konfidenz FROM ki_decisions WHERE zeit >= ?", (since,)).fetchall()
+        n_trades = len(trades)
+        n_ki = len(kis)
+        kauf = sum(1 for t in trades if t["aktion"] == "kauf")
+        verkauf = sum(1 for t in trades if t["aktion"] == "verkauf")
+        halten = sum(1 for t in kis if t["aktion"] == "halten")
+        # Konfidenz-Durchschnitt (nur wo vorhanden)
+        konf_vals = [t["konfidenz"] for t in kis if t["konfidenz"] is not None]
+        konf_schnitt = round(sum(konf_vals)/len(konf_vals), 1) if konf_vals else None
+        # decision_id / Legacy / Provider: Felder existieren NICHT in DB -> ehrlich n/a
+        return {
+            "trades_zeitraum": n_trades,
+            "ki_entscheidungen": n_ki,
+            "kauf_verkauf_halte": {"kauf": kauf, "verkauf": verkauf, "halten": halten},
+            "entscheidungen_mit_decision_id": "n/a (Feld nicht in DB)",
+            "legacy_fallbacks": "n/a (Feld nicht in DB)",
+            "konfidenz_schnitt": konf_schnitt,
+            "konfidenz_ohne_treffer": "n/a",
+            "provider_fehler": "n/a (Feld nicht in DB)",
+            "cooldown_ereignisse": "siehe ki_cooldown.json",
+            "trades_ohne_ki_zuordnung": "n/a (Feld nicht in DB)",
+        }
+
     def close(self):
         self.conn.close()
 

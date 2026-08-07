@@ -1361,6 +1361,19 @@ def api_db_query():
         return {"error": str(e), "count": 0, "rows": []}
 
 
+@app.route("/api/db_karten")
+def api_db_karten():
+    try:
+        from db import MTDB
+        db = MTDB()
+        tage = request.args.get("tage", type=int, default=30)
+        karten = db.analyse_karten(tage=tage)
+        db.close()
+        return {"error": None, "karten": karten}
+    except Exception as e:
+        return {"error": str(e), "karten": {}}
+
+
 @app.route("/depot_json")
 def depot_json():
     risk = request.args.get("risk", type=int)

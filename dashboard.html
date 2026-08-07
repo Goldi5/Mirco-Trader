@@ -347,6 +347,7 @@ canvas{display:block;max-width:100%}
       <select id="an2Order"><option value="DESC">Neueste</option><option value="ASC">Älteste</option></select>
       <button onclick="anLaden2()" style="padding:6px 14px;border-radius:8px;background:rgba(139,92,246,0.4);color:#fff;border:none;cursor:pointer">🔄 Laden</button>
     </div>
+    <div id="an2Karten" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"></div>
     <div id="an2Count" style="font-size:12px;opacity:0.7;margin-bottom:8px"></div>
     <div style="overflow-x:auto;max-height:520px;overflow-y:auto">
       <table style="width:100%;border-collapse:collapse;font-size:13px">
@@ -2337,7 +2338,7 @@ function anLaden2() {
   if (typ) p.set("typ", typ);
   if (ticker) p.set("ticker", ticker);
   if (aktion) p.set("aktion", aktion);
-  document.getElementById("an2Count").textContent = "l sucrose...";
+  document.getElementById("an2Count").textContent = "lädt...";
   fetch("/api/db_query?" + p.toString())
     .then(r => r.json())
     .then(d => {
@@ -2362,6 +2363,31 @@ function anLaden2() {
       });
     })
     .catch(e => { document.getElementById("an2Count").textContent = "Fehler: " + e.message; });
+  // Analyse-Karten laden
+  fetch("/api/db_karten?tage=" + tage)
+    .then(r => r.json())
+    .then(d => {
+      const k = d.karten || {};
+      const kvh = k.kauf_verkauf_halte || {};
+      const cards = [
+        ["Trades (Zeitraum)", k.trades_zeitraum],
+        ["KI-Entscheidungen", k.ki_entscheidungen],
+        ["Kauf/Verkauf/Halten", (kvh.kauf||0)+" / "+(kvh.verkauf||0)+" / "+(kvh.halten||0)],
+        ["Konfidenz-Schnitt", k.konfidenz_schnitt!=null ? k.konfidenz_schnitt+"%" : "n/a"],
+        ["decision_id", k.entscheidungen_mit_decision_id],
+        ["Legacy-Fallback", k.legacy_fallbacks],
+        ["Provider-Fehler", k.provider_fehler],
+      ];
+      const box = document.getElementById("an2Karten");
+      box.innerHTML = "";
+      cards.forEach(c => {
+        const div = document.createElement("div");
+        div.style.cssText = "background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:8px 12px;min-width:120px";
+        div.innerHTML = "<div style='font-size:11px;opacity:0.7'>" + esc(c[0]) + "</div><div style='font-size:15px;font-weight:600'>" + esc(String(c[1])) + "</div>";
+        box.appendChild(div);
+      });
+    })
+    .catch(e => { console.warn("Karten-Fehler:", e.message); });
 }
 </script>
 

@@ -1,9 +1,16 @@
 {
-  "version": "2.18.3",
-  "build": "2026-08-06_2215",
-  "released_at": "2026-08-06 22:15",
-  "codename": "KI-Wellen (gestreckte Calls)",
+  "version": "2.19.0",
+  "build": "2026-08-07_1415",
+  "released_at": "2026-08-07 14:15",
+  "codename": "Analyse- & Datenvertrauen-Stabilisierung",
   "changes": [
+    {
+      "version": "2.19.0",
+      "date": "2026-08-07 14:15",
+      "codename": "Analyse- & Datenvertrauen-Stabilisierung",
+      "summary": "Arbeitsauftrag: Analyse-, Datenvertrauens- und Report-Stabilisierung. NEU: (Phase B) Datenvertrauens-Score im Daily-PDF. (Phase C) Statusuebersicht Produktiv/Shadow/Konzept/Offen. (Phase D/F) 9-Seiten-PDF mit Root-Cause-Historie. (Phase E) Analyse-Tab analyse2 + API /api/db_karten. (Phase G) KI-Provider-Stabilitaet transparent. KEINE neuen Maerkte/Profile/Live. DB-Schema unveraendert (decision_id/provider-Felder fehlen -> ehrlich n/a).",
+      "files": ["report_pdf.py", "dashboard.py", "dashboard.html", "db.py", "version.json"]
+    },
     {
       "version": "2.18.3",
       "date": "2026-08-06 22:15",

@@ -1,3 +1,23 @@
+## [2.19.0] - 2026-08-07
+### Added (Analyse- & Datenvertrauen-Stabilisierung)
+- **Phase B — Datenvertrauens-Score**: Tagesbericht zeigt `DATENLAGE: HOCH|MITTEL|NIEDRIG|NICHT VERIFIZIERT` + 9 Statusfelder (Portfolio-Snapshot, Trade-Daten, Einzel-Trade-P&L, Gebühren, Slippage, Drawdown, decision_id-Zuordnung, KI-Provider, Report-Erzeugung). Kein erfundenener %-Wert.
+- **Phase C — Statusübersicht**: Tabelle Produktiv/Shadow/Konzept/Offen (US/Aktien/ETF/Spec=PRODUKTIV; DE/JP/Profile=KONZEPT; Paper/Live-Freigabe=OFFEN; WhatsApp=EINGESCHRÄNKT).
+- **Phase D/F — 9-Seiten-PDF**: Seite 1 Tagesstatus+Datenvertrauen, S2 Kategorien/Verlauf, S3 Performance/KI-Lernen, S4 Statusübersicht+Root-Cause-Historie, S5-9 Detail (Tagesstatus/Performance/Risiko/Trades/Governance/System).
+- **Phase E — Analyse-Tab analyse2 erweitert**: API `/api/db_karten` liefert Kennzahlen (Trades/KI/K-V-H-Verhältnis/Konfidenz-Schnitt). Dashboard zeigt Karten. decision_id/Provider/Legacy ehrlich als `n/a` (DB-Feld fehlt).
+- **Phase G — KI-Provider-Stabilität**: Transparente Tabelle im PDF (5 Provider, Cooldown-Status, Konfiguration).
+
+### Unverändert (bewusst)
+- DB-Schema: keine `decision_id`/`provider`/`regel_id`/`fallback`-Felder → im Report als `n/a`/`Legacy` markiert (ehrlich, nicht erfunden).
+- Keine neuen Märkte/Profile/Live-Automatisierung (außerhalb dieses Auftrags).
+
+### Fixed
+- `anLaden2` korrupter Text (`l sucrose...`) → `lädt...`.
+- JS `node --check` valid (kein SyntaxError).
+
+### Verifiziert
+- PDF-Generierung: 9 Seiten, 264KB, Datenvertrauens-Sektion + Statusübersicht + Root-Cause-Tabelle gerendert.
+- API `/api/db_karten`: trades=927, ki=178, K/V/H=140/102/138, Konfidenz=56.5%.
+
 ## [2.18.3] - 2026-08-06
 ### Changed
 - **KI-Wellen (gestreckte Calls)**: KI-Taktung auf 30min zurück (statt 120), aber Calls gestreckt statt gebündelt. Scheduler triggert `ki_welle` alle 30min mit `--welle 0-3` (rotierend), jede Welle verarbeitet nur 13 der 49 Spec-Ticker. Ursache Rate-Limit (zen Free-Tier 429 nach ~20 Calls): 49 Calls auf einmal. Jetzt ~13/Welle → zen hält durch, andere Provider springen ein. Verifiziert: Welle 0/1 laufen sauber, nur zen rate-limited.
