@@ -139,6 +139,10 @@
     {
       "zeit": "2026-08-07T16:19:32.338217",
       "wert": 100.21
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.701733",
+      "wert": 100.49
     }
   ],
   "trades": [
@@ -154,18 +158,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:18:42.447587",
+    "zeit": "2026-08-07T16:33:07.285679",
     "ticker": "QQQ",
     "aktion": "halten",
-    "konfidenz": 40,
-    "grund": "Neutraler Trend, RSI im neutralen Bereich, sehr geringes Volumen. Keine klaren Kaufsignale, Position bereits investiert.",
+    "konfidenz": 60,
+    "grund": "Neutraler Trend (zwischen SMA20/50), RSI 59 nicht überkauft, aber sehr niedriges Volumen (0.22x) zeigt fehlende Überzeugung. Keine Cash-Reserven für Nachkauf. Kleine Position mit +0.49% Gewinn halten bis klareres Signal. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 718.77,
-    "rsi": 58.4,
+    "kurs": 720.79,
+    "rsi": 59.0,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.2,
-    "depot_rendite": 0.21,
+    "p_pnl": 0.49,
+    "depot_rendite": 0.49,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -336,28 +340,28 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161842_QQQ_aktien_na",
-    "provider": "zen",
+    "decision_id": "d_20260807_163307_QQQ_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 718.77,
-      "sma20": 700.13,
-      "sma50": 714.23,
-      "rsi": 58.4,
+      "kurs": 720.79,
+      "sma20": 700.23,
+      "sma50": 714.27,
+      "rsi": 59.0,
       "atr_pct": 1.7,
-      "vol_ratio": 0.19,
-      "vix": 15.1,
+      "vol_ratio": 0.22,
+      "vix": 14.9,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 0.21
+      "depot_rendite": 0.49
     },
     "indikatoren": [
-      "SMA20>700.1",
-      "SMA50>714.2",
-      "RSI58",
+      "SMA20>700.2",
+      "SMA50>714.3",
+      "RSI59",
       "ATR1.7%"
     ],
     "news_score": null,
@@ -370,8 +374,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 40,
-    "konfidenz_nach_cap": 40,
+    "konfidenz_original": 65.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

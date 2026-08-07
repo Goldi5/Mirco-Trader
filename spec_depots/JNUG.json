@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T13:01:52.477463",
-      "wert": 94.66
-    },
-    {
       "zeit": "2026-07-31T13:16:34.973104",
       "wert": 94.66
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T16:18:51.801222",
       "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.685910",
+      "wert": 90.57
     }
   ],
   "trades": [
@@ -533,15 +533,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:18:27.119557",
+    "zeit": "2026-08-07T16:32:42.635032",
     "ticker": "JNUG",
     "aktion": "halten",
-    "konfidenz": 25,
-    "grund": "RSI 77 überkauft, Trend neutral, geringes Volumen und hohe Volatilität; keine klare Aufwärtssignal gemäß Regeln, daher kein Kauf.",
+    "konfidenz": 55,
+    "grund": "Keine Position vorhanden. Nur 90.57$ Cash verfügbar (1 Aktie kostet 163.70$). RSI 76.8 überkauft, Trend neutral, Volumen 0.7x unterdurchschnittlich. Hebel-ETF (2x) unterliegt Volatilitätsverfall - Warnregel gegen lev-bull-Titel.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 164.34,
-    "rsi": 77.0,
+    "kurs": 163.7,
+    "rsi": 76.8,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
     "p_pnl": 0,
     "depot_rendite": -9.43,
@@ -715,21 +715,21 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161827_JNUG_aktien_na",
-    "provider": "zen",
+    "decision_id": "d_20260807_163242_JNUG_aktien_na",
+    "provider": "zen-nemotron",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 164.34,
-      "sma20": 120.55,
-      "sma50": 131.62,
-      "rsi": 77.0,
-      "atr_pct": 4.59,
-      "vol_ratio": 0.66,
-      "vix": 15.1,
+      "kurs": 163.7,
+      "sma20": 120.52,
+      "sma50": 131.6,
+      "rsi": 76.8,
+      "atr_pct": 4.61,
+      "vol_ratio": 0.7,
+      "vix": 14.9,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
       "depot_rendite": -9.43
     },
@@ -749,8 +749,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 25,
-    "konfidenz_nach_cap": 25,
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

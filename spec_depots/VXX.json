@@ -55,16 +55,20 @@
     {
       "zeit": "2026-08-07T16:19:32.376586",
       "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.739263",
+      "wert": 100.0
     }
   ],
   "trades": [],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:19:23.909729",
+    "zeit": "2026-08-07T16:34:41.418725",
     "ticker": "VXX",
     "aktion": "halten",
-    "konfidenz": 45,
-    "grund": "Abwärtstrend, VIX niedrig, extrem dünnes Volumen und historische Anti-Regeln für Volatilitätstitel sprechen gegen einen Kauf. Kein klares Aufwärtssignal.",
+    "konfidenz": 60,
+    "grund": "VXX in Downtrend (Kurs < SMA20 < SMA50), VIX niedrig (14.9) -> Contango-Decay, Volumen nur 16% vom Schnitt, RSI 37 nicht überverkauft. Gelernte Regeln warnen explizit vor Volatilitätstiteln (Gewicht -1.83). Kein Kaufsignal. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
     "kurs": 20.25,
@@ -242,8 +246,8 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161923_VXX_aktien_na",
-    "provider": "zen",
+    "decision_id": "d_20260807_163441_VXX_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
@@ -255,8 +259,8 @@
       "sma50": 22.68,
       "rsi": 37.3,
       "atr_pct": 3.8,
-      "vol_ratio": 0.13,
-      "vix": 15.1,
+      "vol_ratio": 0.16,
+      "vix": 14.9,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": 0.0
     },
@@ -276,8 +280,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 45,
-    "konfidenz_nach_cap": 45,
+    "konfidenz_original": 80.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

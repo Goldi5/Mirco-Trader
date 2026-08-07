@@ -2,24 +2,12 @@
   "ticker": "BOIL",
   "name": "ProShares Ultra NatGas 2x",
   "kategorie": "commodity",
-  "bargeld": 100.32,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 5.187177,
+  "avg_price": 19.34,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-03T16:35:05.347509",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-03T22:33:49.965739",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-03T22:40:46.239057",
-      "wert": 100.0
-    },
     {
       "zeit": "2026-08-04T09:23:19.472881",
       "wert": 100.0
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:18:03.646293",
       "wert": 100.32
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.769408",
+      "wert": 100.32
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.856141",
+      "wert": 100.22
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.658865",
+      "wert": 100.22
     }
   ],
   "trades": [
@@ -513,19 +513,27 @@
       "preis": 18.71,
       "grund": "Abwärtstrend, RSI 29 unterkritisch, aber Halten-Regeln negativ und kein Bargeld; Risiko weiterer Verluste bei hoher Volatilität. Daher verkaufen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.769408",
+      "aktion": "kaufen",
+      "menge": 5.187177,
+      "preis": 19.34,
+      "grund": "kurze Begründung [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:18:02.000528",
+    "zeit": "2026-08-07T16:31:05.114198",
     "ticker": "BOIL",
     "aktion": "halten",
-    "konfidenz": 30,
-    "grund": "Abwärtstrend, niedriges Volumen, hohe Volatilität; keine klare Aufwärtssignale, daher kein Kauf.",
+    "konfidenz": 60,
+    "grund": "Abwärtstrend, Kurs unter SMA20/SMA50, schwaches Volumen, Anti-Vola/Lev-Bull-Warnregeln aktiv; Cash halten.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 19.31,
-    "rsi": 37.1,
+    "kurs": 19.32,
+    "rsi": 37.2,
     "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
     "p_pnl": 0,
     "depot_rendite": 0.32,
@@ -699,7 +707,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161802_BOIL_aktien_na",
+    "decision_id": "d_20260807_163105_BOIL_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -707,13 +715,13 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 19.31,
+      "kurs": 19.32,
       "sma20": 21.06,
       "sma50": 24.92,
-      "rsi": 37.1,
+      "rsi": 37.2,
       "atr_pct": 3.92,
-      "vol_ratio": 0.42,
-      "vix": 15.1,
+      "vol_ratio": 0.45,
+      "vix": 14.9,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": 0.32
     },
@@ -733,8 +741,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 30,
-    "konfidenz_nach_cap": 30,
+    "konfidenz_original": 60,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

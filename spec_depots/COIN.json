@@ -364,6 +364,18 @@
     {
       "zeit": "2026-08-07T16:19:32.290736",
       "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.771433",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.858691",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.660865",
+      "wert": 99.77
     }
   ],
   "trades": [
@@ -459,15 +471,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:18:07.633123",
+    "zeit": "2026-08-07T16:31:09.467086",
     "ticker": "COIN",
     "aktion": "halten",
-    "konfidenz": 45,
-    "grund": "Abwärtstrend und geringes Volumen; auf Stabilisierung warten",
+    "konfidenz": 55,
+    "grund": "Abwärtstrend (Kurs < SMA20 < SMA50), RSI neutral, sehr geringes Volumen; keine Position, daher kein Kaufsignal.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 149.48,
-    "rsi": 43.6,
+    "kurs": 153.15,
+    "rsi": 45.9,
     "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
     "p_pnl": 0,
     "depot_rendite": -0.23,
@@ -641,7 +653,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161807_COIN_aktien_na",
+    "decision_id": "d_20260807_163109_COIN_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -649,20 +661,20 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 149.48,
-      "sma20": 158.64,
-      "sma50": 160.72,
-      "rsi": 43.6,
-      "atr_pct": 5.79,
-      "vol_ratio": 0.31,
-      "vix": 15.1,
+      "kurs": 153.15,
+      "sma20": 158.83,
+      "sma50": 160.79,
+      "rsi": 45.9,
+      "atr_pct": 5.76,
+      "vol_ratio": 0.37,
+      "vix": 14.9,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": -0.23
     },
     "indikatoren": [
-      "SMA20>158.6",
-      "SMA50>160.7",
-      "RSI44",
+      "SMA20>158.8",
+      "SMA50>160.8",
+      "RSI46",
       "ATR5.8%"
     ],
     "news_score": null,
@@ -675,8 +687,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 45,
-    "konfidenz_nach_cap": 45,
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

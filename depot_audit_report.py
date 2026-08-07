@@ -101,7 +101,8 @@ def audit_spec():
         else:
             status = "LEER"; g = "kein Cash, keine Pos"
         mst_s = f"{mst:.0f}m" if mst is not None else "nie"
-        zeilen.append((t, status, round(cash, 2), shares, mst_s, g[:50]))
+        pos_count = 1 if shares > 0 else 0
+        zeilen.append((t, status, round(cash, 2), pos_count, mst_s, g[:50]))
     return zeilen
 
 aktien = audit_aktien_etf("depot", "AKTIEN")
@@ -157,9 +158,10 @@ if os.path.exists(aria):
 styles = getSampleStyleSheet()
 H1 = ParagraphStyle("H1", parent=styles["Title"], fontName=FONT, fontSize=20, textColor=colors.HexColor("#1a3c5e"), spaceAfter=4)
 SUB = ParagraphStyle("SUB", parent=styles["Normal"], fontName=FONT, fontSize=10, textColor=colors.HexColor("#666"), alignment=TA_CENTER, spaceAfter=10)
-H2 = ParagraphStyle("H2", parent=styles["Heading2"], fontName=FONT, fontSize=13, textColor=colors.HexColor("#1a3c5e"), spaceBefore=10, spaceAfter=4)
+H2 = ParagraphStyle("H2", parent=styles["Heading2"], fontName=FONT, fontSize=13, textColor=colors.HexColor("#1a3c5e"), spaceBefore=14, spaceAfter=4)
 NORM = ParagraphStyle("NORM", parent=styles["Normal"], fontName=FONT, fontSize=9, leading=12)
 CELL = ParagraphStyle("CELL", parent=styles["Normal"], fontName=FONT, fontSize=7, leading=8.5)
+SUM = ParagraphStyle("SUM", parent=styles["Normal"], fontName=FONT, fontSize=8, textColor=colors.HexColor("#444"), spaceAfter=2)
 
 def farbe(status):
     return { "POS": colors.HexColor("#e6f4ea"), "CASH OHNE POS": colors.HexColor("#fff4e5"),
@@ -168,22 +170,30 @@ def farbe(status):
 def esc(s):
     return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-def tabelle(titel, zeilen, risk_label):
-    story = [Paragraph(titel, H2)]
+def tabelle(titel, zeilen, risk_label, pos_count=None, cash_count=None):
+    from reportlab.platypus import KeepTogether
+    # Zusammenfassungsblock vor der Tabelle
+    if pos_count is not None and cash_count is not None:
+        summ = f"● POS: {pos_count}   ● CASH OHNE POS: {cash_count}   ● Gesamt: {len(zeilen)}"
+    else:
+        summ = f"● Gesamt: {len(zeilen)}"
+    block = [Paragraph(titel, H2), Paragraph(summ, SUM)]
     data = [[risk_label, "Status", "Cash", "Pos", "letzter Trade", "Grund"]]
     for z in zeilen:
         data.append([str(z[0]), z[1], f"${z[2]}", str(z[3]), z[4], Paragraph(esc(z[5]), CELL)])
-    t = Table(data, colWidths=[22, 70, 38, 20, 44, 320])
+    t = Table(data, colWidths=[26, 70, 38, 20, 44, 316], repeatRows=1)
     st = [("FONTNAME", (0,0), (-1,-1), FONT), ("FONTSIZE", (0,0), (-1,-1), 7.5),
           ("BACKGROUND", (0,0), (-1,0), colors.HexColor("#1a3c5e")),
           ("TEXTCOLOR", (0,0), (-1,0), colors.white), ("VALIGN", (0,0), (-1,-1), "MIDDLE"),
           ("GRID", (0,0), (-1,-1), 0.4, colors.HexColor("#ccc")),
+          ("LEFTPADDING", (0,0), (-1,-1), 4), ("RIGHTPADDING", (0,0), (-1,-1), 3),
+          ("TOPPADDING", (0,0), (-1,-1), 2.5), ("BOTTOMPADDING", (0,0), (-1,-1), 2.5),
           ("ROWBACKGROUNDS", (0,1), (-1,-1), [colors.white, colors.HexColor("#f5f7fa")])]
     for i, z in enumerate(zeilen, 1):
         st.append(("BACKGROUND", (1,i), (1,i), farbe(z[1])))
     t.setStyle(TableStyle(st))
-    story.append(t)
-    return story
+    block.append(t)
+    return [KeepTogether(block)]
 
 pdf_path = os.path.join(ARCHIV, f"depot-audit_{DATUM}.pdf")
 doc = SimpleDocTemplate(pdf_path, pagesize=A4, topMargin=15*mm, bottomMargin=15*mm, leftMargin=12*mm, rightMargin=12*mm,
@@ -193,11 +203,17 @@ story = [
     Paragraph(f"Erstellt {ZEIT} · {len(aktien)+len(etf)+len(spec)} Depots · POS: {n_pos} · Cash-ohne-Pos: {n_cash_ohne} · Leer: {n_leer} · Kein KI-Call", SUB),
     Paragraph("Cash da aber keine Position = KI entscheidet bewusst HALTEN (Volumen/Trend/Warnregeln) oder Depot wurde verkauft. Kein Systemfehler.", NORM),
 ]
-story += tabelle("Aktien-Depots (Risk 0-95)", aktien, "Risk")
+story += tabelle("Aktien-Depots (Risk 0-95)", aktien, "Risk",
+                pos_count=sum(1 for z in aktien if z[1]=="POS"),
+                cash_count=sum(1 for z in aktien if z[1]=="CASH OHNE POS"))
 story.append(PageBreak())
-story += tabelle("ETF-Depots (Risk 0-95)", etf, "Risk")
-story.append(Spacer(1, 8))
-story += tabelle("Spec-Depots", spec, "Ticker")
+story += tabelle("ETF-Depots (Risk 0-95)", etf, "Risk",
+                pos_count=sum(1 for z in etf if z[1]=="POS"),
+                cash_count=sum(1 for z in etf if z[1]=="CASH OHNE POS"))
+story.append(PageBreak())
+story += tabelle("Spec-Depots", spec, "Ticker",
+                pos_count=sum(1 for z in spec if z[1]=="POS"),
+                cash_count=sum(1 for z in spec if z[1]=="CASH OHNE POS"))
 doc.build(story)
 
 print(f"Markdown: {md_path}")

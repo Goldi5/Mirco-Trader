@@ -9,11 +9,6 @@
   "exchange": null,
   "historie": [
     {
-      "zeit": "2026-07-29T19:46:11.030899",
-      "wert": 99.98,
-      "bargeld": 10.0
-    },
-    {
       "zeit": "2026-07-29T20:01:10.415033",
       "wert": 99.98,
       "bargeld": 10.0
@@ -440,6 +435,10 @@
     {
       "zeit": "2026-08-07T16:18:51.853059",
       "wert": 94.0
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.734538",
+      "wert": 94.0
     }
   ],
   "trades": [
@@ -463,14 +462,14 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:19:20.750446",
+    "zeit": "2026-08-07T16:34:21.012824",
     "ticker": "UVXY",
     "aktion": "halten",
-    "konfidenz": 30,
-    "grund": "Kein klares Aufwärtssignal; VIX niedrig, Trend abwärts, geringes Volumen.",
+    "konfidenz": 60,
+    "grund": "UVXY im Abwärtstrend (Kurs < SMA20 < SMA50), VIX mit 14.9 sehr niedrig, RSI 37.2 nicht überverkauft, Volumen nur 0.23x Schnitt. UVXY leidet unter starkem Contango-Verfall (Roll-Yield negativ). Gelernte Regeln warnen vor Volatility- und Leveraged-Bear-Titeln (eff. Gewicht -1.68 bis -1.83). Kein technisches Kaufsignal. Cash-Erhalt bei $94 Depotwert priorisiert. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 21.54,
+    "kurs": 21.55,
     "rsi": 37.2,
     "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
     "p_pnl": 0,
@@ -645,21 +644,21 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161920_UVXY_aktien_na",
-    "provider": "zen",
+    "decision_id": "d_20260807_163421_UVXY_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 21.54,
+      "kurs": 21.55,
       "sma20": 23.88,
       "sma50": 25.93,
       "rsi": 37.2,
       "atr_pct": 5.92,
-      "vol_ratio": 0.2,
-      "vix": 15.1,
+      "vol_ratio": 0.23,
+      "vix": 14.9,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": -6.0
     },
@@ -679,8 +678,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 30,
-    "konfidenz_nach_cap": 30,
+    "konfidenz_original": 85.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

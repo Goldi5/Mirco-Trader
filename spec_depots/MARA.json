@@ -143,20 +143,28 @@
     {
       "zeit": "2026-08-07T16:19:32.327763",
       "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.813231",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.693105",
+      "wert": 100.0
     }
   ],
   "trades": [],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:18:33.111264",
+    "zeit": "2026-08-07T16:33:41.178604",
     "ticker": "MARA",
     "aktion": "halten",
-    "konfidenz": 45,
-    "grund": "Abwärtstrend, kein klares Aufwärtssignal, geringes Volumen",
+    "konfidenz": 60,
+    "grund": "Kein Kaufsignal: Abwärtstrend (Kurs < SMA20 < SMA50), RSI 39.9 nicht überverkauft, Volumen nur 0.44x Schnitt, hohe Volatilität (ATR 9.5%), keine News. Meta-Regeln zeigen 0% Trefferquote bei Konfidenz 60-100. Warten auf Trendwende oder überverkauftes Setup. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 9.81,
-    "rsi": 39.0,
+    "kurs": 10.01,
+    "rsi": 39.9,
     "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
     "p_pnl": 0,
     "depot_rendite": 0.0,
@@ -330,29 +338,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161833_MARA_aktien_na",
-    "provider": "zen",
+    "decision_id": "d_20260807_163341_MARA_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 9.81,
-      "sma20": 11.58,
+      "kurs": 10.01,
+      "sma20": 11.59,
       "sma50": 12.85,
-      "rsi": 39.0,
-      "atr_pct": 9.72,
-      "vol_ratio": 0.38,
-      "vix": 15.1,
+      "rsi": 39.9,
+      "atr_pct": 9.53,
+      "vol_ratio": 0.44,
+      "vix": 14.9,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": 0.0
     },
     "indikatoren": [
       "SMA20>11.6",
       "SMA50>12.8",
-      "RSI39",
-      "ATR9.7%"
+      "RSI40",
+      "ATR9.5%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -364,8 +372,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 45,
-    "konfidenz_nach_cap": 45,
+    "konfidenz_original": 70.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

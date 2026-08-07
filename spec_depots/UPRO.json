@@ -327,6 +327,10 @@
     {
       "zeit": "2026-08-07T16:19:32.370601",
       "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.732532",
+      "wert": 101.43
     }
   ],
   "trades": [
@@ -361,7 +365,7 @@
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_161932_UPRO_aktien_na",
+    "decision_id": "d_20260807_163441_UPRO_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "UPRO",

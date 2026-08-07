@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T12:31:29.874849",
-      "wert": 103.83
-    },
-    {
       "zeit": "2026-07-31T12:46:20.274386",
       "wert": 103.83
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T16:19:32.314565",
       "wert": 103.65
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.681908",
+      "wert": 103.65
     }
   ],
   "trades": [
@@ -556,215 +556,15 @@
     }
   ],
   "ki_letzte": {
-    "typ": "decision",
-    "zeit": "2026-08-07T16:18:25.758469",
-    "ticker": "IONQ",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "Niedriges Volumen (0.45x), neutraler Trend, RSI 64.7 nahe überkauft; historische Warnregeln gegen AI/Volatilität raten ab. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
-    "menge": "voll",
-    "ziel_kurs": null,
-    "kurs": 41.39,
-    "rsi": 64.7,
-    "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0,
-    "depot_rendite": 3.65,
-    "angewandte_regeln": [
-      {
-        "id": "r_20260802_32531",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_92036",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_09535",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_74417",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_79559",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_18173",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260801_07584",
-        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
-        "typ": "swap",
-        "gewicht": 1.89,
-        "effektiv_gewicht": 1.87,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_1_87577",
-        "muster": "[Anti] halten bei volatility-Titeln",
-        "typ": "anti",
-        "gewicht": -1.87,
-        "effektiv_gewicht": -1.83,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_2_74438",
-        "muster": "[Anti] halten bei lev-bull-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.82,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_5_20387",
-        "muster": "[Anti] halten bei ai-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.82,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_4_69646",
-        "muster": "[Anti] halten bei lev-bear-Titeln",
-        "typ": "anti",
-        "gewicht": -1.71,
-        "effektiv_gewicht": -1.68,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_7_07487",
-        "muster": "[Anti] halten bei space-Titeln",
-        "typ": "anti",
-        "gewicht": -1.64,
-        "effektiv_gewicht": -1.61,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      }
-    ],
-    "decision_id": "d_20260807_161825_IONQ_aktien_na",
-    "provider": "zen",
-    "fallback": false,
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_163231_IONQ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
-    "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "open",
-    "rohdaten": {
-      "kurs": 41.39,
-      "sma20": 36.63,
-      "sma50": 48.62,
-      "rsi": 64.7,
-      "atr_pct": 5.93,
-      "vol_ratio": 0.45,
-      "vix": 15.1,
-      "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 3.65
-    },
-    "indikatoren": [
-      "SMA20>36.6",
-      "SMA50>48.6",
-      "RSI65",
-      "ATR5.9%"
-    ],
-    "news_score": null,
-    "regelstand_ref": "v_live",
+    "ticker": "IONQ",
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
     "konflikte": [],
     "prioritaetsreihenfolge": [
       "engine_bremse",
@@ -773,24 +573,7 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 65.0,
-    "konfidenz_nach_cap": 60,
-    "konfidenz_cap": 60,
-    "erwarteter_ausgang": "unbekannt",
-    "shadow": false,
-    "regelstatus_beim_entscheid": {
-      "r_20260802_32531": "stabil",
-      "r_20260802_92036": "stabil",
-      "r_20260802_09535": "stabil",
-      "r_20260802_74417": "stabil",
-      "r_20260803_79559": "stabil",
-      "r_20260803_18173": "stabil",
-      "r_20260801_07584": "stabil",
-      "r_legacy_1_87577": "stabil",
-      "r_legacy_2_74438": "stabil",
-      "r_legacy_5_20387": "stabil",
-      "r_legacy_4_69646": "stabil",
-      "r_legacy_7_07487": "stabil"
-    }
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
   }
 }

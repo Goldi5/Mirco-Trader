@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T14:01:55.676630",
-      "wert": 92.41
-    },
-    {
       "zeit": "2026-07-31T15:33:42.088265",
       "wert": 95.44
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T16:19:32.317564",
       "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.802038",
+      "wert": 97.97
     }
   ],
   "trades": [
@@ -520,12 +520,14 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 50,
-    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_161838_JDST_aktien_na",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260807_163233_JDST_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "JDST",
+    "provider": "FAIL_FAST",
+    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

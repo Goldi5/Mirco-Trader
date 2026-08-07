@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T16:32:16.123732",
-      "wert": 104.54
-    },
-    {
-      "zeit": "2026-08-05T16:32:20.522178",
-      "wert": 104.61
-    },
-    {
-      "zeit": "2026-08-05T16:46:00.549037",
-      "wert": 103.88
-    },
-    {
       "zeit": "2026-08-05T16:48:33.915576",
       "wert": 104.26
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:19:32.299251",
       "wert": 101.19
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.784009",
+      "wert": 101.45
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.866980",
+      "wert": 101.32
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.671813",
+      "wert": 101.45
     }
   ],
   "trades": [
@@ -422,18 +422,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:18:20.616437",
+    "zeit": "2026-08-07T16:32:19.846413",
     "ticker": "FAS",
     "aktion": "halten",
-    "konfidenz": 45,
-    "grund": "Aufwärtstrend, aber RSI nahe überkauft, sehr geringes Volumen, kein Bargeld für Nachkauf, Vorsichtsregeln bei 3x-ETF",
+    "konfidenz": 60,
+    "grund": "Aufwärtstrend intakt, aber sehr geringes Volumen und RSI naht überkauft; keine freien Barmittel für Zukauf, Warnregeln für Lev-Bull halten.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 179.86,
-    "rsi": 65.1,
+    "kurs": 180.32,
+    "rsi": 65.8,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 1.19,
-    "depot_rendite": 1.19,
+    "p_pnl": 1.45,
+    "depot_rendite": 1.45,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -604,7 +604,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161820_FAS_aktien_na",
+    "decision_id": "d_20260807_163219_FAS_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -612,20 +612,20 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 179.86,
-      "sma20": 173.07,
-      "sma50": 156.86,
-      "rsi": 65.1,
+      "kurs": 180.32,
+      "sma20": 173.09,
+      "sma50": 156.87,
+      "rsi": 65.8,
       "atr_pct": 3.03,
-      "vol_ratio": 0.26,
-      "vix": 15.1,
+      "vol_ratio": 0.27,
+      "vix": 14.9,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 1.19
+      "depot_rendite": 1.45
     },
     "indikatoren": [
       "SMA20>173.1",
       "SMA50>156.9",
-      "RSI65",
+      "RSI66",
       "ATR3.0%"
     ],
     "news_score": null,
@@ -638,8 +638,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 45,
-    "konfidenz_nach_cap": 45,
+    "konfidenz_original": 60,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

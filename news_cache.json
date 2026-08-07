@@ -1,9 +1,27 @@
 {
-  "zeit": "2026-08-07T16:19:36.814488",
+  "zeit": "2026-08-07T16:34:54.071384",
   "total": 55,
   "relevant": 42,
   "irrelevant": 3,
   "headlines": [
+    {
+      "title": "Michigan says it’s OK to start eating salads again as cyclospora outbreak wanes",
+      "link": "https://www.marketwatch.com/story/michigan-says-its-ok-to-start-eating-salads-again-as-cyclospora-outbreak-wanes-b6e9a2c2?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 14:31:00 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "‘I’m easing into retirement’: I’m getting an $80,000 pension payout. Where can I invest it safely?",
+      "link": "https://www.marketwatch.com/story/im-easing-into-retirement-im-getting-an-80-000-pension-payout-where-can-i-invest-it-safely-6653d810?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 14:30:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
     {
       "title": "I’m an unemployed software developer who is skeptical of AI. Can I still find a job in tech?",
       "link": "https://www.marketwatch.com/story/im-an-unemployed-software-developer-who-is-skeptical-of-ai-can-i-still-find-a-job-in-tech-4413875e?mod=mw_rss_topstories",
@@ -69,9 +87,9 @@
       ]
     },
     {
-      "title": "Micron’s stock falls but is spared the worst of the memory-chip selloff",
-      "link": "https://www.marketwatch.com/story/microns-stock-claws-back-to-buck-the-memory-chip-selloff-58af0155?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 02:35:00 GMT",
+      "title": "Tech stocks today: Shares climb after rocky week",
+      "link": "https://finance.yahoo.com/technology/live/tech-stocks-today-shares-climb-after-rocky-week-140419479.html",
+      "date": "2026-08-03T14:04:19Z",
       "topics": [
         "tech"
       ],
@@ -80,13 +98,35 @@
       ]
     },
     {
-      "title": "‘He’s never been good with money’: If I set up an annuity for my brother, 65, would it jeopardize his Supplemental Security Income?",
-      "link": "https://www.marketwatch.com/story/hes-never-been-good-with-money-if-i-set-up-an-annuity-for-my-brother-65-would-it-jeopardize-his-supplemental-security-income-d2e9f5a0?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 02:15:00 GMT",
+      "title": "This Congresswoman Keeps Buying AI and Nuclear Stocks. Hedge Funds Are Split",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/congresswoman-keeps-buying-ai-nuclear-141952283.html",
+      "date": "2026-08-07T14:19:52Z",
       "topics": [
-        "regulation"
+        "earnings",
+        "tech"
       ],
       "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Claude AI’s Newest Stock Picks Are Also Hedge Fund Favorites: One Breakout Biotech, One AI Chip Bet",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/claude-ai-newest-stock-picks-141734983.html",
+      "date": "2026-08-07T14:17:34Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "US stocks, bonds rally after soft jobs report; yen bounces back",
+      "link": "https://finance.yahoo.com/news/asian-shares-pause-us-jobs-021601155.html",
+      "date": "2026-08-07T14:13:20Z",
+      "topics": [],
+      "tickers": [
+        "BAC",
         "F"
       ]
     },
@@ -119,17 +159,13 @@
       ]
     },
     {
-      "title": "Tech stocks today: SpaceX lockup ends, Google faces AI leadership shakeup",
-      "link": "https://finance.yahoo.com/technology/live/tech-stocks-today-spacex-lockup-ends-google-faces-ai-leadership-shakeup-140419479.html",
-      "date": "2026-08-03T14:04:19Z",
+      "title": "Analyst Report: Space Exploration Tech. Corp",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_6806_AnalystReport_1786101521000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-07T11:18:41Z",
       "topics": [
         "tech"
       ],
-      "tickers": [
-        "GOOGL",
-        "GOOG",
-        "F"
-      ]
+      "tickers": []
     },
     {
       "title": "Multiple Headwinds Overshadow Hillman Solutions Corp.’s (HLMN) Strong Fundamentals",
@@ -154,22 +190,11 @@
       ]
     },
     {
-      "title": "While everyone chases Nvidia, Caterpillar just showed where AI money goes next",
-      "link": "https://finance.yahoo.com/technology/ai/articles/while-everyone-chases-nvidia-caterpillar-140700941.html",
-      "date": "2026-08-07T14:07:00Z",
+      "title": "Stocks and Bonds Rise as Jobs Ease Fed-Hike Worry: Markets Wrap",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-06/stock-market-today-dow-s-p-live-updates",
+      "date": "Thu, 06 Aug 2026 22:10:21 GMT",
       "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "DIA"
-      ]
-    },
-    {
-      "title": "Stock Market Today: Dow Down After Surprise July Jobs Reading; AI Stock Cloudflare Soars (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-july-jobs-report-cloudflare-stock/?src=A00220&yptr=yahoo",
-      "date": "2026-08-07T13:55:24Z",
-      "topics": [
-        "tech",
+        "zinsen",
         "markt"
       ],
       "tickers": [
@@ -177,23 +202,54 @@
       ]
     },
     {
-      "title": "Take-Two Sticks To Its Guns On Full-Year Outlook. TTWO Stock Rises On 'GTA 6' Preorders.",
-      "link": "https://www.investors.com/news/technology/ttwo-stock-take-two-fiscal-q1-2027-earnings/?src=A00220&yptr=yahoo",
-      "date": "2026-08-07T13:53:24Z",
+      "title": "US Stocks Jump as July Jobs Report May Ease Rate Hike Pressures",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/us-futures-rise-as-trump-touts-iran-progress-awaiting-jobs-data",
+      "date": "Fri, 07 Aug 2026 11:44:11 GMT",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Zimbabwe’s VFEX Plans $5 Billion Market Value, Venture Board for Mining",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/zimbabwe-s-vfex-plans-5-billion-market-value-venture-board-for-mining",
+      "date": "Fri, 07 Aug 2026 04:15:00 GMT",
+      "topics": [
+        "markt"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "JBS Shares Surge After $2.5 Billion Deal With Indonesia Fund",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/jbs-gets-2-5-billion-from-indonesia-fund-to-expand-in-asia",
+      "date": "Fri, 07 Aug 2026 11:02:14 GMT",
       "topics": [],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Stock Market, IPO Leaders Rally To New Highs. Check This Screen Daily.",
-      "link": "https://www.investors.com/how-to-invest/investors-corner/stock-market-ipo-leaders-rally-new-highs-neptune-insurance-apnimed-bending-spoons/?src=A00220&yptr=yahoo",
-      "date": "2026-08-07T13:52:08Z",
+      "title": "AIG Profit Beat Estimates, Cites Strong Underwriting",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-06/aig-profit-beat-estimates-cites-strong-underwriting",
+      "date": "Thu, 06 Aug 2026 20:31:28 GMT",
       "topics": [
-        "tech",
-        "markt"
+        "tech"
       ],
-      "tickers": []
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Puerto Rico’s Capital Sees Blowout Demand for Rare Muni Sale",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/puerto-rico-s-capital-sees-blowout-demand-for-rare-muni-sale",
+      "date": "Fri, 07 Aug 2026 14:11:01 GMT",
+      "topics": [],
+      "tickers": [
+        "F",
+        "MU"
+      ]
     },
     {
       "title": "Fed Rate Hike Doesn't Make Sense Right Now, BlackRock's Rieder Says",
@@ -239,18 +295,6 @@
       ]
     },
     {
-      "title": "Stocks and Bonds Rise as Jobs Ease Fed-Hike Worry: Markets Wrap",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-06/stock-market-today-dow-s-p-live-updates",
-      "date": "Thu, 06 Aug 2026 22:10:21 GMT",
-      "topics": [
-        "zinsen",
-        "markt"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
       "title": "US Loses 23,000 Jobs in July, Unemployment Rate Falls",
       "link": "https://www.bloomberg.com/news/videos/2026-08-07/us-loses-23-000-jobs-in-july-unemployment-rate-falls-video",
       "date": "Fri, 07 Aug 2026 13:19:08 GMT",
@@ -269,66 +313,12 @@
       ]
     },
     {
-      "title": "Latest Oil Market News and Analysis for Aug. 7",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-06/latest-oil-market-news-and-analysis-for-aug-7",
-      "date": "Thu, 06 Aug 2026 22:01:46 GMT",
-      "topics": [
-        "energy",
-        "markt"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "US Treasuries Rally as Soft Jobs Data Trims Fed Rate-Hike Bets",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/us-treasuries-rally-as-soft-jobs-data-trims-fed-rate-hike-bets",
-      "date": "Fri, 07 Aug 2026 12:46:13 GMT",
+      "title": "Weak Jobs Report Does Not Eliminate Prospects of Interest Rate Rise",
+      "link": "https://www.nytimes.com/2026/08/07/business/economy/jobs-report-interest-rates-fed.html",
+      "date": "Fri, 07 Aug 2026 14:24:49 +0000",
       "topics": [
         "zinsen"
       ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Copper Market Crunch Brews as US and China Compete for Metal",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/copper-market-crunch-brews-as-us-and-china-compete-for-metal",
-      "date": "Fri, 07 Aug 2026 10:47:56 GMT",
-      "topics": [
-        "markt",
-        "geopolitik"
-      ],
-      "tickers": [
-        "META",
-        "F"
-      ]
-    },
-    {
-      "title": "US Futures Jumps Friday Following Weak July Jobs Data",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/us-futures-rise-as-trump-touts-iran-progress-awaiting-jobs-data",
-      "date": "Fri, 07 Aug 2026 11:44:11 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Yen Jumps 1% Against Dollar After US Jobs Data",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/yen-jumps-1-against-dollar-after-us-jobs-data",
-      "date": "Fri, 07 Aug 2026 12:48:20 GMT",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Weak Jobs Report Does Not Eliminate Prospects of a September Rate Rise",
-      "link": "https://www.nytimes.com/2026/08/07/business/economy/weak-jobs-report-does-not-eliminate-prospects-of-a-september-rate-rise.html",
-      "date": "Fri, 07 Aug 2026 14:07:38 +0000",
-      "topics": [],
       "tickers": [
         "F"
       ]

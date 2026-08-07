@@ -335,6 +335,10 @@
     {
       "zeit": "2026-08-07T16:19:32.364570",
       "wert": 104.64
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.727525",
+      "wert": 105.2
     }
   ],
   "trades": [
@@ -375,18 +379,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:19:13.121940",
+    "zeit": "2026-08-07T16:34:08.492994",
     "ticker": "TNA",
     "aktion": "halten",
-    "konfidenz": 55,
-    "grund": "Aufwärtstrend intakt (Kurs > SMA20 > SMA50, RSI 59.5 nicht überkauft), aber extrem niedriges Volumen (0.24x) und historische Anti-Regeln für lev-bull-Titel sprechen gegen einen Kauf. Position im Plus, daher halten.",
+    "konfidenz": 58,
+    "grund": "Intakter Aufwärtstrend (Kurs > SMA20 > SMA50) und RSI 60 nicht überkauft, aber 3x-Hebel-ETF auf Small Caps birgt hohen Decay-Risiko; gelernte Regeln warnen stark vor Halten bei lev-bull-Titeln (Gewicht -1.82), Volumen nur 0.3x Schnitt zeigt schwache Überzeugung, VIX 14.9 signalisiert Komplazenz. Position leicht im Plus (+1.95%), aber kein klares Kaufsignal für Aufstockung.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 73.83,
-    "rsi": 59.5,
+    "kurs": 74.23,
+    "rsi": 60.1,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 1.4,
-    "depot_rendite": 4.64,
+    "p_pnl": 1.95,
+    "depot_rendite": 5.2,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -557,26 +561,26 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161913_TNA_aktien_na",
-    "provider": "zen",
+    "decision_id": "d_20260807_163408_TNA_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 73.83,
-      "sma20": 70.25,
-      "sma50": 70.16,
-      "rsi": 59.5,
-      "atr_pct": 3.69,
-      "vol_ratio": 0.24,
-      "vix": 15.1,
+      "kurs": 74.23,
+      "sma20": 70.27,
+      "sma50": 70.17,
+      "rsi": 60.1,
+      "atr_pct": 3.67,
+      "vol_ratio": 0.3,
+      "vix": 14.9,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 4.64
+      "depot_rendite": 5.2
     },
     "indikatoren": [
-      "SMA20>70.2",
+      "SMA20>70.3",
       "SMA50>70.2",
       "RSI60",
       "ATR3.7%"
@@ -591,8 +595,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 55,
-    "konfidenz_nach_cap": 55,
+    "konfidenz_original": 58,
+    "konfidenz_nach_cap": 58,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

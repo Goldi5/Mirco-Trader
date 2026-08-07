@@ -1,5 +1,5 @@
 {
-  "zeit": "2026-08-07T16:21:17.823554",
+  "zeit": "2026-08-07T16:42:18.489771",
   "aktien": {
     "name": "Aktien",
     "depots": 20,
@@ -435,20 +435,20 @@
   "spekulation": {
     "name": "Spekulation",
     "depots": 49,
-    "total_trades": 429,
+    "total_trades": 433,
     "buys": 196,
     "sells": 169,
-    "wert": 4883.14,
+    "wert": 4883.09,
     "start": 4900.0,
-    "rendite": -0.34,
+    "rendite": -0.35,
     "top_ticker": [
       [
         "?",
         {
-          "buys": 237,
+          "buys": 241,
           "sells": 163,
-          "volume": 39563.78411485001,
-          "trades": 400
+          "volume": 39971.75168600001,
+          "trades": 404
         }
       ],
       [
@@ -548,8 +548,8 @@
     "risk_perf": [
       {
         "risk": 0,
-        "trades": 429,
-        "volume": 42162.5
+        "trades": 433,
+        "volume": 42570.47
       }
     ]
   },
@@ -585,49 +585,49 @@
       {
         "risk": 20,
         "wert": 1.89,
-        "dd": 3.5,
+        "dd": 3.4,
         "positionen": 4
       },
       {
         "risk": 25,
         "wert": 44.3,
-        "dd": 3.5,
+        "dd": 3.4,
         "positionen": 3
       },
       {
         "risk": 30,
         "wert": 102.01,
-        "dd": 3.5,
+        "dd": 3.4,
         "positionen": 0
       },
       {
         "risk": 35,
         "wert": 61.11,
-        "dd": 3.5,
+        "dd": 3.4,
         "positionen": 1
       },
       {
         "risk": 40,
         "wert": 6.41,
-        "dd": 3.5,
+        "dd": 3.4,
         "positionen": 3
       },
       {
         "risk": 45,
         "wert": 42.94,
-        "dd": 3.5,
+        "dd": 3.4,
         "positionen": 2
       },
       {
         "risk": 50,
         "wert": 0.0,
-        "dd": 3.5,
+        "dd": 3.4,
         "positionen": 4
       },
       {
         "risk": 55,
         "wert": 3.93,
-        "dd": 3.5,
+        "dd": 3.4,
         "positionen": 3
       },
       {
@@ -844,7 +844,7 @@
       },
       {
         "risk": "?",
-        "wert": 98.78,
+        "wert": 99.58,
         "dd": 9.5,
         "positionen": 0
       },
@@ -1054,7 +1054,7 @@
       },
       {
         "risk": "?",
-        "wert": 98.2,
+        "wert": 97.35,
         "dd": 13.0,
         "positionen": 0
       },

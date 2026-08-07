@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T17:50:11.529713",
-      "wert": 101.68
-    },
-    {
-      "zeit": "2026-08-04T18:02:50.041970",
-      "wert": 101.68
-    },
-    {
-      "zeit": "2026-08-04T18:06:02.319474",
-      "wert": 101.68
-    },
-    {
       "zeit": "2026-08-04T18:06:24.683335",
       "wert": 101.68
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:18:03.651752",
       "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.775821",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.860698",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.663864",
+      "wert": 101.33
     }
   ],
   "trades": [
@@ -574,15 +574,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:18:08.839078",
+    "zeit": "2026-08-07T16:32:14.825367",
     "ticker": "CRSP",
     "aktion": "halten",
-    "konfidenz": 30,
-    "grund": "RSI überkauft (73.2), Trend neutral, Volumen-Ratio extrem niedrig (0.2x), keine klaren Aufwärtssignale",
+    "konfidenz": 60,
+    "grund": "RSI überkauft (73.8), Volumen sehr niedrig (0.23x), Trend neutral; kein klares Aufwärtssignal trotz Watchlist-Aufforderung. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 53.53,
-    "rsi": 73.2,
+    "kurs": 53.83,
+    "rsi": 73.8,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
     "p_pnl": 0,
     "depot_rendite": 1.33,
@@ -756,7 +756,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161808_CRSP_aktien_na",
+    "decision_id": "d_20260807_163214_CRSP_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -764,20 +764,20 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 53.53,
-      "sma20": 49.19,
+      "kurs": 53.83,
+      "sma20": 49.21,
       "sma50": 52.34,
-      "rsi": 73.2,
-      "atr_pct": 3.42,
-      "vol_ratio": 0.2,
-      "vix": 15.1,
+      "rsi": 73.8,
+      "atr_pct": 3.4,
+      "vol_ratio": 0.23,
+      "vix": 14.9,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
       "depot_rendite": 1.33
     },
     "indikatoren": [
       "SMA20>49.2",
       "SMA50>52.3",
-      "RSI73",
+      "RSI74",
       "ATR3.4%"
     ],
     "news_score": null,
@@ -790,8 +790,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 30,
-    "konfidenz_nach_cap": 30,
+    "konfidenz_original": 70.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

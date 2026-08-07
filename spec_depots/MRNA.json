@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T11:02:25.185757",
-      "wert": 103.63
-    },
-    {
       "zeit": "2026-07-31T11:17:12.334151",
       "wert": 103.63
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T16:19:32.328774",
       "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.814391",
+      "wert": 103.5
     }
   ],
   "trades": [
@@ -562,12 +562,14 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 50,
-    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_161843_MRNA_aktien_na",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260807_163257_MRNA_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "MRNA",
+    "provider": "FAIL_FAST",
+    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

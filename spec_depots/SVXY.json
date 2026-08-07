@@ -296,6 +296,10 @@
     {
       "zeit": "2026-08-07T16:19:32.363552",
       "wert": 102.13
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.726005",
+      "wert": 102.11
     }
   ],
   "trades": [
@@ -311,18 +315,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:19:14.851534",
+    "zeit": "2026-08-07T16:34:00.437609",
     "ticker": "SVXY",
     "aktion": "halten",
-    "konfidenz": 45,
-    "grund": "Aufwärtstrend, aber kein Bargeld und geringes Volumen; Risiko wegen Vola-Titel",
+    "konfidenz": 60,
+    "grund": "Aufwärtstrend intakt (Kurs > SMA20 > SMA50), VIX niedrig (14.9), RSI 62 nicht überkauft. Anti-Volatilitäts-Regel warnt vor Halt, aber klares Trend-Signal spricht für Weiterlaufen lassen. Kein Cash für Nachkauf, Volumen sehr gering (0.19x). [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 59.5,
+    "kurs": 59.49,
     "rsi": 62.1,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 2.13,
-    "depot_rendite": 2.13,
+    "p_pnl": 2.11,
+    "depot_rendite": 2.11,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -493,23 +497,23 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161914_SVXY_aktien_na",
-    "provider": "zen",
+    "decision_id": "d_20260807_163400_SVXY_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 59.5,
+      "kurs": 59.49,
       "sma20": 57.73,
       "sma50": 56.58,
       "rsi": 62.1,
       "atr_pct": 1.68,
-      "vol_ratio": 0.15,
-      "vix": 15.1,
+      "vol_ratio": 0.19,
+      "vix": 14.9,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 2.13
+      "depot_rendite": 2.11
     },
     "indikatoren": [
       "SMA20>57.7",
@@ -527,8 +531,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 45,
-    "konfidenz_nach_cap": 45,
+    "konfidenz_original": 65.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

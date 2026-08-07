@@ -323,6 +323,10 @@
     {
       "zeit": "2026-08-07T16:18:51.849223",
       "wert": 91.79
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.730532",
+      "wert": 91.79
     }
   ],
   "trades": [
@@ -362,15 +366,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:19:20.986804",
+    "zeit": "2026-08-07T16:34:06.321369",
     "ticker": "UCO",
     "aktion": "halten",
-    "konfidenz": 35,
-    "grund": "Kein klares Signal: neutraler Trend, extrem niedriges Volumen, RSI mittel; Regeln warnen vor gehebelten Volatilitätstiteln, keine hohe Konfidenz.",
+    "konfidenz": 60,
+    "grund": "Kein klares Aufwärtssignal: Trend neutral (Kurs zwischen SMA20/50), RSI 40.5 leicht bärisch, Volumen nur 15% des Schnitts. Starke Warnregel gegen lev-bull-ETFs (-1.82 Gewicht). Meta-Caps zeigen 0% Trefferquote bei hoher Konfidenz. Keine News. Cash halten. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 37.15,
-    "rsi": 40.4,
+    "kurs": 37.16,
+    "rsi": 40.5,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
     "p_pnl": 0,
     "depot_rendite": -8.21,
@@ -544,26 +548,26 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_161920_UCO_aktien_na",
-    "provider": "zen",
+    "decision_id": "d_20260807_163406_UCO_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 37.15,
-      "sma20": 39.74,
+      "kurs": 37.16,
+      "sma20": 39.75,
       "sma50": 39.27,
-      "rsi": 40.4,
+      "rsi": 40.5,
       "atr_pct": 3.37,
-      "vol_ratio": 0.13,
-      "vix": 15.1,
+      "vol_ratio": 0.15,
+      "vix": 14.9,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
       "depot_rendite": -8.21
     },
     "indikatoren": [
-      "SMA20>39.7",
+      "SMA20>39.8",
       "SMA50>39.3",
       "RSI40",
       "ATR3.4%"
@@ -578,8 +582,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 35,
-    "konfidenz_nach_cap": 35,
+    "konfidenz_original": 65.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,
