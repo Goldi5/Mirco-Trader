@@ -1,9 +1,16 @@
 {
-  "version": "2.19.2",
-  "build": "2026-08-07_1545",
-  "released_at": "2026-08-07 15:45",
-  "codename": "Trade→KI-Zuordnung (Infrastruktur)",
+  "version": "2.19.3",
+  "build": "2026-08-07_1610",
+  "released_at": "2026-08-07 16:10",
+  "codename": "Cash-Anzeige-Fix (Risk-Depots)",
   "changes": [
+    {
+      "version": "2.19.3",
+      "date": "2026-08-07 16:10",
+      "codename": "Cash-Anzeige-Fix (Risk-Depots)",
+      "summary": "FIX: Dashboard zeigte bei Risk-Depots (70-90) CASH=$0.00 obwohl Depot $123.96 Cash hat. Root-Cause: dashboard.html Z616 las dep.bargeld aus dem Overview-Objekt (dep) statt aus dem Detail-Response (full). Fix: dep.bargeld = full.bargeld || 0 (und dep.wert/dep.start korrekt aus full). ECHTE SITUATION Risk 70-90: Depots haben Cash ($107-124), KI laeuft (ki_log.json Entscheidungen heute 15:49), empfiehlt aber 'halten' (Marktlage: duennes Volumen, Abwaertstrends in Kandidaten). KEINE Positionen = korrekte Strategie, kein Bug. KI sieht im Prompt korrekt bargeld=123.96. Tracking-Note: spec-Depot-KI-Entscheidungen landen in ki_log.json unter depot_typ='aktien' (nicht 'spec_XX') -> DB-Filter spec_XX findet 0; kosmetisch, keine Kauf-Blockade.",
+      "files": ["dashboard.html", "version.json"]
+    },
     {
       "version": "2.19.0",
       "date": "2026-08-07 14:15",

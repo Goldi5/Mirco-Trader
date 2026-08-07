@@ -9,34 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T17:58:39.161522",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T18:02:50.029883",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T18:06:24.575188",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T18:12:36.083556",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T18:15:13.354158",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T18:16:03.885605",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T19:03:19.940235",
-      "wert": 100.0
-    },
-    {
       "zeit": "2026-08-04T19:03:34.672473",
       "wert": 100.0
     },
@@ -407,6 +379,34 @@
     {
       "zeit": "2026-08-06T22:07:07.086936",
       "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.751181",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.372780",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.602595",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.755545",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.580412",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.139995",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.321720",
+      "wert": 97.56
     }
   ],
   "trades": [
@@ -573,17 +573,17 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-06T22:06:20.903421",
+    "zeit": "2026-08-07T16:03:00.395417",
     "ticker": "ASTS",
-    "aktion": "verkaufen",
-    "konfidenz": 60,
-    "grund": "Anti-Regel für Space-Titel (-1.61), neutrale Trendlage, RSI 61.7 ohne Momentum, Volumen unterdurchschnittlich (0.79x), Meta-Cap-Regeln zeigen 0% Trefferquote bei hoher Konfidenz, Position leicht im Minus, kein Cash für Nachkauf [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "aktion": "halten",
+    "konfidenz": 35,
+    "grund": "Kein klares Aufwärtssignal, Trend neutral, extrem niedriges Volumen und Warnregeln für space-Titel trotz Watchlist-Kaufwunsch.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 67.36,
-    "rsi": 61.7,
+    "kurs": 68.79,
+    "rsi": 63.5,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": -1.92,
+    "p_pnl": 0,
     "depot_rendite": -2.44,
     "angewandte_regeln": [
       {
@@ -675,7 +675,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -755,27 +755,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260806_220620_ASTS_aktien_na",
+    "decision_id": "d_20260807_160300_ASTS_aktien_na",
+    "provider": "zen",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "closed",
+    "regime": "open",
     "rohdaten": {
-      "kurs": 67.36,
-      "sma20": 62.09,
-      "sma50": 78.72,
-      "rsi": 61.7,
-      "atr_pct": 7.47,
-      "vol_ratio": 0.79,
-      "vix": 15.4,
+      "kurs": 68.79,
+      "sma20": 61.86,
+      "sma50": 77.5,
+      "rsi": 63.5,
+      "atr_pct": 7.19,
+      "vol_ratio": 0.16,
+      "vix": 15.1,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
       "depot_rendite": -2.44
     },
     "indikatoren": [
-      "SMA20>62.1",
-      "SMA50>78.7",
-      "RSI62",
-      "ATR7.5%"
+      "SMA20>61.9",
+      "SMA50>77.5",
+      "RSI64",
+      "ATR7.2%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -787,8 +789,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 68.0,
-    "konfidenz_nach_cap": 60,
+    "konfidenz_original": 35,
+    "konfidenz_nach_cap": 35,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

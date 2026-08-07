@@ -1,22 +1,22 @@
 {
-  "zeit": "2026-08-07T15:05:15.437587",
+  "zeit": "2026-08-07T16:05:18.333694",
   "aktien": {
     "name": "Aktien",
     "depots": 20,
-    "total_trades": 469,
-    "buys": 117,
-    "sells": 96,
-    "wert": 883.98,
+    "total_trades": 471,
+    "buys": 118,
+    "sells": 98,
+    "wert": 912.5,
     "start": 0,
     "rendite": 0,
     "top_ticker": [
       [
         "DOMO",
         {
-          "buys": 170,
+          "buys": 169,
           "sells": 2,
-          "volume": 11269.018515999987,
-          "trades": 172
+          "volume": 11181.178899999988,
+          "trades": 171
         }
       ],
       [
@@ -92,17 +92,17 @@
         }
       ],
       [
-        "SUI",
+        "ABX",
         {
           "buys": 4,
           "sells": 4,
-          "volume": 168.8132,
+          "volume": 102.568024,
           "trades": 8
         }
       ]
     ],
     "grund_stats": {
-      "Konzentrations-Brems": 256,
+      "Konzentrations-Brems": 255,
       "aus_bewertung": 28,
       "🤖 KI: negatives P&L": 21,
       "Score 52.7 (#3)": 6,
@@ -126,8 +126,8 @@
       },
       {
         "risk": 10,
-        "trades": 45,
-        "volume": 2037.69
+        "trades": 46,
+        "volume": 2045.57
       },
       {
         "risk": 15,
@@ -137,7 +137,7 @@
       {
         "risk": 20,
         "trades": 50,
-        "volume": 3783.47
+        "volume": 3697.53
       },
       {
         "risk": 25,
@@ -176,8 +176,8 @@
       },
       {
         "risk": 60,
-        "trades": 35,
-        "volume": 958.69
+        "trades": 36,
+        "volume": 981.22
       },
       {
         "risk": 65,
@@ -435,20 +435,20 @@
   "spekulation": {
     "name": "Spekulation",
     "depots": 49,
-    "total_trades": 410,
+    "total_trades": 424,
     "buys": 196,
     "sells": 169,
-    "wert": 4881.13,
+    "wert": 4886.45,
     "start": 4900.0,
-    "rendite": -0.39,
+    "rendite": -0.28,
     "top_ticker": [
       [
         "?",
         {
-          "buys": 218,
+          "buys": 232,
           "sells": 163,
-          "volume": 37637.57015302001,
-          "trades": 381
+          "volume": 39053.95805682002,
+          "trades": 395
         }
       ],
       [
@@ -535,147 +535,147 @@
     ],
     "grund_stats": {
       "uptrend": 23,
-      "Neutraler Trend, RSI": 14,
+      "Neutraler Trend, RSI": 15,
       "Gelernte Regeln verb": 8,
       "Watchlist-Ticker mit": 8,
-      "Keine Position, Cash": 7,
+      "Keine Position, Cash": 8,
+      "AbwÃ¤rtstrend intakt": 7,
       "downtrend": 6,
       "Neutraler Trend und ": 6,
-      "Anti-Hold-Regel für ": 6,
-      "Aufwärtstrend und RS": 5,
-      "Keine Position, Watc": 5
+      "Anti-Hold-Regel fÃ¼r": 6,
+      "AufwÃ¤rtstrend und R": 5
     },
     "risk_perf": [
       {
         "risk": 0,
-        "trades": 410,
-        "volume": 40236.29
+        "trades": 424,
+        "volume": 41652.68
       }
     ]
   },
   "risiko_aktien": {
     "name": "Aktien",
-    "max_drawdown": 7.2,
-    "ges_drawdown": -613.1,
+    "max_drawdown": 9.7,
+    "ges_drawdown": -636.1,
     "depot_details": [
       {
         "risk": 0,
         "wert": 0.0,
-        "dd": 1.1,
+        "dd": 0.8,
         "positionen": 1
       },
       {
         "risk": 5,
         "wert": 0.0,
-        "dd": 1.1,
+        "dd": 0.8,
         "positionen": 1
       },
       {
         "risk": 10,
-        "wert": 0.0,
-        "dd": 1.1,
-        "positionen": 4
+        "wert": 7.88,
+        "dd": 0.8,
+        "positionen": 3
       },
       {
         "risk": 15,
         "wert": 0.0,
-        "dd": 1.1,
+        "dd": 0.8,
         "positionen": 2
       },
       {
         "risk": 20,
-        "wert": 3.79,
-        "dd": 4.0,
-        "positionen": 3
+        "wert": 1.89,
+        "dd": 3.9,
+        "positionen": 4
       },
       {
         "risk": 25,
         "wert": 44.3,
-        "dd": 4.0,
+        "dd": 3.9,
         "positionen": 3
       },
       {
         "risk": 30,
         "wert": 102.01,
-        "dd": 4.0,
+        "dd": 3.9,
         "positionen": 0
       },
       {
         "risk": 35,
         "wert": 61.11,
-        "dd": 4.0,
+        "dd": 3.9,
         "positionen": 1
       },
       {
         "risk": 40,
         "wert": 6.41,
-        "dd": 4.0,
+        "dd": 3.9,
         "positionen": 3
       },
       {
         "risk": 45,
         "wert": 42.94,
-        "dd": 7.2,
+        "dd": 3.9,
         "positionen": 2
       },
       {
         "risk": 50,
         "wert": 0.0,
-        "dd": 7.2,
+        "dd": 3.9,
         "positionen": 4
       },
       {
         "risk": 55,
         "wert": 3.93,
-        "dd": 7.2,
+        "dd": 3.9,
         "positionen": 3
       },
       {
         "risk": 60,
-        "wert": 0.0,
-        "dd": 7.2,
-        "positionen": 3
+        "wert": 22.53,
+        "dd": 5.2,
+        "positionen": 2
       },
       {
         "risk": 65,
         "wert": 0.0,
-        "dd": 7.2,
+        "dd": 5.2,
         "positionen": 1
       },
       {
         "risk": 70,
         "wert": 107.22,
-        "dd": 7.2,
+        "dd": 5.2,
         "positionen": 0
       },
       {
         "risk": 75,
         "wert": 116.23,
-        "dd": 7.2,
+        "dd": 5.2,
         "positionen": 0
       },
       {
         "risk": 80,
         "wert": 117.46,
-        "dd": 7.2,
+        "dd": 5.2,
         "positionen": 0
       },
       {
         "risk": 85,
         "wert": 112.56,
-        "dd": 7.2,
+        "dd": 5.2,
         "positionen": 0
       },
       {
         "risk": 90,
         "wert": 123.96,
-        "dd": 7.2,
+        "dd": 5.2,
         "positionen": 0
       },
       {
         "risk": 95,
         "wert": 42.05,
-        "dd": 7.2,
+        "dd": 9.7,
         "positionen": 1
       }
     ]
@@ -810,90 +810,90 @@
   "risiko_spekulation": {
     "name": "Spekulation",
     "max_drawdown": 13.0,
-    "ges_drawdown": -4251.9,
+    "ges_drawdown": -4256.7,
     "depot_details": [
       {
         "risk": "?",
         "wert": 101.46,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 97.56,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 105.6,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 112.16,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 97.2,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 98.78,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 100.32,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 99.77,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 101.33,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 97.68,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 96.67,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 100.0,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 100.42,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
         "risk": "?",
         "wert": 108.62,
-        "dd": 6.2,
+        "dd": 9.5,
         "positionen": 0
       },
       {
@@ -958,7 +958,7 @@
       },
       {
         "risk": "?",
-        "wert": 100.69,
+        "wert": 103.5,
         "dd": 13.0,
         "positionen": 0
       },
@@ -1000,31 +1000,31 @@
       },
       {
         "risk": "?",
-        "wert": 100.57,
+        "wert": 98.7,
         "dd": 13.0,
         "positionen": 0
       },
       {
         "risk": "?",
-        "wert": 95.51,
+        "wert": 97.43,
         "dd": 13.0,
         "positionen": 0
       },
       {
         "risk": "?",
-        "wert": 102.48,
+        "wert": 100.68,
         "dd": 13.0,
         "positionen": 0
       },
       {
         "risk": "?",
-        "wert": 101.22,
+        "wert": 101.05,
         "dd": 13.0,
         "positionen": 0
       },
       {
         "risk": "?",
-        "wert": 101.18,
+        "wert": 105.51,
         "dd": 13.0,
         "positionen": 0
       },
@@ -1096,7 +1096,7 @@
       },
       {
         "risk": "?",
-        "wert": 94.92,
+        "wert": 95.02,
         "dd": 13.0,
         "positionen": 0
       },

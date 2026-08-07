@@ -1,207 +1,266 @@
 {
-  "zeit": "2026-08-07T08:46:18.183262",
+  "zeit": "2026-08-07T16:05:05.925053",
   "total": 55,
-  "relevant": 33,
+  "relevant": 43,
+  "irrelevant": 3,
   "headlines": [
     {
-      "title": "Micron\u2019s stock falls but is spared the worst of the memory-chip selloff",
+      "title": "If I marry my girlfriend, 67, will she lose her Supplemental Security Income and divorced spouse benefits?",
+      "link": "https://www.marketwatch.com/story/if-i-marry-my-girlfriend-67-will-she-lose-her-supplemental-security-income-and-divorced-spouse-benefits-9340bab9?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 14:00:00 GMT",
+      "topics": [
+        "regulation"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "How S&P 500 options action may help explain the rising volatility in memory stocks",
+      "link": "https://www.marketwatch.com/story/how-s-p-500-options-action-may-help-explain-volatility-in-memory-stocks-58d95beb?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 13:30:00 GMT",
+      "topics": [
+        "tech",
+        "markt"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Kevin O’Leary, aka ‘Mr. Wonderful,’ on crypto, winning in AI and 3 things all business owners must know",
+      "link": "https://www.marketwatch.com/story/kevin-oleary-aka-mr-wonderful-on-crypto-winning-in-ai-and-3-things-all-business-owners-must-know-5339ff6c?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 11:00:00 GMT",
+      "topics": [
+        "tech",
+        "krypto"
+      ],
+      "tickers": [
+        "F",
+        "MU"
+      ]
+    },
+    {
+      "title": "Optical stocks have a China problem that most investors are missing",
+      "link": "https://www.marketwatch.com/story/optical-stocks-have-a-china-problem-that-most-investors-are-missing-45523981?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 11:00:00 GMT",
+      "topics": [
+        "geopolitik"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "My brother asked me to sign as his executor, but wouldn’t let me read the document. Should I have refused?",
+      "link": "https://www.marketwatch.com/story/my-brother-asked-me-to-sign-as-his-executor-but-wouldnt-let-me-read-the-document-should-i-have-refused-1b53d9bc?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 09:16:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Micron’s stock falls but is spared the worst of the memory-chip selloff",
       "link": "https://www.marketwatch.com/story/microns-stock-claws-back-to-buck-the-memory-chip-selloff-58af0155?mod=mw_rss_topstories",
       "date": "Fri, 07 Aug 2026 02:35:00 GMT",
       "topics": [
         "tech"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
-      "title": "\u2018He\u2019s never been good with money\u2019: If I set up an annuity for my brother, 65, would it jeopardize his Supplemental Security Income?",
+      "title": "‘He’s never been good with money’: If I set up an annuity for my brother, 65, would it jeopardize his Supplemental Security Income?",
       "link": "https://www.marketwatch.com/story/hes-never-been-good-with-money-if-i-set-up-an-annuity-for-my-brother-65-would-it-jeopardize-his-supplemental-security-income-d2e9f5a0?mod=mw_rss_topstories",
       "date": "Fri, 07 Aug 2026 02:15:00 GMT",
       "topics": [
         "regulation"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
-      "title": "\u2018Her bank accounts were stripped bare by Medicaid\u2019: My late friend had $20,000 in credit-card debt. Will her life insurance pay for it?",
+      "title": "‘Her bank accounts were stripped bare by Medicaid’: My late friend had $20,000 in credit-card debt. Will her life insurance pay for it?",
       "link": "https://www.marketwatch.com/story/her-bank-accounts-were-stripped-bare-by-medicaid-my-late-friend-had-20-000-in-credit-card-debt-will-her-life-insurance-pay-for-it-17ee9792?mod=mw_rss_topstories",
       "date": "Fri, 07 Aug 2026 02:00:00 GMT",
       "topics": [
         "tech"
-      ]
-    },
-    {
-      "title": "Social Security\u2019s funding crisis is the elephant in the room. But don\u2019t ignore the mouse.",
-      "link": "https://www.marketwatch.com/story/if-social-securitys-funding-crisis-is-the-elephant-in-the-room-this-is-the-mouse-everyone-has-overlooked-you-have-been-warned-b95c450d?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 00:31:00 GMT",
-      "topics": [
-        "regulation"
-      ]
-    },
-    {
-      "title": "As Alphabet burns through cash on AI, it\u2019s turning back to the bond market",
-      "link": "https://www.marketwatch.com/story/as-alphabet-burns-through-cash-on-ai-its-turning-back-to-the-bond-market-04e85f31?mod=mw_rss_topstories",
-      "date": "Thu, 06 Aug 2026 23:14:00 GMT",
-      "topics": [
-        "tech",
-        "market"
-      ]
-    },
-    {
-      "title": "Trade Desk shares tumble on earnings miss and weak outlook",
-      "link": "https://www.marketwatch.com/story/trade-desk-shares-tumble-on-earnings-miss-and-weak-outlook-9f4640e9?mod=mw_rss_topstories",
-      "date": "Thu, 06 Aug 2026 22:59:00 GMT",
-      "topics": [
-        "earnings"
-      ]
-    },
-    {
-      "title": "Sweetgreen recalls jalapenos, details how cyclospora outbreak will weigh on sales",
-      "link": "https://www.marketwatch.com/story/sweetgreen-recalls-jalapenos-details-how-cyclospora-outbreak-will-weigh-on-sales-c52435bf?mod=mw_rss_topstories",
-      "date": "Thu, 06 Aug 2026 22:58:00 GMT",
-      "topics": [
-        "tech"
-      ]
-    },
-    {
-      "title": "Reaction to AMD Earnings Shows Why It\u2019s Hard Being in Second Place",
-      "link": "https://www.barrons.com/articles/amd-stock-price-earnings-nvidia-bfee4198?siteid=yhoof2&yptr=yahoo",
-      "date": "2026-08-05T18:47:00Z",
-      "topics": [
-        "earnings",
-        "regulation"
       ],
       "tickers": [
-        "AMD"
+        "F"
       ]
     },
     {
-      "title": "Ray Dalio sees the \u2018classic signs\u2019 of a bubble with AI, says the stock market looks like the run-up to 1929 or 2000",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/ray-dalio-sees-classic-signs-184500835.html",
-      "date": "2026-08-05T18:45:00Z",
+      "title": "Tech stocks today: SpaceX lockup ends, Google faces AI leadership shakeup",
+      "link": "https://finance.yahoo.com/technology/live/tech-stocks-today-spacex-lockup-ends-google-faces-ai-leadership-shakeup-140419479.html",
+      "date": "2026-08-03T14:04:19Z",
       "topics": [
-        "tech",
-        "market"
-      ]
-    },
-    {
-      "title": "Alibaba Qwen Update Sends Clear Signal on AI Chip Resilience",
-      "link": "https://finance.yahoo.com/technology/ai/articles/alibaba-qwen-sends-clear-signal-190032973.html",
-      "date": "2026-08-05T19:00:32Z",
-      "topics": [
-        "tech"
-      ]
-    },
-    {
-      "title": "Shopify Earnings Flip the Script on AI Fears",
-      "link": "https://www.barrons.com/articles/shopify-earnings-stock-price-7430cb16?siteid=yhoof2&yptr=yahoo",
-      "date": "2026-08-05T18:49:00Z",
-      "topics": [
-        "earnings",
         "tech"
       ],
       "tickers": [
+        "GOOGL",
+        "GOOG",
         "F"
       ]
     },
     {
-      "title": "Nat-Gas Prices Edge Higher on Warmer US Weather Forecasts",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/nat-gas-prices-edge-higher-191308348.html",
-      "date": "2026-08-05T19:13:08Z",
+      "title": "Stock Market Today: Dow Down After Surprise July Jobs Reading; AI Stock Cloudflare Soars (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-july-jobs-report-cloudflare-stock/?src=A00220&yptr=yahoo",
+      "date": "2026-08-07T13:55:24Z",
       "topics": [
-        "energy",
-        "geopolitics"
+        "tech",
+        "markt"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Progress Toward Reopening the Strait of Hormuz Weighs on Oil Prices",
-      "link": "https://finance.yahoo.com/energy/articles/progress-toward-reopening-strait-hormuz-191655557.html",
-      "date": "2026-08-05T19:16:55Z",
-      "topics": [
-        "tech",
-        "energy",
-        "geopolitics"
+      "title": "Aura Power, Verdant merge to form UK solar-BESS IPP",
+      "link": "https://finance.yahoo.com/energy/articles/aura-power-verdant-merge-form-135408274.html",
+      "date": "2026-08-07T13:54:08Z",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
-      "title": "This AI Marketing Stock Hits A Buy Zone In Scorching Four-Day Rally",
-      "link": "https://www.investors.com/research/ai-marketing-cloud-zeta-global-stock/?src=A00220&yptr=yahoo",
-      "date": "2026-08-05T19:18:39Z",
+      "title": "Take-Two Sticks To Its Guns On Full-Year Outlook. TTWO Stock Rises On 'GTA 6' Preorders.",
+      "link": "https://www.investors.com/news/technology/ttwo-stock-take-two-fiscal-q1-2027-earnings/?src=A00220&yptr=yahoo",
+      "date": "2026-08-07T13:53:24Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Stock Market, IPO Leaders Rally To New Highs. Check This Screen Daily.",
+      "link": "https://www.investors.com/how-to-invest/investors-corner/stock-market-ipo-leaders-rally-new-highs-neptune-insurance-apnimed-bending-spoons/?src=A00220&yptr=yahoo",
+      "date": "2026-08-07T13:52:08Z",
       "topics": [
         "tech",
-        "market"
+        "markt"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "SpaceX Stock Lands An Upgrade, Rocket Lab Surges After Electron Mission",
+      "link": "https://www.investors.com/news/spacex-stock-upgrade-buy-ai-expenditure-repayment-rocket-lab-stock-electron-mission-rklb/?src=A00220&yptr=yahoo",
+      "date": "2026-08-07T13:51:51Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Nvidia, Microsoft Partner Tests Breakout. Three Clues Bode Well.",
+      "link": "https://www.investors.com/research/ibd-stock-analysis/dell-stock-rises-ai-collaboration-with-nvidia-microsoft-amd/?src=A00220&yptr=yahoo",
+      "date": "2026-08-07T13:49:20Z",
+      "topics": [],
+      "tickers": [
+        "F",
+        "DIA"
+      ]
+    },
+    {
+      "title": "Stock market today: Dow, S&P 500, Nasdaq rise after July jobs report surprises to the downside",
+      "link": "https://finance.yahoo.com/markets/live/stock-market-today-friday-august-7-nasdaq-dow-sp-500-july-jobs-report-surprises-100009572.html",
+      "date": "2026-08-07T10:00:09Z",
+      "topics": [
+        "markt"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Astera Labs Stock Strategy Etches Path Toward A Large Return Or Discounted Shares",
-      "link": "https://www.investors.com/research/options/chip-stock-astera-labs-alab-semiconductor-tech-options-income-trading-markets/?src=A00220&yptr=yahoo",
-      "date": "2026-08-05T19:24:02Z",
+      "title": "Long-Term Growth Opportunities Remain for Artivion (AORT) Despite Challenges",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/long-term-growth-opportunities-remain-133709699.html",
+      "date": "2026-08-07T13:37:09Z",
       "topics": [
-        "geopolitics"
-      ]
-    },
-    {
-      "title": "Europe Faces Climate Crisis Strain: Markets Snapshot",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-07/europe-faces-climate-crisis-strain-markets-snapshot",
-      "date": "Fri, 07 Aug 2026 06:07:32 GMT",
-      "topics": [
-        "tech",
-        "market"
+        "tech"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Copper Heads for Record High Close on Tighter Global Market",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/copper-heads-for-record-close-in-london-on-tighter-global-market",
-      "date": "Fri, 07 Aug 2026 03:12:24 GMT",
-      "topics": [
-        "market"
+      "title": "JBS forms meat joint venture with Indonesia’s sovereign-wealth fund",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jbs-forms-meat-joint-venture-134821900.html",
+      "date": "2026-08-07T13:48:21Z",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
-      "title": "Oil Gains on Iran, Bonds Drop Before US Jobs Data: Markets Wrap",
+      "title": "Fed Rate Hike Doesn't Make Sense Right Now, BlackRock's Rieder Says",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-07/fed-rate-hike-doesn-t-make-sense-blackrock-s-rieder-video",
+      "date": "Fri, 07 Aug 2026 13:58:07 GMT",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Big Tech Stocks Storm Back as AI Fears Fade and Euphoria Resumes",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/big-tech-stocks-storm-back-as-ai-fears-fade-and-euphoria-resumes",
+      "date": "Fri, 07 Aug 2026 10:30:01 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "BAC",
+        "F"
+      ]
+    },
+    {
+      "title": "Airbnb Jumps After Raising Its 2026 Revenue Outlook Again",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-06/airbnb-lifts-2026-outlook-again-on-robust-us-european-travel",
+      "date": "Thu, 06 Aug 2026 20:03:32 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Gold Jumps as Weak US Jobs Data Adds Fuel to Bullion’s Rebound",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-06/gold-steady-as-traders-assess-impact-of-hormuz-flare-up-on-rates",
+      "date": "Thu, 06 Aug 2026 23:43:38 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Stocks and Bonds Rise as Jobs Ease Fed-Hike Worry: Markets Wrap",
       "link": "https://www.bloomberg.com/news/articles/2026-08-06/stock-market-today-dow-s-p-live-updates",
       "date": "Thu, 06 Aug 2026 22:10:21 GMT",
       "topics": [
-        "tech",
-        "energy",
-        "market"
-      ]
-    },
-    {
-      "title": "FTSE 100 Live: Stock\u00a0Futures Ease as Middle East Uncertainty Persists",
-      "link": "https://www.bloomberg.com/news/live-blog/2026-08-07/ftse-100-live-pound-oil-prices-iran-trump-gold-yen-easyjet-ai-stocks-what-s-moving-uk-markets-right-now-markets-today-msiiusl2",
-      "date": "Fri, 07 Aug 2026 05:46:15 GMT",
-      "topics": [
-        "tech"
+        "zinsen",
+        "markt"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "DeepSeek Restarts Funding for Ambitious AI Expansion | The China Show | 8/7/2026",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-07/the-china-show-8-7-2026-video",
-      "date": "Fri, 07 Aug 2026 04:46:29 GMT",
-      "topics": [
-        "tech"
-      ],
+      "title": "US Loses 23,000 Jobs in July, Unemployment Rate Falls",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-07/us-loses-23-000-jobs-in-july-unemployment-rate-falls-video",
+      "date": "Fri, 07 Aug 2026 13:19:08 GMT",
+      "topics": [],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Yen Surrenders Nearly Half Its Gains From US-Japan Intervention",
+      "title": "Yen Jumps After US Data as Traders Watch for Intervention Clues",
       "link": "https://www.bloomberg.com/news/articles/2026-08-07/yen-surrenders-nearly-half-its-gains-from-us-japan-intervention",
       "date": "Fri, 07 Aug 2026 00:04:31 GMT",
-      "topics": [
-        "tech"
-      ],
+      "topics": [],
       "tickers": [
         "F"
       ]
@@ -212,15 +271,62 @@
       "date": "Thu, 06 Aug 2026 22:01:46 GMT",
       "topics": [
         "energy",
-        "market"
+        "markt"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
-      "title": "Zimbabwe\u2019s VFEX Plans $5 Billion Market Value, Venture Board for Mining",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/zimbabwe-s-vfex-plans-5-billion-market-value-venture-board-for-mining",
-      "date": "Fri, 07 Aug 2026 04:15:00 GMT",
+      "title": "US Treasuries Rally as Soft Jobs Data Trims Fed Rate-Hike Bets",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/us-treasuries-rally-as-soft-jobs-data-trims-fed-rate-hike-bets",
+      "date": "Fri, 07 Aug 2026 12:46:13 GMT",
       "topics": [
-        "market"
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Copper Market Crunch Brews as US and China Compete for Metal",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/copper-market-crunch-brews-as-us-and-china-compete-for-metal",
+      "date": "Fri, 07 Aug 2026 10:47:56 GMT",
+      "topics": [
+        "markt",
+        "geopolitik"
+      ],
+      "tickers": [
+        "META",
+        "F"
+      ]
+    },
+    {
+      "title": "US Futures Jumps Friday Following Weak July Jobs Data",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/us-futures-rise-as-trump-touts-iran-progress-awaiting-jobs-data",
+      "date": "Fri, 07 Aug 2026 11:44:11 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Yen Jumps 1% Against Dollar After US Jobs Data",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/yen-jumps-1-against-dollar-after-us-jobs-data",
+      "date": "Fri, 07 Aug 2026 12:48:20 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Garbage-Truck Margin Boost Shows the AI Profit Boom Has Begun",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/garbage-truck-margin-boost-shows-the-ai-profit-boom-has-begun",
+      "date": "Fri, 07 Aug 2026 12:18:45 GMT",
+      "topics": [
+        "tech"
       ],
       "tickers": [
         "F"
@@ -231,7 +337,28 @@
       "link": "https://www.nytimes.com/2026/08/06/us/politics/trump-tariffs-solar-panels.html",
       "date": "Thu, 06 Aug 2026 21:53:18 +0000",
       "topics": [
-        "geopolitics"
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "How Malta Became a Tax Haven for Crocs and Other U.S. Companies",
+      "link": "https://www.nytimes.com/2026/08/05/business/economy/crocs-malta-tax-haven.html",
+      "date": "Wed, 05 Aug 2026 18:38:58 +0000",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "What Are Companies Getting for All That A.I. Spending?",
+      "link": "https://www.nytimes.com/2026/08/03/business/economy/ai-spending-tokenomics.html",
+      "date": "Mon, 03 Aug 2026 18:56:22 +0000",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -239,7 +366,7 @@
       "link": "https://www.nytimes.com/2026/07/31/business/economy/inflation-fed-dissent-interest-rates.html",
       "date": "Fri, 31 Jul 2026 16:16:55 +0000",
       "topics": [
-        "interest rate",
+        "zinsen",
         "inflation"
       ],
       "tickers": [
@@ -247,11 +374,11 @@
       ]
     },
     {
-      "title": "Bond Investors\u2019 Inflation Angst Rises on Fed\u2019s Lack of Guidance",
+      "title": "Bond Investors’ Inflation Angst Rises on Fed’s Lack of Guidance",
       "link": "https://www.nytimes.com/2026/07/30/business/federal-reserve-warsh-bonds.html",
       "date": "Thu, 30 Jul 2026 19:40:58 +0000",
       "topics": [
-        "interest rate",
+        "zinsen",
         "inflation"
       ],
       "tickers": [
@@ -259,12 +386,16 @@
       ]
     },
     {
-      "title": "Trump\u2019s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
+      "title": "Trump’s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
       "link": "https://www.nytimes.com/2026/07/30/business/economy/trump-tariffs-exemptions.html",
       "date": "Thu, 30 Jul 2026 20:24:37 +0000",
       "topics": [
         "energy",
-        "geopolitics"
+        "geopolitik"
+      ],
+      "tickers": [
+        "F",
+        "DIA"
       ]
     },
     {
@@ -273,25 +404,60 @@
       "date": "Thu, 30 Jul 2026 16:29:07 +0000",
       "topics": [
         "regulation"
-      ]
-    },
-    {
-      "title": "Government Borrowing Cost Hits Two-Decade High After Fed Rate Decision",
-      "link": "https://www.nytimes.com/2026/07/29/business/economy/treasury-yields-fed-inflation.html",
-      "date": "Wed, 29 Jul 2026 21:33:46 +0000",
-      "topics": [
-        "interest rate"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "What to know about the Fed\u2019s decision.",
+      "title": "China, Its Economy Stumbling, Signals Only Cautious Support",
+      "link": "https://www.nytimes.com/2026/07/30/business/china-economy-politburo.html",
+      "date": "Thu, 30 Jul 2026 13:59:54 +0000",
+      "topics": [
+        "geopolitik"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Government Borrowing Cost Hits Two-Decade High After Fed Rate Decision",
+      "link": "https://www.nytimes.com/2026/07/29/business/economy/treasury-yields-fed-inflation.html",
+      "date": "Wed, 29 Jul 2026 21:33:46 +0000",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "What to know about the Fed’s decision.",
       "link": "https://www.nytimes.com/live/2026/07/29/business/fed-meeting-rates-kevin-warsh/what-to-know-about-the-feds-decision",
       "date": "Wed, 29 Jul 2026 20:37:59 +0000",
       "topics": [
-        "interest rate"
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "4 Takeaways From the Federal Reserve Meeting",
+      "link": "https://www.nytimes.com/2026/07/29/business/economy/fed-meeting-interest-rates-takeaways.html",
+      "date": "Wed, 29 Jul 2026 19:41:04 +0000",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Investors Are Bracing for Uncertain Fed Announcement",
+      "link": "https://www.nytimes.com/live/2026/07/29/business/fed-meeting-rates-kevin-warsh/investors-are-bracing-for-uncertain-fed-announcement",
+      "date": "Wed, 29 Jul 2026 16:57:58 +0000",
+      "topics": [
+        "zinsen",
+        "tech"
       ],
       "tickers": [
         "F"

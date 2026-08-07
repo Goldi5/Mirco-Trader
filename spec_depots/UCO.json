@@ -287,6 +287,34 @@
     {
       "zeit": "2026-08-06T21:34:36.329944",
       "wert": 91.79
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.176854",
+      "wert": 91.79
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.873260",
+      "wert": 91.79
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.506812",
+      "wert": 91.79
+    },
+    {
+      "zeit": "2026-08-07T15:49:12.098562",
+      "wert": 91.79
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.707741",
+      "wert": 91.79
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.223353",
+      "wert": 91.79
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.241448",
+      "wert": 91.79
     }
   ],
   "trades": [
@@ -326,9 +354,9 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_214758_UCO_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160458_UCO_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "UCO",

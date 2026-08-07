@@ -9,21 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-30T13:59:39.966835",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T14:00:27.414153",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T14:16:18.196219",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
       "zeit": "2026-07-30T14:30:27.048093",
       "wert": 100.0,
       "bargeld": 10.0
@@ -407,6 +392,22 @@
     {
       "zeit": "2026-08-06T22:13:16.088599",
       "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.705758",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.845205",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.622142",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.359478",
+      "wert": 87.53
     }
   ],
   "trades": [
@@ -607,15 +608,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-06T22:12:53.378496",
+    "zeit": "2026-08-07T16:03:31.715973",
     "ticker": "GME",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "Starker Abwärtstrend (Kurs < SMA20 < SMA50), RSI 25.8 überverkauft aber kein Trendwechsel. Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz. Warnung vor Volatilitätstiteln (GME). Nur $87 Cash, Depot bereits -12.47%. Kein klares Kaufsignal, abwarten. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "konfidenz": 25,
+    "grund": "Abwärtstrend, extrem geringes Volumen, keine positiven Signale; RSI überverkauft aber kein bestätigter Boden.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 19.23,
-    "rsi": 25.8,
+    "kurs": 19.05,
+    "rsi": 25.7,
     "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
     "p_pnl": 0,
     "depot_rendite": -12.47,
@@ -709,7 +710,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -789,24 +790,26 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260806_221253_GME_aktien_na",
+    "decision_id": "d_20260807_160331_GME_aktien_na",
+    "provider": "zen",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "closed",
+    "regime": "open",
     "rohdaten": {
-      "kurs": 19.23,
-      "sma20": 21.28,
-      "sma50": 21.61,
-      "rsi": 25.8,
-      "atr_pct": 2.78,
-      "vol_ratio": 0.98,
-      "vix": 15.3,
+      "kurs": 19.05,
+      "sma20": 21.14,
+      "sma50": 21.55,
+      "rsi": 25.7,
+      "atr_pct": 2.76,
+      "vol_ratio": 0.13,
+      "vix": 15.1,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": -12.47
     },
     "indikatoren": [
-      "SMA20>21.3",
+      "SMA20>21.1",
       "SMA50>21.6",
       "RSI26",
       "ATR2.8%"
@@ -821,8 +824,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 65.0,
-    "konfidenz_nach_cap": 60,
+    "konfidenz_original": 25,
+    "konfidenz_nach_cap": 25,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

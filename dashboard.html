@@ -611,9 +611,9 @@ function showDepot(dep, typ) {
   fetch(url).then(r => r.json()).then(full => {
     dep.trades_raw = full.trades || [];
     dep.historie = full.historie || dep.historie || [];
-    dep.wert = dep.wert || (dep.bargeld || 0);
-    dep.start = dep.start || 100;
-    dep.bargeld = dep.bargeld || 0;
+    dep.wert = dep.wert || (full.bargeld || 0);
+    dep.start = dep.start || full.start_wert || 100;
+    dep.bargeld = full.bargeld || 0;
 
     const rend = dep.start > 0 ? ((dep.wert / dep.start) - 1) * 100 : 0;
     const pnl = (dep.wert || 0) - (dep.start || 100);

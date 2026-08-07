@@ -9,31 +9,6 @@
   "exchange": null,
   "historie": [
     {
-      "zeit": "2026-07-29T18:22:16.786301",
-      "wert": 99.98,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T18:31:09.245183",
-      "wert": 99.98,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T18:45:58.736474",
-      "wert": 99.98,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T19:00:59.587510",
-      "wert": 99.98,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T19:16:00.282853",
-      "wert": 99.98,
-      "bargeld": 10.0
-    },
-    {
       "zeit": "2026-07-29T19:31:02.697551",
       "wert": 99.98,
       "bargeld": 10.0
@@ -446,6 +421,26 @@
     {
       "zeit": "2026-08-06T21:19:57.940980",
       "wert": 94.0
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.877011",
+      "wert": 94.0
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.510944",
+      "wert": 94.0
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.225921",
+      "wert": 94.0
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.425774",
+      "wert": 94.0
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.244489",
+      "wert": 94.0
     }
   ],
   "trades": [
@@ -469,9 +464,9 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_214758_UVXY_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160500_UVXY_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "UVXY",

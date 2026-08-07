@@ -1,3 +1,14 @@
+## [2.19.3] - 2026-08-07
+### Fixed (Cash-Anzeige Risk-Depots)
+- **`dashboard.html` Z616**: `dep.bargeld = dep.bargeld || 0` → `dep.bargeld = full.bargeld || 0`. Dashboard zeigte bei Risk-Depots (70-90) **CASH=$0.00** obwohl Depot $107–124 Cash hat. Root-Cause: bargeld wurde aus dem Overview-Objekt (`dep`) gelesen statt aus dem Detail-Response (`full`). Korrigiert auch `dep.wert`/`dep.start` auf `full.*`.
+- Verifiziert: `/depot_json?risk=90` liefert `bargeld=123.96` → Dashboard zeigt jetzt `$123.96`.
+
+### Echte Situation Risk 70–90 (KEIN Bug)
+- Depots haben Cash ($107–124), KI läuft (ki_log.json: Entscheidungen heute 15:49 für MARA/LABU/UPRO/MRNA/JNUG/MSTR/VXX).
+- KI empfiehlt **halten** (Marktlage: dünnes Volumen, Abwärtstrends in Kandidaten) → keine neuen Positionen.
+- KI sieht im Prompt korrekt `bargeld=123.96` (batch_trader.laden_oder_erstellen liest bargeld aus JSON).
+- Tracking-Note: spec-Depot-KI-Entscheidungen landen in ki_log.json unter `depot_typ="aktien"` (nicht `spec_XX`) → DB-Filter `spec_XX` findet 0. Kosmetisch, keine Kauf-Blockade.
+
 ## [2.19.2] - 2026-08-07
 ### Added (Trade→KI-Zuordnung — Infrastruktur)
 - **`db._sync_trades`**: liest `decision_id` aus Depot-JSON-Trade (falls vorhanden, sonst NULL).

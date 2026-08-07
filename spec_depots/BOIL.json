@@ -9,30 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T15:33:42.061810",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-07-31T20:05:30.602544",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-07-31T20:34:50.766413",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-07-31T20:50:21.746603",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-07-31T21:05:07.848829",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-07-31T21:19:42.975257",
-      "wert": 100.0
-    },
-    {
       "zeit": "2026-08-03T16:23:05.813794",
       "wert": 100.0
     },
@@ -407,6 +383,30 @@
     {
       "zeit": "2026-08-06T22:07:07.129076",
       "wert": 100.32
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.064628",
+      "wert": 100.32
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.390066",
+      "wert": 100.32
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.787394",
+      "wert": 100.32
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.590468",
+      "wert": 100.32
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.155623",
+      "wert": 100.32
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.336329",
+      "wert": 100.32
     }
   ],
   "trades": [
@@ -517,15 +517,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-06T22:06:07.961723",
+    "zeit": "2026-08-07T16:02:57.816431",
     "ticker": "BOIL",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "Abwärtstrend (Kurs < SMA20 < SMA50), 2x-Hebel-ETF (lev-bull) mit Volatilitätsverfall-Risiko, gelernte Regeln warnen vor lev-bull-Titeln, kein klares Aufwärtssignal trotz RSI 29.3 (überverkauft)",
+    "konfidenz": 30,
+    "grund": "Abwärtstrend (Kurs < SMA20 < SMA50), RSI 37.5 und geringes Volumen signalisieren keine Kaufbestätigung; trotz Watchlist kein Einstieg ohne klares Aufwärtssignal.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 18.73,
-    "rsi": 29.3,
+    "kurs": 19.36,
+    "rsi": 37.5,
     "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
     "p_pnl": 0,
     "depot_rendite": 0.32,
@@ -619,7 +619,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -699,27 +699,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260806_220607_BOIL_aktien_na",
+    "decision_id": "d_20260807_160257_BOIL_aktien_na",
+    "provider": "zen",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "closed",
+    "regime": "open",
     "rohdaten": {
-      "kurs": 18.73,
-      "sma20": 21.23,
-      "sma50": 25.06,
-      "rsi": 29.3,
-      "atr_pct": 4.17,
-      "vol_ratio": 1.36,
-      "vix": 15.4,
+      "kurs": 19.36,
+      "sma20": 21.06,
+      "sma50": 24.92,
+      "rsi": 37.5,
+      "atr_pct": 3.91,
+      "vol_ratio": 0.39,
+      "vix": 15.1,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": 0.32
     },
     "indikatoren": [
-      "SMA20>21.2",
-      "SMA50>25.1",
-      "RSI29",
-      "ATR4.2%"
+      "SMA20>21.1",
+      "SMA50>24.9",
+      "RSI38",
+      "ATR3.9%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -731,8 +733,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 60,
-    "konfidenz_nach_cap": 60,
+    "konfidenz_original": 30,
+    "konfidenz_nach_cap": 30,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

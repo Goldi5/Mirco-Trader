@@ -283,6 +283,42 @@
     {
       "zeit": "2026-08-06T21:28:50.594264",
       "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.135562",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.836205",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.456670",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.775160",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.954548",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.667553",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.200843",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.391272",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.214376",
+      "wert": 105.57
     }
   ],
   "trades": [
@@ -361,9 +397,9 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_214758_QS_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160426_QS_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "QS",

@@ -320,6 +320,38 @@
     {
       "zeit": "2026-08-06T22:07:07.134703",
       "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.068579",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.770872",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.390066",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.655957",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.596949",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.158103",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.338328",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.169611",
+      "wert": 99.77
     }
   ],
   "trades": [
@@ -415,15 +447,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-06T22:06:13.529062",
+    "zeit": "2026-08-07T16:03:04.557845",
     "ticker": "COIN",
     "aktion": "halten",
     "konfidenz": 60,
-    "grund": "Klarer Abwärtstrend (Kurs < SMA20 < SMA50), RSI bei 43 nicht überverkauft, Volumen 0.72x unterdurchschnittlich, kein News-Katalysator. Meta-Regeln zeigen geringe Zuverlässigkeit hoher Konfidenzwerte. Warten auf Trendwechsel oder Pullback-Setup. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "grund": "Abwärtstrend (Kurs < SMA20 < SMA50), niedriges Volumen und RSI neutral – kein klares Aufwärtssignal für einen Kauf. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 145.41,
-    "rsi": 43.1,
+    "kurs": 149.86,
+    "rsi": 43.8,
     "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
     "p_pnl": 0,
     "depot_rendite": -0.23,
@@ -517,7 +549,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -597,27 +629,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260806_220613_COIN_aktien_na",
+    "decision_id": "d_20260807_160304_COIN_aktien_na",
+    "provider": "zen",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "closed",
+    "regime": "open",
     "rohdaten": {
-      "kurs": 145.41,
-      "sma20": 159.12,
-      "sma50": 161.2,
-      "rsi": 43.1,
-      "atr_pct": 6.14,
-      "vol_ratio": 0.72,
-      "vix": 15.4,
+      "kurs": 149.86,
+      "sma20": 158.66,
+      "sma50": 160.73,
+      "rsi": 43.8,
+      "atr_pct": 5.78,
+      "vol_ratio": 0.25,
+      "vix": 15.1,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": -0.23
     },
     "indikatoren": [
-      "SMA20>159.1",
-      "SMA50>161.2",
-      "RSI43",
-      "ATR6.1%"
+      "SMA20>158.7",
+      "SMA50>160.7",
+      "RSI44",
+      "ATR5.8%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -629,7 +663,7 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 80.0,
+    "konfidenz_original": 65.0,
     "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",

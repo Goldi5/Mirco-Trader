@@ -2,36 +2,12 @@
   "ticker": "MRNA",
   "name": "Moderna Inc.",
   "kategorie": "biotech",
-  "bargeld": 0.0,
-  "shares": 1.847184,
-  "avg_price": 54.51,
+  "bargeld": 103.5,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-07-30T13:59:39.973170",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T14:00:27.423259",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T14:16:18.203641",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T14:30:27.055681",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T14:42:10.455082",
-      "wert": 100.0
-    },
     {
       "zeit": "2026-07-30T14:46:58.188264",
       "wert": 100.0
@@ -407,6 +383,30 @@
     {
       "zeit": "2026-08-06T21:48:15.470140",
       "wert": 99.45
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.122419",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.824477",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.749556",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.915294",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.191325",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.203771",
+      "wert": 103.5
     }
   ],
   "trades": [
@@ -550,13 +550,21 @@
       "preis": 54.51,
       "grund": "Keine bestehende Position, RSI von 33,6 nahe überverkauftem Bereich, ausreichend verfügbares Cash für Einstieg, Ticker befindet sich auf der Watchlist [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.824477",
+      "aktion": "verkaufen",
+      "menge": 1.847184,
+      "preis": 56.03,
+      "grund": "Abwärtstrend, extrem geringes Volumen, hohe Volatilität; Position mit kleinem Gewinn verkaufen.",
+      "ki_konfidenz": 55
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_221239_MRNA_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160414_MRNA_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "MRNA",

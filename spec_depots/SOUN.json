@@ -2,9 +2,9 @@
   "ticker": "SOUN",
   "name": "SoundHound AI",
   "kategorie": "ai",
-  "bargeld": 0.0,
-  "shares": 14.433666,
-  "avg_price": 7.01,
+  "bargeld": 105.51,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
@@ -343,6 +343,34 @@
     {
       "zeit": "2026-08-06T21:34:36.313605",
       "wert": 102.05
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.152850",
+      "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.849746",
+      "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.482393",
+      "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.800821",
+      "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-07T15:49:12.033307",
+      "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.211676",
+      "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.225733",
+      "wert": 105.51
     }
   ],
   "trades": [
@@ -425,13 +453,21 @@
       "preis": 7.01,
       "grund": "Watchlist-Wert mit Cash-Verfügbarkeit, Volumen 2.12x Schnitt, RSI 61.7 gesund, VIX niedrig (15.2). Trend neutral (zwischen SMA20/50), keine klaren Aufwärtssignale. Vorsichtsregeln für AI-Titel und Meta-Confidence-Caps (0% Hitrate bei >60) limitieren Konfidenz.",
       "ki_konfidenz": 58
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.482393",
+      "aktion": "verkaufen",
+      "menge": 14.433666,
+      "preis": 7.31,
+      "grund": "Neutraler Trend, sehr geringes Volumen, historische Warnsignale gegen Halten bei AI/Volatilität, begrenzte Gewinnmitnahme",
+      "ki_konfidenz": 55
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_214758_SOUN_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160438_SOUN_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SOUN",

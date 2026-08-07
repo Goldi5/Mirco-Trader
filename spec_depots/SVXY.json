@@ -248,6 +248,42 @@
     {
       "zeit": "2026-08-06T21:34:36.324778",
       "wert": 101.94
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.170218",
+      "wert": 101.91
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.866196",
+      "wert": 101.91
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.490194",
+      "wert": 101.91
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.829235",
+      "wert": 101.85
+    },
+    {
+      "zeit": "2026-08-07T15:49:12.083840",
+      "wert": 101.87
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.700171",
+      "wert": 101.84
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.219219",
+      "wert": 101.92
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.418256",
+      "wert": 101.85
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.237812",
+      "wert": 101.91
     }
   ],
   "trades": [
@@ -263,9 +299,9 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_214758_SVXY_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160449_SVXY_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SVXY",

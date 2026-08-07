@@ -9,42 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T11:17:12.328142",
-      "wert": 92.41
-    },
-    {
-      "zeit": "2026-07-31T11:32:17.677847",
-      "wert": 92.41
-    },
-    {
-      "zeit": "2026-07-31T11:47:05.714087",
-      "wert": 92.41
-    },
-    {
-      "zeit": "2026-07-31T12:02:19.098592",
-      "wert": 92.41
-    },
-    {
-      "zeit": "2026-07-31T12:17:10.883584",
-      "wert": 92.41
-    },
-    {
-      "zeit": "2026-07-31T12:31:29.874849",
-      "wert": 92.41
-    },
-    {
-      "zeit": "2026-07-31T12:46:20.277122",
-      "wert": 92.41
-    },
-    {
-      "zeit": "2026-07-31T13:01:52.476326",
-      "wert": 92.41
-    },
-    {
-      "zeit": "2026-07-31T13:16:34.972574",
-      "wert": 92.41
-    },
-    {
       "zeit": "2026-07-31T13:31:56.964882",
       "wert": 92.41
     },
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-06T21:48:15.458273",
       "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.102885",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.804529",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.423395",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.727020",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.870873",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.630102",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.180137",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.366225",
+      "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.190357",
+      "wert": 97.97
     }
   ],
   "trades": [
@@ -520,15 +520,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-06T22:12:23.369703",
+    "zeit": "2026-08-07T16:03:41.682785",
     "ticker": "JDST",
     "aktion": "halten",
-    "konfidenz": 35,
-    "grund": "Kein klarer Aufwärtstrend (Kurs zwischen SMA20/SMA50), RSI 27.5 überverkauft aber Hebel-Bear-ETF (lev-bear) mit Anti-Halt-Regel und Decay-Risiko. META-CAP zeigt 0% Treffer bei Konfidenz 60-100. Cash halten für besseres Setup.",
+    "konfidenz": 45,
+    "grund": "RSI stark überverkauft, aber Trend neutral, hohe Volatilität, kein klares Aufwärtssignal; Warnregeln gegen lev-bear-Titel, daher abwarten.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 31.17,
-    "rsi": 27.5,
+    "kurs": 27.02,
+    "rsi": 22.9,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
     "p_pnl": 0,
     "depot_rendite": -2.03,
@@ -622,7 +622,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -702,27 +702,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260806_221223_JDST_aktien_na",
+    "decision_id": "d_20260807_160341_JDST_aktien_na",
+    "provider": "zen",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "closed",
+    "regime": "open",
     "rohdaten": {
-      "kurs": 31.17,
-      "sma20": 40.37,
-      "sma50": 39.22,
-      "rsi": 27.5,
-      "atr_pct": 7.99,
-      "vol_ratio": 0.97,
-      "vix": 15.3,
+      "kurs": 27.02,
+      "sma20": 39.7,
+      "sma50": 39.06,
+      "rsi": 22.9,
+      "atr_pct": 9.2,
+      "vol_ratio": 0.94,
+      "vix": 15.1,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
       "depot_rendite": -2.03
     },
     "indikatoren": [
-      "SMA20>40.4",
-      "SMA50>39.2",
-      "RSI28",
-      "ATR8.0%"
+      "SMA20>39.7",
+      "SMA50>39.1",
+      "RSI23",
+      "ATR9.2%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -734,8 +736,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 35,
-    "konfidenz_nach_cap": 35,
+    "konfidenz_original": 45,
+    "konfidenz_nach_cap": 45,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

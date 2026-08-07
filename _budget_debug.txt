@@ -1057,3 +1057,67 @@ Risk 80: Cash=117.46, Budget=93.97, aktien_liste=659, bezahlbare=360
   Guenstigste: [('TIPS', 0.0), ('CAN', 0.19), ('SES', 0.51), ('VXRT', 0.57), ('CRLBF', 0.72)]
 Risk 90: Cash=123.96, Budget=99.17, aktien_liste=659, bezahlbare=369
   Guenstigste: [('TIPS', 0.0), ('CAN', 0.19), ('SES', 0.51), ('VXRT', 0.57), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=359
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.22), ('SES', 0.51), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.22), ('SES', 0.51), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=359
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.22), ('SES', 0.51), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.22), ('SES', 0.51), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=359
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.22), ('SES', 0.51), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.22), ('SES', 0.51), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=359
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.22), ('SES', 0.51), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.22), ('SES', 0.51), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 80: Cash=117.46, Budget=93.97, aktien_liste=663, bezahlbare=360
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]
+Risk 90: Cash=123.96, Budget=99.17, aktien_liste=663, bezahlbare=372
+  Guenstigste: [('TIPS', 0.0), ('CAN', 0.21), ('SES', 0.5), ('VXRT', 0.56), ('CRLBF', 0.72)]

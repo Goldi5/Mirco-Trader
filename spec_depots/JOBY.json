@@ -2,32 +2,12 @@
   "ticker": "JOBY",
   "name": "Joby Aviation Inc.",
   "kategorie": "ev",
-  "bargeld": 99.74,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 11.761792,
+  "avg_price": 8.48,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-07-30T13:59:39.971132",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
-      "zeit": "2026-07-30T14:00:27.420638",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
-      "zeit": "2026-07-30T14:16:18.200423",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
-      "zeit": "2026-07-30T14:30:27.052188",
-      "wert": 100,
-      "bargeld": 100
-    },
     {
       "zeit": "2026-07-30T14:42:10.448049",
       "wert": 100
@@ -395,6 +375,38 @@
     {
       "zeit": "2026-08-06T21:48:15.463050",
       "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.110227",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.812067",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.438778",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.735327",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.639938",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.185187",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.371544",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.195062",
+      "wert": 99.39
     }
   ],
   "trades": [
@@ -433,13 +445,21 @@
       "grund": "Anti-Halt-Regeln für Volatilität/Space; kein Cash, schwaches Volumen, neutraler Trend.",
       "ki_konfidenz": 55,
       "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.371544",
+      "aktion": "kaufen",
+      "menge": 11.761792,
+      "preis": 8.48,
+      "grund": "Neutraler Trend, RSI 61 nicht überkauft, klare Watchlist-Vorgabe; aber hohe Volatilität und sehr dünnes Volumen begrenzen Konfidenz.",
+      "ki_konfidenz": 55
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_221204_JOBY_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160401_JOBY_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "JOBY",

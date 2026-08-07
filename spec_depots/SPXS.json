@@ -9,41 +9,6 @@
   "exchange": null,
   "historie": [
     {
-      "zeit": "2026-07-29T21:16:15.224119",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T21:31:46.254451",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T21:46:24.857796",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T22:01:25.237743",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T22:16:25.879926",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T22:30:33.272698",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T22:45:26.723836",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
       "zeit": "2026-07-30T08:16:09.906505",
       "wert": 100.0,
       "bargeld": 10.0
@@ -433,6 +398,34 @@
     {
       "zeit": "2026-08-06T21:34:36.316622",
       "wert": 97.05
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.853336",
+      "wert": 97.05
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.486963",
+      "wert": 97.05
+    },
+    {
+      "zeit": "2026-08-07T15:49:12.048633",
+      "wert": 97.05
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.688264",
+      "wert": 97.05
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.213677",
+      "wert": 97.05
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.408253",
+      "wert": 97.05
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.228776",
+      "wert": 97.05
     }
   ],
   "trades": [
@@ -456,9 +449,9 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_214758_SPXS_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160446_SPXS_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SPXS",

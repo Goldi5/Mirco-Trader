@@ -355,6 +355,30 @@
     {
       "zeit": "2026-08-06T21:34:36.318690",
       "wert": 94.19
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.490194",
+      "wert": 94.19
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.814833",
+      "wert": 94.19
+    },
+    {
+      "zeit": "2026-08-07T15:49:12.055332",
+      "wert": 94.19
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.691505",
+      "wert": 94.19
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.215677",
+      "wert": 94.19
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.230318",
+      "wert": 94.19
     }
   ],
   "trades": [
@@ -378,9 +402,9 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_214758_SPXU_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160450_SPXU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SPXU",

@@ -2,9 +2,9 @@
   "ticker": "RIVN",
   "name": "Rivian Automotive",
   "kategorie": "ev",
-  "bargeld": 0.0,
-  "shares": 6.185881,
-  "avg_price": 15.44,
+  "bargeld": 97.43,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100.0,
   "exchange": "US",
   "historie": [
@@ -244,6 +244,42 @@
     {
       "zeit": "2026-08-06T21:34:36.309319",
       "wert": 95.57
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.143084",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.843081",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.472033",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.787871",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T15:49:12.012666",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.675557",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.205846",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.398106",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.221085",
+      "wert": 97.43
     }
   ],
   "trades": [
@@ -343,13 +379,21 @@
       "preis": 15.44,
       "grund": "RSI bei 35.2 nahe Überverkauft, Ticker in Watchlist mit Cash verfügbar, aber niedriges Volumen (0.35x) und neutraler Trend erfordern Vorsicht",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.143084",
+      "aktion": "verkaufen",
+      "menge": 6.185881,
+      "preis": 15.75,
+      "grund": "Abwärtstrend, extrem geringes Volumen, kein Bargeld; Position mit Gewinn glattstellen",
+      "ki_konfidenz": 55
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260806_214758_RIVN_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160434_RIVN_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "RIVN",

@@ -312,6 +312,42 @@
     {
       "zeit": "2026-08-06T21:48:15.477077",
       "wert": 101.31
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.129922",
+      "wert": 106.98
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.831942",
+      "wert": 106.98
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.456670",
+      "wert": 106.98
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.765963",
+      "wert": 106.99
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.942182",
+      "wert": 106.8
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.660329",
+      "wert": 106.73
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.197536",
+      "wert": 109.47
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.386515",
+      "wert": 109.57
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.211367",
+      "wert": 109.22
     }
   ],
   "trades": [
@@ -363,18 +399,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-06T21:48:12.088934",
+    "zeit": "2026-08-07T16:04:26.427644",
     "ticker": "PLTR",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "Intakter Aufwärtstrend (Kurs > SMA20 > SMA50), RSI 64.8 nicht überkauft, aber VORSICHT-Regel für AI-Titel (-1.82 Gewicht) und kein Cash für Nachkauf. Position nur -1.96% im Minus, Trend intakt. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "konfidenz": 55,
+    "grund": "Aufwärtstrend intakt, aber geringes Volumen und RSI nahe überkauft; Position bei fehlendem Bargeld halten.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 155.93,
-    "rsi": 64.8,
+    "kurs": 168.1,
+    "rsi": 68.7,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": -1.96,
-    "depot_rendite": 1.31,
+    "p_pnl": 5.69,
+    "depot_rendite": 9.22,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -465,7 +501,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -545,27 +581,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260806_214812_PLTR_aktien_na",
+    "decision_id": "d_20260807_160426_PLTR_aktien_na",
+    "provider": "zen",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 155.93,
-      "sma20": 132.78,
-      "sma50": 131.81,
-      "rsi": 64.8,
-      "atr_pct": 4.22,
-      "vol_ratio": 0.75,
-      "vix": 15.3,
+      "kurs": 168.1,
+      "sma20": 134.84,
+      "sma50": 132.52,
+      "rsi": 68.7,
+      "atr_pct": 4.1,
+      "vol_ratio": 0.36,
+      "vix": 15.1,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 1.31
+      "depot_rendite": 9.22
     },
     "indikatoren": [
-      "SMA20>132.8",
-      "SMA50>131.8",
-      "RSI65",
-      "ATR4.2%"
+      "SMA20>134.8",
+      "SMA50>132.5",
+      "RSI69",
+      "ATR4.1%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -577,8 +615,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 68.0,
-    "konfidenz_nach_cap": 60,
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

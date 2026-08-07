@@ -9,42 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T11:32:17.676850",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T11:47:05.711948",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T12:02:19.096578",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T12:17:10.881464",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T12:31:29.873838",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T12:46:20.273378",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T13:01:52.474060",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T13:16:34.969501",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T13:31:56.963043",
-      "wert": 99.51
-    },
-    {
       "zeit": "2026-07-31T13:46:51.190065",
       "wert": 99.51
     },
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-06T22:13:16.093191",
       "wert": 97.08
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.094668",
+      "wert": 98.36
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.794299",
+      "wert": 98.36
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.423395",
+      "wert": 98.36
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.710997",
+      "wert": 98.34
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.855129",
+      "wert": 98.18
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.624973",
+      "wert": 98.12
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.175861",
+      "wert": 97.96
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.361991",
+      "wert": 97.86
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.186258",
+      "wert": 97.91
     }
   ],
   "trades": [
@@ -580,18 +580,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-06T22:12:16.933967",
+    "zeit": "2026-08-07T16:03:37.668436",
     "ticker": "IBIT",
     "aktion": "halten",
     "konfidenz": 60,
-    "grund": "Klarer Aufwärtstrend (Kurs > SMA20 > SMA50) und neutraler RSI (51), aber Volumen schwach (0.8x), VORSICHT-Regeln für Volatilitäts-Titel und historische Meta-Caps zeigen niedrige Trefferquoten bei hoher Konfidenz. Position nur leicht im Minus (-0.68%), abwarten auf Volumen-Bestätigung. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "grund": "Aufwärtstrend (Kurs>SMA20>SMA50) bei neutralem RSI und niedrigem VIX, aber sehr geringes Volumen und keine freie Kaufkraft; daher Position halten.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 36.49,
-    "rsi": 51.0,
+    "kurs": 36.8,
+    "rsi": 49.3,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": -0.68,
-    "depot_rendite": -2.92,
+    "p_pnl": 0.16,
+    "depot_rendite": -2.09,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -682,7 +682,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -762,27 +762,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260806_221216_IBIT_aktien_na",
+    "decision_id": "d_20260807_160337_IBIT_aktien_na",
+    "provider": "zen",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "closed",
+    "regime": "open",
     "rohdaten": {
-      "kurs": 36.49,
-      "sma20": 36.48,
-      "sma50": 36.37,
-      "rsi": 51.0,
-      "atr_pct": 1.71,
-      "vol_ratio": 0.8,
-      "vix": 15.3,
+      "kurs": 36.8,
+      "sma20": 36.5,
+      "sma50": 36.26,
+      "rsi": 49.3,
+      "atr_pct": 1.55,
+      "vol_ratio": 0.35,
+      "vix": 15.1,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": -2.92
+      "depot_rendite": -2.09
     },
     "indikatoren": [
       "SMA20>36.5",
-      "SMA50>36.4",
-      "RSI51",
-      "ATR1.7%"
+      "SMA50>36.3",
+      "RSI49",
+      "ATR1.6%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -794,7 +796,7 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 68.0,
+    "konfidenz_original": 60,
     "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",

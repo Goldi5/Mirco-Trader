@@ -9,26 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T20:50:21.746603",
-      "wert": 101.68
-    },
-    {
-      "zeit": "2026-07-31T21:05:07.855451",
-      "wert": 101.68
-    },
-    {
-      "zeit": "2026-07-31T21:19:42.978882",
-      "wert": 101.68
-    },
-    {
-      "zeit": "2026-08-03T22:33:49.969189",
-      "wert": 101.68
-    },
-    {
-      "zeit": "2026-08-04T17:46:58.306888",
-      "wert": 101.68
-    },
-    {
       "zeit": "2026-08-04T17:48:10.109558",
       "wert": 101.68
     },
@@ -407,6 +387,26 @@
     {
       "zeit": "2026-08-06T22:07:07.144227",
       "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.662939",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.800270",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.601682",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.160449",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.341618",
+      "wert": 101.33
     }
   ],
   "trades": [
@@ -574,15 +574,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-06T22:06:23.413672",
+    "zeit": "2026-08-07T16:03:09.366310",
     "ticker": "CRSP",
     "aktion": "halten",
-    "konfidenz": 50,
-    "grund": "Neutraler Trend (Kurs zwischen SMA20/50), RSI 64.8 okay aber kein klares Kaufsignal, Volumen nur 0.6x, Biotech-Volatilität + Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz. Warten auf klareren Aufwärtstrend (Kurs > SMA20 > SMA50) und höheres Volumen.",
+    "konfidenz": 30,
+    "grund": "RSI überkauft, Trend neutral, sehr geringes Volumen (0.18x), keine positiven News. Kein klares Aufwärtssignal; Position leer, daher halten.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 51.64,
-    "rsi": 64.8,
+    "kurs": 53.29,
+    "rsi": 72.7,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
     "p_pnl": 0,
     "depot_rendite": 1.33,
@@ -676,7 +676,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -756,27 +756,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260806_220623_CRSP_aktien_na",
+    "decision_id": "d_20260807_160309_CRSP_aktien_na",
+    "provider": "zen",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "closed",
+    "regime": "open",
     "rohdaten": {
-      "kurs": 51.64,
+      "kurs": 53.29,
       "sma20": 49.18,
-      "sma50": 52.34,
-      "rsi": 64.8,
-      "atr_pct": 3.47,
-      "vol_ratio": 0.6,
-      "vix": 15.4,
+      "sma50": 52.33,
+      "rsi": 72.7,
+      "atr_pct": 3.43,
+      "vol_ratio": 0.18,
+      "vix": 15.1,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
       "depot_rendite": 1.33
     },
     "indikatoren": [
       "SMA20>49.2",
       "SMA50>52.3",
-      "RSI65",
-      "ATR3.5%"
+      "RSI73",
+      "ATR3.4%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -788,8 +790,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 50,
-    "konfidenz_nach_cap": 50,
+    "konfidenz_original": 30,
+    "konfidenz_nach_cap": 30,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

@@ -9,42 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T20:50:21.765162",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-07-31T21:05:07.870899",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-08-03T16:23:05.858934",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-08-03T22:40:46.257005",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-08-04T16:54:38.460563",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-08-04T17:48:10.130199",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-08-04T17:48:59.588618",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-08-04T17:49:03.159988",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-08-04T17:50:11.557897",
-      "wert": 108.19
-    },
-    {
       "zeit": "2026-08-04T18:06:11.271356",
       "wert": 108.19
     },
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-06T22:13:16.082511",
       "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.088156",
+      "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.789273",
+      "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.417364",
+      "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.700708",
+      "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.837631",
+      "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.620116",
+      "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.169818",
+      "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.355703",
+      "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.181118",
+      "wert": 108.62
     }
   ],
   "trades": [
@@ -536,213 +536,15 @@
     }
   ],
   "ki_letzte": {
-    "typ": "decision",
-    "zeit": "2026-08-06T22:12:31.256933",
-    "ticker": "FNGU",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "3x Hebel-ETF mit mehreren Warnregeln (lev-bull, volatility, ai), neutraler Trend, RSI 66.7, niedriges Volumen (0.51x), Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
-    "menge": "voll",
-    "ziel_kurs": null,
-    "kurs": 32.01,
-    "rsi": 66.7,
-    "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0,
-    "depot_rendite": 8.62,
-    "angewandte_regeln": [
-      {
-        "id": "r_20260802_32531",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_92036",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_09535",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_74417",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_79559",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_18173",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.45,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260801_07584",
-        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
-        "typ": "swap",
-        "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_1_87577",
-        "muster": "[Anti] halten bei volatility-Titeln",
-        "typ": "anti",
-        "gewicht": -1.87,
-        "effektiv_gewicht": -1.83,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_2_74438",
-        "muster": "[Anti] halten bei lev-bull-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.82,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_5_20387",
-        "muster": "[Anti] halten bei ai-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.82,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_4_69646",
-        "muster": "[Anti] halten bei lev-bear-Titeln",
-        "typ": "anti",
-        "gewicht": -1.71,
-        "effektiv_gewicht": -1.68,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_7_07487",
-        "muster": "[Anti] halten bei space-Titeln",
-        "typ": "anti",
-        "gewicht": -1.64,
-        "effektiv_gewicht": -1.61,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      }
-    ],
-    "decision_id": "d_20260806_221231_FNGU_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260807_160402_FNGU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
-    "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "closed",
-    "rohdaten": {
-      "kurs": 32.01,
-      "sma20": 27.66,
-      "sma50": 28.1,
-      "rsi": 66.7,
-      "atr_pct": 4.82,
-      "vol_ratio": 0.51,
-      "vix": 15.3,
-      "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 8.62
-    },
-    "indikatoren": [
-      "SMA20>27.7",
-      "SMA50>28.1",
-      "RSI67",
-      "ATR4.8%"
-    ],
-    "news_score": null,
-    "regelstand_ref": "v_live",
+    "ticker": "FNGU",
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
     "konflikte": [],
     "prioritaetsreihenfolge": [
       "engine_bremse",
@@ -751,24 +553,7 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 70.0,
-    "konfidenz_nach_cap": 60,
-    "konfidenz_cap": 60,
-    "erwarteter_ausgang": "unbekannt",
-    "shadow": false,
-    "regelstatus_beim_entscheid": {
-      "r_20260802_32531": "stabil",
-      "r_20260802_92036": "stabil",
-      "r_20260802_09535": "stabil",
-      "r_20260802_74417": "stabil",
-      "r_20260803_79559": "stabil",
-      "r_20260803_18173": "stabil",
-      "r_20260801_07584": "stabil",
-      "r_legacy_1_87577": "stabil",
-      "r_legacy_2_74438": "stabil",
-      "r_legacy_5_20387": "stabil",
-      "r_legacy_4_69646": "stabil",
-      "r_legacy_7_07487": "stabil"
-    }
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
   }
 }
