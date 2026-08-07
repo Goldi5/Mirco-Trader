@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T21:20:07.783591",
-      "wert": 96.67
-    },
-    {
-      "zeit": "2026-08-04T21:20:12.237904",
-      "wert": 96.67
-    },
-    {
-      "zeit": "2026-08-04T21:26:12.445780",
-      "wert": 96.67
-    },
-    {
       "zeit": "2026-08-04T21:34:31.911606",
       "wert": 96.67
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:05:01.175909",
       "wert": 101.16
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.655383",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.782084",
+      "wert": 100.48
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.297251",
+      "wert": 100.54
     }
   ],
   "trades": [
@@ -459,7 +459,7 @@
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160333_ETHU_aktien_na",
+    "decision_id": "d_20260807_161831_ETHU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "ETHU",

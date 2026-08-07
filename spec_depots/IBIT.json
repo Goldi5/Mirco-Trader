@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T13:46:51.190065",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T14:01:55.675087",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-07-31T15:33:42.083419",
-      "wert": 97.72
-    },
-    {
       "zeit": "2026-07-31T20:34:50.775776",
       "wert": 97.72
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:05:01.186258",
       "wert": 97.91
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.669076",
+      "wert": 97.7
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.793270",
+      "wert": 97.75
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.311566",
+      "wert": 97.8
     }
   ],
   "trades": [
@@ -580,18 +580,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:03:37.668436",
+    "zeit": "2026-08-07T16:18:28.999675",
     "ticker": "IBIT",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "Aufwärtstrend (Kurs>SMA20>SMA50) bei neutralem RSI und niedrigem VIX, aber sehr geringes Volumen und keine freie Kaufkraft; daher Position halten.",
+    "konfidenz": 50,
+    "grund": "Aufwärtstrend intakt und RSI neutral, aber sehr geringes Volumen (0.38x) und historische Warnsignale sprechen gegen neuen Kauf.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 36.8,
-    "rsi": 49.3,
+    "kurs": 36.76,
+    "rsi": 49.0,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 0.16,
-    "depot_rendite": -2.09,
+    "p_pnl": 0.05,
+    "depot_rendite": -2.2,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -762,7 +762,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_160337_IBIT_aktien_na",
+    "decision_id": "d_20260807_161828_IBIT_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -770,15 +770,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 36.8,
+      "kurs": 36.76,
       "sma20": 36.5,
       "sma50": 36.26,
-      "rsi": 49.3,
-      "atr_pct": 1.55,
-      "vol_ratio": 0.35,
+      "rsi": 49.0,
+      "atr_pct": 1.57,
+      "vol_ratio": 0.38,
       "vix": 15.1,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": -2.09
+      "depot_rendite": -2.2
     },
     "indikatoren": [
       "SMA20>36.5",
@@ -796,8 +796,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 60,
-    "konfidenz_nach_cap": 60,
+    "konfidenz_original": 50,
+    "konfidenz_nach_cap": 50,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

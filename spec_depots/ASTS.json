@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T19:03:34.672473",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:18:48.219082",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:20:07.751023",
-      "wert": 100.0
-    },
-    {
       "zeit": "2026-08-04T21:26:12.426550",
       "wert": 100.0
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:04:03.321720",
       "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.634669",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.754072",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.273760",
+      "wert": 97.56
     }
   ],
   "trades": [
@@ -573,15 +573,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:03:00.395417",
+    "zeit": "2026-08-07T16:18:07.870927",
     "ticker": "ASTS",
     "aktion": "halten",
-    "konfidenz": 35,
-    "grund": "Kein klares Aufwärtssignal, Trend neutral, extrem niedriges Volumen und Warnregeln für space-Titel trotz Watchlist-Kaufwunsch.",
+    "konfidenz": 60,
+    "grund": "Kein klares Aufwärtssignal: neutraler Trend, sehr niedriges Volumen (0.2x) und hohe Volatilität. Zudem greift die historische Warnregel für Space-Titel. Daher keine Position aufbauen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 68.79,
-    "rsi": 63.5,
+    "kurs": 68.95,
+    "rsi": 63.7,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
     "p_pnl": 0,
     "depot_rendite": -2.44,
@@ -755,7 +755,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_160300_ASTS_aktien_na",
+    "decision_id": "d_20260807_161807_ASTS_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -763,12 +763,12 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 68.79,
-      "sma20": 61.86,
-      "sma50": 77.5,
-      "rsi": 63.5,
+      "kurs": 68.95,
+      "sma20": 61.87,
+      "sma50": 77.51,
+      "rsi": 63.7,
       "atr_pct": 7.19,
-      "vol_ratio": 0.16,
+      "vol_ratio": 0.2,
       "vix": 15.1,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
       "depot_rendite": -2.44
@@ -789,8 +789,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 35,
-    "konfidenz_nach_cap": 35,
+    "konfidenz_original": 65.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

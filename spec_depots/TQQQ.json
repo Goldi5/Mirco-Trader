@@ -67,6 +67,14 @@
     {
       "zeit": "2026-08-07T16:05:01.239875",
       "wert": 100.06
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.848174",
+      "wert": 100.06
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.366566",
+      "wert": 100.06
     }
   ],
   "trades": [
@@ -91,7 +99,7 @@
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160454_TQQQ_aktien_na",
+    "decision_id": "d_20260807_161922_TQQQ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "TQQQ",

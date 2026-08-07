@@ -323,6 +323,18 @@
     {
       "zeit": "2026-08-07T16:05:01.238822",
       "wert": 104.76
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.723950",
+      "wert": 104.27
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.846535",
+      "wert": 104.45
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.364570",
+      "wert": 104.64
     }
   ],
   "trades": [
@@ -363,18 +375,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:04:40.279713",
+    "zeit": "2026-08-07T16:19:13.121940",
     "ticker": "TNA",
     "aktion": "halten",
     "konfidenz": 55,
-    "grund": "Aufwärtstrend, aber extrem geringes Volumen (0.21x) und gehebelter Bull-Titel; historische Warnsignale gegen Halten bei Lev-Bull/Volatilität ohne bestätigende News. [Exit-Score 100: Trend läuft noch → Halten statt Verkauf]",
+    "grund": "Aufwärtstrend intakt (Kurs > SMA20 > SMA50, RSI 59.5 nicht überkauft), aber extrem niedriges Volumen (0.24x) und historische Anti-Regeln für lev-bull-Titel sprechen gegen einen Kauf. Position im Plus, daher halten.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 73.92,
-    "rsi": 59.6,
+    "kurs": 73.83,
+    "rsi": 59.5,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 1.52,
-    "depot_rendite": 4.76,
+    "p_pnl": 1.4,
+    "depot_rendite": 4.64,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -545,7 +557,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_160440_TNA_aktien_na",
+    "decision_id": "d_20260807_161913_TNA_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -553,18 +565,18 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 73.92,
-      "sma20": 70.26,
+      "kurs": 73.83,
+      "sma20": 70.25,
       "sma50": 70.16,
-      "rsi": 59.6,
-      "atr_pct": 3.67,
-      "vol_ratio": 0.21,
+      "rsi": 59.5,
+      "atr_pct": 3.69,
+      "vol_ratio": 0.24,
       "vix": 15.1,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 4.76
+      "depot_rendite": 4.64
     },
     "indikatoren": [
-      "SMA20>70.3",
+      "SMA20>70.2",
       "SMA50>70.2",
       "RSI60",
       "ATR3.7%"
@@ -597,8 +609,6 @@
       "r_legacy_5_20387": "stabil",
       "r_legacy_4_69646": "stabil",
       "r_legacy_7_07487": "stabil"
-    },
-    "aktion_original": "verkaufen",
-    "exit_score": 100
+    }
   }
 }

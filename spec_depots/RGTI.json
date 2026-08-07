@@ -9,16 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-30T14:00:27.427441",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
-      "zeit": "2026-07-30T14:16:18.270848",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
       "zeit": "2026-07-30T14:30:27.059315",
       "wert": 100,
       "bargeld": 100
@@ -410,6 +400,14 @@
     {
       "zeit": "2026-08-07T16:05:01.216861",
       "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.698664",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.343109",
+      "wert": 100.05
     }
   ],
   "trades": [
@@ -472,7 +470,7 @@
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160427_RGTI_aktien_na",
+    "decision_id": "d_20260807_161902_RGTI_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "RGTI",

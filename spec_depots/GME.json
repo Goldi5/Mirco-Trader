@@ -9,15 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-30T14:30:27.048093",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T14:42:10.435360",
-      "wert": 100.0
-    },
-    {
       "zeit": "2026-07-30T14:46:58.172237",
       "wert": 100.0
     },
@@ -408,6 +399,14 @@
     {
       "zeit": "2026-08-07T16:04:03.359478",
       "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.666080",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.791272",
+      "wert": 87.53
     }
   ],
   "trades": [
@@ -608,11 +607,11 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:03:31.715973",
+    "zeit": "2026-08-07T16:18:28.444928",
     "ticker": "GME",
     "aktion": "halten",
-    "konfidenz": 25,
-    "grund": "Abwärtstrend, extrem geringes Volumen, keine positiven Signale; RSI überverkauft aber kein bestätigter Boden.",
+    "konfidenz": 35,
+    "grund": "Kein klares Aufwärtssignal: Abwärtstrend, Kurs unter SMA20/SMA50, extrem niedriges Volumen. RSI überverkauft, aber ohne Bestätigung kein Einstieg.",
     "menge": "voll",
     "ziel_kurs": null,
     "kurs": 19.05,
@@ -790,7 +789,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_160331_GME_aktien_na",
+    "decision_id": "d_20260807_161828_GME_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -802,8 +801,8 @@
       "sma20": 21.14,
       "sma50": 21.55,
       "rsi": 25.7,
-      "atr_pct": 2.76,
-      "vol_ratio": 0.13,
+      "atr_pct": 2.77,
+      "vol_ratio": 0.16,
       "vix": 15.1,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": -12.47
@@ -824,8 +823,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 25,
-    "konfidenz_nach_cap": 25,
+    "konfidenz_original": 35,
+    "konfidenz_nach_cap": 35,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

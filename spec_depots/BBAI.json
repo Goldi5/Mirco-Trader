@@ -2,24 +2,12 @@
   "ticker": "BBAI",
   "name": "BigBear.ai Holdings",
   "kategorie": "ai",
-  "bargeld": -0.0,
-  "shares": 35.948718,
-  "avg_price": 3.12,
+  "bargeld": 110.72,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-03T22:40:46.225933",
-      "wert": 109.27
-    },
-    {
-      "zeit": "2026-08-04T16:52:10.063509",
-      "wert": 109.27
-    },
-    {
-      "zeit": "2026-08-04T17:48:10.086976",
-      "wert": 111.79
-    },
     {
       "zeit": "2026-08-04T17:48:59.552942",
       "wert": 111.79
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:05:01.160409",
       "wert": 111.08
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.638672",
+      "wert": 110.72
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.760465",
+      "wert": 110.72
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.279279",
+      "wert": 110.72
     }
   ],
   "trades": [
@@ -557,13 +557,21 @@
       "preis": 3.12,
       "grund": "Leere Position, Bargeld verfügbar, Ticker auf Watchlist; RSI mit 60.1 nicht überkauft, VIX niedrig. Volumen und Trend neutral, daher moderate Konfidenz. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.638672",
+      "aktion": "verkaufen",
+      "menge": 35.948718,
+      "preis": 3.08,
+      "grund": "Kein klares Aufwärtssignal, sehr schwaches Volumen; AI/Volatilitäts-Titel: Halten laut Historie negativ, Position leicht im Minus.",
+      "ki_konfidenz": 55
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160315_BBAI_aktien_na",
+    "decision_id": "d_20260807_161819_BBAI_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "BBAI",

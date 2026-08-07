@@ -2,24 +2,12 @@
   "ticker": "BITX",
   "name": "Volatility Bitcoin 2x",
   "kategorie": "crypto",
-  "bargeld": 98.78,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 7.985449,
+  "avg_price": 12.37,
   "start": 100.0,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-04T19:03:19.945417",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T19:03:34.681459",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T19:03:35.671947",
-      "wert": 100.0
-    },
     {
       "zeit": "2026-08-04T21:18:48.245888",
       "wert": 100.0
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:05:01.163971",
       "wert": 98.78
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.643015",
+      "wert": 98.78
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.767565",
+      "wert": 98.78
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.284279",
+      "wert": 98.94
     }
   ],
   "trades": [
@@ -552,13 +552,21 @@
       "preis": 12.19,
       "grund": "Abwärtstrend, geringes Volumen, Halten von Volatilitätstiteln laut Regeln negativ; Position reduzieren. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.767565",
+      "aktion": "kaufen",
+      "menge": 7.985449,
+      "preis": 12.37,
+      "grund": "Neutraler Trend, RSI neutral, aber Anweisung zum Kauf bei freiem Cash und Watchlist-Status.",
+      "ki_konfidenz": 55
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160317_BITX_aktien_na",
+    "decision_id": "d_20260807_161819_BITX_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "BITX",

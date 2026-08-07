@@ -1,9 +1,9 @@
 Analysiere 5 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
 
-Risk 60: Cash $22.5, Wert $102.7, Pos: AA: 1.12st @$42.71 (Kurs $49.01, P&L +14.75%), SNAP: 4.78st @$5.33 (Kurs $5.28, P&L -1.03%), Kandidaten: DOMO $3.9 (17% Cash), AMC $2.6 (11% Cash), WKHS $3.3 (15% Cash), SNAP $5.3 (23% Cash), PATH $14.8 (66% Cash)
-Risk 65: Cash $0.0, Wert $100.0, Pos: LCID: 14.44st @$6.75 (Kurs $6.93, P&L +2.60%), Kandidaten: keine
-Risk 70: Cash $107.2, Wert $107.2, Pos: keine, Kandidaten: DOMO $3.9 (4% Cash), AMC $2.6 (2% Cash), WKHS $3.3 (3% Cash), SNAP $5.3 (5% Cash), PATH $14.8 (14% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
-Risk 80: Cash $117.5, Wert $117.5, Pos: keine, Kandidaten: SOXS $42.0 (36% Cash), AMC $2.6 (2% Cash), ETHU $16.6 (14% Cash), WKHS $3.3 (3% Cash), NRGU $37.0 (31% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
-Risk 90: Cash $124.0, Wert $124.0, Pos: keine, Kandidaten: SOXS $42.0 (34% Cash), AMC $2.6 (2% Cash), ETHU $16.6 (13% Cash), WKHS $3.3 (3% Cash), NRGU $37.0 (30% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 30: Cash $102.0, Wert $102.0, Pos: keine, Kandidaten: GPK $12.0 (12% Cash), DOMO $3.9 (4% Cash), KHC $25.1 (25% Cash), BF-B $28.5 (28% Cash), SNAP $5.3 (5% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 35: Cash $61.1, Wert $103.4, Pos: DOMO: 10.88st @$3.67 (Kurs $3.88, P&L +5.71%), Kandidaten: GPK $12.0 (20% Cash), DOMO $3.9 (6% Cash), KHC $25.1 (41% Cash), BF-B $28.5 (47% Cash), SNAP $5.3 (9% Cash)
+Risk 75: Cash $116.2, Wert $116.2, Pos: keine, Kandidaten: SOXS $42.0 (36% Cash), AMC $2.6 (2% Cash), ETHU $16.6 (14% Cash), WKHS $3.3 (3% Cash), NRGU $37.0 (32% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 85: Cash $112.6, Wert $112.6, Pos: keine, Kandidaten: SOXS $42.0 (37% Cash), AMC $2.6 (2% Cash), ETHU $16.6 (15% Cash), WKHS $3.3 (3% Cash), NRGU $37.0 (33% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 15: Cash $0.0, Wert $99.7, Pos: DOMO: 6.19st @$3.67 (Kurs $3.88, P&L +5.71%), BF-B: 2.67st @$28.36 (Kurs $28.31, P&L -0.18%), Kandidaten: keine
 
 Antworte NUR mit JSON [{"risk":0, "aktionen":[{"ticker":"AAPL","aktion":"kaufen"|"verkaufen"|"halten","menge":"voll"|"teil","grund":"..."}]}]

@@ -9,21 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-29T20:16:17.533036",
-      "wert": 100.02,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T20:19:17.103351",
-      "wert": 100.02,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-29T20:31:46.174308",
-      "wert": 100.02,
-      "bargeld": 10.0
-    },
-    {
       "zeit": "2026-07-29T20:46:16.157272",
       "wert": 100.02,
       "bargeld": 10.0
@@ -438,6 +423,18 @@
     {
       "zeit": "2026-08-07T16:05:01.246602",
       "wert": 95.02
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.733410",
+      "wert": 95.02
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.854093",
+      "wert": 95.02
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.374586",
+      "wert": 95.02
     }
   ],
   "trades": [
@@ -477,15 +474,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:04:56.633418",
+    "zeit": "2026-08-07T16:19:23.423564",
     "ticker": "VIXY",
     "aktion": "halten",
     "konfidenz": 60,
-    "grund": "Abwärtstrend (Kurs<SMA20<SMA50), RSI 37.8, extrem niedriges Volumen (0.11x) und VIX 15.1; Warnregeln für Volatilitätstitel, kein klares Aufwärtssignal. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "grund": "Abwärtstrend, sehr geringes Volumen, fallender VIX und Warnregel für Volatilitäts-Titel; kein klares Kaufsignal, daher Cash halten.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 19.58,
-    "rsi": 37.8,
+    "kurs": 19.49,
+    "rsi": 37.1,
     "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
     "p_pnl": 0,
     "depot_rendite": -4.98,
@@ -659,7 +656,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_160456_VIXY_aktien_na",
+    "decision_id": "d_20260807_161923_VIXY_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -667,12 +664,12 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 19.58,
+      "kurs": 19.49,
       "sma20": 20.81,
       "sma50": 21.86,
-      "rsi": 37.8,
-      "atr_pct": 4.31,
-      "vol_ratio": 0.11,
+      "rsi": 37.1,
+      "atr_pct": 4.34,
+      "vol_ratio": 0.15,
       "vix": 15.1,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": -4.98
@@ -680,7 +677,7 @@
     "indikatoren": [
       "SMA20>20.8",
       "SMA50>21.9",
-      "RSI38",
+      "RSI37",
       "ATR4.3%"
     ],
     "news_score": null,
@@ -693,7 +690,7 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 65.0,
+    "konfidenz_original": 60,
     "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",

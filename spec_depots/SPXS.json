@@ -9,16 +9,6 @@
   "exchange": null,
   "historie": [
     {
-      "zeit": "2026-07-30T08:16:09.906505",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T08:31:15.832944",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
       "zeit": "2026-07-30T08:46:15.518041",
       "wert": 100.0,
       "bargeld": 10.0
@@ -426,6 +416,14 @@
     {
       "zeit": "2026-08-07T16:05:01.228776",
       "wert": 97.05
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.714315",
+      "wert": 97.05
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.354986",
+      "wert": 97.05
     }
   ],
   "trades": [
@@ -451,7 +449,7 @@
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160446_SPXS_aktien_na",
+    "decision_id": "d_20260807_161914_SPXS_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SPXS",

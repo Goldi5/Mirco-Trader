@@ -1,9 +1,21 @@
 {
-  "zeit": "2026-08-07T16:05:05.925053",
+  "zeit": "2026-08-07T16:19:36.814488",
   "total": 55,
-  "relevant": 43,
+  "relevant": 42,
   "irrelevant": 3,
   "headlines": [
+    {
+      "title": "I’m an unemployed software developer who is skeptical of AI. Can I still find a job in tech?",
+      "link": "https://www.marketwatch.com/story/im-an-unemployed-software-developer-who-is-skeptical-of-ai-can-i-still-find-a-job-in-tech-4413875e?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 14:15:00 GMT",
+      "topics": [
+        "tech",
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
     {
       "title": "If I marry my girlfriend, 67, will she lose her Supplemental Security Income and divorced spouse benefits?",
       "link": "https://www.marketwatch.com/story/if-i-marry-my-girlfriend-67-will-she-lose-her-supplemental-security-income-and-divorced-spouse-benefits-9340bab9?mod=mw_rss_topstories",
@@ -79,12 +91,29 @@
       ]
     },
     {
-      "title": "‘Her bank accounts were stripped bare by Medicaid’: My late friend had $20,000 in credit-card debt. Will her life insurance pay for it?",
-      "link": "https://www.marketwatch.com/story/her-bank-accounts-were-stripped-bare-by-medicaid-my-late-friend-had-20-000-in-credit-card-debt-will-her-life-insurance-pay-for-it-17ee9792?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 02:00:00 GMT",
+      "title": "Tether Expands Tokenization To Saudi Arabia",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/tether-expands-tokenization-saudi-arabia-141300999.html",
+      "date": "2026-08-07T14:13:00Z",
       "topics": [
-        "tech"
+        "krypto"
       ],
+      "tickers": []
+    },
+    {
+      "title": "Palomar Holdings’ (PLMR) Premium Growth Overshadowed by Sector Caution",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/palomar-holdings-plmr-premium-growth-140953714.html",
+      "date": "2026-08-07T14:09:53Z",
+      "topics": [
+        "regulation",
+        "markt"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "IBD 50 Stock Natera Zips Into Profit-Taking Zone On Its Blowout Quarter",
+      "link": "https://www.investors.com/news/technology/natera-stock-natera-earnings-q2-2026/?src=A00220&yptr=yahoo",
+      "date": "2026-08-07T14:07:26Z",
+      "topics": [],
       "tickers": [
         "F"
       ]
@@ -103,6 +132,39 @@
       ]
     },
     {
+      "title": "Multiple Headwinds Overshadow Hillman Solutions Corp.’s (HLMN) Strong Fundamentals",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/multiple-headwinds-overshadow-hillman-solutions-135933826.html",
+      "date": "2026-08-07T13:59:33Z",
+      "topics": [
+        "markt"
+      ],
+      "tickers": [
+        "F",
+        "MU"
+      ]
+    },
+    {
+      "title": "Nvidia, Microsoft Partner Tests Breakout. Three Clues Bode Well.",
+      "link": "https://www.investors.com/research/ibd-stock-analysis/dell-stock-rises-ai-collaboration-with-nvidia-microsoft-amd/?src=A00220&yptr=yahoo",
+      "date": "2026-08-07T13:57:47Z",
+      "topics": [],
+      "tickers": [
+        "F",
+        "DIA"
+      ]
+    },
+    {
+      "title": "While everyone chases Nvidia, Caterpillar just showed where AI money goes next",
+      "link": "https://finance.yahoo.com/technology/ai/articles/while-everyone-chases-nvidia-caterpillar-140700941.html",
+      "date": "2026-08-07T14:07:00Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "DIA"
+      ]
+    },
+    {
       "title": "Stock Market Today: Dow Down After Surprise July Jobs Reading; AI Stock Cloudflare Soars (Live Coverage)",
       "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-july-jobs-report-cloudflare-stock/?src=A00220&yptr=yahoo",
       "date": "2026-08-07T13:55:24Z",
@@ -110,15 +172,6 @@
         "tech",
         "markt"
       ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Aura Power, Verdant merge to form UK solar-BESS IPP",
-      "link": "https://finance.yahoo.com/energy/articles/aura-power-verdant-merge-form-135408274.html",
-      "date": "2026-08-07T13:54:08Z",
-      "topics": [],
       "tickers": [
         "F"
       ]
@@ -141,56 +194,6 @@
         "markt"
       ],
       "tickers": []
-    },
-    {
-      "title": "SpaceX Stock Lands An Upgrade, Rocket Lab Surges After Electron Mission",
-      "link": "https://www.investors.com/news/spacex-stock-upgrade-buy-ai-expenditure-repayment-rocket-lab-stock-electron-mission-rklb/?src=A00220&yptr=yahoo",
-      "date": "2026-08-07T13:51:51Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Nvidia, Microsoft Partner Tests Breakout. Three Clues Bode Well.",
-      "link": "https://www.investors.com/research/ibd-stock-analysis/dell-stock-rises-ai-collaboration-with-nvidia-microsoft-amd/?src=A00220&yptr=yahoo",
-      "date": "2026-08-07T13:49:20Z",
-      "topics": [],
-      "tickers": [
-        "F",
-        "DIA"
-      ]
-    },
-    {
-      "title": "Stock market today: Dow, S&P 500, Nasdaq rise after July jobs report surprises to the downside",
-      "link": "https://finance.yahoo.com/markets/live/stock-market-today-friday-august-7-nasdaq-dow-sp-500-july-jobs-report-surprises-100009572.html",
-      "date": "2026-08-07T10:00:09Z",
-      "topics": [
-        "markt"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Long-Term Growth Opportunities Remain for Artivion (AORT) Despite Challenges",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/long-term-growth-opportunities-remain-133709699.html",
-      "date": "2026-08-07T13:37:09Z",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "JBS forms meat joint venture with Indonesia’s sovereign-wealth fund",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/jbs-forms-meat-joint-venture-134821900.html",
-      "date": "2026-08-07T13:48:21Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
     },
     {
       "title": "Fed Rate Hike Doesn't Make Sense Right Now, BlackRock's Rieder Says",
@@ -322,12 +325,10 @@
       ]
     },
     {
-      "title": "Garbage-Truck Margin Boost Shows the AI Profit Boom Has Begun",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-07/garbage-truck-margin-boost-shows-the-ai-profit-boom-has-begun",
-      "date": "Fri, 07 Aug 2026 12:18:45 GMT",
-      "topics": [
-        "tech"
-      ],
+      "title": "Weak Jobs Report Does Not Eliminate Prospects of a September Rate Rise",
+      "link": "https://www.nytimes.com/2026/08/07/business/economy/weak-jobs-report-does-not-eliminate-prospects-of-a-september-rate-rise.html",
+      "date": "Fri, 07 Aug 2026 14:07:38 +0000",
+      "topics": [],
       "tickers": [
         "F"
       ]
@@ -446,18 +447,6 @@
       "date": "Wed, 29 Jul 2026 19:41:04 +0000",
       "topics": [
         "zinsen"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Investors Are Bracing for Uncertain Fed Announcement",
-      "link": "https://www.nytimes.com/live/2026/07/29/business/fed-meeting-rates-kevin-warsh/investors-are-bracing-for-uncertain-fed-announcement",
-      "date": "Wed, 29 Jul 2026 16:57:58 +0000",
-      "topics": [
-        "zinsen",
-        "tech"
       ],
       "tickers": [
         "F"

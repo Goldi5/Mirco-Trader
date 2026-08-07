@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-03T16:23:05.813794",
-      "wert": 100.0
-    },
-    {
       "zeit": "2026-08-03T16:35:05.347509",
       "wert": 100.0
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T16:04:03.336329",
       "wert": 100.32
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.646293",
+      "wert": 100.32
     }
   ],
   "trades": [
@@ -517,15 +517,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:02:57.816431",
+    "zeit": "2026-08-07T16:18:02.000528",
     "ticker": "BOIL",
     "aktion": "halten",
     "konfidenz": 30,
-    "grund": "Abwärtstrend (Kurs < SMA20 < SMA50), RSI 37.5 und geringes Volumen signalisieren keine Kaufbestätigung; trotz Watchlist kein Einstieg ohne klares Aufwärtssignal.",
+    "grund": "Abwärtstrend, niedriges Volumen, hohe Volatilität; keine klare Aufwärtssignale, daher kein Kauf.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 19.36,
-    "rsi": 37.5,
+    "kurs": 19.31,
+    "rsi": 37.1,
     "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
     "p_pnl": 0,
     "depot_rendite": 0.32,
@@ -699,7 +699,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_160257_BOIL_aktien_na",
+    "decision_id": "d_20260807_161802_BOIL_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -707,12 +707,12 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 19.36,
+      "kurs": 19.31,
       "sma20": 21.06,
       "sma50": 24.92,
-      "rsi": 37.5,
-      "atr_pct": 3.91,
-      "vol_ratio": 0.39,
+      "rsi": 37.1,
+      "atr_pct": 3.92,
+      "vol_ratio": 0.42,
       "vix": 15.1,
       "trend": "Abwärtstrend (Kurs < SMA20 < SMA50)",
       "depot_rendite": 0.32
@@ -720,7 +720,7 @@
     "indikatoren": [
       "SMA20>21.1",
       "SMA50>24.9",
-      "RSI38",
+      "RSI37",
       "ATR3.9%"
     ],
     "news_score": null,

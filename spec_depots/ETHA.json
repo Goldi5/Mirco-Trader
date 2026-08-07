@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T18:12:36.097614",
-      "wert": 98.45
-    },
-    {
-      "zeit": "2026-08-04T19:03:19.949602",
-      "wert": 98.45
-    },
-    {
-      "zeit": "2026-08-04T19:03:34.686692",
-      "wert": 98.45
-    },
-    {
       "zeit": "2026-08-04T19:03:35.678457",
       "wert": 98.45
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:05:01.173747",
       "wert": 99.12
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.653796",
+      "wert": 98.71
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.776849",
+      "wert": 98.77
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.294773",
+      "wert": 98.84
     }
   ],
   "trades": [
@@ -466,18 +466,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:03:33.125234",
+    "zeit": "2026-08-07T16:18:21.885825",
     "ticker": "ETHA",
     "aktion": "halten",
     "konfidenz": 50,
-    "grund": "Aufwärtstrend intakt, RSI neutral, aber sehr niedriges Volumen und kein Bargeld verfügbar; daher Position halten.",
+    "grund": "Aufwärtstrend intakt, RSI neutral, aber sehr geringes Volumen; Position halten.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 14.49,
-    "rsi": 52.6,
+    "kurs": 14.45,
+    "rsi": 51.9,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 1.47,
-    "depot_rendite": -0.88,
+    "p_pnl": 1.19,
+    "depot_rendite": -1.16,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -648,7 +648,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_160333_ETHA_aktien_na",
+    "decision_id": "d_20260807_161821_ETHA_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -656,20 +656,20 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 14.49,
+      "kurs": 14.45,
       "sma20": 14.26,
       "sma50": 13.54,
-      "rsi": 52.6,
-      "atr_pct": 2.12,
-      "vol_ratio": 0.18,
+      "rsi": 51.9,
+      "atr_pct": 2.15,
+      "vol_ratio": 0.23,
       "vix": 15.1,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": -0.88
+      "depot_rendite": -1.16
     },
     "indikatoren": [
       "SMA20>14.3",
       "SMA50>13.5",
-      "RSI53",
+      "RSI52",
       "ATR2.1%"
     ],
     "news_score": null,

@@ -9,18 +9,6 @@
   "exchange": null,
   "historie": [
     {
-      "zeit": "2026-08-03T22:33:49.984204",
-      "wert": 96.67
-    },
-    {
-      "zeit": "2026-08-03T22:40:46.294395",
-      "wert": 96.67
-    },
-    {
-      "zeit": "2026-08-04T09:23:19.495014",
-      "wert": 97.47
-    },
-    {
       "zeit": "2026-08-04T16:08:26.701630",
       "wert": 103.45
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:05:01.196759",
       "wert": 102.55
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.681516",
+      "wert": 102.72
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.805498",
+      "wert": 102.72
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.325103",
+      "wert": 102.82
     }
   ],
   "trades": [
@@ -432,7 +432,7 @@
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160402_KOLD_aktien_na",
+    "decision_id": "d_20260807_161844_KOLD_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "KOLD",

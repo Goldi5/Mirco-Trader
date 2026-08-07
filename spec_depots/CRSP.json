@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T17:48:10.109558",
-      "wert": 101.68
-    },
-    {
       "zeit": "2026-08-04T17:50:11.529713",
       "wert": 101.68
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T16:04:03.341618",
       "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.651752",
+      "wert": 101.33
     }
   ],
   "trades": [
@@ -574,15 +574,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:03:09.366310",
+    "zeit": "2026-08-07T16:18:08.839078",
     "ticker": "CRSP",
     "aktion": "halten",
     "konfidenz": 30,
-    "grund": "RSI überkauft, Trend neutral, sehr geringes Volumen (0.18x), keine positiven News. Kein klares Aufwärtssignal; Position leer, daher halten.",
+    "grund": "RSI überkauft (73.2), Trend neutral, Volumen-Ratio extrem niedrig (0.2x), keine klaren Aufwärtssignale",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 53.29,
-    "rsi": 72.7,
+    "kurs": 53.53,
+    "rsi": 73.2,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
     "p_pnl": 0,
     "depot_rendite": 1.33,
@@ -756,7 +756,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_160309_CRSP_aktien_na",
+    "decision_id": "d_20260807_161808_CRSP_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -764,12 +764,12 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 53.29,
-      "sma20": 49.18,
-      "sma50": 52.33,
-      "rsi": 72.7,
-      "atr_pct": 3.43,
-      "vol_ratio": 0.18,
+      "kurs": 53.53,
+      "sma20": 49.19,
+      "sma50": 52.34,
+      "rsi": 73.2,
+      "atr_pct": 3.42,
+      "vol_ratio": 0.2,
       "vix": 15.1,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
       "depot_rendite": 1.33

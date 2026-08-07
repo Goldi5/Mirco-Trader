@@ -280,6 +280,18 @@
     {
       "zeit": "2026-08-07T16:05:01.221085",
       "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.703061",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.826532",
+      "wert": 97.43
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.346107",
+      "wert": 97.43
     }
   ],
   "trades": [
@@ -393,7 +405,7 @@
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160434_RIVN_aktien_na",
+    "decision_id": "d_20260807_161901_RIVN_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "RIVN",

@@ -319,6 +319,18 @@
     {
       "zeit": "2026-08-07T16:05:01.214376",
       "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.696313",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.820228",
+      "wert": 105.57
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.340486",
+      "wert": 105.57
     }
   ],
   "trades": [
@@ -399,7 +411,7 @@
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160426_QS_aktien_na",
+    "decision_id": "d_20260807_161856_QS_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "QS",

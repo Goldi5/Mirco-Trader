@@ -2,9 +2,9 @@
   "ticker": "MSTR",
   "name": "MicroStrategy Inc.",
   "kategorie": "crypto",
-  "bargeld": 0.0,
-  "shares": 0.967358,
-  "avg_price": 101.71,
+  "bargeld": 97.22,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100.0,
   "exchange": "US",
   "historie": [
@@ -292,6 +292,18 @@
     {
       "zeit": "2026-08-07T16:05:01.206897",
       "wert": 98.43
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.687901",
+      "wert": 97.11
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.812866",
+      "wert": 97.22
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.330991",
+      "wert": 97.22
     }
   ],
   "trades": [
@@ -373,22 +385,30 @@
       "preis": 101.71,
       "grund": "Watchlist-Signal, Cash verfügbar; RSI neutral, nicht überkauft, aber niedriges Volumen und Neutral-Trend begrenzen Konfidenz.",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.812866",
+      "aktion": "verkaufen",
+      "menge": 0.967358,
+      "preis": 100.5,
+      "grund": "Trend neutral, Volumen schwach, keine positiven News; historische Regeln warnen vor Halten bei volatilen/AI-Titeln und hohe Konfidenz ist unzuverlässig.",
+      "ki_konfidenz": 50
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T16:04:09.919924",
+    "zeit": "2026-08-07T16:18:37.361466",
     "ticker": "MSTR",
-    "aktion": "halten",
-    "konfidenz": 40,
-    "grund": "Neutraler Trend, geringes Volumen (0.44x), Warnregel gegen volatile Titel, Cash unter Aktienkurs",
+    "aktion": "verkaufen",
+    "konfidenz": 60,
+    "grund": "Neutraler Trend, stark unterdurchschnittliches Volumen und keine positiven Signale; historische Warnungen gegen Halten bei volatilen/ai-Titeln ueberwiegen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 101.75,
-    "rsi": 54.2,
+    "kurs": 100.95,
+    "rsi": 53.4,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0,
-    "depot_rendite": -1.61,
+    "p_pnl": -0.75,
+    "depot_rendite": -2.35,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -559,7 +579,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_160409_MSTR_aktien_na",
+    "decision_id": "d_20260807_161837_MSTR_aktien_na",
     "provider": "zen",
     "fallback": false,
     "depot_typ": "aktien",
@@ -567,21 +587,21 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 101.75,
-      "sma20": 96.49,
-      "sma50": 106.38,
-      "rsi": 54.2,
-      "atr_pct": 4.52,
-      "vol_ratio": 0.44,
+      "kurs": 100.95,
+      "sma20": 96.45,
+      "sma50": 106.36,
+      "rsi": 53.4,
+      "atr_pct": 4.6,
+      "vol_ratio": 0.52,
       "vix": 15.1,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": -1.61
+      "depot_rendite": -2.35
     },
     "indikatoren": [
       "SMA20>96.5",
       "SMA50>106.4",
-      "RSI54",
-      "ATR4.5%"
+      "RSI53",
+      "ATR4.6%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -593,8 +613,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 40,
-    "konfidenz_nach_cap": 40,
+    "konfidenz_original": 70.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

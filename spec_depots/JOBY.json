@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-30T14:42:10.448049",
-      "wert": 100
-    },
-    {
-      "zeit": "2026-07-30T14:46:58.181898",
-      "wert": 100
-    },
-    {
-      "zeit": "2026-07-30T17:46:44.320100",
-      "wert": 100
-    },
-    {
       "zeit": "2026-07-31T10:47:23.287486",
       "wert": 100
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T16:05:01.195062",
       "wert": 99.39
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.678950",
+      "wert": 98.92
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.803330",
+      "wert": 98.92
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.323103",
+      "wert": 99.27
     }
   ],
   "trades": [
@@ -459,7 +459,7 @@
     "aktion": "halten",
     "konfidenz": 50,
     "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_160401_JOBY_aktien_na",
+    "decision_id": "d_20260807_161840_JOBY_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "JOBY",
