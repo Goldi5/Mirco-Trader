@@ -1,9 +1,9 @@
 Analysiere 5 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
 
-Risk 60: Cash $22.5, Wert $103.2, Pos: AA: 1.12st @$42.71 (Kurs $49.23, P&L +15.27%), SNAP: 4.78st @$5.33 (Kurs $5.33, P&L +0.00%), Kandidaten: AMC $2.6 (11% Cash), WKHS $3.3 (15% Cash), DOMO $3.9 (17% Cash), ALLO $2.0 (9% Cash), ACHR $5.4 (24% Cash)
-Risk 65: Cash $0.0, Wert $104.2, Pos: LCID: 14.44st @$6.75 (Kurs $7.22, P&L +6.89%), Kandidaten: keine
-Risk 70: Cash $107.2, Wert $107.2, Pos: keine, Kandidaten: AMC $2.6 (2% Cash), WKHS $3.3 (3% Cash), DOMO $3.9 (4% Cash), ALLO $2.0 (2% Cash), ACHR $5.4 (5% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
-Risk 80: Cash $117.5, Wert $117.5, Pos: keine, Kandidaten: AMC $2.6 (2% Cash), WKHS $3.3 (3% Cash), DOMO $3.9 (3% Cash), ALLO $2.0 (2% Cash), ACHR $5.4 (5% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
-Risk 90: Cash $124.0, Wert $124.0, Pos: keine, Kandidaten: AMC $2.6 (2% Cash), WKHS $3.3 (3% Cash), DOMO $3.9 (3% Cash), ALLO $2.0 (2% Cash), ACHR $5.4 (4% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 90: Cash $0.0, Wert $123.6, Pos: ALLO: 61.82st @$2.01 (Kurs $2.00, P&L -0.25%), Kandidaten: keine
+Risk 15: Cash $0.0, Wert $100.6, Pos: DOMO: 6.19st @$3.67 (Kurs $3.90, P&L +6.12%), BF-B: 2.67st @$28.36 (Kurs $28.62, P&L +0.93%), Kandidaten: keine
+Risk 65: Cash $0.0, Wert $99.9, Pos: LCID: 14.44st @$6.75 (Kurs $6.92, P&L +2.52%), Kandidaten: keine
+Risk 75: Cash $116.2, Wert $116.2, Pos: keine, Kandidaten: AMC $2.6 (2% Cash), WKHS $3.3 (3% Cash), DOMO $3.9 (3% Cash), ALLO $2.0 (2% Cash), ACHR $5.4 (5% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 85: Cash $56.3, Wert $111.3, Pos: WKHS: 16.83st @$3.35 (Kurs $3.27, P&L -2.24%), Kandidaten: AMC $2.6 (5% Cash), WKHS $3.3 (6% Cash), DOMO $3.9 (7% Cash), ALLO $2.0 (4% Cash), ACHR $5.4 (10% Cash)
 
 Antworte NUR mit JSON [{"risk":0, "aktionen":[{"ticker":"AAPL","aktion":"kaufen"|"verkaufen"|"halten","menge":"voll"|"teil","grund":"..."}]}]

@@ -2,84 +2,12 @@
   "ticker": "BB",
   "name": "BlackBerry Ltd.",
   "kategorie": "meme",
-  "bargeld": 104.9,
+  "bargeld": 103.74,
   "shares": 0,
   "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-07-31T13:31:56.937927",
-      "wert": 106.91
-    },
-    {
-      "zeit": "2026-07-31T13:46:51.176038",
-      "wert": 106.91
-    },
-    {
-      "zeit": "2026-07-31T14:01:55.661649",
-      "wert": 106.91
-    },
-    {
-      "zeit": "2026-07-31T15:33:42.048700",
-      "wert": 109.82
-    },
-    {
-      "zeit": "2026-07-31T20:31:14.780415",
-      "wert": 108.81
-    },
-    {
-      "zeit": "2026-07-31T21:19:42.965945",
-      "wert": 108.3
-    },
-    {
-      "zeit": "2026-08-03T16:35:05.341423",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-03T22:33:49.957692",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T17:48:59.550427",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T17:50:11.495713",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T18:02:50.032397",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T18:15:13.355218",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T18:35:14.385167",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T21:20:07.758505",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T21:20:12.217587",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T21:33:57.257192",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T21:34:31.882151",
-      "wert": 107.04
-    },
-    {
-      "zeit": "2026-08-04T21:48:28.457845",
-      "wert": 107.04
-    },
     {
       "zeit": "2026-08-05T15:37:43.788357",
       "wert": 107.04
@@ -407,6 +335,78 @@
     {
       "zeit": "2026-08-07T16:34:49.647813",
       "wert": 104.9
+    },
+    {
+      "zeit": "2026-08-07T17:03:34.450429",
+      "wert": 104.9
+    },
+    {
+      "zeit": "2026-08-07T17:17:35.240342",
+      "wert": 104.9
+    },
+    {
+      "zeit": "2026-08-07T17:32:43.286591",
+      "wert": 104.9
+    },
+    {
+      "zeit": "2026-08-07T17:47:28.005332",
+      "wert": 104.9
+    },
+    {
+      "zeit": "2026-08-07T18:03:03.305436",
+      "wert": 104.9
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.634855",
+      "wert": 104.9
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.230627",
+      "wert": 104.55
+    },
+    {
+      "zeit": "2026-08-07T18:47:09.209069",
+      "wert": 104.78
+    },
+    {
+      "zeit": "2026-08-07T19:02:39.000056",
+      "wert": 104.67
+    },
+    {
+      "zeit": "2026-08-07T19:17:35.766046",
+      "wert": 104.43
+    },
+    {
+      "zeit": "2026-08-07T19:17:58.588781",
+      "wert": 104.55
+    },
+    {
+      "zeit": "2026-08-07T19:32:40.419546",
+      "wert": 104.55
+    },
+    {
+      "zeit": "2026-08-07T19:47:10.604775",
+      "wert": 104.2
+    },
+    {
+      "zeit": "2026-08-07T20:02:20.803644",
+      "wert": 104.09
+    },
+    {
+      "zeit": "2026-08-07T20:02:41.862921",
+      "wert": 104.09
+    },
+    {
+      "zeit": "2026-08-07T20:17:19.746781",
+      "wert": 104.09
+    },
+    {
+      "zeit": "2026-08-07T20:32:29.927572",
+      "wert": 104.2
+    },
+    {
+      "zeit": "2026-08-07T20:46:44.421731",
+      "wert": 103.74
     }
   ],
   "trades": [
@@ -608,13 +608,29 @@
       "preis": 9.05,
       "grund": "Trotz neutralem Trend und RSI im Normalbereich, sehr niedriges Volumen (0.14x) und hohe Volatilität (ATR 5.05%); historische Warnregel gegen Halten bei Volatilitätstiteln. Position leicht negativ, keine Kaufargumente, daher Ausstieg. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T18:03:03.305436",
+      "aktion": "kaufen",
+      "menge": 11.642619,
+      "preis": 9.01,
+      "grund": "Neutraler Trend (RSI 53, zwischen SMA20/50), aber Watchlist-Titel mit verfügbarem Cash. Volumen-Ratio 0.31x → kleinere Position (ca. 50%) laut Strategie. Keine negativen News, VIX niedrig, Depot braucht Diversifikation.",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-07T20:46:44.421731",
+      "aktion": "verkaufen",
+      "menge": 11.642619,
+      "preis": 8.91,
+      "grund": "Klarer Abwärtstrend (Kurs < SMA20 < SMA50), niedriges Volumen (0.45x), RSI neutral bei 51.6, kein Cash für Nachkauf, Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz. Kleiner Verlust begrenzen und Kapital freisetzen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_164754_BB_aktien_na",
+    "decision_id": "d_20260807_210242_BB_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "BB",

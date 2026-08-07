@@ -9,14 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T11:17:12.334151",
-      "wert": 103.63
-    },
-    {
-      "zeit": "2026-07-31T11:32:17.683342",
-      "wert": 103.63
-    },
-    {
       "zeit": "2026-07-31T11:47:05.718740",
       "wert": 103.63
     },
@@ -407,6 +399,14 @@
     {
       "zeit": "2026-08-07T16:34:01.814391",
       "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.706169",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.286309",
+      "wert": 103.5
     }
   ],
   "trades": [
@@ -564,7 +564,7 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_164754_MRNA_aktien_na",
+    "decision_id": "d_20260807_210242_MRNA_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "MRNA",

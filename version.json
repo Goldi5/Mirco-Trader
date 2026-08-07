@@ -1,8 +1,8 @@
 {
-  "version": "2.19.4",
-  "build": "2026-08-07_1650",
-  "released_at": "2026-08-07 16:50",
-  "codename": "Diversifikation: viele kleine Positionen",
+  "version": "2.19.5",
+  "build": "2026-08-07_2115",
+  "released_at": "2026-08-07 21:15",
+  "codename": "Risiko-Rampe Stufe 1+2: Volumen offen, Hebel erlaubt",
   "changes": [
     {
       "version": "2.19.3",

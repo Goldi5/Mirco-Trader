@@ -304,6 +304,14 @@
     {
       "zeit": "2026-08-07T16:19:32.330991",
       "wert": 97.22
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.711761",
+      "wert": 97.22
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.288902",
+      "wert": 97.22
     }
   ],
   "trades": [
@@ -399,7 +407,7 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_164754_MSTR_aktien_na",
+    "decision_id": "d_20260807_210242_MSTR_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "MSTR",

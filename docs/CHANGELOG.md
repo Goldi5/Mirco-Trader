@@ -1,3 +1,10 @@
+## [2.19.5] - 2026-08-07
+### Changed (Risiko-Rampe Stufe 1+2)
+- **Stufe 1 — Volumen-Filter geöffnet** (`ki_decisions.py` Z258-260): `vol_ratio <0.3x` → 70% Position (statt 50%); `<0.15x` → noch 40%; erst `<0.08x` = kompletter Verzicht (statt 0.15x). Ziel: mehr Käufe = mehr Lern-Signal.
+- **Stufe 2 — Hebel-ETFs erlaubt** (`ki_decisions.py` Z261-263): 3x-Produkte (TQQQ/SQQQ/UVXY/VXX/VIXY/SOXS/SPXS/JDST/JNUG/FNGU/BOIL/UCO/SCO/NRGU/FAZ) dürfen gekauft werden, aber nur mit KLEINER Position (max 30% Cash) wegen Slippage/Vola. Kein generelles "halten" mehr.
+- **Strategie:** Gestaffelte Risiko-Erhöhung ("wie Klaiber") — von sicher schrittweise öffnen, Ergebnis bewerten, bei Bedarf zurückdrehen (Backup + Git vorhanden).
+- Kein Live-Geld — Shadow/Paper-Testsystem.
+
 ## [2.19.4] - 2026-08-07
 ### Changed (Strategie: Diversifikation)
 - **`build_risk_profile.py` Z99-100**: `max_positions` 2-6 → **4-8** (Risk 0→8, Risk 95→4), `position_size` 0.30-0.60 → **0.15-0.40** (Risk 0→0.15, Risk 95→0.40). Ziel: mehrere kleine Positionen statt weniger teurer Klumpen.

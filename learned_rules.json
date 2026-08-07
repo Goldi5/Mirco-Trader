@@ -1,11 +1,11 @@
 {
   "schema_version": "2.0",
   "_regelstand": {
-    "regelstand_version": 143,
+    "regelstand_version": 182,
     "regelstand_created_at": "2026-08-03T15:19:11",
-    "regelstand_last_sync": "2026-08-06T15:33:32",
+    "regelstand_last_sync": "2026-08-07T21:02:50",
     "regelstand_status": "shadow",
-    "regelstand_hash": "381f6df19472"
+    "regelstand_hash": "c7149d508fa0"
   },
   "rules": [
     {
@@ -1669,6 +1669,44 @@
       "konfliktgruppe": "[Anti] halten bei biotech-Tite",
       "created_in_version": 0,
       "last_validated_version": 0,
+      "status": "unbestätigt"
+    },
+    {
+      "id": "r_20260807_63435",
+      "muster": "[Konzentration] AMC in 4 Depots (>= 4)",
+      "regel": "AMC liegt in 4 Depots (Klumpenrisiko). Käufe dieses Ticklers in weiteren Depots vermeiden, lieber streuen.",
+      "typ": "anti",
+      "gewicht": -1.5,
+      "swap_type": null,
+      "support_count": 4,
+      "violation_count": 0,
+      "avg_effect_when_applied": 0.0,
+      "kontext": {
+        "asset_klasse": [],
+        "sektor": [],
+        "vix_range": [
+          0,
+          999
+        ],
+        "trend_4h": "",
+        "regime": [],
+        "min_konfidenz": 0
+      },
+      "benchmark_ticker": null,
+      "conf_cap": null,
+      "created_at": "2026-08-07T17:46:56",
+      "updated_at": "2026-08-07T21:02:50",
+      "last_seen_at": "2026-08-07T17:46:56",
+      "decay_lambda": 0.01,
+      "effektiv_gewicht": -1.5,
+      "shadow": true,
+      "oos_confirmed": false,
+      "freigabe_status": "nicht_freigegeben",
+      "prioritaet": 1,
+      "konfliktgruppe": "[Konzentration] AMC in 4 Depot",
+      "created_in_version": 143,
+      "last_validated_version": 0,
+      "last_validated_at": null,
       "status": "unbestätigt"
     },
     {

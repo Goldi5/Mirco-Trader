@@ -2,100 +2,12 @@
   "ticker": "ASTS",
   "name": "AST SpaceMobile",
   "kategorie": "space",
-  "bargeld": 97.56,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 1.371766,
+  "avg_price": 71.12,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-04T21:48:28.450221",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:48:42.213813",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-04T21:49:55.104811",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T15:36:01.083724",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T15:37:43.771188",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:00:58.919793",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:03:35.070678",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:19:17.885190",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:32:16.104364",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:32:20.498220",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:48:33.900899",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T16:49:54.842337",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T17:17:46.860433",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T17:30:57.257569",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T17:34:11.415514",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T17:34:35.989543",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T17:47:22.282475",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T17:49:24.113637",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T18:02:16.797995",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T18:17:51.182240",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T18:33:29.768612",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T18:47:33.224874",
-      "wert": 100.0
-    },
     {
       "zeit": "2026-08-05T19:02:33.457285",
       "wert": 100.0
@@ -407,6 +319,94 @@
     {
       "zeit": "2026-08-07T16:34:49.644816",
       "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T17:03:34.448426",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T17:17:35.238829",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T17:32:43.284020",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T17:47:28.003331",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T18:03:03.303434",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T18:17:02.952850",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.631526",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.228017",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T18:47:09.206065",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T19:02:38.997467",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T19:17:35.762690",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T19:17:58.583716",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T19:32:40.416955",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T19:33:08.785028",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T19:47:10.601567",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T20:02:20.802561",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T20:02:41.860195",
+      "wert": 97.56
+    },
+    {
+      "zeit": "2026-08-07T20:17:19.739394",
+      "wert": 97.6
+    },
+    {
+      "zeit": "2026-08-07T20:32:29.924496",
+      "wert": 97.23
+    },
+    {
+      "zeit": "2026-08-07T20:33:10.208371",
+      "wert": 97.2
+    },
+    {
+      "zeit": "2026-08-07T20:46:44.417678",
+      "wert": 97.45
+    },
+    {
+      "zeit": "2026-08-07T21:02:19.862888",
+      "wert": 97.03
     }
   ],
   "trades": [
@@ -569,13 +569,21 @@
       "preis": 67.36,
       "grund": "Anti-Regel für Space-Titel (-1.61), neutrale Trendlage, RSI 61.7 ohne Momentum, Volumen unterdurchschnittlich (0.79x), Meta-Cap-Regeln zeigen 0% Trefferquote bei hoher Konfidenz, Position leicht im Minus, kein Cash für Nachkauf [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T20:02:41.860195",
+      "aktion": "kaufen",
+      "menge": 1.371766,
+      "preis": 71.12,
+      "grund": "Neutraler Trend, RSI 65.4 nicht überkauft, VIX niedrig (14.9), Volumen-Ratio 0.55x > 0.3x-Schwelle. Space-Aktie Warnung (-1.59) und Meta-Caps zeigen 0% Treffer bei hoher Konfidenz. Cash $97.56 erlaubt 1 Share für Diversifikation.",
+      "ki_konfidenz": 58
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_164754_ASTS_aktien_na",
+    "decision_id": "d_20260807_210242_ASTS_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "ASTS",

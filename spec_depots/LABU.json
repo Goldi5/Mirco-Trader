@@ -179,6 +179,14 @@
     {
       "zeit": "2026-08-07T16:34:49.691109",
       "wert": 105.38
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.700573",
+      "wert": 104.01
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.281532",
+      "wert": 103.28
     }
   ],
   "trades": [
@@ -231,7 +239,7 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_164754_LABU_aktien_na",
+    "decision_id": "d_20260807_210242_LABU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "LABU",

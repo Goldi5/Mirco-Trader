@@ -301,6 +301,13 @@
     "zeit": "2026-08-04T16:40:26"
   },
   {
+    "muster": "[Konzentration] AMC in 4 Depots (>= 4)",
+    "regel": "AMC liegt in 4 Depots (Klumpenrisiko). Käufe dieses Ticklers in weiteren Depots vermeiden, lieber streuen.",
+    "gewicht": -1.5,
+    "anti": true,
+    "zeit": "2026-08-07T21:02:50"
+  },
+  {
     "muster": "[Anti] halten bei index-Titeln",
     "regel": "NICHT halten bei index-Titeln – systematisch falsch (3/3 widerlegt, Ø -2.0). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.47,

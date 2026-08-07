@@ -1,109 +1,109 @@
 {
-  "zeit": "2026-08-07T16:48:25.757471",
+  "zeit": "2026-08-07T21:03:07.567824",
   "depots": 20,
-  "gesamtwert": 2117.17,
-  "gesamt_rendite": 5.86,
+  "gesamtwert": 2112.1,
+  "gesamt_rendite": 5.61,
   "best_risk": 90,
-  "best_rendite": 23.96,
-  "worst_risk": 95,
-  "worst_rendite": -1.46,
-  "trades": 471,
+  "best_rendite": 23.65,
+  "worst_risk": 0,
+  "worst_rendite": -1.28,
+  "trades": 749,
   "detail": [
     {
       "risk": 0,
-      "wert": 98.91,
-      "rendite": -1.09,
+      "wert": 98.72,
+      "rendite": -1.28,
       "pos": 1,
       "trades": 27
     },
     {
       "risk": 5,
-      "wert": 99.05,
-      "rendite": -0.95,
+      "wert": 99.7,
+      "rendite": -0.3,
       "pos": 1,
       "trades": 15
     },
     {
       "risk": 10,
-      "wert": 101.63,
-      "rendite": 1.63,
-      "pos": 3,
-      "trades": 46
+      "wert": 102.13,
+      "rendite": 2.13,
+      "pos": 4,
+      "trades": 50
     },
     {
       "risk": 15,
-      "wert": 100.07,
-      "rendite": 0.07,
+      "wert": 100.62,
+      "rendite": 0.62,
       "pos": 2,
       "trades": 18
     },
     {
       "risk": 20,
-      "wert": 103.42,
-      "rendite": 3.42,
-      "pos": 4,
+      "wert": 103.76,
+      "rendite": 3.76,
+      "pos": 5,
       "trades": 50
     },
     {
       "risk": 25,
-      "wert": 103.53,
-      "rendite": 3.53,
-      "pos": 3,
-      "trades": 39
-    },
-    {
-      "risk": 30,
-      "wert": 102.01,
-      "rendite": 2.01,
-      "pos": 0,
+      "wert": 104.13,
+      "rendite": 4.13,
+      "pos": 5,
       "trades": 50
     },
     {
-      "risk": 35,
-      "wert": 103.43,
-      "rendite": 3.43,
+      "risk": 30,
+      "wert": 101.92,
+      "rendite": 1.92,
       "pos": 1,
       "trades": 50
     },
     {
+      "risk": 35,
+      "wert": 102.85,
+      "rendite": 2.85,
+      "pos": 2,
+      "trades": 50
+    },
+    {
       "risk": 40,
-      "wert": 103.11,
-      "rendite": 3.11,
+      "wert": 103.21,
+      "rendite": 3.21,
       "pos": 3,
-      "trades": 14
+      "trades": 39
     },
     {
       "risk": 45,
-      "wert": 98.96,
-      "rendite": -1.04,
+      "wert": 99.3,
+      "rendite": -0.7,
       "pos": 2,
-      "trades": 9
+      "trades": 50
     },
     {
       "risk": 50,
-      "wert": 109.87,
-      "rendite": 9.87,
-      "pos": 4,
-      "trades": 6
+      "wert": 110.05,
+      "rendite": 10.05,
+      "pos": 3,
+      "trades": 7
     },
     {
       "risk": 55,
-      "wert": 109.87,
-      "rendite": 9.87,
-      "pos": 3,
-      "trades": 3
+      "wert": 110.18,
+      "rendite": 10.18,
+      "pos": 4,
+      "trades": 5
     },
     {
       "risk": 60,
-      "wert": 103.17,
-      "rendite": 3.17,
-      "pos": 2,
-      "trades": 36
+      "wert": 103.33,
+      "rendite": 3.33,
+      "pos": 4,
+      "trades": 50
     },
     {
       "risk": 65,
-      "wert": 104.15,
-      "rendite": 4.15,
+      "wert": 99.89,
+      "rendite": -0.11,
       "pos": 1,
       "trades": 28
     },
@@ -112,42 +112,42 @@
       "wert": 107.22,
       "rendite": 7.22,
       "pos": 0,
-      "trades": 34
+      "trades": 50
     },
     {
       "risk": 75,
       "wert": 116.23,
       "rendite": 16.23,
       "pos": 0,
-      "trades": 10
+      "trades": 36
     },
     {
       "risk": 80,
-      "wert": 117.46,
-      "rendite": 17.46,
-      "pos": 0,
-      "trades": 9
+      "wert": 114.83,
+      "rendite": 14.83,
+      "pos": 1,
+      "trades": 50
     },
     {
       "risk": 85,
-      "wert": 112.56,
-      "rendite": 12.56,
-      "pos": 0,
-      "trades": 10
+      "wert": 111.3,
+      "rendite": 11.3,
+      "pos": 1,
+      "trades": 36
     },
     {
       "risk": 90,
-      "wert": 123.96,
-      "rendite": 23.96,
-      "pos": 0,
-      "trades": 9
+      "wert": 123.65,
+      "rendite": 23.65,
+      "pos": 1,
+      "trades": 50
     },
     {
       "risk": 95,
-      "wert": 98.54,
-      "rendite": -1.46,
-      "pos": 1,
-      "trades": 8
+      "wert": 99.08,
+      "rendite": -0.92,
+      "pos": 2,
+      "trades": 38
     }
   ]
 }

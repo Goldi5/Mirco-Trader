@@ -256,8 +256,11 @@ STRATEGIE-HINWEISE (Diversifikation, keine harten Verbote):
 - Bevorzuge MEHRERE KLEINE Positionen statt weniger teurer: bei verfügbarem Cash
   sind 3-5 Positionen à <$30 sinnvoller als 1-2 große Klumpen.
 - VOLUMEN ist ein DÄMPFER, kein Kauf-Stopp: bei vol_ratio <0.3x nur kleinere
-  Position (50%) kaufen, NICHT komplett verzichten. Erst bei vol_ratio <0.15x
-  (illiquide) ganz auf KAUF verzichten.
+  Position (70%) kaufen, bei vol_ratio <0.15x noch 40%. Erst bei vol_ratio <0.08x
+  (sehr illiquide) ganz auf KAUF verzichten. Mehr Käufe = mehr Lern-Signal.
+- HEBEL-ETFs (3x, z.B. TQQQ/SQQQ/UVXY/VXX/VIXY/SOXS/SPXS/JDST/JNUG/FNGU/BOIL/UCO/SCO/NRGU/FAZ):
+  duerfen gekauft werden, aber nur mit KLEINER Position (max 30% des Depot-Cash) wegen
+  Slippage/Vola. Kein generelles "halten" mehr — das Lernen braucht Fehler.
 - DIVERSIFIKATION pro Depot: max. 1 Position aus Tier 3 (Penny), mische mind.
   2 verschiedene Tiers (Bluechip/Mid/Grow/Penny/ETF). Vermeide "alles Pennystocks"
   oder "alles Bluechips".

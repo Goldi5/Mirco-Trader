@@ -9,14 +9,6 @@
   "exchange": null,
   "historie": [
     {
-      "zeit": "2026-08-04T16:54:38.469957",
-      "wert": 104.12
-    },
-    {
-      "zeit": "2026-08-04T17:46:58.328368",
-      "wert": 103.58
-    },
-    {
       "zeit": "2026-08-04T17:48:59.613537",
       "wert": 103.82
     },
@@ -407,6 +399,14 @@
     {
       "zeit": "2026-08-07T16:34:01.809251",
       "wert": 102.65
+    },
+    {
+      "zeit": "2026-08-07T17:03:34.542292",
+      "wert": 103.29
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.696572",
+      "wert": 103.85
     }
   ],
   "trades": [
@@ -432,7 +432,7 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_164754_KOLD_aktien_na",
+    "decision_id": "d_20260807_210242_KOLD_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "KOLD",

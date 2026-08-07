@@ -9,16 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-30T09:31:10.301361",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T09:46:10.153540",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
       "zeit": "2026-07-30T10:01:11.339476",
       "wert": 100.0,
       "bargeld": 10.0
@@ -421,6 +411,14 @@
     {
       "zeit": "2026-08-07T16:19:32.332992",
       "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.715679",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.291492",
+      "wert": 103.95
     }
   ],
   "trades": [
@@ -517,7 +515,7 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_164754_NRGU_aktien_na",
+    "decision_id": "d_20260807_210242_NRGU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "NRGU",

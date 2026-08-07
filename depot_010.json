@@ -1,7 +1,7 @@
 {
   "start_wert": 100,
   "risk": 10,
-  "bargeld": 7.879239419269553,
+  "bargeld": 3.9396146944045936,
   "positions": {
     "DOMO": {
       "shares": 8.98,
@@ -25,892 +25,933 @@
       "take_profit": 13.327999572753907,
       "kauf_datum": "2026-08-06T18:38:48.169898",
       "exchange": "US"
+    },
+    "ALLO": {
+      "shares": 1.9649,
+      "avg_price": 2.005000114440918,
+      "stop_loss": 1.9248001098632812,
+      "take_profit": 2.2456001281738285,
+      "kauf_datum": "2026-08-07T17:44:52.275794",
+      "exchange": "US"
     }
   },
   "historie": [
     {
-      "zeit": "2026-08-06T19:20:42.809702",
-      "wert": 100.37,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:20:46.217637",
-      "wert": 100.37,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:33:39.107954",
-      "wert": 100.49,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:33:45.574060",
-      "wert": 100.49,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:35:28.770760",
-      "wert": 100.52,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:35:34.869675",
-      "wert": 100.52,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:38:51.229581",
-      "wert": 100.51,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:38:56.059035",
-      "wert": 100.51,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:38:56.518365",
-      "wert": 100.5,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:39:03.643912",
-      "wert": 100.5,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:47:42.538748",
-      "wert": 100.56,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:47:46.292679",
-      "wert": 100.56,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:47:47.558866",
-      "wert": 100.56,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:47:50.828560",
-      "wert": 100.56,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:48:16.802875",
-      "wert": 100.54,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:48:22.116577",
-      "wert": 100.54,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:50:42.603476",
-      "wert": 100.5,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T19:50:48.521738",
-      "wert": 100.5,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:04:03.754494",
-      "wert": 100.59,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:04:10.031346",
-      "wert": 100.59,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:04:12.382638",
-      "wert": 100.59,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:05:38.392296",
-      "wert": 100.64,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:05:44.101108",
-      "wert": 100.64,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:17:29.480472",
-      "wert": 100.74,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:17:30.648082",
-      "wert": 100.74,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:17:35.763277",
-      "wert": 100.76,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:17:36.182980",
-      "wert": 100.76,
-      "bargeld": 16.64
-    },
-    {
-      "zeit": "2026-08-06T20:23:53.167444",
-      "wert": 100.57,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:34:08.923098",
-      "wert": 100.46,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:34:10.954211",
-      "wert": 100.44,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:34:19.330715",
-      "wert": 100.44,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:34:21.042364",
-      "wert": 100.44,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:35:44.487312",
-      "wert": 100.39,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:35:51.633398",
-      "wert": 100.39,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:35:52.427402",
-      "wert": 100.39,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:49:13.404713",
-      "wert": 100.31,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:49:13.732340",
-      "wert": 100.31,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:49:14.086124",
-      "wert": 100.31,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:49:20.426055",
-      "wert": 100.3,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:49:20.655904",
-      "wert": 100.31,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:49:20.972013",
-      "wert": 100.3,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:49:38.896257",
-      "wert": 100.36,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T20:49:44.676726",
-      "wert": 100.36,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:02:26.713187",
-      "wert": 100.34,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:02:31.790306",
-      "wert": 100.33,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:02:40.641765",
-      "wert": 100.33,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:02:45.149557",
-      "wert": 100.33,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:04:09.906473",
-      "wert": 100.37,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:04:14.519580",
-      "wert": 100.37,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:05:27.783899",
-      "wert": 100.37,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:05:32.251473",
-      "wert": 100.37,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:09:36.875219",
-      "wert": 100.47,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:09:41.799152",
-      "wert": 100.47,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:17:46.562729",
-      "wert": 100.53,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:17:51.857101",
-      "wert": 100.51,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:18:08.196057",
-      "wert": 100.5,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:18:11.623774",
-      "wert": 100.5,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:20:12.661753",
-      "wert": 100.49,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:20:17.197791",
-      "wert": 100.49,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:29:05.309247",
-      "wert": 100.5,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:29:08.185483",
-      "wert": 100.5,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:30:44.977671",
-      "wert": 100.54,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:30:49.316772",
-      "wert": 100.54,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:47:19.765234",
-      "wert": 100.24,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:47:23.701454",
-      "wert": 100.24,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:47:44.361326",
-      "wert": 100.23,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:47:48.786989",
-      "wert": 100.23,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:48:29.380495",
-      "wert": 100.2,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-06T21:48:33.392282",
-      "wert": 100.2,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-07T10:22:13.452888",
-      "wert": 100.39,
-      "bargeld": 0.0
-    },
-    {
-      "zeit": "2026-08-07T15:51:37.090141",
-      "wert": 101.28,
+      "zeit": "2026-08-07T17:03:52.652542",
+      "wert": 101.78,
       "bargeld": 7.88
     },
     {
-      "zeit": "2026-08-07T15:52:08.492828",
-      "wert": 101.36,
+      "zeit": "2026-08-07T17:03:59.378712",
+      "wert": 101.78,
       "bargeld": 7.88
     },
     {
-      "zeit": "2026-08-07T15:52:34.761088",
+      "zeit": "2026-08-07T17:17:05.174657",
+      "wert": 101.56,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:17:12.085519",
+      "wert": 101.56,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:17:55.463971",
+      "wert": 101.58,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:18:01.574231",
+      "wert": 101.58,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:18:05.618161",
+      "wert": 101.57,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:18:12.149068",
+      "wert": 101.57,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:32:08.792357",
+      "wert": 101.33,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:32:14.988331",
+      "wert": 101.33,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:33:06.060735",
+      "wert": 101.32,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:33:06.810517",
+      "wert": 101.32,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:33:16.001054",
+      "wert": 101.33,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:33:16.732545",
+      "wert": 101.33,
+      "bargeld": 7.88
+    },
+    {
+      "zeit": "2026-08-07T17:44:52.313354",
       "wert": 101.39,
-      "bargeld": 7.88
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T15:53:05.989871",
-      "wert": 101.36,
-      "bargeld": 7.88
-    },
-    {
-      "zeit": "2026-08-07T15:53:36.537190",
-      "wert": 101.36,
-      "bargeld": 7.88
-    },
-    {
-      "zeit": "2026-08-07T15:55:47.684527",
-      "wert": 101.36,
-      "bargeld": 7.88
-    },
-    {
-      "zeit": "2026-08-07T16:05:08.014680",
-      "wert": 101.15,
-      "bargeld": 7.88
-    },
-    {
-      "zeit": "2026-08-07T16:05:58.350548",
-      "wert": 101.27,
-      "bargeld": 7.88
-    },
-    {
-      "zeit": "2026-08-07T16:06:48.148425",
-      "wert": 101.26,
-      "bargeld": 7.88
-    },
-    {
-      "zeit": "2026-08-07T16:07:06.848640",
-      "wert": 101.26,
-      "bargeld": 7.88
-    },
-    {
-      "zeit": "2026-08-07T16:07:32.801510",
-      "wert": 101.23,
-      "bargeld": 7.88
-    },
-    {
-      "zeit": "2026-08-07T16:08:45.357466",
-      "wert": 101.22,
-      "bargeld": 7.88
-    },
-    {
-      "zeit": "2026-08-07T16:19:56.795976",
+      "zeit": "2026-08-07T17:47:08.438096",
       "wert": 101.43,
-      "bargeld": 7.88
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:20:35.497616",
-      "wert": 101.46,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T17:47:17.434950",
+      "wert": 101.48,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:21:19.002946",
+      "zeit": "2026-08-07T17:47:47.954018",
+      "wert": 101.48,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T17:47:57.949475",
       "wert": 101.39,
-      "bargeld": 7.88
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:21:20.843804",
-      "wert": 101.4,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T17:48:10.131743",
+      "wert": 101.38,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:22:05.254145",
+      "zeit": "2026-08-07T17:48:16.800672",
+      "wert": 101.38,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:02:08.824631",
+      "wert": 101.27,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:02:16.346834",
+      "wert": 101.27,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:02:25.378445",
+      "wert": 101.24,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:03:08.759056",
+      "wert": 101.27,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:03:17.338090",
+      "wert": 101.28,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:03:22.101307",
+      "wert": 101.28,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:03:29.245588",
+      "wert": 101.28,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:17:25.270987",
       "wert": 101.49,
-      "bargeld": 7.88
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:22:50.715678",
-      "wert": 101.52,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:17:32.682361",
+      "wert": 101.49,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:34:19.340436",
-      "wert": 101.56,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:17:43.537873",
+      "wert": 101.47,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:34:25.045220",
-      "wert": 101.56,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:17:53.279962",
+      "wert": 101.47,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:34:27.348981",
-      "wert": 101.56,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:18:12.746054",
+      "wert": 101.46,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:34:32.300426",
-      "wert": 101.59,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:18:25.200013",
+      "wert": 101.4,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:35:05.427353",
-      "wert": 101.61,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:32:49.348703",
+      "wert": 101.69,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:35:09.818988",
-      "wert": 101.61,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:32:58.498177",
+      "wert": 101.69,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:47:05.713775",
-      "wert": 101.81,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:33:10.318396",
+      "wert": 101.67,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:47:15.833064",
-      "wert": 101.75,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:33:19.408315",
+      "wert": 101.68,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:47:31.481749",
-      "wert": 101.73,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:33:35.339650",
+      "wert": 101.69,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:47:41.231943",
-      "wert": 101.72,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:33:45.515818",
+      "wert": 101.69,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:48:15.879601",
-      "wert": 101.63,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:46:43.934643",
+      "wert": 101.91,
+      "bargeld": 3.94
     },
     {
-      "zeit": "2026-08-07T16:48:25.725006",
-      "wert": 101.63,
-      "bargeld": 7.88
+      "zeit": "2026-08-07T18:46:51.439907",
+      "wert": 101.95,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:47:26.995322",
+      "wert": 101.91,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:47:34.002312",
+      "wert": 101.91,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:47:40.713012",
+      "wert": 101.91,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T18:47:49.242209",
+      "wert": 101.92,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:01:43.713428",
+      "wert": 102.0,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:01:50.804231",
+      "wert": 102.0,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:02:46.148652",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:02:52.595422",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:02:57.117709",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:03:04.405895",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:17:47.762426",
+      "wert": 102.0,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:17:50.458847",
+      "wert": 102.01,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:17:55.316504",
+      "wert": 102.01,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:17:56.289218",
+      "wert": 102.01,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:18:15.066998",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:18:22.697649",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:32:45.609859",
+      "wert": 101.85,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:32:52.057963",
+      "wert": 101.85,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:32:57.861454",
+      "wert": 101.85,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:33:06.073155",
+      "wert": 101.86,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:33:26.014453",
+      "wert": 101.86,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:33:32.964041",
+      "wert": 101.86,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:46:50.041939",
+      "wert": 101.98,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:46:57.236570",
+      "wert": 101.98,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:47:26.929961",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:47:33.759134",
+      "wert": 102.01,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:47:49.351026",
+      "wert": 101.99,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T19:47:56.386562",
+      "wert": 101.97,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:02:37.625768",
+      "wert": 102.15,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:02:44.505797",
+      "wert": 102.09,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:02:47.669914",
+      "wert": 102.09,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:02:54.572536",
+      "wert": 102.09,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:02:59.115685",
+      "wert": 102.09,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:03:05.008777",
+      "wert": 102.09,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:16:50.118394",
+      "wert": 102.07,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:16:58.239831",
+      "wert": 102.08,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:17:36.999043",
+      "wert": 102.08,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:17:43.951566",
+      "wert": 102.07,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:17:49.634105",
+      "wert": 102.07,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:17:57.207828",
+      "wert": 102.03,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:32:46.957092",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:32:52.028428",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:32:52.355533",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:32:59.079593",
+      "wert": 102.02,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:33:27.270359",
+      "wert": 102.06,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:33:32.924968",
+      "wert": 102.06,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:46:55.754709",
+      "wert": 102.03,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:47:01.278583",
+      "wert": 102.03,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:47:03.077686",
+      "wert": 102.03,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:47:07.634625",
+      "wert": 102.04,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:47:54.923870",
+      "wert": 101.98,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T20:48:02.378614",
+      "wert": 101.96,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T21:02:00.299621",
+      "wert": 102.15,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T21:02:08.765502",
+      "wert": 102.15,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T21:02:43.712476",
+      "wert": 102.13,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T21:02:51.056389",
+      "wert": 102.13,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T21:02:59.765745",
+      "wert": 102.13,
+      "bargeld": 3.94
+    },
+    {
+      "zeit": "2026-08-07T21:03:07.495962",
+      "wert": 102.13,
+      "bargeld": 3.94
     }
   ],
   "trades": [
     {
-      "typ": "kauf",
-      "ticker": "SUI",
-      "menge": 0.26,
-      "preis": 125.98,
-      "grund": "Score 62.7 (#3)",
-      "zeit": "2026-07-29T18:51:40.370960"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "EXC",
-      "menge": 0.7,
-      "preis": 47.19,
-      "grund": "Score 61.7 (#3)",
-      "zeit": "2026-07-29T18:51:40.370960"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "BAX",
-      "menge": 1.35,
-      "preis": 24.49,
-      "grund": "Score 61.9 (#3)",
-      "zeit": "2026-07-29T18:51:40.370960"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "EXC",
-      "menge": 0.7,
-      "preis": 47.19,
-      "grund": "aus_bewertung",
-      "zeit": "2026-07-29T20:01:21.146347"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "BAX",
-      "menge": 1.35,
-      "preis": 24.49,
-      "grund": "aus_bewertung",
-      "zeit": "2026-07-29T20:01:21.146347"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "SUI",
-      "menge": 0.26,
-      "preis": 125.98,
-      "grund": "aus_bewertung",
-      "zeit": "2026-07-29T20:01:21.146347"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "LCID",
-      "menge": 4.2,
-      "preis": 7.86,
-      "grund": "Score 53.3 (#3)",
-      "zeit": "2026-07-29T20:16:28.481428"
-    },
-    {
-      "typ": "kauf",
+      "typ": "kauf_blockiert",
       "ticker": "DOMO",
-      "menge": 8.98,
-      "preis": 3.67,
-      "grund": "Score 52.0 (#3)",
-      "zeit": "2026-07-29T20:16:28.481428"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "TREE",
-      "menge": 0.82,
-      "preis": 40.07,
-      "grund": "Score 50.2 (#3)",
-      "zeit": "2026-07-29T20:16:28.481428"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "TREE",
-      "menge": 0.82,
-      "preis": 40.07,
-      "grund": "aus_bewertung",
-      "zeit": "2026-07-30T08:15:21.383570"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "BHVN",
-      "menge": 0.83,
-      "preis": 13.43,
-      "grund": "Score 58.7 (#3)",
-      "zeit": "2026-07-30T08:16:22.871484"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "RDW",
-      "menge": 1.44,
-      "preis": 7.78,
-      "grund": "Score 55.8 (#3)",
-      "zeit": "2026-07-30T08:16:22.871484"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "ABX",
-      "menge": 1.09,
-      "preis": 10.3,
-      "grund": "Score 58.3 (#3)",
-      "zeit": "2026-07-30T08:16:22.871484"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "LCID",
-      "menge": 4.2,
-      "preis": 7.86,
-      "grund": "aus_bewertung",
-      "zeit": "2026-07-30T08:20:12.381613"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "RDW",
-      "menge": 1.44,
-      "preis": 7.78,
-      "grund": "aus_bewertung",
-      "zeit": "2026-07-30T08:20:12.381613"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "BHVN",
-      "menge": 0.83,
-      "preis": 13.21,
-      "grund": "\ud83e\udd16 KI: negatives P&L",
-      "zeit": "2026-07-30T17:40:40.736325"
-    },
-    {
-      "typ": "verkauf",
-      "ticker": "ABX",
-      "menge": 1.09,
-      "preis": 10.07,
-      "grund": "\ud83e\udd16 KI: negatives P&L",
-      "zeit": "2026-07-30T17:40:40.736325"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "BF-B",
-      "menge": 1.1736,
-      "preis": 28.36,
-      "grund": "\ud83e\udd16 KI: $28.4 (43% Cash), Qualit\u00e4t aber gro\u00df, nur Teil",
-      "zeit": "2026-08-05T19:51:49.724012"
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:47:08.366895"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:03:04.449831"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:47:08.390079"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:03:08.749854"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:47:17.359338"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:03:08.989846"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:47:17.386267"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:03:13.777429"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:47:47.869487"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:03:15.400812"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:47:47.901920"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:03:19.983289"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:47:57.850789"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:19:10.147930"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:47:57.883148"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:19:17.609907"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:48:10.060530"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:19:20.136068"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:48:10.083983"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:19:23.464742"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:48:16.713612"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:19:31.424957"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T17:48:16.743011"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:19:36.009958"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:02:08.752995"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:33:07.403645"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:02:08.776626"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:33:13.261471"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:02:16.265757"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:33:14.184255"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:02:16.295817"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:33:20.706689"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:02:25.302832"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:33:26.021526"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:02:25.330148"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:47:58.870033"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:03:08.682993"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:48:03.392374"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:03:08.709142"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:49:27.677394"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:03:17.256707"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:49:31.822066"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:03:17.284151"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:49:38.640097"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:03:22.026430"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 23.3973,
-      "preis": 2.85,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-05T20:49:43.148941"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "GPK",
-      "menge": 1.3984,
-      "preis": 11.9,
-      "grund": "\ud83e\udd16 KI: Attraktiver Einstieg bei $11.9, 36% Cash-Einsatz, ",
-      "zeit": "2026-08-06T18:38:48.169898"
-    },
-    {
-      "typ": "kauf",
-      "ticker": "GPK",
-      "menge": 0.6992,
-      "preis": 11.9,
-      "grund": "\ud83e\udd16 KI: Kandidat mit 72% Cash-Quote, Kurs $11.95 nahe Eins",
-      "zeit": "2026-08-06T20:23:53.118058"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:03:22.051341"
     },
     {
       "typ": "kauf_blockiert",
-      "ticker": "COTY",
-      "menge": 2.9401,
-      "preis": 2.83,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-06T20:23:53.141831"
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:03:29.173236"
     },
     {
-      "typ": "kauf",
-      "ticker": "ABX",
-      "menge": 0.7879,
-      "preis": 10.56,
-      "grund": "\ud83e\udd16 KI: Kandidat mit 63% Cash-Quote, Goldminen-Aktie als D",
-      "zeit": "2026-08-06T20:23:53.167444"
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:03:29.197422"
     },
     {
-      "typ": "verkauf",
-      "ticker": "ABX",
-      "menge": 0.7879,
-      "preis": 10.0,
-      "grund": "\ud83e\udd16 KI: Verlust \u00fcber 5%, Position reduzieren",
-      "zeit": "2026-08-07T15:51:37.090141"
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:17:25.117187"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:17:25.159642"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:17:32.592483"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:17:32.621470"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:17:43.414810"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:17:43.455192"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:17:53.128533"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:17:53.206025"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:18:12.615290"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:18:12.663351"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:18:25.074678"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:18:25.118188"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:32:49.220610"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:32:49.264734"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:32:58.404607"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:32:58.436221"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:33:10.106335"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:33:10.168381"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:33:19.292649"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:33:19.324752"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:33:35.222154"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:33:35.259685"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:33:45.428057"
+    },
+    {
+      "typ": "kauf_blockiert",
+      "ticker": "DOMO",
+      "menge": 1.0167,
+      "preis": 3.88,
+      "grund": "Konzentrations-Bremse: bereits in 7 Depots",
+      "zeit": "2026-08-07T18:33:45.456155"
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T15:50:18.770261",
+    "zeit": "2026-08-07T17:42:24.055025",
     "aktion": "KI Risk 10",
     "konfidenz": 50,
     "analyse": "",
     "ticker": "Risk 10"
   },
-  "aktualisiert": "2026-08-07T16:48:25.725006",
+  "aktualisiert": "2026-08-07T21:03:07.495962",
   "exchanges": {
     "DOMO": "US",
     "BF-B": "US",
-    "GPK": "US"
+    "GPK": "US",
+    "ALLO": "US"
   }
 }
