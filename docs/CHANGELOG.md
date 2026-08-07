@@ -1,8 +1,7 @@
 ## [2.19.6] - 2026-08-07
 ### Changed (Risiko-Rampe Stufe 3: Penny-Penalty)
-- **`engine.py` Z31-35**: Budget-Anpassung umgedreht (Hybrid b+c). Bisher: billigere Aktien kriegen MEHR Score (Penneys dominierten Top-10 bei $100-Cash-Depots). Neu: Aktien <$5 kriegen **Score-Abzug (-10)**, bezahlbare $5-30 Aktien kriegen leichten Bonus (10×preis/budget). Penneys nicht mehr ausgeschlossen (Diversifikation bleibt), aber abgewertet → qualitätsvolle Small-Caps steigen in Top-10.
-- **Root-Cause Risk 70 Aktien:** `bewerte()` bevorzugte Penneys (AMC $2.56, WKHS $3.26) wegen "günstig = mehr Score". KI fand bei diesen kein Kaufsignal → hielt. v2.19.6 verschiebt Scores Richtung $5-30 Aktien.
-- **Cron-Fenster**: Alle Micro-Trader-Cronjobs auf NY-Börse Mo-Fr 15-22 Uhr MEZ ausgerichtet (Wochenende pausiert). Auswertungs-Crons enden vor 22 Uhr (letzter Lauf 21:00 Audit / 21:17 Monitor).
+- **`engine.py` Z31-35**: Budget-Anpassung umgedreht (Hybrid b+c). Bisher: billigere Aktien kriegen MEHR Score (Penneys wie AMC $2.56 / WKHS $3.26 dominierten Top-10 bei $100-Cash-Depots → KI fand kein Signal → hielt). Neu: Aktien <$5 kriegen **Score-Abzug (-10)**, $5-30 Small-Caps **+8** (Diversifikation), >$30 **+3** (neutral). Penneys nicht ausgeschlossen (Pool bleibt voll), aber abgewertet.
+- **Verifiziert**: Risk 70 Top-10 vorher 5 Penneys (<$5), nachher 10× $5-30 (CLOU $27, LGI $18, TNDM $22, EIDO $13, ACHR $5.5, PATH $15, CRSR $14, JKS $17, KSS $19, RELY $24). Bei $107 Cash + 37.5% Position = 2-3 kaufbare Positionen → echte Streuung.
 - Kein Live-Geld — Shadow/Paper-Testsystem.
 
 ## [2.19.5] - 2026-08-07
