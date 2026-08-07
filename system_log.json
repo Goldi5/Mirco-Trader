@@ -2925,5 +2925,10 @@
     "quelle": "cron",
     "level": "info",
     "text": "Börsen-Check: 🔕 Alle Börsen geschlossen"
+  },
+  {
+    "zeit": "2026-08-07T22:58:20.398844",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
   }
 ]

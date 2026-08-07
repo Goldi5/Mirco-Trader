@@ -1,8 +1,8 @@
 {
-  "version": "2.19.7",
-  "build": "2026-08-07_2255",
-  "released_at": "2026-08-07 22:55",
-  "codename": "Spec-Watchlist erweitert (169 statt 49, Depot-Zahl gleich)",
+  "version": "2.20.0",
+  "build": "2026-08-07_2320",
+  "released_at": "2026-08-07 23:20",
+  "codename": "Zentrale Strategie-Config (Single Source of Truth)",
   "changes": [
     {
       "version": "2.19.3",

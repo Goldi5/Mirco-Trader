@@ -24,6 +24,8 @@ except Exception:
     def _bremse_set(n, d=None): return d
     def _news_set(n, d=None): return d
 
+import strategie  # v2.20.0: zentrale Strategie-Config
+
 # Thread-Safe KI-Log Zugriff
 _ki_lock = threading.Lock()
 
@@ -252,18 +254,8 @@ triffst DU auf Basis aller Daten.
 AKTUELLE NEWS:
 {news_text if news_text else "  Keine"}
 
-STRATEGIE-HINWEISE (Diversifikation, keine harten Verbote):
-- Bevorzuge MEHRERE KLEINE Positionen statt weniger teurer: bei verfügbarem Cash
-  sind 3-5 Positionen à <$30 sinnvoller als 1-2 große Klumpen.
-- VOLUMEN ist ein DÄMPFER, kein Kauf-Stopp: bei vol_ratio <0.3x nur kleinere
-  Position (70%) kaufen, bei vol_ratio <0.15x noch 40%. Erst bei vol_ratio <0.08x
-  (sehr illiquide) ganz auf KAUF verzichten. Mehr Käufe = mehr Lern-Signal.
-- HEBEL-ETFs (3x, z.B. TQQQ/SQQQ/UVXY/VXX/VIXY/SOXS/SPXS/JDST/JNUG/FNGU/BOIL/UCO/SCO/NRGU/FAZ):
-  duerfen gekauft werden, aber nur mit KLEINER Position (max 30% des Depot-Cash) wegen
-  Slippage/Vola. Kein generelles "halten" mehr — das Lernen braucht Fehler.
-- DIVERSIFIKATION pro Depot: max. 1 Position aus Tier 3 (Penny), mische mind.
-  2 verschiedene Tiers (Bluechip/Mid/Grow/Penny/ETF). Vermeide "alles Pennystocks"
-  oder "alles Bluechips".
+STRATEGIE_HINWEISE (Diversifikation, keine harten Verbote):
+{strategie.STRATEGIE_HINWEISE}
 
 WICHTIG: Antworte NUR mit JSON KEINEN anderen Text. Keine Denkprozesse.
 Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "kurze Begründung"}}"""

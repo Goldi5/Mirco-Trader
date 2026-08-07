@@ -20,6 +20,8 @@ try:
 except Exception:
     def _bremse_set(n, d=None): return d
 
+import strategie  # v2.20.0: zentrale Strategie-Config (Single Source of Truth)
+
 def max_depot_pro_ticker():
     return int(_bremse_set("max_depot_pro_ticker", 4))
 
@@ -246,14 +248,9 @@ def bewerte(aktien, budget, risk_params=None):
         if preis < 1.0:
             continue
 
-        # Budget-Anpassung (Hybrid v2.19.6): Penneys abwerten, Mittelpreisige ($5-30) leicht bevorzugen
+        # Budget-Anpassung (zentral aus strategie.py v2.20.0)
         if preis <= budget:
-            if preis < 5.0:
-                score -= 10  # Penny-Penalty: nicht ausschließen, aber abwerten
-            elif preis <= 30.0:
-                score += 8   # Mittelpreisige Small-Caps: leichte Bevorzugung (Diversifikation)
-            else:
-                score += 3   # Teurere: neutral bis leicht positiv
+            score += strategie.preis_score(preis, budget)  # Penny-Penalty / Small-Cap-Bonus
         else:
             score -= 25  # zu teuer für Budget, kaum Chancen
 

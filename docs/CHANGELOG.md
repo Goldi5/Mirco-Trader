@@ -1,3 +1,14 @@
+## [2.20.0] - 2026-08-07
+### Added (Zentrale Strategie-Config)
+- **Neue Datei `strategie.py`** (Single Source of Truth): Alle weichen Bewertungsregeln zentral.
+  - `preis_score()`: Penny-Penalty (<$5 → -10), Small-Cap-Bonus ($5-30 → +8), Expensive (>$30 → +3)
+  - `volumen_pos_size()`: Volumen-Dämpfer (0.3x→70%, 0.15x→40%, 0.08x→Verzicht)
+  - `ist_hebel_etf()`: Hebel-ETF-Erkennung (Liste + Tier 3/4)
+  - `STRATEGIE_HINWEISE`: KI-Prompt-Baustein (Volumen/Hebert/Tier-Mix)
+- **Refactor:** `engine.bewerte()`, `etf_trader.etf_bewerte()`, `ki_decisions.STRATEGIE_HINWEISE` lesen jetzt aus `strategie.py` — keine hartcodierten Regelwerte mehr in den Modulen.
+- **Konsistenz:** Penny-Penalty gilt jetzt für **Aktien + ETF + Spec** (vorher nur Aktien). Bug gefixt: ETF hatte altes "billig=mehr Score" Bias.
+- **Verifiziert:** 3x Prüfung (Syntax/Import, Konsistenz, Verhalten+Integration) alle PASS.
+
 ## [2.19.7] - 2026-08-07
 ### Changed (Spec-Watchlist Masse)
 - **`spec_watch.py` `WATCHLIST`**: 49 → **169 Ticker** (+120). Mehr Krypto/Leveraged/Volatility/Commodity/AI/EV/Biotech/Meme/Space/Fintech/Retail/Energy/Gaming/Cannabis. Ziel: KI hat pro Spec-Depot mehr Auswahl (Rotation/Diversifikation), ohne die Depot-Anzahl zu erhöhen (kein Klumpenrisiko durch mehr Depots).

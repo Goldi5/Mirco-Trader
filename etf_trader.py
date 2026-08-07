@@ -11,6 +11,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE)
 
 from engine import scan_markt, hole_kurs, signal_aktion, ausführen, historie_aktualisieren
+import strategie  # v2.20.0: zentrale Strategie-Config
 from etf_profile import ETF_TICKERS, TICKER_TO_ETF, TICKER_TO_RISK, risk_stufe
 
 QUIET = "--quiet" in sys.argv
@@ -77,11 +78,12 @@ def etf_bewerte(etf_liste, depot_risk):
         if abs(stufe - depot_stufe) <= 1:
             preis = e.get("preis", 0)
             budget = 100
-            preis_bonus = 15 * (1 - min(preis / budget, 1)) if preis > 0 else 0
+            # Preis-Bewertung zentral aus strategie.py (v2.20.0) - konsistent mit Aktien
+            preis_bonus = strategie.preis_score(preis, budget) if preis > 0 else 0
             # 🛡 Preis-Malus: ETF teurer als Budget ist mit $100 Startkapital NICHT
             # kaufbar (menge=0) -> stark abwerten, damit bezahlbare Alternativen ranken
             if preis > budget:
-                preis_bonus -= 40
+                preis_bonus += strategie.TOO_EXPENSIVE_MALUS
         
             # Nächste zum idealen Risk-Score gewinnt
             ideal = depot_risk
