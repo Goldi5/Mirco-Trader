@@ -1,122 +1,5 @@
 [
   {
-    "zeit": "2026-08-07T18:02:57.729182",
-    "quelle": "ki_learning",
-    "level": "info",
-    "text": "Lern-Analyse: keine neuen Entscheidungen"
-  },
-  {
-    "zeit": "2026-08-07T18:02:58.150161",
-    "quelle": "skill",
-    "level": "info",
-    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1802, 48 verfügbar)"
-  },
-  {
-    "zeit": "2026-08-07T18:03:01.277231",
-    "quelle": "etf",
-    "level": "warn",
-    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.71%"
-  },
-  {
-    "zeit": "2026-08-07T18:03:03.386460",
-    "quelle": "spec",
-    "level": "ok",
-    "text": "Spec-Lauf: 49 Depots analysiert"
-  },
-  {
-    "zeit": "2026-08-07T18:03:09.926038",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 637 Trades, Rendite +5.99%"
-  },
-  {
-    "zeit": "2026-08-07T18:03:10.117164",
-    "quelle": "cron",
-    "level": "ok",
-    "text": "KI-Lauf durchgelaufen"
-  },
-  {
-    "zeit": "2026-08-07T18:03:11.156749",
-    "quelle": "ki_learning",
-    "level": "info",
-    "text": "Lern-Analyse: keine neuen Entscheidungen"
-  },
-  {
-    "zeit": "2026-08-07T18:03:11.567299",
-    "quelle": "skill",
-    "level": "info",
-    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1803, 48 verfügbar)"
-  },
-  {
-    "zeit": "2026-08-07T18:03:14.955398",
-    "quelle": "etf",
-    "level": "warn",
-    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.71%"
-  },
-  {
-    "zeit": "2026-08-07T18:03:18.525912",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 650 Trades, Rendite +5.99%"
-  },
-  {
-    "zeit": "2026-08-07T18:03:23.275674",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 663 Trades, Rendite +5.99%"
-  },
-  {
-    "zeit": "2026-08-07T18:03:23.493370",
-    "quelle": "cron",
-    "level": "ok",
-    "text": "KI-Lauf durchgelaufen"
-  },
-  {
-    "zeit": "2026-08-07T18:03:30.424676",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 676 Trades, Rendite +5.99%"
-  },
-  {
-    "zeit": "2026-08-07T18:13:08.437414",
-    "quelle": "watchdog",
-    "text": "Watchdog: alles OK (kein Test gesendet)"
-  },
-  {
-    "zeit": "2026-08-07T18:15:00.662283",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Cron-Pipeline gestartet (mode=full, detached)"
-  },
-  {
-    "zeit": "2026-08-07T18:15:02.031208",
-    "quelle": "watchdog",
-    "text": "Watchdog: alles OK (kein Test gesendet)"
-  },
-  {
-    "zeit": "2026-08-07T18:15:02.039952",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ"
-  },
-  {
-    "zeit": "2026-08-07T18:16:00.666632",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Cron-Pipeline gestartet (mode=full, detached)"
-  },
-  {
-    "zeit": "2026-08-07T18:16:01.915265",
-    "quelle": "watchdog",
-    "text": "Watchdog: alles OK (kein Test gesendet)"
-  },
-  {
-    "zeit": "2026-08-07T18:16:01.923729",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ"
-  },
-  {
     "zeit": "2026-08-07T18:17:00.854961",
     "quelle": "cron",
     "level": "info",
@@ -2927,6 +2810,118 @@
   },
   {
     "zeit": "2026-08-07T22:17:25.306559",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Börsen-Check: 🔕 Alle Börsen geschlossen"
+  },
+  {
+    "zeit": "2026-08-07T22:28:18.706472",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T22:30:24.930585",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Cron-Pipeline gestartet (mode=full, detached)"
+  },
+  {
+    "zeit": "2026-08-07T22:30:26.386718",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T22:30:26.410037",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Börsen-Check: 🔕 Alle Börsen geschlossen"
+  },
+  {
+    "zeit": "2026-08-07T22:31:25.007173",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Cron-Pipeline gestartet (mode=full, detached)"
+  },
+  {
+    "zeit": "2026-08-07T22:31:26.415674",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T22:31:26.430997",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Börsen-Check: 🔕 Alle Börsen geschlossen"
+  },
+  {
+    "zeit": "2026-08-07T22:32:25.182125",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Cron-Pipeline gestartet (mode=full, detached)"
+  },
+  {
+    "zeit": "2026-08-07T22:32:26.520679",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T22:32:26.533811",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Börsen-Check: 🔕 Alle Börsen geschlossen"
+  },
+  {
+    "zeit": "2026-08-07T22:43:19.536255",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T22:45:26.417946",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Cron-Pipeline gestartet (mode=full, detached)"
+  },
+  {
+    "zeit": "2026-08-07T22:45:27.957131",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T22:45:27.971702",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Börsen-Check: 🔕 Alle Börsen geschlossen"
+  },
+  {
+    "zeit": "2026-08-07T22:46:26.591685",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Cron-Pipeline gestartet (mode=full, detached)"
+  },
+  {
+    "zeit": "2026-08-07T22:46:28.098288",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T22:46:28.111566",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Börsen-Check: 🔕 Alle Börsen geschlossen"
+  },
+  {
+    "zeit": "2026-08-07T22:47:26.735174",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Cron-Pipeline gestartet (mode=full, detached)"
+  },
+  {
+    "zeit": "2026-08-07T22:47:28.151823",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T22:47:28.164457",
     "quelle": "cron",
     "level": "info",
     "text": "Börsen-Check: 🔕 Alle Börsen geschlossen"

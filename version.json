@@ -1,8 +1,8 @@
 {
-  "version": "2.19.6",
-  "build": "2026-08-07_2225",
-  "released_at": "2026-08-07 22:25",
-  "codename": "Risiko-Rampe Stufe 3: Penny-Penalty (Hybrid b+c)",
+  "version": "2.19.7",
+  "build": "2026-08-07_2255",
+  "released_at": "2026-08-07 22:55",
+  "codename": "Spec-Watchlist erweitert (169 statt 49, Depot-Zahl gleich)",
   "changes": [
     {
       "version": "2.19.3",

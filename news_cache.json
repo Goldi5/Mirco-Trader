@@ -1,8 +1,16 @@
 {
-  "zeit": "2026-08-07T22:17:32.699155",
+  "zeit": "2026-08-07T22:47:35.292074",
   "total": 55,
-  "relevant": 29,
+  "relevant": 28,
   "headlines": [
+    {
+      "title": "Should wealthier Americans forgo their Social Security benefits as a charitable gesture?",
+      "link": "https://www.marketwatch.com/story/should-wealthier-americans-forgo-their-social-security-benefits-as-a-charitable-gesture-2c7b6801?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 20:30:00 GMT",
+      "topics": [
+        "regulation"
+      ]
+    },
     {
       "title": "I got two email invitations from friends. Is this a phishing scam \u2014 or am I suddenly popular?",
       "link": "https://www.marketwatch.com/story/i-got-two-email-invitations-from-friends-is-this-a-phishing-scam-or-am-i-suddenly-popular-d9680aa8?mod=mw_rss_topstories",
@@ -43,14 +51,6 @@
       ]
     },
     {
-      "title": "If I marry my girlfriend, 67, will she lose her Supplemental Security Income and divorced spouse benefits?",
-      "link": "https://www.marketwatch.com/story/if-i-marry-my-girlfriend-67-will-she-lose-her-supplemental-security-income-and-divorced-spouse-benefits-9340bab9?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 19:30:00 GMT",
-      "topics": [
-        "regulation"
-      ]
-    },
-    {
       "title": "Veteran manager buys 2 ETFs as market shifts",
       "link": "https://finance.yahoo.com/markets/stocks/articles/veteran-manager-buys-2-etfs-020300490.html",
       "date": "2026-08-07T02:03:00Z",
@@ -62,69 +62,6 @@
       ]
     },
     {
-      "title": "CenterPoint Energy Stock Outlook: Is Wall Street Bullish or Bearish?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/centerpoint-energy-stock-outlook-wall-102955691.html",
-      "date": "2026-08-06T10:29:55Z",
-      "topics": [
-        "energy"
-      ]
-    },
-    {
-      "title": "Trump doubles down on Credit Card Competition Act as merchants paid $198 billion in swipe fees last year",
-      "link": "https://finance.yahoo.com/economy/policy/articles/trump-doubles-down-credit-card-103000683.html",
-      "date": "2026-08-06T10:30:00Z",
-      "topics": [
-        "tech",
-        "market"
-      ]
-    },
-    {
-      "title": "Jamie Dimon personally contacts US CEOs as companies speed up AI adoption",
-      "link": "https://finance.yahoo.com/technology/ai/articles/jamie-dimon-personally-contacts-us-102807260.html",
-      "date": "2026-08-06T10:28:07Z",
-      "topics": [
-        "tech"
-      ]
-    },
-    {
-      "title": "Are Wall Street Analysts Bullish on Marvell Technology Stock?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/wall-street-analysts-bullish-marvell-103509763.html",
-      "date": "2026-08-06T10:35:09Z",
-      "topics": [
-        "tech"
-      ]
-    },
-    {
-      "title": "Nasdaq Futures Slip as Western Digital and Sandisk Sink on Disappointing Guidance",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-futures-slip-western-digital-103922429.html",
-      "date": "2026-08-06T10:39:22Z",
-      "topics": [
-        "market"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "How to pay zero taxes on Social Security \u2014 and it\u2019s got nothing to do with Trump\u2019s promises. Take 5 simple steps now",
-      "link": "https://finance.yahoo.com/markets/articles/pay-zero-taxes-social-security-104000799.html",
-      "date": "2026-08-06T10:40:00Z",
-      "topics": [
-        "regulation"
-      ]
-    },
-    {
-      "title": "Nvidia\u2019s (NVDA) Amkor (AMKR) Deal Adds Packaging Muscle Ahead Of Earnings",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-nvda-amkor-amkr-deal-104631781.html",
-      "date": "2026-08-06T10:46:31Z",
-      "topics": [
-        "earnings"
-      ],
-      "tickers": [
-        "NVDA"
-      ]
-    },
-    {
       "title": "Walmart Earnings: Bull Put Spread Trade",
       "link": "https://finance.yahoo.com/markets/options/articles/walmart-earnings-bull-put-spread-110002553.html",
       "date": "2026-08-06T11:00:02Z",
@@ -133,11 +70,44 @@
       ]
     },
     {
-      "title": "S&P 500 Has Best Week Since April After Jobs Data: Markets Wrap",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-06/stock-market-today-dow-s-p-live-updates",
-      "date": "Thu, 06 Aug 2026 22:10:21 GMT",
+      "title": "Stock Market Suffers AI Sell-Off In July. What's Next?",
+      "link": "https://www.investors.com/etfs-and-funds/mutual-funds/stock-market-suffers-ai-sell-off-in-july-whats-next/?src=A00220&yptr=yahoo",
+      "date": "2026-08-06T11:00:09Z",
       "topics": [
+        "tech",
         "market"
+      ]
+    },
+    {
+      "title": "Molson Coors beats second-quarter expectations and maintains full-year outlook",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/molson-coors-beats-second-quarter-105730774.html",
+      "date": "2026-08-06T10:57:30Z",
+      "topics": [
+        "regulation",
+        "tech"
+      ]
+    },
+    {
+      "title": "AMD's Beat-and-Raise Q2 Earnings Shows Just How High the AI Bar Is",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/amds-beat-raise-q2-earnings-113002308.html",
+      "date": "2026-08-06T11:30:02Z",
+      "topics": [
+        "earnings",
+        "tech"
+      ],
+      "tickers": [
+        "AMD"
+      ]
+    },
+    {
+      "title": "IonQ Earnings Top Views. Investor Day Set For Sept. 8 Amid SkyWater Deal.",
+      "link": "https://www.investors.com/news/technology/ionq-stock-ionq-earnings-quantum-computing-stocks/?src=A00220&yptr=yahoo",
+      "date": "2026-08-06T11:34:15Z",
+      "topics": [
+        "earnings"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -149,31 +119,52 @@
       ]
     },
     {
+      "title": "S&P 500 Has Best Week Since April After Jobs Data: Markets Wrap",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-06/stock-market-today-dow-s-p-live-updates",
+      "date": "Thu, 06 Aug 2026 22:10:21 GMT",
+      "topics": [
+        "market"
+      ]
+    },
+    {
+      "title": "SpaceX Nears IPO Price Again After Staging $327 Billion Rally",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/spacex-nears-ipo-price-again-after-staging-327-billion-rally",
+      "date": "Fri, 07 Aug 2026 20:29:47 GMT",
+      "topics": [
+        "tech"
+      ]
+    },
+    {
+      "title": "Markets Rally on Weak Jobs Report | Closing Bell",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-07/markets-rally-on-weak-jobs-report-closing-bell-video",
+      "date": "Fri, 07 Aug 2026 20:23:55 GMT",
+      "topics": [
+        "market"
+      ]
+    },
+    {
+      "title": "US Stocks Rise After Jobs Data to Second-Best Week of the Year",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/us-futures-rise-as-trump-touts-iran-progress-awaiting-jobs-data",
+      "date": "Fri, 07 Aug 2026 11:44:11 GMT",
+      "topics": [
+        "regulation"
+      ]
+    },
+    {
+      "title": "Airbnb Jumps Most Since 2020 After Lifting Annual Outlook Again",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-06/airbnb-lifts-2026-outlook-again-on-robust-us-european-travel",
+      "date": "Thu, 06 Aug 2026 20:03:32 GMT",
+      "topics": [
+        "tech"
+      ]
+    },
+    {
       "title": "Latest Oil Market News and Analysis for Aug. 7",
       "link": "https://www.bloomberg.com/news/articles/2026-08-06/latest-oil-market-news-and-analysis-for-aug-7",
       "date": "Thu, 06 Aug 2026 22:01:46 GMT",
       "topics": [
         "energy",
         "market"
-      ]
-    },
-    {
-      "title": "PGA Is Not Talking to LIV Golf About a Merger, Commissioner Says",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-07/innovation-doesn-t-happen-without-crisis-rolapp-video",
-      "date": "Fri, 07 Aug 2026 19:34:44 GMT",
-      "topics": [
-        "merger"
-      ]
-    },
-    {
-      "title": "Treasuries Rally as Soft Jobs Data Trims Fed Rate-Hike Bets",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-07/treasuries-rally-as-jobs-data-trims-fed-rate-hike-bets-video",
-      "date": "Fri, 07 Aug 2026 18:49:31 GMT",
-      "topics": [
-        "interest rate"
-      ],
-      "tickers": [
-        "F"
       ]
     },
     {

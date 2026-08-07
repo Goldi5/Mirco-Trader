@@ -1,3 +1,9 @@
+## [2.19.7] - 2026-08-07
+### Changed (Spec-Watchlist Masse)
+- **`spec_watch.py` `WATCHLIST`**: 49 → **169 Ticker** (+120). Mehr Krypto/Leveraged/Volatility/Commodity/AI/EV/Biotech/Meme/Space/Fintech/Retail/Energy/Gaming/Cannabis. Ziel: KI hat pro Spec-Depot mehr Auswahl (Rotation/Diversifikation), ohne die Depot-Anzahl zu erhöhen (kein Klumpenrisiko durch mehr Depots).
+- **`max_spec_depots` NICHT erhöht** (User: "nicht mehr Depots bei specs"). Die 49 bestehenden Depots bleiben, wählen aber aus 169 statt 49 Kandidaten.
+- **Cron-Fenster**: Auswertungs-Crons auf 5-10 Min nach Börsenschluss (Audit 22:05, Monitor 22:17).
+
 ## [2.19.6] - 2026-08-07
 ### Changed (Risiko-Rampe Stufe 3: Penny-Penalty)
 - **`engine.py` Z31-35**: Budget-Anpassung umgedreht (Hybrid b+c). Bisher: billigere Aktien kriegen MEHR Score (Penneys wie AMC $2.56 / WKHS $3.26 dominierten Top-10 bei $100-Cash-Depots → KI fand kein Signal → hielt). Neu: Aktien <$5 kriegen **Score-Abzug (-10)**, $5-30 Small-Caps **+8** (Diversifikation), >$30 **+3** (neutral). Penneys nicht ausgeschlossen (Pool bleibt voll), aber abgewertet.
