@@ -1,65 +1,5 @@
 [
   {
-    "zeit": "2026-08-06T20:49:04.339862",
-    "quelle": "ki_learning",
-    "level": "info",
-    "text": "Lern-Analyse: keine neuen Entscheidungen"
-  },
-  {
-    "zeit": "2026-08-06T20:49:04.803973",
-    "quelle": "ki_learning",
-    "level": "info",
-    "text": "Lern-Analyse: keine neuen Entscheidungen"
-  },
-  {
-    "zeit": "2026-08-06T20:49:04.868580",
-    "quelle": "skill",
-    "level": "info",
-    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-06_2049, 47 verfügbar)"
-  },
-  {
-    "zeit": "2026-08-06T20:49:05.359806",
-    "quelle": "skill",
-    "level": "info",
-    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-06_2049, 47 verfügbar)"
-  },
-  {
-    "zeit": "2026-08-06T20:49:07.360699",
-    "quelle": "etf",
-    "level": "warn",
-    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.75%"
-  },
-  {
-    "zeit": "2026-08-06T20:49:07.766462",
-    "quelle": "etf",
-    "level": "warn",
-    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.75%"
-  },
-  {
-    "zeit": "2026-08-06T20:49:09.385577",
-    "quelle": "etf",
-    "level": "warn",
-    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.75%"
-  },
-  {
-    "zeit": "2026-08-06T20:49:13.898409",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 449 Trades, Rendite +4.91%"
-  },
-  {
-    "zeit": "2026-08-06T20:49:14.127464",
-    "quelle": "cron",
-    "level": "ok",
-    "text": "KI-Lauf durchgelaufen"
-  },
-  {
-    "zeit": "2026-08-06T20:49:14.417871",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 449 Trades, Rendite +4.91%"
-  },
-  {
     "zeit": "2026-08-06T20:49:14.660063",
     "quelle": "cron",
     "level": "ok",
@@ -2872,6 +2812,52 @@
   },
   {
     "zeit": "2026-08-07T09:27:43.602982",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T09:42:44.171928",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T09:57:44.741825",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T10:12:45.300446",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T10:22:13.497486",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 469 Trades, Rendite +4.65%"
+  },
+  {
+    "zeit": "2026-08-07T10:27:45.899631",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T10:42:46.478222",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T10:57:47.079332",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T11:12:47.646769",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T11:27:48.199995",
     "quelle": "watchdog",
     "text": "Watchdog: alles OK (kein Test gesendet)"
   }

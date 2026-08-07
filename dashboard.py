@@ -1341,29 +1341,24 @@ def api_ki_log():
 
 @app.route("/api/db_query")
 def api_db_query():
-    """Flexible DB-Abfrage für Analyse-Tab (Filter + Suche)."""
-    import sys as _sys
-    _sys.path.insert(0, BASE)
     try:
         from db import MTDB
-        typ = request.args.get("typ") or None
-        ticker = request.args.get("ticker") or None
-        aktion = request.args.get("aktion") or None
-        tage = request.args.get("tage", default=30, type=int)
-        limit = request.args.get("limit", default=200, type=int)
-        order = request.args.get("order", default="DESC")
-        mode = request.args.get("mode", default="trades")  # trades | ki
         db = MTDB()
+        mode = request.args.get("mode", "trades")
+        typ = request.args.get("typ", "")
+        ticker = request.args.get("ticker", "")
+        aktion = request.args.get("aktion", "")
+        tage = request.args.get("tage", type=int, default=30)
+        order = request.args.get("order", "DESC")
+        limit = request.args.get("limit", type=int, default=500)
         if mode == "ki":
-            rows = db.query_ki(typ=typ, ticker=ticker, aktion=aktion,
-                               tage=tage, limit=limit, order=order)
+            rows = db.query_ki(ticker=ticker, limit=limit)
         else:
-            rows = db.query_trades(typ=typ, ticker=ticker, aktion=aktion,
-                                   tage=tage, limit=limit, order=order)
+            rows = db.query_trades(typ=typ, ticker=ticker, aktion=aktion, tage=tage, order=order, limit=limit)
         db.close()
-        return {"count": len(rows), "rows": rows}
+        return {"error": None, "count": len(rows), "rows": rows}
     except Exception as e:
-        return {"error": str(e), "rows": []}
+        return {"error": str(e), "count": 0, "rows": []}
 
 
 @app.route("/depot_json")
