@@ -1351,8 +1351,13 @@ def api_db_query():
         tage = request.args.get("tage", type=int, default=30)
         order = request.args.get("order", "DESC")
         limit = request.args.get("limit", type=int, default=500)
+        provider = request.args.get("provider", "")
+        regel_id = request.args.get("regel_id", "")
+        fallback = request.args.get("fallback", "")
         if mode == "ki":
-            rows = db.query_ki(ticker=ticker, limit=limit)
+            rows = db.query_ki(ticker=ticker, limit=limit, provider=provider or None,
+                               regel_id=regel_id or None,
+                               fallback=(fallback == "true") if fallback else None)
         else:
             rows = db.query_trades(typ=typ, ticker=ticker, aktion=aktion, tage=tage, order=order, limit=limit)
         db.close()

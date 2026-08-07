@@ -343,6 +343,8 @@ canvas{display:block;max-width:100%}
       <select id="an2Typ"><option value="">Alle Typen</option><option value="aktien">Aktien</option><option value="etf">ETF</option><option value="spec">Spekulation</option></select>
       <input id="an2Ticker" placeholder="Ticker-Suche" style="padding:6px;border-radius:8px;background:rgba(255,255,255,0.1);color:var(--text);border:1px solid rgba(255,255,255,0.2);min-width:140px">
       <select id="an2Aktion"><option value="">Alle Aktionen</option><option value="kaufen">Kaufen</option><option value="verkaufen">Verkaufen</option><option value="halten">Halten</option></select>
+      <select id="an2Provider"><option value="">Alle Provider</option><option value="zen">zen</option><option value="zen-nemotron">zen-nemotron</option><option value="openrouter">openrouter</option><option value="nous-hy3">nous-hy3</option><option value="nous-step">nous-step</option><option value="unknown">unknown</option></select>
+      <select id="an2Fallback"><option value="">Alle</option><option value="true">Fallback</option><option value="false">Echte KI</option></select>
       <select id="an2Tage"><option value="7">7 Tage</option><option value="30" selected>30 Tage</option><option value="90">90 Tage</option><option value="365">1 Jahr</option></select>
       <select id="an2Order"><option value="DESC">Neueste</option><option value="ASC">Älteste</option></select>
       <button onclick="anLaden2()" style="padding:6px 14px;border-radius:8px;background:rgba(139,92,246,0.4);color:#fff;border:none;cursor:pointer">🔄 Laden</button>
@@ -352,7 +354,7 @@ canvas{display:block;max-width:100%}
     <div style="overflow-x:auto;max-height:520px;overflow-y:auto">
       <table style="width:100%;border-collapse:collapse;font-size:13px">
         <thead><tr style="position:sticky;top:0;background:rgba(139,92,246,0.2)">
-          <th style="padding:6px;text-align:left">Zeit</th><th style="padding:6px;text-align:left">Typ</th><th style="padding:6px;text-align:left">Ticker</th><th style="padding:6px;text-align:left">Aktion</th><th style="padding:6px;text-align:right">Menge</th><th style="padding:6px;text-align:right">Preis</th><th style="padding:6px;text-align:left">Grund</th><th style="padding:6px;text-align:right">Konf.</th>
+          <th style="padding:6px;text-align:left">Zeit</th><th style="padding:6px;text-align:left">Typ</th><th style="padding:6px;text-align:left">Ticker</th><th style="padding:6px;text-align:left">Aktion</th><th style="padding:6px;text-align:right">Menge</th><th style="padding:6px;text-align:right">Preis</th><th style="padding:6px;text-align:left">Grund</th><th style="padding:6px;text-align:right">Konf.</th><th style="padding:6px;text-align:left">Provider</th><th style="padding:6px;text-align:left">decision_id</th><th style="padding:6px;text-align:left">Regel-ID</th>
         </tr></thead>
         <tbody id="an2Body"></tbody>
       </table>
@@ -2332,12 +2334,16 @@ function anLaden2() {
   const typ = document.getElementById("an2Typ").value;
   const ticker = document.getElementById("an2Ticker").value.trim();
   const aktion = document.getElementById("an2Aktion").value;
+  const provider = document.getElementById("an2Provider").value;
+  const fallback = document.getElementById("an2Fallback").value;
   const tage = document.getElementById("an2Tage").value;
   const order = document.getElementById("an2Order").value;
   const p = new URLSearchParams({ mode: mode, tage: tage, order: order, limit: 500 });
   if (typ) p.set("typ", typ);
   if (ticker) p.set("ticker", ticker);
   if (aktion) p.set("aktion", aktion);
+  if (provider) p.set("provider", provider);
+  if (fallback) p.set("fallback", fallback);
   document.getElementById("an2Count").textContent = "lädt...";
   fetch("/api/db_query?" + p.toString())
     .then(r => r.json())
@@ -2351,14 +2357,18 @@ function anLaden2() {
         const tr = document.createElement("tr");
         tr.style.borderBottom = "1px solid rgba(255,255,255,0.08)";
         const farbe = (r.aktion === "kaufen") ? "#34d399" : (r.aktion === "verkaufen") ? "#f87171" : "#fbbf24";
+        const fb = r.fallback === "True" ? " ⚠FB" : "";
         tr.innerHTML = "<td style='padding:5px'>" + esc((r.zeit||"").replace("T"," ").slice(0,19)) + "</td>"
           + "<td style='padding:5px'>" + esc(r.depot_typ||"") + "</td>"
           + "<td style='padding:5px;font-weight:bold'>" + esc(r.ticker||"") + "</td>"
-          + "<td style='padding:5px;color:" + farbe + "'>" + esc(r.aktion||"") + "</td>"
+          + "<td style='padding:5px;color:" + farbe + "'>" + esc(r.aktion||"") + fb + "</td>"
           + "<td style='padding:5px;text-align:right'>" + (r.menge!=null?r.menge:"") + "</td>"
           + "<td style='padding:5px;text-align:right'>" + (r.preis!=null?r.preis:"") + "</td>"
           + "<td style='padding:5px;opacity:0.8'>" + esc((r.grund||"").slice(0,80)) + "</td>"
-          + "<td style='padding:5px;text-align:right'>" + (r.konfidenz!=null?r.konfidenz:(r.confidence!=null?r.confidence:"")) + "</td>";
+          + "<td style='padding:5px;text-align:right'>" + (r.konfidenz!=null?r.konfidenz:(r.confidence!=null?r.confidence:"")) + "</td>"
+          + "<td style='padding:5px;opacity:0.6'>" + esc(r.provider||"") + "</td>"
+          + "<td style='padding:5px;opacity:0.6'>" + esc((r.decision_id||"").slice(0,18)) + "</td>"
+          + "<td style='padding:5px;opacity:0.6'>" + esc(r.regel_id||"") + "</td>";
         body.appendChild(tr);
       });
     })
@@ -2369,14 +2379,18 @@ function anLaden2() {
     .then(d => {
       const k = d.karten || {};
       const kvh = k.kauf_verkauf_halte || {};
+      const prov = k.provider_verteilung || {};
+      const prov_str = Object.entries(prov).map(([p,n])=>p+":"+n).join(", ") || "n/a";
       const cards = [
         ["Trades (Zeitraum)", k.trades_zeitraum],
         ["KI-Entscheidungen", k.ki_entscheidungen],
         ["Kauf/Verkauf/Halten", (kvh.kauf||0)+" / "+(kvh.verkauf||0)+" / "+(kvh.halten||0)],
         ["Konfidenz-Schnitt", k.konfidenz_schnitt!=null ? k.konfidenz_schnitt+"%" : "n/a"],
-        ["decision_id", k.entscheidungen_mit_decision_id],
-        ["Legacy-Fallback", k.legacy_fallbacks],
-        ["Provider-Fehler", k.provider_fehler],
+        ["mit decision_id", k.entscheidungen_mit_decision_id],
+        ["mit Regel-ID", k.entscheidungen_mit_regel],
+        ["Fallback (⚠)", k.legacy_fallbacks],
+        ["Provider unbekannt", k.provider_fehler],
+        ["Provider-Verteilung", prov_str],
       ];
       const box = document.getElementById("an2Karten");
       box.innerHTML = "";

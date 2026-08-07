@@ -32,6 +32,23 @@ class MTDB:
         self.conn = sqlite3.connect(pfad)
         self.conn.row_factory = sqlite3.Row
         self._init_schema()
+        self._migrate_schema()
+
+    def _spalte_existiert(self, tabelle, spalte):
+        res = self.conn.execute(f'PRAGMA table_info("{tabelle}")').fetchall()
+        return any(r[1] == spalte for r in res)
+
+    def _migrate_schema(self):
+        """Idempotent: fuegt Audit-Felder hinzu (decision_id/provider/regel_id/fallback).
+        Bereits vorhandene Spalten werden uebersprungen."""
+        c = self.conn.cursor()
+        for spalte in ["decision_id", "provider", "regel_id", "fallback"]:
+            if not self._spalte_existiert("trades", spalte):
+                c.execute(f'ALTER TABLE trades ADD COLUMN {spalte} TEXT')
+        for spalte in ["decision_id", "provider", "regel_id", "fallback"]:
+            if not self._spalte_existiert("ki_decisions", spalte):
+                c.execute(f'ALTER TABLE ki_decisions ADD COLUMN {spalte} TEXT')
+        self.conn.commit()
 
     def _init_schema(self):
         c = self.conn.cursor()
@@ -129,11 +146,15 @@ class MTDB:
             zeit = e.get("zeit", "")
             if zeit <= last:
                 continue
+            # regel_id: erste angewandte Regel (aus angewandte_regeln[].id)
+            ar = e.get("angewandte_regeln") or []
+            regel_id = ar[0].get("id") if ar and isinstance(ar[0], dict) else None
             c.execute(
-                "INSERT INTO ki_decisions (zeit, ticker, aktion, konfidenz, grund, depot_typ, risk) "
-                "VALUES (?,?,?,?,?,?,?)",
+                "INSERT INTO ki_decisions (zeit, ticker, aktion, konfidenz, grund, depot_typ, risk, decision_id, regel_id, provider, fallback) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
                 (zeit, e.get("ticker"), e.get("aktion"), e.get("konfidenz"),
-                 str(e.get("grund", ""))[:200], e.get("depot_typ"), e.get("risk")))
+                 str(e.get("grund", ""))[:200], e.get("depot_typ"), e.get("risk"),
+                 e.get("decision_id"), regel_id, e.get("provider"), e.get("fallback")))
 
     def _sync_snapshots(self):
         c = self.conn.cursor()
@@ -226,10 +247,12 @@ class MTDB:
         return [dict(r) for r in rows]
 
     def query_ki(self, typ=None, ticker=None, aktion=None, tage=30,
-                 limit=200, order="DESC"):
-        """Flexible KI-Entscheidungs-Suche (ki_decisions Tabelle)."""
+                 limit=200, order="DESC", provider=None, regel_id=None, fallback=None):
+        """Flexible KI-Entscheidungs-Suche (ki_decisions Tabelle).
+        Neu (v2.19.1): Filter provider/regel_id/fallback."""
         since = (datetime.now() - timedelta(days=tage)).isoformat()
-        sql = ("SELECT zeit, ticker, aktion, konfidenz, grund, depot_typ, risk "
+        sql = ("SELECT zeit, ticker, aktion, konfidenz, grund, depot_typ, risk, "
+               "decision_id, provider, regel_id, fallback "
                "FROM ki_decisions WHERE zeit >= ?")
         params = [since]
         if typ:
@@ -241,6 +264,15 @@ class MTDB:
         if aktion:
             sql += " AND aktion = ?"
             params.append(aktion)
+        if provider:
+            sql += " AND provider = ?"
+            params.append(provider)
+        if regel_id:
+            sql += " AND regel_id = ?"
+            params.append(regel_id)
+        if fallback is not None:
+            sql += " AND fallback = ?"
+            params.append("True" if fallback else "False")
         sql += f" ORDER BY zeit {order} LIMIT ?"
         params.append(limit)
         rows = self.conn.execute(sql, params).fetchall()
@@ -260,18 +292,32 @@ class MTDB:
         # Konfidenz-Durchschnitt (nur wo vorhanden)
         konf_vals = [t["konfidenz"] for t in kis if t["konfidenz"] is not None]
         konf_schnitt = round(sum(konf_vals)/len(konf_vals), 1) if konf_vals else None
-        # decision_id / Legacy / Provider: Felder existieren NICHT in DB -> ehrlich n/a
+        # Neue Felder (v2.19.1): echt aus DB, nicht mehr n/a
+        n_mit_decision = c.execute(
+            "SELECT COUNT(*) FROM ki_decisions WHERE zeit >= ? AND decision_id IS NOT NULL", (since,)).fetchone()[0]
+        n_fallback = c.execute(
+            "SELECT COUNT(*) FROM ki_decisions WHERE zeit >= ? AND fallback = 'True'", (since,)).fetchone()[0]
+        n_provider_unknown = c.execute(
+            "SELECT COUNT(*) FROM ki_decisions WHERE zeit >= ? AND (provider IS NULL OR provider = 'unknown')", (since,)).fetchone()[0]
+        n_mit_regel = c.execute(
+            "SELECT COUNT(*) FROM ki_decisions WHERE zeit >= ? AND regel_id IS NOT NULL", (since,)).fetchone()[0]
+        # provider_verteilung
+        prov_rows = c.execute(
+            "SELECT provider, COUNT(*) FROM ki_decisions WHERE zeit >= ? GROUP BY provider", (since,)).fetchall()
+        provider_vert = {r["provider"]: r["COUNT(*)"] for r in prov_rows}
         return {
             "trades_zeitraum": n_trades,
             "ki_entscheidungen": n_ki,
             "kauf_verkauf_halte": {"kauf": kauf, "verkauf": verkauf, "halten": halten},
-            "entscheidungen_mit_decision_id": "n/a (Feld nicht in DB)",
-            "legacy_fallbacks": "n/a (Feld nicht in DB)",
+            "entscheidungen_mit_decision_id": f"{n_mit_decision}/{n_ki}",
+            "legacy_fallbacks": n_fallback,
             "konfidenz_schnitt": konf_schnitt,
             "konfidenz_ohne_treffer": "n/a",
-            "provider_fehler": "n/a (Feld nicht in DB)",
+            "provider_fehler": n_provider_unknown,
+            "provider_verteilung": provider_vert,
+            "entscheidungen_mit_regel": f"{n_mit_regel}/{n_ki}",
             "cooldown_ereignisse": "siehe ki_cooldown.json",
-            "trades_ohne_ki_zuordnung": "n/a (Feld nicht in DB)",
+            "trades_ohne_ki_zuordnung": "n/a (Trade→KI-Match folgt)",
         }
 
     def close(self):

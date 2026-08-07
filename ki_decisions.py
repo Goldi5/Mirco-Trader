@@ -257,7 +257,8 @@ Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "k
     try:
         from ki_provider import call_ki, ki_faehig
         if not ki_faehig():
-            return {"aktion": "halten", "konfidenz": 0, "grund": "Kein API-Key"}
+            return {"aktion": "halten", "konfidenz": 0, "grund": "Kein API-Key",
+                    "provider": "none", "fallback": True}
         # Settings: KI-Temperatur (Default 0.1)
         temp = _ki_set("ki_temperatur", 0.1)
         raus, _provider = call_ki(
@@ -272,6 +273,7 @@ Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "k
             return {"aktion": "halten", "konfidenz": 0, "grund": "KI-Call fehlgeschlagen (alle Provider)",
                     "decision_id": f"d_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{ticker}_{depot_typ}_{risk if risk is not None else 'na'}",
                     "depot_typ": depot_typ, "risk": risk, "ticker": ticker,
+                    "provider": _provider or "unknown", "fallback": True,
                     "shadow": False, "regelstand_ref": "v_legacy", "konflikte": [],
                     "prioritaetsreihenfolge": ["engine_bremse", "meta_cap", "news_swap", "exit_score", "ki"],
                     "konfidenz_original": 0, "konfidenz_nach_cap": 0}
@@ -346,6 +348,8 @@ Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "k
             "angewandte_regeln": angewandte_regeln,  # R1: Audit-Trail welche Regeln gewirkt haben
             # ── Block1: Audit-Trail (voller Kontext) ──
             "decision_id": f"d_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{ticker}_{depot_typ}_{risk if risk is not None else 'na'}",
+            "provider": _provider or "unknown",  # welcher Free-Tier-Provider entschied
+            "fallback": False,  # echte KI-Entscheidung (kein Crash-Fallback)
             "depot_typ": depot_typ,
             "risk": risk,
             "quelle": "ki_decisions.entscheide_ticker",

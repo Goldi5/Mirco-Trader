@@ -1,3 +1,21 @@
+## [2.19.1] - 2026-08-07
+### Added (Audit-Felder — echte DB-Spalten)
+- **DB-Schema-Migration** (`db._migrate_schema`, idempotent): `trades` + `ki_decisions` erhalten `decision_id`, `provider`, `regel_id`, `fallback` (TEXT, nullable). Bereits vorhandene Spalten werden übersprungen.
+- **`ki_decisions.py`**: `entscheide_ticker` schreibt jetzt `provider` (welcher Free-Tier-Provider entschied) + `fallback` (True bei KI-Crash → sicheres `halten`, False bei echter KI-Entscheidung). Schon vorhanden: `decision_id` (immer erzeugt), `angewandte_regeln[].id` (→ `regel_id`).
+- **`db._sync_ki`**: liest `decision_id` + `regel_id` aus `ki_log.json` beim Sync.
+- **`db.analyse_karten`**: `entscheidungen_mit_decision_id`, `legacy_fallbacks`, `provider_fehler`, `provider_verteilung`, `entscheidungen_mit_regel` jetzt **echt aus DB** (nicht mehr `n/a`).
+- **Analyse-Tab analyse2**: Filter Provider + Fallback (Echte KI / ⚠FB) + neue Spalten (Provider/decision_id/Regel-ID) + Karten mit Provider-Verteilung.
+- **`report_pdf._datenvertrauen`**: `decision_id-Zuordnung` ehrlich aus DB (z.B. "vollständig (22% der Einträge)" oder "Legacy (alte ohne Feld)").
+
+### Ehrlichkeits-Hinweis
+- Alte 178 ki_decisions (vor v2.19.1) haben **kein** decision_id/provider (aus Zeit vor Feld-Einführung) → in DB NULL, nicht erfunden. Nur neue Entscheidungen (ab jetzt) befüllen die Felder.
+- `trades.decision_id` (Trade→KI-Zuordnung) bleibt offen: Depot-JSONs haben kein decision_id → Match folgt in eigener Migration.
+
+### Verifiziert
+- DB-Migration idempotent (2x sync = keine Duplicate-Spalten).
+- `/api/db_karten`: `entscheidungen_mit_decision_id=0/178` (ehrlich, alte Daten), `provider_fehler=178` (alle unknown, alt).
+- `/api/db_query?mode=ki&provider=zen` Filter funktional.
+
 ## [2.19.0] - 2026-08-07
 ### Added (Analyse- & Datenvertrauen-Stabilisierung)
 - **Phase B — Datenvertrauens-Score**: Tagesbericht zeigt `DATENLAGE: HOCH|MITTEL|NIEDRIG|NICHT VERIFIZIERT` + 9 Statusfelder (Portfolio-Snapshot, Trade-Daten, Einzel-Trade-P&L, Gebühren, Slippage, Drawdown, decision_id-Zuordnung, KI-Provider, Report-Erzeugung). Kein erfundenener %-Wert.

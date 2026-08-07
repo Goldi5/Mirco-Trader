@@ -563,8 +563,22 @@ def _datenvertrauen(daten):
     felder["Slippage"] = "n/a"
     # Drawdown: nur Snapshot, keine Zeitreihe
     felder["Drawdown"] = "Snapshot fehlt" if snap == 0 else "verifiziert (Snapshot)"
-    # decision_id-Zuordnung: DB-Feld fehlt -> Legacy
-    felder["decision_id-Zuordnung"] = "Legacy (Feld nicht in DB)"
+    # decision_id-Zuordnung: jetzt aus DB (v2.19.1)
+    try:
+        import sqlite3 as _sq
+        _c = _sq.connect(os.path.join(BASE, "micro_trader.db"))
+        _tot = _c.execute("SELECT COUNT(*) FROM ki_decisions").fetchone()[0]
+        _mit = _c.execute("SELECT COUNT(*) FROM ki_decisions WHERE decision_id IS NOT NULL").fetchone()[0]
+        _c.close()
+        if _tot == 0:
+            felder["decision_id-Zuordnung"] = "n/a (keine KI-Daten)"
+        elif _mit == 0:
+            felder["decision_id-Zuordnung"] = "Legacy (alte Einträge ohne Feld)"
+        else:
+            anteil = round(100 * _mit / _tot)
+            felder["decision_id-Zuordnung"] = f"vollständig ({anteil}% der Einträge)"
+    except Exception:
+        felder["decision_id-Zuordnung"] = "n/a (DB-Fehler)"
     # KI-Provider: aus cooldown + ki_log
     cd = daten.get("ki_cooldown", {})
     aktive_cooldowns = [p for p, v in cd.items() if v.get("bis", 0) > time.time()] if cd else []

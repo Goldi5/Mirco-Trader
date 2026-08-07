@@ -1,8 +1,8 @@
 {
-  "version": "2.19.0",
-  "build": "2026-08-07_1415",
-  "released_at": "2026-08-07 14:15",
-  "codename": "Analyse- & Datenvertrauen-Stabilisierung",
+  "version": "2.19.1",
+  "build": "2026-08-07_1515",
+  "released_at": "2026-08-07 15:15",
+  "codename": "Audit-Felder (decision_id/provider/regel_id/fallback)",
   "changes": [
     {
       "version": "2.19.0",
