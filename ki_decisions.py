@@ -252,6 +252,16 @@ triffst DU auf Basis aller Daten.
 AKTUELLE NEWS:
 {news_text if news_text else "  Keine"}
 
+STRATEGIE-HINWEISE (Diversifikation, keine harten Verbote):
+- Bevorzuge MEHRERE KLEINE Positionen statt weniger teurer: bei verfügbarem Cash
+  sind 3-5 Positionen à <$30 sinnvoller als 1-2 große Klumpen.
+- VOLUMEN ist ein DÄMPFER, kein Kauf-Stopp: bei vol_ratio <0.3x nur kleinere
+  Position (50%) kaufen, NICHT komplett verzichten. Erst bei vol_ratio <0.15x
+  (illiquide) ganz auf KAUF verzichten.
+- DIVERSIFIKATION pro Depot: max. 1 Position aus Tier 3 (Penny), mische mind.
+  2 verschiedene Tiers (Bluechip/Mid/Grow/Penny/ETF). Vermeide "alles Pennystocks"
+  oder "alles Bluechips".
+
 WICHTIG: Antworte NUR mit JSON KEINEN anderen Text. Keine Denkprozesse.
 Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "kurze Begründung"}}"""
     try:

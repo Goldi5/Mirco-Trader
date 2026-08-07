@@ -901,5 +901,148 @@
     "quelle": "cron",
     "level": "info",
     "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ, 🇪🇺 Xetra, 🇬🇧 London, 🇪🇺 Euronext"
+  },
+  {
+    "zeit": "2026-08-07T16:46:47.475507",
+    "quelle": "spec",
+    "level": "ok",
+    "text": "Spec-Lauf: 49 Depots analysiert"
+  },
+  {
+    "zeit": "2026-08-07T16:46:55.576690",
+    "quelle": "ki_learning",
+    "level": "info",
+    "text": "Lern-Analyse: keine neuen Entscheidungen"
+  },
+  {
+    "zeit": "2026-08-07T16:46:56.072002",
+    "quelle": "skill",
+    "level": "info",
+    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1646, 47 verfügbar)"
+  },
+  {
+    "zeit": "2026-08-07T16:46:59.413785",
+    "quelle": "etf",
+    "level": "warn",
+    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.70%"
+  },
+  {
+    "zeit": "2026-08-07T16:47:05.744653",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 471 Trades, Rendite +5.93%"
+  },
+  {
+    "zeit": "2026-08-07T16:47:05.947690",
+    "quelle": "cron",
+    "level": "ok",
+    "text": "KI-Lauf durchgelaufen"
+  },
+  {
+    "zeit": "2026-08-07T16:47:11.179452",
+    "quelle": "spec",
+    "level": "ok",
+    "text": "Spec-Lauf: 49 Depots analysiert"
+  },
+  {
+    "zeit": "2026-08-07T16:47:15.866464",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 471 Trades, Rendite +5.91%"
+  },
+  {
+    "zeit": "2026-08-07T16:47:20.425246",
+    "quelle": "ki_learning",
+    "level": "info",
+    "text": "Lern-Analyse: keine neuen Entscheidungen"
+  },
+  {
+    "zeit": "2026-08-07T16:47:20.893592",
+    "quelle": "skill",
+    "level": "info",
+    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1647, 47 verfügbar)"
+  },
+  {
+    "zeit": "2026-08-07T16:47:23.745077",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Cron-Pipeline gestartet (mode=full, detached)"
+  },
+  {
+    "zeit": "2026-08-07T16:47:25.229619",
+    "quelle": "etf",
+    "level": "warn",
+    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.70%"
+  },
+  {
+    "zeit": "2026-08-07T16:47:26.898995",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T16:47:26.914087",
+    "quelle": "cron",
+    "level": "info",
+    "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ, 🇪🇺 Xetra, 🇬🇧 London, 🇪🇺 Euronext"
+  },
+  {
+    "zeit": "2026-08-07T16:47:31.529568",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 471 Trades, Rendite +5.90%"
+  },
+  {
+    "zeit": "2026-08-07T16:47:31.831587",
+    "quelle": "cron",
+    "level": "ok",
+    "text": "KI-Lauf durchgelaufen"
+  },
+  {
+    "zeit": "2026-08-07T16:47:41.376464",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 471 Trades, Rendite +5.90%"
+  },
+  {
+    "zeit": "2026-08-07T16:47:54.562836",
+    "quelle": "spec",
+    "level": "ok",
+    "text": "Spec-Lauf: 49 Depots analysiert"
+  },
+  {
+    "zeit": "2026-08-07T16:48:03.449794",
+    "quelle": "ki_learning",
+    "level": "info",
+    "text": "Lern-Analyse: keine neuen Entscheidungen"
+  },
+  {
+    "zeit": "2026-08-07T16:48:03.878958",
+    "quelle": "skill",
+    "level": "info",
+    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1648, 47 verfügbar)"
+  },
+  {
+    "zeit": "2026-08-07T16:48:07.588472",
+    "quelle": "etf",
+    "level": "warn",
+    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.70%"
+  },
+  {
+    "zeit": "2026-08-07T16:48:15.953612",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 471 Trades, Rendite +5.86%"
+  },
+  {
+    "zeit": "2026-08-07T16:48:16.296711",
+    "quelle": "cron",
+    "level": "ok",
+    "text": "KI-Lauf durchgelaufen"
+  },
+  {
+    "zeit": "2026-08-07T16:48:25.760005",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 471 Trades, Rendite +5.86%"
   }
 ]

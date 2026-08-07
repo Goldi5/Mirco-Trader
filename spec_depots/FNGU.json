@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T18:15:13.372295",
-      "wert": 108.19
-    },
-    {
       "zeit": "2026-08-04T18:16:03.904356",
       "wert": 108.19
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T16:34:49.675868",
       "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-07T16:47:10.980619",
+      "wert": 108.62
     }
   ],
   "trades": [
@@ -537,12 +537,14 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 50,
-    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_163241_FNGU_aktien_na",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260807_164754_FNGU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "FNGU",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

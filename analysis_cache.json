@@ -1,5 +1,5 @@
 {
-  "zeit": "2026-08-07T16:42:18.489771",
+  "zeit": "2026-08-07T16:48:18.012253",
   "aktien": {
     "name": "Aktien",
     "depots": 20,
@@ -555,7 +555,7 @@
   },
   "risiko_aktien": {
     "name": "Aktien",
-    "max_drawdown": 8.5,
+    "max_drawdown": 8.4,
     "ges_drawdown": -636.1,
     "depot_details": [
       {
@@ -585,49 +585,49 @@
       {
         "risk": 20,
         "wert": 1.89,
-        "dd": 3.4,
+        "dd": 3.1,
         "positionen": 4
       },
       {
         "risk": 25,
         "wert": 44.3,
-        "dd": 3.4,
+        "dd": 3.1,
         "positionen": 3
       },
       {
         "risk": 30,
         "wert": 102.01,
-        "dd": 3.4,
+        "dd": 3.1,
         "positionen": 0
       },
       {
         "risk": 35,
         "wert": 61.11,
-        "dd": 3.4,
+        "dd": 3.1,
         "positionen": 1
       },
       {
         "risk": 40,
         "wert": 6.41,
-        "dd": 3.4,
+        "dd": 3.1,
         "positionen": 3
       },
       {
         "risk": 45,
         "wert": 42.94,
-        "dd": 3.4,
+        "dd": 3.1,
         "positionen": 2
       },
       {
         "risk": 50,
         "wert": 0.0,
-        "dd": 3.4,
+        "dd": 3.1,
         "positionen": 4
       },
       {
         "risk": 55,
         "wert": 3.93,
-        "dd": 3.4,
+        "dd": 3.1,
         "positionen": 3
       },
       {
@@ -675,7 +675,7 @@
       {
         "risk": 95,
         "wert": 42.05,
-        "dd": 8.5,
+        "dd": 8.4,
         "positionen": 1
       }
     ]

@@ -1,19 +1,19 @@
 {
   "cron": {
-    "letzter_lauf": "2026-08-07T16:46:23.537486",
+    "letzter_lauf": "2026-08-07T16:47:23.742309",
     "info": {
-      "zeit": "2026-08-07T16:46:23.537486",
+      "zeit": "2026-08-07T16:47:23.741310",
       "mode": "full"
     }
   },
   "spec_trader": {
-    "letzter_lauf": "2026-08-07T16:34:49.757797",
+    "letzter_lauf": "2026-08-07T16:47:54.559871",
     "info": {
       "depots": 49
     }
   },
   "ki_learning": {
-    "letzter_lauf": "2026-08-07T16:34:57.093943",
+    "letzter_lauf": "2026-08-07T16:48:03.434062",
     "info": {
       "notizen": 0,
       "statistik": {
@@ -27,7 +27,7 @@
     }
   },
   "etf_trader": {
-    "letzter_lauf": "2026-08-07T16:35:00.153303",
+    "letzter_lauf": "2026-08-07T16:48:07.585298",
     "info": {
       "depots": 20,
       "trades": 40,
@@ -35,11 +35,11 @@
     }
   },
   "batch_trader": {
-    "letzter_lauf": "2026-08-07T16:35:09.852901",
+    "letzter_lauf": "2026-08-07T16:48:25.758986",
     "info": {
       "depots": 20,
       "trades": 471,
-      "rendite": 5.75
+      "rendite": 5.86
     }
   }
 }

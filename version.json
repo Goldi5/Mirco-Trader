@@ -1,8 +1,8 @@
 {
-  "version": "2.19.3",
-  "build": "2026-08-07_1610",
-  "released_at": "2026-08-07 16:10",
-  "codename": "Cash-Anzeige-Fix (Risk-Depots)",
+  "version": "2.19.4",
+  "build": "2026-08-07_1650",
+  "released_at": "2026-08-07 16:50",
+  "codename": "Diversifikation: viele kleine Positionen",
   "changes": [
     {
       "version": "2.19.3",

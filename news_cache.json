@@ -1,23 +1,37 @@
 {
-  "zeit": "2026-08-07T16:46:32.116464",
+  "zeit": "2026-08-07T16:47:58.995217",
   "total": 55,
-  "relevant": 30,
+  "relevant": 44,
+  "irrelevant": 4,
   "headlines": [
     {
-      "title": "Michigan says it\u2019s OK to start eating salads again as cyclospora outbreak wanes",
+      "title": "Michigan says it’s OK to start eating salads again as cyclospora outbreak wanes",
       "link": "https://www.marketwatch.com/story/michigan-says-its-ok-to-start-eating-salads-again-as-cyclospora-outbreak-wanes-b6e9a2c2?mod=mw_rss_topstories",
       "date": "Fri, 07 Aug 2026 14:31:00 GMT",
       "topics": [
         "tech"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "‘I’m easing into retirement’: I’m getting an $80,000 pension payout. Where can I invest it safely?",
+      "link": "https://www.marketwatch.com/story/im-easing-into-retirement-im-getting-an-80-000-pension-payout-where-can-i-invest-it-safely-6653d810?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 14:30:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
-      "title": "I\u2019m an unemployed software developer who is skeptical of AI. Can I still find a job in tech?",
+      "title": "I’m an unemployed software developer who is skeptical of AI. Can I still find a job in tech?",
       "link": "https://www.marketwatch.com/story/im-an-unemployed-software-developer-who-is-skeptical-of-ai-can-i-still-find-a-job-in-tech-4413875e?mod=mw_rss_topstories",
       "date": "Fri, 07 Aug 2026 14:15:00 GMT",
       "topics": [
         "tech",
-        "geopolitics"
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -26,14 +40,9 @@
       "date": "Fri, 07 Aug 2026 14:00:00 GMT",
       "topics": [
         "regulation"
-      ]
-    },
-    {
-      "title": "Social Security is celebrating its 91st birthday. Here\u2019s why it\u2019s not  going away anytime soon.",
-      "link": "https://www.marketwatch.com/story/how-to-wish-social-security-a-happy-91st-birthday-865d71a8?mod=mw_rss_topstories",
-      "date": "Fri, 07 Aug 2026 13:45:00 GMT",
-      "topics": [
-        "regulation"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -42,16 +51,48 @@
       "date": "Fri, 07 Aug 2026 13:30:00 GMT",
       "topics": [
         "tech",
-        "market"
-      ]
+        "markt"
+      ],
+      "tickers": []
     },
     {
-      "title": "Kevin O\u2019Leary, aka \u2018Mr. Wonderful,\u2019 on crypto, winning in AI and 3 things all business owners must know",
+      "title": "Kevin O’Leary, aka ‘Mr. Wonderful,’ on crypto, winning in AI and 3 things all business owners must know",
       "link": "https://www.marketwatch.com/story/kevin-oleary-aka-mr-wonderful-on-crypto-winning-in-ai-and-3-things-all-business-owners-must-know-5339ff6c?mod=mw_rss_topstories",
       "date": "Fri, 07 Aug 2026 11:00:00 GMT",
       "topics": [
         "tech",
-        "crypto"
+        "krypto"
+      ],
+      "tickers": [
+        "F",
+        "MU"
+      ]
+    },
+    {
+      "title": "Optical stocks have a China problem that most investors are missing",
+      "link": "https://www.marketwatch.com/story/optical-stocks-have-a-china-problem-that-most-investors-are-missing-45523981?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 11:00:00 GMT",
+      "topics": [
+        "geopolitik"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "My brother asked me to sign as his executor, but wouldn’t let me read the document. Should I have refused?",
+      "link": "https://www.marketwatch.com/story/my-brother-asked-me-to-sign-as-his-executor-but-wouldnt-let-me-read-the-document-should-i-have-refused-1b53d9bc?mod=mw_rss_topstories",
+      "date": "Fri, 07 Aug 2026 09:16:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Why Antipodes Trimmed Workday (WDAY) Despite Strong Cash Flow",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/why-antipodes-trimmed-workday-wday-143200953.html",
+      "date": "2026-08-07T14:32:00Z",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -59,7 +100,11 @@
       "link": "https://finance.yahoo.com/personal-finance/banking/article/job-security-steps-to-protect-finances-203111633.html",
       "date": "2025-11-06T20:31:11Z",
       "topics": [
+        "earnings",
         "regulation"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -68,6 +113,9 @@
       "date": "2026-08-07T14:24:16Z",
       "topics": [
         "tech"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -76,6 +124,9 @@
       "date": "2026-08-03T14:04:19Z",
       "topics": [
         "tech"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -83,6 +134,7 @@
       "link": "https://finance.yahoo.com/markets/stocks/articles/congresswoman-keeps-buying-ai-nuclear-141952283.html",
       "date": "2026-08-07T14:19:52Z",
       "topics": [
+        "earnings",
         "tech"
       ],
       "tickers": [
@@ -90,7 +142,7 @@
       ]
     },
     {
-      "title": "Claude AI\u2019s Newest Stock Picks Are Also Hedge Fund Favorites: One Breakout Biotech, One AI Chip Bet",
+      "title": "Claude AI’s Newest Stock Picks Are Also Hedge Fund Favorites: One Breakout Biotech, One AI Chip Bet",
       "link": "https://finance.yahoo.com/markets/stocks/articles/claude-ai-newest-stock-picks-141734983.html",
       "date": "2026-08-07T14:17:34Z",
       "topics": [
@@ -101,21 +153,51 @@
       ]
     },
     {
+      "title": "Instaleap partners with Spar Slovenia for e-commerce fulfilment",
+      "link": "https://finance.yahoo.com/small-business/articles/instaleap-partners-spar-slovenia-e-142819537.html",
+      "date": "2026-08-07T14:28:19Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "US stocks, bonds rally after soft jobs report; yen bounces back",
+      "link": "https://finance.yahoo.com/news/asian-shares-pause-us-jobs-021601155.html",
+      "date": "2026-08-07T14:13:20Z",
+      "topics": [],
+      "tickers": [
+        "BAC",
+        "F"
+      ]
+    },
+    {
+      "title": "Tether Expands Tokenization To Saudi Arabia",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/tether-expands-tokenization-saudi-arabia-141300999.html",
+      "date": "2026-08-07T14:13:00Z",
+      "topics": [
+        "krypto"
+      ],
+      "tickers": []
+    },
+    {
       "title": "Analyst Report: Space Exploration Tech. Corp",
       "link": "https://finance.yahoo.com/research/reports/ARGUS_6806_AnalystReport_1786101521000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
       "date": "2026-08-07T11:18:41Z",
       "topics": [
         "tech"
-      ]
+      ],
+      "tickers": []
     },
     {
-      "title": "Palomar Holdings\u2019 (PLMR) Premium Growth Overshadowed by Sector Caution",
+      "title": "Palomar Holdings’ (PLMR) Premium Growth Overshadowed by Sector Caution",
       "link": "https://finance.yahoo.com/markets/stocks/articles/palomar-holdings-plmr-premium-growth-140953714.html",
       "date": "2026-08-07T14:09:53Z",
       "topics": [
         "regulation",
-        "market"
-      ]
+        "markt"
+      ],
+      "tickers": []
     },
     {
       "title": "Phillips 66 Q2 2026 Earnings Call Summary",
@@ -123,6 +205,16 @@
       "date": "2026-08-06T02:52:17Z",
       "topics": [
         "earnings"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "IBD 50 Stock Natera Zips Into Profit-Taking Zone On Its Blowout Quarter",
+      "link": "https://www.investors.com/news/technology/natera-stock-natera-earnings-q2-2026/?src=A00220&yptr=yahoo",
+      "date": "2026-08-07T14:07:26Z",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -130,8 +222,8 @@
       "link": "https://www.bloomberg.com/news/articles/2026-08-06/stock-market-today-dow-s-p-live-updates",
       "date": "Thu, 06 Aug 2026 22:10:21 GMT",
       "topics": [
-        "interest rate",
-        "market"
+        "zinsen",
+        "markt"
       ],
       "tickers": [
         "F"
@@ -142,16 +234,26 @@
       "link": "https://www.bloomberg.com/news/articles/2026-08-07/us-futures-rise-as-trump-touts-iran-progress-awaiting-jobs-data",
       "date": "Fri, 07 Aug 2026 11:44:11 GMT",
       "topics": [
-        "interest rate"
-      ]
+        "zinsen"
+      ],
+      "tickers": []
     },
     {
-      "title": "Zimbabwe\u2019s VFEX Plans $5 Billion Market Value, Venture Board for Mining",
+      "title": "Zimbabwe’s VFEX Plans $5 Billion Market Value, Venture Board for Mining",
       "link": "https://www.bloomberg.com/news/articles/2026-08-07/zimbabwe-s-vfex-plans-5-billion-market-value-venture-board-for-mining",
       "date": "Fri, 07 Aug 2026 04:15:00 GMT",
       "topics": [
-        "market"
+        "markt"
       ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "JBS Shares Surge After $2.5 Billion Deal With Indonesia Fund",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/jbs-gets-2-5-billion-from-indonesia-fund-to-expand-in-asia",
+      "date": "Fri, 07 Aug 2026 11:02:14 GMT",
+      "topics": [],
       "tickers": [
         "F"
       ]
@@ -162,6 +264,19 @@
       "date": "Thu, 06 Aug 2026 20:31:28 GMT",
       "topics": [
         "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Puerto Rico’s Capital Sees Blowout Demand for Rare Muni Sale",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-07/puerto-rico-s-capital-sees-blowout-demand-for-rare-muni-sale",
+      "date": "Fri, 07 Aug 2026 14:11:01 GMT",
+      "topics": [],
+      "tickers": [
+        "F",
+        "MU"
       ]
     },
     {
@@ -169,7 +284,7 @@
       "link": "https://www.bloomberg.com/news/videos/2026-08-07/fed-rate-hike-doesn-t-make-sense-blackrock-s-rieder-video",
       "date": "Fri, 07 Aug 2026 13:58:07 GMT",
       "topics": [
-        "interest rate"
+        "zinsen"
       ],
       "tickers": [
         "F"
@@ -183,6 +298,7 @@
         "tech"
       ],
       "tickers": [
+        "BAC",
         "F"
       ]
     },
@@ -192,6 +308,27 @@
       "date": "Thu, 06 Aug 2026 20:03:32 GMT",
       "topics": [
         "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Gold Jumps as Weak US Jobs Data Adds Fuel to Bullion’s Rebound",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-06/gold-steady-as-traders-assess-impact-of-hormuz-flare-up-on-rates",
+      "date": "Thu, 06 Aug 2026 23:43:38 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "US Loses 23,000 Jobs in July, Unemployment Rate Falls",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-07/us-loses-23-000-jobs-in-july-unemployment-rate-falls-video",
+      "date": "Fri, 07 Aug 2026 13:19:08 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -199,7 +336,10 @@
       "link": "https://www.nytimes.com/2026/08/07/business/economy/jobs-report-interest-rates-fed.html",
       "date": "Fri, 07 Aug 2026 14:24:49 +0000",
       "topics": [
-        "interest rate"
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -207,7 +347,28 @@
       "link": "https://www.nytimes.com/2026/08/06/us/politics/trump-tariffs-solar-panels.html",
       "date": "Thu, 06 Aug 2026 21:53:18 +0000",
       "topics": [
-        "geopolitics"
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "How Malta Became a Tax Haven for Crocs and Other U.S. Companies",
+      "link": "https://www.nytimes.com/2026/08/05/business/economy/crocs-malta-tax-haven.html",
+      "date": "Wed, 05 Aug 2026 18:38:58 +0000",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "What Are Companies Getting for All That A.I. Spending?",
+      "link": "https://www.nytimes.com/2026/08/03/business/economy/ai-spending-tokenomics.html",
+      "date": "Mon, 03 Aug 2026 18:56:22 +0000",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -215,7 +376,7 @@
       "link": "https://www.nytimes.com/2026/07/31/business/economy/inflation-fed-dissent-interest-rates.html",
       "date": "Fri, 31 Jul 2026 16:16:55 +0000",
       "topics": [
-        "interest rate",
+        "zinsen",
         "inflation"
       ],
       "tickers": [
@@ -223,11 +384,11 @@
       ]
     },
     {
-      "title": "Bond Investors\u2019 Inflation Angst Rises on Fed\u2019s Lack of Guidance",
+      "title": "Bond Investors’ Inflation Angst Rises on Fed’s Lack of Guidance",
       "link": "https://www.nytimes.com/2026/07/30/business/federal-reserve-warsh-bonds.html",
       "date": "Thu, 30 Jul 2026 19:40:58 +0000",
       "topics": [
-        "interest rate",
+        "zinsen",
         "inflation"
       ],
       "tickers": [
@@ -235,12 +396,16 @@
       ]
     },
     {
-      "title": "Trump\u2019s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
+      "title": "Trump’s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
       "link": "https://www.nytimes.com/2026/07/30/business/economy/trump-tariffs-exemptions.html",
       "date": "Thu, 30 Jul 2026 20:24:37 +0000",
       "topics": [
         "energy",
-        "geopolitics"
+        "geopolitik"
+      ],
+      "tickers": [
+        "F",
+        "DIA"
       ]
     },
     {
@@ -249,25 +414,37 @@
       "date": "Thu, 30 Jul 2026 16:29:07 +0000",
       "topics": [
         "regulation"
-      ]
-    },
-    {
-      "title": "Government Borrowing Cost Hits Two-Decade High After Fed Rate Decision",
-      "link": "https://www.nytimes.com/2026/07/29/business/economy/treasury-yields-fed-inflation.html",
-      "date": "Wed, 29 Jul 2026 21:33:46 +0000",
-      "topics": [
-        "interest rate"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "What to know about the Fed\u2019s decision.",
+      "title": "China, Its Economy Stumbling, Signals Only Cautious Support",
+      "link": "https://www.nytimes.com/2026/07/30/business/china-economy-politburo.html",
+      "date": "Thu, 30 Jul 2026 13:59:54 +0000",
+      "topics": [
+        "geopolitik"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Government Borrowing Cost Hits Two-Decade High After Fed Rate Decision",
+      "link": "https://www.nytimes.com/2026/07/29/business/economy/treasury-yields-fed-inflation.html",
+      "date": "Wed, 29 Jul 2026 21:33:46 +0000",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "What to know about the Fed’s decision.",
       "link": "https://www.nytimes.com/live/2026/07/29/business/fed-meeting-rates-kevin-warsh/what-to-know-about-the-feds-decision",
       "date": "Wed, 29 Jul 2026 20:37:59 +0000",
       "topics": [
-        "interest rate"
+        "zinsen"
       ],
       "tickers": [
         "F"
@@ -278,7 +455,7 @@
       "link": "https://www.nytimes.com/2026/07/29/business/economy/fed-meeting-interest-rates-takeaways.html",
       "date": "Wed, 29 Jul 2026 19:41:04 +0000",
       "topics": [
-        "interest rate"
+        "zinsen"
       ],
       "tickers": [
         "F"

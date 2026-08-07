@@ -2,41 +2,6 @@
   {
     "typ": "good",
     "text": "Risk 70: +7.22% Rendite",
-    "zeit": "2026-08-07T16:38:06.801567"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 75: +16.23% Rendite",
-    "zeit": "2026-08-07T16:38:06.801567"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 80: +17.46% Rendite",
-    "zeit": "2026-08-07T16:38:06.801567"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 85: +12.56% Rendite",
-    "zeit": "2026-08-07T16:38:06.801567"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 90: +23.96% Rendite",
-    "zeit": "2026-08-07T16:38:06.801567"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 50: +9.88% Rendite",
-    "zeit": "2026-08-07T16:40:08.577607"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 55: +9.89% Rendite",
-    "zeit": "2026-08-07T16:40:08.577607"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 70: +7.22% Rendite",
     "zeit": "2026-08-07T16:40:08.577607"
   },
   {
@@ -233,5 +198,40 @@
     "typ": "good",
     "text": "Risk 90: +23.96% Rendite",
     "zeit": "2026-08-07T16:46:17.005139"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 50: +9.89% Rendite",
+    "zeit": "2026-08-07T16:48:16.776326"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 55: +9.89% Rendite",
+    "zeit": "2026-08-07T16:48:16.776326"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 70: +7.22% Rendite",
+    "zeit": "2026-08-07T16:48:16.776326"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 75: +16.23% Rendite",
+    "zeit": "2026-08-07T16:48:16.776326"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 80: +17.46% Rendite",
+    "zeit": "2026-08-07T16:48:16.776326"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 85: +12.56% Rendite",
+    "zeit": "2026-08-07T16:48:16.776326"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 90: +23.96% Rendite",
+    "zeit": "2026-08-07T16:48:16.776326"
   }
 ]

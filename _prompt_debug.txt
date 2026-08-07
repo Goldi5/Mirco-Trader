@@ -1,9 +1,9 @@
 Analysiere 5 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
 
-Risk 60: Cash $22.5, Wert $103.3, Pos: AA: 1.12st @$42.71 (Kurs $49.31, P&L +15.45%), SNAP: 4.78st @$5.33 (Kurs $5.34, P&L +0.28%), Kandidaten: DOMO $3.9 (17% Cash), AMC $2.6 (11% Cash), WKHS $3.3 (15% Cash), SNAP $5.3 (23% Cash), PATH $14.8 (66% Cash)
-Risk 65: Cash $0.0, Wert $102.3, Pos: LCID: 14.44st @$6.75 (Kurs $7.09, P&L +4.96%), Kandidaten: keine
-Risk 70: Cash $107.2, Wert $107.2, Pos: keine, Kandidaten: DOMO $3.9 (4% Cash), AMC $2.6 (2% Cash), WKHS $3.3 (3% Cash), SNAP $5.3 (5% Cash), PATH $14.8 (14% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
-Risk 80: Cash $117.5, Wert $117.5, Pos: keine, Kandidaten: SOXS $42.0 (36% Cash), AMC $2.6 (2% Cash), ETHU $16.6 (14% Cash), WKHS $3.3 (3% Cash), NRGU $37.0 (31% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
-Risk 90: Cash $124.0, Wert $124.0, Pos: keine, Kandidaten: SOXS $42.0 (34% Cash), AMC $2.6 (2% Cash), ETHU $16.6 (13% Cash), WKHS $3.3 (3% Cash), NRGU $37.0 (30% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 60: Cash $22.5, Wert $103.2, Pos: AA: 1.12st @$42.71 (Kurs $49.23, P&L +15.27%), SNAP: 4.78st @$5.33 (Kurs $5.33, P&L +0.00%), Kandidaten: AMC $2.6 (11% Cash), WKHS $3.3 (15% Cash), DOMO $3.9 (17% Cash), ALLO $2.0 (9% Cash), ACHR $5.4 (24% Cash)
+Risk 65: Cash $0.0, Wert $104.2, Pos: LCID: 14.44st @$6.75 (Kurs $7.22, P&L +6.89%), Kandidaten: keine
+Risk 70: Cash $107.2, Wert $107.2, Pos: keine, Kandidaten: AMC $2.6 (2% Cash), WKHS $3.3 (3% Cash), DOMO $3.9 (4% Cash), ALLO $2.0 (2% Cash), ACHR $5.4 (5% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 80: Cash $117.5, Wert $117.5, Pos: keine, Kandidaten: AMC $2.6 (2% Cash), WKHS $3.3 (3% Cash), DOMO $3.9 (3% Cash), ALLO $2.0 (2% Cash), ACHR $5.4 (5% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 90: Cash $124.0, Wert $124.0, Pos: keine, Kandidaten: AMC $2.6 (2% Cash), WKHS $3.3 (3% Cash), DOMO $3.9 (3% Cash), ALLO $2.0 (2% Cash), ACHR $5.4 (4% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
 
 Antworte NUR mit JSON [{"risk":0, "aktionen":[{"ticker":"AAPL","aktion":"kaufen"|"verkaufen"|"halten","menge":"voll"|"teil","grund":"..."}]}]

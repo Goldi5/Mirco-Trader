@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T21:26:12.431265",
-      "wert": 97.09
-    },
-    {
       "zeit": "2026-08-04T21:34:31.892469",
       "wert": 97.09
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T16:34:49.653865",
       "wert": 97.2
+    },
+    {
+      "zeit": "2026-08-07T16:47:10.945374",
+      "wert": 97.2
     }
   ],
   "trades": [
@@ -605,12 +605,14 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 50,
-    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_163212_BITO_aktien_na",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260807_164754_BITO_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "BITO",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

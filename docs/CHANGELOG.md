@@ -1,3 +1,10 @@
+## [2.19.4] - 2026-08-07
+### Changed (Strategie: Diversifikation)
+- **`build_risk_profile.py` Z99-100**: `max_positions` 2-6 → **4-8** (Risk 0→8, Risk 95→4), `position_size` 0.30-0.60 → **0.15-0.40** (Risk 0→0.15, Risk 95→0.40). Ziel: mehrere kleine Positionen statt weniger teurer Klumpen.
+- **`ki_decisions.py` Z252-260**: Prompt erweitert um STRATEGIE-HINWEISE — Volumen als Dämpfer (nicht als Hard-Stop, erst <0.15x illiquide), Diversifikation (max 1 Penny/Tier, Mix aus ≥2 Tiers), Bevorzugung von 3-5 kleinen Positionen. Gilt für ALLE Risk-Stufen.
+- **`risk_profile.py`** neu generiert (1446 Zeilen).
+- Kein Live-Trading während Testphase — nur Paper/Sim (wie bisher).
+
 ## [2.19.3] - 2026-08-07
 ### Fixed (Cash-Anzeige Risk-Depots)
 - **`dashboard.html` Z616**: `dep.bargeld = dep.bargeld || 0` → `dep.bargeld = full.bargeld || 0`. Dashboard zeigte bei Risk-Depots (70-90) **CASH=$0.00** obwohl Depot $107–124 Cash hat. Root-Cause: bargeld wurde aus dem Overview-Objekt (`dep`) gelesen statt aus dem Detail-Response (`full`). Korrigiert auch `dep.wert`/`dep.start` auf `full.*`.

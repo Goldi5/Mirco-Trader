@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T15:33:42.088265",
-      "wert": 95.44
-    },
-    {
       "zeit": "2026-07-31T20:05:30.621240",
       "wert": 97.45
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T16:34:01.802038",
       "wert": 97.97
+    },
+    {
+      "zeit": "2026-08-07T16:47:10.999926",
+      "wert": 97.97
     }
   ],
   "trades": [
@@ -522,11 +522,11 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_163233_JDST_aktien_na",
+    "decision_id": "d_20260807_164754_JDST_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "JDST",
-    "provider": "FAIL_FAST",
+    "provider": "ALLE_PROVIDER_KALT",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
