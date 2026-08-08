@@ -1944,37 +1944,37 @@ function settingsInput(pfad, wert, meta) {
   const outOfRange = (empMin !== null && wert < empMin) || (empMax !== null && wert > empMax);
   const warnStyle = outOfRange ? "border-color:#f59e0b;background:rgba(245,158,11,0.1)" : "";
   const lbl = meta.labels[pfad] || {name: pfad.split(".").pop(), desc: ""};
-  return `<div class="setting-row" style="display:flex;align-items:center;gap:14px;padding:9px 4px;border-bottom:1px solid var(--card-border)">
-    <div style="flex:1;min-width:0">
-      <label style="font-size:12.5px;color:var(--text);font-weight:600">${lbl.name} ${einheit?`<span style="color:var(--text-dim);font-weight:400">(${einheit})</span>`:''} ${outOfRange?'⚠️':''}</label>
-      ${lbl.desc?`<div style="font-size:10.5px;color:var(--text-dim);margin-top:1px;line-height:1.35">${lbl.desc}</div>`:''}
-      ${empMin!==null?`<div style="font-size:9.5px;color:var(--text-dim);margin-top:1px">⚖ Empfohlen: ${empMin}–${empMax}${einheit}</div>`:''}
-    </div>
-    <div style="width:130px;flex-shrink:0;text-align:right">
-      <input type="number" step="0.01" min="${min}" max="${max}"
-        data-pfad="${pfad}" value="${wert}"
-        style="width:100%;padding:7px 10px;border-radius:8px;border:1px solid var(--card-border);
-               background:#fff;color:var(--text);font-size:12.5px;text-align:right;${warnStyle}"
-        oninput="markSettingsDirty()" />
-    </div>
+  return `<div style="margin:4px 0">
+    <label style="font-size:12px;color:var(--text);display:block;font-weight:600">${lbl.name} ${einheit?`(${einheit})`:''} ${outOfRange?'⚠️':''}</label>
+    <input type="number" step="0.01" min="${min}" max="${max}"
+      data-pfad="${pfad}" value="${wert}"
+      style="width:100%;padding:5px;border-radius:7px;border:1px solid rgba(255,255,255,0.2);
+             background:rgba(255,255,255,0.06);color:var(--text);font-size:12px;${warnStyle}"
+      oninput="markSettingsDirty()" />
+    ${empMin!==null?`<div style="font-size:9px;color:var(--text-dim);margin-top:1px">⚖ Empfohlen: ${empMin}–${empMax}${einheit}</div>`:''}
+    ${lbl.desc?`<div style="font-size:10px;color:var(--text-dim);margin-top:3px;line-height:1.3">${lbl.desc}</div>`:''}
   </div>`;
 }
 
 function settingsBool(pfad, wert, meta) {
   const label = (meta.labels[pfad] && meta.labels[pfad].name) || meta.bools[pfad] || pfad;
   const desc = (meta.labels[pfad] && meta.labels[pfad].desc) || "";
-  return `<div class="setting-row" style="display:flex;align-items:center;gap:14px;padding:9px 4px;border-bottom:1px solid var(--card-border)">
-    <div style="flex:1;min-width:0">
-      <label style="font-size:12.5px;color:var(--text);font-weight:600">${label}</label>
-      ${desc?`<div style="font-size:10.5px;color:var(--text-dim);margin-top:1px;line-height:1.35">${desc}</div>`:''}
+  return `<div style="margin:4px 0">
+    <div style="display:flex;align-items:center;gap:8px">
+      <input type="checkbox" data-pfad="${pfad}" ${wert? 'checked':''}
+        onchange="markSettingsDirty()" style="width:16px;height:16px" />
+      <label style="font-size:12px;color:var(--text);font-weight:600">${label}</label>
     </div>
-    <div style="flex-shrink:0">
-      <label style="display:inline-flex;align-items:center;cursor:pointer;gap:8px">
-        <input type="checkbox" data-pfad="${pfad}" ${wert? 'checked':''}
-          onchange="markSettingsDirty()" style="width:17px;height:17px;accent-color:var(--accent)" />
-        <span style="font-size:11px;color:var(--text-dim)">${wert?'An':'Aus'}</span>
-      </label>
-    </div>
+    ${desc?`<div style="font-size:10px;color:var(--text-dim);margin-top:2px;line-height:1.3;margin-left:24px">${desc}</div>`:''}
+  </div>`;
+}
+
+function settingsBool(pfad, wert, meta) {
+  const label = meta.bools[pfad] || pfad;
+  return `<div style="margin:6px 0;display:flex;align-items:center;gap:8px">
+    <input type="checkbox" data-pfad="${pfad}" ${wert? 'checked':''}
+      onchange="markSettingsDirty()" style="width:16px;height:16px" />
+    <label style="font-size:12px;color:var(--text)">${label}</label>
   </div>`;
 }
 
@@ -1988,14 +1988,6 @@ async function renderSettings() {
   if (!box) return;
   const meta = await ladeSettingsMeta();
   const s = meta.settings;
-  // Ist der aktuelle User Admin? (für Benutzer-Tab)
-  let binAdmin = false;
-  try {
-    const mr = await fetch("/api/me");
-    const mj = await mr.json();
-    binAdmin = mj.ok && isAdminRole(mj.role);
-  } catch (e) { binAdmin = false; }
-  const tabIds = settingsTabOrder().filter(t => t !== "benutzer" || binAdmin);
   box.innerHTML = `
     <h2 style="margin:0 0 4px">⚙️ Einstellungen</h2>
     <p style="font-size:11px;color:var(--text-dim);margin:0 0 12px">
@@ -2003,7 +1995,7 @@ async function renderSettings() {
     </p>
 
     <div class="settings-tabs" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-      ${tabIds.map((t,i)=>
+      ${["ki","lernen","kapital","depot","risk","bremsen","news"].map((t,i)=>
         `<button class="stab ${i===0?'active':''}" data-stab="${t}"
           onclick="switchSettingsTab('${t}')"
           style="padding:6px 14px;border-radius:999px;border:1px solid rgba(15,23,42,.07);
@@ -2012,7 +2004,13 @@ async function renderSettings() {
     </div>
 
     <div id="settingsPanel">
-      ${tabIds.map(t => t === "konto" ? renderKontoTab() : t === "benutzer" ? '<div class="settings-tab-panel" data-stab="benutzer" style="display:none" id="benutzerPanel"></div>' : renderSettingsTab(t, s, meta)).join('')}
+      ${renderSettingsTab("ki", s, meta)}
+      ${renderSettingsTab("lernen", s, meta)}
+      ${renderSettingsTab("kapital", s, meta)}
+      ${renderSettingsTab("depot", s, meta)}
+      ${renderSettingsTab("risk", s, meta)}
+      ${renderSettingsTab("bremsen", s, meta)}
+      ${renderSettingsTab("news", s, meta)}
     </div>
 
     <div id="settingsWarn" style="margin-top:12px"></div>
@@ -2025,244 +2023,13 @@ async function renderSettings() {
                background:transparent;color:var(--text);cursor:pointer">↺ Reset Defaults</button>
     </div>
   `;
-  if (binAdmin) ladeBenutzerVerwaltung();
-  ladeKontoDaten();
-  switchSettingsTab("konto");  // nur "Mein Konto" sichtbar beim ersten Öffnen
-}
-
-// ── Mein Konto (Self-Service) ──
-function renderKontoTab() {
-  return `<div class="settings-tab-panel" data-stab="konto" style="display:block">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 20px">
-      <div class="glass" style="padding:14px 16px">
-        <h3 style="font-size:13px;font-weight:600;margin:0 0 8px">👤 Profil</h3>
-        <div id="kontoProfil" style="font-size:12px;color:var(--text-dim)">Lade…</div>
-      </div>
-      <div class="glass" style="padding:14px 16px">
-        <h3 style="font-size:13px;font-weight:600;margin:0 0 8px">🔑 Passwort ändern</h3>
-        <label style="font-size:11px;color:var(--text-dim)">Aktuelles Passwort</label>
-        <input type="password" id="pwAlt" style="width:100%;box-sizing:border-box;margin:4px 0 8px;padding:8px 10px;border:1px solid var(--card-border);border-radius:8px;font-size:12px">
-        <label style="font-size:11px;color:var(--text-dim)">Neues Passwort</label>
-        <input type="password" id="pwNeu" style="width:100%;box-sizing:border-box;margin:4px 0 8px;padding:8px 10px;border:1px solid var(--card-border);border-radius:8px;font-size:12px">
-        <button onclick="pwAendern()" style="padding:8px 14px;border-radius:8px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-size:12px;font-weight:600">Passwort ändern</button>
-        <div id="pwMsg" style="font-size:11px;margin-top:6px"></div>
-      </div>
-      <div class="glass" style="padding:14px 16px">
-        <h3 style="font-size:13px;font-weight:600;margin:0 0 8px">🛡️ Zwei-Faktor (MFA)</h3>
-        <div id="mfaBox" style="font-size:12px;color:var(--text-dim)">Lade…</div>
-      </div>
-      <div class="glass" style="padding:14px 16px">
-        <h3 style="font-size:13px;font-weight:600;margin:0 0 8px">📋 Berechtigungen</h3>
-        <div id="kontoPerms" style="font-size:12px;color:var(--text-dim)">Lade…</div>
-      </div>
-    </div>
-  </div>`;
-}
-
-// Konto-Daten nach dem Rendern laden (innerHTML <script> laeuft nicht!)
-async function ladeKontoDaten() {
-  try {
-    const r = await fetch("/api/me");
-    const j = await r.json();
-    if (!j.ok) return;
-    const prof = document.getElementById("kontoProfil");
-    if (prof) prof.innerHTML =
-      `<b style="font-size:14px;color:var(--text)">${esc(j.username)}</b><br>
-       Rolle: <span style="color:var(--accent);font-weight:600">${j.role}</span><br>
-       Status: ${j.active ? '<span style="color:var(--green)">aktiv</span>' : '<span style="color:var(--red)">inaktiv</span>'}<br>
-       MFA: ${j.mfa ? '<span style="color:var(--green)">aktiv</span>' : '<span style="color:var(--amber)">nicht aktiv</span>'}<br>
-       Letzter Login: ${j.last_login ? String(j.last_login).slice(0,16).replace("T"," ") : "–"}`;
-    const perms = document.getElementById("kontoPerms");
-    if (perms) perms.innerHTML = (j.permissions||[]).map(p=>`<span style="display:inline-block;background:rgba(37,99,235,.08);color:var(--accent);border-radius:6px;padding:2px 8px;font-size:10px;margin:2px">${p}</span>`).join(" ") || "–";
-    const mfaBox = document.getElementById("mfaBox");
-    if (mfaBox) {
-      if (j.mfa) {
-        mfaBox.innerHTML = `
-          <div style="margin-bottom:6px">MFA ist aktiv ✅</div>
-          <label style="font-size:11px">Code zum Deaktivieren</label>
-          <input id="mfaCode" placeholder="6-stellig" style="width:120px;margin:4px 0 8px;padding:8px 10px;border:1px solid var(--card-border);border-radius:8px;font-size:12px">
-          <button onclick="mfaAktion('deaktivieren')" style="padding:8px 14px;border-radius:8px;border:none;background:var(--red);color:#fff;cursor:pointer;font-size:12px;font-weight:600">MFA deaktivieren</button>
-          <div id="mfaMsg" style="font-size:11px;margin-top:6px"></div>`;
-      } else {
-        mfaBox.innerHTML = `
-          <div style="margin-bottom:6px">MFA ist nicht aktiv</div>
-          <button onclick="mfaEinrichten()" style="padding:8px 14px;border-radius:8px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-size:12px;font-weight:600">MFA einrichten</button>
-          <div id="mfaMsg" style="font-size:11px;margin-top:6px"></div>`;
-      }
-    }
-  } catch(e) { console.warn("Konto-Fehler:", e); }
-}
-
-async function mfaEinrichten() {
-  try {
-    const r = await fetch("/api/me/mfa", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({aktion:"einrichten"})});
-    const j = await r.json();
-    if (j.ok) {
-      document.getElementById("mfaBox").innerHTML = `
-        <div style="margin-bottom:6px"><b>MFA-Secret:</b></div>
-        <div style="font-family:monospace;background:rgba(0,0,0,.04);padding:8px;border-radius:6px;margin-bottom:8px;font-size:11px;word-break:break-all">${j.secret}</div>
-        <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">In deiner Authenticator-App eingeben, dann den 6-stelligen Code unten bestätigen:</div>
-        <input id="mfaCode" placeholder="6-stellig" style="width:120px;margin-bottom:8px;padding:8px 10px;border:1px solid var(--card-border);border-radius:8px;font-size:12px">
-        <button onclick="mfaAktion('verifizieren')" style="padding:8px 14px;border-radius:8px;border:none;background:var(--green);color:#fff;cursor:pointer;font-size:12px;font-weight:600">Aktivieren</button>
-        <div id="mfaMsg" style="font-size:11px;margin-top:6px"></div>`;
-    } else {
-      msg("mfaMsg", j.error, "bad");
-    }
-  } catch(e) { console.warn(e); }
-}
-
-async function mfaAktion(aktion) {
-  const code = document.getElementById("mfaCode")?.value || "";
-  try {
-    const r = await fetch("/api/me/mfa", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({aktion, code})});
-    const j = await r.json();
-    if (j.ok) {
-      msg("mfaMsg", aktion === "deaktivieren" ? "MFA deaktiviert ✅" : "MFA aktiviert ✅", "ok");
-      setTimeout(()=>renderSettings(), 800);
-    } else {
-      msg("mfaMsg", j.error, "bad");
-    }
-  } catch(e) { console.warn(e); }
-}
-
-async function pwAendern() {
-  const alt = document.getElementById("pwAlt")?.value || "";
-  const neu = document.getElementById("pwNeu")?.value || "";
-  try {
-    const r = await fetch("/api/me/password", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({altes_passwort:alt, neues_passwort:neu})});
-    const j = await r.json();
-    if (j.ok) {
-      msg("pwMsg", "Passwort geändert ✅", "ok");
-      document.getElementById("pwAlt").value = ""; document.getElementById("pwNeu").value = "";
-    } else {
-      msg("pwMsg", j.error, "bad");
-    }
-  } catch(e) { console.warn(e); }
-}
-
-function msg(id, text, typ) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.innerHTML = `<span style="color:${typ==='bad'?'var(--red)':'var(--green)'}">${esc(text)}</span>`;
-}
-
-// ── Benutzerverwaltung (Admin) ──
-async function ladeBenutzerVerwaltung() {
-  const box = document.getElementById("benutzerPanel");
-  if (!box) return;
-  // Panel bleibt versteckt bis der Benutzer-Tab aktiviert wird (switchSettingsTab)
-  try {
-    const r = await fetch("/api/users");
-    const j = await r.json();
-    if (!j.ok) { box.innerHTML = `<div class="glass" style="color:var(--red);padding:12px">${esc(j.error||"Fehler")}</div>`; return; }
-    const rows = (j.users||[]).map(u => `
-      <tr style="border-bottom:1px solid var(--card-border)">
-        <td style="padding:8px 6px"><b>${esc(u.username)}</b></td>
-        <td style="padding:8px 6px">
-          <select onchange="setUserRole('${esc(u.username)}', this.value)" style="padding:4px 6px;border-radius:6px;border:1px solid var(--card-border);font-size:11px;background:#fff;color:var(--text)">
-            ${["visitor","user","analyst","operator","admin","superadmin"].map(r=>`<option value="${r}" ${r===u.role?"selected":""}>${r}</option>`).join("")}
-          </select>
-        </td>
-        <td style="padding:8px 6px">${u.active ? '<span style="color:var(--green)">✅ aktiv</span>' : '<span style="color:var(--red)">⛔ inaktiv</span>'}</td>
-        <td style="padding:8px 6px">${u.mfa ? "🛡️" : "–"}</td>
-        <td style="padding:8px 6px;font-size:11px;color:var(--text-dim)">${u.sessions} Session${u.sessions===1?"":"s"}</td>
-        <td style="padding:8px 6px;font-size:11px;color:var(--text-dim)">${u.last_login ? String(u.last_login).slice(0,16).replace("T"," ") : "–"}</td>
-        <td style="padding:8px 6px;white-space:nowrap">
-          <button onclick="toggleUser('${esc(u.username)}', ${!u.active})" style="padding:4px 10px;border-radius:6px;border:none;cursor:pointer;font-size:11px;background:${u.active?'rgba(239,68,68,.1)':'rgba(16,185,129,.1)'};color:${u.active?'var(--red)':'var(--green)'}">${u.active?"Deaktivieren":"Aktivieren"}</button>
-          <button onclick="resetUserPw('${esc(u.username)}')" style="padding:4px 10px;border-radius:6px;border:none;cursor:pointer;font-size:11px;background:rgba(245,158,11,.1);color:var(--amber)">PW</button>
-          <button onclick="revokeUser('${esc(u.username)}')" style="padding:4px 10px;border-radius:6px;border:none;cursor:pointer;font-size:11px;background:rgba(100,116,139,.1);color:var(--text-dim)">Sessions</button>
-        </td>
-      </tr>`).join("");
-    box.innerHTML = `
-      <div class="glass" style="padding:14px 16px;margin-bottom:12px">
-        <h3 style="font-size:13px;font-weight:600;margin:0 0 10px">➕ Neuen Benutzer anlegen</h3>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-          <input id="nuName" placeholder="Benutzername" style="padding:8px 10px;border:1px solid var(--card-border);border-radius:8px;font-size:12px;flex:1;min-width:130px">
-          <input id="nuPw" type="password" placeholder="Passwort (min. 8)" style="padding:8px 10px;border:1px solid var(--card-border);border-radius:8px;font-size:12px;flex:1;min-width:130px">
-          <select id="nuRole" style="padding:8px 10px;border-radius:8px;border:1px solid var(--card-border);font-size:12px;background:#fff;color:var(--text)">
-            ${["user","analyst","operator","admin","superadmin"].map(r=>`<option>${r}</option>`).join("")}
-          </select>
-          <button onclick="createUser()" style="padding:8px 16px;border-radius:8px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-size:12px;font-weight:600">Anlegen</button>
-        </div>
-        <div id="nuMsg" style="font-size:11px;margin-top:6px"></div>
-      </div>
-      <div class="glass" style="overflow-x:auto;padding:0">
-        <table style="width:100%;border-collapse:collapse;font-size:12px">
-          <thead><tr style="text-align:left;color:var(--text-dim);font-size:10px;text-transform:uppercase;letter-spacing:.04em">
-            <th style="padding:8px 6px">Benutzer</th><th style="padding:8px 6px">Rolle</th><th style="padding:8px 6px">Status</th><th style="padding:8px 6px">MFA</th><th style="padding:8px 6px">Sessions</th><th style="padding:8px 6px">Letzter Login</th><th style="padding:8px 6px">Aktionen</th>
-          </tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>`;
-  } catch(e) {
-    box.innerHTML = `<div class="glass" style="color:var(--red);padding:12px">Fehler beim Laden: ${esc(e.message||e)}</div>`;
-  }
-}
-
-async function createUser() {
-  const name = document.getElementById("nuName")?.value.trim() || "";
-  const pw = document.getElementById("nuPw")?.value || "";
-  const role = document.getElementById("nuRole")?.value || "user";
-  try {
-    const r = await fetch("/api/users/create", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({username:name, password:pw, role})});
-    const j = await r.json();
-    if (j.ok) { msg("nuMsg", `Benutzer '${name}' angelegt ✅`, "ok"); document.getElementById("nuName").value=""; document.getElementById("nuPw").value=""; ladeBenutzerVerwaltung(); }
-    else msg("nuMsg", j.error, "bad");
-  } catch(e) { console.warn(e); }
-}
-
-async function setUserRole(name, role) {
-  try {
-    const r = await fetch(`/api/users/${encodeURIComponent(name)}/role`, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({role})});
-    const j = await r.json();
-    if (!j.ok) alert("Fehler: " + (j.error||"unbekannt"));
-  } catch(e) { console.warn(e); }
-}
-
-async function toggleUser(name, active) {
-  try {
-    const r = await fetch(`/api/users/${encodeURIComponent(name)}/deactivate`, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({active})});
-    const j = await r.json();
-    if (j.ok) ladeBenutzerVerwaltung(); else alert("Fehler: " + (j.error||"unbekannt"));
-  } catch(e) { console.warn(e); }
-}
-
-async function resetUserPw(name) {
-  const neu = prompt(`Neues Passwort für ${name} (min. 8 Zeichen):`);
-  if (!neu) return;
-  try {
-    const r = await fetch(`/api/users/${encodeURIComponent(name)}/reset-pw`, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({password:neu})});
-    const j = await r.json();
-    if (j.ok) alert("Passwort zurückgesetzt ✅"); else alert("Fehler: " + (j.error||"unbekannt"));
-  } catch(e) { console.warn(e); }
-}
-
-async function revokeUser(name) {
-  if (!confirm(`Alle Sessions von '${name}' beenden?`)) return;
-  try {
-    const r = await fetch(`/api/users/${encodeURIComponent(name)}/revoke`, {method:"POST"});
-    const j = await r.json();
-    if (j.ok) { alert("Sessions beendet ✅"); ladeBenutzerVerwaltung(); }
-  } catch(e) { console.warn(e); }
 }
 
 // Tab-Labels
 const SETTINGS_TABS = {
-  konto: "👤 Mein Konto", benutzer: "🛡️ Benutzer", ki: "🤖 KI", lernen: "🧠 Lernen", kapital: "💰 Kapital",
+  ki: "🤖 KI", lernen: "🧠 Lernen", kapital: "💰 Kapital",
   depot: "📊 Depot", risk: "🎚️ Risk", bremsen: "🛡️ Bremsen", news: "📰 News"
 };
-
-// Reihenfolge: Konto/Benutzer zuerst (nur Benutzer wenn admin)
-let SETTINGS_TAB_ORDER = ["konto", "ki", "lernen", "kapital", "depot", "risk", "bremsen", "news"];
-
-function settingsTabOrder() {
-  const adminTabs = ["konto", "benutzer", "ki", "lernen", "kapital", "depot", "risk", "bremsen", "news"];
-  return adminTabs;
-}
-
-function isAdminRole(role) {
-  return role === "admin" || role === "superadmin";
-}
 
 function switchSettingsTab(name) {
   document.querySelectorAll(".stab").forEach(b=>{
@@ -2287,11 +2054,11 @@ const TAB_INTRO = {
 };
 
 function renderSettingsTab(tab, s, meta) {
-  const list = (...html) => `<div style="display:flex;flex-direction:column">${html.join('')}</div>`;
+  const grid = (...html) => `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 20px">${html.join('')}</div>`;
   const intro = TAB_INTRO[tab] ? `<p style="font-size:11px;color:var(--text-dim);margin:0 0 12px;line-height:1.4">${TAB_INTRO[tab]}</p>` : "";
   let body = "";
   if (tab === "ki") {
-    body = list(
+    body = grid(
       settingsInput("ki.konfidenz_cap", s.ki.konfidenz_cap, meta),
       settingsInput("ki.ki_temperatur", s.ki.ki_temperatur, meta),
       settingsInput("ki.min_konfidenz_kaufen", s.ki.min_konfidenz_kaufen, meta),
@@ -2301,7 +2068,7 @@ function renderSettingsTab(tab, s, meta) {
       `<div style="grid-column:1/-1">${settingsBool("ki.multi_timeframe_lernen", s.ki.multi_timeframe_lernen, meta)}</div>`
     );
   } else if (tab === "lernen") {
-    body = list(
+    body = grid(
       settingsInput("lernen.decay_lambda", s.lernen.decay_lambda, meta),
       settingsInput("lernen.anti_min_n", s.lernen.anti_min_n, meta),
       settingsInput("lernen.anti_min_widerlegt_pct", s.lernen.anti_min_widerlegt_pct, meta),
@@ -2316,7 +2083,7 @@ function renderSettingsTab(tab, s, meta) {
        </div>`
     );
   } else if (tab === "kapital") {
-    body = list(
+    body = grid(
       settingsInput("kapital.gesamt_budget", s.kapital.gesamt_budget, meta),
       settingsInput("kapital.max_gesamt_drawdown", s.kapital.max_gesamt_drawdown, meta),
       settingsInput("kapital.aktien_anteil", s.kapital.aktien_anteil, meta),
@@ -2325,7 +2092,7 @@ function renderSettingsTab(tab, s, meta) {
       `<div style="font-size:11px;color:var(--text-dim);grid-column:1/-1">Summe Aktien+ETF+Spec: ${s.kapital.aktien_anteil+s.kapital.etf_anteil+s.kapital.spec_anteil}% ${s.kapital.aktien_anteil+s.kapital.etf_anteil+s.kapital.spec_anteil!==100?'⚠️ ≠ 100%':''}</div>`
     );
   } else if (tab === "depot") {
-    body = list(
+    body = grid(
       settingsInput("depot_struktur.aktien_stufen", s.depot_struktur.aktien_stufen, meta),
       settingsInput("depot_struktur.aktien_schritt", s.depot_struktur.aktien_schritt, meta),
       settingsInput("depot_struktur.max_spec_depots", s.depot_struktur.max_spec_depots, meta),
@@ -2352,18 +2119,18 @@ function renderSettingsTab(tab, s, meta) {
       ${settingsInput("risk_parameter.aggressive_take_profit", s.risk_parameter.aggressive_take_profit, meta)}
     </div>`;
   } else if (tab === "bremsen") {
-    body = list(
+    body = grid(
       settingsInput("engine_bremsen.max_depot_pro_ticker", s.engine_bremsen.max_depot_pro_ticker, meta),
       settingsInput("engine_bremsen.drawdown_sperre_prozent", s.engine_bremsen.drawdown_sperre_prozent, meta),
       settingsBool("engine_bremsen.wochenende_handel", s.engine_bremsen.wochenende_handel, meta)
     );
   } else if (tab === "news") {
-    body = list(
+    body = grid(
       settingsInput("news.news_min_score", s.news.news_min_score, meta),
       settingsInput("news.news_max_alter_std", s.news.news_max_alter_std, meta)
     );
   }
-  const display = "none";  // alle Panels starten versteckt; switchSettingsTab zeigt das aktive
+  const display = tab==="ki" ? "block" : "none";
   return `<div class="settings-tab-panel" data-stab="${tab}" style="display:${display}">
     <div class="glass" style="padding:14px">${intro}${body}</div>
   </div>`;

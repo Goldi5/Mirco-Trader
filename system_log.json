@@ -2928,5 +2928,40 @@
     "zeit": "2026-08-08T15:18:52.918045",
     "quelle": "watchdog",
     "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T15:35:55.935237",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T15:52:58.464709",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T16:10:03.051948",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T16:27:05.785661",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T16:44:08.211131",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T17:01:10.774083",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T17:18:15.032382",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
   }
 ]
