@@ -2560,12 +2560,22 @@ function ladeProfilKarten() {
         `;
         container.appendChild(card);
       });
-      // PDF/Archiv als Chips in derselben Zeile wie die Profil-Karten
+      // PDF/Archiv als Chips in derselben Zeile wie die Profil-Karten (gleiche Struktur = gleiche Größe)
       const act = document.createElement('div');
       act.style.cssText = 'display:flex;gap:8px;align-items:center;flex-wrap:wrap';
       act.innerHTML = `
-        <button class="profil-karte" style="background:var(--card-bg);backdrop-filter:blur(20px) saturate(1.4);border:1px solid var(--card-border);border-radius:10px;padding:5px 10px;box-shadow:var(--shadow);color:var(--text);font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;min-height:44px;transition:all .18s;border-left:3px solid var(--accent)" onmouseover="this.style.background='var(--card-hover)'" onmouseout="this.style.background='var(--card-bg)'" onclick="erstellePDF()" title="PDF-Bericht erstellen">📄 PDF</button>
-        <button class="profil-karte" style="background:var(--card-bg);backdrop-filter:blur(20px) saturate(1.4);border:1px solid var(--card-border);border-radius:10px;padding:5px 10px;box-shadow:var(--shadow);color:var(--text);font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;min-height:44px;transition:all .18s;border-left:3px solid var(--accent)" onmouseover="this.style.background='var(--card-hover)'" onmouseout="this.style.background='var(--card-bg)'" onclick="zeigeReportListe()" title="Archiv öffnen">📚 Archiv</button>`;
+        <button class="profil-karte" style="text-align:left;color:var(--text);font-family:inherit;font-weight:400;cursor:pointer;transition:all .18s;border-left:3px solid var(--accent);display:flex;flex-direction:column;justify-content:center" onmouseover="this.style.background='var(--card-hover)'" onmouseout="this.style.background='var(--card-bg)'" onclick="erstellePDF()" title="PDF-Bericht erstellen">
+          <div class="pk-markt">📄 Aktion</div>
+          <div class="pk-name">PDF-Bericht</div>
+          <div class="pk-badge" style="color:var(--accent)">erstellen</div>
+          <div class="pk-info">Vollständiger Report</div>
+        </button>
+        <button class="profil-karte" style="text-align:left;color:var(--text);font-family:inherit;font-weight:400;cursor:pointer;transition:all .18s;border-left:3px solid var(--accent);display:flex;flex-direction:column;justify-content:center" onmouseover="this.style.background='var(--card-hover)'" onmouseout="this.style.background='var(--card-bg)'" onclick="zeigeReportListe()" title="Archiv öffnen">
+          <div class="pk-markt">📚 Aktion</div>
+          <div class="pk-name">Archiv</div>
+          <div class="pk-badge" style="color:var(--accent)">öffnen</div>
+          <div class="pk-info">Gespeicherte Berichte</div>
+        </button>`;
       container.appendChild(act);
     })
     .catch(e => console.warn('Profil-Karten Fehler:', e));
@@ -2579,22 +2589,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ─── Phase 10 (§17): PDF-Report manuell ───
 function erstellePDF() {
-  const btn = event.target;
+  const btn = event.target.closest('button');
+  const nameEl = btn.querySelector('.pk-name');
+  const setBtn = (txt) => { if (nameEl) nameEl.textContent = txt; };
   btn.disabled = true;
-  btn.textContent = '⏳ Erstelle...';
+  setBtn('⏳ Erstelle...');
   fetch('/api/report_pdf')
     .then(r => r.json())
     .then(j => {
       if (j.ok) {
         window.open(j.url, '_blank');
-        btn.textContent = '✅ Erstellt';
+        setBtn('✅ Erstellt');
       } else {
         alert('Fehler: ' + (j.error || 'unbekannt'));
-        btn.textContent = '📄 PDF-Bericht erstellen';
+        setBtn('PDF-Bericht');
       }
-      setTimeout(() => { btn.disabled = false; btn.textContent = '📄 PDF-Bericht erstellen'; }, 2000);
+      setTimeout(() => { btn.disabled = false; setBtn('PDF-Bericht'); }, 2000);
     })
-    .catch(e => { alert('Netzwerk: ' + e.message); btn.disabled = false; btn.textContent = '📄 PDF-Bericht erstellen'; });
+    .catch(e => { alert('Netzwerk: ' + e.message); btn.disabled = false; setBtn('PDF-Bericht'); });
 }
 
 function zeigeReportListe() {
