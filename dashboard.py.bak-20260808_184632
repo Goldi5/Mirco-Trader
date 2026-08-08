@@ -1604,8 +1604,6 @@ def _route_access_control():
                 return jsonify({"error": "unauthorized"}), 401
             return redirect("/login?next=" + rule)
         sec.touch_session(u["username"], sec._current_sid())
-        # PHASE 1: Tenant-Kontext aus der Session ableiten (nie aus Client-Input)
-        sec.set_current_tenant(sec.resolve_tenant_for_user(u))
         return
     # ANALYST / OPERATOR / ADMIN / SUPERADMIN
     if not u:
@@ -2379,21 +2377,10 @@ def api_users_revoke(name):
 
 @app.route("/api/me", methods=["GET"])
 def api_me():
-    """Eigenes Profil (eingeloggt) + Tenant-Kontext (PHASE 1)."""
+    """Eigenes Profil (eingeloggt)."""
     u = sec.current_user()
     if not u:
         return jsonify({"error": "unauthorized"}), 401
-    tenant_info = None
-    try:
-        import db as _db
-        m = _db.MTDB()
-        tenant_info = {
-            "current_tenant": sec.get_current_tenant() or 1,
-            "memberships": m.tenant_memberships_for_user(u["username"]),
-        }
-        m.close()
-    except Exception:
-        tenant_info = {"current_tenant": 1, "memberships": []}
     return jsonify({
         "ok": True,
         "username": u["username"],
@@ -2402,98 +2389,7 @@ def api_me():
         "mfa": bool(u.get("mfa_secret")),
         "last_login": u.get("last_login", ""),
         "permissions": sec.ROLE_PERMISSIONS.get(u.get("role", "user"), []),
-        "tenants": tenant_info,
     })
-
-
-@app.route("/api/tenants", methods=["GET"])
-@sec.require_role("admin")
-def api_tenants():
-    """Tenant-Liste (Admin) — PHASE 1."""
-    try:
-        import db as _db
-        m = _db.MTDB()
-        tenants = m.tenant_list()
-        m.close()
-        return jsonify({"ok": True, "tenants": tenants})
-    except Exception as e:
-        return jsonify({"ok": False, "error": str(e)}), 500
-
-
-@app.route("/api/tenants/create", methods=["POST"])
-@sec.require_role("admin")
-def api_tenants_create():
-    """Neuen Tenant anlegen (Admin) — PHASE 1."""
-    data = request.get_json(silent=True) or {}
-    key = str(data.get("tenant_key", "")).strip()
-    name = str(data.get("name", "")).strip()
-    plan = str(data.get("plan_or_type", "personal")).strip() or "personal"
-    mode = str(data.get("default_trading_mode", "SHADOW")).strip().upper() or "SHADOW"
-    if not key or not name:
-        return jsonify({"ok": False, "error": "tenant_key und name erforderlich"}), 400
-    import re as _re
-    if not _re.match(r"^[a-z0-9_\-]{2,32}$", key):
-        return jsonify({"ok": False, "error": "tenant_key: 2-32 Zeichen, nur a-z0-9_-"}), 400
-    try:
-        import db as _db
-        m = _db.MTDB()
-        tid, fehler = m.tenant_create(key, name, plan, mode)
-        m.close()
-        if fehler:
-            return jsonify({"ok": False, "error": fehler}), 409
-        sec.audit_log("tenant_create", _admin_actor(), f"tenant={key} name={name} mode={mode}")
-        return jsonify({"ok": True, "tenant_id": tid})
-    except Exception as e:
-        return jsonify({"ok": False, "error": str(e)}), 500
-
-
-@app.route("/api/tenants/<int:tid>/members", methods=["GET"])
-@sec.require_role("admin")
-def api_tenants_members(tid):
-    """Mitglieder eines Tenants (Admin) — PHASE 1."""
-    try:
-        import db as _db
-        m = _db.MTDB()
-        t = m.tenant_get(tid)
-        if not t:
-            m.close()
-            return jsonify({"ok": False, "error": "tenant nicht gefunden"}), 404
-        user_ids = m.tenant_user_ids(tid)
-        members = []
-        for uid in user_ids:
-            u = sec.get_user(uid)
-            if u:
-                members.append({"username": uid, "role": u.get("role", "user"),
-                                "active": u.get("active", True)})
-        workspaces = m.workspace_list(tid)
-        m.close()
-        return jsonify({"ok": True, "tenant": t, "members": members, "workspaces": workspaces})
-    except Exception as e:
-        return jsonify({"ok": False, "error": str(e)}), 500
-
-
-@app.route("/api/tenants/<int:tid>/members", methods=["POST"])
-@sec.require_role("admin")
-def api_tenants_members_add(tid):
-    """User einem Tenant zuordnen (Admin) — PHASE 1."""
-    data = request.get_json(silent=True) or {}
-    username = str(data.get("username", "")).strip()
-    role = str(data.get("role", "user")).strip() or "user"
-    if not username:
-        return jsonify({"ok": False, "error": "username erforderlich"}), 400
-    if not sec.user_exists(username):
-        return jsonify({"ok": False, "error": "User existiert nicht"}), 404
-    try:
-        import db as _db
-        m = _db.MTDB()
-        ok = m.tenant_membership_add(tid, username, role)
-        m.close()
-        if not ok:
-            return jsonify({"ok": False, "error": "Zuordnung fehlgeschlagen"}), 409
-        sec.audit_log("tenant_membership_add", _admin_actor(), f"tenant={tid} user={username} role={role}")
-        return jsonify({"ok": True})
-    except Exception as e:
-        return jsonify({"ok": False, "error": str(e)}), 500
 
 
 @app.route("/api/me/password", methods=["POST"])

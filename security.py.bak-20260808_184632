@@ -27,49 +27,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from cryptography.hazmat.primitives import hashes, hmac as chmac
 from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 
-# ── PHASE 1: Tenant-Kontext (OWASP Multi-Tenant Cheat Sheet) ──
-# Der Tenant wird IMMER aus der authentifizierten Session abgeleitet,
-# NIEMALS aus Client-Headern/-Parametern vertraut (Tenant-Context-Injection verhindern).
-from contextvars import ContextVar
-_current_tenant: ContextVar = ContextVar("current_tenant", default=None)
-
-
-def set_current_tenant(tenant_id):
-    """Setzt den Tenant-Kontext fuer den aktuellen Request (Thread-lokal)."""
-    _current_tenant.set(tenant_id)
-
-
-def get_current_tenant():
-    """Gibt die aktuelle tenant_id zurueck (oder None)."""
-    return _current_tenant.get()
-
-
-def resolve_tenant_for_user(user):
-    """Leitet die tenant_id eines Users aus der Membership-Tabelle ab.
-    Fallback: Default-Tenant (id=1). Kein Client-Input noetig."""
-    try:
-        import db as _db
-        m = _db.MTDB()
-        try:
-            tid = m.tenant_ensure_default()
-            memberships = m.tenant_memberships_for_user(user["username"])
-            m.close()
-            if memberships:
-                return memberships[0]["tenant_id"]
-            # Keine Membership -> Default-Tenant zuordnen
-            m2 = _db.MTDB()
-            m2.tenant_membership_add(tid, user["username"], role=user.get("role", "user"))
-            m2.close()
-            return tid
-        except Exception:
-            try:
-                m.close()
-            except Exception:
-                pass
-            return 1
-    except Exception:
-        return 1
-
 BASE = os.path.dirname(os.path.abspath(__file__))
 USERS_FILE = os.path.join(BASE, "security_users.json")
 AUDIT_FILE = os.path.join(BASE, "security_audit.json")
@@ -107,8 +64,6 @@ ROUTE_ACCESS = {
     "/ticker_chart": "AUTHENTICATED",
     "/api/me": "AUTHENTICATED", "/api/me/password": "AUTHENTICATED",
     "/api/me/mfa": "AUTHENTICATED",
-    "/api/tenants": "ADMIN", "/api/tenants/create": "ADMIN",
-    "/api/tenants/<int:tid>/members": "ADMIN",
     "/api/users": "ADMIN", "/api/users/create": "ADMIN",
     "/api/users/<name>/role": "ADMIN", "/api/users/<name>/deactivate": "ADMIN",
     "/api/users/<name>/reset-pw": "ADMIN", "/api/users/<name>/revoke": "ADMIN",

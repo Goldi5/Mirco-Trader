@@ -163,6 +163,45 @@ try:
 except Exception as e:
     ck("Benutzerverwaltung-API", False, str(e))
 
+# ─── Phase 15b: Mandanten-Modell (v2.26.0) ─────────────────────────────────
+print("\n7b. Mandanten-Modell (v2.26.0)")
+try:
+    import db as mtdb
+    m = mtdb.MTDB()
+    tid = m.tenant_ensure_default()
+    ck("Default-Tenant existiert", tid == 1 and m.tenant_get(tid)["tenant_key"] == "default")
+    t2, fehler = m.tenant_create("__suite_tenant__", "Suite-Test")
+    ck("Tenant anlegen -> ok", t2 is not None and fehler is None)
+    t3, fehler = m.tenant_create("__suite_tenant__", "Dup")
+    ck("Tenant-Duplikat -> fehler", t3 is None and fehler)
+    ok = m.tenant_membership_add(t2, "admin", "admin")
+    ck("Membership hinzufuegen", ok)
+    ms = m.tenant_memberships_for_user("admin")
+    ck("Membership sichtbar", any(x["tenant_id"] == t2 for x in ms))
+    ws, wfehler = m.workspace_create(t2, "ws1", "Workspace 1")
+    ck("Workspace anlegen", ws is not None and wfehler is None)
+    m.conn.execute("DELETE FROM tenant_memberships WHERE tenant_id=?", (t2,))
+    m.conn.execute("DELETE FROM workspaces WHERE tenant_id=?", (t2,))
+    m.conn.execute("DELETE FROM tenants WHERE id=?", (t2,))
+    m.conn.commit()
+    m.close()
+    # API-Test via Flask
+    import dashboard as dash
+    app2 = dash.app; app2.config["TESTING"] = True
+    cc = app2.test_client()
+    r = cc.get("/api/tenants")
+    ck("API /api/tenants ohne Auth -> 401", r.status_code == 401)
+    cc.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    r = cc.get("/api/tenants")
+    ck("API /api/tenants als admin -> 200", r.status_code == 200 and "tenants" in r.get_json())
+    r = cc.post("/api/tenants/create", json={"tenant_key": "BAD KEY!", "name": "x"})
+    ck("API tenant_key-Validierung -> 400", r.status_code == 400)
+    r = cc.get("/api/me")
+    j = r.get_json()
+    ck("API /api/me mit tenant-Kontext", j.get("tenants", {}).get("current_tenant") == 1)
+except Exception as e:
+    ck("Mandanten-Modell", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

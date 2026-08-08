@@ -40,8 +40,7 @@ class MTDB:
 
     def _migrate_schema(self):
         """Idempotent: fuegt Audit-Felder hinzu (decision_id/provider/regel_id/fallback).
-        Bereits vorhandene Spalten werden uebersprungen.
-        PHASE 1: tenant_id-Spalten fuer Mandanten-Trennung."""
+        Bereits vorhandene Spalten werden uebersprungen."""
         c = self.conn.cursor()
         for spalte in ["decision_id", "provider", "regel_id", "fallback"]:
             if not self._spalte_existiert("trades", spalte):
@@ -49,16 +48,6 @@ class MTDB:
         for spalte in ["decision_id", "provider", "regel_id", "fallback"]:
             if not self._spalte_existiert("ki_decisions", spalte):
                 c.execute(f'ALTER TABLE ki_decisions ADD COLUMN {spalte} TEXT')
-        # PHASE 1: tenant_id + user_id auf Bestandstabellen (Default 1 = Haupt-Tenant)
-        for tabelle, spalten in {
-            "trades": ["tenant_id", "user_id"],
-            "ki_decisions": ["tenant_id", "user_id"],
-            "depot_snapshot": ["tenant_id", "user_id"],
-            "markt_daten": ["tenant_id"],
-        }.items():
-            for spalte in spalten:
-                if not self._spalte_existiert(tabelle, spalte):
-                    c.execute(f'ALTER TABLE {tabelle} ADD COLUMN {spalte} INTEGER DEFAULT 1')
         self.conn.commit()
 
     def _init_schema(self):
@@ -92,38 +81,6 @@ class MTDB:
             sma20 REAL, sma50 REAL
         );
         CREATE INDEX IF NOT EXISTS idx_markt_ticker ON markt_daten(ticker);
-
-        -- ── PHASE 1: Mandanten-Modell (v2.26.0) ──
-        CREATE TABLE IF NOT EXISTS tenants (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            tenant_key TEXT UNIQUE NOT NULL,
-            name TEXT NOT NULL,
-            status TEXT DEFAULT 'aktiv',
-            plan_or_type TEXT DEFAULT 'personal',
-            default_trading_mode TEXT DEFAULT 'SHADOW',
-            risk_policy_id TEXT DEFAULT 'default',
-            created_at TEXT DEFAULT (datetime('now')),
-            updated_at TEXT
-        );
-        CREATE TABLE IF NOT EXISTS tenant_memberships (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            tenant_id INTEGER NOT NULL,
-            user_id TEXT NOT NULL,
-            role TEXT DEFAULT 'user',
-            status TEXT DEFAULT 'aktiv',
-            created_at TEXT DEFAULT (datetime('now')),
-            UNIQUE(tenant_id, user_id)
-        );
-        CREATE TABLE IF NOT EXISTS workspaces (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            tenant_id INTEGER NOT NULL,
-            workspace_key TEXT NOT NULL,
-            name TEXT NOT NULL,
-            trading_mode TEXT DEFAULT 'SHADOW',
-            status TEXT DEFAULT 'aktiv',
-            created_at TEXT DEFAULT (datetime('now')),
-            UNIQUE(tenant_id, workspace_key)
-        );
         """)
         self.conn.commit()
 
@@ -402,82 +359,6 @@ class MTDB:
 
     def close(self):
         self.conn.close()
-
-    # ── PHASE 1: Tenant-Helper (Mandanten-Modell v2.26.0) ──
-    def tenant_ensure_default(self):
-        """Stellt sicher, dass der Default-Tenant existiert. Gibt tenant_id zurueck."""
-        c = self.conn.cursor()
-        row = c.execute("SELECT id FROM tenants WHERE tenant_key = 'default'").fetchone()
-        if row:
-            return row["id"]
-        c.execute("INSERT INTO tenants (tenant_key, name, status, plan_or_type, default_trading_mode) "
-                  "VALUES ('default', 'Micro-Trader Hauptmandant', 'aktiv', 'personal', 'SHADOW')")
-        self.conn.commit()
-        return c.lastrowid
-
-    def tenant_create(self, key, name, plan_or_type="personal", default_mode="SHADOW"):
-        """Neuen Tenant anlegen. Gibt (tenant_id, fehler) zurueck."""
-        c = self.conn.cursor()
-        try:
-            c.execute("INSERT INTO tenants (tenant_key, name, status, plan_or_type, default_trading_mode) "
-                      "VALUES (?, ?, 'aktiv', ?, ?)", (key, name, plan_or_type, default_mode))
-            self.conn.commit()
-            return c.lastrowid, None
-        except sqlite3.IntegrityError:
-            return None, "tenant_key existiert bereits"
-
-    def tenant_list(self):
-        return [dict(r) for r in self.conn.execute(
-            "SELECT id, tenant_key, name, status, plan_or_type, default_trading_mode, created_at "
-            "FROM tenants ORDER BY id").fetchall()]
-
-    def tenant_get(self, tenant_id):
-        row = self.conn.execute(
-            "SELECT id, tenant_key, name, status, plan_or_type, default_trading_mode, risk_policy_id, created_at "
-            "FROM tenants WHERE id = ?", (tenant_id,)).fetchone()
-        return dict(row) if row else None
-
-    def tenant_membership_add(self, tenant_id, user_id, role="user"):
-        """User einem Tenant zuordnen (idempotent)."""
-        c = self.conn.cursor()
-        try:
-            c.execute("INSERT OR IGNORE INTO tenant_memberships (tenant_id, user_id, role, status) "
-                      "VALUES (?, ?, ?, 'aktiv')", (tenant_id, user_id, role))
-            self.conn.commit()
-            return True
-        except sqlite3.Error:
-            return False
-
-    def tenant_memberships_for_user(self, user_id):
-        return [dict(r) for r in self.conn.execute(
-            "SELECT tm.tenant_id, tm.role, tm.status, t.name, t.tenant_key, t.default_trading_mode "
-            "FROM tenant_memberships tm JOIN tenants t ON t.id = tm.tenant_id "
-            "WHERE tm.user_id = ? ORDER BY tm.tenant_id", (user_id,)).fetchall()]
-
-    def tenant_membership_role(self, tenant_id, user_id):
-        row = self.conn.execute(
-            "SELECT role, status FROM tenant_memberships WHERE tenant_id = ? AND user_id = ?",
-            (tenant_id, user_id)).fetchone()
-        return dict(row) if row else None
-
-    def tenant_user_ids(self, tenant_id):
-        return [r["user_id"] for r in self.conn.execute(
-            "SELECT user_id FROM tenant_memberships WHERE tenant_id = ?", (tenant_id,)).fetchall()]
-
-    def workspace_create(self, tenant_id, key, name, trading_mode="SHADOW"):
-        c = self.conn.cursor()
-        try:
-            c.execute("INSERT INTO workspaces (tenant_id, workspace_key, name, trading_mode, status) "
-                      "VALUES (?, ?, ?, ?, 'aktiv')", (tenant_id, key, name, trading_mode))
-            self.conn.commit()
-            return c.lastrowid, None
-        except sqlite3.IntegrityError:
-            return None, "workspace_key existiert bereits in diesem Tenant"
-
-    def workspace_list(self, tenant_id):
-        return [dict(r) for r in self.conn.execute(
-            "SELECT id, tenant_id, workspace_key, name, trading_mode, status, created_at "
-            "FROM workspaces WHERE tenant_id = ? ORDER BY id", (tenant_id,)).fetchall()]
 
 
 if __name__ == "__main__":

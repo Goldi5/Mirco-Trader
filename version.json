@@ -1,8 +1,8 @@
 {
-  "version": "2.25.1",
-  "build": "2026-08-08_1845",
-  "released_at": "2026-08-08 18:45",
-  "codename": "Security-Hardening (Rate-Limit, Logins, Sicherheit-Checkliste) + UI (Landingpage-Hero, User-Area, Admin-Design, Drawdown-Balken weg)",
+  "version": "2.26.0",
+  "build": "2026-08-08_1900",
+  "released_at": "2026-08-08 19:00",
+  "codename": "Mandanten-Modell (PHASE 1): tenants/memberships/workspaces, Tenant-Kontext aus Session, /api/tenants, 55 Tests",
   "changes": [
     {
       "version": "2.25.1",

@@ -2068,7 +2068,8 @@ async function ladeKontoDaten() {
        Rolle: <span style="color:var(--accent);font-weight:600">${j.role}</span><br>
        Status: ${j.active ? '<span style="color:var(--green)">aktiv</span>' : '<span style="color:var(--red)">inaktiv</span>'}<br>
        MFA: ${j.mfa ? '<span style="color:var(--green)">aktiv</span>' : '<span style="color:var(--amber)">nicht aktiv</span>'}<br>
-       Letzter Login: ${j.last_login ? String(j.last_login).slice(0,16).replace("T"," ") : "–"}`;
+       Letzter Login: ${j.last_login ? String(j.last_login).slice(0,16).replace("T"," ") : "–"}<br>
+       <span style="font-size:11px;color:var(--text-dim)">🏢 Mandant: <b>${esc((j.tenants && j.tenants.current_tenant) ? (j.tenants.memberships && j.tenants.memberships[0] ? esc(j.tenants.memberships[0].name) : "ID "+j.tenants.current_tenant) : "–")}</b></span>`;
     const perms = document.getElementById("kontoPerms");
     if (perms) perms.innerHTML = (j.permissions||[]).map(p=>`<span style="display:inline-block;background:rgba(37,99,235,.08);color:var(--accent);border-radius:6px;padding:2px 8px;font-size:10px;margin:2px">${p}</span>`).join(" ") || "–";
     const mfaBox = document.getElementById("mfaBox");
