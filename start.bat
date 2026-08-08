@@ -19,6 +19,6 @@ start http://localhost:5300
 echo  [3/3] Batch-Lauf......
 python batch_trader.py --quiet
 echo.
-echo  ✅ Dashboard: http://localhost:5299
+echo  ✅ Dashboard: http://localhost:5300
 echo.
 pause
