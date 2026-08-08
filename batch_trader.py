@@ -408,7 +408,7 @@ def main():
     if ki_kontexte_frisch:
         ki_ergebnisse = ki_call_alleeps(ki_kontexte_frisch) or {}
         # Cache speichern
-        with open(cp, "w") as f:
+        with open(cp, "w", encoding="utf-8") as f:
             json.dump(cache, f, ensure_ascii=False)
     else:
         ki_ergebnisse = {}
@@ -497,7 +497,7 @@ def main():
                    for r,w,_,rend,p,t in ergebnisse],
     }
     spfad = os.path.join(BASE, "batch_summary.json")
-    with open(spfad, "w") as f:
+    with open(spfad, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
 
     # Status speichern

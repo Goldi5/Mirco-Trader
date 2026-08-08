@@ -1572,7 +1572,9 @@ def _security_headers(resp):
     """Setzt OWASP-konforme Security-Header (Phase 5)."""
     resp.headers["Content-Security-Policy"] = (
         "default-src 'self'; img-src 'self' data: https:; "
-        "style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src 'self' https://fonts.gstatic.com; "
+        "script-src 'self' 'unsafe-inline'; "
         "frame-ancestors 'none'; base-uri 'self'")
     resp.headers["X-Content-Type-Options"] = "nosniff"
     resp.headers["Referrer-Policy"] = "no-referrer"
