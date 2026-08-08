@@ -1563,6 +1563,33 @@ def api_providers_test(conn_id):
         return {"error": str(e)}, 500
 
 
+# ── PHASE 8: Secret-Store (tenant-isoliert, kein global .env) ──
+@app.route("/api/secrets", methods=["GET"])
+def api_secrets_list():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    # Nur Schluessel, NIEMALS Werte
+    return {"tenant_id": tid, "keys": _sec.secret_list_keys(tid)}
+
+
+@app.route("/api/secrets/set", methods=["POST"])
+def api_secrets_set():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    skey = request.form.get("key") or (request.json.get("key") if request.is_json else "")
+    sval = request.form.get("value") or (request.json.get("value") if request.is_json else "")
+    if not skey or not sval:
+        return {"error": "key/value fehlt"}, 400
+    _sec.secret_set(tid, skey, sval)
+    return {"ok": True, "key": skey, "stored": "tenant-scoped"}
+
+
 @app.route("/api/db_query")
 def api_db_query():
     try:

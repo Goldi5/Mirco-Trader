@@ -35,7 +35,48 @@ class MTDB:
         self._init_trading_mode_tables()
         self._init_paper_tables()
         self._init_provider_tables()
+        self._init_secret_store()
         self._migrate_schema()
+
+    # ── PHASE 8: Secret-Store (tenant-isoliert, kein global .env) ──
+    def _init_secret_store(self):
+        c = self.conn.cursor()
+        c.executescript("""
+        CREATE TABLE IF NOT EXISTS secret_store (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            secret_key TEXT NOT NULL,
+            secret_value TEXT NOT NULL,
+            created_at TEXT DEFAULT (datetime('now')),
+            updated_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(tenant_id, secret_key)
+        );
+        CREATE INDEX IF NOT EXISTS idx_ss_tenant
+            ON secret_store(tenant_id);
+        """)
+        self.conn.commit()
+
+    def secret_set(self, tenant_id, secret_key, secret_value):
+        """PHASE 8: Secret tenant-isoliert speichern (kein globaler .env-Key)."""
+        self.conn.execute(
+            "INSERT OR REPLACE INTO secret_store "
+            "(tenant_id, secret_key, secret_value, updated_at) "
+            "VALUES (?,?,?,datetime('now'))",
+            (tenant_id, secret_key, secret_value))
+        self.conn.commit()
+
+    def secret_get(self, tenant_id, secret_key):
+        """PHASE 8: Secret nur fuer den eigenen Tenant auslesen."""
+        row = self.conn.execute(
+            "SELECT secret_value FROM secret_store WHERE tenant_id = ? AND secret_key = ?",
+            (tenant_id, secret_key)).fetchone()
+        return row["secret_value"] if row else None
+
+    def secret_list_keys(self, tenant_id):
+        """PHASE 8: Nur Schluessel auflisten (NIEMALS Werte)."""
+        return [r["secret_key"] for r in self.conn.execute(
+            "SELECT secret_key FROM secret_store WHERE tenant_id = ?",
+            (tenant_id,)).fetchall()]
 
     # ── PHASE 7: Provider-Connection-Tabellen (Sektion 10) ──
     def _init_provider_tables(self):

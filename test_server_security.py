@@ -431,6 +431,36 @@ try:
 except Exception as e:
     ck("Provider-Connection-Manager", False, str(e))
 
+# ─── Phase 15h: Secret-Store (v2.32.0, PHASE 8) ────────────────────────
+print("\n7h. Secret-Store (v2.32.0, PHASE 8)")
+try:
+    import security as sec8, db as mtdb8, dashboard as dash8
+    # Tenant-isolierte Secrets
+    sec8.secret_set(1, "OPENAI_API_KEY", "sk-tenant1")
+    sec8.secret_set(5, "OPENAI_API_KEY", "sk-tenant5")
+    ck("secret_get tenant 1", sec8.secret_get(1, "OPENAI_API_KEY") == "sk-tenant1")
+    ck("secret_get tenant 5", sec8.secret_get(5, "OPENAI_API_KEY") == "sk-tenant5")
+    ck("Tenant-Isolation (1 != 5)", sec8.secret_get(1, "OPENAI_API_KEY") != sec8.secret_get(5, "OPENAI_API_KEY"))
+    ck("secret_list_keys liefert nur Schluessel", "OPENAI_API_KEY" in sec8.secret_list_keys(1)
+        and isinstance(sec8.secret_list_keys(1), list))
+    # API: setzt + listet (keine Werte im Response)
+    app8 = dash8.app; app8.config["TESTING"] = True
+    c8 = app8.test_client()
+    c8.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    r = c8.post("/api/secrets/set", data={"key": "TEST_KEY", "value": "supersecret"})
+    ck("API /api/secrets/set OK", r.get_json().get("ok") is True)
+    r = c8.get("/api/secrets")
+    j = r.get_json()
+    ck("API /api/secrets liefert nur Schluessel (kein Wert)",
+       "TEST_KEY" in j.get("keys", []) and "supersecret" not in str(j))
+    # Cleanup
+    m8 = mtdb8.MTDB()
+    m8.conn.execute("DELETE FROM secret_store WHERE tenant_id IN (1,5)")
+    m8.conn.commit(); m8.close()
+    sec8.secret_set(1, "OPENAI_API_KEY", "sk-tenant1")  # wiederherstellen
+except Exception as e:
+    ck("Secret-Store", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

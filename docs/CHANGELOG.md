@@ -1,3 +1,12 @@
+## [2.32.0] - 2026-08-08
+### Added (PHASE 8: Secret-Store — Mandanten-Ausbauauftrag)
+- **secret_store Tabelle:** tenant-scoped, `UNIQUE(tenant_id, secret_key)`.
+- **Tenant-Isolation:** Secrets pro Tenant getrennt (kein globaler `.env`-Key mehr).
+- **db.py:** `secret_set/get/list_keys`; **security.py:** `secret_set/get/list_keys`.
+- **dashboard.py:** `/api/secrets` (GET, nur Schluessel), `/api/secrets/set` (POST, TENANT_ADMIN).
+- **ROUTE_ACCESS:** 2 neue Routen auf TENANT_ADMIN.
+- **Tests:** Sektion 7h (+6) -> **103 OK, 0 FAIL**.
+
 ## [2.31.0] - 2026-08-08
 ### Added (PHASE 7: Provider-Connection-Manager — Mandanten-Ausbauauftrag)
 - **provider_connections Tabelle:** tenant-scoped, environment DEMO/PAPER/SANDBOX/LIVE.

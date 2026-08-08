@@ -1,20 +1,27 @@
 {
-  "version": "2.31.0",
-  "build": "2026-08-08_2245",
-  "released_at": "2026-08-08 22:45",
-  "codename": "Provider-Connection-Manager (PHASE 7): tenant-scoped Connections, Secrets als Referenz, 97 Tests",
+  "version": "2.32.0",
+  "build": "2026-08-08_2300",
+  "released_at": "2026-08-08 23:00",
+  "codename": "Secret-Store (PHASE 8): tenant-isolierte Secrets, kein global .env, 103 Tests",
   "changes": [
+    {
+      "version": "2.32.0",
+      "date": "2026-08-08",
+      "changes": [
+        "PHASE 8 Secret-Store: secret_store Tabelle (tenant-scoped, Unique(tenant,key))",
+        "Secrets NUR tenant-isoliert - kein globaler .env-Key mehr",
+        "db.py: secret_set/get/list_keys; security.py: secret_set/get/list_keys",
+        "dashboard.py: /api/secrets (GET, nur Schluessel), /api/secrets/set (POST, TENANT_ADMIN)",
+        "ROUTE_ACCESS: 2 neue Routen auf TENANT_ADMIN",
+        "Sektion 7h: 6 neue Tests -> 103 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.31.0",
       "date": "2026-08-08",
       "changes": [
-        "PHASE 7 Provider-Abstraktion: provider_connections Tabelle (tenant-scoped)",
-        "Secrets NUR als Referenz (vault://...), nie Klartext - API maskiert bei Ausgabe",
-        "db.py: provider_connection_add/list/test + Migration (created_by Spalte)",
-        "dashboard.py: /api/providers (GET), /api/providers/add (POST), /api/providers/test/<id> (POST)",
-        "ROUTE_ACCESS: 3 neue Routen auf TENANT_ADMIN",
-        "PAPER_ONLY erhalten - keine echten API-Calls",
-        "Sektion 7g: 5 neue Tests -> 97 OK, 0 FAIL"
+        "PHASE 7 Provider-Connection-Manager: tenant-scoped, Secrets als Referenz",
+        "97 Tests"
       ]
     },
     {

@@ -162,6 +162,33 @@ def enter_paper(tenant_id=None, user=None, reason=""):
                             requested_by=(user.get("id") if user else None))
 
 
+# ── PHASE 8: Secret-Store (tenant-isoliert, kein global .env) ──
+def secret_set(tenant_id, secret_key, secret_value):
+    """PHASE 8: Secret tenant-isoliert speichern."""
+    import db as _db
+    m = _db.MTDB()
+    m.secret_set(tenant_id, secret_key, secret_value)
+    m.close()
+
+
+def secret_get(tenant_id, secret_key):
+    """PHASE 8: Secret nur fuer eigenen Tenant auslesen (serverseitig)."""
+    import db as _db
+    m = _db.MTDB()
+    val = m.secret_get(tenant_id, secret_key)
+    m.close()
+    return val
+
+
+def secret_list_keys(tenant_id):
+    """PHASE 8: Schluessel auflisten (keine Werte)."""
+    import db as _db
+    m = _db.MTDB()
+    keys = m.secret_list_keys(tenant_id)
+    m.close()
+    return keys
+
+
 def resolve_tenant_for_user(user):
     """Leitet die tenant_id eines Users aus der Membership-Tabelle ab.
     Fallback: Default-Tenant (id=1). Kein Client-Input noetig."""
@@ -258,6 +285,7 @@ ROUTE_ACCESS = {
     "/api/paper/eligibility": "TENANT_ADMIN", "/api/paper/enter": "TENANT_ADMIN",
     "/api/providers": "TENANT_ADMIN", "/api/providers/add": "TENANT_ADMIN",
     "/api/providers/test/<int:conn_id>": "TENANT_ADMIN",
+    "/api/secrets": "TENANT_ADMIN", "/api/secrets/set": "TENANT_ADMIN",
     "/api/tenants": "ADMIN", "/api/tenants/create": "ADMIN",
     "/api/tenants/<int:tid>/members": "ADMIN",
     "/api/users": "ADMIN", "/api/users/create": "ADMIN",
