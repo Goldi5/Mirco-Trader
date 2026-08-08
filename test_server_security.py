@@ -273,6 +273,30 @@ try:
 except Exception as e:
     ck("Rollen-/Berechtigungsmodell", False, str(e))
 
+# ─── Phase 15d: Mandantentrennung (v2.28.0, PHASE 4) ───────────────────
+print("\n7d. Mandantentrennung (v2.28.0, PHASE 4)")
+try:
+    import os as _os, json as _json, db as mtdb3, dashboard as dash3
+    BASE = dash3.BASE
+    TD = _os.path.join(BASE, "depot_777.json")
+    with open(TD, "w") as f:
+        _json.dump({"tenant_id": 5, "bargeld": 500, "start_wert": 100,
+                    "positions": {"AAPL": {"shares": 2, "avg_price": 10}}, "historie": []}, f)
+    s1 = dash3._tenant_scoped_depot_files(1)
+    s5 = dash3._tenant_scoped_depot_files(5)
+    ck("Tenant 1 sieht Tenant-5-Depot NICHT", "depot_777.json" not in str(s1))
+    ck("Tenant 5 sieht eigenes Depot", "depot_777.json" in str(s5))
+    m = mtdb3.MTDB()
+    m.depot_register("depots", 5, "depot_777", "depot_777.json", risk_stufe=777, name="T5")
+    ck("depot_list_tenant(5) isoliert", len(m.depot_list_tenant("depots", 5)) == 1)
+    ck("depot_list_tenant(1) sieht T5 NICHT", len(m.depot_list_tenant("depots", 1)) == 0)
+    ck("query_trades tenant=999 leer", len(m.query_trades(tenant_id=999)) == 0)
+    _os.remove(TD)
+    m.conn.execute("DELETE FROM depots WHERE tenant_id=5")
+    m.conn.commit(); m.close()
+except Exception as e:
+    ck("Mandantentrennung", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

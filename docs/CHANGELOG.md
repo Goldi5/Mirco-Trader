@@ -1,3 +1,14 @@
+## [2.28.0] - 2026-08-08
+### Added (PHASE 4: Mandantentrennung — Mandanten-Ausbauauftrag)
+- **Depot-Datentraeger pro Tenant:** SQLite-Tabellen `depots`/`etf_depots`/`spec_depots` (tenant_id).
+- **`_tenant_scoped_depot_files(tid)`:** scannt alle Depot-JSONs, filtert auf `tenant_id` (Default 1).
+- **`data()` lädt nur Depots des aktiven Tenants** (kein globaler Mix).
+- **API-Tenant-Scope:** `/api/ki_log` (nur Tenant-Einträge), `/depot_json` (403 bei Fremd-Tenant), `/api/db_query` (erzwingt Session-Tenant, schließt PHASE-0-Lücke).
+- **db.py:** `query_trades`/`query_ki` tenant_id-Parameter, `depot_register`/`depot_list_tenant`.
+- **Tests:** Sektion 7d (+5) → **74 OK, 0 FAIL**.
+- **Doku:** MULTI-TENANT-SECURITY-TESTPLAN.md.
+- **PAPER_ONLY bleibt** — kein Live-Code.
+
 ## [2.27.0] - 2026-08-08
 ### Added (Rollen-/Berechtigungsmodell, PHASE 2 Mandanten-Ausbau)
 - **Effektive Rolle** (`security.py`): Membership-Rolle im Tenant gewinnt vor globaler User-Rolle — User kann in Tenant A `admin`, in Tenant B `user` sein.

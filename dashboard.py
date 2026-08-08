@@ -606,6 +606,55 @@ def serve_assets(dateiname):
     return ("Not Found", 404)
 
 from risk_profile import RISK_STUFEN, get_params
+def _get_tid():
+    """PHASE 4: Aktuelle Tenant-ID aus Session-Kontext (nie Client)."""
+    try:
+        import security as _sec
+        return _sec.get_current_tenant() or 1
+    except Exception:
+        return 1
+
+
+def _tenant_scoped_depot_files(tenant_id):
+    """PHASE 4: Gibt nur Depot-Pfade zurueck, die zum Tenant gehoeren.
+    Depot-JSONs tragen ein Feld 'tenant_id' (Default 1). Fehlt es, gilt
+    Default-Tenant 1. So sieht Tenant B niemals Depots von Tenant A."""
+    import json as _json, glob as _glob
+    scoped = {"depot": [], "etf": [], "spec": []}
+    # Aktien-Depots: alle depot_*.json scannen (nicht nur RISK_STUFEN)
+    for dp in _glob.glob(os.path.join(BASE, "depot_*.json")):
+        try:
+            with open(dp) as f:
+                d = _json.load(f)
+            if d.get("tenant_id", 1) == tenant_id:
+                scoped["depot"].append(dp)
+        except Exception:
+            pass
+    # ETF-Depots: alle etf_*.json scannen
+    for ep in _glob.glob(os.path.join(BASE, "etf_*.json")):
+        try:
+            with open(ep) as f:
+                d = _json.load(f)
+            if d.get("tenant_id", 1) == tenant_id:
+                scoped["etf"].append(ep)
+        except Exception:
+            pass
+    # Spec-Depots
+    sdd = os.path.join(BASE, "spec_depots")
+    if os.path.isdir(sdd):
+        for fn in os.listdir(sdd):
+            if fn.endswith(".json"):
+                fp = os.path.join(sdd, fn)
+                try:
+                    with open(fp) as f:
+                        d = _json.load(f)
+                    if d.get("tenant_id", 1) == tenant_id:
+                        scoped["spec"].append(fp)
+                except Exception:
+                    pass
+    return scoped
+
+
 def depot_pfad(risk):
     return os.path.join(BASE, "depot_%03d.json" % risk)
 
@@ -657,33 +706,44 @@ def data():
     depots = []
     ALLE_TICKER = set()
     depot_raw = {}
-    for risk in RISK_STUFEN:
-        dp = depot_pfad(risk)
-        if os.path.exists(dp):
+    # PHASE 4: Tenant-Scope — nur Dateien des aktiven Tenants
+    try:
+        import security as _sec
+        _tid = _sec.get_current_tenant() or 1
+    except Exception:
+        _tid = 1
+    _scoped = _tenant_scoped_depot_files(_tid)
+    # Aktien-Depots (nur Tenant)
+    for dp in _scoped["depot"]:
+        try:
+            risk = int(os.path.basename(dp).split("_")[1].split(".")[0])
             with open(dp) as f:
                 d = json.load(f)
             depot_raw[risk] = d
             for s, pos_obj in d.get("positions", {}).items():
                 if pos_obj.get("shares", 0) > 0:
                     ALLE_TICKER.add(s)
-    # Auch ETF- und Spekulation-Positionen einsammeln (nur offene: shares > 0)
-    for risk in range(0, 100, 5):
-        ep = os.path.join(BASE, f"etf_{risk:03d}.json")
-        if os.path.exists(ep):
+        except Exception:
+            pass
+    # ETF-Depots (nur Tenant)
+    for ep in _scoped["etf"]:
+        try:
             with open(ep) as f:
                 d = json.load(f)
             for s, pos_obj in d.get("positions", {}).items():
                 if pos_obj.get("shares", 0) > 0:
                     ALLE_TICKER.add(s)
-    sdd = os.path.join(BASE, "spec_depots")
-    if os.path.isdir(sdd):
-        for fn in os.listdir(sdd):
-            if fn.endswith(".json"):
-                with open(os.path.join(sdd, fn)) as f:
-                    sd = json.load(f)
-                # spec_depots haben ticker + shares auf root-level
-                if sd.get("ticker") and sd.get("shares", 0) > 0:
-                    ALLE_TICKER.add(sd["ticker"])
+        except Exception:
+            pass
+    # Spec-Depots (nur Tenant)
+    for fp in _scoped["spec"]:
+        try:
+            with open(fp) as f:
+                sd = json.load(f)
+            if sd.get("ticker") and sd.get("shares", 0) > 0:
+                ALLE_TICKER.add(sd["ticker"])
+        except Exception:
+            pass
 
     # yfinance NUR wenn es offene Positionen gibt (sonst überspringen = schnell)
     kurse = {}
@@ -1346,11 +1406,23 @@ def clear_cache():
 
 @app.route("/api/ki_log")
 def api_ki_log():
+    # PHASE 4: Tenant-Scope — nur Eintraege des aktiven Tenants
     kip = os.path.join(BASE, "ki_log.json")
-    if os.path.exists(kip):
+    if not os.path.exists(kip):
+        return []
+    try:
         with open(kip, encoding='utf-8') as f:
-            return json.load(f)
-    return []
+            data = json.load(f)
+    except Exception:
+        return []
+    if isinstance(data, list):
+        try:
+            import security as _sec
+            tid = _get_tid()
+        except Exception:
+            tid = 1
+        return [e for e in data if e.get("tenant_id", 1) == tid]
+    return data
 
 
 @app.route("/api/db_query")
@@ -1368,12 +1440,21 @@ def api_db_query():
         provider = request.args.get("provider", "")
         regel_id = request.args.get("regel_id", "")
         fallback = request.args.get("fallback", "")
+        # PHASE 4: Tenant-Scope erzwingen (nie global, nie aus Client)
+        _tid = 1
+        try:
+            import security as _sec
+            _tid = _sec.get_current_tenant() or 1
+        except Exception:
+            pass
         if mode == "ki":
             rows = db.query_ki(ticker=ticker, limit=limit, provider=provider or None,
                                regel_id=regel_id or None,
-                               fallback=(fallback == "true") if fallback else None)
+                               fallback=(fallback == "true") if fallback else None,
+                               tenant_id=_tid)
         else:
-            rows = db.query_trades(typ=typ, ticker=ticker, aktion=aktion, tage=tage, order=order, limit=limit)
+            rows = db.query_trades(typ=typ, ticker=ticker, aktion=aktion, tage=tage, order=order, limit=limit,
+                                   tenant_id=_tid)
         db.close()
         return {"error": None, "count": len(rows), "rows": rows}
     except Exception as e:
@@ -1401,8 +1482,18 @@ def depot_json():
     dp = depot_pfad(risk)
     if not os.path.exists(dp):
         return {"error": "not found"}
-    with open(dp) as f:
-        return json.load(f)
+    # PHASE 4: Tenant-Scope
+    try:
+        import security as _sec, json as _j
+        tid = _sec.get_current_tenant() or 1
+        with open(dp, encoding='utf-8') as f:
+            d = _j.load(f)
+        if d.get("tenant_id", 1) != tid:
+            return {"error": "forbidden"}, 403
+        return d
+    except Exception:
+        with open(dp) as f:
+            return json.load(f)
 
 @app.route("/spec_depot_json")
 def spec_depot_json():

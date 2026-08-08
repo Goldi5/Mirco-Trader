@@ -61,6 +61,35 @@ class MTDB:
                     c.execute(f'ALTER TABLE {tabelle} ADD COLUMN {spalte} INTEGER DEFAULT 1')
         self.conn.commit()
 
+    # ── PHASE 4: Mandantentrennung ──
+    def tenant_scope_where(self, tenant_id=None):
+        """Liefert SQL-Fragment 'AND tenant_id = ?' + Parameter fuer Scope."""
+        tid = tenant_id or 1
+        return "AND tenant_id = ?", (tid,)
+
+    def depot_register(self, table, tenant_id, depot_key, pfad, risk_stufe=None,
+                       ticker=None, name=None, modus='SHADOW'):
+        """Registriert/aktualisiert ein Depot im tenant-Scope (idempotent)."""
+        if table == 'spec_depots':
+            self.conn.execute(
+                f"INSERT OR REPLACE INTO {table} "
+                "(tenant_id, ticker, depot_key, pfad, name, modus, status) "
+                "VALUES (?,?,?,?,?,?,'aktiv')",
+                (tenant_id, ticker, depot_key, pfad, name, modus))
+        else:
+            self.conn.execute(
+                f"INSERT OR REPLACE INTO {table} "
+                "(tenant_id, risk_stufe, depot_key, pfad, name, modus, status) "
+                "VALUES (?,?,?,?,?,?,'aktiv')",
+                (tenant_id, risk_stufe, depot_key, pfad, name, modus))
+        self.conn.commit()
+
+    def depot_list_tenant(self, table, tenant_id):
+        """Listet Depots eines Tenants (tenant-scoped)."""
+        return [dict(r) for r in self.conn.execute(
+            f"SELECT * FROM {table} WHERE tenant_id = ? AND status != 'geloescht'",
+            (tenant_id,)).fetchall()]
+
     def _init_schema(self):
         c = self.conn.cursor()
         c.executescript("""
@@ -123,6 +152,43 @@ class MTDB:
             status TEXT DEFAULT 'aktiv',
             created_at TEXT DEFAULT (datetime('now')),
             UNIQUE(tenant_id, workspace_key)
+        );
+        -- PHASE 4: Mandantentrennung fuer Depot-Datentraeger (Mirror der JSONs)
+        CREATE TABLE IF NOT EXISTS depots (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            risk_stufe INTEGER NOT NULL,
+            depot_key TEXT NOT NULL,
+            pfad TEXT NOT NULL,
+            name TEXT,
+            modus TEXT DEFAULT 'SHADOW',
+            status TEXT DEFAULT 'aktiv',
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(tenant_id, depot_key)
+        );
+        CREATE TABLE IF NOT EXISTS etf_depots (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            risk_stufe INTEGER NOT NULL,
+            depot_key TEXT NOT NULL,
+            pfad TEXT NOT NULL,
+            name TEXT,
+            modus TEXT DEFAULT 'SHADOW',
+            status TEXT DEFAULT 'aktiv',
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(tenant_id, depot_key)
+        );
+        CREATE TABLE IF NOT EXISTS spec_depots (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            ticker TEXT NOT NULL,
+            depot_key TEXT NOT NULL,
+            pfad TEXT NOT NULL,
+            name TEXT,
+            modus TEXT DEFAULT 'SHADOW',
+            status TEXT DEFAULT 'aktiv',
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(tenant_id, depot_key)
         );
         """)
         self.conn.commit()
@@ -265,7 +331,7 @@ class MTDB:
         return res
 
     def query_trades(self, typ=None, ticker=None, aktion=None, tage=30,
-                     limit=200, order="DESC"):
+                     limit=200, order="DESC", tenant_id=1):
         """Flexible Trade-Suche mit Filtern.
         typ: 'aktien'|'etf'|'spec'|None (alle)
         ticker: Teilstring-Suche (LIKE %x%)
@@ -275,8 +341,8 @@ class MTDB:
         """
         since = (datetime.now() - timedelta(days=tage)).isoformat()
         sql = ("SELECT zeit, depot_typ, ticker, aktion, menge, preis, grund, konfidenz "
-               "FROM trades WHERE zeit >= ?")
-        params = [since]
+               "FROM trades WHERE zeit >= ? AND tenant_id = ?")
+        params = [since, tenant_id]
         if typ:
             sql += " AND depot_typ = ?"
             params.append(typ)
@@ -292,14 +358,15 @@ class MTDB:
         return [dict(r) for r in rows]
 
     def query_ki(self, typ=None, ticker=None, aktion=None, tage=30,
-                 limit=200, order="DESC", provider=None, regel_id=None, fallback=None):
+                 limit=200, order="DESC", provider=None, regel_id=None, fallback=None,
+                 tenant_id=1):
         """Flexible KI-Entscheidungs-Suche (ki_decisions Tabelle).
         Neu (v2.19.1): Filter provider/regel_id/fallback."""
         since = (datetime.now() - timedelta(days=tage)).isoformat()
         sql = ("SELECT zeit, ticker, aktion, konfidenz, grund, depot_typ, risk, "
                "decision_id, provider, regel_id, fallback "
-               "FROM ki_decisions WHERE zeit >= ?")
-        params = [since]
+               "FROM ki_decisions WHERE zeit >= ? AND tenant_id = ?")
+        params = [since, tenant_id]
         if typ:
             sql += " AND depot_typ = ?"
             params.append(typ)
