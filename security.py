@@ -428,8 +428,17 @@ def access_level_met(user_role, required_level):
 
 
 def route_class(route_rule):
-    """Gibt Zugriffsklasse für eine Route zurück (Phase 6 Mapping)."""
-    return ROUTE_ACCESS.get(route_rule, "ADMIN")  # Default: restriktiv
+    """Gibt Zugriffsklasse für eine Route zurück (Phase 6 Mapping).
+    Matches exakte Routen + Flask-Patterns (/assets/<path:...>). Default: restriktiv."""
+    if route_rule in ROUTE_ACCESS:
+        return ROUTE_ACCESS[route_rule]
+    # Flask-Pattern-Prefixe: /assets/<path:dateiname>, /static/<path:...>, /reports/<path:...>
+    for pattern, cls in ROUTE_ACCESS.items():
+        if "<" in pattern and ">" in pattern:
+            prefix = pattern.split("<")[0].rstrip("/")
+            if route_rule.startswith(prefix + "/") or route_rule == prefix:
+                return cls
+    return "ADMIN"  # Default: restriktiv
 
 
 # ─── Flask-Integration (Decorators + Helper) ────────────────────────────────

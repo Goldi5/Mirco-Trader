@@ -1700,30 +1700,69 @@ def setup_mfa():
 
 
 # ─── Öffentliche Landingpage (nur allgemeine Infos, kein internes JSON) ──
-@app.route("/")
-@app.route("/landing")
+@app.route("/", methods=["GET", "POST"])
+@app.route("/landing", methods=["GET", "POST"])
 def landing():
     """Öffentliche Landingpage (PUBLIC).
     Darf NUR: Projektname, Kurzbeschreibung, Paper-/Shadow-Hinweis,
-    Betriebsstatus OHNE interne Details, Login-Button.
+    Betriebsstatus OHNE interne Details, Login-Formular direkt auf der Seite.
     Lädt KEINE internen JSON-Daten (Depot/KI/Regeln/Provider/Logs)."""
     status = "Paper-/Shadow-Trading-System (kein Echtgeld)"
+    fehler = ""
+    if request.method == "POST":
+        uname = request.form.get("username", "").strip()
+        pw = request.form.get("password", "")
+        if sec.verify_password(uname, pw):
+            sid = sec.create_session(uname, request.remote_addr or "")
+            sid = sec.rotate_session(uname, sid) or sid
+            resp = make_response(redirect("/dashboard"))
+            resp.set_cookie("username", uname, httponly=True, samesite="Lax", secure=False)
+            resp.set_cookie("sid", sid, httponly=True, samesite="Lax", secure=False)
+            u = sec.get_user(uname)
+            u["last_login"] = datetime.utcnow().isoformat() + "Z"
+            sec.audit_log("login", uname)
+            return resp
+        sec.audit_log("login_failed", uname)
+        fehler = "<div style='margin:10px 0 0;color:#b91c1c;background:#fee2e2;border:1px solid #fecaca;border-radius:8px;padding:8px 12px;font-size:13px'>Anmeldung fehlgeschlagen – Benutzername oder Passwort falsch.</div>"
     return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
-<title>Micro-Trader</title>
-<style>body{{font-family:system-ui,sans-serif;max-width:680px;margin:6vh auto;padding:0 20px;color:#1a1a2e}}
-.card{{background:#f5f7ff;border:1px solid #d8e0ff;border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(80,110,255,.08)}}
-.badge{{display:inline-block;background:#e8f5e9;color:#1b5e20;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600}}
-h1{{font-size:30px;margin:0 0 8px}}a.btn{{display:inline-block;margin-top:18px;background:#4361ee;color:#fff;
-text-decoration:none;padding:11px 22px;border-radius:10px;font-weight:600}}p{{line-height:1.55;color:#444}}</style>
-</head><body><div class='card'>
-<h1>📈 Micro-Trader</h1>
+<title>Micro-Trader – Anmeldung</title>
+<style>
+body{{font-family:'Segoe UI',system-ui,sans-serif;margin:0;padding:0;background:linear-gradient(160deg,#eef2ff,#fdf4ff);background-image:radial-gradient(ellipse at 15% 0%,rgba(67,97,238,.10) 0%,transparent 55%),radial-gradient(ellipse at 85% 0%,rgba(16,185,129,.07) 0%,transparent 50%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}}
+.card{{max-width:560px;width:100%;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.85);border-radius:22px;box-shadow:0 24px 60px rgba(80,110,255,.16);overflow:hidden}}
+.banner{{width:100%;height:110px;display:block;object-fit:contain;object-position:center;background:#0b1220;border-bottom:1px solid rgba(15,23,42,.07)}}
+.inner{{padding:26px 30px 30px}}
+.head{{display:flex;align-items:center;gap:12px;margin-bottom:6px}}
+.logo{{width:44px;height:44px;border-radius:10px}}
+h1{{font-size:26px;margin:0;color:#1a1a2e}}
+.badge{{display:inline-block;background:#e8f5e9;color:#1b5e20;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600;margin-bottom:12px}}
+p{{line-height:1.6;color:#444;margin:8px 0}}
+.status{{color:#777;font-size:13px}}
+label{{display:block;margin-top:14px;font-size:13.5px;font-weight:600;color:#333}}
+input{{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:12px 14px;font-size:15px;border:1px solid #cfdceb;border-radius:10px;background:#fff;font-family:inherit;transition:border-color .15s,box-shadow .15s}}
+input:focus{{outline:none;border-color:#4361ee;box-shadow:0 0 0 3px rgba(67,97,238,.15)}}
+button{{margin-top:18px;width:100%;background:#4361ee;color:#fff;border:none;padding:13px 0;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:background .15s,transform .05s}}
+button:hover{{background:#3a55d8}}
+button:active{{transform:translateY(1px)}}
+.hint{{margin-top:14px;font-size:12px;color:#888;text-align:center}}
+</style></head><body>
+<div class='card'>
+<img class='banner' src='/assets/banner.png' alt='Micro Trader System'>
+<div class='inner'>
+<div class='head'><img class='logo' src='/assets/logo.png' alt='Logo'><h1>Micro-Trader</h1></div>
 <span class='badge'>{status}</span>
 <p>Automatisierter Paper-/Shadow-Trading-Assistent für Aktien, ETF und Spekulation.
 Alle Handelsentscheidungen erfolgen ausschließlich in simulierten Depots — <b>kein Echtgeldeinsatz</b>.</p>
-<p style='color:#777;font-size:13px'>Systemstatus: aktiv · NYSE-Handelszeiten Mo–Fr 15:30–22:00 MEZ ·
-Mehrbenutzer-Zugang mit Rollenrechten.</p>
-<a class='btn' href='/login'>Anmelden</a>
-</div></body></html>""")
+<p class='status'>Systemstatus: aktiv · NYSE-Handelszeiten Mo–Fr 15:30–22:00 MEZ · Mehrbenutzer-Zugang mit Rollenrechten.</p>
+<form method='POST' action='/'>
+<label for='login-user'>Benutzername</label>
+<input id='login-user' name='username' autocomplete='username' required autofocus>
+<label for='login-pass'>Passwort</label>
+<input id='login-pass' name='password' type='password' autocomplete='current-password' required>
+<button type='submit'>Anmelden</button>
+{fehler}
+</form>
+<p class='hint'>Zugriff nur für berechtigte Benutzer · Paper-/Shadow-System (kein Echtgeld)</p>
+</div></div></body></html>""")
 
 
 # ─── PHASE 8: Admin-Bereich (nur ADMIN/SUPERADMIN via before_request) ──────────
