@@ -291,6 +291,14 @@ try:
     ck("depot_list_tenant(5) isoliert", len(m.depot_list_tenant("depots", 5)) == 1)
     ck("depot_list_tenant(1) sieht T5 NICHT", len(m.depot_list_tenant("depots", 1)) == 0)
     ck("query_trades tenant=999 leer", len(m.query_trades(tenant_id=999)) == 0)
+    # /api/db_query erzwingt Session-Tenant (Client-Parameter wird ignoriert)
+    app3 = dash3.app; app3.config["TESTING"] = True
+    c3 = app3.test_client()
+    c3.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    r = c3.get("/api/db_query?mode=trades&tenant_id=999&limit=500")
+    j = r.get_json()
+    ck("/api/db_query ignoriert Client-tenant (nutzt Session)",
+       r.status_code == 200 and j.get("count", 0) > 0)  # >0 = Server nutzte tid=1, nicht 999
     _os.remove(TD)
     m.conn.execute("DELETE FROM depots WHERE tenant_id=5")
     m.conn.commit(); m.close()
