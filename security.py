@@ -52,7 +52,9 @@ ROLE_PERMISSIONS = {
 
 # Routen-Zugriffsklassen (Phase 6 Zuordnung aus SERVER-SECURITY-INVENTORY)
 ROUTE_ACCESS = {
-    "/": "PUBLIC", "/api/version": "PUBLIC", "/static/<path:dateiname>": "PUBLIC",
+    "/": "PUBLIC", "/landing": "PUBLIC", "/api/version": "PUBLIC",
+    "/static/<path:dateiname>": "PUBLIC", "/assets/<path:dateiname>": "PUBLIC",
+    "/reports/<path:name>": "AUTHENTICATED",
     "/login": "PUBLIC", "/logout": "AUTHENTICATED",
     "/data": "AUTHENTICATED", "/depot_json": "AUTHENTICATED",
     "/spec_depot_json": "AUTHENTICATED", "/etf_depot_json": "AUTHENTICATED",
@@ -64,8 +66,9 @@ ROUTE_ACCESS = {
     "/api/ki_log": "ANALYST",
     "/api/pause_trading": "OPERATOR", "/api/clear_cache": "OPERATOR",
     "/api/settings": "ADMIN",
-    "/admin": "ADMIN", "/admin/users": "ADMIN", "/admin/roles": "ADMIN",
-    "/admin/security": "ADMIN", "/admin/audit": "ADMIN", "/admin/rules": "ADMIN",
+    "/admin": "ADMIN", "/admin/users": "ADMIN", "/admin/users/create": "ADMIN",
+    "/admin/system": "ADMIN", "/admin/rules": "ADMIN",
+    "/admin/security": "ADMIN", "/admin/audit": "ADMIN",
     "/admin/settings": "ADMIN", "/admin/backups": "ADMIN",
 }
 ACCESS_ORDER = ["PUBLIC", "AUTHENTICATED", "ANALYST", "OPERATOR", "ADMIN", "SUPERADMIN"]
@@ -403,10 +406,20 @@ def role_has_permission(role, required):
     return False
 
 
+# Rolle → Zugriffsebene (konsistent mit ROLE_PERMISSIONS / ACCESS_ORDER)
+ROLE_TO_LEVEL = {
+    "visitor": "PUBLIC",
+    "user": "AUTHENTICATED",
+    "analyst": "ANALYST",
+    "operator": "OPERATOR",
+    "admin": "ADMIN",
+    "superadmin": "SUPERADMIN",
+}
+
 def access_level_met(user_role, required_level):
     """Prüft Zugriffsebene (PUBLIC < AUTHENTICATED < ANALYST < OPERATOR < ADMIN < SUPERADMIN)."""
     try:
-        ui = ACCESS_ORDER.index(user_role.upper() if user_role else "visitor")
+        ui = ACCESS_ORDER.index(ROLE_TO_LEVEL.get((user_role or "visitor").lower(), "PUBLIC"))
         ri = ACCESS_ORDER.index(required_level)
         return ui >= ri
     except ValueError:
@@ -426,11 +439,12 @@ from flask import session as _flask_session, request as _flask_request
 
 
 def _current_username():
-    return _flask_session.get("username")
+    # App nutzt Cookie-basierte Auth (nicht flask.session)
+    return _flask_request.cookies.get("username")
 
 
 def _current_sid():
-    return _flask_session.get("sid")
+    return _flask_request.cookies.get("sid")
 
 
 def current_user():
@@ -469,7 +483,9 @@ def require_auth():
 
 
 def require_role(min_role):
-    """Decorator: Route nur mit Rolle >= min_role (ACCESS_ORDER)."""
+    """Decorator: Route nur mit Rolle >= min_role.
+    min_role ist eine ROLLE ('admin') — wird zu EBENE ('ADMIN') gemappt."""
+    min_level = ROLE_TO_LEVEL.get((min_role or "visitor").lower(), "PUBLIC")
     def decorator(f):
         from functools import wraps
         @wraps(f)
@@ -479,7 +495,7 @@ def require_role(min_role):
                 from flask import redirect as _r, url_for as _u
                 return _r((_u("login") if "login" in _ALL_ROUTES else "/login")
                           + "?next=" + _flask_request.path)
-            if not access_level_met(u["role"], min_role):
+            if not access_level_met(u["role"], min_level):
                 from flask import abort
                 abort(403)
             touch_session(u["username"], _current_sid())

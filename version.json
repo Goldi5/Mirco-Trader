@@ -1,13 +1,20 @@
 {
-  "version": "2.21.0",
-  "build": "2026-08-08_1115",
-  "released_at": "2026-08-08 11:15",
-  "codename": "Server-Sicherheit Phasen 1-6 (interne Bindung, Auth/Rollen/Session/MFA, Routenprüfung)",
+  "version": "2.22.0",
+  "build": "2026-08-08_1235",
+  "released_at": "2026-08-08 12:35",
+  "codename": "Server-Sicherheit Phasen 7-9 + Bugs (Landingpage, Admin-Bereich, Secret-Schutz, ROUTE_ACCESS/require_role-Fixes)",
   "changes": [
+    {
+      "version": "2.22.0",
+      "date": "2026-08-08 12:35",
+      "codename": "Server-Sicherheit Phasen 7-9 + Bugfixes",
+      "summary": "Phasen 7-9 abgeschlossen. NEU: oeffentliche Landingpage (/landing, PUBLIC, kein internes JSON). NEU: Admin-Bereich (/admin*: Uebersicht, Benutzerliste+Anlage, Systemstatus, Regel-Freigabe/Rollback mit Audit, Audit-Log-View, Backup-Liste) serverseitig via before_request + @sec.require_role('admin'). FIX (kritisch): current_user() las falsch flask.session statt request.cookies -> Auth brach. FIX: require_role mappt Rolle->Ebene (ROLE_TO_LEVEL), nicht Rolle direkt an access_level_met. FIX: access_level_met nutzt ROLE_TO_LEVEL statt user_role.upper(). FIX: ROUTE_ACCESS um /landing, /admin/users/create, /admin/system, /assets/*, /reports/* ergaenzt. FIX: .gitignore um security_users.json + security_audit.json (keine Credentials in Git). NEU: test_server_security.py (34 OK, 0 FAIL) deckt Netzwerk/Auth/Authz/Trading-Sicherheit/Regression ab. Paper/Shadow ONLY - keine Echtgeld-Pfade. Bekannte Luecken: Login-Rate-Limit (Brute-Force) + CSRF-Token in HTML-Forms noch offen.",
+      "files": ["security.py", "dashboard.py", ".gitignore", "test_server_security.py", "version.json"]
+    },
     {
       "version": "2.21.0",
       "date": "2026-08-08 11:15",
-      "codename": "Server-Sicherheit Phasen 1-6",
+      "codename": "Server-Sicherheit Phasen 1-6 (interne Bindung, Auth/Rollen/Session/MFA, Routenprüfung)",
       "summary": "VORBEREITUNG fuer Serverbetrieb (Tailscale Funnel + Reverse Proxy, Paper/Shadow ONLY). Phase 1: SERVER-SECURITY-INVENTORY (Bestandsaufnahme). Phase 2: Flask bindet auf 127.0.0.1 statt 0.0.0.0. Phase 4-6: NEU security.py (Rollen, MFA TOTP RFC6238 via cryptography HMAC, serverseitige Sessions pbkdf2, CSRF, Audit-Log). dashboard.py: before_request prueft alle Routen serverseitig, after_request setzt OWASP-Header, Login/Logout/MFA-Routen. Keine Echtgeld-Funktionen. Dokumentation im Vault. Lokale Tests durch Guard-Bug blockiert.",
       "files": ["security.py", "dashboard.py", "version.json"]
     },

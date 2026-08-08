@@ -16,6 +16,13 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 5200
 sys.path.insert(0, BASE)
 
+# ─── Version (für Admin-Regelstand-Anzeige) ─────────────────────
+try:
+    with open(os.path.join(BASE, "version.json"), encoding="utf-8") as _vf:
+        version = json.load(_vf)
+except Exception:
+    version = {"version": "?"}
+
 # ─── Ticker → Firmenname (aus externer JSON geladen) ──────────
 TICKER_NAMES = {}
 NAMES_PATH = os.path.join(BASE, "static", "ticker_names.json")
@@ -1682,6 +1689,206 @@ def setup_mfa():
         f"<p><a href='{uri}'>otpauth-Link</a></p>"
         f"<form method='POST'>Code:<input name='code'><br>"
         f"<input type='submit' value='Aktivieren'></form>")
+
+
+# ─── PHASE 7: Öffentliche Landingpage (nur allgemeine Infos, kein internes JSON) ──
+@app.route("/landing")
+@ app.route("/")
+def landing():
+    """Öffentliche Landingpage (PUBLIC).
+    Darf NUR: Projektname, Kurzbeschreibung, Paper-/Shadow-Hinweis,
+    Betriebsstatus OHNE interne Details, Login-Button.
+    Lädt KEINE internen JSON-Daten (Depot/KI/Regeln/Provider/Logs)."""
+    status = "Paper-/Shadow-Trading-System (kein Echtgeld)"
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Micro-Trader</title>
+<style>body{{font-family:system-ui,sans-serif;max-width:680px;margin:6vh auto;padding:0 20px;color:#1a1a2e}}
+.card{{background:#f5f7ff;border:1px solid #d8e0ff;border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(80,110,255,.08)}}
+.badge{{display:inline-block;background:#e8f5e9;color:#1b5e20;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600}}
+h1{{font-size:30px;margin:0 0 8px}}a.btn{{display:inline-block;margin-top:18px;background:#4361ee;color:#fff;
+text-decoration:none;padding:11px 22px;border-radius:10px;font-weight:600}}p{{line-height:1.55;color:#444}}</style>
+</head><body><div class='card'>
+<h1>📈 Micro-Trader</h1>
+<span class='badge'>{status}</span>
+<p>Automatisierter Paper-/Shadow-Trading-Assistent für Aktien, ETF und Spekulation.
+Alle Handelsentscheidungen erfolgen ausschließlich in simulierten Depots — <b>kein Echtgeldeinsatz</b>.</p>
+<p style='color:#777;font-size:13px'>Systemstatus: aktiv · NYSE-Handelszeiten Mo–Fr 15:30–22:00 MEZ ·
+Mehrbenutzer-Zugang mit Rollenrechten.</p>
+<a class='btn' href='/login'>Anmelden</a>
+</div></body></html>""")
+
+
+# ─── PHASE 8: Admin-Bereich (nur ADMIN/SUPERADMIN via before_request) ──────────
+@app.route("/admin")
+@ sec.require_role("admin")
+def admin_overview():
+    """Admin-Übersicht: Systemstatus + Schnellzugriff."""
+    u = sec.current_user()
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Admin – Micro-Trader</title>
+<style>body{{font-family:system-ui,sans-serif;max-width:820px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:20px;margin:14px 0}}
+h1{{font-size:24px}}h2{{font-size:18px;color:#334}}code{{background:#eef;padding:2px 6px;border-radius:5px}}</style>
+</head><body>
+<h1>🔧 Admin-Bereich</h1>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a>
+<a href='/logout'>Logout</a></nav>
+<div class='card'><h2>Angemeldet als</h2><p><code>{u['username']}</code> · Rolle: <code>{u['role']}</code>
+· MFA: <code>{'aktiv' if u.get('mfa_secret') else 'nicht eingerichtet'}</code></p>
+<p>Alle Admin-Aktionen werden im Audit-Log protokolliert. Kritische Änderungen
+benötigen zusätzlich eine kürzlich verifizierte MFA.</p></div>
+</body></html>""")
+
+
+@app.route("/admin/system")
+@ sec.require_role("admin")
+def admin_system():
+    """Systemstatus (Phase 8 Bereich 1)."""
+    import os, json as _json
+    pause = _json.load(open("pause_flag.json")) if os.path.exists("pause_flag.json") else {}
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Systemstatus – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:820px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:20px;margin:14px 0}}
+code{{background:#eef;padding:2px 6px;border-radius:5px}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a></nav>
+<div class='card'><h2>Systemstatus</h2>
+<p>Trading-Pause: <code>{'AKTIV (' + str(pause.get('grund','')) + ')' if pause.get('state')=='on' else 'nein'}</code></p>
+<p>Paper-/Shadow-Modus: <code>aktiv (kein Echtgeld)</code></p>
+<p>Engine/Board: s. Cronjobs (Mo–Fr 15–22 MEZ).</p></div></body></html>""")
+
+
+@app.route("/admin/users")
+@ sec.require_role("admin")
+def admin_users():
+    """Benutzerverwaltung (Phase 8 Bereich 4) – Liste."""
+    u = sec.current_user()
+    rows = ""
+    for name in sec.list_users():
+        usr = sec.get_user(name)
+        rows += f"<tr><td>{name}</td><td>{usr.get('role')}</td><td>{'ja' if usr.get('mfa_secret') else 'nein'}</td><td>{usr.get('last_login','–')}</td></tr>"
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Benutzer – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:900px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+table{{width:100%;border-collapse:collapse}}td,th{{text-align:left;padding:8px;border-bottom:1px solid #eee}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:20px;margin:14px 0}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a>
+<a href='/logout'>Logout</a></nav>
+<div class='card'><h2>Benutzer ({len(sec.list_users())})</h2>
+<p><a href='/admin/users/create'>+ Neuer Benutzer</a> · <a href='/setup_mfa'>MFA einrichten</a></p>
+<table><tr><th>Name</th><th>Rolle</th><th>MFA</th><th>Letzter Login</th></tr>{rows}</table>
+<p style='color:#888;font-size:12px'>Hinweis: Passwörter/MFA-Secrets werden niemals angezeigt.</p></div></body></html>""")
+
+
+@app.route("/admin/users/create", methods=["GET", "POST"])
+@ sec.require_role("admin")
+def admin_users_create():
+    """Benutzer anlegen (Phase 8 Bereich 4)."""
+    if request.method == "POST":
+        uname = request.form.get("username", "").strip()
+        pw = request.form.get("password", "")
+        role = request.form.get("role", "user")
+        if not uname or not pw:
+            return make_response("<h1>Fehler</h1>Benutzer/Passwort fehlt.<a href='/admin/users/create'>zurück</a>"), 400
+        ok, err = sec.create_user(uname, pw, role)
+        if not ok:
+            return make_response(f"<h1>Fehler</h1>{err}<a href='/admin/users/create'>zurück</a>"), 400
+        sec.audit_log("user_create", sec.current_user()["username"], f"{uname} role={role}")
+        return redirect("/admin/users")
+    return make_response("""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Neuer Benutzer – Micro-Trader</title>
+<style>body{font-family:system-ui;max-width:520px;margin:6vh auto;padding:0 20px;color:#1a1a2e}
+input,select{padding:9px;width:100%;margin:6px 0;border:1px solid #ccd;border-radius:8px}
+.btn{background:#4361ee;color:#fff;border:0;padding:11px 20px;border-radius:9px;font-weight:600;cursor:pointer}
+nav a{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}</style></head><body>
+<nav><a href='/admin/users'>← Benutzer</a></nav>
+<h1>Neuer Benutzer</h1>
+<form method='POST'>Benutzername:<input name='username'>
+Passwort:<input name='password' type='password'>
+Rolle:<select name='role'><option>user</option><option>analyst</option>
+<option>operator</option><option>admin</option><option>superadmin</option></select>
+<button class='btn' type='submit'>Anlegen</button></form></body></html>""")
+
+
+@app.route("/admin/rules", methods=["GET", "POST"])
+@ sec.require_role("admin")
+def admin_rules():
+    """Regelverwaltung (Phase 8 Bereich 3) – Freigabe/Rollback mit Audit."""
+    u = sec.current_user()
+    if request.method == "POST":
+        action = request.form.get("action", "")
+        detail = request.form.get("detail", "")
+        sec.audit_log(f"rules_{action}", u["username"], detail)
+        return redirect("/admin/rules")
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Regeln – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:820px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:20px;margin:14px 0}}
+form{{display:inline-block;margin-right:10px}}button{{padding:8px 16px;border:0;border-radius:8px;cursor:pointer;font-weight:600}}
+.btn-release{{background:#2e7d32;color:#fff}} .btn-rollback{{background:#c62828;color:#fff}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a></nav>
+<div class='card'><h2>Regelverwaltung</h2>
+<p>Aktueller Regelstand: <code>v{version.get('version','?')}</code> (Paper-/Shadow).</p>
+<form method='POST'><input type='hidden' name='action' value='release'>
+<input name='detail' placeholder='Begründung Freigabe' style='padding:7px;width:240px'>
+<button class='btn-release' type='submit'>Freigeben</button></form>
+<form method='POST'><input type='hidden' name='action' value='rollback'>
+<input name='detail' placeholder='Begründung Rollback' style='padding:7px;width:240px'>
+<button class='btn-rollback' type='submit'>Rollback</button></form>
+<p style='color:#888;font-size:12px'>Jede Aktion schreibt Admin-ID, Zeitstempel, Begründung + Audit-Eintrag.</p></div></body></html>""")
+
+
+@app.route("/admin/audit")
+@ sec.require_role("admin")
+def admin_audit():
+    """Audit-Log anzeigen (Phase 8 Bereich 5)."""
+    entries = sec.read_audit(50)
+    rows = "".join(f"<tr><td>{e.get('ts','')}</td><td>{e.get('action','')}</td><td>{e.get('actor','')}</td><td>{e.get('detail','')}</td></tr>" for e in entries)
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Audit – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:1000px;margin:4vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+table{{width:100%;border-collapse:collapse}}td,th{{text-align:left;padding:7px;border-bottom:1px solid #eee;font-size:13px}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:18px;margin:14px 0}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a></nav>
+<div class='card'><h2>Audit-Log (letzte 50)</h2>
+<table><tr><th>Zeit</th><th>Aktion</th><th>Akteur</th><th>Detail</th></tr>{rows}</table>
+<p style='color:#888;font-size:12px'>Audit-Einträge sind append-only und nicht nachträglich änderbar.</p></div></body></html>""")
+
+
+@app.route("/admin/backups")
+@ sec.require_role("admin")
+def admin_backups():
+    """Backups auflisten (Phase 8 Bereich 5 / Phase 9)."""
+    import os, glob
+    bdir = os.path.join(BASE, ".backup")
+    items = sorted(glob.glob(os.path.join(bdir, "*")), reverse=True)[:10] if os.path.isdir(bdir) else []
+    rows = "".join(f"<tr><td>{os.path.basename(i)}</td><td>{os.path.getsize(i)//1024} KB</td></tr>" for i in items)
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Backups – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:820px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+table{{width:100%;border-collapse:collapse}}td,th{{text-align:left;padding:7px;border-bottom:1px solid #eee}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:18px;margin:14px 0}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a></nav>
+<div class='card'><h2>Backups (zuletzt 10)</h2>
+<table><tr><th>Name</th><th>Größe</th></tr>{rows or '<tr><td colspan=2>keine</td></tr>'}</table></div></body></html>""")
 
 
 if __name__ == "__main__":

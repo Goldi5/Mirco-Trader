@@ -13,3 +13,6 @@ reports/
 .env
 nous_auth.json
 whatsapp_config.json
+security_users.json
+security_audit.json
+*.session
