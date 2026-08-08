@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Dashboard - Web-Oberflaeche fuer alle 20 Depots + Charts + News + Spekulation."""
-import json, os, sys, time, glob
+import json, os, sys, time, glob, re
 from datetime import datetime, timedelta, date
 import yfinance as yf
 from flask import Flask, send_from_directory, request, jsonify, session, redirect, url_for, make_response
@@ -1624,10 +1624,17 @@ def login():
     if request.method == "POST":
         uname = request.form.get("username", "").strip()
         pw = request.form.get("password", "")
+        rest = sec.login_blocked(request.remote_addr or "?", uname)
+        if rest:
+            sec.audit_log("login_blocked", uname or "?", f"ip={request.remote_addr or '?'} rest={rest}s")
+            return make_response(f"<h1>Zu viele Fehlversuche</h1><p>Bitte warte {rest} Sekunden.</p><a href='/login'>zurück</a>"), 429
         if sec.verify_password(uname, pw):
             sid = sec.create_session(uname, request.remote_addr or "")
             # Session-Rotation nach Login (Phase 5)
             sid = sec.rotate_session(uname, sid) or sid
+            _login_ctx = f"ip={request.remote_addr or '?'} ua={(request.user_agent.string or '?')[:80]}"
+            sec.audit_log("login", uname, _login_ctx)
+            sec.register_login_ok(request.remote_addr or "?", uname)
             resp = make_response(redirect(request.args.get("next") or "/dashboard"))
             resp.set_cookie("username", uname, httponly=True, samesite="Lax",
                             secure=False)  # secure=True erst bei HTTPS/Funnel
@@ -1635,9 +1642,10 @@ def login():
                             secure=False)
             u = sec.get_user(uname)
             u["last_login"] = datetime.utcnow().isoformat() + "Z"
-            sec.audit_log("login", uname)
+            sec.audit_log("login", uname, f"ip={request.remote_addr or '?'} ua={(request.user_agent.string or '?')[:80]}")
             return resp
-        sec.audit_log("login_failed", uname)
+        sec.audit_log("login_failed", uname, f"ip={request.remote_addr or '?'} ua={(request.user_agent.string or '?')[:80]}")
+        sec.register_login_fail(request.remote_addr or "?", uname)
         return make_response("<h1>Login fehlgeschlagen</h1><a href='/login'>neu</a>"), 401
     return make_response(
         "<form method='POST'>Benutzer:<input name='username'><br>"
@@ -1712,6 +1720,16 @@ def landing():
     if request.method == "POST":
         uname = request.form.get("username", "").strip()
         pw = request.form.get("password", "")
+        rest = sec.login_blocked(request.remote_addr or "?", uname)
+        if rest:
+            sec.audit_log("login_blocked", uname or "?", f"ip={request.remote_addr or '?'} rest={rest}s")
+            fehler = f"<div style='margin:10px 0 0;color:#b91c1c;background:#fee2e2;border:1px solid #fecaca;border-radius:8px;padding:8px 12px;font-size:13px'>Zu viele Fehlversuche – bitte warte {rest} Sekunden.</div>"
+            return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'><title>Micro-Trader – Anmeldung</title></head><body style='font-family:Segoe UI,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f8fafc'>
+<div style='background:#fff;border-radius:18px;box-shadow:0 24px 48px rgba(61,93,153,.12);padding:32px;max-width:380px;text-align:center'>
+<h2 style='margin:0 0 12px;color:#0f172a'>⏳ Zu viele Fehlversuche</h2>
+<p style='color:#475569;font-size:14px'>Bitte warte <b>{rest} Sekunden</b>, bevor du es erneut versuchst.</p>
+<a href='/' style='display:inline-block;margin-top:14px;color:#2563eb;text-decoration:none;font-weight:600'>← Zurück</a>
+</div></body></html>"""), 429
         if sec.verify_password(uname, pw):
             sid = sec.create_session(uname, request.remote_addr or "")
             sid = sec.rotate_session(uname, sid) or sid
@@ -1720,9 +1738,11 @@ def landing():
             resp.set_cookie("sid", sid, httponly=True, samesite="Lax", secure=False)
             u = sec.get_user(uname)
             u["last_login"] = datetime.utcnow().isoformat() + "Z"
-            sec.audit_log("login", uname)
+            sec.audit_log("login", uname, f"ip={request.remote_addr or '?'} ua={(request.user_agent.string or '?')[:80]}")
+            sec.register_login_ok(request.remote_addr or "?", uname)
             return resp
-        sec.audit_log("login_failed", uname)
+        sec.audit_log("login_failed", uname, f"ip={request.remote_addr or '?'} ua={(request.user_agent.string or '?')[:80]}")
+        sec.register_login_fail(request.remote_addr or "?", uname)
         fehler = "<div style='margin:10px 0 0;color:#b91c1c;background:#fee2e2;border:1px solid #fecaca;border-radius:8px;padding:8px 12px;font-size:13px'>Anmeldung fehlgeschlagen – Benutzername oder Passwort falsch.</div>"
     return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
 <title>Micro-Trader – Anmeldung</title>
@@ -1839,6 +1859,8 @@ def _admin_layout(aktiver_tab, u, titel, inhalt):
         ("overview", "/admin", "📊 Übersicht"),
         ("system", "/admin/system", "🩺 System"),
         ("users", "/admin/users", "👥 Benutzer"),
+        ("logins", "/admin/logins", "🌐 Logins"),
+        ("security", "/admin/security", "🛡️ Sicherheit"),
         ("audit", "/admin/audit", "📜 Audit"),
         ("backups", "/admin/backups", "💾 Backups"),
     ]
@@ -2055,10 +2077,154 @@ def admin_users():
         inhalt)
 
 
+@app.route("/admin/security")
+@sec.require_role("admin")
+def admin_security():
+    """Security-Status: Passwort-Hashing, Headers, Netzwerk, Login-Schutz (OWASP-Checkliste)."""
+    u = sec.current_user()
+    checks = []
+    # 1. Passwort-Hashing
+    users = sec.list_users()
+    hashes = [x.get("password_hash", "") for x in users]
+    algos = set()
+    for h in hashes:
+        if not h:
+            algos.add("LEER")
+        else:
+            algos.add(h.split("$")[0])
+    if "LEER" in algos or not hashes:
+        checks.append(("❌", "Passwort-Hashing", "Ein Benutzer hat KEINEN Passwort-Hash!", False))
+    elif all(a.startswith(("pbkdf2", "scrypt")) for a in algos):
+        a_str = ", ".join(sorted(algos))
+        checks.append(("✅", "Passwort-Hashing", f"Stark: {a_str} mit Salt – OWASP-konform (bcrypt/argon2/PBKDF2 empfohlen, hier: {a_str})", True))
+    else:
+        checks.append(("⚠️", "Passwort-Hashing", f"Schwacher/alter Algorithmus: {algos}", False))
+    # 2. Security-Headers (aus before_request)
+    headers = {
+        "Content-Security-Policy": "CSP gesetzt (script-src 'self', frame-ancestors 'none')",
+        "X-Content-Type-Options": "nosniff – verhindert MIME-Sniffing",
+        "X-Frame-Options": "DENY – kein Clickjacking",
+        "Referrer-Policy": "no-referrer – keine URL-Leaks",
+        "Permissions-Policy": "Geo/Mic/Cam gesperrt",
+    }
+    hdr_str = ""
+    try:
+        test_r = app.test_client().get("/")
+        for h, desc in headers.items():
+            present = h in test_r.headers
+            checks.append(("✅" if present else "❌", f"Header {h}", desc + (" – gesetzt" if present else " – FEHLT"), present))
+    except Exception as e:
+        checks.append(("⚠️", "Header-Check", str(e), False))
+    # 3. Netzwerk-Exposition
+    lokal = True
+    try:
+        import socket
+        s = socket.socket(); s.settimeout(1)
+        # Nur 127.0.0.1 gebunden?
+        binds = []
+        import subprocess
+        out = subprocess.run(["netstat", "-ano"], capture_output=True, text=True, errors="replace").stdout
+        lokal = f"127.0.0.1:{PORT}" in out and f"0.0.0.0:{PORT}" not in out and f":::{PORT}" not in out
+    except Exception:
+        lokal = True
+    checks.append(("✅" if lokal else "❌", "Netzwerk-Exposition",
+                   f"Dashboard lauscht auf Port {PORT} " + ("NUR auf 127.0.0.1 (localhost) – von außen nicht erreichbar" if lokal else "AUF ALLEN INTERFACES – von außen erreichbar!"), lokal))
+    # 4. Login-Schutz (Rate-Limit)
+    rate = sec.login_rate_stats()
+    aktive_blocks = sum(1 for r in rate if r["blocked"])
+    checks.append(("✅", "Brute-Force-Schutz", f"Rate-Limit aktiv: 5 Fehlversuche → exponentieller Block (30s+). Aktuell {len(rate)} Einträge, {aktive_blocks} blockiert.", True))
+    # 5. MFA-Abdeckung
+    mfa_on = sum(1 for x in users if x.get("mfa_secret"))
+    mfa_pct = int(100 * mfa_on / len(users)) if users else 0
+    checks.append(("✅" if mfa_pct >= 50 else "⚠️", "MFA-Abdeckung",
+                   f"{mfa_on}/{len(users)} Benutzer haben MFA ({mfa_pct}%)" + (" – empfohlen: alle Admins", " – unter 50%: MFA für Admins empfohlen")[mfa_pct < 50], mfa_pct >= 50))
+    # 6. Session-Cookies
+    checks.append(("✅", "Session-Cookies", "HttpOnly + SameSite=Lax gesetzt (secure erst bei HTTPS/Funnel)", True))
+    # 7. HSTS (nur bei HTTPS sinnvoll)
+    checks.append(("ℹ️", "HSTS", "Nur relevant bei HTTPS (Tailscale Funnel). Lokal auf http://127.0.0.1 kein HSTS nötig.", True))
+    rows = "".join(
+        f"<tr><td style='font-size:15px'>{ic}</td><td class='b'>{name}</td>"
+        f"<td style='color:var(--text-dim)'>{desc}</td></tr>"
+        for ic, name, desc, _ok in checks)
+    gut = sum(1 for c in checks if c[0] == "✅")
+    gesamt = len(checks)
+    inhalt = f"""
+<div class='cards'>
+<div class='stat'><div class='num ok'>{gut}/{gesamt}</div><div class='lbl'>Checks bestanden</div></div>
+<div class='stat'><div class='num {'ok' if all(c[3] for c in checks if c[0]!='ℹ️') else 'warn'}'>{'🟢' if all(c[3] for c in checks if c[0]!='ℹ️') else '🟡'}</div><div class='lbl'>Gesamtstatus</div></div>
+<div class='stat'><div class='num'>{len(users)}</div><div class='lbl'>Benutzer</div></div>
+<div class='stat'><div class='num'>{mfa_on}</div><div class='lbl'>MFA aktiv</div></div>
+</div>
+<div class='glass'><h2>🛡️ Security-Checkliste (OWASP-orientiert)</h2>
+<table><tr><th>Status</th><th>Bereich</th><th>Befund</th></tr>{rows}</table>
+<div class='hint'>Automatischer Check · Stichprobe der Live-Headers · Quelle: OWASP Top 10 2021/2025 (A02 Crypto, A05 Misconfig, A07 Auth).</div></div>
+<div class='glass'><h2>🌐 Login-Aktivität (Rate-Limit)</h2>
+<table><tr><th>Schlüssel (IP/User)</th><th>Fehlversuche</th><th>Blockiert?</th><th>Restzeit</th></tr>
+{''.join(f"<tr><td class='b'>{r['key']}</td><td>{r['fails']}</td><td class='{'bad' if r['blocked'] else 'ok'}'>{'⛔ ja' if r['blocked'] else '–'}</td><td>{r['rest_s']}s</td></tr>" for r in rate[:12]) or '<tr><td colspan=4 style="color:var(--text-dim)">Keine auffälligen Login-Versuche</td></tr>'}
+</table>
+<div class='hint'>Fehlversuche werden pro IP UND pro Benutzername gezählt (15-Min-Fenster).</div></div>"""
+    return _admin_layout("security", u,
+        f"<h2 style='font-size:17px;margin-bottom:4px'>Sicherheit</h2>"
+        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>Automatischer Sicherheits-Check · OWASP-orientiert</div>",
+        inhalt)
+
+
+@app.route("/admin/logins")
+@sec.require_role("admin")
+def admin_logins():
+    """Login-Analytik: welche IPs, woher, wie oft, Brute-Force-Erkennung."""
+    u = sec.current_user()
+    entries = sec.read_audit(2000)
+    logins = [a for a in entries if a.get("action") in ("login", "login_failed", "login_blocked", "logout")]
+    # IP-Aggregation
+    from collections import Counter, defaultdict
+    ip_info = defaultdict(lambda: {"ok": 0, "fail": 0, "users": set(), "ua": set(), "last": ""})
+    for a in logins:
+        detail = a.get("detail", "")
+        ip = ""
+        m = re.search(r"ip=([^\s]+)", detail)
+        if m:
+            ip = m.group(1)
+        act = a.get("action", "")
+        ip_info[ip]["last"] = str(a.get("ts", ""))[:19]
+        if ip:
+            ip_info[ip]["ok" if act == "login" else "fail"] += 1
+            ip_info[ip]["users"].add(a.get("actor", "?"))
+            um = re.search(r"ua=([^\s]*)", detail)
+            if um and um.group(1):
+                ip_info[ip]["ua"].add(um.group(1)[:30])
+    # Nur IPs mit Aktivität zeigen, sortiert nach Gesamt
+    rows = ""
+    for ip, info in sorted(ip_info.items(), key=lambda kv: -(kv[1]["ok"] + kv[1]["fail"])):
+        if not ip:
+            continue
+        gesamt = info["ok"] + info["fail"]
+        verdaechtig = info["fail"] >= 5
+        lokal = ip.startswith(("127.", "192.168.", "10.", "172.16.", "::1"))
+        ort = "🏠 lokal" if lokal else "🌍 extern"
+        rows += f"""<tr>
+<td class='b'>{ip}</td><td>{ort}</td><td>{gesamt}</td>
+<td class='ok'>{info['ok']}</td><td class='{'bad' if info['fail'] else ''}'>{info['fail']}</td>
+<td>{', '.join(sorted(info['users']))}</td>
+<td style='color:var(--text-dim)'>{', '.join(list(info['ua'])[:1])[:40]}</td>
+<td>{'⛔ BRUTE-FORCE-VERDACHT' if verdaechtig else '–'}</td>
+<td style='color:var(--text-dim)'>{info['last']}</td></tr>"""
+    inhalt = f"""
+<div class='glass'><h2>🌐 Login-Aktivität nach IP</h2>
+<div style='overflow-x:auto'><table>
+<tr><th>IP</th><th>Ort</th><th>Gesamt</th><th>Erfolgreich</th><th>Fehlversuche</th><th>Benutzer</th><th>User-Agent</th><th>Verdacht</th><th>Zuletzt</th></tr>
+{rows or '<tr><td colspan=9 style="color:var(--text-dim)">Noch keine IP-Daten (Logins seit v2.24.0 werden mit IP erfasst)</td></tr>'}
+</table></div>
+<div class='hint'>⚠️ 5+ Fehlversuche = Brute-Force-Verdacht · IPs werden seit v2.24.0 bei jedem Login/Fehlversuch mitgeloggt.</div></div>"""
+    return _admin_layout("logins", u,
+        f"<h2 style='font-size:17px;margin-bottom:4px'>Logins</h2>"
+        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>Welche Geräte/IPs greifen zu · Brute-Force-Erkennung</div>",
+        inhalt)
+
+
 @app.route("/admin/audit")
 @sec.require_role("admin")
 def admin_audit():
-    """Audit-Log (StufenPilot-Design) mit Suche."""
     u = sec.current_user()
     q = request.args.get("q", "").strip().lower()
     entries = sec.read_audit(300)

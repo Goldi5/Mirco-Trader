@@ -386,7 +386,92 @@ def audit_log(action, actor, detail=""):
         pass
 
 
+# ─── Login-Rate-Limit (Brute-Force-Schutz, OWASP A07) ────────────────────────
+LOGIN_RATE_FILE = os.path.join(BASE, "login_rate.json")
+_LOGIN_RATE_MAX_ATTEMPTS = 5          # Fehlversuche bevor Block
+_LOGIN_RATE_BASE_BLOCK_S = 30         # Start-Blockzeit
+_LOGIN_RATE_WINDOW_S = 15 * 60        # Zählfenster
+
+
+def _load_login_rate():
+    try:
+        return json.load(open(LOGIN_RATE_FILE, encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _save_login_rate(data):
+    try:
+        with open(LOGIN_RATE_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=1)
+    except Exception:
+        pass
+
+
+def login_blocked(ip, username=None):
+    """True wenn Login von dieser IP (oder User) gerade blockiert ist.
+    Exponential Backoff: 5 Versuche -> 30s, danach 60s, 120s, 240s…"""
+    data = _load_login_rate()
+    now = time.time()
+    for key in (ip, username):
+        if not key:
+            continue
+        e = data.get(str(key))
+        if not e:
+            continue
+        if e.get("blocked_until") and e["blocked_until"] > now:
+            rest = int(e["blocked_until"] - now)
+            return rest
+    return 0
+
+
+def register_login_fail(ip, username=None):
+    """Zählt Fehlversuch, setzt exponentiellen Block ab Schwelle."""
+    data = _load_login_rate()
+    now = time.time()
+    for key in (ip, username):
+        if not key:
+            continue
+        e = data.setdefault(str(key), {"fails": 0, "blocked_until": 0})
+        # Fenster abgelaufen? -> Reset
+        if e.get("last") and now - e["last"] > _LOGIN_RATE_WINDOW_S:
+            e["fails"] = 0
+        e["fails"] += 1
+        e["last"] = now
+        if e["fails"] >= _LOGIN_RATE_MAX_ATTEMPTS:
+            level = e["fails"] - _LOGIN_RATE_MAX_ATTEMPTS
+            block = _LOGIN_RATE_BASE_BLOCK_S * (2 ** min(level, 6))
+            e["blocked_until"] = now + block
+    _save_login_rate(data)
+
+
+def register_login_ok(ip, username=None):
+    """Reset der Zähler nach erfolgreichem Login."""
+    data = _load_login_rate()
+    for key in (ip, username):
+        if key and key in data:
+            data.pop(str(key), None)
+    _save_login_rate(data)
+
+
+def login_rate_stats():
+    """Aggregierte Rate-Limit-Daten (für Admin-Ansicht)."""
+    data = _load_login_rate()
+    now = time.time()
+    out = []
+    for key, e in data.items():
+        if e.get("fails", 0) >= 2:
+            blocked = e.get("blocked_until", 0) > now
+            rest = max(0, int(e.get("blocked_until", 0) - now)) if blocked else 0
+            out.append({"key": key, "fails": e.get("fails", 0),
+                        "blocked": blocked, "rest_s": rest,
+                        "last": str(e.get("last", ""))[:19]})
+    out.sort(key=lambda x: -x["fails"])
+    return out
+
+
 def read_audit(limit=200):
+    """Liest die letzten `limit` Audit-Einträge (append-only)."""
     if not os.path.exists(AUDIT_FILE):
         return []
     out = []
