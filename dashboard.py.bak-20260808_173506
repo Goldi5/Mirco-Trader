@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Dashboard - Web-Oberflaeche fuer alle 20 Depots + Charts + News + Spekulation."""
-import json, os, sys, time, glob
+import json, os, sys, time
 from datetime import datetime, timedelta, date
 import yfinance as yf
 from flask import Flask, send_from_directory, request, jsonify, session, redirect, url_for, make_response
@@ -1788,321 +1788,176 @@ button:active{{transform:translateY(1px)}}
 
 
 # ─── PHASE 8: Admin-Bereich (nur ADMIN/SUPERADMIN via before_request) ──────────
-
-# ─── PHASE 8+ : Admin-Bereich (StufenPilot-Design, v2.24.0) ──────────────────
-ADMIN_CSS = """
-:root{--bg1:#f8fafc;--bg2:#f1f5f9;--card-bg:rgba(255,255,255,.82);--card-border:rgba(15,23,42,.07);
---accent:#2563eb;--accent-dark:#1d4ed8;--green:#10b981;--amber:#f59e0b;--red:#ef4444;
---text:#0f172a;--text-dim:#64748b;--radius:14px;--r-lg:18px;
---shadow:0 10px 28px rgba(15,23,42,.08);--shadow-lg:0 24px 48px rgba(61,93,153,.12)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI Variable','Segoe UI',system-ui,sans-serif;background:linear-gradient(160deg,var(--bg1),var(--bg2));
-background-image:radial-gradient(ellipse at 15% 0%,rgba(37,99,235,.07) 0%,transparent 55%),radial-gradient(ellipse at 85% 0%,rgba(16,185,129,.05) 0%,transparent 50%);
-min-height:100vh;color:var(--text);-webkit-font-smoothing:antialiased}
-.wrap{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
-.top{display:flex;align-items:center;gap:14px;margin-bottom:22px}
-.top img{width:40px;height:40px;border-radius:10px}
-.top h1{font-size:21px;font-weight:700}
-.top .sub{font-size:11.5px;color:var(--text-dim)}
-.top .right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.pill{background:var(--card-bg);backdrop-filter:blur(10px);border:1px solid var(--card-border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;box-shadow:var(--shadow)}
-a.pill{color:var(--accent);text-decoration:none}
-.nav{display:flex;gap:4px;background:rgba(118,118,128,.10);padding:4px;border-radius:999px;margin-bottom:22px;overflow-x:auto;scrollbar-width:none}
-.nav a{padding:7px 16px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--text-dim);text-decoration:none;white-space:nowrap;transition:all .18s}
-.nav a:hover{color:var(--text)}
-.nav a.active{background:#fff;color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.1)}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:22px}
-.stat{background:var(--card-bg);backdrop-filter:blur(14px);border:1px solid var(--card-border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
-.stat .num{font-size:22px;font-weight:700;margin-bottom:2px}
-.stat .lbl{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
-.glass{background:var(--card-bg);backdrop-filter:blur(14px);border:1px solid var(--card-border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);margin-bottom:14px}
-.glass h2{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text)}
-table{width:100%;border-collapse:collapse;font-size:12.5px}
-th{text-align:left;color:var(--text-dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;padding:8px 10px;border-bottom:1px solid var(--card-border)}
-td{padding:9px 10px;border-bottom:1px solid var(--card-border);vertical-align:top}
-tr:last-child td{border-bottom:none}
-code{background:rgba(15,23,42,.06);padding:2px 7px;border-radius:6px;font-size:11.5px}
-.b{font-weight:600}
-.ok{color:var(--green)}.bad{color:var(--red)}.warn{color:var(--amber)}
-.btn{display:inline-block;padding:8px 16px;border-radius:10px;border:none;cursor:pointer;font-size:12.5px;font-weight:600;font-family:inherit;transition:all .15s;text-decoration:none}
-.btn.primary{background:var(--accent);color:#fff}.btn.primary:hover{background:var(--accent-dark)}
-.btn.ghost{background:transparent;border:1px solid var(--card-border);color:var(--text)}
-.btn.ghost:hover{background:rgba(15,23,42,.05)}
-.btn.danger{background:rgba(239,68,68,.12);color:var(--red)}
-.hint{font-size:11px;color:var(--text-dim);margin-top:10px}
-"""
-
-
-def _admin_layout(aktiver_tab, u, titel, inhalt):
-    """Gemeinsames Admin-Layout (StufenPilot-Design)."""
-    tabs = [
-        ("overview", "/admin", "📊 Übersicht"),
-        ("system", "/admin/system", "🩺 System"),
-        ("users", "/admin/users", "👥 Benutzer"),
-        ("audit", "/admin/audit", "📜 Audit"),
-        ("backups", "/admin/backups", "💾 Backups"),
-    ]
-    nav = "".join(
-        f"<a href='{href}' class='{'active' if key == aktiver_tab else ''}'>{label}</a>"
-        for key, href, label in tabs)
-    mfa = "🛡️ MFA" if u.get("mfa_secret") else "⚠️ kein MFA"
-    return f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin – Micro-Trader</title><style>{ADMIN_CSS}</style></head><body>
-<div class='wrap'>
-<div class='top'>
-<img src='/assets/logo.png' alt='Logo'>
-<div><h1>🔧 Admin-Bereich</h1><div class='sub'>Micro-Trader · Server-Sicherheit · Audit-Trail aktiv</div></div>
-<div class='right'>
-<span class='pill'>{u['username']} · {u['role']} · {mfa}</span>
-<a class='pill' href='/dashboard'>📊 Dashboard</a>
-<a class='pill' href='/logout'>🚪 Logout</a>
-</div>
-</div>
-<div class='nav'>{nav}</div>
-{titel}
-{inhalt}
-</div></body></html>"""
-
-
 @app.route("/admin")
-@sec.require_role("admin")
+@ sec.require_role("admin")
 def admin_overview():
-    """Admin-Übersicht: Stat-Cards + letzte Audit-Einträge."""
+    """Admin-Übersicht: Systemstatus + Schnellzugriff."""
     u = sec.current_user()
-    users = sec.list_users()
-    aktive = sum(1 for x in users if x.get("active", True))
-    mfa_on = sum(1 for x in users if x.get("mfa_secret"))
-    sessions = sum(len(x.get("sessions", {}) or {}) for x in users)
-    audit = sec.read_audit(200)
-    login_fails = sum(1 for a in audit if a.get("event") == "login_failed")
-    bdir = os.path.join(BASE, ".backup")
-    backups = len(glob.glob(os.path.join(bdir, "*"))) if os.path.isdir(bdir) else 0
-    pause = {}
-    pf = os.path.join(BASE, "pause_flag.json")
-    if os.path.exists(pf):
-        try:
-            pause = json.load(open(pf, encoding="utf-8"))
-        except Exception:
-            pause = {}
-    paused = pause.get("paused") or pause.get("state") == "on"
-    stats = f"""
-<div class='cards'>
-<div class='stat'><div class='num'>{len(users)}</div><div class='lbl'>Benutzer</div></div>
-<div class='stat'><div class='num'>{aktive}</div><div class='lbl'>Aktiv</div></div>
-<div class='stat'><div class='num'>{mfa_on}</div><div class='lbl'>MFA aktiv</div></div>
-<div class='stat'><div class='num'>{sessions}</div><div class='lbl'>Sessions</div></div>
-<div class='stat'><div class='num'>{len(audit)}</div><div class='lbl'>Audit</div></div>
-<div class='stat'><div class='num bad'>{login_fails}</div><div class='lbl'>Login-Fails</div></div>
-<div class='stat'><div class='num'>{backups}</div><div class='lbl'>Backups</div></div>
-<div class='stat'><div class='num {'bad' if paused else 'ok'}'>{'⏸' if paused else '▶'}</div><div class='lbl'>Trading {'pausiert' if paused else 'aktiv'}</div></div>
-</div>"""
-    letzte = "".join(
-        f"<tr><td class='b'>{a.get('event','')}</td><td>{a.get('actor','')}</td>"
-        f"<td style='color:var(--text-dim)'>{a.get('detail','')}</td>"
-        f"<td style='color:var(--text-dim);white-space:nowrap'>{str(a.get('ts',''))[:19]}</td></tr>"
-        for a in audit[:8])
-    # Warnungen: Drawdown + fehlgeschlagene Läufe
-    warnungen = []
-    for name in sec.list_users():
-        pass
-    # Drawdown-Warnungen aus Depot-Dateien
-    dd_warn = []
-    try:
-        for f in sorted(glob.glob(os.path.join(BASE, "depot_*.json"))):
-            try:
-                depot = json.load(open(f, encoding="utf-8"))
-                if depot.get("max_dd") and depot["max_dd"] < -30:
-                    dd_warn.append(f"Risk {depot.get('risk','?')}: MaxDD {depot['max_dd']:.1f}%")
-            except Exception:
-                pass
-    except Exception:
-        pass
-    if dd_warn:
-        warnungen.append(("🔴 Drawdown", " · ".join(dd_warn[:4]) + (" …" if len(dd_warn) > 4 else "")))
-    # Letzte System-Ereignisse (system_log)
-    letzte_laeufe = []
-    try:
-        slog = json.load(open(os.path.join(BASE, "system_log.json"), encoding="utf-8"))
-        letzte_laeufe = slog[-5:][::-1] if isinstance(slog, list) else []
-    except Exception:
-        letzte_laeufe = []
-    lauf_rows = "".join(
-        f"<tr><td class='b'>{e.get('quelle','?')}</td><td style='color:var(--text-dim)'>{str(e.get('text',''))[:70]}</td>"
-        f"<td style='color:var(--text-dim);white-space:nowrap'>{str(e.get('zeit',''))[:16].replace('T',' ')}</td></tr>"
-        for e in letzte_laeufe)
-    warn_html = ""
-    if warnungen:
-        warn_html = "<div class='glass'><h2>⚠️ Warnungen</h2>" + "".join(
-            f"<div style='display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--card-border)'>"
-            f"<b style='font-size:12.5px'>{t}</b><span style='font-size:12px;color:var(--text-dim)'>{d}</span></div>"
-            for t, d in warnungen) + "</div>"
-    inhalt = f"""{stats}
-{warn_html}
-<div class='glass'><h2>🕘 Letzte Audit-Einträge</h2>
-<table><tr><th>Ereignis</th><th>Wer</th><th>Detail</th><th>Zeit</th></tr>{letzte or '<tr><td colspan=4 style="color:var(--text-dim)">Keine Einträge</td></tr>'}</table>
-<div class='hint'><a href='/admin/audit' style='color:var(--accent)'>Alle Einträge →</a></div></div>
-<div class='glass'><h2>⏱ Letzte System-Ereignisse</h2>
-<table><tr><th>Quelle</th><th>Ereignis</th><th>Zeit</th></tr>{lauf_rows or '<tr><td colspan=3 style="color:var(--text-dim)">Keine Einträge</td></tr>'}</table>
-<div class='hint'><a href='/admin/system' style='color:var(--accent)'>System-Details →</a></div></div>
-<div class='glass'><h2>🩺 Schnellzugriff</h2>
-<a class='btn primary' href='/admin/users'>👥 Benutzerverwaltung</a>&nbsp;
-<a class='btn ghost' href='/admin/system'>🩺 Systemstatus</a>&nbsp;
-<a class='btn ghost' href='/admin/backups'>💾 Backups</a>&nbsp;
-<a class='btn ghost' href='/dashboard'>📊 Zum Dashboard</a></div>"""
-    return _admin_layout("overview", u,
-        f"<h2 style='font-size:17px;margin-bottom:4px'>Übersicht</h2>"
-        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>Angemeldet als <b>{u['username']}</b> · Rolle <b>{u['role']}</b></div>",
-        inhalt)
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Admin – Micro-Trader</title>
+<style>body{{font-family:system-ui,sans-serif;max-width:820px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:20px;margin:14px 0}}
+h1{{font-size:24px}}h2{{font-size:18px;color:#334}}code{{background:#eef;padding:2px 6px;border-radius:5px}}</style>
+</head><body>
+<h1>🔧 Admin-Bereich</h1>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a>
+<a href='/logout'>Logout</a></nav>
+<div class='card'><h2>Angemeldet als</h2><p><code>{u['username']}</code> · Rolle: <code>{u['role']}</code>
+· MFA: <code>{'aktiv' if u.get('mfa_secret') else 'nicht eingerichtet'}</code></p>
+<p>Alle Admin-Aktionen werden im Audit-Log protokolliert. Kritische Änderungen
+benötigen zusätzlich eine kürzlich verifizierte MFA.</p></div>
+</body></html>""")
 
 
 @app.route("/admin/system")
-@sec.require_role("admin")
+@ sec.require_role("admin")
 def admin_system():
-    """Systemstatus (Phase 8 Bereich 1) – erweitert."""
-    u = sec.current_user()
-    pause = {}
-    pf = os.path.join(BASE, "pause_flag.json")
-    if os.path.exists(pf):
-        try:
-            pause = json.load(open(pf, encoding="utf-8"))
-        except Exception:
-            pause = {}
-    paused = pause.get("paused") or pause.get("state") == "on"
-    grund = pause.get("grund", "manuell")
-    # Dashboard-Prozess-Check
-    port_offen = False
-    try:
-        import socket
-        s = socket.socket(); s.settimeout(1)
-        port_offen = s.connect_ex(("127.0.0.1", PORT)) == 0
-        s.close()
-    except Exception:
-        port_offen = False
-    status_rows = [
-        ("Dashboard (Port %d)" % PORT, port_offen),
-        ("Paper-/Shadow-Modus", True),
-        ("Echtgeld-Funktionen", False),
-        ("Trading-Pause", paused),
-    ]
-    rows = "".join(
-        f"<tr><td class='b'>{name}</td><td class='{'ok' if val else 'bad'}'>{'✅ aktiv' if val else '❌ inaktiv'}</td></tr>"
-        for name, val in status_rows)
-    # Datei-Größen (Datenbestand)
-    dateien = [
-        ("system_log.json", "system_log.json"),
-        ("cron_pipeline.log", "cron_pipeline.log"),
-        ("ki_log.json", "ki_log.json"),
-        ("batch_summary.json", "batch_summary.json"),
-        ("security_audit.json", "security_audit.json"),
-    ]
-    file_rows = ""
-    for name, fname in dateien:
-        fp = os.path.join(BASE, fname)
-        if os.path.exists(fp):
-            size = os.path.getsize(fp)
-            file_rows += f"<tr><td class='b'>{name}</td><td>{size//1024} KB</td>"
-            file_rows += f"<td style='color:var(--text-dim)'>{time.strftime('%Y-%m-%d %H:%M', time.localtime(os.path.getmtime(fp)))}</td></tr>"
-    depot_count = len(glob.glob(os.path.join(BASE, "depot_*.json")))
-    file_rows += f"<tr><td class='b'>Depot-Dateien</td><td>{depot_count} Dateien</td><td style='color:var(--text-dim)'>–</td></tr>"
-    inhalt = f"""
-<div class='cards'>
-<div class='stat'><div class='num {'ok' if port_offen else 'bad'}'>{'🟢' if port_offen else '🔴'}</div><div class='lbl'>Dashboard</div></div>
-<div class='stat'><div class='num ok'>✅</div><div class='lbl'>Shadow-Modus</div></div>
-<div class='stat'><div class='num {'bad' if paused else 'ok'}'>{'⏸' if paused else '▶'}</div><div class='lbl'>Trading</div></div>
-<div class='stat'><div class='num'>{'Mo–Fr 15–22 MEZ'}</div><div class='lbl'>Cron-Zeitfenster</div></div>
-</div>
-<div class='glass'><h2>🩺 Systemstatus</h2><table><tr><th>Komponente</th><th>Status</th></tr>{rows}</table></div>
-<div class='glass'><h2>📁 Datenbestand</h2><table><tr><th>Datei</th><th>Größe</th><th>Zuletzt geändert</th></tr>{file_rows}</table></div>
-<div class='glass'><h2>⏸ Trading-Pause</h2>
-<p style='font-size:13px;margin-bottom:12px'>Status: <b class='{'bad' if paused else 'ok'}'>{'PAUSIERT (' + grund + ')' if paused else 'aktiv'}</b></p>
-<a class='btn primary' href='/api/pause_trading?state={'off' if paused else 'on'}&grund=admin_ui'>▶ {'Trading wieder aktivieren' if paused else 'Trading pausieren'}</a>
-<div class='hint'>Pause-Flag: <code>pause_flag.json</code> · Wird vom Cron-Pipeline respektiert.</div></div>"""
-    return _admin_layout("system", u,
-        f"<h2 style='font-size:17px;margin-bottom:4px'>Systemstatus</h2>"
-        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>Server-Sicherheit Phasen 2–9 · Netzwerk-Grenze: 127.0.0.1</div>",
-        inhalt)
+    """Systemstatus (Phase 8 Bereich 1)."""
+    import os, json as _json
+    pause = _json.load(open("pause_flag.json")) if os.path.exists("pause_flag.json") else {}
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Systemstatus – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:820px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:20px;margin:14px 0}}
+code{{background:#eef;padding:2px 6px;border-radius:5px}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a></nav>
+<div class='card'><h2>Systemstatus</h2>
+<p>Trading-Pause: <code>{'AKTIV (' + str(pause.get('grund','')) + ')' if pause.get('state')=='on' else 'nein'}</code></p>
+<p>Paper-/Shadow-Modus: <code>aktiv (kein Echtgeld)</code></p>
+<p>Engine/Board: s. Cronjobs (Mo–Fr 15–22 MEZ).</p></div></body></html>""")
 
 
 @app.route("/admin/users")
-@sec.require_role("admin")
+@ sec.require_role("admin")
 def admin_users():
-    """Benutzerverwaltung (StufenPilot-Design)."""
+    """Benutzerverwaltung (Phase 8 Bereich 4) – Liste."""
     u = sec.current_user()
     rows = ""
-    for usr in sec.list_users():
+    for usr in sec.list_users():  # list_users() liefert User-Dicts
         name = usr.get("username", "?")
-        role = usr.get("role", "user")
-        aktiv = usr.get("active", True)
-        mfa = bool(usr.get("mfa_secret"))
-        sess = len(usr.get("sessions", {}) or {})
-        last = str(usr.get("last_login", "") or "")[:19] or "–"
-        rows += f"""<tr>
-<td class='b'>{name}{' <span class="warn">(du)</span>' if name == u['username'] else ''}</td>
-<td><code>{role}</code></td>
-<td class='{'ok' if aktiv else 'bad'}'>{'✅ aktiv' if aktiv else '⛔ inaktiv'}</td>
-<td>{'🛡️' if mfa else '–'}</td>
-<td>{sess}</td>
-<td style='color:var(--text-dim)'>{last}</td>
-</tr>"""
-    inhalt = f"""<div class='glass'><h2>👥 Benutzerverwaltung</h2>
-<div style='margin-bottom:10px;font-size:12.5px;color:var(--text-dim)'>Benutzer anlegen, Rollen und Status ändern → im Dashboard unter <b>Einstellungen → Benutzer</b> (voll interaktiv).</div>
-<table><tr><th>Benutzer</th><th>Rolle</th><th>Status</th><th>MFA</th><th>Sessions</th><th>Letzter Login</th></tr>{rows or '<tr><td colspan=6 style="color:var(--text-dim)">Keine Benutzer</td></tr>'}</table>
-<div class='hint'>Passwörter/MFA-Secrets werden niemals angezeigt. Admin-Aktionen → <a href='/admin/audit' style='color:var(--accent)'>Audit</a>.</div></div>"""
-    return _admin_layout("users", u,
-        f"<h2 style='font-size:17px;margin-bottom:4px'>Benutzer</h2>"
-        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>{len(sec.list_users())} Benutzer · volle Verwaltung im Dashboard</div>",
-        inhalt)
+        rows += f"<tr><td>{name}</td><td>{usr.get('role')}</td><td>{'ja' if usr.get('mfa_secret') else 'nein'}</td><td>{usr.get('last_login','–')}</td></tr>"
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Benutzer – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:900px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+table{{width:100%;border-collapse:collapse}}td,th{{text-align:left;padding:8px;border-bottom:1px solid #eee}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:20px;margin:14px 0}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a>
+<a href='/logout'>Logout</a></nav>
+<div class='card'><h2>Benutzer ({len(sec.list_users())})</h2>
+<p><a href='/admin/users/create'>+ Neuer Benutzer</a> · <a href='/setup_mfa'>MFA einrichten</a></p>
+<table><tr><th>Name</th><th>Rolle</th><th>MFA</th><th>Letzter Login</th></tr>{rows}</table>
+<p style='color:#888;font-size:12px'>Hinweis: Passwörter/MFA-Secrets werden niemals angezeigt.</p></div></body></html>""")
+
+
+@app.route("/admin/users/create", methods=["GET", "POST"])
+@ sec.require_role("admin")
+def admin_users_create():
+    """Benutzer anlegen (Phase 8 Bereich 4)."""
+    if request.method == "POST":
+        uname = request.form.get("username", "").strip()
+        pw = request.form.get("password", "")
+        role = request.form.get("role", "user")
+        if not uname or not pw:
+            return make_response("<h1>Fehler</h1>Benutzer/Passwort fehlt.<a href='/admin/users/create'>zurück</a>"), 400
+        ok, err = sec.create_user(uname, pw, role)
+        if not ok:
+            return make_response(f"<h1>Fehler</h1>{err}<a href='/admin/users/create'>zurück</a>"), 400
+        sec.audit_log("user_create", sec.current_user()["username"], f"{uname} role={role}")
+        return redirect("/admin/users")
+    return make_response("""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Neuer Benutzer – Micro-Trader</title>
+<style>body{font-family:system-ui;max-width:520px;margin:6vh auto;padding:0 20px;color:#1a1a2e}
+input,select{padding:9px;width:100%;margin:6px 0;border:1px solid #ccd;border-radius:8px}
+.btn{background:#4361ee;color:#fff;border:0;padding:11px 20px;border-radius:9px;font-weight:600;cursor:pointer}
+nav a{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}</style></head><body>
+<nav><a href='/admin/users'>← Benutzer</a></nav>
+<h1>Neuer Benutzer</h1>
+<form method='POST'>Benutzername:<input name='username'>
+Passwort:<input name='password' type='password'>
+Rolle:<select name='role'><option>user</option><option>analyst</option>
+<option>operator</option><option>admin</option><option>superadmin</option></select>
+<button class='btn' type='submit'>Anlegen</button></form></body></html>""")
+
+
+@app.route("/admin/rules", methods=["GET", "POST"])
+@ sec.require_role("admin")
+def admin_rules():
+    """Regelverwaltung (Phase 8 Bereich 3) – Freigabe/Rollback mit Audit."""
+    u = sec.current_user()
+    if request.method == "POST":
+        action = request.form.get("action", "")
+        detail = request.form.get("detail", "")
+        sec.audit_log(f"rules_{action}", u["username"], detail)
+        return redirect("/admin/rules")
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Regeln – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:820px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:20px;margin:14px 0}}
+form{{display:inline-block;margin-right:10px}}button{{padding:8px 16px;border:0;border-radius:8px;cursor:pointer;font-weight:600}}
+.btn-release{{background:#2e7d32;color:#fff}} .btn-rollback{{background:#c62828;color:#fff}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a></nav>
+<div class='card'><h2>Regelverwaltung</h2>
+<p>Aktueller Regelstand: <code>v{version.get('version','?')}</code> (Paper-/Shadow).</p>
+<form method='POST'><input type='hidden' name='action' value='release'>
+<input name='detail' placeholder='Begründung Freigabe' style='padding:7px;width:240px'>
+<button class='btn-release' type='submit'>Freigeben</button></form>
+<form method='POST'><input type='hidden' name='action' value='rollback'>
+<input name='detail' placeholder='Begründung Rollback' style='padding:7px;width:240px'>
+<button class='btn-rollback' type='submit'>Rollback</button></form>
+<p style='color:#888;font-size:12px'>Jede Aktion schreibt Admin-ID, Zeitstempel, Begründung + Audit-Eintrag.</p></div></body></html>""")
 
 
 @app.route("/admin/audit")
-@sec.require_role("admin")
+@ sec.require_role("admin")
 def admin_audit():
-    """Audit-Log (StufenPilot-Design) mit Suche."""
-    u = sec.current_user()
-    q = request.args.get("q", "").strip().lower()
-    entries = sec.read_audit(300)
-    if q:
-        entries = [a for a in entries if q in str(a.get("event", "")).lower()
-                   or q in str(a.get("actor", "")).lower()
-                   or q in str(a.get("detail", "")).lower()]
-    rows = "".join(
-        f"<tr><td class='b'>{a.get('event','')}</td><td>{a.get('actor','')}</td>"
-        f"<td style='color:var(--text-dim)'>{a.get('detail','')}</td>"
-        f"<td style='color:var(--text-dim);white-space:nowrap'>{str(a.get('ts',''))[:19]}</td></tr>"
-        for a in entries)
-    inhalt = f"""<div class='glass'><h2>📜 Audit-Log ({len(entries)} Einträge)</h2>
-<form method='get' action='/admin/audit' style='margin-bottom:4px'>
-<input class='search' name='q' placeholder='🔍 Suchen (Ereignis, Benutzer, Detail)…' value='{request.args.get("q","")}'>
-</form>
-<div style='overflow-x:auto'><table><tr><th>Ereignis</th><th>Wer</th><th>Detail</th><th>Zeit</th></tr>{rows or '<tr><td colspan=4 style="color:var(--text-dim)">Keine Einträge gefunden</td></tr>'}</table></div>
-<div class='hint'>Append-only · nicht nachträglich änderbar. Letzte {len(entries)} Einträge (gefiltert: {'ja' if q else 'nein'}).</div></div>"""
-    return _admin_layout("audit", u,
-        f"<h2 style='font-size:17px;margin-bottom:4px'>Audit</h2>"
-        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>Sicherheitsrelevante Aktionen, append-only</div>",
-        inhalt)
+    """Audit-Log anzeigen (Phase 8 Bereich 5)."""
+    entries = sec.read_audit(50)
+    rows = "".join(f"<tr><td>{e.get('ts','')}</td><td>{e.get('action','')}</td><td>{e.get('actor','')}</td><td>{e.get('detail','')}</td></tr>" for e in entries)
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Audit – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:1000px;margin:4vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+table{{width:100%;border-collapse:collapse}}td,th{{text-align:left;padding:7px;border-bottom:1px solid #eee;font-size:13px}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:18px;margin:14px 0}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a></nav>
+<div class='card'><h2>Audit-Log (letzte 50)</h2>
+<table><tr><th>Zeit</th><th>Aktion</th><th>Akteur</th><th>Detail</th></tr>{rows}</table>
+<p style='color:#888;font-size:12px'>Audit-Einträge sind append-only und nicht nachträglich änderbar.</p></div></body></html>""")
 
 
 @app.route("/admin/backups")
-@sec.require_role("admin")
+@ sec.require_role("admin")
 def admin_backups():
-    """Backups (StufenPilot-Design) mit Details."""
-    u = sec.current_user()
+    """Backups auflisten (Phase 8 Bereich 5 / Phase 9)."""
+    import os, glob
     bdir = os.path.join(BASE, ".backup")
-    items = sorted(glob.glob(os.path.join(bdir, "*")), reverse=True)[:15] if os.path.isdir(bdir) else []
-    rows = "".join(
-        f"<tr><td class='b'>{os.path.basename(i)}</td><td>{os.path.getsize(i)//1024} KB</td>"
-        f"<td style='color:var(--text-dim)'>{time.strftime('%Y-%m-%d %H:%M', time.localtime(os.path.getmtime(i)))}</td></tr>"
-        for i in items)
-    inhalt = f"""<div class='glass'><h2>💾 Backups (zuletzt {len(items)})</h2>
-<table><tr><th>Name</th><th>Größe</th><th>Erstellt</th></tr>{rows or '<tr><td colspan=3 style="color:var(--text-dim)">Keine Backups</td></tr>'}</table>
-<div class='hint'>Backup-Ordner: <code>.backup/</code> · wird via <code>backup.py</code> erzeugt (Regel Nr. 1).</div></div>"""
-    return _admin_layout("backups", u,
-        f"<h2 style='font-size:17px;margin-bottom:4px'>Backups</h2>"
-        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>Snapshot-Sicherungen vor Änderungen</div>",
-        inhalt)
-
-
+    items = sorted(glob.glob(os.path.join(bdir, "*")), reverse=True)[:10] if os.path.isdir(bdir) else []
+    rows = "".join(f"<tr><td>{os.path.basename(i)}</td><td>{os.path.getsize(i)//1024} KB</td></tr>" for i in items)
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Backups – Micro-Trader</title>
+<style>body{{font-family:system-ui;max-width:820px;margin:5vh auto;padding:0 20px;color:#1a1a2e}}
+nav a{{margin-right:14px;color:#4361ee;text-decoration:none;font-weight:600}}
+table{{width:100%;border-collapse:collapse}}td,th{{text-align:left;padding:7px;border-bottom:1px solid #eee}}
+.card{{background:#fafbff;border:1px solid #e2e8ff;border-radius:14px;padding:18px;margin:14px 0}}</style></head><body>
+<nav><a href='/admin'>Übersicht</a><a href='/admin/users'>Benutzer</a>
+<a href='/admin/system'>Systemstatus</a><a href='/admin/rules'>Regeln</a>
+<a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a></nav>
+<div class='card'><h2>Backups (zuletzt 10)</h2>
+<table><tr><th>Name</th><th>Größe</th></tr>{rows or '<tr><td colspan=2>keine</td></tr>'}</table></div></body></html>""")
 
 
 # ─── PHASE 15: Benutzerverwaltung-API (v2.23.0) ─────────────────────────────

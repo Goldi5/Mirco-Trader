@@ -1,6 +1,6 @@
 {
-  "version": "2.23.0",
-  "build": "2026-08-08_1745",
+  "version": "2.24.0",
+  "build": "2026-08-08_1800",
   "released_at": "2026-08-08 12:35",
   "codename": "Server-Sicherheit Phasen 7-9 + Bugs (Landingpage, Admin-Bereich, Secret-Schutz, ROUTE_ACCESS/require_role-Fixes)",
   "changes": [
@@ -212,5 +212,5 @@
     "Phase 15/20 (Audit)",
     "Phase 21 (Server-Sicherheit 1-6)"
   ],
-  "notes": "User-Area Header (Avatar+Dropdown: Konto/Einstellungen/Admin/Abmelden)"
+  "notes": "Admin-Bereich neu (StufenPilot-Design): Stat-Cards, Warnungen, System-Ereignisse, Datenbestand, Audit-Suche, Trading-Pause"
 }
