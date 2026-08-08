@@ -2,46 +2,6 @@
   {
     "typ": "good",
     "text": "Risk 25: +5.37% Rendite",
-    "zeit": "2026-08-08T18:42:13.365928"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 50: +10.92% Rendite",
-    "zeit": "2026-08-08T18:42:13.366962"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 55: +10.88% Rendite",
-    "zeit": "2026-08-08T18:42:13.366962"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 70: +7.22% Rendite",
-    "zeit": "2026-08-08T18:42:13.366962"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 75: +18.03% Rendite",
-    "zeit": "2026-08-08T18:42:13.366962"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 80: +16.94% Rendite",
-    "zeit": "2026-08-08T18:42:13.366962"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 85: +13.11% Rendite",
-    "zeit": "2026-08-08T18:42:13.366962"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 90: +24.27% Rendite",
-    "zeit": "2026-08-08T18:42:13.366962"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 25: +5.37% Rendite",
     "zeit": "2026-08-08T18:44:13.529043"
   },
   {
@@ -238,5 +198,45 @@
     "typ": "good",
     "text": "Risk 90: +24.27% Rendite",
     "zeit": "2026-08-08T18:52:17.707002"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 25: +5.37% Rendite",
+    "zeit": "2026-08-08T18:55:20.259019"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 50: +10.92% Rendite",
+    "zeit": "2026-08-08T18:55:20.259019"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 55: +10.88% Rendite",
+    "zeit": "2026-08-08T18:55:20.259019"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 70: +7.22% Rendite",
+    "zeit": "2026-08-08T18:55:20.259019"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 75: +18.03% Rendite",
+    "zeit": "2026-08-08T18:55:20.259019"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 80: +16.94% Rendite",
+    "zeit": "2026-08-08T18:55:20.259019"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 85: +13.11% Rendite",
+    "zeit": "2026-08-08T18:55:20.259019"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 90: +24.27% Rendite",
+    "zeit": "2026-08-08T18:55:20.259019"
   }
 ]
