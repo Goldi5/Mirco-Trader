@@ -1,3 +1,10 @@
+## [2.33.0] - 2026-08-08
+### Added (PHASE 9: Paper-Order-Buch — Mandanten-Ausbauauftrag)
+- **paper_orders Tabelle:** tenant-scoped (`tenant_id`, `portfolio_id`, `ticker`, `side`, `quantity`, `price`, `status`, `order_type`), Index auf tenant_id.
+- **db.py:** `paper_order_insert` (tenant-scoped), `paper_order_list` (optional nach Portfolio gefiltert), `paper_position_apply` (BUY erhoeht / SELL verringert Shares, Avg-Preis-Aktualisierung).
+- **FIX:** `paper_portfolio_create` liefert jetzt die `lastrowid` (fehlender Return aus unvollendetem Edit behoben).
+- **Tests:** Sektion 7i (+5) -> **108 OK, 0 FAIL**.
+
 ## [2.32.0] - 2026-08-08
 ### Added (PHASE 8: Secret-Store — Mandanten-Ausbauauftrag)
 - **secret_store Tabelle:** tenant-scoped, `UNIQUE(tenant_id, secret_key)`.

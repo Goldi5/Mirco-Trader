@@ -461,6 +461,32 @@ try:
 except Exception as e:
     ck("Secret-Store", False, str(e))
 
+# ─── Phase 15i: Paper-Order-Buch (v2.33.0, PHASE 9) ────────────────────────
+print("\n7i. Paper-Order-Buch (v2.33.0, PHASE 9)")
+try:
+    import db as db9
+    m9 = db9.MTDB()
+    tid9 = m9.tenant_ensure_default()
+    pid9 = m9.paper_portfolio_create(tid9, "__test_po__", "Test", 100.0)
+    ck("paper_portfolio_create liefert ID", isinstance(pid9, int) and pid9 > 0)
+    oid9 = m9.paper_order_insert(tid9, pid9, "TEST", "BUY", 10, 5.0)
+    ck("paper_order_insert liefert ID", isinstance(oid9, int) and oid9 > 0)
+    o9 = m9.paper_order_list(tid9, pid9)
+    ck("paper_order_list tenant-scoped", len(o9) == 1 and o9[0]["side"] == "BUY")
+    m9.paper_position_apply(tid9, pid9, "TEST", "BUY", 10, 5.0)
+    m9.paper_position_apply(tid9, pid9, "TEST", "SELL", 4, 6.0)
+    pos9 = m9.conn.execute("SELECT * FROM paper_positions WHERE portfolio_id=? AND ticker=?",
+                           (pid9, "TEST")).fetchone()
+    ck("paper_position_apply BUY10+SELL4 = 6 shares", pos9 and float(pos9["shares"]) == 6)
+    ck("Paper-Tenant-Isolation", len(m9.paper_order_list(tid9 + 999, pid9)) == 0)
+    # Cleanup
+    m9.conn.execute("DELETE FROM paper_orders WHERE portfolio_id=?", (pid9,))
+    m9.conn.execute("DELETE FROM paper_positions WHERE portfolio_id=?", (pid9,))
+    m9.conn.execute("DELETE FROM paper_portfolios WHERE id=?", (pid9,))
+    m9.conn.commit(); m9.close()
+except Exception as e:
+    ck("Paper-Order-Buch", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

@@ -131,21 +131,95 @@ class MTDB:
         );
         CREATE INDEX IF NOT EXISTS idx_pp_tenant
             ON paper_portfolios(tenant_id);
+        CREATE TABLE IF NOT EXISTS paper_orders (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            portfolio_id INTEGER NOT NULL,
+            ticker TEXT NOT NULL,
+            side TEXT NOT NULL,
+            quantity REAL NOT NULL,
+            price REAL NOT NULL,
+            status TEXT DEFAULT 'filled',
+            order_type TEXT DEFAULT 'market',
+            created_at TEXT DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_po_tenant
+            ON paper_orders(tenant_id);
         """)
         self.conn.commit()
 
     def paper_portfolio_create(self, tenant_id, portfolio_key, name=None, virtual_cash=100.0):
-        self.conn.execute(
+        cur = self.conn.execute(
             "INSERT OR REPLACE INTO paper_portfolios "
             "(tenant_id, portfolio_key, name, virtual_cash, status) "
             "VALUES (?,?,?,?,'aktiv')",
             (tenant_id, portfolio_key, name, virtual_cash))
         self.conn.commit()
+        return cur.lastrowid
 
     def paper_portfolio_list(self, tenant_id):
         return [dict(r) for r in self.conn.execute(
             "SELECT * FROM paper_portfolios WHERE tenant_id = ? AND status != 'geloescht'",
             (tenant_id,)).fetchall()]
+
+    def paper_order_insert(self, tenant_id, portfolio_id, ticker, side, quantity,
+                           price, status="filled", order_type="market"):
+        """PHASE 9: Order im Paper-Buch speichern (tenant-scoped)."""
+        cur = self.conn.execute(
+            "INSERT INTO paper_orders "
+            "(tenant_id, portfolio_id, ticker, side, quantity, price, status, order_type) "
+            "VALUES (?,?,?,?,?,?,?,?)",
+            (tenant_id, portfolio_id, ticker, side, quantity, price, status, order_type))
+        self.conn.commit()
+        return cur.lastrowid
+
+    def paper_order_list(self, tenant_id, portfolio_id=None):
+        q = "SELECT * FROM paper_orders WHERE tenant_id = ?"
+        p = [tenant_id]
+        if portfolio_id:
+            q += " AND portfolio_id = ?"
+            p.append(portfolio_id)
+        return [dict(r) for r in self.conn.execute(q, p).fetchall()]
+
+    def paper_position_apply(self, tenant_id, portfolio_id, ticker, side, quantity, price):
+        """PHASE 9: Position aktualisieren (Buy erhoeht, Sell verringert)."""
+        row = self.conn.execute(
+            "SELECT * FROM paper_positions WHERE portfolio_id = ? AND ticker = ?",
+            (portfolio_id, ticker)).fetchone()
+        q = float(quantity)
+        if side == "BUY":
+            if row:
+                old_shares = float(row["shares"]); old_avg = float(row["avg_price"])
+                new_shares = old_shares + q
+                new_avg = (old_shares * old_avg + q * float(price)) / new_shares if new_shares else 0
+                self.conn.execute(
+                    "UPDATE paper_positions SET shares=?, avg_price=?, updated_at=datetime('now') "
+                    "WHERE portfolio_id=? AND ticker=?",
+                    (new_shares, new_avg, portfolio_id, ticker))
+            else:
+                self.conn.execute(
+                    "INSERT INTO paper_positions (portfolio_id, tenant_id, ticker, shares, avg_price) "
+                    "VALUES (?,?,?,?,?)",
+                    (portfolio_id, tenant_id, ticker, q, float(price)))
+        else:  # SELL
+            if row:
+                new_shares = float(row["shares"]) - q
+                if new_shares <= 0:
+                    self.conn.execute(
+                        "DELETE FROM paper_positions WHERE portfolio_id=? AND ticker=?",
+                        (portfolio_id, ticker))
+                else:
+                    self.conn.execute(
+                        "UPDATE paper_positions SET shares=?, updated_at=datetime('now') "
+                        "WHERE portfolio_id=? AND ticker=?",
+                        (new_shares, portfolio_id, ticker))
+        # Cash anpassen
+        sign = -1 if side == "BUY" else 1
+        self.conn.execute(
+            "UPDATE paper_portfolios SET virtual_cash = virtual_cash + ? "
+            "WHERE id = ? AND tenant_id = ?",
+            (sign * q * float(price), portfolio_id, tenant_id))
+        self.conn.commit()
 
     # ── PHASE 7: Provider-Connection-Manager (Sektion 10) ──
     def provider_connection_add(self, tenant_id, provider_type, provider_name,

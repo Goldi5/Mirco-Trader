@@ -1,9 +1,19 @@
 {
-  "version": "2.32.0",
-  "build": "2026-08-08_2300",
-  "released_at": "2026-08-08 23:00",
-  "codename": "Secret-Store (PHASE 8): tenant-isolierte Secrets, kein global .env, 103 Tests",
+  "version": "2.33.0",
+  "build": "2026-08-08_2330",
+  "released_at": "2026-08-08 23:30",
+  "codename": "Paper-Order-Buch (PHASE 9): tenant-scoped Orders + Position-Acting, 108 Tests",
   "changes": [
+    {
+      "version": "2.33.0",
+      "date": "2026-08-08",
+      "changes": [
+        "PHASE 9 Paper-Order-Buch: paper_orders Tabelle (tenant_id, portfolio_id, ticker, side, quantity, price, status, order_type)",
+        "db.py: paper_order_insert/list (tenant-scoped), paper_position_apply (Buy erhoeht/Sell verringert, Avg-Preis)",
+        "FIX paper_portfolio_create liefert jetzt lastrowid (fehlender Return)",
+        "Sektion 7i: 5 neue Tests -> 108 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.32.0",
       "date": "2026-08-08",
