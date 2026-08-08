@@ -1,9 +1,49 @@
 {
   "version": "2.25.1",
   "build": "2026-08-08_1845",
-  "released_at": "2026-08-08 12:35",
-  "codename": "Server-Sicherheit Phasen 7-9 + Bugs (Landingpage, Admin-Bereich, Secret-Schutz, ROUTE_ACCESS/require_role-Fixes)",
+  "released_at": "2026-08-08 18:45",
+  "codename": "Security-Hardening (Rate-Limit, Logins, Sicherheit-Checkliste) + UI (Landingpage-Hero, User-Area, Admin-Design, Drawdown-Balken weg)",
   "changes": [
+    {
+      "version": "2.25.1",
+      "date": "2026-08-08",
+      "changes": [
+        "Drawdown-Warnungsbalken entfernt"
+      ]
+    },
+    {
+      "version": "2.25.0",
+      "date": "2026-08-08",
+      "changes": [
+        "Login-Rate-Limit (Brute-Force, OWASP A07)",
+        "Admin-Tabs Logins + Sicherheit (Checkliste)",
+        "IP+UA im Audit-Log"
+      ]
+    },
+    {
+      "version": "2.24.0",
+      "date": "2026-08-08",
+      "changes": [
+        "Admin-Bereich komplett neu (StufenPilot-Design)",
+        "Stat-Cards, Warnungen, System-Ereignisse, Datenbestand"
+      ]
+    },
+    {
+      "version": "2.23.1",
+      "date": "2026-08-08",
+      "changes": [
+        "Landingpage-Hero",
+        "User-Area im Header (Avatar+Dropdown)",
+        "Einstellungen listenartig"
+      ]
+    },
+    {
+      "version": "2.23.0",
+      "date": "2026-08-08",
+      "changes": [
+        "Benutzerverwaltung: 8 API-Routen, Mein Konto + Benutzer-Tabs"
+      ]
+    },
     {
       "version": "2.22.0",
       "date": "2026-08-08 12:35",

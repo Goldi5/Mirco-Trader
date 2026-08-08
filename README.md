@@ -392,13 +392,24 @@ env -u PYTHONPATH "/c/Program Files/Python312/python.exe" backup.py restore 0
 
 | Version | Datum | Codename | Änderung |
 |---------|-------|----------|----------|
+| Version | Datum | Codename | Änderung |
+|---------|-------|----------|----------|
+| **2.25.1** | 2026-08-08 | Drawdown weg | 🚫 Drawdown-Warnungsbalken entfernt (kein Mehrwert) |
+| **2.25.0** | 2026-08-08 | Security-Hardening | 🔐 Login-Rate-Limit (5 Fails → Exp-Backoff 30s+), IP+UA im Audit-Log, Admin-Tabs 🌐 Logins (IP-Analytik/Brute-Force) + 🛡️ Sicherheit (OWASP-Checkliste: Hashing/Headers/Netzwerk/MFA) |
+| **2.24.0** | 2026-08-08 | Admin neu | 🔧 Admin-Bereich komplett neu (StufenPilot-Design): Stat-Cards, Warnungen, System-Ereignisse, Datenbestand, Audit-Suche, Trading-Pause |
+| **2.23.1** | 2026-08-08 | UI-Politur | 🎨 Landingpage-Hero (2-Spalten + Features), User-Area im Header (Avatar+Dropdown: Konto/Einstellungen/Admin/Logout), Einstellungen listenartig |
+| **2.23.0** | 2026-08-08 | Benutzerverwaltung | 👥 8 API-Routen (users/me), Einstellungen-Tabs Mein Konto + Benutzer (Admin), Rollen-Auth, 45 Tests |
+| **2.22.3** | 2026-08-08 | Landing-Login | 🏠 Landingpage mit Banner+Logo+Inline-Login (StufenPilot-Muster), route_class-Pattern-Fix (assets/reports) |
+| **2.22.2** | 2026-08-08 | Route-Fix | 🔀 / = Landingpage PUBLIC, /dashboard = AUTHENTICATED, CSP-Fonts-Fix |
+| **2.22.1** | 2026-08-08 | UTF-8 + Port | 🐛 batch_trader UTF-8-Fix, start.bat Port 5299→5300 |
+| **2.22.0** | 2026-08-08 | Server-Sicherheit | 🔒 Phasen 7–9: ROUTE_ACCESS/require_role, Secret-Schutz, 34 Tests |
+| **2.21.0** | 2026-08-07 | Spec-Upgrade | 🔥 Spec-Trader 49 Depots, Watchlist, KI-Log-Integration |
+| **2.20.0** | 2026-08-07 | 20+20+49 | 📊 Depot-Struktur Aktien/ETF/Spekulation, PDF-Report, Archiv |
+| 2.19.x | 2026-08-06 | Stabilität | 🐛 Root-Cause-Fixes, Rendite-Korrekturen, Watchdog |
+| 2.18.x | 2026-08-05 | Analyse | 📈 Analyse-Tab, Analyse-DB, News-Swap |
+| 2.17.x | 2026-08-04 | Learning | 🧠 KI-Lernmodul Multi-Timeframe, Lerneffekt |
+| 2.16.x | 2026-08-03 | Base | 📦 ETF-Rating 5 Stufen, Depot-Rollout, Börsen-Chips |
 | **2.7.0** | 2026-08-02 20:45 | Chips & Clarity | 📡 Markt-Chips (nur reale Börsen im Portfolio + Wert-Anteil%) · 💡 Settings mit natürlichen Namen + Layman-Erklärungen + Tab-Einleitungen |
-| 2.6.0 | 2026-08-02 19:30 | Compact Settings | ⚙️ Settings-Tab als C-Tabs (KI/Lernen/Kapital/Depot/Risk/Bremsen/News) + kompaktes 2-Spalten-Raster, kleinere Felder, Summen-Check |
-| 2.5.0 | 2026-08-02 18:45 | Financial Settings | 💰 Finanzielle Einstellungen: Kapital/Allokation, Depot-Struktur, Risk-Parameter (moderate/aggressive) mit Risikowarnung an trader.py + spec_trader.py gebunden |
-| 2.4.0 | 2026-08-02 18:15 | Settings & Safety | ⚙️ Einstellungen-Tab (KI+Lernen+Bremsen+News) mit Risikowarnung, **Regel #1 Backup-System**, R1–R5 Bestandshärtung |
-| 2.3.0 | 2026-08-02 12:57 | Governance | R1: Regeln im Prompt + ki_log; R2: Decay-Sortierung; R3: Konflikt-Priorität; R4: News-Einmal-Injektion; R5: Ausreißer-Schutz |
-| 2.2.0 | 2026-08-01 14:30 | Learning Deep | KI-Lern-Tab "Was die KI lernt", News-Irrelevanz-Filter (Vor+Nach), Lerneffekt-Multiskalen |
-| 2.1.0 | 2026-08-01 09:00 | Tabs & Transparency | News-Impact in Depot-Detail, Drawdown-Warnung, KI-Cap-Badge |
 
 **Version-Bump-Regel:** Bei jeder abgeschlossenen Änderung `version.json` hochzählen
 (MAJOR.MINOR.PATCH) + `released_at` + neuen Changelog-Eintrag. Dashboard zeigt
@@ -441,7 +452,7 @@ Das Frontend (`dashboard.html: settingsInput/settingsBool`) rendert:
 
 ---
 
-## 11. Version-Log (Changelog)
+## 14. Modul-Größen (Referenz)
 
 | Datei | Zeilen | Rolle |
 |-------|-------|------|
