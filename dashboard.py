@@ -1590,6 +1590,90 @@ def api_secrets_set():
     return {"ok": True, "key": skey, "stored": "tenant-scoped"}
 
 
+# ── PHASE 10: Tenant-Scoped Risikogrenzen ──
+@app.route("/api/risk", methods=["GET"])
+def api_risk_list():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    return {"tenant_id": tid, "mode": request.args.get("mode", "moderate"),
+            "limits": _sec.risk_get(tid, request.args.get("mode", "moderate"))}
+
+
+@app.route("/api/risk/set", methods=["POST"])
+def api_risk_set():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    mode = (request.form.get("mode") or (request.json.get("mode") if request.is_json else "")) or "moderate"
+    _sec.risk_set(
+        tid, mode,
+        position_size=_opt_float(request, "position_size"),
+        stop_loss=_opt_float(request, "stop_loss"),
+        take_profit=_opt_float(request, "take_profit"),
+        drawdown_limit=_opt_float(request, "drawdown_limit"))
+    return {"ok": True, "tenant_id": tid, "mode": mode}
+
+
+# ── PHASE 11: Tenant-Scoped Regeln ──
+@app.route("/api/rules", methods=["GET"])
+def api_rules_list():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    return {"tenant_id": tid, "rules": _sec.rule_list(tid)}
+
+
+@app.route("/api/rules/add", methods=["POST"])
+def api_rules_add():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    rid = (request.form.get("rule_id") or (request.json.get("rule_id") if request.is_json else ""))
+    regel = (request.form.get("regel") or (request.json.get("regel") if request.is_json else ""))
+    if not rid or not regel:
+        return {"error": "rule_id/regel fehlt"}, 400
+    _sec.rule_add(tid, rid, regel,
+                  muster=(request.form.get("muster") or (request.json.get("muster") if request.is_json else "")) or None,
+                  status=(request.form.get("status") or (request.json.get("status") if request.is_json else "")) or "aktiv",
+                  created_by=u.get("id") if isinstance(u, dict) else None)
+    return {"ok": True, "rule_id": rid, "tenant_id": tid}
+
+
+@app.route("/api/rules/set_status", methods=["POST"])
+def api_rules_set_status():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    rid = (request.form.get("rule_id") or (request.json.get("rule_id") if request.is_json else ""))
+    status = (request.form.get("status") or (request.json.get("status") if request.is_json else ""))
+    if not rid or not status:
+        return {"error": "rule_id/status fehlt"}, 400
+    _sec.rule_set_status(tid, rid, status)
+    return {"ok": True, "rule_id": rid, "status": status}
+
+
+def _opt_float(req, name):
+    """Hilfsfunktion: Form/JSON-Float optional auslesen (None wenn leer)."""
+    v = req.form.get(name) or (req.json.get(name) if req.is_json else "")
+    if v in (None, ""):
+        return None
+    try:
+        return float(v)
+    except (ValueError, TypeError):
+        return None
+
+
 @app.route("/api/db_query")
 def api_db_query():
     try:

@@ -189,6 +189,60 @@ def secret_list_keys(tenant_id):
     return keys
 
 
+# ── PHASE 10: Tenant-Scoped Risikogrenzen (Wrapper, analog Secret) ──
+def risk_set(tenant_id, risk_mode, position_size=None, stop_loss=None,
+             take_profit=None, drawdown_limit=None):
+    """PHASE 10: Tenant-Risikogrenze setzen."""
+    import db as _db
+    m = _db.MTDB()
+    m.risk_set(tenant_id, risk_mode, position_size, stop_loss, take_profit, drawdown_limit)
+    m.close()
+
+
+def risk_get(tenant_id, risk_mode):
+    """PHASE 10: Effektive Risikogrenze (Tenant → global → Default)."""
+    import db as _db
+    m = _db.MTDB()
+    eff = m.effective_risk_limits(tenant_id, risk_mode)
+    m.close()
+    return eff
+
+
+def risk_list(tenant_id):
+    """PHASE 10: Alle Risikogrenzen eines Tenants."""
+    import db as _db
+    m = _db.MTDB()
+    rows = m.risk_list(tenant_id)
+    m.close()
+    return rows
+
+
+# ── PHASE 11: Tenant-Scoped Regeln (Wrapper, analog Secret) ──
+def rule_add(tenant_id, rule_id, regel, muster=None, status="aktiv", created_by=None):
+    """PHASE 11: Tenant-Regel anlegen."""
+    import db as _db
+    m = _db.MTDB()
+    m.rule_set(tenant_id, rule_id, regel, muster, status, created_by)
+    m.close()
+
+
+def rule_list(tenant_id):
+    """PHASE 11: Effektive Regeln (Tenant ∪ global)."""
+    import db as _db
+    m = _db.MTDB()
+    rows = m.effective_rules(tenant_id)
+    m.close()
+    return rows
+
+
+def rule_set_status(tenant_id, rule_id, status):
+    """PHASE 11: Status einer Tenant-Regel aendern."""
+    import db as _db
+    m = _db.MTDB()
+    m.rule_set_status(tenant_id, rule_id, status)
+    m.close()
+
+
 def resolve_tenant_for_user(user):
     """Leitet die tenant_id eines Users aus der Membership-Tabelle ab.
     Fallback: Default-Tenant (id=1). Kein Client-Input noetig."""
@@ -286,6 +340,9 @@ ROUTE_ACCESS = {
     "/api/providers": "TENANT_ADMIN", "/api/providers/add": "TENANT_ADMIN",
     "/api/providers/test/<int:conn_id>": "TENANT_ADMIN",
     "/api/secrets": "TENANT_ADMIN", "/api/secrets/set": "TENANT_ADMIN",
+    "/api/risk": "TENANT_ADMIN", "/api/risk/set": "TENANT_ADMIN",
+    "/api/rules": "TENANT_ADMIN", "/api/rules/add": "TENANT_ADMIN",
+    "/api/rules/set_status": "TENANT_ADMIN",
     "/api/tenants": "ADMIN", "/api/tenants/create": "ADMIN",
     "/api/tenants/<int:tid>/members": "ADMIN",
     "/api/users": "ADMIN", "/api/users/create": "ADMIN",

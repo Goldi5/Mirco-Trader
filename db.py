@@ -36,6 +36,8 @@ class MTDB:
         self._init_paper_tables()
         self._init_provider_tables()
         self._init_secret_store()
+        self._init_risk_tables()
+        self._init_rule_tables()
         self._migrate_schema()
 
     # ── PHASE 8: Secret-Store (tenant-isoliert, kein global .env) ──
@@ -54,7 +56,151 @@ class MTDB:
         CREATE INDEX IF NOT EXISTS idx_ss_tenant
             ON secret_store(tenant_id);
         """)
+
+    # ── PHASE 10: Tenant-Scoped Risikogrenzen (statt globaler settings.json risk_parameter) ──
+    def _init_risk_tables(self):
+        c = self.conn.cursor()
+        c.executescript("""
+        CREATE TABLE IF NOT EXISTS tenant_risk_limits (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            risk_mode TEXT NOT NULL DEFAULT 'moderate',
+            position_size REAL DEFAULT 0.35,
+            stop_loss REAL DEFAULT 0.92,
+            take_profit REAL DEFAULT 1.12,
+            drawdown_limit REAL DEFAULT 0.20,
+            updated_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(tenant_id, risk_mode)
+        );
+        CREATE INDEX IF NOT EXISTS idx_trl_tenant
+            ON tenant_risk_limits(tenant_id);
+        """)
         self.conn.commit()
+
+    def risk_set(self, tenant_id, risk_mode, position_size=None, stop_loss=None,
+                 take_profit=None, drawdown_limit=None):
+        """PHASE 10: Tenant-Scoped Risikogrenze setzen (Partial-Update)."""
+        cur = self.conn.execute(
+            "SELECT * FROM tenant_risk_limits WHERE tenant_id = ? AND risk_mode = ?",
+            (tenant_id, risk_mode))
+        row = cur.fetchone()
+        if row:
+            if position_size is None: position_size = row["position_size"]
+            if stop_loss is None: stop_loss = row["stop_loss"]
+            if take_profit is None: take_profit = row["take_profit"]
+            if drawdown_limit is None: drawdown_limit = row["drawdown_limit"]
+            self.conn.execute(
+                "UPDATE tenant_risk_limits SET position_size=?, stop_loss=?, "
+                "take_profit=?, drawdown_limit=?, updated_at=datetime('now') "
+                "WHERE tenant_id=? AND risk_mode=?",
+                (position_size, stop_loss, take_profit, drawdown_limit, tenant_id, risk_mode))
+        else:
+            # Neue Zeile: fehlende Felder auf Standard-Defaults fallen (nie NULL)
+            if position_size is None: position_size = 0.35
+            if stop_loss is None: stop_loss = 0.92
+            if take_profit is None: take_profit = 1.12
+            if drawdown_limit is None: drawdown_limit = 0.20
+            self.conn.execute(
+                "INSERT INTO tenant_risk_limits "
+                "(tenant_id, risk_mode, position_size, stop_loss, take_profit, drawdown_limit) "
+                "VALUES (?,?,?,?,?,?)",
+                (tenant_id, risk_mode, position_size, stop_loss, take_profit, drawdown_limit))
+        self.conn.commit()
+
+    def risk_get(self, tenant_id, risk_mode):
+        """PHASE 10: Tenant-Limit holen (None wenn nicht gesetzt)."""
+        row = self.conn.execute(
+            "SELECT * FROM tenant_risk_limits WHERE tenant_id = ? AND risk_mode = ?",
+            (tenant_id, risk_mode)).fetchone()
+        return dict(row) if row else None
+
+    def risk_list(self, tenant_id):
+        """PHASE 10: Alle Limits eines Tenants."""
+        return [dict(r) for r in self.conn.execute(
+            "SELECT * FROM tenant_risk_limits WHERE tenant_id = ?", (tenant_id,)).fetchall()]
+
+    def effective_risk_limits(self, tenant_id, risk_mode):
+        """PHASE 10: Tenant-Limit, Fallback globaler settings.json risk_parameter, dann Default."""
+        row = self.risk_get(tenant_id, risk_mode)
+        if row:
+            return {"position_size": row["position_size"], "stop_loss": row["stop_loss"],
+                    "take_profit": row["take_profit"], "drawdown_limit": row["drawdown_limit"],
+                    "source": "tenant"}
+        # Fallback: globaler settings.json risk_parameter (moderate_/aggressive_)
+        try:
+            import json
+            sp = json.load(open("settings.json", encoding="utf-8")).get("risk_parameter", {})
+            pre = "moderate_" if risk_mode == "moderate" else "aggressive_"
+            if f"{pre}position_size" in sp:
+                return {"position_size": sp.get(f"{pre}position_size", 0.35),
+                        "stop_loss": sp.get(f"{pre}stop_loss", 0.92),
+                        "take_profit": sp.get(f"{pre}take_profit", 1.12),
+                        "drawdown_limit": 0.20, "source": "global"}
+        except Exception:
+            pass
+        return {"position_size": 0.35, "stop_loss": 0.92, "take_profit": 1.12,
+                "drawdown_limit": 0.20, "source": "default"}
+        self.conn.commit()
+
+    # ── PHASE 11: Tenant-Scoped Regeln (statt globaler learned_rules.json) ──
+    def _init_rule_tables(self):
+        c = self.conn.cursor()
+        c.executescript("""
+        CREATE TABLE IF NOT EXISTS tenant_rules (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            rule_id TEXT NOT NULL,
+            muster TEXT,
+            regel TEXT NOT NULL,
+            status TEXT DEFAULT 'aktiv',
+            created_by INTEGER,
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(tenant_id, rule_id)
+        );
+        CREATE INDEX IF NOT EXISTS idx_tr_tenant
+            ON tenant_rules(tenant_id);
+        """)
+        self.conn.commit()
+
+    def rule_set(self, tenant_id, rule_id, regel, muster=None, status="aktiv", created_by=None):
+        """PHASE 11: Tenant-Regel anlegen/aktualisieren (INSERT OR REPLACE)."""
+        self.conn.execute(
+            "INSERT OR REPLACE INTO tenant_rules "
+            "(tenant_id, rule_id, muster, regel, status, created_by, created_at) "
+            "VALUES (?,?,?,?,?,?,datetime('now'))",
+            (tenant_id, rule_id, muster, regel, status, created_by))
+        self.conn.commit()
+
+    def rule_list(self, tenant_id):
+        """PHASE 11: Alle Regeln eines Tenants."""
+        return [dict(r) for r in self.conn.execute(
+            "SELECT * FROM tenant_rules WHERE tenant_id = ?", (tenant_id,)).fetchall()]
+
+    def rule_set_status(self, tenant_id, rule_id, status):
+        """PHASE 11: Status einer Tenant-Regel aendern."""
+        self.conn.execute(
+            "UPDATE tenant_rules SET status=? WHERE tenant_id=? AND rule_id=?",
+            (status, tenant_id, rule_id))
+        self.conn.commit()
+
+    def effective_rules(self, tenant_id):
+        """PHASE 11: Tenant-Regeln ∪ globale learned_rules.json (Tenant gewinnt bei ID-Kollision)."""
+        out = {}
+        # Global-Basis
+        try:
+            import json
+            g = json.load(open("learned_rules.json", encoding="utf-8"))
+            for r in g.get("rules", []):
+                out[r["id"]] = {"id": r["id"], "muster": r.get("muster"),
+                                "regel": r.get("regel"), "status": r.get("status", "aktiv"),
+                                "source": "global"}
+        except Exception:
+            pass
+        # Tenant ueberschreibt
+        for r in self.rule_list(tenant_id):
+            out[r["rule_id"]] = {"id": r["rule_id"], "muster": r.get("muster"),
+                                 "regel": r["regel"], "status": r["status"], "source": "tenant"}
+        return list(out.values())
 
     def secret_set(self, tenant_id, secret_key, secret_value):
         """PHASE 8: Secret tenant-isoliert speichern (kein globaler .env-Key)."""

@@ -1,3 +1,14 @@
+## [2.34.0] - 2026-08-08
+### Added (PHASE 10+11: Tenant-Scoped Risikogrenzen + Regeln — Mandanten-Ausbauauftrag)
+- **tenant_risk_limits Tabelle:** tenant-scoped Risikogrenzen pro Modus (moderate/aggressive).
+- **effective_risk_limits(tenant, mode):** Tenant-Override → globaler `settings.json risk_parameter` → Default (kein NULL, nie globale Leakage).
+- **tenant_rules Tabelle:** tenant-scoped Regeln.
+- **effective_rules(tenant):** Tenant-Regeln ∪ globale `learned_rules.json` (Tenant gewinnt bei ID-Kollision).
+- **db.py:** `risk_set/get/list`, `rule_set/list/set_status`; **security.py:** analoge Wrapper.
+- **dashboard.py:** `/api/risk`, `/api/risk/set`, `/api/rules`, `/api/rules/add`, `/api/rules/set_status` (TENANT_ADMIN).
+- **dashboard.html:** Mandant-Panel (Risikogrenzen + Regeln, nur Tenant-Admin).
+- **Tests:** Sektion 7j (+8) -> **116 OK, 0 FAIL**.
+
 ## [2.33.0] - 2026-08-08
 ### Added (PHASE 9: Paper-Order-Buch — Mandanten-Ausbauauftrag)
 - **paper_orders Tabelle:** tenant-scoped (`tenant_id`, `portfolio_id`, `ticker`, `side`, `quantity`, `price`, `status`, `order_type`), Index auf tenant_id.

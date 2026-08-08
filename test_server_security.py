@@ -487,6 +487,52 @@ try:
 except Exception as e:
     ck("Paper-Order-Buch", False, str(e))
 
+# ─── Phase 15j: Tenant-Scoped Risikogrenzen + Regeln (v2.34.0, PHASE 10+11) ──
+print("\n7j. Tenant-Scoped Risikogrenzen + Regeln (v2.34.0, PHASE 10+11)")
+try:
+    import security as sec10, db as db10
+    tid10 = sec10.resolve_tenant_for_user({"username": "admin"}) or 1
+    # --- PHASE 10: Risiko ---
+    sec10.risk_set(tid10, "moderate", position_size=0.45, stop_loss=0.88)
+    eff10 = sec10.risk_get(tid10, "moderate")
+    ck("risk_set+get tenant-scoped", eff10["source"] == "tenant"
+       and eff10["position_size"] == 0.45 and eff10["stop_loss"] == 0.88)
+    ck("risk Partial-Update keine NULL", eff10["take_profit"] not in (None,)
+       and eff10["drawdown_limit"] not in (None,))
+    # Fallback global (kein tenant-set)
+    eff10b = sec10.risk_get(tid10, "aggressive")
+    ck("risk Fallback global -> source=global", eff10b["source"] == "global")
+    # --- PHASE 11: Regeln ---
+    sec10.rule_add(tid10, "r_p10_test", "Testregel: kein Kauf am Freitag", muster="Freitag")
+    rules10 = sec10.rule_list(tid10)
+    tenant_rule = [r for r in rules10 if r["id"] == "r_p10_test"][0]
+    ck("rule_add+list tenant", tenant_rule["source"] == "tenant"
+       and "Freitag" in tenant_rule["muster"])
+    # Tenant override global bei gleicher ID
+    g0 = rules10[0]["id"]
+    sec10.rule_add(tid10, g0, "TENANT OVERRIDE")
+    rules10b = sec10.rule_list(tid10)
+    ovr = [r for r in rules10b if r["id"] == g0][0]
+    ck("rule Tenant override gewinnt", ovr["source"] == "tenant"
+       and ovr["regel"] == "TENANT OVERRIDE")
+    # Status aendern
+    sec10.rule_set_status(tid10, "r_p10_test", "pausiert")
+    rules10c = sec10.rule_list(tid10)
+    st = [r for r in rules10c if r["id"] == "r_p10_test"][0]
+    ck("rule_set_status", st["status"] == "pausiert")
+    # --- Isolation: fremder Tenant sieht nichts ---
+    ck("Risk-Isolation (fremder Tenant)", sec10.risk_get(tid10 + 999, "moderate")["source"]
+       in ("global", "default"))
+    ck("Rule-Isolation (fremder Tenant)",
+       len([r for r in sec10.rule_list(tid10 + 999) if r["source"] == "tenant"]) == 0)
+    # Cleanup
+    m10 = db10.MTDB()
+    m10.conn.execute("DELETE FROM tenant_risk_limits WHERE tenant_id=?", (tid10,))
+    m10.conn.execute("DELETE FROM tenant_rules WHERE tenant_id=?", (tid10,))
+    m10.conn.commit(); m10.close()
+except Exception as e:
+    ck("Risikogrenzen+Regeln", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

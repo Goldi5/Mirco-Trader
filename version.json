@@ -1,9 +1,23 @@
 {
-  "version": "2.33.0",
-  "build": "2026-08-08_2330",
-  "released_at": "2026-08-08 23:30",
-  "codename": "Paper-Order-Buch (PHASE 9): tenant-scoped Orders + Position-Acting, 108 Tests",
+  "version": "2.34.0",
+  "build": "2026-08-08_2345",
+  "released_at": "2026-08-08 23:45",
+  "codename": "Tenant-Scoped Risikogrenzen + Regeln (PHASE 10+11), 116 Tests",
   "changes": [
+    {
+      "version": "2.34.0",
+      "date": "2026-08-08",
+      "changes": [
+        "PHASE 10 Risikogrenzen: tenant_risk_limits Tabelle (tenant-scoped)",
+        "effective_risk_limits(tenant, mode): Tenant-Override -> globaler settings.json risk_parameter -> Default",
+        "PHASE 11 Regeln: tenant_rules Tabelle (tenant-scoped)",
+        "effective_rules(tenant): Tenant-Regeln ∪ global learned_rules.json (Tenant gewinnt bei ID-Kollision)",
+        "db.py: risk_set/get/list, rule_set/list/set_status; security.py Wrapper",
+        "dashboard.py: /api/risk, /api/risk/set, /api/rules, /api/rules/add, /api/rules/set_status (TENANT_ADMIN)",
+        "dashboard.html: Mandant-Panel (Risikogrenzen + Regeln, nur Tenant-Admin)",
+        "Sektion 7j: 8 neue Tests -> 116 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.33.0",
       "date": "2026-08-08",

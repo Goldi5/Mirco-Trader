@@ -2024,6 +2024,7 @@ async function renderSettings() {
   `;
   if (binAdmin) ladeBenutzerVerwaltung();
   ladeKontoDaten();
+  ladeTenantScope();
   switchSettingsTab("konto");  // nur "Mein Konto" sichtbar beim ersten Öffnen
 }
 
@@ -2052,8 +2053,63 @@ function renderKontoTab() {
         <h3 style="font-size:13px;font-weight:600;margin:0 0 8px">📋 Berechtigungen</h3>
         <div id="kontoPerms" style="font-size:12px;color:var(--text-dim)">Lade…</div>
       </div>
+      <div class="glass" id="tenantScopePanel" style="padding:14px 16px;display:none">
+        <h3 style="font-size:13px;font-weight:600;margin:0 0 8px">🏢 Mandant: Risikogrenzen &amp; Regeln</h3>
+        <div id="tenantScopeBody" style="font-size:12px;color:var(--text-dim)">Lade…</div>
+      </div>
     </div>
   </div>`;
+}
+
+// PHASE 10+11: Tenant-Scoped Risikogrenzen + Regeln laden (nur Tenant-Admin)
+async function ladeTenantScope() {
+  try {
+    const me = await (await fetch("/api/me")).json();
+    const role = me.effective_role || me.role;
+    if (!["tenant_admin","admin","superadmin"].includes(role)) return;
+    const p = document.getElementById("tenantScopePanel");
+    if (p) p.style.display = "block";
+    // Risiko
+    const rm = await (await fetch("/api/risk?mode=moderate")).json();
+    const ra = await (await fetch("/api/risk?mode=aggressive")).json();
+    let html = `<div style="font-weight:600;margin:4px 0 6px">🎚️ Risikogrenzen (effektiv)</div>`;
+    html += riskRow("Moderat", rm.limits) + riskRow("Aggressiv", ra.limits);
+    html += `<div style="margin-top:6px"><button onclick="riskModal()" style="padding:6px 12px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:11px;font-weight:600">✏️ Grenzen bearbeiten</button></div>`;
+    // Regeln
+    const rl = await (await fetch("/api/rules")).json();
+    html += `<div style="font-weight:600;margin:12px 0 6px">📜 Regeln (effektiv, Tenant ⊇ Global)</div>`;
+    const tenantRules = (rl.rules||[]).filter(r=>r.source==="tenant");
+    const globalCount = (rl.rules||[]).length - tenantRules.length;
+    html += `<div style="font-size:11px;margin-bottom:6px">${tenantRules.length} tenant-eigene · ${globalCount} global geerbt</div>`;
+    html += `<div style="max-height:180px;overflow:auto">` +
+      (rl.rules||[]).slice(0,20).map(r=>`<div style="padding:4px 0;border-bottom:1px solid rgba(15,23,42,.05);font-size:11px">
+        <span style="display:inline-block;width:54px;font-size:9px;border-radius:4px;padding:1px 4px;background:${r.source==='tenant'?'rgba(37,99,235,.12)':'rgba(118,118,128,.12)'};color:${r.source==='tenant'?'var(--accent)':'var(--text-dim)'}">${r.source}</span>
+        <b>${esc(r.id)}</b> <span style="color:var(--text-dim)">${(r.status||'aktiv')}</span><br>
+        <span style="color:var(--text-dim)">${esc(String(r.regel||'').slice(0,80))}</span></div>`).join('') +
+      `</div>`;
+    const body = document.getElementById("tenantScopeBody");
+    if (body) body.innerHTML = html;
+  } catch(e) { /* still */ }
+}
+
+function riskRow(label, lim) {
+  if (!lim) return "";
+  return `<div style="padding:3px 0;font-size:11px">${label}: Pos ${fmtPct(lim.position_size)} · SL ${fmtPct(lim.stop_loss)} · TP ${fmtPct(lim.take_profit)} · DD ${fmtPct(lim.drawdown_limit)} <span style="color:var(--text-dim)">(${lim.source})</span></div>`;
+}
+function fmtPct(v){ return v==null?'–':(parseFloat(v)*100).toFixed(0)+'%'; }
+
+function riskModal() {
+  const ps = prompt("Position-Size (0-1, leer=unverändert):", "");
+  if (ps===null) return;
+  const sl = prompt("Stop-Loss (0-1):", "");
+  const tp = prompt("Take-Profit (0-1):", "");
+  const dd = prompt("Drawdown-Limit (0-1):", "");
+  const fd = new FormData();
+  if (ps) fd.append("position_size", ps);
+  if (sl) fd.append("stop_loss", sl);
+  if (tp) fd.append("take_profit", tp);
+  if (dd) fd.append("drawdown_limit", dd);
+  fetch("/api/risk/set", {method:"POST", body: fd}).then(()=>ladeTenantScope());
 }
 
 // Konto-Daten nach dem Rendern laden (innerHTML <script> laeuft nicht!)
