@@ -32,7 +32,75 @@ class MTDB:
         self.conn = sqlite3.connect(pfad)
         self.conn.row_factory = sqlite3.Row
         self._init_schema()
+        self._init_trading_mode_tables()
         self._migrate_schema()
+
+    # ── PHASE 5: Trading-Modi-Zustandsmaschine (Sektion 8) ──
+    TRADING_MODES = ("SHADOW", "PAPER", "LIVE_REQUESTED", "LIVE_APPROVED",
+                     "LIVE_ACTIVE", "PAUSED", "SUSPENDED", "REVOKED")
+    # Erlaubte Transitionen (von -> [nach])
+    MODE_TRANSITIONS = {
+        "SHADOW": ["PAPER", "SUSPENDED"],
+        "PAPER": ["SHADOW", "LIVE_REQUESTED", "PAUSED", "SUSPENDED"],
+        "LIVE_REQUESTED": ["LIVE_APPROVED", "PAPER", "SHADOW", "REVOKED", "SUSPENDED"],
+        "LIVE_APPROVED": ["LIVE_ACTIVE", "REVOKED", "SUSPENDED"],
+        "LIVE_ACTIVE": ["PAUSED", "SUSPENDED", "REVOKED"],
+        "PAUSED": ["SHADOW", "PAPER", "LIVE_ACTIVE", "SUSPENDED", "REVOKED"],
+        "SUSPENDED": ["SHADOW", "PAPER", "REVOKED"],
+        "REVOKED": ["SHADOW", "PAPER"],
+    }
+
+    def _init_trading_mode_tables(self):
+        c = self.conn.cursor()
+        c.executescript("""
+        CREATE TABLE IF NOT EXISTS trading_mode_transitions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            user_id INTEGER,
+            portfolio_id INTEGER,
+            strategy_id INTEGER,
+            old_mode TEXT NOT NULL,
+            new_mode TEXT NOT NULL,
+            reason TEXT,
+            requested_by INTEGER,
+            approved_by INTEGER,
+            timestamp TEXT DEFAULT (datetime('now')),
+            mfa_confirmed INTEGER DEFAULT 0,
+            risk_review_status TEXT DEFAULT 'pending',
+            broker_connection_status TEXT DEFAULT 'none',
+            audit_event_id INTEGER
+        );
+        CREATE INDEX IF NOT EXISTS idx_tmt_tenant
+            ON trading_mode_transitions(tenant_id);
+        """)
+        self.conn.commit()
+
+    def mode_is_valid(self, mode):
+        return mode in self.TRADING_MODES
+
+    def mode_can_transition(self, old_mode, new_mode):
+        return new_mode in self.MODE_TRANSITIONS.get(old_mode, [])
+
+    def mode_log_insert(self, tenant_id, user_id, portfolio_id, strategy_id,
+                        old_mode, new_mode, reason, requested_by, approved_by=None,
+                        mfa_confirmed=0, risk_review_status="pending",
+                        broker_connection_status="none", audit_event_id=None):
+        """PHASE 5: Schreibt jeden Zustandswechsel ins Audit-Log (Sektion 8 Pflichtfelder)."""
+        self.conn.execute(
+            "INSERT INTO trading_mode_transitions "
+            "(tenant_id, user_id, portfolio_id, strategy_id, old_mode, new_mode, "
+            " reason, requested_by, approved_by, mfa_confirmed, risk_review_status, "
+            " broker_connection_status, audit_event_id) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (tenant_id, user_id, portfolio_id, strategy_id, old_mode, new_mode,
+             reason, requested_by, approved_by, mfa_confirmed, risk_review_status,
+             broker_connection_status, audit_event_id))
+        self.conn.commit()
+
+    def mode_log_list(self, tenant_id, limit=100):
+        return [dict(r) for r in self.conn.execute(
+            "SELECT * FROM trading_mode_transitions WHERE tenant_id = ? "
+            "ORDER BY id DESC LIMIT ?", (tenant_id, limit)).fetchall()]
 
     def _spalte_existiert(self, tabelle, spalte):
         res = self.conn.execute(f'PRAGMA table_info("{tabelle}")').fetchall()

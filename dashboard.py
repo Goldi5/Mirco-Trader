@@ -1425,6 +1425,47 @@ def api_ki_log():
     return data
 
 
+# ── PHASE 5: Trading-Modi-Zustandsmaschine (Sektion 8) ──
+@app.route("/api/trading_mode", methods=["GET"])
+def api_trading_mode():
+    import security as _sec
+    tid = _get_tid()
+    mode = _sec.get_trading_mode(tid)
+    return {"tenant_id": tid, "mode": mode,
+            "allowed_transitions": []}
+
+
+@app.route("/api/trading_mode/set", methods=["POST"])
+def api_trading_mode_set():
+    import security as _sec
+    u = _sec.current_user()
+    if not u:
+        return {"error": "nicht eingeloggt"}, 401
+    # Nur TENANT_ADMIN oder ADMIN duerfen Modus wechseln (§7 kritische Trennung)
+    role = _sec.effective_role(u)
+    if role not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung fuer Moduswechsel"}, 403
+    tid = _get_tid()
+    new_mode = (request.form.get("mode") or request.json.get("mode") if request.is_json else request.form.get("mode"))
+    if not new_mode:
+        return {"error": "mode Parameter fehlt"}, 400
+    reason = request.form.get("reason", "") or (request.json.get("reason", "") if request.is_json else "")
+    try:
+        old, new = _sec.set_trading_mode(
+            new_mode, tenant_id=tid, user=u, reason=reason,
+            requested_by=(u.get("id") if u else None))
+    except ValueError as e:
+        return {"error": str(e)}, 400
+    return {"ok": True, "old_mode": old, "new_mode": new}
+
+
+@app.route("/api/trading_mode/history")
+def api_trading_mode_history():
+    import security as _sec
+    tid = _get_tid()
+    return {"tenant_id": tid, "history": _sec.trading_mode_history(tid)}
+
+
 @app.route("/api/db_query")
 def api_db_query():
     try:

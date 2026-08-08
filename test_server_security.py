@@ -305,6 +305,58 @@ try:
 except Exception as e:
     ck("Mandantentrennung", False, str(e))
 
+# ─── Phase 15e: Trading-Modi-Zustandsmaschine (v2.29.0, PHASE 5) ───────
+print("\n7e. Trading-Modi-Zustandsmaschine (v2.29.0, PHASE 5)")
+try:
+    import security as sec5, db as mtdb5, dashboard as dash5
+    # State Machine Logik (db.py)
+    m5 = mtdb5.MTDB()
+    ck("TRADING_MODES enthaelt alle 8 Zustaende",
+       len(m5.TRADING_MODES) == 8 and "LIVE_ACTIVE" in m5.TRADING_MODES)
+    ck("SHADOW->PAPER erlaubt", m5.mode_can_transition("SHADOW", "PAPER"))
+    ck("SHADOW->LIVE_ACTIVE VERBOTEN", not m5.mode_can_transition("SHADOW", "LIVE_ACTIVE"))
+    ck("PAPER->LIVE_REQUESTED erlaubt", m5.mode_can_transition("PAPER", "LIVE_REQUESTED"))
+    ck("LIVE_APPROVED->LIVE_ACTIVE erlaubt", m5.mode_can_transition("LIVE_APPROVED", "LIVE_ACTIVE"))
+    m5.close()
+
+    # set_trading_mode erzwingt erlaubte Transition (ValueError sonst)
+    # Zuerst sicher auf SHADOW zuruecksetzen (Isolation)
+    try:
+        sec5.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
+    except ValueError:
+        pass
+    try:
+        sec5.set_trading_mode("LIVE_ACTIVE", tenant_id=1, user={"username": "admin"})
+        ck("set_trading_mode verbietet illegale Transition", False)
+    except ValueError:
+        ck("set_trading_mode verbietet illegale Transition", True)
+    # Erlaubte Transition SHADOW->PAPER
+    old, new = sec5.set_trading_mode("PAPER", tenant_id=1, user={"username": "admin"}, reason="Test")
+    ck("set_trading_mode SHADOW->PAPER OK", old == "SHADOW" and new == "PAPER")
+    # Cleanup zurueck zu SHADOW
+    sec5.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
+
+    # API-Test
+    app5 = dash5.app; app5.config["TESTING"] = True
+    c5 = app5.test_client()
+    c5.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    r = c5.get("/api/trading_mode")
+    ck("API GET /api/trading_mode liefert Modus", r.status_code == 200 and "mode" in r.get_json())
+    r = c5.post("/api/trading_mode/set", data={"mode": "PAPER", "reason": "t"})
+    ck("API POST set PAPER OK", r.get_json().get("ok") is True)
+    r = c5.post("/api/trading_mode/set", data={"mode": "LIVE_ACTIVE"})
+    ck("API POST LIVE_ACTIVE abgelehnt (400)", r.status_code == 400)
+    # History
+    r = c5.get("/api/trading_mode/history")
+    ck("API history liefert Liste", r.status_code == 200 and isinstance(r.get_json().get("history"), list))
+    # Cleanup DB
+    m5b = mtdb5.MTDB()
+    m5b.conn.execute("DELETE FROM trading_mode_transitions WHERE tenant_id=1")
+    m5b.conn.commit(); m5b.close()
+    sec5.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
+except Exception as e:
+    ck("Trading-Modi-Zustandsmaschine", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

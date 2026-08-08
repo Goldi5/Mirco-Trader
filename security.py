@@ -44,6 +44,68 @@ def get_current_tenant():
     return _current_tenant.get()
 
 
+# ── PHASE 5: Trading-Modi-Zustandsmaschine (Sektion 8) ──
+def get_trading_mode(tenant_id=None):
+    """Liest den aktuellen Trading-Modus eines Tenants (Default: SHADOW)."""
+    tid = tenant_id or get_current_tenant() or 1
+    try:
+        import db as _db
+        m = _db.MTDB()
+        row = m.conn.execute(
+            "SELECT default_trading_mode FROM tenants WHERE id = ?", (tid,)
+        ).fetchone()
+        m.close()
+        return (row["default_trading_mode"] if row else "SHADOW") or "SHADOW"
+    except Exception:
+        return "SHADOW"
+
+
+def set_trading_mode(new_mode, tenant_id=None, user=None, reason="",
+                     requested_by=None, approved_by=None, mfa_confirmed=0):
+    """PHASE 5: Zustandswechsel mit erlaubter Transition (State Machine).
+    Wirft ValueError wenn Transition nicht erlaubt ist. Schreibt Audit-Log."""
+    import db as _db
+    m = _db.MTDB()
+    tid = tenant_id or get_current_tenant() or 1
+    old_mode = get_trading_mode(tid)
+    if new_mode not in m.TRADING_MODES:
+        m.close()
+        raise ValueError(f"Ungueltiger Modus: {new_mode}")
+    if not m.mode_can_transition(old_mode, new_mode):
+        m.close()
+        raise ValueError(
+            f"Transition {old_mode} -> {new_mode} nicht erlaubt")
+    # Tenant-Default aktualisieren
+    m.conn.execute(
+        "UPDATE tenants SET default_trading_mode = ? WHERE id = ?",
+        (new_mode, tid))
+    m.conn.commit()
+    # Audit-Log
+    m.mode_log_insert(
+        tenant_id=tid, user_id=None,
+        portfolio_id=None, strategy_id=None,
+        old_mode=old_mode, new_mode=new_mode, reason=reason,
+        requested_by=(requested_by or None),
+        approved_by=approved_by, mfa_confirmed=mfa_confirmed,
+        risk_review_status=("approved" if approved_by else "pending"),
+        broker_connection_status=("live" if new_mode.startswith("LIVE") else "none"))
+    m.close()
+    return old_mode, new_mode
+
+
+def trading_mode_history(tenant_id=None, limit=100):
+    """PHASE 5: Verlauf der Moduswechsel (Audit)."""
+    tid = tenant_id or get_current_tenant() or 1
+    try:
+        import db as _db
+        m = _db.MTDB()
+        rows = m.mode_log_list(tid, limit=limit)
+        m.close()
+        return rows
+    except Exception:
+        return []
+
+
 def resolve_tenant_for_user(user):
     """Leitet die tenant_id eines Users aus der Membership-Tabelle ab.
     Fallback: Default-Tenant (id=1). Kein Client-Input noetig."""
@@ -135,6 +197,8 @@ ROUTE_ACCESS = {
     "/api/me": "AUTHENTICATED", "/api/me/password": "AUTHENTICATED",
     "/api/me/mfa": "AUTHENTICATED", "/api/me/permissions": "AUTHENTICATED",
     "/api/roles": "TENANT_ADMIN",
+    "/api/trading_mode": "TENANT_ADMIN", "/api/trading_mode/set": "TENANT_ADMIN",
+    "/api/trading_mode/history": "TENANT_ADMIN",
     "/api/tenants": "ADMIN", "/api/tenants/create": "ADMIN",
     "/api/tenants/<int:tid>/members": "ADMIN",
     "/api/users": "ADMIN", "/api/users/create": "ADMIN",

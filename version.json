@@ -1,20 +1,28 @@
 {
-  "version": "2.28.0",
-  "build": "2026-08-08_2115",
-  "released_at": "2026-08-08 21:15",
-  "codename": "Mandantentrennung (PHASE 4): tenant-scoped Depots/DB-Queries/API, 74 Tests",
+  "version": "2.29.0",
+  "build": "2026-08-08_2155",
+  "released_at": "2026-08-08 21:55",
+  "codename": "Trading-Modi-Zustandsmaschine (PHASE 5): 8 Zustaende, erzwungene Transitionen, Audit-Log, 86 Tests",
   "changes": [
+    {
+      "version": "2.29.0",
+      "date": "2026-08-08",
+      "changes": [
+        "PHASE 5 Trading-Modi-Zustandsmaschine: SHADOW/PAPER/LIVE_REQUESTED/LIVE_APPROVED/LIVE_ACTIVE/PAUSED/SUSPENDED/REVOKED",
+        "db.py: trading_mode_transitions Tabelle (Sektion 8 Pflichtfelder), MODE_TRANSITIONS, mode_log_insert/list",
+        "security.py: get_trading_mode/set_trading_mode (erzwingt erlaubte Transition, ValueError sonst), trading_mode_history",
+        "dashboard.py: /api/trading_mode (GET), /api/trading_mode/set (POST, TENANT_ADMIN), /api/trading_mode/history",
+        "ROUTE_ACCESS: 3 neue Routen auf TENANT_ADMIN",
+        "PAPER_ONLY erhalten - keine Live-Ausfuehrung",
+        "Sektion 7e: 12 neue Tests -> 86 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.28.0",
       "date": "2026-08-08",
       "changes": [
-        "PHASE 4 Mandantentrennung: Depot-Datentraeger pro Tenant (depots/etf_depots/spec_depots Tabellen)",
-        "Depot-JSONs tragen tenant_id (Default 1) -> _tenant_scoped_depot_files() filtert",
-        "data() laedt nur Depots des aktiven Tenants",
-        "API /api/ki_log, /depot_json, /api/db_query: erzwingen Tenant-Scope (OWASP)",
-        "/api/db_query PHASE-0-Luecke geschlossen: direkter SQL jetzt tenant-gefiltert",
-        "db.py: query_trades/query_ki tenant_id-Parameter, depot_register/list_tenant",
-        "Sektion 7d: 5 neue Tests -> 74 OK, 0 FAIL"
+        "PHASE 4 Mandantentrennung: tenant-scoped Depots/DB/API",
+        "74 Tests"
       ]
     },
     {

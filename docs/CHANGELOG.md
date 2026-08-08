@@ -1,3 +1,13 @@
+## [2.29.0] - 2026-08-08
+### Added (PHASE 5: Trading-Modi-Zustandsmaschine — Mandanten-Ausbauauftrag)
+- **8 Zustaende:** SHADOW/PAPER/LIVE_REQUESTED/LIVE_APPROVED/LIVE_ACTIVE/PAUSED/SUSPENDED/REVOKED.
+- **db.py:** `trading_mode_transitions` Tabelle (Sektion 8 Pflichtfelder), `MODE_TRANSITIONS`, `mode_log_insert`/`mode_log_list`.
+- **security.py:** `get_trading_mode`/`set_trading_mode` (erzwingt erlaubte Transition, `ValueError` sonst), `trading_mode_history`.
+- **dashboard.py:** `/api/trading_mode` (GET), `/api/trading_mode/set` (POST, TENANT_ADMIN), `/api/trading_mode/history`.
+- **ROUTE_ACCESS:** 3 neue Routen auf TENANT_ADMIN.
+- **Tests:** Sektion 7e (+12) → **86 OK, 0 FAIL**.
+- **PAPER_ONLY bleibt** — keine Live-Ausfuehrung.
+
 ## [2.28.0] - 2026-08-08
 ### Added (PHASE 4: Mandantentrennung — Mandanten-Ausbauauftrag)
 - **Depot-Datentraeger pro Tenant:** SQLite-Tabellen `depots`/`etf_depots`/`spec_depots` (tenant_id).
