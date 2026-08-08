@@ -122,6 +122,47 @@ try:
 except Exception as e:
     ck("Flask test_client", False, str(e))
 
+# ─── Phase 15: Benutzerverwaltung-API (v2.23.0) ─────────────────────────────
+print("\n7. Benutzerverwaltung-API (v2.23.0)")
+try:
+    import dashboard
+    app = dashboard.app; app.config["TESTING"] = True
+    c = app.test_client()
+    # Ohne Auth -> 401
+    r = c.get("/api/users")
+    ck("/api/users ohne Auth -> 401", r.status_code == 401)
+    r = c.get("/api/me")
+    ck("/api/me ohne Auth -> 401", r.status_code == 401)
+    # Admin-Login
+    c.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    r = c.get("/api/me")
+    j = r.get_json()
+    ck("/api/me als admin -> 200 + superadmin", r.status_code == 200 and j.get("role") == "superadmin")
+    r = c.get("/api/users")
+    ck("/api/users als admin -> 200", r.status_code == 200 and "users" in (r.get_json() or {}))
+    # Create/409/Role/Deactivate/ResetPW/Revoke
+    r = c.post("/api/users/create", json={"username": "__v23__", "password": "TestPass123!", "role": "analyst"})
+    ck("create -> 200", r.status_code == 200)
+    r = c.post("/api/users/create", json={"username": "__v23__", "password": "TestPass123!", "role": "analyst"})
+    ck("create dup -> 409", r.status_code == 409)
+    r = c.post("/api/users/__v23__/role", json={"role": "operator"})
+    ck("role -> 200", r.status_code == 200)
+    r = c.post("/api/users/__v23__/deactivate", json={"active": False})
+    ck("deactivate -> 200", r.status_code == 200)
+    r = c.post("/api/users/__v23__/reset-pw", json={"password": "NeuPass123!"})
+    ck("reset-pw -> 200", r.status_code == 200)
+    r = c.post("/api/users/__v23__/revoke")
+    ck("revoke -> 200", r.status_code == 200)
+    # Nicht-Admin darf /api/users NICHT sehen
+    c2 = app.test_client()
+    c2.post("/", data={"username": "__v23__", "password": "NeuPass123!"})
+    r = c2.get("/api/users")
+    ck("Nicht-Admin /api/users -> 403/401", r.status_code in (401, 403))
+    # cleanup
+    us = sec._load_users(); us.pop("__v23__", None); sec._save_users(us)
+except Exception as e:
+    ck("Benutzerverwaltung-API", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

@@ -1,6 +1,6 @@
 {
-  "version": "2.22.3",
-  "build": "2026-08-08_1445",
+  "version": "2.23.0",
+  "build": "2026-08-08_1530",
   "released_at": "2026-08-08 12:35",
   "codename": "Server-Sicherheit Phasen 7-9 + Bugs (Landingpage, Admin-Bereich, Secret-Schutz, ROUTE_ACCESS/require_role-Fixes)",
   "changes": [
@@ -212,5 +212,5 @@
     "Phase 15/20 (Audit)",
     "Phase 21 (Server-Sicherheit 1-6)"
   ],
-  "notes": "Landingpage: Banner+Logo+Inline-Login (StufenPilot-Muster); route_class Flask-Pattern-Fix (assets PUBLIC)"
+  "notes": "Benutzerverwaltung: 8 API-Routen (users/me), Einstellungen-Tabs Mein Konto + Benutzer (StufenPilot-Look)"
 }

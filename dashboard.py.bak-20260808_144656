@@ -1727,23 +1727,23 @@ def landing():
     return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
 <title>Micro-Trader – Anmeldung</title>
 <style>
-body{{font-family:'Segoe UI Variable','Segoe UI',system-ui,sans-serif;margin:0;padding:0;background:#f8fafc;background-image:radial-gradient(ellipse at 15% 0%,rgba(37,99,235,.08) 0%,transparent 55%),radial-gradient(ellipse at 85% 0%,rgba(16,185,129,.05) 0%,transparent 50%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}}
-.card{{max-width:560px;width:100%;background:rgba(255,255,255,.82);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:0 24px 48px rgba(61,93,153,.12);overflow:hidden}}
-.banner{{width:100%;height:110px;display:block;object-fit:contain;object-position:center;background:#0f172a;border-bottom:1px solid rgba(15,23,42,.07)}}
+body{{font-family:'Segoe UI',system-ui,sans-serif;margin:0;padding:0;background:linear-gradient(160deg,#eef2ff,#fdf4ff);background-image:radial-gradient(ellipse at 15% 0%,rgba(67,97,238,.10) 0%,transparent 55%),radial-gradient(ellipse at 85% 0%,rgba(16,185,129,.07) 0%,transparent 50%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}}
+.card{{max-width:560px;width:100%;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.85);border-radius:22px;box-shadow:0 24px 60px rgba(80,110,255,.16);overflow:hidden}}
+.banner{{width:100%;height:110px;display:block;object-fit:contain;object-position:center;background:#0b1220;border-bottom:1px solid rgba(15,23,42,.07)}}
 .inner{{padding:26px 30px 30px}}
 .head{{display:flex;align-items:center;gap:12px;margin-bottom:6px}}
 .logo{{width:44px;height:44px;border-radius:10px}}
-h1{{font-size:26px;margin:0;color:#0f172a}}
+h1{{font-size:26px;margin:0;color:#1a1a2e}}
 .badge{{display:inline-block;background:#e8f5e9;color:#1b5e20;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600;margin-bottom:12px}}
-p{{line-height:1.6;color:#475569;margin:8px 0}}
-.status{{color:#64748b;font-size:13px}}
-label{{display:block;margin-top:14px;font-size:13.5px;font-weight:600;color:#334155}}
-input{{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:12px 14px;font-size:15px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;font-family:inherit;transition:border-color .15s,box-shadow .15s}}
-input:focus{{outline:none;border-color:#2563eb;box-shadow:0 0 0 4px rgba(37,99,235,.12)}}
-button{{margin-top:18px;width:100%;background:#2563eb;color:#fff;border:none;padding:13px 0;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:background .15s,transform .05s}}
-button:hover{{background:#1d4ed8}}
+p{{line-height:1.6;color:#444;margin:8px 0}}
+.status{{color:#777;font-size:13px}}
+label{{display:block;margin-top:14px;font-size:13.5px;font-weight:600;color:#333}}
+input{{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:12px 14px;font-size:15px;border:1px solid #cfdceb;border-radius:10px;background:#fff;font-family:inherit;transition:border-color .15s,box-shadow .15s}}
+input:focus{{outline:none;border-color:#4361ee;box-shadow:0 0 0 3px rgba(67,97,238,.15)}}
+button{{margin-top:18px;width:100%;background:#4361ee;color:#fff;border:none;padding:13px 0;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:background .15s,transform .05s}}
+button:hover{{background:#3a55d8}}
 button:active{{transform:translateY(1px)}}
-.hint{{margin-top:14px;font-size:12px;color:#94a3b8;text-align:center}}
+.hint{{margin-top:14px;font-size:12px;color:#888;text-align:center}}
 </style></head><body>
 <div class='card'>
 <img class='banner' src='/assets/banner.png' alt='Micro Trader System'>
@@ -1817,8 +1817,8 @@ def admin_users():
     """Benutzerverwaltung (Phase 8 Bereich 4) – Liste."""
     u = sec.current_user()
     rows = ""
-    for usr in sec.list_users():  # list_users() liefert User-Dicts
-        name = usr.get("username", "?")
+    for name in sec.list_users():
+        usr = sec.get_user(name)
         rows += f"<tr><td>{name}</td><td>{usr.get('role')}</td><td>{'ja' if usr.get('mfa_secret') else 'nein'}</td><td>{usr.get('last_login','–')}</td></tr>"
     return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
 <title>Benutzer – Micro-Trader</title>
@@ -1936,189 +1936,6 @@ table{{width:100%;border-collapse:collapse}}td,th{{text-align:left;padding:7px;b
 <a href='/admin/audit'>Audit</a><a href='/admin/backups'>Backups</a></nav>
 <div class='card'><h2>Backups (zuletzt 10)</h2>
 <table><tr><th>Name</th><th>Größe</th></tr>{rows or '<tr><td colspan=2>keine</td></tr>'}</table></div></body></html>""")
-
-
-# ─── PHASE 15: Benutzerverwaltung-API (v2.23.0) ─────────────────────────────
-def _admin_actor():
-    """Gibt den aktuellen Admin-Namen fuer Audit zurueck."""
-    u = sec.current_user()
-    return u["username"] if u else "unbekannt"
-
-
-@app.route("/api/users", methods=["GET"])
-@sec.require_role("admin")
-def api_users_list():
-    """Liste aller Benutzer (Admin)."""
-    rows = []
-    for u in sec.list_users():  # list_users() liefert User-Dicts
-        rows.append({
-            "username": u.get("username", "?"),
-            "role": u.get("role", "user"),
-            "active": u.get("active", True),
-            "mfa": bool(u.get("mfa_secret")),
-            "last_login": u.get("last_login", ""),
-            "sessions": len(u.get("sessions", {}) or {}),
-        })
-    return jsonify({"ok": True, "users": rows})
-
-
-@app.route("/api/users/create", methods=["POST"])
-@sec.require_role("admin")
-def api_users_create():
-    """Neuen Benutzer anlegen (Admin)."""
-    data = request.get_json(force=True, silent=True) or {}
-    name = str(data.get("username", "")).strip()
-    pw = str(data.get("password", "") or "")
-    role = str(data.get("role", "user")).strip() or "user"
-    if not name or not pw:
-        return jsonify({"ok": False, "error": "Benutzername und Passwort erforderlich"}), 400
-    if len(pw) < 8:
-        return jsonify({"ok": False, "error": "Passwort muss mind. 8 Zeichen haben"}), 400
-    if sec.user_exists(name):
-        return jsonify({"ok": False, "error": f"Benutzer '{name}' existiert bereits"}), 409
-    sec.create_user(name, pw, role)
-    sec.audit_log("user_create", _admin_actor(), f"user={name} role={role}")
-    return jsonify({"ok": True})
-
-
-@app.route("/api/users/<name>/role", methods=["POST"])
-@sec.require_role("admin")
-def api_users_role(name):
-    """Rolle eines Benutzers setzen (Admin)."""
-    data = request.get_json(force=True, silent=True) or {}
-    role = str(data.get("role", "")).strip()
-    if not sec.user_exists(name):
-        return jsonify({"ok": False, "error": "Benutzer nicht gefunden"}), 404
-    if role not in sec.ROLES:
-        return jsonify({"ok": False, "error": f"Unbekannte Rolle: {role}"}), 400
-    sec.set_role(name, role, _admin_actor())
-    return jsonify({"ok": True})
-
-
-@app.route("/api/users/<name>/deactivate", methods=["POST"])
-@sec.require_role("admin")
-def api_users_deactivate(name):
-    """Benutzer aktivieren/deaktivieren (Admin)."""
-    data = request.get_json(force=True, silent=True) or {}
-    active = bool(data.get("active", False))
-    if not sec.user_exists(name):
-        return jsonify({"ok": False, "error": "Benutzer nicht gefunden"}), 404
-    if name == _admin_actor():
-        return jsonify({"ok": False, "error": "Du kannst dein eigenes Konto nicht deaktivieren"}), 400
-    users = sec._load_users()
-    users[name]["active"] = active
-    if not active:
-        users[name]["sessions"] = {}
-    sec._save_users(users)
-    sec.audit_log("user_activate" if active else "user_deactivate", _admin_actor(), f"user={name}")
-    return jsonify({"ok": True})
-
-
-@app.route("/api/users/<name>/reset-pw", methods=["POST"])
-@sec.require_role("admin")
-def api_users_reset_pw(name):
-    """Passwort eines Benutzers zuruecksetzen (Admin)."""
-    data = request.get_json(force=True, silent=True) or {}
-    pw = str(data.get("password", "") or "")
-    if not sec.user_exists(name):
-        return jsonify({"ok": False, "error": "Benutzer nicht gefunden"}), 404
-    if len(pw) < 8:
-        return jsonify({"ok": False, "error": "Passwort muss mind. 8 Zeichen haben"}), 400
-    sec.change_password(name, pw)
-    sec.audit_log("user_reset_pw", _admin_actor(), f"user={name}")
-    return jsonify({"ok": True})
-
-
-@app.route("/api/users/<name>/revoke", methods=["POST"])
-@sec.require_role("admin")
-def api_users_revoke(name):
-    """Alle Sessions eines Benutzers beenden (Admin)."""
-    if not sec.user_exists(name):
-        return jsonify({"ok": False, "error": "Benutzer nicht gefunden"}), 404
-    sec.revoke_all_sessions(name)
-    sec.audit_log("user_revoke_sessions", _admin_actor(), f"user={name}")
-    return jsonify({"ok": True})
-
-
-@app.route("/api/me", methods=["GET"])
-def api_me():
-    """Eigenes Profil (eingeloggt)."""
-    u = sec.current_user()
-    if not u:
-        return jsonify({"error": "unauthorized"}), 401
-    return jsonify({
-        "ok": True,
-        "username": u["username"],
-        "role": u.get("role", "user"),
-        "active": u.get("active", True),
-        "mfa": bool(u.get("mfa_secret")),
-        "last_login": u.get("last_login", ""),
-        "permissions": sec.ROLE_PERMISSIONS.get(u.get("role", "user"), []),
-    })
-
-
-@app.route("/api/me/password", methods=["POST"])
-def api_me_password():
-    """Eigenes Passwort aendern (eingeloggt)."""
-    u = sec.current_user()
-    if not u:
-        return jsonify({"error": "unauthorized"}), 401
-    data = request.get_json(force=True, silent=True) or {}
-    alt = str(data.get("altes_passwort", "") or "")
-    neu = str(data.get("neues_passwort", "") or "")
-    if not sec.verify_password(u["username"], alt):
-        return jsonify({"ok": False, "error": "Aktuelles Passwort falsch"}), 400
-    if len(neu) < 8:
-        return jsonify({"ok": False, "error": "Neues Passwort muss mind. 8 Zeichen haben"}), 400
-    sec.change_password(u["username"], neu)
-    sec.audit_log("password_change", u["username"])
-    return jsonify({"ok": True})
-
-
-@app.route("/api/me/mfa", methods=["POST"])
-def api_me_mfa():
-    """MFA einrichten/deaktivieren (eingeloggt)."""
-    u = sec.current_user()
-    if not u:
-        return jsonify({"error": "unauthorized"}), 401
-    data = request.get_json(force=True, silent=True) or {}
-    aktion = str(data.get("aktion", "")).strip()  # "einrichten" | "verifizieren" | "deaktivieren"
-    if aktion == "einrichten":
-        if u.get("mfa_secret"):
-            return jsonify({"ok": False, "error": "MFA ist bereits aktiv"}), 400
-        secret = sec.generate_mfa_secret()
-        users = sec._load_users()
-        users[u["username"]]["mfa_pending_secret"] = secret
-        sec._save_users(users)
-        uri = sec.mfa_provisioning_uri(u["username"], secret)
-        return jsonify({"ok": True, "secret": secret, "uri": uri})
-    if aktion == "verifizieren":
-        code = str(data.get("code", "") or "")
-        secret = u.get("mfa_pending_secret") or u.get("mfa_secret")
-        if not secret:
-            return jsonify({"ok": False, "error": "Kein MFA-Secret vorhanden"}), 400
-        if sec.verify_mfa(secret, code):
-            users = sec._load_users()
-            users[u["username"]]["mfa_secret"] = secret
-            users[u["username"]].pop("mfa_pending_secret", None)
-            sec._save_users(users)
-            sec.audit_log("mfa_enable", u["username"])
-            return jsonify({"ok": True})
-        return jsonify({"ok": False, "error": "Code ungültig"}), 400
-    if aktion == "deaktivieren":
-        code = str(data.get("code", "") or "")
-        secret = u.get("mfa_secret")
-        if not secret:
-            return jsonify({"ok": False, "error": "MFA ist nicht aktiv"}), 400
-        if sec.verify_mfa(secret, code):
-            users = sec._load_users()
-            users[u["username"]].pop("mfa_secret", None)
-            users[u["username"]].pop("mfa_pending_secret", None)
-            sec._save_users(users)
-            sec.audit_log("mfa_disable", u["username"])
-            return jsonify({"ok": True})
-        return jsonify({"ok": False, "error": "Code ungültig"}), 400
-    return jsonify({"ok": False, "error": "Unbekannte Aktion"}), 400
 
 
 if __name__ == "__main__":
