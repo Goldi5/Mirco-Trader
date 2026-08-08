@@ -1,96 +1,101 @@
-# Rollen-/Berechtigungsmodell (PHASE 2, v2.27.0)
+# Rollen- & Berechtigungsmodell (PHASE 2)
 
-> Basis: Phase 0-Inventar (`PLATFORM-ARCHITECTURE-INVENTORY.md`) + Phase 1
-> (`TENANT-DATA-MODEL.md`). OWASP Multi-Tenant-Cheat-Sheet: deny-by-default,
-> serverseitige Autorisierung, Tenant nie aus Client-Input.
+**Version:** v2.27.0 · **Stand:** 2026-08-08 · **Status:** Implementiert + getestet
 
-## Kernprinzip: Effektive Rolle
+## Ziel
+Tenant-bezogene Rollen: Ein User kann in Tenant A **Admin** sein, in Tenant B
+nur **User**. Berechtigungen wirken im Kontext des aktiven Mandanten (OWASP:
+Tenant-ID nie aus Client-Input, immer aus Session abgeleitet).
 
-Jeder User hat zwei Rollen:
+## Architektur
 
-| Ebene | Quelle | Beispiel |
-|-------|--------|----------|
-| **Globale Rolle** | `security_users.json` → `user.role` | `user`, `operator`, `admin`, `superadmin` |
-| **Tenant-Rolle** | `tenant_memberships.role` | User ist in Tenant A `admin`, in Tenant B nur `user` |
-
-**Effektive Rolle** (`sec.effective_role(user, tenant_id)`):
-1. Membership-Rolle im aktuellen Tenant (aktiv) **gewinnt**
-2. sonst globale User-Rolle (Fallback)
-3. sonst `visitor`
-
-```
-global: user  +  Tenant A-Membership: admin  →  effektiv in A: admin
-global: user  +  Tenant B-Membership: (keine) →  effektiv in B: user
-```
-
-## Permission-Maps
-
-`ROLE_PERMISSIONS` (global, Phase 6) bleibt unverändert für Nicht-Tenant-Code.
-`TENANT_ROLE_PERMISSIONS` (neu, Phase 2) erweitert um `tenant_*`-Permissions:
-
-| Permission | Bedeutung | Rollen |
-|-----------|-----------|--------|
-| `tenant_view` | Tenant-Daten sehen | user+ |
-| `tenant_trade_control` | Trading-Pause/Resume im Tenant | operator+ |
-| `tenant_manage` | Tenant-Konfiguration | admin |
-| `tenant_members` | Mitglieder verwalten | admin |
-| `tenant_delete` | Tenant löschen | **nur superadmin** |
-
-`ALL_PERMISSIONS` = Vereinigung beider Maps (22 Permissions, für API/Doku).
-
-## Zugriffsklassen (before_request)
-
-`ROUTE_ACCESS` klassifiziert jede Route. **NEU in Phase 2: `TENANT_ADMIN`** —
-prüft gegen die **effektive Rolle** (Membership gewinnt) und setzt den
-Tenant-Kontext aus der Session (nie aus Client-Input):
-
-| Klasse | Prüfung | Routen (Beispiele) |
-|--------|---------|--------------------|
-| PUBLIC | keine | `/`, `/landing`, `/assets/*` |
-| AUTHENTICATED | gültige Session + Tenant-Kontext setzen | `/dashboard`, `/api/me`, `/api/me/permissions` |
-| TENANT_ADMIN | effektive Rolle >= ADMIN | `/api/roles` |
-| ANALYST/OPERATOR/ADMIN/SUPERADMIN | **globale** Rolle (systemweit) | `/api/tenants*`, `/api/users*`, `/admin/*` |
-
-Sicherheits-Eigenschaft: Ein Tenant-Admin (global `user`) darf `/api/roles`
-sehen (200), aber **nicht** `/api/tenants` oder `/api/users*` (403) — die
-systemweite Verwaltung bleibt globalen Admins/Superadmins vorbehalten.
-
-## Neue Funktionen (security.py)
-
+### 1. Rollen (global + effektiv)
 ```python
-sec.effective_role(user, tenant_id=None)      # Membership > global > visitor
-sec.effective_permissions(user, tenant_id=None)
-sec.has_permission(user, perm, tenant_id=None)
-sec.has_permission_in(role, perm)             # statisch, ohne DB
-sec.require_tenant_role(min_role)             # Decorator (Tenant-Kontext)
-sec.require_permission(perm)                  # Decorator
+ROLES = ["visitor", "user", "analyst", "operator", "admin", "superadmin"]
+```
+- **Globale Rolle** (`security_users.json` → `role`): Fallback, wenn keine
+  Membership im aktiven Tenant existiert.
+- **Effektive Rolle**: `effective_role(user, tenant_id)` liefert die
+  Membership-Rolle im Tenant (gewichtet) ODER die globale Rolle (Fallback).
+
+### 2. Permission-Maps
+- `ROLE_PERMISSIONS` — globale Permissions (Phase 6, Basis).
+- `TENANT_ROLE_PERMISSIONS` — **PHASE 2**, erweitert um Tenant-Rechte:
+  - `tenant_view` — Mandant einsehen
+  - `tenant_manage` — Mandant konfigurieren (Admin)
+  - `tenant_trade_control` — Handel pausieren/fortsetzen (Operator)
+  - `tenant_members` — Mitglieder verwalten (Admin)
+  - `tenant_delete` — Mandant löschen (**nur Superadmin**)
+
+### 3. Prüf-Funktionen (security.py)
+| Funktion | Zweck |
+|----------|-------|
+| `effective_role(user, tid)` | Membership-Rolle > globale Rolle |
+| `effective_permissions(user, tid)` | Permissions der effektiven Rolle |
+| `has_permission(user, perm, tid)` | Permission-Check im Tenant-Kontext |
+| `has_permission_in(role, perm)` | Statischer Check (ohne User) |
+
+### 4. Decorators
+- `@require_role("admin")` — prüft **globale** Rolle (systemweite Routen)
+- `@require_tenant_role("admin")` — prüft **effektive** Rolle im Tenant
+- `@require_permission("tenant_manage")` — prüft Permission im Tenant
+
+### 5. Route-Klassen (ROUTE_ACCESS)
+- `ADMIN` — systemweite Admin-Routen (globale Rolle, z.B. `/api/tenants`)
+- `TENANT_ADMIN` — tenant-bezogene Admin-Routen (effektive Rolle, z.B. `/api/roles`)
+
+**before_request** erkennt `TENANT_`-Präfix und prüft gegen die effektive Rolle
+statt der globalen.
+
+## API
+
+### `GET /api/roles` (TENANT_ADMIN)
+Rollenkatalog + Permissions:
+```json
+{
+  "roles": [
+    {"role": "admin", "level": "ADMIN",
+     "permissions": ["dashboard", "tenant_manage", "tenant_members", ...]},
+    ...
+  ],
+  "all_permissions": ["landingpage", "dashboard", ..., "tenant_delete"]
+}
 ```
 
-## Neue API-Routen (dashboard.py)
+### `GET /api/me/permissions` (AUTHENTICATED)
+Effektive Permissions im aktiven Tenant:
+```json
+{
+  "username": "admin",
+  "tenant_id": 1,
+  "effective_role": "superadmin",
+  "permissions": ["landingpage", "dashboard", ..., "tenant_delete"]
+}
+```
 
-| Route | Klasse | Funktion |
-|-------|--------|----------|
-| `GET /api/roles` | TENANT_ADMIN | Rollenkatalog (6 Rollen, Level, Permissions) + `all_permissions` |
-| `GET /api/me/permissions` | AUTHENTICATED | `effective_role` + Permissions im aktuellen Tenant |
-
-`/api/me` zusätzlich: `effective_role` + `tenant_permissions`.
+### `GET /api/me` (erweitert)
+Neu: `"effective_role"` + `"tenant_permissions"`.
 
 ## UI
+Mein-Konto zeigt: Globale Rolle + (falls abweichend) effektive Rolle im Mandant
+als Badge (`im Mandant: <rolle>`).
 
-Mein-Konto zeigt neben der globalen Rolle die **effektive Rolle im Mandant**
-(Chip „im Mandant: admin"), wenn sie abweicht.
+## Sicherheit (OWASP Multi-Tenant)
+- Tenant-ID kommt **nie** aus Client-Header/Params → `resolve_tenant_for_user()`
+  aus Session/Membership.
+- deny-by-default: Unbekannte Route → `ADMIN` (restriktiv).
+- Superadmin hat immer alle Permissions (Explizit-Override).
+- Membership-Status `inaktiv` → Rolle wird nicht angewendet.
 
-## Tests (Sektion 7c, 14 neue → 69 OK, 0 FAIL)
+## Tests
+Sektion 7c in `test_server_security.py` (10 Tests):
+- Effektive Rolle gewinnt (Membership > global)
+- Andere Tenant → globale Rolle
+- tenant_manage/tenant_trade_control/tenant_delete
+- API: superadmin, Tenant-Admin (200), Operator (403)
+- **Gesamt-Suite: 69 OK, 0 FAIL**
 
-- effektive Rolle gewinnt / fällt zurück je Tenant
-- `tenant_manage` ja, `tenant_delete` nein (admin) / superadmin hat alles
-- Tenant-Admin: `/api/roles` 200, `/api/tenants` 403 (systemweit)
-- Operator ohne Membership: `/api/roles` 403
-- `/api/me/permissions` liefert effektive Rechte je Rolle
-
-## Offene Punkte (Folgephasen)
-
-- Tenant-Switcher im UI (mehrere Memberships → aktiven Tenant wechseln)
-- Datenfilterung: alle Queries/JSON-Pfade mit `tenant_id` (Phase 3)
-- `/api/db_query` (ANALYST, direkter SQL) vor Mandanten-Trennung absichern
-- CSRF-Token im HTML-Rendering verdrahten
+## Nächste Schritte (Phase 3+)
+- UI: Rollen-Verwaltung pro Tenant (Mitglieder-Rolle ändern im Frontend)
+- Audit-Log für Rollenwechsel
+- Feingranulare Permissions (z.B. `trade_execute`, `report_export`)

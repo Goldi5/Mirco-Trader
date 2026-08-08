@@ -207,6 +207,14 @@ print("\n7c. Rollen-/Berechtigungsmodell (v2.27.0)")
 try:
     import db as mtdb2
     m = mtdb2.MTDB()
+    # Idempotent: alte Reste entfernen
+    try:
+        m.conn.execute("DELETE FROM tenant_memberships WHERE tenant_id IN "
+                       "(SELECT id FROM tenants WHERE tenant_key='__rolle_suite__')")
+        m.conn.execute("DELETE FROM tenants WHERE tenant_key='__rolle_suite__'")
+        m.conn.commit()
+    except Exception:
+        pass
     # Test-Tenant + User mit Membership-Rolle != globaler Rolle
     t2, fehler = m.tenant_create("__rolle_suite__", "Rollen-Suite")
     ck("Rollen-Tenant anlegen", t2 is not None and fehler is None)
