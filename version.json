@@ -1,9 +1,33 @@
 {
-  "version": "2.26.0",
-  "build": "2026-08-08_1900",
-  "released_at": "2026-08-08 19:00",
-  "codename": "Mandanten-Modell (PHASE 1): tenants/memberships/workspaces, Tenant-Kontext aus Session, /api/tenants, 55 Tests",
+  "version": "2.27.0",
+  "build": "2026-08-08_2030",
+  "released_at": "2026-08-08 20:30",
+  "codename": "Rollen-/Berechtigungsmodell (PHASE 2): effektive Tenant-Rolle, TENANT_ADMIN-Klasse, /api/roles + /api/me/permissions, 69 Tests",
   "changes": [
+    {
+      "version": "2.27.0",
+      "date": "2026-08-08",
+      "changes": [
+        "Effektive Rolle: Membership-Rolle im Tenant gewinnt vor globaler User-Rolle",
+        "TENANT_ROLE_PERMISSIONS: tenant_* Permissions je Rolle (view/manage/trade_control/members/delete)",
+        "Neue Zugriffsklasse TENANT_ADMIN (before_request prueft effektive Rolle statt globaler)",
+        "Decorators require_tenant_role + require_permission (Tenant-Kontext)",
+        "API /api/roles (Rollenkatalog, Tenant-Admin) + /api/me/permissions (effektive Rechte)",
+        "UI: Mein-Konto zeigt effektive Rolle im Mandant",
+        "Sektion 7c: 14 neue Tests -> 69 OK, 0 FAIL"
+      ]
+    },
+    {
+      "version": "2.26.0",
+      "date": "2026-08-08 19:00",
+      "changes": [
+        "PHASE 1 Mandanten-Modell: tenants/tenant_memberships/workspaces Tabellen",
+        "tenant_id-Spalten auf trades/ki_decisions (idempotente Migration)",
+        "Tenant-Kontext aus Session (OWASP: nie vom Client), ContextVar",
+        "Admin-Routen /api/tenants, /api/tenants/create, /api/tenants/<id>/members",
+        "UI Mandant-Anzeige; Sektion 7b: 10 Tests -> 55 OK"
+      ]
+    },
     {
       "version": "2.25.1",
       "date": "2026-08-08",

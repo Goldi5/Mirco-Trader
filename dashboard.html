@@ -2065,7 +2065,9 @@ async function ladeKontoDaten() {
     const prof = document.getElementById("kontoProfil");
     if (prof) prof.innerHTML =
       `<b style="font-size:14px;color:var(--text)">${esc(j.username)}</b><br>
-       Rolle: <span style="color:var(--accent);font-weight:600">${j.role}</span><br>
+       Rolle: <span style="color:var(--accent);font-weight:600">${esc(j.role)}</span>` +
+       (j.effective_role && j.effective_role !== j.role ? ` <span style="font-size:10px;background:rgba(37,99,235,.1);color:var(--accent);border-radius:6px;padding:1px 6px">im Mandant: ${esc(j.effective_role)}</span>` : "") +
+      `<br>
        Status: ${j.active ? '<span style="color:var(--green)">aktiv</span>' : '<span style="color:var(--red)">inaktiv</span>'}<br>
        MFA: ${j.mfa ? '<span style="color:var(--green)">aktiv</span>' : '<span style="color:var(--amber)">nicht aktiv</span>'}<br>
        Letzter Login: ${j.last_login ? String(j.last_login).slice(0,16).replace("T"," ") : "–"}<br>

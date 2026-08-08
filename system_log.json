@@ -1,105 +1,5 @@
 [
   {
-    "zeit": "2026-08-07T18:30:03.321392",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ"
-  },
-  {
-    "zeit": "2026-08-07T18:31:02.296217",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Cron-Pipeline gestartet (mode=full, detached)"
-  },
-  {
-    "zeit": "2026-08-07T18:31:03.428303",
-    "quelle": "watchdog",
-    "text": "Watchdog: alles OK (kein Test gesendet)"
-  },
-  {
-    "zeit": "2026-08-07T18:31:03.437777",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ"
-  },
-  {
-    "zeit": "2026-08-07T18:32:02.368568",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Cron-Pipeline gestartet (mode=full, detached)"
-  },
-  {
-    "zeit": "2026-08-07T18:32:03.472134",
-    "quelle": "watchdog",
-    "text": "Watchdog: alles OK (kein Test gesendet)"
-  },
-  {
-    "zeit": "2026-08-07T18:32:03.482078",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ"
-  },
-  {
-    "zeit": "2026-08-07T18:32:27.725935",
-    "quelle": "spec",
-    "level": "ok",
-    "text": "Spec-Lauf: 49 Depots analysiert"
-  },
-  {
-    "zeit": "2026-08-07T18:32:35.266495",
-    "quelle": "ki_learning",
-    "level": "info",
-    "text": "Lern-Analyse: keine neuen Entscheidungen"
-  },
-  {
-    "zeit": "2026-08-07T18:32:35.708773",
-    "quelle": "skill",
-    "level": "info",
-    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1832, 48 verfügbar)"
-  },
-  {
-    "zeit": "2026-08-07T18:32:39.398815",
-    "quelle": "etf",
-    "level": "warn",
-    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.66%"
-  },
-  {
-    "zeit": "2026-08-07T18:32:50.201425",
-    "quelle": "spec",
-    "level": "ok",
-    "text": "Spec-Lauf: 49 Depots analysiert"
-  },
-  {
-    "zeit": "2026-08-07T18:32:51.308286",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 728 Trades, Rendite +5.87%"
-  },
-  {
-    "zeit": "2026-08-07T18:32:51.581185",
-    "quelle": "cron",
-    "level": "ok",
-    "text": "KI-Lauf durchgelaufen"
-  },
-  {
-    "zeit": "2026-08-07T18:32:57.803181",
-    "quelle": "ki_learning",
-    "level": "info",
-    "text": "Lern-Analyse: keine neuen Entscheidungen"
-  },
-  {
-    "zeit": "2026-08-07T18:32:58.241647",
-    "quelle": "skill",
-    "level": "info",
-    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1832, 48 verfügbar)"
-  },
-  {
-    "zeit": "2026-08-07T18:33:00.096508",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 735 Trades, Rendite +5.89%"
-  },
-  {
     "zeit": "2026-08-07T18:33:01.752158",
     "quelle": "etf",
     "level": "warn",
@@ -2983,5 +2883,11 @@
     "zeit": "2026-08-08T18:26:37.788568",
     "quelle": "watchdog",
     "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T20:01:45.944533",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 777 Trades, Rendite +6.28%"
   }
 ]

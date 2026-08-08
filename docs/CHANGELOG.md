@@ -1,3 +1,27 @@
+## [2.27.0] - 2026-08-08
+### Added (Rollen-/Berechtigungsmodell, PHASE 2 Mandanten-Ausbau)
+- **Effektive Rolle** (`security.py`): Membership-Rolle im Tenant gewinnt vor globaler User-Rolle — User kann in Tenant A `admin`, in Tenant B `user` sein.
+- **`TENANT_ROLE_PERMISSIONS`**: tenant-bezogene Permissions (`tenant_view`, `tenant_trade_control`, `tenant_manage`, `tenant_members`, `tenant_delete`). `tenant_delete` nur superadmin.
+- **Neue Zugriffsklasse `TENANT_ADMIN`**: `before_request` prüft gegen die effektive Rolle (statt globaler) und setzt den Tenant-Kontext aus der Session. Systemweite Routen (`/api/tenants*`, `/api/users*`) bleiben global ADMIN — Tenant-Admin erreicht sie NICHT (403).
+- **Decorators**: `require_tenant_role(min_role)` + `require_permission(perm)` (Tenant-Kontext).
+- **API**: `GET /api/roles` (Rollenkatalog, TENANT_ADMIN), `GET /api/me/permissions` (effektive Rechte), `/api/me` um `effective_role`/`tenant_permissions` erweitert.
+- **UI**: Mein-Konto zeigt effektive Rolle im Mandant (Chip, wenn abweichend).
+- **Doku**: `ROLE-PERMISSION-MODEL.md`.
+- **Tests**: Sektion 7c (14 neue) → **69 OK, 0 FAIL**.
+
+## [2.26.0] - 2026-08-08
+### Added (Mandanten-Modell, PHASE 1 Mandanten-Ausbau)
+- SQLite-Tabellen `tenants`, `tenant_memberships`, `workspaces` (idempotente Migration).
+- `tenant_id`-Spalten auf `trades`/`ki_decisions`.
+- Tenant-Kontext aus Session (OWASP: nie vom Client) via ContextVar.
+- Admin-Routen `/api/tenants`, `/api/tenants/create`, `/api/tenants/<id>/members`.
+- UI: Mandant-Anzeige im Mein-Konto-Tab.
+- Doku: `TENANT-DATA-MODEL.md`; Tests Sektion 7b (10 neue) → 55 OK.
+
+## [2.25.1] - 2026-08-08
+### Removed
+- Drawdown-Warnungsbalken (kein Mehrwert).
+
 ## [2.20.2] - 2026-08-08
 ### Fixed (Risk 70 kauft endlich)
 - **`batch_trader.py` Budget-Filter** (Z116-117 + Z146-148): `kauf_budget = depot.bargeld * 0.8` → `depot.bargeld * params["position_size"] * 1.5`.

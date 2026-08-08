@@ -202,6 +202,69 @@ try:
 except Exception as e:
     ck("Mandanten-Modell", False, str(e))
 
+# ─── Phase 15c: Rollen-/Berechtigungsmodell (v2.27.0) ───────────────────────
+print("\n7c. Rollen-/Berechtigungsmodell (v2.27.0)")
+try:
+    import db as mtdb2
+    m = mtdb2.MTDB()
+    # Test-Tenant + User mit Membership-Rolle != globaler Rolle
+    t2, fehler = m.tenant_create("__rolle_suite__", "Rollen-Suite")
+    ck("Rollen-Tenant anlegen", t2 is not None and fehler is None)
+    ok1, fe1 = sec.create_user("__rolle_a__", "TestPass123!", "user")
+    ok2, fe2 = sec.create_user("__rolle_b__", "TestPass123!", "operator")
+    ck("Rollen-User anlegen", ok1 and ok2)
+    m.tenant_membership_add(t2, "__rolle_a__", "admin")
+    m.close()
+
+    ua = sec.get_user("__rolle_a__")
+    # Effektive Rolle: Membership 'admin' > globale 'user'
+    ck("effektive Rolle gewinnt", sec.effective_role(ua, t2) == "admin")
+    ck("andere Tenant -> globale Rolle", sec.effective_role(ua, 1) == "user")
+    ck("Tenant-Permissions enthalten tenant_manage",
+       "tenant_manage" in sec.effective_permissions(ua, t2))
+    ck("admin hat KEIN tenant_delete", not sec.has_permission(ua, "tenant_delete", t2))
+    ck("superadmin hat alles", sec.has_permission({"role": "superadmin"}, "tenant_delete"))
+    ub = sec.get_user("__rolle_b__")
+    ck("operator tenant_trade_control", sec.has_permission(ub, "tenant_trade_control", t2))
+
+    import dashboard as dash2
+    app3 = dash2.app; app3.config["TESTING"] = True
+    c3 = app3.test_client()
+    c3.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    r = c3.get("/api/me/permissions")
+    j = r.get_json()
+    ck("API /api/me/permissions superadmin",
+       j.get("effective_role") == "superadmin" and "tenant_delete" in j.get("permissions", []))
+    r = c3.get("/api/roles")
+    j = r.get_json()
+    ck("API /api/roles Katalog", r.status_code == 200 and len(j.get("roles", [])) == 6
+       and len(j.get("all_permissions", [])) >= 20)
+    # Tenant-Admin (global user) erreicht /api/roles im Tenant-Kontext
+    c4 = app3.test_client()
+    c4.post("/", data={"username": "__rolle_a__", "password": "TestPass123!"})
+    r = c4.get("/api/roles")
+    ck("Tenant-Admin /api/roles -> 200 (effektiv)", r.status_code == 200)
+    r = c4.get("/api/tenants")
+    ck("Tenant-Admin /api/tenants -> 403 (systemweit)", r.status_code == 403)
+    # Operator ohne Membership -> 403
+    c5 = app3.test_client()
+    c5.post("/", data={"username": "__rolle_b__", "password": "TestPass123!"})
+    r = c5.get("/api/roles")
+    ck("Operator /api/roles -> 403", r.status_code == 403)
+    j = c5.get("/api/me/permissions").get_json()
+    ck("Operator effektive Permissions",
+       j.get("effective_role") == "operator" and "tenant_trade_control" in j.get("permissions", []))
+    # Cleanup
+    m2 = mtdb2.MTDB()
+    m2.conn.execute("DELETE FROM tenant_memberships WHERE tenant_id=?", (t2,))
+    m2.conn.execute("DELETE FROM tenants WHERE id=?", (t2,))
+    m2.conn.commit(); m2.close()
+    us = sec._load_users()
+    us.pop("__rolle_a__", None); us.pop("__rolle_b__", None)
+    sec._save_users(us)
+except Exception as e:
+    ck("Rollen-/Berechtigungsmodell", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

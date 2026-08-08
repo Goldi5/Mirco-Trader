@@ -1483,3 +1483,5 @@ Risk 80: Cash=0.00, Budget=0.00, aktien_liste=659, bezahlbare=0
 Risk 90: Cash=0.00, Budget=0.00, aktien_liste=659, bezahlbare=0
 Risk 80: Cash=0.00, Budget=0.00, aktien_liste=659, bezahlbare=0
 Risk 90: Cash=0.00, Budget=0.00, aktien_liste=659, bezahlbare=0
+Risk 80: Cash=0.00, Budget=0.00, aktien_liste=659, bezahlbare=0
+Risk 90: Cash=0.00, Budget=0.00, aktien_liste=659, bezahlbare=0

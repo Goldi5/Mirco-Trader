@@ -5,6 +5,7 @@ venv/
 *.db
 ki_cooldown.json
 .bak-*/
+*.bak-*
 .backup/
 .backups/
 backups/

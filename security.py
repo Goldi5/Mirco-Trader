@@ -93,6 +93,33 @@ ROLE_PERMISSIONS = {
                    "audit", "backups", "recovery", "security_config", "mfa_emergency"],
 }
 
+# ─── PHASE 2: Tenant-bezogene Berechtigungen (Mandanten-Ausbau) ─────────────
+# Effektive Rolle = Membership-Rolle im aktuellen Tenant (gewichtig), sonst
+# globale User-Rolle (Fallback). Ermöglicht: User ist in Tenant A 'admin',
+# in Tenant B nur 'user'.
+TENANT_ROLE_PERMISSIONS = {
+    "user":      ["landingpage", "dashboard", "own_data", "tenant_view"],
+    "analyst":   ["landingpage", "dashboard", "reports", "analysis", "ki_log_view",
+                  "tenant_view"],
+    "operator":  ["landingpage", "dashboard", "reports", "analysis", "systemstatus",
+                  "pause_trading", "resume_trading", "tenant_view", "tenant_trade_control"],
+    "admin":     ["landingpage", "dashboard", "reports", "analysis", "systemstatus",
+                  "pause_trading", "resume_trading", "users", "settings", "rules",
+                  "audit", "backups", "tenant_view", "tenant_manage",
+                  "tenant_trade_control", "tenant_members"],
+    "superadmin": ["landingpage", "dashboard", "reports", "analysis", "systemstatus",
+                   "pause_trading", "resume_trading", "users", "settings", "rules",
+                   "audit", "backups", "recovery", "security_config", "mfa_emergency",
+                   "tenant_view", "tenant_manage", "tenant_trade_control",
+                   "tenant_members", "tenant_delete"],
+}
+
+# Alle bekannten Permissions (global + tenant) — für Dokumentation/API
+ALL_PERMISSIONS = sorted(set(
+    [p for ps in ROLE_PERMISSIONS.values() for p in ps] +
+    [p for ps in TENANT_ROLE_PERMISSIONS.values() for p in ps]
+))
+
 # Routen-Zugriffsklassen (Phase 6 Zuordnung aus SERVER-SECURITY-INVENTORY)
 ROUTE_ACCESS = {
     "/": "PUBLIC", "/landing": "PUBLIC", "/api/version": "PUBLIC",
@@ -106,7 +133,8 @@ ROUTE_ACCESS = {
     "/api/report_list": "AUTHENTICATED", "/search_ticker": "AUTHENTICATED",
     "/ticker_chart": "AUTHENTICATED",
     "/api/me": "AUTHENTICATED", "/api/me/password": "AUTHENTICATED",
-    "/api/me/mfa": "AUTHENTICATED",
+    "/api/me/mfa": "AUTHENTICATED", "/api/me/permissions": "AUTHENTICATED",
+    "/api/roles": "TENANT_ADMIN",
     "/api/tenants": "ADMIN", "/api/tenants/create": "ADMIN",
     "/api/tenants/<int:tid>/members": "ADMIN",
     "/api/users": "ADMIN", "/api/users/create": "ADMIN",
@@ -542,6 +570,55 @@ def role_has_permission(role, required):
     return False
 
 
+# ─── PHASE 2: Effektive Rolle + Permissions im Tenant-Kontext ───────────────
+def effective_role(user, tenant_id=None):
+    """Effektive Rolle eines Users.
+
+    Priorität: Membership-Rolle im angegebenen Tenant (oder aktuellem Kontext)
+    > globale User-Rolle. Fallback: 'visitor'.
+    """
+    if not user:
+        return "visitor"
+    tid = tenant_id or get_current_tenant()
+    if tid:
+        try:
+            import db as _db
+            m = _db.MTDB()
+            try:
+                member = m.tenant_membership_role(tid, user.get("username", ""))
+            finally:
+                m.close()
+            # Dict {role, status} oder None
+            if member and member.get("status", "aktiv") != "inaktiv":
+                role = member.get("role")
+                if role:
+                    return str(role).lower()
+        except Exception:
+            pass
+    return (user.get("role") or "visitor").lower()
+
+
+def effective_permissions(user, tenant_id=None):
+    """Permissions der effektiven Rolle (Tenant-Permissions-Map)."""
+    role = effective_role(user, tenant_id)
+    return TENANT_ROLE_PERMISSIONS.get(role, ROLE_PERMISSIONS.get(role, []))
+
+
+def has_permission(user, permission, tenant_id=None):
+    """Prüft Permission im Tenant-Kontext. Superadmin hat immer alles."""
+    role = effective_role(user, tenant_id)
+    if role == "superadmin":
+        return True
+    return permission in effective_permissions(user, tenant_id)
+
+
+def has_permission_in(role, permission):
+    """Statische Prüfung: hat die ROLLE diese Permission (ohne User/DB)?"""
+    if role == "superadmin":
+        return True
+    return permission in TENANT_ROLE_PERMISSIONS.get(role, [])
+
+
 # Rolle → Zugriffsebene (konsistent mit ROLE_PERMISSIONS / ACCESS_ORDER)
 ROLE_TO_LEVEL = {
     "visitor": "PUBLIC",
@@ -641,6 +718,53 @@ def require_role(min_role):
                 return _r((_u("login") if "login" in _ALL_ROUTES else "/login")
                           + "?next=" + _flask_request.path)
             if not access_level_met(u["role"], min_level):
+                from flask import abort
+                abort(403)
+            touch_session(u["username"], _current_sid())
+            return f(*a, **kw)
+        return wrapper
+    return decorator
+
+
+def require_tenant_role(min_role):
+    """Decorator (PHASE 2): Route nur mit Rolle >= min_role im TENANT-Kontext.
+
+    Nutzt die effektive Rolle (Membership im aktuellen Tenant > globale Rolle).
+    Admin-Routen wirken damit tenant-bezogen: Ein User ist nur Admin in
+    Tenants, in denen er auch Membership-Admin ist (oder global superadmin).
+    """
+    min_level = ROLE_TO_LEVEL.get((min_role or "visitor").lower(), "PUBLIC")
+    def decorator(f):
+        from functools import wraps
+        @wraps(f)
+        def wrapper(*a, **kw):
+            u = current_user()
+            if not u:
+                from flask import redirect as _r, url_for as _u
+                return _r((_u("login") if "login" in _ALL_ROUTES else "/login")
+                          + "?next=" + _flask_request.path)
+            eff = effective_role(u)
+            if not access_level_met(eff, min_level):
+                from flask import abort
+                abort(403)
+            touch_session(u["username"], _current_sid())
+            return f(*a, **kw)
+        return wrapper
+    return decorator
+
+
+def require_permission(permission):
+    """Decorator (PHASE 2): Route nur mit Permission im Tenant-Kontext."""
+    def decorator(f):
+        from functools import wraps
+        @wraps(f)
+        def wrapper(*a, **kw):
+            u = current_user()
+            if not u:
+                from flask import redirect as _r, url_for as _u
+                return _r((_u("login") if "login" in _ALL_ROUTES else "/login")
+                          + "?next=" + _flask_request.path)
+            if not has_permission(u, permission):
                 from flask import abort
                 abort(403)
             touch_session(u["username"], _current_sid())

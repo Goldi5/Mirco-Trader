@@ -1607,6 +1607,20 @@ def _route_access_control():
         # PHASE 1: Tenant-Kontext aus der Session ableiten (nie aus Client-Input)
         sec.set_current_tenant(sec.resolve_tenant_for_user(u))
         return
+    # PHASE 2: TENANT_ADMIN — Prüfung gegen EFFEKTIVE Rolle (Membership gewinnt).
+    # Setzt den Tenant-Kontext ebenfalls (wie AUTHENTICATED), damit
+    # require_tenant_role im Handler im richtigen Kontext prüft.
+    if cls == "TENANT_ADMIN":
+        if not u:
+            if wants_json:
+                return jsonify({"error": "unauthorized"}), 401
+            return redirect("/login?next=" + rule)
+        sec.set_current_tenant(sec.resolve_tenant_for_user(u))
+        eff = sec.effective_role(u)
+        if not sec.access_level_met(eff, "ADMIN"):
+            return jsonify({"error": "forbidden"}), 403
+        sec.touch_session(u["username"], sec._current_sid())
+        return
     # ANALYST / OPERATOR / ADMIN / SUPERADMIN
     if not u:
         if wants_json:
@@ -1617,6 +1631,7 @@ def _route_access_control():
             return jsonify({"error": "forbidden"}), 403
         return jsonify({"error": "forbidden"}), 403
     sec.touch_session(u["username"], sec._current_sid())
+    return
 
 
 # ─── PHASE 4: Auth-Routen (Login/Logout/MFA) ────────────────────────────────
@@ -2403,6 +2418,8 @@ def api_me():
         "last_login": u.get("last_login", ""),
         "permissions": sec.ROLE_PERMISSIONS.get(u.get("role", "user"), []),
         "tenants": tenant_info,
+        "effective_role": sec.effective_role(u),
+        "tenant_permissions": sec.effective_permissions(u),
     })
 
 
@@ -2494,6 +2511,38 @@ def api_tenants_members_add(tid):
         return jsonify({"ok": True})
     except Exception as e:
         return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/roles", methods=["GET"])
+@sec.require_tenant_role("admin")
+def api_roles():
+    """Rollenkatalog + Permissions (Admin, PHASE 2)."""
+    catalog = []
+    for role in sec.ROLES:
+        catalog.append({
+            "role": role,
+            "level": sec.ROLE_TO_LEVEL.get(role, "PUBLIC"),
+            "permissions": sec.TENANT_ROLE_PERMISSIONS.get(
+                role, sec.ROLE_PERMISSIONS.get(role, [])),
+        })
+    return jsonify({"ok": True, "roles": catalog,
+                    "all_permissions": sec.ALL_PERMISSIONS})
+
+
+@app.route("/api/me/permissions", methods=["GET"])
+def api_me_permissions():
+    """Effektive Permissions im aktuellen Tenant (eingeloggt, PHASE 2)."""
+    u = sec.current_user()
+    if not u:
+        return jsonify({"error": "unauthorized"}), 401
+    tid = sec.get_current_tenant()
+    return jsonify({
+        "ok": True,
+        "username": u.get("username"),
+        "tenant_id": tid,
+        "effective_role": sec.effective_role(u),
+        "permissions": sec.effective_permissions(u),
+    })
 
 
 @app.route("/api/me/password", methods=["POST"])
