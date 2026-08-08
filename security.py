@@ -74,7 +74,7 @@ ROUTE_ACCESS = {
     "/api/settings": "ADMIN",
     "/admin": "ADMIN", "/admin/users": "ADMIN", "/admin/users/create": "ADMIN",
     "/admin/system": "ADMIN", "/admin/rules": "ADMIN",
-    "/admin/security": "ADMIN", "/admin/audit": "ADMIN",
+    "/admin/security": "ADMIN", "/admin/logins": "ADMIN", "/admin/audit": "ADMIN",
     "/admin/settings": "ADMIN", "/admin/backups": "ADMIN",
 }
 ACCESS_ORDER = ["PUBLIC", "AUTHENTICATED", "ANALYST", "OPERATOR", "ADMIN", "SUPERADMIN"]

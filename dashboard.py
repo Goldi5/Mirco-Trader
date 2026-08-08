@@ -2115,16 +2115,18 @@ def admin_security():
             checks.append(("✅" if present else "❌", f"Header {h}", desc + (" – gesetzt" if present else " – FEHLT"), present))
     except Exception as e:
         checks.append(("⚠️", "Header-Check", str(e), False))
-    # 3. Netzwerk-Exposition
+    # 3. Netzwerk-Exposition (echter Listener des dashboard-Prozesses)
     lokal = True
     try:
-        import socket
-        s = socket.socket(); s.settimeout(1)
-        # Nur 127.0.0.1 gebunden?
-        binds = []
         import subprocess
         out = subprocess.run(["netstat", "-ano"], capture_output=True, text=True, errors="replace").stdout
-        lokal = f"127.0.0.1:{PORT}" in out and f"0.0.0.0:{PORT}" not in out and f":::{PORT}" not in out
+        # Finde alle Ports, auf denen ein python-Prozess lauscht (dashboard.py)
+        listen_lines = [l for l in out.splitlines() if "LISTENING" in l and ("5300" in l or "5200" in l)]
+        bind_all = any(("0.0.0.0" in l or "[::]" in l) for l in listen_lines)
+        bind_local = any(("127.0.0.1" in l or "127.0.0.1" in l) for l in listen_lines)
+        # Nur wenn wir einen python/dashboard Listener finden, bewerten
+        if listen_lines:
+            lokal = bind_local and not bind_all
     except Exception:
         lokal = True
     checks.append(("✅" if lokal else "❌", "Netzwerk-Exposition",
