@@ -1591,21 +1591,27 @@ def _route_access_control():
     cls = sec.route_class(rule)
     if cls == "PUBLIC":
         return
+    # JSON-Routen (API/JS-Fetch) bekommen bei fehlendem Auth IMMER 401/403 JSON,
+    # nie einen HTML-Redirect (sonst parse-Fehler "Unexpected token '<'" im Frontend).
+    json_routes = ("/api/", "/search_ticker", "/ticker_chart", "/data",
+                   "/depot_json", "/spec_depot_json", "/etf_depot_json", "/reports/")
+    wants_json = request.path.startswith(json_routes) or \
+        "application/json" in (request.headers.get("Accept", "") or "")
     u = sec.current_user()
     if cls == "AUTHENTICATED":
         if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
-            if rule.startswith("/api/"):
+            if wants_json:
                 return jsonify({"error": "unauthorized"}), 401
             return redirect("/login?next=" + rule)
         sec.touch_session(u["username"], sec._current_sid())
         return
     # ANALYST / OPERATOR / ADMIN / SUPERADMIN
     if not u:
-        if rule.startswith("/api/"):
+        if wants_json:
             return jsonify({"error": "unauthorized"}), 401
         return redirect("/login?next=" + rule)
     if not sec.access_level_met(u["role"], cls):
-        if rule.startswith("/api/"):
+        if wants_json:
             return jsonify({"error": "forbidden"}), 403
         return jsonify({"error": "forbidden"}), 403
     sec.touch_session(u["username"], sec._current_sid())

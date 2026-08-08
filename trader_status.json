@@ -20,7 +20,7 @@
         "anzahl": 0,
         "trefferquote": null,
         "lerneffekt_avg": null,
-        "bestätigt": 0,
+        "bestÃ¤tigt": 0,
         "widerlegt": 0,
         "neutral": 0
       }
@@ -35,11 +35,11 @@
     }
   },
   "batch_trader": {
-    "letzter_lauf": "2026-08-07T21:53:16.768868",
+    "letzter_lauf": "2026-08-08T13:17:46.222813",
     "info": {
       "depots": 20,
-      "trades": 787,
-      "rendite": 6.07
+      "trades": 778,
+      "rendite": 6.28
     }
   }
 }

@@ -1,142 +1,5 @@
 [
   {
-    "zeit": "2026-08-07T18:17:00.854961",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Cron-Pipeline gestartet (mode=full, detached)"
-  },
-  {
-    "zeit": "2026-08-07T18:17:01.984865",
-    "quelle": "watchdog",
-    "text": "Watchdog: alles OK (kein Test gesendet)"
-  },
-  {
-    "zeit": "2026-08-07T18:17:01.993837",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Börsen-Check: 🟢 Offen: 🇺🇸 NYSE/NASDAQ"
-  },
-  {
-    "zeit": "2026-08-07T18:17:03.050025",
-    "quelle": "spec",
-    "level": "ok",
-    "text": "Spec-Lauf: 49 Depots analysiert"
-  },
-  {
-    "zeit": "2026-08-07T18:17:12.434594",
-    "quelle": "ki_learning",
-    "level": "info",
-    "text": "Lern-Analyse: keine neuen Entscheidungen"
-  },
-  {
-    "zeit": "2026-08-07T18:17:12.896893",
-    "quelle": "skill",
-    "level": "info",
-    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1817, 48 verfügbar)"
-  },
-  {
-    "zeit": "2026-08-07T18:17:15.617118",
-    "quelle": "etf",
-    "level": "warn",
-    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.68%"
-  },
-  {
-    "zeit": "2026-08-07T18:17:25.007505",
-    "quelle": "spec",
-    "level": "ok",
-    "text": "Spec-Lauf: 49 Depots analysiert"
-  },
-  {
-    "zeit": "2026-08-07T18:17:26.921291",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 686 Trades, Rendite +6.17%"
-  },
-  {
-    "zeit": "2026-08-07T18:17:27.192292",
-    "quelle": "cron",
-    "level": "ok",
-    "text": "KI-Lauf durchgelaufen"
-  },
-  {
-    "zeit": "2026-08-07T18:17:32.286746",
-    "quelle": "ki_learning",
-    "level": "info",
-    "text": "Lern-Analyse: keine neuen Entscheidungen"
-  },
-  {
-    "zeit": "2026-08-07T18:17:32.689622",
-    "quelle": "skill",
-    "level": "info",
-    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1817, 48 verfügbar)"
-  },
-  {
-    "zeit": "2026-08-07T18:17:34.169204",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 693 Trades, Rendite +6.17%"
-  },
-  {
-    "zeit": "2026-08-07T18:17:36.161541",
-    "quelle": "etf",
-    "level": "warn",
-    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.68%"
-  },
-  {
-    "zeit": "2026-08-07T18:17:45.335862",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 700 Trades, Rendite +6.15%"
-  },
-  {
-    "zeit": "2026-08-07T18:17:45.614035",
-    "quelle": "cron",
-    "level": "ok",
-    "text": "KI-Lauf durchgelaufen"
-  },
-  {
-    "zeit": "2026-08-07T18:17:53.795391",
-    "quelle": "spec",
-    "level": "ok",
-    "text": "Spec-Lauf: 49 Depots analysiert"
-  },
-  {
-    "zeit": "2026-08-07T18:17:55.355791",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 707 Trades, Rendite +6.15%"
-  },
-  {
-    "zeit": "2026-08-07T18:18:01.670579",
-    "quelle": "ki_learning",
-    "level": "info",
-    "text": "Lern-Analyse: keine neuen Entscheidungen"
-  },
-  {
-    "zeit": "2026-08-07T18:18:02.078569",
-    "quelle": "skill",
-    "level": "info",
-    "text": "Skill-Sync: 13 Regeln in Skill übernommen (Stand 2026-08-07_1818, 48 verfügbar)"
-  },
-  {
-    "zeit": "2026-08-07T18:18:05.232355",
-    "quelle": "etf",
-    "level": "warn",
-    "text": "ETF-Lauf: 20 Depots, 40 Trades, Rendite -15.69%"
-  },
-  {
-    "zeit": "2026-08-07T18:18:14.735002",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 714 Trades, Rendite +6.14%"
-  },
-  {
-    "zeit": "2026-08-07T18:18:15.030222",
-    "quelle": "cron",
-    "level": "ok",
-    "text": "KI-Lauf durchgelaufen"
-  },
-  {
     "zeit": "2026-08-07T18:18:27.251117",
     "quelle": "batch",
     "level": "ok",
@@ -3033,6 +2896,22 @@
   },
   {
     "zeit": "2026-08-08T13:08:50.598448",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-08T13:17:46.228002",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 778 Trades, Rendite +6.28%"
+  },
+  {
+    "zeit": "2026-08-08T13:23:51.728163",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-08T13:38:56.263147",
     "quelle": "watchdog",
     "text": "Watchdog: alles OK (kein Test gesendet)"
   }

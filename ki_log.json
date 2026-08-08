@@ -45558,5 +45558,13 @@
     "konfidenz": 50,
     "analyse": "",
     "ticker": "Risk 70"
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-08T13:17:45.641620",
+    "aktion": "KI Risk 70",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 70"
   }
 ]

@@ -1,14 +1,18 @@
 {
   "start_wert": 100,
   "risk": 70,
-  "bargeld": 107.2225014796734,
-  "positions": {},
+  "bargeld": 0.0011867808818948333,
+  "positions": {
+    "CLOU": {
+      "shares": 3.9304,
+      "avg_price": 27.280000686645508,
+      "stop_loss": 24.552000617980955,
+      "take_profit": 33.82720085144044,
+      "kauf_datum": "2026-08-08T13:17:45.939553",
+      "exchange": "US"
+    }
+  },
   "historie": [
-    {
-      "zeit": "2026-08-07T17:47:58.864589",
-      "wert": 107.22,
-      "bargeld": 107.22
-    },
     {
       "zeit": "2026-08-07T17:48:10.619885",
       "wert": 107.22,
@@ -503,17 +507,14 @@
       "zeit": "2026-08-07T21:53:16.293360",
       "wert": 107.22,
       "bargeld": 107.22
+    },
+    {
+      "zeit": "2026-08-08T13:17:46.117346",
+      "wert": 107.22,
+      "bargeld": 0.0
     }
   ],
   "trades": [
-    {
-      "typ": "kauf_blockiert",
-      "ticker": "WKHS",
-      "menge": 32.0546,
-      "preis": 3.35,
-      "grund": "Konzentrations-Bremse: bereits in 4 Depots",
-      "zeit": "2026-08-07T18:02:26.106883"
-    },
     {
       "typ": "kauf_blockiert",
       "ticker": "DOMO",
@@ -905,16 +906,26 @@
       "preis": 3.88,
       "grund": "Konzentrations-Bremse: bereits in 7 Depots",
       "zeit": "2026-08-07T18:33:46.515608"
+    },
+    {
+      "typ": "kauf",
+      "ticker": "CLOU",
+      "menge": 3.9304,
+      "preis": 27.28,
+      "grund": "\ud83e\udd16 KI: Neue Position, passt ins Budget und bietet Cloud-E",
+      "zeit": "2026-08-08T13:17:45.939553"
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T17:44:51.729171",
+    "zeit": "2026-08-08T13:17:45.641620",
     "aktion": "KI Risk 70",
     "konfidenz": 50,
     "analyse": "",
     "ticker": "Risk 70"
   },
-  "aktualisiert": "2026-08-07T21:53:16.293360",
-  "exchanges": {}
+  "aktualisiert": "2026-08-08T13:17:46.199890",
+  "exchanges": {
+    "CLOU": "US"
+  }
 }
