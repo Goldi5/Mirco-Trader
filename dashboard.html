@@ -298,6 +298,26 @@ canvas{display:block;max-width:100%}
     <span id="boersenDisplay" style="font-size:10px;font-weight:400;margin-left:6px"></span>
     <span id="notifBadge" style="display:none;margin-left:auto;font-size:11px;background:#dc2626;color:#fff;padding:1px 7px;border-radius:10px;cursor:pointer" onclick="showTab('charts')">🔔</span>
     <span id="versionBadge" style="margin-left:8px;font-size:10px;color:var(--text-dim);font-weight:400;white-space:nowrap"></span>
+    <div id="userArea" style="margin-left:auto;position:relative;display:flex;align-items:center;gap:8px;cursor:pointer;padding:4px 8px;border-radius:10px;transition:background .15s" onclick="toggleUserMenu(event)" onmouseover="this.style.background='rgba(15,23,42,.05)'" onmouseout="this.style.background='transparent'">
+      <div id="userAvatar" style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">…</div>
+      <div style="line-height:1.15">
+        <div id="userName" style="font-size:12px;font-weight:600;color:var(--text)">…</div>
+        <div id="userRole" style="font-size:9.5px;color:var(--text-dim)">…</div>
+      </div>
+      <span style="font-size:9px;color:var(--text-dim)">▾</span>
+      <div id="userMenu" style="display:none;position:absolute;right:0;top:calc(100% + 6px);min-width:210px;background:var(--glass-strong);backdrop-filter:blur(20px);border:1px solid var(--card-border);border-radius:14px;box-shadow:var(--shadow-lg);padding:6px;z-index:100">
+        <div style="padding:10px 12px;border-bottom:1px solid var(--card-border);margin-bottom:6px">
+          <div id="menuUserName" style="font-size:13px;font-weight:700;color:var(--text)">…</div>
+          <div id="menuUserRole" style="font-size:10.5px;color:var(--text-dim)">…</div>
+          <div id="menuUserMfa" style="font-size:10px;color:var(--text-dim);margin-top:2px">…</div>
+        </div>
+        <div class="um-item" onclick="showTab('settings');switchSettingsTab('konto');closeUserMenu()" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:12.5px;color:var(--text);transition:background .12s" onmouseover="this.style.background='rgba(15,23,42,.05)'" onmouseout="this.style.background='transparent'">👤 <span>Mein Konto</span></div>
+        <div class="um-item" onclick="showTab('settings');closeUserMenu()" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:12.5px;color:var(--text);transition:background .12s" onmouseover="this.style.background='rgba(15,23,42,.05)'" onmouseout="this.style.background='transparent'">⚙️ <span>Einstellungen</span></div>
+        <div id="umAdmin" class="um-item" style="display:none;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:12.5px;color:var(--text);transition:background .12s" onmouseover="this.style.background='rgba(15,23,42,.05)'" onmouseout="this.style.background='transparent'" onclick="window.open('/admin','_blank');closeUserMenu()">🛡️ <span>Admin-Bereich</span></div>
+        <div style="border-top:1px solid var(--card-border);margin:6px 0"></div>
+        <div class="um-item" onclick="logout()" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:12.5px;color:var(--red);transition:background .12s" onmouseover="this.style.background='rgba(239,68,68,.08)'" onmouseout="this.style.background='transparent'">🚪 <span>Abmelden</span></div>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -2145,6 +2165,49 @@ function msg(id, text, typ) {
   if (!el) return;
   el.innerHTML = `<span style="color:${typ==='bad'?'var(--red)':'var(--green)'}">${esc(text)}</span>`;
 }
+
+// ── User-Area (Header oben rechts) ──
+function toggleUserMenu(ev) {
+  ev && ev.stopPropagation();
+  const m = document.getElementById("userMenu");
+  if (m) m.style.display = m.style.display === "none" ? "block" : "none";
+}
+function closeUserMenu() {
+  const m = document.getElementById("userMenu");
+  if (m) m.style.display = "none";
+}
+document.addEventListener("click", (e) => {
+  if (!e.target.closest("#userArea")) closeUserMenu();
+});
+
+async function ladeUserArea() {
+  try {
+    const r = await fetch("/api/me");
+    const j = await r.json();
+    if (!j.ok) return;
+    const initialen = (j.username || "?").slice(0, 2).toUpperCase();
+    const av = document.getElementById("userAvatar");
+    if (av) av.textContent = initialen;
+    const n = document.getElementById("userName");
+    if (n) n.textContent = j.username;
+    const rl = document.getElementById("userRole");
+    if (rl) rl.textContent = j.role;
+    const mn = document.getElementById("menuUserName");
+    if (mn) mn.textContent = j.username;
+    const mr = document.getElementById("menuUserRole");
+    if (mr) mr.textContent = "Rolle: " + j.role;
+    const mf = document.getElementById("menuUserMfa");
+    if (mf) mf.textContent = j.mfa ? "MFA aktiv ✅" : "MFA nicht aktiv";
+    const adm = document.getElementById("umAdmin");
+    if (adm && (j.role === "admin" || j.role === "superadmin")) adm.style.display = "flex";
+  } catch (e) { console.warn("UserArea-Fehler:", e); }
+}
+
+function logout() {
+  window.location.href = "/logout";
+}
+
+document.addEventListener("DOMContentLoaded", () => { ladeUserArea(); });
 
 // ── Benutzerverwaltung (Admin) ──
 async function ladeBenutzerVerwaltung() {
