@@ -1727,32 +1727,53 @@ def landing():
     return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
 <title>Micro-Trader – Anmeldung</title>
 <style>
-body{{font-family:'Segoe UI Variable','Segoe UI',system-ui,sans-serif;margin:0;padding:0;background:#f8fafc;background-image:radial-gradient(ellipse at 15% 0%,rgba(37,99,235,.08) 0%,transparent 55%),radial-gradient(ellipse at 85% 0%,rgba(16,185,129,.05) 0%,transparent 50%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}}
-.card{{max-width:560px;width:100%;background:rgba(255,255,255,.82);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:0 24px 48px rgba(61,93,153,.12);overflow:hidden}}
-.banner{{width:100%;height:110px;display:block;object-fit:contain;object-position:center;background:#0f172a;border-bottom:1px solid rgba(15,23,42,.07)}}
-.inner{{padding:26px 30px 30px}}
-.head{{display:flex;align-items:center;gap:12px;margin-bottom:6px}}
-.logo{{width:44px;height:44px;border-radius:10px}}
-h1{{font-size:26px;margin:0;color:#0f172a}}
-.badge{{display:inline-block;background:#e8f5e9;color:#1b5e20;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600;margin-bottom:12px}}
-p{{line-height:1.6;color:#475569;margin:8px 0}}
-.status{{color:#64748b;font-size:13px}}
-label{{display:block;margin-top:14px;font-size:13.5px;font-weight:600;color:#334155}}
-input{{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:12px 14px;font-size:15px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;font-family:inherit;transition:border-color .15s,box-shadow .15s}}
+body{{font-family:'Segoe UI Variable','Segoe UI',system-ui,sans-serif;margin:0;padding:0;background:#f8fafc;background-image:radial-gradient(ellipse at 15% 0%,rgba(37,99,235,.08) 0%,transparent 55%),radial-gradient(ellipse at 85% 0%,rgba(16,185,129,.05) 0%,transparent 50%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 24px;box-sizing:border-box}}
+.shell{{display:flex;gap:40px;max-width:960px;width:100%;align-items:center;flex-wrap:wrap;justify-content:center}}
+.hero{{flex:1.2;min-width:300px;max-width:520px}}
+.hero .brand{{display:flex;align-items:center;gap:12px;margin-bottom:10px}}
+.hero .brand img{{width:48px;height:48px;border-radius:12px}}
+.hero h1{{font-size:34px;line-height:1.15;margin:0 0 10px;color:#0f172a;font-weight:700}}
+.hero p.lead{{font-size:15px;line-height:1.6;color:#475569;margin:0 0 20px}}
+.features{{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}}
+.feature{{display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:12px 14px;box-shadow:0 4px 16px rgba(61,93,153,.06)}}
+.feature .ic{{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;background:rgba(37,99,235,.08)}}
+.feature b{{font-size:13.5px;color:#0f172a;display:block}}
+.feature span{{font-size:12px;color:#64748b;line-height:1.4}}
+.meta{{font-size:11.5px;color:#94a3b8}}
+.card{{max-width:400px;width:100%;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.95);border-radius:18px;box-shadow:0 24px 48px rgba(61,93,153,.12);overflow:hidden}}
+.banner{{width:100%;height:96px;display:block;object-fit:contain;object-position:center;background:#0f172a;border-bottom:1px solid rgba(15,23,42,.07)}}
+.inner{{padding:24px 26px 26px}}
+.head{{display:flex;align-items:center;gap:10px;margin-bottom:6px}}
+.logo{{width:36px;height:36px;border-radius:9px}}
+h2{{font-size:22px;margin:0;color:#0f172a}}
+.badge{{display:inline-block;background:#e8f5e9;color:#1b5e20;border-radius:999px;padding:3px 11px;font-size:11.5px;font-weight:600;margin-bottom:10px}}
+p{{line-height:1.55;color:#475569;margin:6px 0}}
+.status{{color:#64748b;font-size:12px}}
+label{{display:block;margin-top:12px;font-size:13px;font-weight:600;color:#334155}}
+input{{display:block;width:100%;box-sizing:border-box;margin-top:5px;padding:11px 13px;font-size:14.5px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;font-family:inherit;transition:border-color .15s,box-shadow .15s}}
 input:focus{{outline:none;border-color:#2563eb;box-shadow:0 0 0 4px rgba(37,99,235,.12)}}
-button{{margin-top:18px;width:100%;background:#2563eb;color:#fff;border:none;padding:13px 0;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:background .15s,transform .05s}}
+button{{margin-top:16px;width:100%;background:#2563eb;color:#fff;border:none;padding:12px 0;border-radius:12px;font-size:15.5px;font-weight:600;cursor:pointer;transition:background .15s,transform .05s}}
 button:hover{{background:#1d4ed8}}
 button:active{{transform:translateY(1px)}}
-.hint{{margin-top:14px;font-size:12px;color:#94a3b8;text-align:center}}
+.hint{{margin-top:12px;font-size:11.5px;color:#94a3b8;text-align:center}}
 </style></head><body>
+<div class='shell'>
+<div class='hero'>
+<div class='brand'><img src='/assets/logo.png' alt='Logo'><div><div style='font-size:15px;font-weight:700;color:#0f172a'>Micro-Trader</div><div style='font-size:11px;color:#64748b'>GOVERNED AI MARKET OPERATIONS</div></div></div>
+<h1>Automatisiertes Paper-Trading,<br>sicher und kontrolliert.</h1>
+<p class='lead'>Die KI analysiert Aktien, ETF und Spekulation – alle Entscheidungen laufen ausschließlich in simulierten Depots. <b>Kein Echtgeldeinsatz.</b></p>
+<div class='features'>
+<div class='feature'><div class='ic'>🤖</div><div><b>KI-gesteuerte Entscheidungen</b><span>Kauf-/Verkaufs-Signale mit Konfidenz-Score, Regeln und Audit-Trail.</span></div></div>
+<div class='feature'><div class='ic'>🛡️</div><div><b>Mehrbenutzer mit Rollen</b><span>Benutzerverwaltung, MFA und Audit-Log – nur Berechtigte kommen rein.</span></div></div>
+<div class='feature'><div class='ic'>📊</div><div><b>Live-Dashboard</b><span>Portfolio-Verlauf, Depot-Rankings und KI-Log in Echtzeit.</span></div></div>
+</div>
+<div class='meta'>Systemstatus: aktiv · NYSE Mo–Fr 15:30–22:00 MEZ · Paper-/Shadow-System</div>
+</div>
 <div class='card'>
 <img class='banner' src='/assets/banner.png' alt='Micro Trader System'>
 <div class='inner'>
-<div class='head'><img class='logo' src='/assets/logo.png' alt='Logo'><h1>Micro-Trader</h1></div>
+<div class='head'><img class='logo' src='/assets/logo.png' alt='Logo'><h2>Anmelden</h2></div>
 <span class='badge'>{status}</span>
-<p>Automatisierter Paper-/Shadow-Trading-Assistent für Aktien, ETF und Spekulation.
-Alle Handelsentscheidungen erfolgen ausschließlich in simulierten Depots — <b>kein Echtgeldeinsatz</b>.</p>
-<p class='status'>Systemstatus: aktiv · NYSE-Handelszeiten Mo–Fr 15:30–22:00 MEZ · Mehrbenutzer-Zugang mit Rollenrechten.</p>
 <form method='POST' action='/'>
 <label for='login-user'>Benutzername</label>
 <input id='login-user' name='username' autocomplete='username' required autofocus>
@@ -1761,8 +1782,9 @@ Alle Handelsentscheidungen erfolgen ausschließlich in simulierten Depots — <b
 <button type='submit'>Anmelden</button>
 {fehler}
 </form>
-<p class='hint'>Zugriff nur für berechtigte Benutzer · Paper-/Shadow-System (kein Echtgeld)</p>
-</div></div></body></html>""")
+<p class='hint'>Zugriff nur für berechtigte Benutzer</p>
+</div></div>
+</div></body></html>""")
 
 
 # ─── PHASE 8: Admin-Bereich (nur ADMIN/SUPERADMIN via before_request) ──────────
