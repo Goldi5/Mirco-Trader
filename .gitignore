@@ -16,3 +16,4 @@ whatsapp_config.json
 security_users.json
 security_audit.json
 *.session
+login_rate.json
