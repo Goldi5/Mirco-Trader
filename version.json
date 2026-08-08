@@ -1,6 +1,6 @@
 {
-  "version": "2.25.0",
-  "build": "2026-08-08_1830",
+  "version": "2.25.1",
+  "build": "2026-08-08_1845",
   "released_at": "2026-08-08 12:35",
   "codename": "Server-Sicherheit Phasen 7-9 + Bugs (Landingpage, Admin-Bereich, Secret-Schutz, ROUTE_ACCESS/require_role-Fixes)",
   "changes": [
@@ -212,5 +212,5 @@
     "Phase 15/20 (Audit)",
     "Phase 21 (Server-Sicherheit 1-6)"
   ],
-  "notes": "Security: Login-Rate-Limit (Brute-Force, OWASP A07) + Admin-Tabs Logins (IP-Analytik) + Sicherheit (Checkliste)"
+  "notes": "Drawdown-Warnungsbalken entfernt (kein Mehrwert)"
 }

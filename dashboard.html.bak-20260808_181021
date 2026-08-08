@@ -324,6 +324,8 @@ canvas{display:block;max-width:100%}
 <div id="profil-karten"></div>
 <div id="report-liste" style="display:none; margin:8px 0"></div>
 
+<div id="ddWarnung" style="display:none;background:linear-gradient(90deg,#ef4444,#dc2626);color:#fff;padding:8px 14px;font-size:13px;font-weight:600;text-align:center;margin-bottom:8px;border-radius:8px;box-shadow:0 4px 12px rgba(239,68,68,0.3)"></div>
+
 <div class="tabs" id="tabs" style="margin-bottom:8px">
   <button class="tab active" data-tab="overview">📊 Übersicht</button>
   <button class="tab" data-tab="stocks">📈 Aktien</button>
@@ -1026,7 +1028,28 @@ async function load() {
       if (notifs.length) badge.title = notifs.map(n => n.text).join(" | ");
     }
 
-    // ── Drawdown-Warnung entfernt (v2.25.1: kein Mehrwert, Balken weg) ──
+    // ── Drawdown-Warnung (B) ──
+    const ddEl = document.getElementById("ddWarnung");
+    if (ddEl) {
+      let maxDD = 0, worst = "";
+      [...d.depots, ...d.etf_depots].forEach(x => {
+        const dd = Math.abs(x.max_dd || 0);
+        if (dd > maxDD) { maxDD = dd; worst = x.ticker || ("Risk " + x.risk); }
+      });
+      if (maxDD >= 30) {
+        ddEl.style.display = "block";
+        ddEl.style.background = "linear-gradient(90deg,#ef4444,#dc2626)";
+        ddEl.style.boxShadow = "0 4px 12px rgba(239,68,68,0.3)";
+        ddEl.innerHTML = `⚠️ Drawdown-Warnung: ${worst} bei -${maxDD.toFixed(1)}% (gesperrt ab -30%)`;
+      } else if (maxDD >= 20) {
+        ddEl.style.display = "block";
+        ddEl.style.background = "linear-gradient(90deg,#f59e0b,#d97706)";
+        ddEl.style.boxShadow = "0 4px 12px rgba(245,158,11,0.3)";
+        ddEl.innerHTML = `⚠️ Erhöhter Drawdown: ${worst} bei -${maxDD.toFixed(1)}%`;
+      } else {
+        ddEl.style.display = "none";
+      }
+    }
 
     // ── KI-Konfidenz-Verlauf (C) ──
     const kh = d.ki_konfidenz_history || [];
