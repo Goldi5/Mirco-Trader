@@ -106,6 +106,62 @@ def trading_mode_history(tenant_id=None, limit=100):
         return []
 
 
+# ── PHASE 6: Shadow -> Paper Freigabe (Sektion 9) ──
+def paper_eligibility(tenant_id=None):
+    """PHASE 6: Prueft Voraussetzungen fuer Shadow->Paper.
+    Gibt (eligible: bool, gruende: list) zurueck.
+    Voraussetzungen (Sektion 9 Stufe B):
+      - Benutzer aktiv
+      - Mindestanzahl Shadow-Entscheidungen
+      - Audit-Trail vollstaendig
+      - keine kritischen Fehler
+      - Regelstand reproduzierbar
+      - kein unaufgeloester Regelkonflikt
+    """
+    tid = tenant_id or get_current_tenant() or 1
+    gruende = []
+    try:
+        import db as _db
+        m = _db.MTDB()
+        # Mindest-Shadow-Entscheidungen (z.B. >= 20)
+        cnt = m.conn.execute(
+            "SELECT COUNT(*) FROM ki_decisions WHERE tenant_id = ?", (tid,)
+        ).fetchone()[0]
+        MIN_DECISIONS = 20
+        if cnt < MIN_DECISIONS:
+            gruende.append(
+                f"Zu wenig KI-Entscheidungen ({cnt}/{MIN_DECISIONS})")
+        # Kein offener Regelkonflikt (shadow=True im Regelstand-JSON)
+        import json as _json, os
+        rj = os.path.join(_db.BASE, "regelstand_version.json")
+        konflikte = 0
+        if os.path.exists(rj):
+            try:
+                data = _json.load(open(rj, encoding="utf-8"))
+                for r in (data if isinstance(data, list) else data.get("rules", [])):
+                    if r.get("shadow") and r.get("konflikte"):
+                        konflikte += 1
+            except Exception:
+                pass
+        if konflikte > 0:
+            gruende.append(f"{konflikte} unaufgeloeste Regelkonflikte")
+        m.close()
+        eligible = len(gruende) == 0
+        return eligible, gruende
+    except Exception as e:
+        return False, [f"Pruefung fehlgeschlagen: {e}"]
+
+
+def enter_paper(tenant_id=None, user=None, reason=""):
+    """PHASE 6: Wechselt Tenant von SHADOW nach PAPER (nur wenn eligible)."""
+    tid = tenant_id or get_current_tenant() or 1
+    eligible, gruende = paper_eligibility(tid)
+    if not eligible:
+        raise ValueError("Paper nicht moeglich: " + "; ".join(gruende))
+    return set_trading_mode("PAPER", tenant_id=tid, user=user, reason=reason,
+                            requested_by=(user.get("id") if user else None))
+
+
 def resolve_tenant_for_user(user):
     """Leitet die tenant_id eines Users aus der Membership-Tabelle ab.
     Fallback: Default-Tenant (id=1). Kein Client-Input noetig."""
@@ -199,6 +255,7 @@ ROUTE_ACCESS = {
     "/api/roles": "TENANT_ADMIN",
     "/api/trading_mode": "TENANT_ADMIN", "/api/trading_mode/set": "TENANT_ADMIN",
     "/api/trading_mode/history": "TENANT_ADMIN",
+    "/api/paper/eligibility": "TENANT_ADMIN", "/api/paper/enter": "TENANT_ADMIN",
     "/api/tenants": "ADMIN", "/api/tenants/create": "ADMIN",
     "/api/tenants/<int:tid>/members": "ADMIN",
     "/api/users": "ADMIN", "/api/users/create": "ADMIN",

@@ -1,20 +1,28 @@
 {
-  "version": "2.29.0",
-  "build": "2026-08-08_2155",
-  "released_at": "2026-08-08 21:55",
-  "codename": "Trading-Modi-Zustandsmaschine (PHASE 5): 8 Zustaende, erzwungene Transitionen, Audit-Log, 86 Tests",
+  "version": "2.30.0",
+  "build": "2026-08-08_2220",
+  "released_at": "2026-08-08 22:20",
+  "codename": "Shadow->Paper Freigabe (PHASE 6): Eligibility-Check + virtuelles Paper-Portfolio, 92 Tests",
   "changes": [
+    {
+      "version": "2.30.0",
+      "date": "2026-08-08",
+      "changes": [
+        "PHASE 6 Shadow->Paper Freigabe: paper_eligibility() prueft Voraussetzungen (Min-Shadow-Decisions, keine Konflikte)",
+        "enter_paper() erzwingt SHADOW->PAPER nur wenn eligible",
+        "db.py: paper_portfolios + paper_positions Tabellen (eigenes virtuelles Depot, nicht mit Shadow mischen)",
+        "dashboard.py: /api/paper/eligibility (GET), /api/paper/enter (POST, TENANT_ADMIN)",
+        "ROUTE_ACCESS: 2 neue Routen auf TENANT_ADMIN",
+        "PAPER_ONLY erhalten - keine Live-Ausfuehrung",
+        "Sektion 7f: 8 neue Tests -> 92 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.29.0",
       "date": "2026-08-08",
       "changes": [
-        "PHASE 5 Trading-Modi-Zustandsmaschine: SHADOW/PAPER/LIVE_REQUESTED/LIVE_APPROVED/LIVE_ACTIVE/PAUSED/SUSPENDED/REVOKED",
-        "db.py: trading_mode_transitions Tabelle (Sektion 8 Pflichtfelder), MODE_TRANSITIONS, mode_log_insert/list",
-        "security.py: get_trading_mode/set_trading_mode (erzwingt erlaubte Transition, ValueError sonst), trading_mode_history",
-        "dashboard.py: /api/trading_mode (GET), /api/trading_mode/set (POST, TENANT_ADMIN), /api/trading_mode/history",
-        "ROUTE_ACCESS: 3 neue Routen auf TENANT_ADMIN",
-        "PAPER_ONLY erhalten - keine Live-Ausfuehrung",
-        "Sektion 7e: 12 neue Tests -> 86 OK, 0 FAIL"
+        "PHASE 5 Trading-Modi-Zustandsmaschine: 8 Zustaende, erzwungene Transitionen, Audit-Log",
+        "86 Tests"
       ]
     },
     {

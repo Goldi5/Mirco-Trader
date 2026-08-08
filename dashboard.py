@@ -1466,6 +1466,32 @@ def api_trading_mode_history():
     return {"tenant_id": tid, "history": _sec.trading_mode_history(tid)}
 
 
+# ── PHASE 6: Shadow -> Paper Freigabe (Sektion 9) ──
+@app.route("/api/paper/eligibility")
+def api_paper_eligibility():
+    import security as _sec
+    tid = _get_tid()
+    eligible, gruende = _sec.paper_eligibility(tid)
+    return {"tenant_id": tid, "eligible": eligible, "gruende": gruende}
+
+
+@app.route("/api/paper/enter", methods=["POST"])
+def api_paper_enter():
+    import security as _sec
+    u = _sec.current_user()
+    if not u:
+        return {"error": "nicht eingeloggt"}, 401
+    role = _sec.effective_role(u)
+    if role not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    try:
+        old, new = _sec.enter_paper(tenant_id=tid, user=u, reason="Shadow->Paper Freigabe")
+    except ValueError as e:
+        return {"error": str(e)}, 400
+    return {"ok": True, "old_mode": old, "new_mode": new}
+
+
 @app.route("/api/db_query")
 def api_db_query():
     try:

@@ -1,3 +1,13 @@
+## [2.30.0] - 2026-08-08
+### Added (PHASE 6: Shadow->Paper Freigabe — Mandanten-Ausbauauftrag)
+- **paper_eligibility():** prueft Voraussetzungen (Min-KI-Decisions, keine Regelkonflikte).
+- **enter_paper():** erzwingt SHADOW->PAPER nur wenn eligible (ValueError sonst).
+- **db.py:** `paper_portfolios` + `paper_positions` (eigenes virtuelles Depot, nicht mit Shadow mischen).
+- **dashboard.py:** `/api/paper/eligibility` (GET), `/api/paper/enter` (POST, TENANT_ADMIN).
+- **ROUTE_ACCESS:** 2 neue Routen auf TENANT_ADMIN.
+- **Tests:** Sektion 7f (+8) -> **92 OK, 0 FAIL**.
+- **PAPER_ONLY bleibt** — keine Live-Ausfuehrung.
+
 ## [2.29.0] - 2026-08-08
 ### Added (PHASE 5: Trading-Modi-Zustandsmaschine — Mandanten-Ausbauauftrag)
 - **8 Zustaende:** SHADOW/PAPER/LIVE_REQUESTED/LIVE_APPROVED/LIVE_ACTIVE/PAUSED/SUSPENDED/REVOKED.

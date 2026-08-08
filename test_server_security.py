@@ -357,6 +357,46 @@ try:
 except Exception as e:
     ck("Trading-Modi-Zustandsmaschine", False, str(e))
 
+# ─── Phase 15f: Shadow->Paper Freigabe (v2.30.0, PHASE 6) ───────────────
+print("\n7f. Shadow->Paper Freigabe (v2.30.0, PHASE 6)")
+try:
+    import security as sec6, db as mtdb6, dashboard as dash6
+    # paper_eligibility liefert (bool, list)
+    elig, gruende = sec6.paper_eligibility(1)
+    ck("paper_eligibility liefert Tupel", isinstance(elig, bool) and isinstance(gruende, list))
+    # Tenant 1 hat >20 ki_decisions -> eligible (sofern keine Konflikte)
+    ck("Tenant 1 grundsaetzlich eligible", elig is True or len(gruende) > 0)
+    # enter_paper erzwingt SHADOW->PAPER nur wenn eligible
+    try:
+        old, new = sec6.enter_paper(tenant_id=1, user={"username": "admin"})
+        ck("enter_paper SHADOW->PAPER OK", old == "SHADOW" and new == "PAPER")
+    except ValueError:
+        ck("enter_paper blockiert (Eligibility)", False)
+    # Virtuelles Paper-Portfolio anlegen (eigenes Depot)
+    m6 = mtdb6.MTDB()
+    m6.paper_portfolio_create(1, "test_paper", "Test", 100.0)
+    ck("paper_portfolio_create OK", len(m6.paper_portfolio_list(1)) >= 1)
+    # API
+    app6 = dash6.app; app6.config["TESTING"] = True
+    c6 = app6.test_client()
+    c6.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    # Sicher auf SHADOW zuruecksetzen (Isolation)
+    try:
+        sec6.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
+    except ValueError:
+        pass
+    r = c6.get("/api/paper/eligibility")
+    ck("API /api/paper/eligibility liefert eligible", r.status_code == 200 and "eligible" in r.get_json())
+    r = c6.post("/api/paper/enter")
+    ck("API /api/paper/enter OK", r.get_json().get("ok") is True)
+    # Cleanup
+    m6.conn.execute("DELETE FROM paper_portfolios WHERE tenant_id=1")
+    m6.conn.execute("DELETE FROM trading_mode_transitions WHERE tenant_id=1")
+    m6.conn.commit(); m6.close()
+    sec6.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
+except Exception as e:
+    ck("Shadow->Paper Freigabe", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

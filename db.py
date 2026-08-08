@@ -33,7 +33,49 @@ class MTDB:
         self.conn.row_factory = sqlite3.Row
         self._init_schema()
         self._init_trading_mode_tables()
+        self._init_paper_tables()
         self._migrate_schema()
+
+    # ── PHASE 6: Virtuelles Paper-Portfolio (eigenes Depot, nicht mit Shadow mischen) ──
+    def _init_paper_tables(self):
+        c = self.conn.cursor()
+        c.executescript("""
+        CREATE TABLE IF NOT EXISTS paper_portfolios (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            portfolio_key TEXT NOT NULL,
+            name TEXT,
+            virtual_cash REAL DEFAULT 100.0,
+            status TEXT DEFAULT 'aktiv',
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(tenant_id, portfolio_key)
+        );
+        CREATE TABLE IF NOT EXISTS paper_positions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            portfolio_id INTEGER NOT NULL,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            ticker TEXT NOT NULL,
+            shares REAL DEFAULT 0,
+            avg_price REAL DEFAULT 0,
+            updated_at TEXT DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_pp_tenant
+            ON paper_portfolios(tenant_id);
+        """)
+        self.conn.commit()
+
+    def paper_portfolio_create(self, tenant_id, portfolio_key, name=None, virtual_cash=100.0):
+        self.conn.execute(
+            "INSERT OR REPLACE INTO paper_portfolios "
+            "(tenant_id, portfolio_key, name, virtual_cash, status) "
+            "VALUES (?,?,?,?,'aktiv')",
+            (tenant_id, portfolio_key, name, virtual_cash))
+        self.conn.commit()
+
+    def paper_portfolio_list(self, tenant_id):
+        return [dict(r) for r in self.conn.execute(
+            "SELECT * FROM paper_portfolios WHERE tenant_id = ? AND status != 'geloescht'",
+            (tenant_id,)).fetchall()]
 
     # ── PHASE 5: Trading-Modi-Zustandsmaschine (Sektion 8) ──
     TRADING_MODES = ("SHADOW", "PAPER", "LIVE_REQUESTED", "LIVE_APPROVED",
