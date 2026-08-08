@@ -34,7 +34,36 @@ class MTDB:
         self._init_schema()
         self._init_trading_mode_tables()
         self._init_paper_tables()
+        self._init_provider_tables()
         self._migrate_schema()
+
+    # ── PHASE 7: Provider-Connection-Tabellen (Sektion 10) ──
+    def _init_provider_tables(self):
+        c = self.conn.cursor()
+        c.executescript("""
+        CREATE TABLE IF NOT EXISTS provider_connections (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            workspace_id INTEGER,
+            user_id INTEGER,
+            provider_type TEXT NOT NULL,
+            provider_name TEXT NOT NULL,
+            environment TEXT DEFAULT 'PAPER',
+            status TEXT DEFAULT 'aktiv',
+            permissions TEXT,
+            secret_reference TEXT,
+            created_by INTEGER,
+            created_at TEXT DEFAULT (datetime('now')),
+            updated_at TEXT DEFAULT (datetime('now')),
+            last_test_at TEXT,
+            last_error TEXT,
+            rate_limit INTEGER
+        );
+        CREATE INDEX IF NOT EXISTS idx_pc_tenant
+            ON provider_connections(tenant_id);
+        """)
+        self.conn.commit()
+        self.provider_connection_ensure_columns()
 
     # ── PHASE 6: Virtuelles Paper-Portfolio (eigenes Depot, nicht mit Shadow mischen) ──
     def _init_paper_tables(self):
@@ -76,6 +105,44 @@ class MTDB:
         return [dict(r) for r in self.conn.execute(
             "SELECT * FROM paper_portfolios WHERE tenant_id = ? AND status != 'geloescht'",
             (tenant_id,)).fetchall()]
+
+    # ── PHASE 7: Provider-Connection-Manager (Sektion 10) ──
+    def provider_connection_add(self, tenant_id, provider_type, provider_name,
+                                environment, permissions, secret_reference,
+                                created_by=None):
+        """PHASE 7: Verbindung anlegen (Secret NICHT als Klartext, nur Referenz).
+        environment: DEMO/PAPER/SANDBOX/LIVE"""
+        self.conn.execute(
+            "INSERT INTO provider_connections "
+            "(tenant_id, provider_type, provider_name, environment, status, "
+            " permissions, secret_reference, created_by) "
+            "VALUES (?,?,?,?, 'aktiv', ?, ?, ?)",
+            (tenant_id, provider_type, provider_name, environment,
+             permissions, secret_reference, created_by))
+        self.conn.commit()
+
+    def provider_connection_list(self, tenant_id, provider_type=None):
+        q = "SELECT * FROM provider_connections WHERE tenant_id = ?"
+        p = [tenant_id]
+        if provider_type:
+            q += " AND provider_type = ?"
+            p.append(provider_type)
+        return [dict(r) for r in self.conn.execute(q, p).fetchall()]
+
+    def provider_connection_ensure_columns(self):
+        """PHASE 7: Migration - fehlende Spalten ergaenzen (idempotent)."""
+        if not self._spalte_existiert("provider_connections", "created_by"):
+            self.conn.execute(
+                "ALTER TABLE provider_connections ADD COLUMN created_by INTEGER")
+            self.conn.commit()
+
+    def provider_connection_test(self, conn_id, ok=True, err=None):
+        """PHASE 7: Test-Status aktualisieren (kein Secret im Log)."""
+        self.conn.execute(
+            "UPDATE provider_connections SET last_test_at = datetime('now'), "
+            "last_error = ?, status = ? WHERE id = ?",
+            (err, "aktiv" if ok else "fehler", conn_id))
+        self.conn.commit()
 
     # ── PHASE 5: Trading-Modi-Zustandsmaschine (Sektion 8) ──
     TRADING_MODES = ("SHADOW", "PAPER", "LIVE_REQUESTED", "LIVE_APPROVED",

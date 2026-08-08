@@ -1492,6 +1492,77 @@ def api_paper_enter():
     return {"ok": True, "old_mode": old, "new_mode": new}
 
 
+# ── PHASE 7: Provider-Connection-Manager (Sektion 10) ──
+@app.route("/api/providers", methods=["GET"])
+def api_providers():
+    import security as _sec
+    tid = _get_tid()
+    try:
+        from db import MTDB
+        m = MTDB()
+        conns = m.provider_connection_list(tid)
+        m.close()
+        # Secrets NICHT ausliefern - nur Referenz-Maske anzeigen
+        for c in conns:
+            ref = c.get("secret_reference", "")
+            if ref:
+                c["secret_reference"] = "••••••••" + ref[-4:] if len(ref) > 4 else "••••"
+        return {"tenant_id": tid, "providers": conns}
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
+@app.route("/api/providers/add", methods=["POST"])
+def api_providers_add():
+    import security as _sec
+    u = _sec.current_user()
+    if not u:
+        return {"error": "nicht eingeloggt"}, 401
+    role = _sec.effective_role(u)
+    if role not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    ptype = request.form.get("provider_type") or (request.json.get("provider_type") if request.is_json else "")
+    pname = request.form.get("provider_name") or (request.json.get("provider_name") if request.is_json else "")
+    env = request.form.get("environment", "PAPER") or (request.json.get("environment", "PAPER") if request.is_json else "PAPER")
+    secret_ref = request.form.get("secret_reference", "") or (request.json.get("secret_reference", "") if request.is_json else "")
+    if not ptype or not pname:
+        return {"error": "provider_type/name fehlt"}, 400
+    try:
+        from db import MTDB
+        m = MTDB()
+        m.provider_connection_add(tid, ptype, pname, env, "read",
+                                 secret_ref or "vault://pending", created_by=1)
+        m.close()
+        return {"ok": True}
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
+@app.route("/api/providers/test/<int:conn_id>", methods=["POST"])
+def api_providers_test(conn_id):
+    import security as _sec
+    u = _sec.current_user()
+    if not u:
+        return {"error": "nicht eingeloggt"}, 401
+    try:
+        from db import MTDB
+        m = MTDB()
+        # nur Verbindungen des eigenen Tenants testen
+        conn = m.conn.execute(
+            "SELECT * FROM provider_connections WHERE id = ? AND tenant_id = ?",
+            (conn_id, _get_tid())).fetchone()
+        if not conn:
+            m.close()
+            return {"error": "nicht gefunden"}, 404
+        # Simulierter Test (kein echter API-Call im PAPER_ONLY-Modus)
+        m.provider_connection_test(conn_id, ok=True)
+        m.close()
+        return {"ok": True, "status": "getestet"}
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
 @app.route("/api/db_query")
 def api_db_query():
     try:

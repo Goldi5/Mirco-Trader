@@ -1,3 +1,13 @@
+## [2.31.0] - 2026-08-08
+### Added (PHASE 7: Provider-Connection-Manager — Mandanten-Ausbauauftrag)
+- **provider_connections Tabelle:** tenant-scoped, environment DEMO/PAPER/SANDBOX/LIVE.
+- **Secrets NUR als Referenz** (`vault://...`), nie Klartext; API maskiert bei Ausgabe (`••••••••xxxx`).
+- **db.py:** `provider_connection_add/list/test` + Migration (`created_by` Spalte).
+- **dashboard.py:** `/api/providers` (GET), `/api/providers/add` (POST), `/api/providers/test/<id>` (POST, TENANT_ADMIN).
+- **ROUTE_ACCESS:** 3 neue Routen auf TENANT_ADMIN.
+- **Tests:** Sektion 7g (+5) -> **97 OK, 0 FAIL**.
+- **PAPER_ONLY bleibt** — keine echten API-Calls.
+
 ## [2.30.0] - 2026-08-08
 ### Added (PHASE 6: Shadow->Paper Freigabe — Mandanten-Ausbauauftrag)
 - **paper_eligibility():** prueft Voraussetzungen (Min-KI-Decisions, keine Regelkonflikte).

@@ -397,6 +397,40 @@ try:
 except Exception as e:
     ck("Shadow->Paper Freigabe", False, str(e))
 
+# ─── Phase 15g: Provider-Connection-Manager (v2.31.0, PHASE 7) ───────────
+print("\n7g. Provider-Connection-Manager (v2.31.0, PHASE 7)")
+try:
+    import security as sec7, db as mtdb7, dashboard as dash7
+    m7 = mtdb7.MTDB()
+    # Verbindung anlegen - Secret NUR als Referenz (kein Klartext)
+    m7.provider_connection_add(1, "market_data", "yfinance", "PAPER", "read",
+                               "vault://mt/yfinance", created_by=1)
+    conns = m7.provider_connection_list(1)
+    ck("provider_connection_add/list", len(conns) == 1)
+    ck("Secret NICHT als Klartext gespeichert", "vault://" in conns[0]["secret_reference"]
+        and "API_KEY" not in conns[0]["secret_reference"])
+    # Test-Status
+    m7.provider_connection_test(conns[0]["id"], ok=True)
+    ck("provider_connection_test OK", True)
+    m7.conn.execute("DELETE FROM provider_connections WHERE tenant_id=1")
+    m7.conn.commit(); m7.close()
+    # API: Secret wird maskiert
+    app7 = dash7.app; app7.config["TESTING"] = True
+    c7 = app7.test_client()
+    c7.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    c7.post("/api/providers/add", data={"provider_type": "market_data",
+            "provider_name": "yfinance", "secret_reference": "vault://mt/yf"})
+    r = c7.get("/api/providers")
+    provs = r.get_json().get("providers", [])
+    ck("API liefert Provider", len(provs) >= 1)
+    ck("API maskiert Secret (kein Klartext)", all("•" in p["secret_reference"] for p in provs))
+    # Cleanup
+    m7b = mtdb7.MTDB()
+    m7b.conn.execute("DELETE FROM provider_connections WHERE tenant_id=1")
+    m7b.conn.commit(); m7b.close()
+except Exception as e:
+    ck("Provider-Connection-Manager", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

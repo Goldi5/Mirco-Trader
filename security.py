@@ -256,6 +256,8 @@ ROUTE_ACCESS = {
     "/api/trading_mode": "TENANT_ADMIN", "/api/trading_mode/set": "TENANT_ADMIN",
     "/api/trading_mode/history": "TENANT_ADMIN",
     "/api/paper/eligibility": "TENANT_ADMIN", "/api/paper/enter": "TENANT_ADMIN",
+    "/api/providers": "TENANT_ADMIN", "/api/providers/add": "TENANT_ADMIN",
+    "/api/providers/test/<int:conn_id>": "TENANT_ADMIN",
     "/api/tenants": "ADMIN", "/api/tenants/create": "ADMIN",
     "/api/tenants/<int:tid>/members": "ADMIN",
     "/api/users": "ADMIN", "/api/users/create": "ADMIN",

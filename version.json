@@ -1,20 +1,28 @@
 {
-  "version": "2.30.0",
-  "build": "2026-08-08_2220",
-  "released_at": "2026-08-08 22:20",
-  "codename": "Shadow->Paper Freigabe (PHASE 6): Eligibility-Check + virtuelles Paper-Portfolio, 92 Tests",
+  "version": "2.31.0",
+  "build": "2026-08-08_2245",
+  "released_at": "2026-08-08 22:45",
+  "codename": "Provider-Connection-Manager (PHASE 7): tenant-scoped Connections, Secrets als Referenz, 97 Tests",
   "changes": [
+    {
+      "version": "2.31.0",
+      "date": "2026-08-08",
+      "changes": [
+        "PHASE 7 Provider-Abstraktion: provider_connections Tabelle (tenant-scoped)",
+        "Secrets NUR als Referenz (vault://...), nie Klartext - API maskiert bei Ausgabe",
+        "db.py: provider_connection_add/list/test + Migration (created_by Spalte)",
+        "dashboard.py: /api/providers (GET), /api/providers/add (POST), /api/providers/test/<id> (POST)",
+        "ROUTE_ACCESS: 3 neue Routen auf TENANT_ADMIN",
+        "PAPER_ONLY erhalten - keine echten API-Calls",
+        "Sektion 7g: 5 neue Tests -> 97 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.30.0",
       "date": "2026-08-08",
       "changes": [
-        "PHASE 6 Shadow->Paper Freigabe: paper_eligibility() prueft Voraussetzungen (Min-Shadow-Decisions, keine Konflikte)",
-        "enter_paper() erzwingt SHADOW->PAPER nur wenn eligible",
-        "db.py: paper_portfolios + paper_positions Tabellen (eigenes virtuelles Depot, nicht mit Shadow mischen)",
-        "dashboard.py: /api/paper/eligibility (GET), /api/paper/enter (POST, TENANT_ADMIN)",
-        "ROUTE_ACCESS: 2 neue Routen auf TENANT_ADMIN",
-        "PAPER_ONLY erhalten - keine Live-Ausfuehrung",
-        "Sektion 7f: 8 neue Tests -> 92 OK, 0 FAIL"
+        "PHASE 6 Shadow->Paper Freigabe: Eligibility + virtuelles Paper-Portfolio",
+        "92 Tests"
       ]
     },
     {
