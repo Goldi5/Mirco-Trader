@@ -1,3 +1,18 @@
+## [2.20.2] - 2026-08-08
+### Fixed (Risk 70 kauft endlich)
+- **`batch_trader.py` Budget-Filter** (Z116-117 + Z146-148): `kauf_budget = depot.bargeld * 0.8` → `depot.bargeld * params["position_size"] * 1.5`.
+  - Vorher: Risk 70 mit $107 Cash hatte `kauf_budget=$85.78` → nur Riesen-Einzelpositionen (> $85) erlaubt → keine Small-Caps ($5-30) → keine Kandidaten → keine Käufe.
+  - Nachher: `kauf_budget=$52.27` → Small-Caps kommen durch → KI entscheidet → Käufe möglich.
+- **Verifiziert** (Ad-hoc-Test mit echten Indikatoren): Risk 70 `bewerte()` liefert 4 Aktien (SOFI/CLOU/LGI/TNDM), KI-Kandidaten da. Penny-Penalty greift (Small-Caps > Penny-Score).
+- **Root-Cause war zweigeteilt:** (1) Budget-Filter zu eng + (2) `bewerte()` braucht Indikatoren (rsi/macd/bb/atr), sonst fällt alles unter `min_score=27`. Im echten `scan_markt` sind Indikatoren gegeben.
+
+### Changed (vorher 2.20.1)
+- (siehe 2.20.0 für strategie.py SSOT)
+
+## [2.20.1] - 2026-08-07
+### Fixed (strategie.py Selbsttest)
+- Assertion `volumen_pos_size(0.20)` → `volumen_pos_size(0.10)` korrigiert (0.20 liegt zwischen Dämpfer-Stufen, korrekt 0.70). Selbsttest grün.
+
 ## [2.20.0] - 2026-08-07
 ### Added (Zentrale Strategie-Config)
 - **Neue Datei `strategie.py`** (Single Source of Truth): Alle weichen Bewertungsregeln zentral.

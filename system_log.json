@@ -2935,5 +2935,20 @@
     "zeit": "2026-08-07T23:13:21.397373",
     "quelle": "watchdog",
     "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-07T23:28:23.319130",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-08T08:45:58.244252",
+    "quelle": "watchdog",
+    "text": "Watchdog-Loop gestartet (Interval 15 min)"
+  },
+  {
+    "zeit": "2026-08-08T08:47:31.221742",
+    "quelle": "watchdog",
+    "text": "Watchdog: Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: WhatsApp send failed: Cannot connect to host localhost:3000 ssl:default [Der Remotecomputer hat die Netzwerkverbindung abgelehnt] | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
   }
 ]

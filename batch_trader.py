@@ -113,7 +113,9 @@ def main():
         # bewerte() vergibt hohe Scores an teure Large-Caps -> top[:10] waeren fast
         # nur unbezahlbare -> nach Budget-Filter bliebe nichts. So bewertet bewerte()
         # nur Aktien, die das Depot mit 80% des Bargelds kaufen KANN.
-        kauf_budget = depot.bargeld * 0.8
+        # v2.20.2: Budget-Filter pos_size-basiert (vorher bargeld*0.8 → zu eng, Risk 70 kaufte nie)
+        # Erlaubt Aktien, die das Depot zu ~1.5x der Zielpositionsgroesse kaufen kann.
+        kauf_budget = depot.bargeld * params["position_size"] * 1.5
         bezahlbare = [a for a in aktien_liste if 0 < a.get("aktuell", 0) <= kauf_budget]
         # TEMP-DEBUG: was filtert der Budget-Filter?
         try:
@@ -140,9 +142,7 @@ def main():
                 "vol_ratio": t.get("vol_ratio", 1),
             } for t in top[:10]]  # Top 10 bewerten, dann filtern
         
-        # 🛡 v2.16.8 Budget-Filter (Sicherung): Nur Kandidaten, die das Depot mit 80% des
-        # Bargelds kaufen KANN. Teure Top-Scorer (AAPL $308 bei $100 Cash) würden
-        # sonst den Prompt dominieren -> KI schlägt unbezahlbare Käufe vor -> nichts passiert.
+        # v2.20.2: Budget-Filter (Sicherung) nutzt jetzt pos_size-basiertes kauf_budget (s.o.)
         kandidaten = [k for k in alle_kandidaten if 0 < k["preis"] <= kauf_budget]
         # Fallback (User-Idee): keine bezahlbaren Kandidaten -> günstigsten mit
         # gueltigem Preis aus der Gesamtliste nehmen, damit das Depot IMMER

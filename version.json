@@ -1,8 +1,8 @@
 {
-  "version": "2.20.0",
-  "build": "2026-08-07_2320",
-  "released_at": "2026-08-07 23:20",
-  "codename": "Zentrale Strategie-Config (Single Source of Truth)",
+  "version": "2.20.2",
+  "build": "2026-08-08_0855",
+  "released_at": "2026-08-08 08:55",
+  "codename": "Risk 70 Budget-Filter Fix (pos_size-basiert statt bargeld*0.8)",
   "changes": [
     {
       "version": "2.19.3",
