@@ -1591,7 +1591,7 @@ def _route_access_control():
         return
     u = sec.current_user()
     if cls == "AUTHENTICATED":
-        if not u:
+        if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
             if rule.startswith("/api/"):
                 return jsonify({"error": "unauthorized"}), 401
             return redirect("/login?next=" + rule)
@@ -1682,7 +1682,7 @@ def setup_mfa():
         return make_response("<h1>Code falsch</h1><a href='/setup_mfa'>neu</a>")
     pending = sec.generate_mfa_secret()
     u["mfa_pending_secret"] = pending
-    sec._save_users({x: sec.get_user(x) for x in sec.list_users()})
+    sec._save_users({x["username"]: x for x in sec.list_users()})
     uri = sec.mfa_provisioning_uri(pending, uname)
     return make_response(
         f"<h1>MFA einrichten</h1><p>Secret: {pending}</p>"
