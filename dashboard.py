@@ -3,7 +3,14 @@
 import json, os, sys, time
 from datetime import datetime, timedelta, date
 import yfinance as yf
-from flask import Flask, send_from_directory, request, jsonify
+from flask import Flask, send_from_directory, request, jsonify, session, redirect, url_for, make_response
+
+# PHASE 4-6 (Server-Sicherheit): zentrale Sicherheitslogik
+import security as sec
+from security import (
+    require_auth, require_role, require_recent_mfa, current_user,
+    login_required_redirect,
+)
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 5200
@@ -1550,6 +1557,136 @@ def api_settings_post():
                         "warnungen": warnungen}), 200
     return jsonify({"ok": ok, "meldung": meldung, "warnungen": warnungen}), 200
 
+# ─── PHASE 4-6: Security-Hooks (serverseitige Routenprüfung + Header) ───────
+import functools
+
+@ app.after_request
+def _security_headers(resp):
+    """Setzt OWASP-konforme Security-Header (Phase 5)."""
+    resp.headers["Content-Security-Policy"] = (
+        "default-src 'self'; img-src 'self' data: https:; "
+        "style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; "
+        "frame-ancestors 'none'; base-uri 'self'")
+    resp.headers["X-Content-Type-Options"] = "nosniff"
+    resp.headers["Referrer-Policy"] = "no-referrer"
+    resp.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+    resp.headers["X-Frame-Options"] = "DENY"
+    return resp
+
+
+@ app.before_request
+def _route_access_control():
+    """PHASE 6: serverseitige Zugriffskontrolle für ALLE Routen.
+    Frontend-Ausblendung ist KEINE Berechtigung (Auftrag Regel 5)."""
+    rule = request.path
+    cls = sec.route_class(rule)
+    if cls == "PUBLIC":
+        return
+    u = sec.current_user()
+    if cls == "AUTHENTICATED":
+        if not u:
+            if rule.startswith("/api/"):
+                return jsonify({"error": "unauthorized"}), 401
+            return redirect("/login?next=" + rule)
+        sec.touch_session(u["username"], sec._current_sid())
+        return
+    # ANALYST / OPERATOR / ADMIN / SUPERADMIN
+    if not u:
+        if rule.startswith("/api/"):
+            return jsonify({"error": "unauthorized"}), 401
+        return redirect("/login?next=" + rule)
+    if not sec.access_level_met(u["role"], cls):
+        if rule.startswith("/api/"):
+            return jsonify({"error": "forbidden"}), 403
+        return jsonify({"error": "forbidden"}), 403
+    sec.touch_session(u["username"], sec._current_sid())
+
+
+# ─── PHASE 4: Auth-Routen (Login/Logout/MFA) ────────────────────────────────
+@ app.route("/login", methods=["GET", "POST"])
+def login():
+    """Login (Phase 4). Setzt sichere Session-Cookies."""
+    if request.method == "POST":
+        uname = request.form.get("username", "").strip()
+        pw = request.form.get("password", "")
+        if sec.verify_password(uname, pw):
+            sid = sec.create_session(uname, request.remote_addr or "")
+            # Session-Rotation nach Login (Phase 5)
+            sid = sec.rotate_session(uname, sid) or sid
+            resp = make_response(redirect(request.args.get("next") or "/data"))
+            resp.set_cookie("username", uname, httponly=True, samesite="Lax",
+                            secure=False)  # secure=True erst bei HTTPS/Funnel
+            resp.set_cookie("sid", sid, httponly=True, samesite="Lax",
+                            secure=False)
+            u = sec.get_user(uname)
+            u["last_login"] = datetime.utcnow().isoformat() + "Z"
+            sec.audit_log("login", uname)
+            return resp
+        sec.audit_log("login_failed", uname)
+        return make_response("<h1>Login fehlgeschlagen</h1><a href='/login'>neu</a>"), 401
+    return make_response(
+        "<form method='POST'>Benutzer:<input name='username'><br>"
+        "Passwort:<input name='password' type='password'><br>"
+        "<input type='submit' value='Login'></form>")
+
+
+@ app.route("/logout")
+def logout():
+    uname = request.cookies.get("username")
+    sid = request.cookies.get("sid")
+    if uname and sid:
+        sec.revoke_session(uname, sid)
+    resp = make_response(redirect("/login"))
+    resp.delete_cookie("username")
+    resp.delete_cookie("sid")
+    return resp
+
+
+@ app.route("/mfa", methods=["GET", "POST"])
+def mfa_verify():
+    """MFA-Verifizierung (Phase 4). Erforderlich für admin/superadmin."""
+    uname = request.cookies.get("username")
+    sid = request.cookies.get("sid")
+    if not uname or not sid or not sec.session_valid(uname, sid):
+        return redirect("/login")
+    if request.method == "POST":
+        code = request.form.get("code", "").strip()
+        u = sec.get_user(uname)
+        if u and sec.verify_mfa(u.get("mfa_secret", ""), code):
+            sec.mark_mfa_verified(uname, sid)
+            sec.audit_log("mfa_verify", uname)
+            return redirect("/admin")
+        return make_response("<h1>MFA falsch</h1><a href='/mfa'>neu</a>"), 401
+    return make_response(
+        "<form method='POST'>MFA-Code:<input name='code'><br>"
+        "<input type='submit' value='OK'></form>")
+
+
+@ app.route("/setup_mfa", methods=["GET", "POST"])
+@ sec.require_role("admin")
+def setup_mfa():
+    """MFA für aktuellen User einrichten (Provisioning)."""
+    uname = request.cookies.get("username")
+    u = sec.get_user(uname)
+    if request.method == "POST":
+        code = request.form.get("code", "").strip()
+        if sec.enable_mfa(uname, code):
+            return redirect("/data")
+        return make_response("<h1>Code falsch</h1><a href='/setup_mfa'>neu</a>")
+    pending = sec.generate_mfa_secret()
+    u["mfa_pending_secret"] = pending
+    sec._save_users({x: sec.get_user(x) for x in sec.list_users()})
+    uri = sec.mfa_provisioning_uri(pending, uname)
+    return make_response(
+        f"<h1>MFA einrichten</h1><p>Secret: {pending}</p>"
+        f"<p><a href='{uri}'>otpauth-Link</a></p>"
+        f"<form method='POST'>Code:<input name='code'><br>"
+        f"<input type='submit' value='Aktivieren'></form>")
+
+
 if __name__ == "__main__":
     print("Dashboard -> http://localhost:%d" % PORT)
-    app.run(host="0.0.0.0", port=PORT, debug=False)
+    # PHASE 2 (Server-Sicherheit): nur intern binden, niemals 0.0.0.0 (Regel 4).
+    # Interner Port bleibt 5300; der Reverse Proxy (Phase 3) ist der einzige
+    # öffentliche Einstiegspunkt. Flask darf niemals direkt public sein.
+    app.run(host="127.0.0.1", port=PORT, debug=False)

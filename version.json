@@ -1,9 +1,23 @@
 {
-  "version": "2.20.2",
-  "build": "2026-08-08_0855",
-  "released_at": "2026-08-08 08:55",
-  "codename": "Risk 70 Budget-Filter Fix (pos_size-basiert statt bargeld*0.8)",
+  "version": "2.21.0",
+  "build": "2026-08-08_1115",
+  "released_at": "2026-08-08 11:15",
+  "codename": "Server-Sicherheit Phasen 1-6 (interne Bindung, Auth/Rollen/Session/MFA, Routenprüfung)",
   "changes": [
+    {
+      "version": "2.21.0",
+      "date": "2026-08-08 11:15",
+      "codename": "Server-Sicherheit Phasen 1-6",
+      "summary": "VORBEREITUNG fuer Serverbetrieb (Tailscale Funnel + Reverse Proxy, Paper/Shadow ONLY). Phase 1: SERVER-SECURITY-INVENTORY (Bestandsaufnahme). Phase 2: Flask bindet auf 127.0.0.1 statt 0.0.0.0. Phase 4-6: NEU security.py (Rollen, MFA TOTP RFC6238 via cryptography HMAC, serverseitige Sessions pbkdf2, CSRF, Audit-Log). dashboard.py: before_request prueft alle Routen serverseitig, after_request setzt OWASP-Header, Login/Logout/MFA-Routen. Keine Echtgeld-Funktionen. Dokumentation im Vault. Lokale Tests durch Guard-Bug blockiert.",
+      "files": ["security.py", "dashboard.py", "version.json"]
+    },
+    {
+      "version": "2.20.2",
+      "date": "2026-08-08 08:55",
+      "codename": "Risk 70 Budget-Filter Fix",
+      "summary": "Budget-Filter pos_size-basiert statt bargeld*0.8.",
+      "files": ["batch_trader.py", "version.json"]
+    },
     {
       "version": "2.19.3",
       "date": "2026-08-07 16:10",
@@ -22,7 +36,7 @@
       "version": "2.18.3",
       "date": "2026-08-06 22:15",
       "codename": "KI-Wellen (gestreckte Calls)",
-      "summary": "KI-Taktung auf 30min zurueck (statt 120), aber Calls gestreckt statt gebündelt. NEU: Scheduler triggert KI-Wellen (--welle 0-3) alle 30min, jede Welle verarbeitet nur 13 der 49 Spec-Ticker (statt alle 49 auf einmal). Ursache des Rate-Limits (zen Free-Tier 429 nach ~20 Calls): 49 Calls auf einen Schlag. Jetzt ~13 Calls/Welle -> zen hält durch, andere Provider springen ein. Scheduler: Engine (Daten) alle 15min, KI-Welle alle 30min rotierend (Welle = now_min//30 % 4). Verifiziert: Welle 0/1 laufen sauber durch, nur zen rate-limited (andere frei)."
+      "summary": "KI-Taktung auf 30min zurueck (statt 120), aber Calls gestreckt statt gebündelt. NEU: Scheduler triggert KI-Wellen (--welle 0-3) alle 30min, jede Welle verarbeitet nur 13 der 49 Spec-Ticker (statt alle 49 auf einmal). Ursache des Rate-Limits (zen Free-Tier 429 nach ~20 Calls): 49 Calls auf einen Schlag. Jetzt ~13 Calls/Welle -> zen haelt durch, andere Provider springen ein. Scheduler: Engine (Daten) alle 15min, KI-Welle alle 30min rotierend (Welle = now_min//30 % 4). Verifiziert: Welle 0/1 laufen sauber durch, nur zen rate-limited (andere frei)."
     },
     {
       "version": "2.18.2",
@@ -34,81 +48,48 @@
       "version": "2.18.1",
       "date": "2026-08-06 20:55",
       "codename": "KI-Final-Fix",
-      "summary": "🔧 KRITISCHER FIX: KI-Trading war lahmgelegt. Root-Cause 1: alle 5 Provider im Circuit-Breaker-Cooldown (ki_cooldown.json) wegen hängengebliebenem State vom Hermes-Modell-Wechsel. Root-Cause 2: Reasoning-Modelle (nous-hy3/step) lieferten bei kleinem max_tokens KEIN content -> _ki_call wertete das als Fehler -> Cooldown. Fixes: (1) CALL_TIMEOUT 120→180s, (2) Cooldown-Datei >6h auto-verworfen, (3) _ki_call akzeptiert jetzt reasoning_content + leere Antworten loesen KEINEN Cooldown, (4) ki_cooldown.json geleert, (5) Spec-Trader Workers 3→8 + Pipeline-Timeout 300→600s. hy3 wieder in Rotation (braucht max_tokens>=1024 im Trader-Prompt, was gegeben ist). Verifiziert: Spec-Trader 93-106s sauber (OK), KI entscheidet echte kaufen/verkaufen, ki_log vollstaendig, kein Cooldown mehr.",
-      "files": [
-        "ki_provider.py",
-        "spec_trader.py",
-        "/c/Users/goldi/AppData/Local/hermes/scripts/micro-trader-pipeline.py"
-      ]
+      "summary": "KRITISCHER FIX: KI-Trading war lahmgelegt. Root-Cause 1: alle 5 Provider im Circuit-Breaker-Cooldown (ki_cooldown.json) wegen haengengebliebenem State vom Hermes-Modell-Wechsel. Root-Cause 2: Reasoning-Modelle (nous-hy3/step) lieferten bei kleinem max_tokens KEIN content -> _ki_call wertete das als Fehler -> Cooldown. Fixes: (1) CALL_TIMEOUT 120→180s, (2) Cooldown-Datei >6h auto-verworfen, (3) _ki_call akzeptiert jetzt reasoning_content + leere Antworten loesen KEINEN Cooldown, (4) ki_cooldown.json geleert, (5) Spec-Trader Workers 3→8 + Pipeline-Timeout 300→600s. hy3 wieder in Rotation (braucht max_tokens>=1024 im Trader-Prompt, was gegeben ist). Verifiziert: Spec-Trader 93-106s sauber (OK), KI entscheidet echte kaufen/verkaufen, ki_log vollstaendig, kein Cooldown mehr.",
+      "files": ["ki_provider.py", "spec_trader.py", "/c/Users/goldi/AppData/Local/hermes/scripts/micro-trader-pipeline.py"]
     },
     {
       "version": "2.18.0",
       "date": "2026-08-06",
       "codename": "Phase-13-Live-Freigabe",
       "summary": "Phase 13 (Live-Freigabe §29.F) durchgeführt: Profile us_shadow/de_shadow/jp_shadow auf modus=live aktiviert (freigegeben_am 2026-08-06T20:31, freigegeben_von=user) via freigabe.py --activate --confirm. Pre-Flight-Check bestanden (Shadow-Status, Risiko-Modell standard, Regelstand v2.16.12, Depotarten). 29 nicht-freigegebene Regeln (27 Meta-Caps + 2 Anti-Hold) bleiben bewusst Shadow. Dashboard zeigt Status=live in Profil-Karten. Backup: .backup/before_phase13_live_20260806_203146/.",
-      "files": [
-        "profile_us_shadow.json",
-        "profile_de_shadow.json",
-        "profile_jp_shadow.json",
-        "version.json"
-      ]
+      "files": ["profile_us_shadow.json", "profile_de_shadow.json", "profile_jp_shadow.json", "version.json"]
     },
     {
       "version": "2.18.0",
       "date": "2026-08-06",
       "codename": "Daily-Auswertungs-PDF",
       "summary": "Tagesauswertungs-PDF implementiert (6 Pflichtsektionen: Tagesstatus, Performance/P&L, Risiko/Exposure, Trades/Ausführung, KI/Regel/Governance, Systemstatus/Anomalien/Audit). Erweitert report_pdf.py (bisher v5: Banner/Logo/Graphen). Nutzt echte Datenquellen: ki_log.json, learned_rules.json, notifications.json, .backup/, hermes cron list. Ehrliche Darstellung: fehlende Werte (Slippage/Gebühren/decision_id in Depot-Trades) als n/a markiert. Report-ID + Audit-Fußzeile (KI GENERIERT, Seitenzahl) auf jeder Seite. Dateiname: daily_report_YYYY-MM-DD_v2.18.0_RPT-*.pdf. KI-Parse-Fehler (ungültiges JSON) behoben (Retry + Fallback, kein Crash). Anti-Hold-Regeln von VERBOT auf VORSICHT/ABWÄGEN (KI entscheidet final). max_workers 12→3 (Rate-Limit-Minderung).",
-      "files": [
-        "report_pdf.py",
-        "ki_decisions.py",
-        "spec_trader.py",
-        "version.json"
-      ]
+      "files": ["report_pdf.py", "ki_decisions.py", "spec_trader.py", "version.json"]
     },
     {
       "version": "2.17.0-dev",
       "date": "2026-08-06",
       "codename": "Phase2-4-MultiMarket",
       "summary": "Phase 2-4 aus Zielarchitektur §28: Profil-Schema (profil_schema.py + 3 Profile US/DE/JP), Regime pro Markt (boersen.regime_pro_markt), Datenqualität-Check (datenqualitaet.py). Kursdaten DE/JP via yfinance-Suffix (SAP.DE, 7203.T) verifiziert. NOCH NICHT in Live (Phase 13 Live-Freigabe wartet auf User).",
-      "files": [
-        "profil_schema.py",
-        "profile_us_shadow.json",
-        "profile_de_shadow.json",
-        "profile_jp_shadow.json",
-        "boersen.py",
-        "datenqualitaet.py",
-        "version.json"
-      ]
+      "files": ["profil_schema.py", "profile_us_shadow.json", "profile_de_shadow.json", "profile_jp_shadow.json", "boersen.py", "datenqualitaet.py", "version.json"]
     },
     {
       "version": "2.16.12",
       "date": "2026-08-05",
       "codename": "Spec-Empty-Cleanup",
-      "summary": "7 leere Spec-Depots (0 Trades, 0 Pos, Cash uebrig) physisch geloescht (LABU/MARA/MNMD/QQQ/SOXS/TQQQ/VXX). Diese waren bewusst 'halten' (Hebele/Volatility + MNMD delisted) und blockierten die Spec-Uebersicht. Nur 42 aktive Spec-Depots uebrig.",
-      "files": [
-        "version.json"
-      ]
+      "summary": "7 leere Spec-Depots (0 Trades, 0 Pos, Cash uebrig) physisch geloescht (LABU/MARA/MNMD/QQQ/SOXS/TQQQ/VXX). Diese waren bewusst 'halten' (Hebele/Volatility + MNMD delisted) und blockierten die Spec-Uebersicht. Nur 42 aktive Spec-Depots uebrig."
     },
     {
       "version": "2.16.11",
       "date": "2026-08-05",
       "codename": "Spec-Depot-Cleanup",
-      "summary": "38 tote Spec-Depot-Dateien (nicht in WATCHLIST, start=0) physisch geloescht. Dashboard filterte sie schon (data() Zeile 822), aber sie verzerrten Spec-Tab-Ansicht. Nur 49 gueltige Spec-Depots uebrig (alle in WATCHLIST).",
-      "files": [
-        "version.json"
-      ]
+      "summary": "38 tote Spec-Depot-Dateien (nicht in WATCHLIST, start=0) physisch geloescht. Dashboard filterte sie schon (data() Zeile 822), aber sie verzerrten Spec-Tab-Ansicht. Nur 49 gueltige Spec-Depots uebrig (alle in WATCHLIST)."
     },
     {
       "version": "2.16.10",
       "date": "2026-08-05",
       "codename": "Spec-Fetch-Fallback + ETF-Reset",
       "summary": "ETF-Depots (20x tot durch P55-0$-Verkauf) auf 100$ resetet; spec_trader.fetch_analyse() Super-Mix-Fallback (yfinance single + marktdaten.hole_kurs) + _MAX_SPEC-Limit-Fix (QQQ wurde abgeschnitten bei 48/49 Ticker); RSI-Berechnung robuster.",
-      "files": [
-        "spec_trader.py",
-        "etf_trader.py",
-        "settings.json",
-        "version.json"
-      ]
+      "files": ["spec_trader.py", "etf_trader.py", "settings.json", "version.json"]
     },
     {
       "version": "2.16.9",
@@ -139,31 +120,31 @@
       "version": "2.16.3",
       "date": "2026-08-05 14:00",
       "codename": "Profil-Modell",
-      "summary": "👤 Phase 2 (Identität & Struktur): Profil-Schema + US_Test_Shadow Profil. NEU profile_schema.py (Profil-Klasse, JSON-Schema-Validierung, Default = US_Test_Shadow: US-Markt, Shadow-Modus, USD). Route /api/profile + profil in data() + Profil-Karte im Dashboard (Name/Modus/Währung/Märkte/Depotarten/Version). Reine Metadaten-Hülle (greift noch nicht steuernd in Trading ein — folgt Phase 3+). Gebaut im Dev-Clone (Port 5400), Produktiv (5300) unberührt. Verifiziert: /api/profile liefert Profil, /data profil-Block, HTTP 200."
+      "summary": "Phase 2 (Identität & Struktur): Profil-Schema + US_Test_Shadow Profil. NEU profile_schema.py (Profil-Klasse, JSON-Schema-Validierung, Default = US_Test_Shadow: US-Markt, Shadow-Modus, USD). Route /api/profile + profil in data() + Profil-Karte im Dashboard (Name/Modus/Währung/Märkte/Depotarten/Version). Reine Metadaten-Hülle (greift noch nicht steuernd in Trading ein — folgt Phase 3+). Gebaut im Dev-Clone (Port 5400), Produktiv (5300) unberührt. Verifiziert: /api/profile liefert Profil, /data profil-Block, HTTP 200."
     },
     {
       "version": "2.16.2",
       "date": "2026-08-05 13:35",
       "codename": "Handel-Pause",
-      "summary": "⏸ 'Handel pausieren'-Button (Phase 8 Sicherheit, Priorität 2). Neue Route /api/pause_trading (state=on/off) schreibt pause_flag.json. Scheduler (micro_trader_scheduler.py) prüft Flag vor run_once() -> bei PAUSIERT kein Start (keine Pipeline). Dashboard zeigt Button + Status (Grund + Zeit). Bestätigungs-Dialog vor Pause. Verifiziert: Pause ON -> Scheduler loggt 'PAUSIERT (test) -> kein Start', /data liefert paused-Status, Button toggelt korrekt."
+      "summary": "Handel pausieren-Button (Phase 8 Sicherheit, Priorität 2). Neue Route /api/pause_trading (state=on/off) schreibt pause_flag.json. Scheduler (micro_trader_scheduler.py) prüft Flag vor run_once() -> bei PAUSIERT kein Start (keine Pipeline). Dashboard zeigt Button + Status (Grund + Zeit). Bestätigungs-Dialog vor Pause. Verifiziert: Pause ON -> Scheduler loggt 'PAUSIERT (test) -> kein Start', /data liefert paused-Status, Button toggelt korrekt."
     },
     {
       "version": "2.16.1",
       "date": "2026-08-05 12:15",
       "codename": "Pipeline-Timing",
-      "summary": "⏰ Health-Karte zeigt 'Nächster Lauf in X Min' (Scheduler alle 15min, berechnet aus aktueller Zeit mod 15). Ergänzt _health_status() um naechster_lauf_min. Schließt Priorität 1 (Sichtbarkeit) ab: Health-Karte + Markt-Badges + Pipeline-Timing. Verifiziert: /data liefert naechster_lauf_min=2 (korrekt), HTTP 200, Badge rendert."
+      "summary": "Health-Karte zeigt 'Nächster Lauf in X Min' (Scheduler alle 15min, berechnet aus aktueller Zeit mod 15). Ergänzt _health_status() um naechster_lauf_min. Schließt Priorität 1 (Sichtbarkeit) ab: Health-Karte + Markt-Badges + Pipeline-Timing. Verifiziert: /data liefert naechster_lauf_min=2 (korrekt), HTTP 200, Badge rendert."
     },
     {
       "version": "2.16.0",
       "date": "2026-08-05 12:00",
       "codename": "Markt-Badges",
-      "summary": "🌍 Markt-Badges in allen Asset-Tabs (Aktien/ETF/Spec + Health-Karte): zeigen pro Börse 🟢 offen / 🔴 zu + nächste Öffnung (aus boersen_chips/boersen.ist_offen). Globales window._maerkteHtml in load() gebaut, in Tab-Header eingefügt. Nutzt bestehende boersen.py (kein neuer Code-Pfad). Rein informativ. Verifiziert: /data liefert boersen_chips (NYSE/NASDAQ closed, next_open korrekt), JS-Syntax OK, Badges rendern in allen Tabs."
+      "summary": "Markt-Badges in allen Asset-Tabs (Aktien/ETF/Spec + Health-Karte): zeigen pro Börse offen / zu + nächste Öffnung (aus boersen_chips/boersen.ist_offen). Globales window._maerkteHtml in load() gebaut, in Tab-Header eingefügt. Nutzt bestehende boersen.py (kein neuer Code-Pfad). Rein informativ. Verifiziert: /data liefert boersen_chips (NYSE/NASDAQ closed, next_open korrekt), JS-Syntax OK, Badges rendern in allen Tabs."
     },
     {
       "version": "2.15.9",
       "date": "2026-08-05 11:30",
       "codename": "Health-Status",
-      "summary": "🩺 Dashboard Health-Status-Karte (Übersicht-Tab oben). Zeigt: WhatsApp-Gateway verbunden?, Dashboard up?, Pipeline aktiv/idle?, welche Börsen gerade offen (US/Xetra/London/Euronext via boersen.ist_offen), letzter batch_trader-Lauf (aus cron_pipeline.log, ✅/❌), Fehler 24h. Neu: _health_status() in data() liefert health-Block. Nutzt bestehende boersen.py + gateway_state.json. Rein informativ, kein Eingriff in Trading-Logik. Verifiziert: /data liefert health (gateway=True, offene_boersen=['🇪🇺 Xetra'...], letzter_batch='10:01:54 OK 139s ✅'), HTTP 200, Karte rendert."
+      "summary": "Dashboard Health-Status-Karte (Übersicht-Tab oben). Zeigt: WhatsApp-Gateway verbunden?, Dashboard up?, Pipeline aktiv/idle?, welche Börsen gerade offen (US/Xetra/London/Euronext via boersen.ist_offen), letzter batch_trader-Lauf (aus cron_pipeline.log, OK), Fehler 24h. Neu: _health_status() in data() liefert health-Block. Nutzt bestehende boersen.py + gateway_state.json. Rein informativ, kein Eingriff in Trading-Logik. Verifiziert: /data liefert health (gateway=True, offene_boersen, letzter_batch OK), HTTP 200, Karte rendert."
     }
   ],
   "features": [
@@ -172,6 +153,7 @@
     "Phase 11 (Karten)",
     "Phase 12 (Feiertage)",
     "Phase 13 (Freigabe-Prep)",
-    "Phase 15/20 (Audit)"
+    "Phase 15/20 (Audit)",
+    "Phase 21 (Server-Sicherheit 1-6)"
   ]
 }

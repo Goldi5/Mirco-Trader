@@ -2950,5 +2950,35 @@
     "zeit": "2026-08-08T08:47:31.221742",
     "quelle": "watchdog",
     "text": "Watchdog: Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: WhatsApp send failed: Cannot connect to host localhost:3000 ssl:default [Der Remotecomputer hat die Netzwerkverbindung abgelehnt] | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T09:04:41.818217",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: WhatsApp send failed: Cannot connect to host localhost:3000 ssl:default [Der Remotecomputer hat die Netzwerkverbindung abgelehnt]"
+  },
+  {
+    "zeit": "2026-08-08T09:21:13.876911",
+    "quelle": "watchdog",
+    "text": "Watchdog: Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: WhatsApp send failed: Cannot connect to host localhost:3000 ssl:default [Der Remotecomputer hat die Netzwerkverbindung abgelehnt] | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T09:38:19.223849",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T09:53:22.376083",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-08T10:08:24.394384",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-08T10:23:26.507100",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
   }
 ]
