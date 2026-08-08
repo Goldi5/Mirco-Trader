@@ -56,6 +56,7 @@ ROUTE_ACCESS = {
     "/static/<path:dateiname>": "PUBLIC", "/assets/<path:dateiname>": "PUBLIC",
     "/reports/<path:name>": "AUTHENTICATED",
     "/login": "PUBLIC", "/logout": "AUTHENTICATED",
+    "/dashboard": "AUTHENTICATED",
     "/data": "AUTHENTICATED", "/depot_json": "AUTHENTICATED",
     "/spec_depot_json": "AUTHENTICATED", "/etf_depot_json": "AUTHENTICATED",
     "/api/analysis": "AUTHENTICATED", "/api/report_pdf": "AUTHENTICATED",

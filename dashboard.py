@@ -642,7 +642,7 @@ def regelstand_aggregat(ki_regeln):
     }
 
 
-@app.route("/")
+@app.route("/dashboard")
 def index():
     return send_from_directory(BASE, "dashboard.html")
 
@@ -1628,7 +1628,7 @@ def login():
             sid = sec.create_session(uname, request.remote_addr or "")
             # Session-Rotation nach Login (Phase 5)
             sid = sec.rotate_session(uname, sid) or sid
-            resp = make_response(redirect(request.args.get("next") or "/data"))
+            resp = make_response(redirect(request.args.get("next") or "/dashboard"))
             resp.set_cookie("username", uname, httponly=True, samesite="Lax",
                             secure=False)  # secure=True erst bei HTTPS/Funnel
             resp.set_cookie("sid", sid, httponly=True, samesite="Lax",
@@ -1699,9 +1699,9 @@ def setup_mfa():
         f"<input type='submit' value='Aktivieren'></form>")
 
 
-# ─── PHASE 7: Öffentliche Landingpage (nur allgemeine Infos, kein internes JSON) ──
+# ─── Öffentliche Landingpage (nur allgemeine Infos, kein internes JSON) ──
+@app.route("/")
 @app.route("/landing")
-@ app.route("/")
 def landing():
     """Öffentliche Landingpage (PUBLIC).
     Darf NUR: Projektname, Kurzbeschreibung, Paper-/Shadow-Hinweis,

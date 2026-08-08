@@ -1,27 +1,5 @@
 [
   {
-    "zeit": "2026-08-07T18:18:27.251117",
-    "quelle": "batch",
-    "level": "ok",
-    "text": "Batch-Lauf: 20 Depots, 721 Trades, Rendite +6.13%"
-  },
-  {
-    "zeit": "2026-08-07T18:28:08.990184",
-    "quelle": "watchdog",
-    "text": "Watchdog: alles OK (kein Test gesendet)"
-  },
-  {
-    "zeit": "2026-08-07T18:30:02.091120",
-    "quelle": "cron",
-    "level": "info",
-    "text": "Cron-Pipeline gestartet (mode=full, detached)"
-  },
-  {
-    "zeit": "2026-08-07T18:30:03.311223",
-    "quelle": "watchdog",
-    "text": "Watchdog: alles OK (kein Test gesendet)"
-  },
-  {
     "zeit": "2026-08-07T18:30:03.321392",
     "quelle": "cron",
     "level": "info",
@@ -2914,5 +2892,26 @@
     "zeit": "2026-08-08T13:38:56.263147",
     "quelle": "watchdog",
     "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-08T13:53:59.418382",
+    "quelle": "watchdog",
+    "text": "Watchdog: alles OK (kein Test gesendet)"
+  },
+  {
+    "zeit": "2026-08-08T13:58:47.437664",
+    "quelle": "batch",
+    "level": "ok",
+    "text": "Batch-Lauf: 20 Depots, 777 Trades, Rendite +6.28%"
+  },
+  {
+    "zeit": "2026-08-08T14:10:29.357470",
+    "quelle": "watchdog",
+    "text": "Watchdog: Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: WhatsApp send failed: Cannot connect to host localhost:3000 ssl:default [Der Remotecomputer hat die Netzwerkverbindung abgelehnt] | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
+  },
+  {
+    "zeit": "2026-08-08T14:27:32.697028",
+    "quelle": "watchdog",
+    "text": "Watchdog: WhatsApp disconnected | Gateway neustart (WhatsApp reconnect) | Port 3000 zu | Bridge neu gestartet | Gateway neustart (Bridge neu) | Send FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets. | Bridge+Gateway Neustart nach Connect/Resolve-Fehler | immer noch FEHLER: hermes send: Could not resolve 'Christian Glaser (dm)' on whatsapp. Use send_message(action='list') to see available targets."
   }
 ]

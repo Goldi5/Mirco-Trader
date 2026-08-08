@@ -1,5 +1,5 @@
 {
-  "zeit": "2026-08-08T13:17:46.217434",
+  "zeit": "2026-08-08T13:58:47.433023",
   "depots": 20,
   "gesamtwert": 2125.63,
   "gesamt_rendite": 6.28,
@@ -7,7 +7,7 @@
   "best_rendite": 24.27,
   "worst_risk": 0,
   "worst_rendite": -1.33,
-  "trades": 778,
+  "trades": 777,
   "detail": [
     {
       "risk": 0,
@@ -112,7 +112,7 @@
       "wert": 107.22,
       "rendite": 7.22,
       "pos": 1,
-      "trades": 51
+      "trades": 50
     },
     {
       "risk": 75,

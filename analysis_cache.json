@@ -1,12 +1,12 @@
 {
-  "zeit": "2026-08-07T23:27:17.826860",
+  "zeit": "2026-08-08T14:32:57.922657",
   "aktien": {
     "name": "Aktien",
     "depots": 20,
     "total_trades": 777,
-    "buys": 71,
+    "buys": 72,
     "sells": 43,
-    "wert": 239.73,
+    "wert": 132.51,
     "start": 0,
     "rendite": 0,
     "top_ticker": [
@@ -22,10 +22,10 @@
       [
         "WKHS",
         {
-          "buys": 147,
+          "buys": 146,
           "sells": 0,
-          "volume": 8499.017334999999,
-          "trades": 147
+          "volume": 8391.634424999998,
+          "trades": 146
         }
       ],
       [
@@ -102,7 +102,7 @@
       ]
     ],
     "grund_stats": {
-      "Konzentrations-Brems": 663,
+      "Konzentrations-Brems": 662,
       "aus_bewertung": 17,
       "🤖 KI: negatives P&L": 8,
       "Score 52.7 (#3)": 4,
@@ -187,7 +187,7 @@
       {
         "risk": 70,
         "trades": 50,
-        "volume": 5369.56
+        "volume": 5369.4
       },
       {
         "risk": 75,
@@ -539,11 +539,11 @@
       "Gelernte Regeln verb": 8,
       "Watchlist-Ticker mit": 8,
       "Keine Position, Cash": 8,
-      "AbwÃ¤rtstrend intakt": 7,
       "downtrend": 6,
       "Neutraler Trend und ": 6,
-      "Anti-Hold-Regel fÃ¼r": 6,
-      "AufwÃ¤rtstrend und R": 5
+      "Anti-Hold-Regel für ": 6,
+      "Aufwärtstrend und RS": 5,
+      "Keine Position, Watc": 5
     },
     "risk_perf": [
       {
@@ -556,7 +556,7 @@
   "risiko_aktien": {
     "name": "Aktien",
     "max_drawdown": 7.0,
-    "ges_drawdown": -123.6,
+    "ges_drawdown": -208.6,
     "depot_details": [
       {
         "risk": 0,
@@ -567,7 +567,7 @@
       {
         "risk": 5,
         "wert": 0.0,
-        "dd": 0.2,
+        "dd": 0.4,
         "positionen": 1
       },
       {
@@ -585,13 +585,13 @@
       {
         "risk": 20,
         "wert": 0.95,
-        "dd": 0.6,
+        "dd": 0.9,
         "positionen": 5
       },
       {
         "risk": 25,
         "wert": 0.0,
-        "dd": 0.6,
+        "dd": 0.9,
         "positionen": 5
       },
       {
@@ -639,19 +639,19 @@
       {
         "risk": 65,
         "wert": 0.0,
-        "dd": 2.9,
+        "dd": 2.4,
         "positionen": 1
       },
       {
         "risk": 70,
-        "wert": 107.22,
-        "dd": 2.9,
-        "positionen": 0
+        "wert": 0.0,
+        "dd": 2.4,
+        "positionen": 1
       },
       {
         "risk": 75,
         "wert": 0.0,
-        "dd": 2.9,
+        "dd": 2.4,
         "positionen": 2
       },
       {
