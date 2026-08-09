@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.44.3] - 2026-08-09
+### Added (UI-Redesign Phase 8: KI/News/Aktivität)
+- **KI-Subtabs** auf Designsystem umgestellt (opake `.ki-subtab` mit Primary-Aktiv-Zustand statt Glassmorphismus)
+- **News-/Log-/Lern-Boxen**: `glass` → `surface` (konsistente opake Flächen)
+- **KI-Markt-Badges** & Analyse-Sticky-TH: Glass-Purple `rgba(139,92,246,...)` → `var(--primary-soft)` / `var(--surface-muted)`
+- Keine Logik-Änderung, nur Darstellung
+
 ## [2.44.2] - 2026-08-09
 ### Added (UI-Redesign Phase 7: Tabellen/Datenansichten)
 - **`.table-scroll`**: Tabellen scrollen horizontal auf schmalen Viewports (statt Zeilenumbruch)
