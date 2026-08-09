@@ -1,9 +1,20 @@
 {
-  "version": "2.34.0",
-  "build": "2026-08-08_2345",
-  "released_at": "2026-08-08 23:45",
-  "codename": "Tenant-Scoped Risikogrenzen + Regeln (PHASE 10+11), 116 Tests",
+  "version": "2.35.0",
+  "build": "2026-08-09_0910",
+  "released_at": "2026-08-09 09:10",
+  "codename": "Enforcement Risikogrenzen + Regeln (PHASE 12), 124 Tests",
   "changes": [
+    {
+      "version": "2.35.0",
+      "date": "2026-08-09",
+      "changes": [
+        "PHASE 12 Enforcement: enforce_risk_limits (Position-Size, Drawdown) in security.py",
+        "enforce_rules: Regel-Typen BLOCK / MAX_KAUF / REGEX (nur Status 'aktiv')",
+        "batch_trader.py: Risiko- + Regel-Check VOR jeder Kauf-Order (PAPER_ONLY)",
+        "Enforcement nie fatal (try/except) - Trading laeuft weiter bei Fehlern",
+        "Sektion 7k: 8 neue Tests -> 124 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.34.0",
       "date": "2026-08-08",

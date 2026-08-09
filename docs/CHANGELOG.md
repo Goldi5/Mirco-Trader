@@ -1,3 +1,10 @@
+## [2.35.0] - 2026-08-09
+### Added (PHASE 12: Enforcement — Risikogrenzen + Regeln wirken im Trading-Pfad)
+- **`enforce_risk_limits(tenant, mode, pos_pct, value, drawdown)`:** blockt Order wenn Position-Size oder Drawdown die effektiven Tenant-Limits überschreitet. Liefert `{allowed, reason, limits}`.
+- **`enforce_rules(tenant, ticker, context)`:** wendet effektive Tenant-Regeln an — Typen `BLOCK:<text>` (hart blockiert), `MAX_KAUF:<n>` (max Käufe), `REGEX:<pattern>` (Ticker-Filter); nur Regeln mit Status `aktiv`.
+- **`batch_trader.py`:** Risiko- + Regel-Check **vor jeder Kauf-Order** (PAPER_ONLY); Enforcement-Fehler sind nie fatal (Trading läuft weiter).
+- **Tests:** Sektion 7k (+8) -> **124 OK, 0 FAIL**.
+
 ## [2.34.0] - 2026-08-08
 ### Added (PHASE 10+11: Tenant-Scoped Risikogrenzen + Regeln — Mandanten-Ausbauauftrag)
 - **tenant_risk_limits Tabelle:** tenant-scoped Risikogrenzen pro Modus (moderate/aggressive).

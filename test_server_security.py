@@ -533,6 +533,51 @@ try:
 except Exception as e:
     ck("Risikogrenzen+Regeln", False, str(e))
 
+# ─── Phase 15k: Enforcement (v2.35.0, PHASE 12) ─────────────────────────────
+print("\n7k. Enforcement: Risiko-Limits + Regeln im Trading-Pfad (v2.35.0, PHASE 12)")
+try:
+    import security as sec11, db as db11
+    tid11 = sec11.resolve_tenant_for_user({"username": "admin"}) or 1
+    # --- enforce_risk_limits ---
+    sec11.risk_set(tid11, "moderate", position_size=0.40, drawdown_limit=0.25)
+    r_ok = sec11.enforce_risk_limits(tid11, "moderate", 0.35, 10000.0)
+    ck("risk allow innerhalb Limit", r_ok["allowed"] is True)
+    r_too = sec11.enforce_risk_limits(tid11, "moderate", 0.50, 10000.0)
+    ck("risk block > Position-Limit", r_too["allowed"] is False
+       and "Position" in r_too["reason"])
+    r_dd = sec11.enforce_risk_limits(tid11, "moderate", 0.20, 10000.0, drawdown_pct=0.30)
+    ck("risk block > Drawdown-Limit", r_dd["allowed"] is False
+       and "Drawdown" in r_dd["reason"])
+    # --- enforce_rules ---
+    sec11.rule_add(tid11, "r_block_test", "Kein Kauf", muster="BLOCK:manuell gesperrt")
+    rb = sec11.enforce_rules(tid11, "AAPL")
+    ck("rule BLOCK hart blockiert", rb["allowed"] is False and rb["matched"] == "r_block_test")
+    sec11.rule_set_status(tid11, "r_block_test", "pausiert")
+    rb2 = sec11.enforce_rules(tid11, "AAPL")
+    ck("rule pausiert -> erlaubt", rb2["allowed"] is True)
+    sec11.rule_set_status(tid11, "r_block_test", "aktiv")
+    # BLOCK-Regel fuer MAX_KAUF-Tests pausieren (sonst blockt sie alles)
+    sec11.rule_set_status(tid11, "r_block_test", "pausiert")
+    sec11.rule_add(tid11, "r_max_test", "Max 1 Kauf", muster="MAX_KAUF:1")
+    rm = sec11.enforce_rules(tid11, "MSFT", {"kauf_count": 1})
+    ck("rule MAX_KAUF erreicht -> block", rm["allowed"] is False)
+    rm2 = sec11.enforce_rules(tid11, "MSFT", {"kauf_count": 0})
+    ck("rule MAX_KAUF unterschritten -> erlaubt", rm2["allowed"] is True)
+    # --- batch_trader Import (Enforcement-Code laedt) ---
+    import importlib
+    try:
+        importlib.import_module("batch_trader")
+        ck("batch_trader importiert (Enforcement drin)", True)
+    except Exception as e2:
+        ck("batch_trader importiert (Enforcement drin)", False, str(e2))
+    # Cleanup
+    m11 = db11.MTDB()
+    m11.conn.execute("DELETE FROM tenant_risk_limits WHERE tenant_id=?", (tid11,))
+    m11.conn.execute("DELETE FROM tenant_rules WHERE tenant_id=?", (tid11,))
+    m11.conn.commit(); m11.close()
+except Exception as e:
+    ck("Enforcement", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

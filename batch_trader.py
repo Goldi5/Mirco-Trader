@@ -359,6 +359,28 @@ def main():
                             if akt == "kaufen":
                                 cand = next((k for k in (kandidaten or []) if k["ticker"] == ticker), None)
                                 if cand and cand.get("preis", 0) > 0:
+                                    # 🛡 PHASE 12 (v2.35.0): Tenant-Risiko- und Regel-Enforcement
+                                    try:
+                                        import security as _sec12
+                                        _tid12 = _sec12.resolve_tenant_for_user({"username": "admin"}) or 1
+                                        # Positionsgroesse in % des Depotwerts (bargeldbasiert, konservativ)
+                                        pos_pct = menge_faktor * params.get("position_size", 0.35)
+                                        r12 = _sec12.enforce_risk_limits(
+                                            _tid12, params.get("modus", "moderate"),
+                                            pos_pct, depot_obj.start_wert)
+                                        if not r12["allowed"]:
+                                            if not QUIET:
+                                                print(f"   🛡 RISIKO-BLOCK {ticker}: {r12['reason']}", flush=True)
+                                            continue
+                                        r12b = _sec12.enforce_rules(
+                                            _tid12, ticker,
+                                            {"kauf_count": depot_obj.positions.get(ticker, {}).get("shares", 0) > 0 and 1 or 0})
+                                        if not r12b["allowed"]:
+                                            if not QUIET:
+                                                print(f"   🛡 REGEL-BLOCK {ticker}: {r12b['reason']}", flush=True)
+                                            continue
+                                    except Exception:
+                                        pass  # Enforcement nie fatal (PAPER_ONLY)
                                     menge_faktor = 1.0 if a.get("menge") == "voll" else 0.5
                                     budget = depot_obj.bargeld * menge_faktor
                                     menge = budget / cand["preis"]

@@ -243,6 +243,77 @@ def rule_set_status(tenant_id, rule_id, status):
     m.close()
 
 
+# ── PHASE 12: Enforcement (Risikogrenzen + Regeln im Trading-Pfad) ──
+def enforce_risk_limits(tenant_id, risk_mode, position_size_pct, portfolio_value,
+                        drawdown_pct=0.0):
+    """PHASE 12: Prueft eine geplante Position gegen die effektiven Tenant-
+    Risikogrenzen. Liefert {'allowed': bool, 'reason': str, 'limits': dict}.
+
+    position_size_pct: geplante Positionsgroesse in % des Portfolios (0-1)
+    portfolio_value:   aktueller Portfolio-Wert
+    drawdown_pct:      aktueller Drawdown des Portfolios in % (0-1)
+    """
+    eff = risk_get(tenant_id, risk_mode)
+    max_pos = eff.get("position_size") or 0.35
+    max_dd = eff.get("drawdown_limit") or 0.20
+    if position_size_pct > max_pos + 1e-9:
+        return {
+            "allowed": False,
+            "reason": f"Position {position_size_pct:.1%} > Limit {max_pos:.1%}",
+            "limits": eff,
+        }
+    if drawdown_pct > max_dd + 1e-9:
+        return {
+            "allowed": False,
+            "reason": f"Drawdown {drawdown_pct:.1%} > Limit {max_dd:.1%}",
+            "limits": eff,
+        }
+    return {"allowed": True, "reason": "ok", "limits": eff}
+
+
+def enforce_rules(tenant_id, ticker, context=None, regel=None):
+    """PHASE 12: Wendet die effektiven Tenant-Regeln auf ein Kaufsignal an.
+
+    Regel-Typen (via 'muster'-Schluesselwort):
+      - 'BLOCK:<text>'      -> hart blockiert (Kauf verboten)
+      - 'MAX_KAUF:<n>'      -> max n Kaeufe dieses Tickers
+      - 'REGEX:<pattern>'   -> ticker muss Pattern erfuellen
+    Liefert {'allowed': bool, 'reason': str, 'matched': str|None}.
+    """
+    context = context or {}
+    rules = rule_list(tenant_id)
+    # Regeln mit negativem Status ignorieren
+    active = [r for r in rules if (r.get("status") or "aktiv") == "aktiv"]
+    for r in active:
+        muster = (r.get("muster") or "").strip()
+        rid = r.get("id", "")
+        rule_text = (r.get("regel") or "").strip()
+        if muster.startswith("BLOCK:"):
+            return {"allowed": False, "reason": f"Regel {rid}: {muster[6:]}",
+                    "matched": rid}
+        if muster.startswith("MAX_KAUF:"):
+            try:
+                max_n = int(muster.split(":", 1)[1].strip())
+            except (ValueError, IndexError):
+                continue
+            k = context.get("kauf_count", 0)
+            if k >= max_n:
+                return {"allowed": False,
+                        "reason": f"Regel {rid}: max {max_n} Kaeufe erreicht",
+                        "matched": rid}
+        if muster.startswith("REGEX:"):
+            import re as _re
+            pat = muster.split(":", 1)[1].strip()
+            try:
+                if ticker and not _re.search(pat, ticker):
+                    return {"allowed": False,
+                            "reason": f"Regel {rid}: Ticker {ticker} passt nicht zu {pat}",
+                            "matched": rid}
+            except _re.error:
+                continue
+    return {"allowed": True, "reason": "ok", "matched": None}
+
+
 def resolve_tenant_for_user(user):
     """Leitet die tenant_id eines Users aus der Membership-Tabelle ab.
     Fallback: Default-Tenant (id=1). Kein Client-Input noetig."""
