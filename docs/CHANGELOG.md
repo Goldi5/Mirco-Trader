@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.44.4] - 2026-08-09
+### Added (UI-Redesign Phase 9: Einstellungen + Admin)
+- **Settings-Box** & **Analyse2-Wrapper**: `glass` → `surface`
+- **Analyse-Input/Button**: Glass-Purple/Transparent → `var(--surface)` + `var(--border)` + `var(--primary)`
+- **Reset-Button** (Settings): `rgba(255,255,255,0.2)` → `var(--border)`
+- Keine Logik-Änderung, nur Darstellung (Aliased Tokens `--accent`/`--text-dim` bereits auf Designsystem gemappt)
+
 ## [2.44.3] - 2026-08-09
 ### Added (UI-Redesign Phase 8: KI/News/Aktivität)
 - **KI-Subtabs** auf Designsystem umgestellt (opake `.ki-subtab` mit Primary-Aktiv-Zustand statt Glassmorphismus)

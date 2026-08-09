@@ -579,7 +579,7 @@ canvas{display:block;max-width:100%}
 <div id="report-liste" style="display:none; margin:8px 0"></div>
 
 <div id="panel-settings" class="panel">
-  <div id="settingsBox" class="glass" style="padding:20px">lädt…</div>
+  <div id="settingsBox" class="surface" style="padding:20px">lädt…</div>
 </div>
 
 <div id="panel-overview" class="panel active"></div>
@@ -589,18 +589,18 @@ canvas{display:block;max-width:100%}
 <div id="panel-charts" class="panel"></div>
 <div id="panel-analyse" class="panel"></div>
 <div id="panel-analyse2" class="panel">
-  <div class="glass" style="padding:16px">
+  <div class="surface" style="padding:16px">
     <h2 style="margin:0 0 12px">🗃️ Daten-Analyse (SQLite)</h2>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
       <select id="an2Mode"><option value="trades">Traders</option><option value="ki">KI-Entscheidungen</option></select>
       <select id="an2Typ"><option value="">Alle Typen</option><option value="aktien">Aktien</option><option value="etf">ETF</option><option value="spec">Spekulation</option></select>
-      <input id="an2Ticker" placeholder="Ticker-Suche" style="padding:6px;border-radius:8px;background:rgba(255,255,255,0.1);color:var(--text);border:1px solid rgba(255,255,255,0.2);min-width:140px">
+      <input id="an2Ticker" placeholder="Ticker-Suche" style="padding:6px 10px;border-radius:8px;background:var(--surface);color:var(--text);border:1px solid var(--border);min-width:140px;font-family:inherit">
       <select id="an2Aktion"><option value="">Alle Aktionen</option><option value="kaufen">Kaufen</option><option value="verkaufen">Verkaufen</option><option value="halten">Halten</option></select>
       <select id="an2Provider"><option value="">Alle Provider</option><option value="zen">zen</option><option value="zen-nemotron">zen-nemotron</option><option value="openrouter">openrouter</option><option value="nous-hy3">nous-hy3</option><option value="nous-step">nous-step</option><option value="unknown">unknown</option></select>
       <select id="an2Fallback"><option value="">Alle</option><option value="true">Fallback</option><option value="false">Echte KI</option></select>
       <select id="an2Tage"><option value="7">7 Tage</option><option value="30" selected>30 Tage</option><option value="90">90 Tage</option><option value="365">1 Jahr</option></select>
       <select id="an2Order"><option value="DESC">Neueste</option><option value="ASC">Älteste</option></select>
-      <button onclick="anLaden2()" style="padding:6px 14px;border-radius:8px;background:rgba(139,92,246,0.4);color:#fff;border:none;cursor:pointer">🔄 Laden</button>
+      <button onclick="anLaden2()" style="padding:6px 14px;border-radius:8px;background:var(--primary);color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:600">🔄 Laden</button>
     </div>
     <div id="an2Karten" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"></div>
     <div id="an2Count" style="font-size:12px;opacity:0.7;margin-bottom:8px"></div>
@@ -2400,7 +2400,7 @@ async function renderSettings() {
         style="padding:10px 20px;border-radius:999px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent-dark));
                color:#fff;cursor:pointer;font-weight:600;transition:all .18s">💾 Speichern</button>
       <button onclick="resetSettings()"
-        style="padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.2);
+        style="padding:10px 16px;border-radius:10px;border:1px solid var(--border);
                background:transparent;color:var(--text);cursor:pointer">↺ Reset Defaults</button>
     </div>
   `;
