@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.44.6] - 2026-08-09
+### Added (UI-Redesign Phase 11: Responsive)
+- **Portfolios-Übersicht responsiv**: Summary-Stats und Filterleiste umbrechen auf Mobile (Selects/Input → 100% Breite bei ≤768px)
+- **Karten-Grid** auf Mobile 1-spaltig (≤480px)
+- Bestehende Media-Queries (1200/1024/768/480px) bleiben erhalten
+- Keine Logik-Änderung, nur CSS
+
 ## [2.44.5] - 2026-08-09
 ### Reviewed (UI-Redesign Phase 10: Login/MFA)
 - **Keine Änderung an `dashboard.html`** — das Login-/MFA-Formular liegt in `dashboard.py` (Flask-Route `login()`), Security-kritisch (Session-Cookies, Rate-Limit). Gemäß harter Vorgabe §2.1 (keine Security-/Tenant-Logik) bewusst **nicht** angefasst.

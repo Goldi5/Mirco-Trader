@@ -501,10 +501,16 @@ canvas{display:block;max-width:100%}
   .drawer{width:100%;border-radius:0}
   .hdr-search{display:none}
   .app-meta .hdr-time{display:none}
+  /* Phase 11: Portfolios-Filter + Summary responsiv */
+  #panel-alle .summary-row .stat{min-width:64px;padding:10px 12px;flex:1 1 calc(50% - 6px)}
+  #panel-alle .surface select,#panel-alle .surface input[type=text]{flex:1 1 100%}
 }
 @media(max-width:480px){
   .kpi-grid{grid-template-columns:1fr}
   .hero .hero-value{font-size:28px}
+  /* Phase 11: Karten-Grid auf Mobile 1-spaltig */
+  .grid{grid-template-columns:1fr}
+  #panel-alle .summary-row .stat{flex:1 1 100%}
 }
 
 /* ── ACCESSIBILITY (Phase 12) ── */
