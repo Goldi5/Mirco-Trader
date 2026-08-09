@@ -282,15 +282,62 @@ def enforce_rules(tenant_id, ticker, context=None, regel=None):
     """
     context = context or {}
     rules = rule_list(tenant_id)
-    # Regeln mit negativem Status ignorieren
-    active = [r for r in rules if (r.get("status") or "aktiv") == "aktiv"]
+    # Aktiv = klassisch 'aktiv'. ZUSAETZLICH wirken globale KI-Regeln aus
+    # learned_rules.json, die freigegeben und nicht shadow sind (dort ist
+    # 'status' oft 'unbestätigt', obwohl der Admin sie freigegeben hat).
+    # Tenant-Regeln haben immer freigabe_status='freigegeben' (Admin angelegt),
+    # ihr Schalter ist ausschliesslich 'status' (aktiv/pausiert/...).
+    active = []
+    for r in rules:
+        st = r.get("status") or "aktiv"
+        fg = r.get("freigabe_status") or ""
+        shadow = bool(r.get("shadow", False))
+        src = r.get("source") or ""
+        if st == "aktiv" or (src == "global" and fg == "freigegeben" and not shadow):
+            active.append(r)
     for r in active:
         muster = (r.get("muster") or "").strip()
         rid = r.get("id", "")
         rule_text = (r.get("regel") or "").strip()
+        typ = r.get("typ") or ""
+        # meta_conf_cap / Kategorie-Regeln ohne konkreten Ticker-Bezug wirken NICHT
+        # als harter Order-Block (sie steuern den KI-Prompt via ki_decisions).
+        # Nur Ticker-spezifische Regeln blocken hier.
+        if typ == "meta_conf_cap":
+            continue
         if muster.startswith("BLOCK:"):
-            return {"allowed": False, "reason": f"Regel {rid}: {muster[6:]}",
+            rest = muster[6:].strip()
+            tok = rest.split()[0] if rest else ""
+            # 'BLOCK:GME ...' oder 'BLOCK:GME' -> ticker-spezifische Sperre
+            if tok and tok.isupper() and len(tok) <= 5 and tok.isalpha():
+                if ticker and ticker.upper() == tok:
+                    return {"allowed": False, "reason": f"Regel {rid}: {rest}",
+                            "matched": rid}
+                continue  # Sperre gilt einem anderen Ticker
+            # Generische Sperre ohne Ticker-Bezug (bisheriges Verhalten)
+            return {"allowed": False, "reason": f"Regel {rid}: {rest}",
                     "matched": rid}
+        # KI-Muster mit Ticker in Klammern: '[MTF] ... (RIVN)', '[Swap] ... (SPY)',
+        # '[Konzentration] AMC ...' -> blocken NUR den genannten Ticker
+        if typ in ("anti", "swap", "mtf", "konzentration") or muster.startswith("["):
+            import re as _re2
+            m2 = _re2.findall(r"\(([A-Z0-9]{1,5})\)", muster)
+            if m2:
+                if ticker and ticker.upper() in [x.upper() for x in m2]:
+                    return {"allowed": False, "reason": f"Regel {rid}: {muster}",
+                            "matched": rid}
+                continue  # Regel gilt einem anderen Ticker
+            # Ticker ohne Klammer: '[Konzentration] AMC in 4 Depots'
+            m3 = _re2.findall(r"\b([A-Z]{2,5})\b", muster)
+            m3 = [t for t in m3 if t not in ("MTF", "SWAP", "ANTI")]
+            if m3:
+                if ticker and ticker.upper() in [t.upper() for t in m3]:
+                    return {"allowed": False, "reason": f"Regel {rid}: {muster}",
+                            "matched": rid}
+                continue
+            # Kategorie-Regel ohne konkreten Ticker (z.B. '[Anti] halten bei
+            # volatility-Titeln'): kein harter Block hier, wirkt via KI-Prompt.
+            continue
         if muster.startswith("MAX_KAUF:"):
             try:
                 max_n = int(muster.split(":", 1)[1].strip())
@@ -359,6 +406,20 @@ def enforce_approval(tenant_id, target_type, target_id, action="trade"):
     if st == "in_pruefung":
         return {"allowed": False, "reason": f"Ziel {target_type}:{target_id} in Prüfung (noch nicht freigegeben)", "status": st}
     return {"allowed": False, "reason": f"Ziel {target_type}:{target_id} nicht freigegeben", "status": st}
+
+
+def enforce_approval_trade(tenant_id, target_type, target_id):
+    """PHASE 14: Freigabe-Check im Order-Pfad (unreguliert-freundlich).
+
+    Ein fehlender Freigabeeintrag (unreguliertes Ziel) blockt den bestehenden
+    Paper-Betrieb NICHT. Nur explizit gesperrte / in Pruefung stehende /
+    widerrufene Ziele blocken die Order. Liefert {'allowed', 'reason', 'status'}.
+    """
+    a = approval_get(tenant_id, target_type, target_id)
+    if not a.get("exists"):
+        return {"allowed": True, "reason": "ok (kein Freigabeeintrag)",
+                "status": "unreguliert"}
+    return enforce_approval(tenant_id, target_type, target_id)
 
 
 # ── PHASE 13: Order-Intent + Broker-Connector-Schnittstelle (v2.36.0) ──
@@ -454,6 +515,14 @@ def validate_order_intent(intent, portfolio_value=None, market_open=True,
                            {"kauf_count": 0})
         if not r2["allowed"]:
             return {"allowed": False, "reason": f"Regel: {r2['reason']}",
+                    "intent": intent}
+    # 7) Vier-Augen-Freigabe (Portfolio) — explizit gesperrte/in Pruefung
+    #    Portfolios blocken, unregulierte laufen weiter (Paper-Betrieb).
+    pid = intent.get("portfolio_id")
+    if pid:
+        r3 = enforce_approval_trade(intent["tenant_id"], "portfolio", pid)
+        if not r3["allowed"]:
+            return {"allowed": False, "reason": f"Freigabe: {r3['reason']}",
                     "intent": intent}
     intent["risk_check_status"] = "passed"
     return {"allowed": True, "reason": "ok", "intent": intent}

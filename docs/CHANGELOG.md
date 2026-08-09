@@ -1,3 +1,11 @@
+## [2.38.1] - 2026-08-09
+### Fixed (Bugfix-Release: 3 vom User gemeldete Bugs)
+- **FIX 1 — Freigabe wirkt jetzt im Order-Pfad:** `validate_order_intent` prüft die Portfolio-Freigabe über `enforce_approval_trade()` (neu). Semantik: **unregulierte Ziele** (kein Freigabeeintrag) laufen weiter — der Paper-Betrieb wird nicht lahmgelegt; **explizit gesperrte / in Prüfung** stehende Portfolios blocken die Order hart. `enforce_approval()` selbst bleibt deny-by-default (Sicherheits-API, §23).
+- **FIX 2 — BLOCK-Regel-Matching-Bug (Z291):** `enforce_rules` unterscheidet jetzt Ticker-spezifische Sperren von generischen: `BLOCK:GME …` blockt **nur** GME (Ticker-Symbol = 1–5 Großbuchstaben direkt nach `BLOCK:`), `BLOCK:manuell gesperrt` (ohne Symbol) blockt weiterhin **alle** Ticker. Regressionstests: passender Ticker geblockt, fremder Ticker frei, Anti-/Tenant-Regeln unverändert.
+- **FIX 3 — KI-Regeln wirken im Enforcement:** `db.effective_rules` reicht `freigabe_status`, `shadow`, `typ` aus `learned_rules.json` durch (vorher nur id/muster/regel/status/source). `enforce_rules` aktiviert freigegebene **globale** KI-Regeln (`source=="global"` + `freigabe_status=="freigegeben"` + nicht shadow) zusätzlich zu `status=="aktiv"` — Tenant-Regeln schalten weiterhin ausschließlich über `status` (pausiert/unbestätigt blocken nicht).
+- **FIX 3b — KI-Muster mit Ticker-Bezug:** Muster `[MTF] … (RIVN)`, `[Swap] … (SPY)`, `[Konzentration] AMC …` blocken **gezielt** den genannten Ticker, andere Ticker bleiben frei. `meta_conf_cap`-Regeln blocken nicht hart (sie steuern den KI-Prompt über ki_decisions, kein Order-Block).
+- **Tests:** Sektion 7m (+14) → **165 OK, 0 FAIL**.
+
 ## [2.38.0] - 2026-08-09
 ### Added (PHASE 14: Freigabe-Workflow — §23 Status- und Freigabelogik / §21.5 Freigabeprinzip)
 - **`tenant_approvals`** (db.py): `target_type` (strategy/portfolio/depot/profile), `target_id`, `status`, `approved_by`, `approved_at`, `note`. UNIQUE(tenant_id, target_type, target_id).

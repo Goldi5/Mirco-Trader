@@ -1,9 +1,20 @@
 {
-  "version": "2.38.0",
-  "build": "2026-08-09_1030",
-  "released_at": "2026-08-09 10:30",
-  "codename": "Freigabe-Workflow (PHASE 14, §23/§21.5), 151 Tests",
+  "version": "2.38.1",
+  "build": "2026-08-09_1200",
+  "released_at": "2026-08-09 12:00",
+  "codename": "Bugfixes: Freigabe im Order-Pfad, BLOCK-Ticker, KI-Regeln wirksam (165 Tests)",
   "changes": [
+    {
+      "version": "2.38.1",
+      "date": "2026-08-09",
+      "changes": [
+        "FIX 1: enforce_approval wirkt jetzt im Trading-Pfad - validate_order_intent prueft Portfolio-Freigabe (enforce_approval_trade: unreguliert erlaubt, gesperrt/in_pruefung blockt Order)",
+        "FIX 2: BLOCK-Regel-Matching korrigiert - BLOCK:GME blockt nur GME, BLOCK:manuell gesperrt (ohne Ticker) blockt weiterhin alle",
+        "FIX 3: KI-Regeln aktivierbar - effective_rules reicht freigabe_status/shadow/typ durch; freigegebene globale KI-Regeln (nicht shadow) wirken im Enforcement",
+        "FIX 3b: KI-Muster mit Ticker-Klammer '[MTF] ... (RIVN)' blocken gezielt den genannten Ticker; meta_conf_cap blockt nicht hart (KI-Prompt-Steuerung)",
+        "Tests Sektion 7m (+14) -> 165 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.38.0",
       "date": "2026-08-09",

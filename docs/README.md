@@ -1,8 +1,8 @@
 # Micro-Trader — Projekt-Dokumentation
 
-> **Version:** v2.37.0 "Phase 13 Code: Order-Intent + Broker-Adapter + Vier-Augen" (2026-08-09)
+> **Version:** v2.38.1 "Bugfixes: Freigabe im Order-Pfad, BLOCK-Ticker, KI-Regeln wirksam" (2026-08-09)
 > **Status:** Produktiv, Cron läuft, PAPER_ONLY (kein Echtgeld)
-> **Letztes Update:** 2026-08-09 09:50
+> **Letztes Update:** 2026-08-09 12:00
 
 ## 📌 Was ist das?
 Papier-Trading-System mit KI-Lernen. 3 Kategorien:

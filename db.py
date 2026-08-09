@@ -234,9 +234,11 @@ class MTDB:
             "WHERE tenant_id=? AND target_type=? AND target_id=?",
             (tenant_id, target_type, target_id)).fetchone()
         if row:
-            return dict(row)
+            d = dict(row)
+            d["exists"] = True
+            return d
         return {"status": "nicht_freigegeben", "approved_by": None,
-                "approved_at": None, "note": None}
+                "approved_at": None, "note": None, "exists": False}
 
     def approval_list(self, tenant_id):
         """PHASE 14: Alle Freigaben eines Tenants."""
@@ -254,13 +256,18 @@ class MTDB:
             for r in g.get("rules", []):
                 out[r["id"]] = {"id": r["id"], "muster": r.get("muster"),
                                 "regel": r.get("regel"), "status": r.get("status", "aktiv"),
+                                "freigabe_status": r.get("freigabe_status", "nicht_freigegeben"),
+                                "shadow": bool(r.get("shadow", False)),
+                                "typ": r.get("typ", ""),
                                 "source": "global"}
         except Exception:
             pass
         # Tenant ueberschreibt
         for r in self.rule_list(tenant_id):
             out[r["rule_id"]] = {"id": r["rule_id"], "muster": r.get("muster"),
-                                 "regel": r["regel"], "status": r["status"], "source": "tenant"}
+                                 "regel": r["regel"], "status": r["status"],
+                                 "freigabe_status": "freigegeben", "shadow": False,
+                                 "typ": "tenant", "source": "tenant"}
         return list(out.values())
 
     def secret_set(self, tenant_id, secret_key, secret_value):

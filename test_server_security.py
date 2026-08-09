@@ -687,6 +687,96 @@ try:
 except Exception as e:
     ck("Freigabe-Workflow", False, str(e))
 
+print("\n7m. Bugfixes v2.37.1: enforce_approval im Trading-Pfad, BLOCK-Ticker, KI-Regeln wirksam")
+try:
+    import security as sec15
+    import db as db15
+
+    # ── Fix 1: enforce_approval wirkt jetzt im Order-Pfad (validate_order_intent) ──
+    tid15 = 781
+    m15 = db15.MTDB()
+    m15.conn.execute("DELETE FROM tenant_approvals WHERE tenant_id=?", (tid15,))
+    m15.conn.commit()
+
+    # unreguliertes Portfolio -> Order erlaubt (Paper-Betrieb bleibt am Laufen)
+    int_ok = sec15.create_order_intent(tid15, "AAPL", "buy", 2.0, 150.0,
+                                       portfolio_id=42, mode="PAPER")
+    r = sec15.validate_order_intent(dict(int_ok), portfolio_value=5000.0)
+    ck("Fix1: unreguliertes Portfolio erlaubt", r["allowed"])
+
+    # explizit gesperrtes Portfolio -> Order blockt
+    sec15.approval_set(tid15, "portfolio", 42, "gesperrt")
+    int_block = sec15.create_order_intent(tid15, "AAPL", "buy", 2.0, 150.0,
+                                          portfolio_id=42, mode="PAPER")
+    r2 = sec15.validate_order_intent(dict(int_block), portfolio_value=5000.0)
+    ck("Fix1: gesperrtes Portfolio blockt Order", not r2["allowed"]
+       and "Freigabe" in r2["reason"])
+    # freigegeben -> wieder erlaubt
+    sec15.approval_set(tid15, "portfolio", 42, "freigegeben")
+    r3 = sec15.validate_order_intent(dict(int_block), portfolio_value=5000.0)
+    ck("Fix1: freigegebenes Portfolio erlaubt wieder", r3["allowed"])
+
+    # ── Fix 2: BLOCK-Regel mit Ticker-Symbol blockt NUR diesen Ticker ──
+    sec15.rule_add(tid15, "r_block_gme", "Kein Kauf von GME", muster="BLOCK:GME manuell gesperrt")
+    rb_gme = sec15.enforce_rules(tid15, "GME")
+    rb_aapl = sec15.enforce_rules(tid15, "AAPL")
+    rb_msft = sec15.enforce_rules(tid15, "MSFT")
+    ck("Fix2: BLOCK:GME blockt GME", not rb_gme["allowed"])
+    ck("Fix2: BLOCK:GME blockt AAPL NICHT", rb_aapl["allowed"])
+    ck("Fix2: BLOCK:GME blockt MSFT NICHT", rb_msft["allowed"])
+    # BLOCK:TICKER ohne Text
+    sec15.rule_add(tid15, "r_block_tsla", "TSLA gesperrt", muster="BLOCK:TSLA")
+    ck("Fix2: BLOCK:TSLA blockt TSLA", not sec15.enforce_rules(tid15, "TSLA")["allowed"])
+    ck("Fix2: BLOCK:TSLA blockt AAPL NICHT", sec15.enforce_rules(tid15, "AAPL")["allowed"])
+    # generische BLOCK-Regel (ohne Ticker) blockt weiterhin alle — eigener Tenant
+    tid16 = 782
+    m16 = db15.MTDB()
+    m16.conn.execute("DELETE FROM tenant_rules WHERE tenant_id=?", (tid16,))
+    m16.conn.commit()
+    sec15.rule_add(tid16, "r_block_all", "Allgemeine Sperre", muster="BLOCK:manuell gesperrt")
+    ck("Fix2: generische BLOCK-Regel blockt alle",
+       not sec15.enforce_rules(tid16, "AAPL")["allowed"]
+       and not sec15.enforce_rules(tid16, "GME")["allowed"])
+    m16.close()
+
+    # ── Fix 3: freigegebene KI-Regeln wirken im Enforcement ──
+    import learned_rules as lr15
+    if hasattr(lr15, "RULE_FILE"):
+        lr15.RULE_FILE = "learned_rules.json"
+    # Regel mit Ticker in Klammern, freigegeben, nicht shadow
+    m15.conn.execute("DELETE FROM tenant_rules WHERE tenant_id=?", (tid15,))
+    m15.conn.commit()
+    # Tenant-Regel mit KI-Muster-Typ (freigabe_status kommt aus effective_rules=freigegeben)
+    sec15.rule_add(tid15, "r_ki_mtf", "Vorsicht RIVN", muster="[MTF] Vorsicht Kaufen bei 15min/1d (RIVN)")
+    rk_rivn = sec15.enforce_rules(tid15, "RIVN")
+    rk_aapl = sec15.enforce_rules(tid15, "AAPL")
+    ck("Fix3: KI-Muster (RIVN) blockt RIVN", not rk_rivn["allowed"])
+    ck("Fix3: KI-Muster (RIVN) blockt AAPL NICHT", rk_aapl["allowed"])
+
+    # unbestätigte Tenant-Regel (status != aktiv, kein freigabe_status) blockt NICHT
+    sec15.rule_add(tid15, "r_unbest", "Unbestaetigt MSFT", muster="BLOCK:MSFT",
+                   status="unbestätigt")
+    ck("Fix3: unbestätigte Regel blockt NICHT",
+       sec15.enforce_rules(tid15, "MSFT")["allowed"])
+
+    # Freigabe-Gate: learned_rules.json enthaelt freigegebene Regeln (>=18)
+    ki_regeln = lr15.lade_live_regeln() if hasattr(lr15, "lade_live_regeln") else []
+    n_freigegeben = sum(1 for r in ki_regeln if r.get("freigabe_status") == "freigegeben")
+    ck("Fix3: lade_live_regeln liefert freigegebene (>=18)", n_freigegeben >= 18)
+
+    # effective_rules reicht freigabe_status durch (Fix 3a)
+    er = m15.effective_rules(tid15)
+    ck("Fix3: effective_rules reicht freigabe_status durch",
+       any(r.get("freigabe_status") == "freigegeben" for r in er))
+
+    # Cleanup
+    m15.conn.execute("DELETE FROM tenant_approvals WHERE tenant_id=?", (tid15,))
+    m15.conn.execute("DELETE FROM tenant_rules WHERE tenant_id=?", (tid15,))
+    m15.conn.execute("DELETE FROM tenant_rules WHERE tenant_id=?", (tid16,))
+    m15.conn.commit(); m15.close()
+except Exception as e:
+    ck("Bugfixes v2.37.1", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)
