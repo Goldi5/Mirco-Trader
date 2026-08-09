@@ -1011,8 +1011,16 @@ Cronjobs (Tagesabschluss fertig, User-Wunsch).
 - HTTPS-Remote zwingend (SSH:22 geblockt): `https://github.com/Goldi5/Mirco-Trader.git`
 - Repos: Goldi5/Mirco-Trader (public), Goldi5/Pv-Planer (public), Goldi5/Obsidian (private)
 - Identity: goldi@hermes.local / Christian Glaser
-- Doku-Kette je Version: version.json → docs/CHANGELOG.md → docs/README.md →
-  Ergebnisdatei (§20 Auftrag) → Obsidian-Vault (Hermes Gedächtniss) → Memory
+- Doku-Kette je Version (PFICHT, keine Ausnahme):
+  1. version.json (Version/Build/released_at bumpen)
+  2. docs/CHANGELOG.md (Eintrag)
+  3. docs/README.md (Status + Footer)
+  4. **docs/HANDOFF-V3.md aktualisieren** (§02/§18/§20/§22/§25/§31 — alle
+     betroffenen Status-/Evidence-Blöcke nach §28/§29-Regeln)
+  5. Ergebnisdatei (§20 Auftrag, z. B. docs/SHADOW-PAPER-APPROVAL.md)
+  6. Obsidian-Vault spiegeln: `Projekte/Micro-Trader/Micro-Trader-Handoff-V3.md`
+     (+ betroffene Doku-Dateien) — cp aus docs/
+  7. Memory
 - Commit-Stil: `Phase N (vX.Y.Z): <Kurzfassung>` (+ Detail-Body)
 
 ## Dashboard-Betrieb
@@ -1162,9 +1170,14 @@ Audit Layer       Aktionen/Modi/Provider/Freigaben/Orders/Security    [CURRENT]
 6. Regressionstest definieren (Sektion 7s+), bestehende Tests laufen lassen.
 7. Änderung durchführen (minimal-invasiv, keine neuen Deps).
 8. Testsuite komplett ausführen: `python test_server_security.py` → alle grün.
-9. Doku-Kette aktualisieren: version.json → docs/CHANGELOG.md → docs/README.md →
-   Ergebnisdatei → Obsidian-Vault → Memory.
-10. Commit: `Phase N (vX.Y.Z): <Kurzfassung>`.
+9. **HANDOFF V3 aktualisieren** (PFLICHT bei jeder Änderung, die §02–§31
+   betrifft): betroffene STATUS-/EVIDENCE-/FACT-Blöcke anpassen, §18-Testzahl,
+   §20-Historie, §22-Bug-Register, §25-OPEN-WORK, §29-Consistency-Audit,
+   §31-Facts — niemals unverändert lassen, wenn der Code sich änderte.
+10. Doku-Kette aktualisieren: version.json → docs/CHANGELOG.md → docs/README.md →
+    HANDOFF-V3.md → Ergebnisdatei → Obsidian-Vault (Projekte/Micro-Trader/
+    Micro-Trader-Handoff-V3.md spiegeln) → Memory.
+11. Commit: `Phase N (vX.Y.Z): <Kurzfassung>`.
 
 ## VERBOTEN
 - Echte Orders / Live-Keys / Auto Shadow→Live (PAPER_ONLY hart).
