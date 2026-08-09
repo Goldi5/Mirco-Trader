@@ -1,3 +1,12 @@
+## [2.36.0] - 2026-08-09
+### Added (PHASE 13: Mandanten-Config UI im `/admin`-Bereich)
+- **`/admin/tenant-config`**: Risikogrenzen (beide Modi) + Regeln (effektiv Tenant ∪ global) verwalten.
+- **Nav-Tab „🏢 Mandanten"** eingefügt.
+- **Risiko-Formular** → `POST /admin/tenant-config/risk` (partial update, keine NULL).
+- **Regeln**: Tabelle + Hinzufügen (`POST /admin/tenant-config/rule`) + Status-Toggle (`/rule/<id>/set?status=`).
+- **Quell-Tags** (tenant/global/default) via `.src-*`-CSS-Klassen.
+- **Tests:** ROUTE_ACCESS-Mapping ergänzt → **124 OK, 0 FAIL**.
+
 ## [2.35.0] - 2026-08-09
 ### Added (PHASE 12: Enforcement — Risikogrenzen + Regeln wirken im Trading-Pfad)
 - **`enforce_risk_limits(tenant, mode, pos_pct, value, drawdown)`:** blockt Order wenn Position-Size oder Drawdown die effektiven Tenant-Limits überschreitet. Liefert `{allowed, reason, limits}`.

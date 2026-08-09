@@ -2207,6 +2207,10 @@ code{background:rgba(15,23,42,.06);padding:2px 7px;border-radius:6px;font-size:1
 .btn.ghost:hover{background:rgba(15,23,42,.05)}
 .btn.danger{background:rgba(239,68,68,.12);color:var(--red)}
 .hint{font-size:11px;color:var(--text-dim);margin-top:10px}
+.src{display:inline-block;font-size:9.5px;font-weight:700;border-radius:6px;padding:1px 7px;text-transform:uppercase;letter-spacing:.03em}
+.src-tenant{background:rgba(37,99,235,.12);color:var(--accent)}
+.src-global{background:rgba(118,118,128,.14);color:var(--text-dim)}
+.src-default{background:rgba(16,185,129,.12);color:var(--green)}
 """
 
 
@@ -2216,6 +2220,7 @@ def _admin_layout(aktiver_tab, u, titel, inhalt):
         ("overview", "/admin", "📊 Übersicht"),
         ("system", "/admin/system", "🩺 System"),
         ("users", "/admin/users", "👥 Benutzer"),
+        ("tenant", "/admin/tenant-config", "🏢 Mandanten"),
         ("logins", "/admin/logins", "🌐 Logins"),
         ("security", "/admin/security", "🛡️ Sicherheit"),
         ("audit", "/admin/audit", "📜 Audit"),
@@ -2628,8 +2633,115 @@ def admin_backups():
         inhalt)
 
 
+# ─── PHASE 13: Mandanten-Config (v2.36.0) — Risikogrenzen + Regeln im Admin ───
+@app.route("/admin/tenant-config")
+@sec.require_role("admin")
+def admin_tenant_config():
+    """PHASE 13: Tenant-Scoped Risikogrenzen + Regeln verwalten (Admin)."""
+    u = sec.current_user()
+    tid = _get_tid()
+    # Risiko (beide Modi)
+    rm = sec.risk_get(tid, "moderate")
+    ra = sec.risk_get(tid, "aggressive")
+    risk_html = _tenant_risk_block("moderate", rm) + _tenant_risk_block("aggressive", ra)
+    # Regeln (effektiv: Tenant ∪ global)
+    rules = sec.rule_list(tid)
+    rules_rows = "".join(
+        f"<tr><td class='b'>{r.get('id','')}</td>"
+        f"<td><span class='src src-{r.get('source','global')}'>{r.get('source','global')}</span></td>"
+        f"<td>{r.get('status','aktiv')}</td>"
+        f"<td style='color:var(--text-dim)'>{str(r.get('muster',''))[:30]}</td>"
+        f"<td style='color:var(--text-dim)'>{str(r.get('regel',''))[:60]}</td>"
+        f"<td>{_tenant_rule_actions(tid, r)}</td></tr>"
+        for r in rules)
+    no_rules = "<tr><td colspan=6 style=\"color:var(--text-dim)\">Keine Regeln</td></tr>"
+    inhalt = f"""
+<div class='glass'><h2>🎚️ Risikogrenzen (effektiv, Tenant → global)</h2>
+{risk_html}
+<form method='post' action='/admin/tenant-config/risk' style='margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:end'>
+  <label style='font-size:11px'>Modus<select name='mode' style='margin-left:4px'>
+    <option value='moderate'>moderate</option><option value='aggressive'>aggressive</option></select></label>
+  <label style='font-size:11px'>Pos-Size<input name='position_size' type='number' step='0.01' min='0' max='1' style='width:70px;margin-left:4px'></label>
+  <label style='font-size:11px'>Stop-Loss<input name='stop_loss' type='number' step='0.01' min='0' max='1' style='width:70px;margin-left:4px'></label>
+  <label style='font-size:11px'>Take-Profit<input name='take_profit' type='number' step='0.01' min='0' max='3' style='width:70px;margin-left:4px'></label>
+  <label style='font-size:11px'>Drawdown<input name='drawdown_limit' type='number' step='0.01' min='0' max='1' style='width:70px;margin-left:4px'></label>
+  <button class='btn primary' type='submit'>💾 Speichern</button>
+</form></div>
+
+<div class='glass'><h2>📜 Regeln (effektiv: Tenant ∪ global)</h2>
+<table><tr><th>ID</th><th>Quelle</th><th>Status</th><th>Muster</th><th>Regel</th><th>Aktion</th></tr>
+{rules_rows or no_rules}</table>
+<form method='post' action='/admin/tenant-config/rule' style='margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:end'>
+  <label style='font-size:11px'>Regel-ID<input name='rule_id' style='width:120px;margin-left:4px'></label>
+  <label style='font-size:11px'>Muster<input name='muster' placeholder='BLOCK: / MAX_KAUF:n / REGEX:' style='width:160px;margin-left:4px'></label>
+  <label style='font-size:11px'>Regel-Text<input name='regel' style='width:220px;margin-left:4px'></label>
+  <button class='btn primary' type='submit'>➕ Regel hinzufügen</button>
+</form>
+<div class='hint'>Muster-Typen: <code>BLOCK:Text</code> (hart blockiert), <code>MAX_KAUF:n</code> (max n Käufe), <code>REGEX:pattern</code> (Ticker-Filter). Nur Status <b>aktiv</b> wird angewendet.</div>
+</div>
+"""
+    return _admin_layout("tenant", u,
+        f"<h2 style='font-size:17px;margin-bottom:4px'>🏢 Mandanten-Config</h2>"
+        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>Tenant-ID {tid} · Risikogrenzen &amp; Regeln (PHASE 13)</div>",
+        inhalt)
 
 
+def _tenant_risk_block(mode, eff):
+    p = eff.get("position_size", 0.35); sl = eff.get("stop_loss", 0.92)
+    tp = eff.get("take_profit", 1.12); dd = eff.get("drawdown_limit", 0.20)
+    src = eff.get("source", "default")
+    return f"""<div style='padding:8px 0;border-bottom:1px solid var(--card-border)'>
+  <b>{mode}</b> <span class='src src-{src}'>{src}</span>
+  <span style='font-size:11px;color:var(--text-dim)'>Pos {p:.0%} · SL {sl:.0%} · TP {tp:.0%} · DD {dd:.0%}</span></div>"""
+
+
+def _tenant_rule_actions(tid, r):
+    rid = r.get("id", "")
+    if r.get("source") != "tenant":
+        return "<span style='color:var(--text-dim);font-size:11px'>global (read-only)</span>"
+    # Toggle Status
+    nxt = "pausiert" if r.get("status") == "aktiv" else "aktiv"
+    return (f"<a class='btn ghost' href='/admin/tenant-config/rule/{rid}/set?status={nxt}'>"
+            f"{'⏸ pausieren' if r.get('status') == 'aktiv' else '▶ aktivieren'}</a>")
+
+
+@app.route("/admin/tenant-config/risk", methods=["POST"])
+@sec.require_role("admin")
+def admin_tenant_risk_save():
+    tid = _get_tid()
+    mode = request.form.get("mode", "moderate")
+    sec.risk_set(tid, mode,
+                 position_size=request.form.get("position_size") or None,
+                 stop_loss=request.form.get("stop_loss") or None,
+                 take_profit=request.form.get("take_profit") or None,
+                 drawdown_limit=request.form.get("drawdown_limit") or None)
+    return redirect("/admin/tenant-config")
+
+
+@app.route("/admin/tenant-config/rule", methods=["POST"])
+@sec.require_role("admin")
+def admin_tenant_rule_add():
+    tid = _get_tid()
+    rid = request.form.get("rule_id", "").strip()
+    if rid:
+        sec.rule_add(tid, rid, request.form.get("regel", ""),
+                     muster=request.form.get("muster") or None,
+                     created_by=u_name())
+    return redirect("/admin/tenant-config")
+
+
+@app.route("/admin/tenant-config/rule/<rule_id>/set")
+@sec.require_role("admin")
+def admin_tenant_rule_set(rule_id):
+    tid = _get_tid()
+    status = request.args.get("status", "aktiv")
+    sec.rule_set_status(tid, rule_id, status)
+    return redirect("/admin/tenant-config")
+
+
+def u_name():
+    u = sec.current_user()
+    return u["username"] if u else "unbekannt"
 # ─── PHASE 15: Benutzerverwaltung-API (v2.23.0) ─────────────────────────────
 def _admin_actor():
     """Gibt den aktuellen Admin-Namen fuer Audit zurueck."""

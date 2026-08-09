@@ -428,6 +428,9 @@ ROUTE_ACCESS = {
     "/admin/system": "ADMIN", "/admin/rules": "ADMIN",
     "/admin/security": "ADMIN", "/admin/logins": "ADMIN", "/admin/audit": "ADMIN",
     "/admin/settings": "ADMIN", "/admin/backups": "ADMIN",
+    "/admin/tenant-config": "ADMIN", "/admin/tenant-config/risk": "ADMIN",
+    "/admin/tenant-config/rule": "ADMIN",
+    "/admin/tenant-config/rule/<rule_id>/set": "ADMIN",
 }
 ACCESS_ORDER = ["PUBLIC", "AUTHENTICATED", "ANALYST", "OPERATOR", "ADMIN", "SUPERADMIN"]
 
