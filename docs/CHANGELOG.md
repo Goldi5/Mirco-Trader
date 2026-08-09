@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.44.5] - 2026-08-09
+### Reviewed (UI-Redesign Phase 10: Login/MFA)
+- **Keine Änderung an `dashboard.html`** — das Login-/MFA-Formular liegt in `dashboard.py` (Flask-Route `login()`), Security-kritisch (Session-Cookies, Rate-Limit). Gemäß harter Vorgabe §2.1 (keine Security-/Tenant-Logik) bewusst **nicht** angefasst.
+- Das Formular ist ohnehin minimal (kein Glassmorphismus, keine Dashboard-CSS-Referenz) → keine Design-Inkonsistenz vorhanden.
+
 ## [2.44.4] - 2026-08-09
 ### Added (UI-Redesign Phase 9: Einstellungen + Admin)
 - **Settings-Box** & **Analyse2-Wrapper**: `glass` → `surface`
