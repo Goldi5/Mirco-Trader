@@ -314,6 +314,290 @@ def enforce_rules(tenant_id, ticker, context=None, regel=None):
     return {"allowed": True, "reason": "ok", "matched": None}
 
 
+# ── PHASE 13: Order-Intent + Broker-Connector-Schnittstelle (v2.36.0) ──
+# Architektur (Auftrag §11/§10): Trading-Strategie → Risk Engine → Order Intent
+# → Broker Adapter → Broker API. Order Intents entstehen IMMER als Objekt VOR
+# jeder Ausführung (auch Paper). PAPER_ONLY: keine echten Orders, keine Live-Adapter.
+
+ORDER_INTENT_FIELDS = [
+    "order_intent_id", "tenant_id", "user_id", "portfolio_id", "strategy_id",
+    "mode", "ticker", "side", "quantity", "order_type", "limit_price",
+    "stop_price", "reason", "decision_id", "rule_version", "risk_check_status",
+    "created_at",
+]
+
+
+def create_order_intent(tenant_id, ticker, side, quantity, price, portfolio_id=None,
+                        strategy_id=None, user_id=None, mode=None, order_type="market",
+                        limit_price=None, stop_price=None, reason="",
+                        decision_id=None, rule_version=None):
+    """PHASE 13: Erzeugt ein Order-Intent-Objekt (Auftrag §11).
+
+    Jede geplante Order MUSS als Intent entstehen, BEVOR sie ausgefuehrt wird.
+    Felder gem. Order-Intent-Spec. `risk_check_status` wird von
+    validate_order_intent() gesetzt.
+    """
+    import uuid as _uuid
+    import datetime as _dt
+    if mode is None:
+        mode = get_trading_mode(tenant_id) or "SHADOW"
+    return {
+        "order_intent_id": _uuid.uuid4().hex[:16],
+        "tenant_id": tenant_id,
+        "user_id": user_id,
+        "portfolio_id": portfolio_id,
+        "strategy_id": strategy_id,
+        "mode": mode,
+        "ticker": ticker,
+        "side": side,
+        "quantity": quantity,
+        "order_type": order_type,
+        "limit_price": limit_price,
+        "stop_price": stop_price,
+        "reason": reason,
+        "decision_id": decision_id,
+        "rule_version": rule_version,
+        "risk_check_status": "pending",
+        "created_at": _dt.datetime.now().isoformat(),
+    }
+
+
+def validate_order_intent(intent, portfolio_value=None, market_open=True,
+                          position_count=0, check_rules=True):
+    """PHASE 13: Prueft ein Order-Intent gegen die Order-Risk-Checkliste (§11).
+
+    Checks: Modus (nur SHADOW/PAPER/PAUSED erlaubt → SHADOW/PAUSED blockiert),
+    PAPER_ONLY (kein LIVE), Menge > 0, Tickernicht leer, Markt offen,
+    Risiko-Limits (enforce_risk_limits), Tenant-Regeln (enforce_rules),
+    Max-Positionen (Default 20). Liefert {'allowed', 'reason', 'intent'}.
+    """
+    # 1) Modus-Gate: nur PAPER (oder SHADOW ohne Ausfuehrung) erlaubt
+    mode = intent.get("mode") or "SHADOW"
+    if mode.startswith("LIVE"):
+        return {"allowed": False, "reason": "LIVE-Modus ist gesperrt (PAPER_ONLY)",
+                "intent": intent}
+    if mode == "PAUSED" or mode == "SUSPENDED" or mode == "REVOKED":
+        return {"allowed": False, "reason": f"Modus {mode}: keine Orders erlaubt",
+                "intent": intent}
+    # 2) Menge/Ticker
+    if not intent.get("ticker"):
+        return {"allowed": False, "reason": "Ticker fehlt", "intent": intent}
+    if not intent.get("quantity") or intent["quantity"] <= 0:
+        return {"allowed": False, "reason": "Menge muss > 0 sein", "intent": intent}
+    # 3) Markt offen (default an, Aufrufer kann schliessen)
+    if not market_open:
+        return {"allowed": False, "reason": "Markt geschlossen", "intent": intent}
+    # 4) Max-Positionen
+    max_pos = 20
+    if position_count >= max_pos:
+        return {"allowed": False,
+                "reason": f"Max. {max_pos} Positionen erreicht", "intent": intent}
+    # 5) Risiko-Limits (effektive Tenant-Limits)
+    if portfolio_value and portfolio_value > 0:
+        pos_pct = (intent.get("quantity", 0) * 1.0) / max(portfolio_value, 1)
+        r = enforce_risk_limits(intent["tenant_id"],
+                                "moderate" if mode == "PAPER" else "shadow",
+                                pos_pct, portfolio_value)
+        if not r["allowed"]:
+            return {"allowed": False, "reason": f"Risiko: {r['reason']}",
+                    "intent": intent}
+    # 6) Tenant-Regeln
+    if check_rules:
+        r2 = enforce_rules(intent["tenant_id"], intent.get("ticker", ""),
+                           {"kauf_count": 0})
+        if not r2["allowed"]:
+            return {"allowed": False, "reason": f"Regel: {r2['reason']}",
+                    "intent": intent}
+    intent["risk_check_status"] = "passed"
+    return {"allowed": True, "reason": "ok", "intent": intent}
+
+
+# ── Broker-Connector-Schnittstelle (Auftrag §10) ──
+class BrokerProvider:
+    """Gemeinsame Schnittstelle fuer alle Broker-Adapter (Paper/Sandbox/Live).
+
+    Implementiert in dieser Phase: PaperBrokerAdapter (Simulator).
+    Kein Live-Adapter — PAPER_ONLY. Die Schnittstelle ist die verbindliche
+    API fuer spätere Sandbox-/Live-Adapter.
+    """
+
+    def connect(self):
+        raise NotImplementedError
+
+    def disconnect(self):
+        raise NotImplementedError
+
+    def health_check(self):
+        raise NotImplementedError
+
+    def get_account(self, tenant_id=None):
+        raise NotImplementedError
+
+    def get_positions(self, tenant_id=None):
+        raise NotImplementedError
+
+    def get_quote(self, ticker):
+        raise NotImplementedError
+
+    def place_order(self, intent):
+        raise NotImplementedError
+
+    def cancel_order(self, order_id, tenant_id=None):
+        raise NotImplementedError
+
+    def get_order_status(self, order_id, tenant_id=None):
+        raise NotImplementedError
+
+    def get_open_orders(self, tenant_id=None):
+        raise NotImplementedError
+
+
+class PaperBrokerAdapter(BrokerProvider):
+    """PHASE 13: Paper-/Simulator-Adapter (Auftrag §10, Punkt 1).
+
+    Fuehrt Order-Intents im Paper-Order-Buch aus (db.paper_orders) und
+    wendet Positionen an (paper_position_apply). Kein externer Broker,
+    keine echten Orders. Tenant-scoped.
+    """
+
+    def __init__(self):
+        self._connected = False
+        self._account_cache = {}
+
+    def connect(self):
+        self._connected = True
+        return {"ok": True, "broker": "paper-simulator"}
+
+    def disconnect(self):
+        self._connected = False
+        return {"ok": True}
+
+    def health_check(self):
+        return {"ok": self._connected, "broker": "paper-simulator"}
+
+    def get_account(self, tenant_id=None):
+        import db as _db
+        m = _db.MTDB()
+        try:
+            tid = tenant_id or 1
+            row = m.conn.execute(
+                "SELECT COUNT(*) AS n, COALESCE(SUM(virtual_cash),0) AS wert "
+                "FROM paper_portfolios WHERE tenant_id=?", (tid,)).fetchone()
+            return {"tenant_id": tid, "portfolios": row["n"] if row else 0,
+                    "wert": row["wert"] if row else 0.0,
+                    "broker": "paper-simulator", "mode": "PAPER"}
+        finally:
+            m.close()
+
+    def get_positions(self, tenant_id=None):
+        import db as _db
+        m = _db.MTDB()
+        try:
+            tid = tenant_id or 1
+            rows = m.conn.execute(
+                "SELECT ticker, SUM(quantity) AS shares "
+                "FROM paper_orders WHERE tenant_id=? GROUP BY ticker",
+                (tid,)).fetchall()
+            return [{"ticker": r["ticker"], "shares": r["shares"]} for r in rows]
+        finally:
+            m.close()
+
+    def get_quote(self, ticker):
+        try:
+            from marktdaten import hole_kurs_fuer
+            price = hole_kurs_fuer(ticker)
+            return {"ticker": ticker, "price": price}
+        except Exception:
+            return {"ticker": ticker, "price": None}
+
+    def place_order(self, intent):
+        """Fuehrt Intent im Paper-Order-Buch aus. Gibt {'ok', 'order_id', 'status'}."""
+        import db as _db
+        v = validate_order_intent(intent, market_open=True)
+        if not v["allowed"]:
+            return {"ok": False, "error": v["reason"], "status": "blocked"}
+        m = _db.MTDB()
+        try:
+            pid = intent.get("portfolio_id") or 1
+            side_db = "BUY" if str(intent["side"]).upper() in ("BUY", "KAUFEN") else "SELL"
+            oid = m.paper_order_insert(
+                tenant_id=intent["tenant_id"],
+                portfolio_id=pid,
+                ticker=intent["ticker"], side=side_db,
+                quantity=intent["quantity"], price=intent.get("limit_price") or 0.0)
+            m.paper_position_apply(
+                tenant_id=intent["tenant_id"],
+                portfolio_id=pid,
+                ticker=intent["ticker"], side=side_db,
+                quantity=intent["quantity"],
+                price=intent.get("limit_price") or 0.0)
+            return {"ok": True, "order_id": oid, "status": "filled",
+                    "broker": "paper-simulator"}
+        finally:
+            m.close()
+
+    def cancel_order(self, order_id, tenant_id=None):
+        import db as _db
+        m = _db.MTDB()
+        try:
+            m.conn.execute(
+                "UPDATE paper_orders SET status='cancelled' "
+                "WHERE id=? AND tenant_id=?", (order_id, tenant_id or 1))
+            m.conn.commit()
+            return {"ok": True, "order_id": order_id, "status": "cancelled"}
+        finally:
+            m.close()
+
+    def get_order_status(self, order_id, tenant_id=None):
+        import db as _db
+        m = _db.MTDB()
+        try:
+            row = m.conn.execute(
+                "SELECT id, status FROM paper_orders "
+                "WHERE id=? AND tenant_id=?", (order_id, tenant_id or 1)).fetchone()
+            return {"ok": bool(row), "order_id": order_id,
+                    "status": row["status"] if row else "unknown"}
+        finally:
+            m.close()
+
+    def get_open_orders(self, tenant_id=None):
+        import db as _db
+        m = _db.MTDB()
+        try:
+            tid = tenant_id or 1
+            rows = m.conn.execute(
+                "SELECT id, ticker, side, quantity, price, status "
+                "FROM paper_orders WHERE tenant_id=? AND status IN ('open','filled')",
+                (tid,)).fetchall()
+            return [dict(r) for r in rows]
+        finally:
+            m.close()
+
+
+# ── PHASE 13: Vier-Augen-Freigabe (Auftrag §2, kritische Trennung) ──
+FOUR_EYES_ACTIONS = [
+    "live_request", "live_approve", "broker_connect", "risk_limit_change",
+    "pause_resume", "role_to_admin", "backup_restore",
+]
+
+
+def four_eyes_required(action, requester, approver):
+    """PHASE 13: Vier-Augen-Prinzip — Antragsteller darf nicht selbst genehmigen.
+
+    action: eine der FOUR_EYES_ACTIONS. requester/approver: Username-Strings.
+    Liefert {'required': bool, 'ok': bool, 'reason': str}.
+    """
+    if action not in FOUR_EYES_ACTIONS:
+        return {"required": False, "ok": True, "reason": "keine Vier-Augen-Aktion"}
+    if not requester or not approver:
+        return {"required": True, "ok": False,
+                "reason": "Vier-Augen: Antragsteller UND Genehmiger erforderlich"}
+    if requester == approver:
+        return {"required": True, "ok": False,
+                "reason": "Vier-Augen: Antragsteller darf nicht selbst genehmigen"}
+    return {"required": True, "ok": True, "reason": "Vier-Augen erfuellt"}
+
+
 def resolve_tenant_for_user(user):
     """Leitet die tenant_id eines Users aus der Membership-Tabelle ab.
     Fallback: Default-Tenant (id=1). Kein Client-Input noetig."""

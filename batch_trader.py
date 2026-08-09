@@ -384,11 +384,35 @@ def main():
                                     menge_faktor = 1.0 if a.get("menge") == "voll" else 0.5
                                     budget = depot_obj.bargeld * menge_faktor
                                     menge = budget / cand["preis"]
+                                    # 🛡 PHASE 13 (v2.36.0): Order-Intent MUSS vor jeder
+                                    # Ausfuehrung als Objekt entstehen (Auftrag §11).
+                                    try:
+                                        import security as _sec13
+                                        _intent13 = _sec13.create_order_intent(
+                                            tenant_id=_tid12,
+                                            ticker=ticker, side="buy",
+                                            quantity=round(menge, 4),
+                                            price=cand["preis"],
+                                            mode=params.get("modus", "paper"),
+                                            reason=f"KI: {grund[:50]}",
+                                            decision_id=ed.get("decision_id"),
+                                            rule_version=_sec13.get_rule_version(_tid12)
+                                            if hasattr(_sec13, "get_rule_version") else None)
+                                        _v13 = _sec13.validate_order_intent(
+                                            _intent13, portfolio_value=depot_obj.start_wert)
+                                        if not _v13["allowed"]:
+                                            if not QUIET:
+                                                print(f"   🛡 INTENT-BLOCK {ticker}: {_v13['reason']}", flush=True)
+                                            continue
+                                    except Exception:
+                                        _intent13 = None  # Intent nie fatal (PAPER_ONLY)
                                     aktionen.append({
                                         "typ": "kaufen", "ticker": ticker,
                                         "menge": round(menge, 4), "preis": cand["preis"],
                                         "grund": f"🤖 KI: {grund[:50]}",
                                         "tier": cand.get("tier", 2),
+                                        "order_intent_id": (_intent13 or {}).get("order_intent_id"),
+                                        "risk_check_status": (_intent13 or {}).get("risk_check_status", "pending"),
                                     })
                             elif akt == "verkaufen":
                                 pos = getattr(depot_obj, "positions", {}).get(ticker, {})

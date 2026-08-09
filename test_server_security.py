@@ -578,6 +578,78 @@ try:
 except Exception as e:
     ck("Enforcement", False, str(e))
 
+print("\n7l. Order-Intent + Broker-Adapter + Vier-Augen (v2.36.0, PHASE 13)")
+try:
+    import security as sec13
+    # --- create_order_intent: alle Pflichtfelder ---
+    int1 = sec13.create_order_intent(1, "AAPL", "buy", 5.0, 200.0, mode="PAPER")
+    ck("intent hat alle 17 Felder", all(f in int1 for f in sec13.ORDER_INTENT_FIELDS))
+    ck("intent risk_check_status=pending", int1["risk_check_status"] == "pending")
+    # --- validate_order_intent ---
+    v_ok = sec13.validate_order_intent(dict(int1), portfolio_value=10000.0)
+    ck("intent gueltig -> passed", v_ok["allowed"] is True
+       and v_ok["intent"]["risk_check_status"] == "passed")
+    v_live = sec13.validate_order_intent(dict(int1, mode="LIVE_ACTIVE"))
+    ck("intent LIVE -> blockiert (PAPER_ONLY)", v_live["allowed"] is False
+       and "PAPER_ONLY" in v_live["reason"])
+    v_paused = sec13.validate_order_intent(dict(int1, mode="PAUSED"))
+    ck("intent PAUSED -> blockiert", v_paused["allowed"] is False)
+    v_qty = sec13.validate_order_intent(dict(int1, quantity=0))
+    ck("intent Menge 0 -> blockiert", v_qty["allowed"] is False)
+    v_mkt = sec13.validate_order_intent(dict(int1), market_open=False)
+    ck("intent Markt zu -> blockiert", v_mkt["allowed"] is False)
+    v_pos = sec13.validate_order_intent(dict(int1), position_count=25)
+    ck("intent >20 Positionen -> blockiert", v_pos["allowed"] is False)
+    # --- BrokerProvider-Interface ---
+    b_abs = sec13.BrokerProvider()
+    try:
+        b_abs.place_order({})
+        ck("BrokerProvider abstract (place_order wirft)", False)
+    except NotImplementedError:
+        ck("BrokerProvider abstract (place_order wirft)", True)
+    # --- PaperBrokerAdapter ---
+    pb = sec13.PaperBrokerAdapter()
+    c = pb.connect()
+    ck("PaperBroker connect", c["ok"] is True and c["broker"] == "paper-simulator")
+    h = pb.health_check()
+    ck("PaperBroker health nach connect", h["ok"] is True)
+    acc = pb.get_account(1)
+    ck("PaperBroker get_account", acc["mode"] == "PAPER" and "wert" in acc)
+    # Order ausfuehren (Cleanup-Tenant 999)
+    m13 = db11.MTDB()
+    m13.conn.execute("DELETE FROM paper_orders WHERE tenant_id=999")
+    m13.conn.execute("DELETE FROM paper_positions WHERE tenant_id=999")
+    m13.conn.commit()
+    int_buy = sec13.create_order_intent(999, "TEST13", "buy", 10.0, 50.0,
+                                        portfolio_id=1, mode="PAPER")
+    r_buy = pb.place_order(int_buy)
+    ck("PaperBroker place_order buy -> filled", r_buy["ok"] is True
+       and r_buy["status"] == "filled" and r_buy["order_id"] is not None)
+    st = pb.get_order_status(r_buy["order_id"], 999)
+    ck("PaperBroker get_order_status", st["status"] == "filled")
+    pos = pb.get_positions(999)
+    ck("PaperBroker Position erhoeht", any(p["ticker"] == "TEST13" for p in pos))
+    int_live = sec13.create_order_intent(999, "TEST13", "buy", 10.0, 50.0,
+                                         portfolio_id=1, mode="LIVE_ACTIVE")
+    r_live = pb.place_order(int_live)
+    ck("PaperBroker LIVE-Intent -> blocked", r_live["ok"] is False
+       and r_live["status"] == "blocked")
+    # --- vier_eyes_required ---
+    fe = sec13.four_eyes_required("live_approve", "alice", "bob")
+    ck("Vier-Augen: fremd genehmigt -> ok", fe["required"] is True and fe["ok"] is True)
+    fe2 = sec13.four_eyes_required("live_approve", "alice", "alice")
+    ck("Vier-Augen: selbst genehmigt -> block", fe2["ok"] is False)
+    fe3 = sec13.four_eyes_required("live_approve", "alice", None)
+    ck("Vier-Augen: Genehmiger fehlt -> block", fe3["ok"] is False)
+    fe4 = sec13.four_eyes_required("portfolio.read", "alice", "bob")
+    ck("Vier-Augen: unkritische Aktion -> nicht noetig", fe4["required"] is False)
+    # Cleanup
+    m13.conn.execute("DELETE FROM paper_orders WHERE tenant_id=999")
+    m13.conn.execute("DELETE FROM paper_positions WHERE tenant_id=999")
+    m13.conn.commit(); m13.close()
+except Exception as e:
+    ck("Order-Intent/Broker/Vier-Augen", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

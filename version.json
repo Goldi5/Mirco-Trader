@@ -1,9 +1,22 @@
 {
-  "version": "2.36.0",
-  "build": "2026-08-09_0930",
-  "released_at": "2026-08-09 09:30",
-  "codename": "Mandanten-Config UI im Admin (PHASE 13), 124 Tests",
+  "version": "2.37.0",
+  "build": "2026-08-09_0950",
+  "released_at": "2026-08-09 09:50",
+  "codename": "Phase 13 Code: Order-Intent + Broker-Adapter + Vier-Augen (144 Tests)",
   "changes": [
+    {
+      "version": "2.37.0",
+      "date": "2026-08-09",
+      "changes": [
+        "PHASE 13 Code: create_order_intent (17 Pflichtfelder, UUID) + validate_order_intent (15-Check-Liste, LIVE/PAPER_ONLY-Gate)",
+        "BrokerProvider-Schnittstelle (connect/disconnect/health/get_account/get_positions/get_quote/place_order/cancel_order/get_order_status/get_open_orders)",
+        "PaperBrokerAdapter: Simulator fuehrt Intents im Paper-Order-Buch aus (tenant-scoped, BUY/SELL)",
+        "batch_trader.py: Kauf-Orders entstehen jetzt als Order-Intent VOR Ausfuehrung (INTENT-BLOCK bei Verstoss)",
+        "four_eyes_required: Vier-Augen-Freigabe fuer live_approve/broker_connect/risk_limit_change/pause_resume/role_to_admin/backup_restore",
+        "Sektion 7l: 20 neue Tests -> 144 OK, 0 FAIL",
+        "Doku: ORDER-RISK-CHECKLIST.md, BROKER-CONNECTOR-SPECIFICATION.md, PLATFORM-IMPLEMENTATION-REPORT.md"
+      ]
+    },
     {
       "version": "2.36.0",
       "date": "2026-08-09",

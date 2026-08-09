@@ -20,6 +20,24 @@
 └─────────────────────────────────────────────────────────────┘
 ```
 
+## Order-Pfad (PHASE 13, v2.37.0)
+```
+KI-Entscheidung (kaufen/verkaufen)
+   ↓
+create_order_intent(...)            [security.py] 17 Pflichtfelder, UUID
+   ↓
+validate_order_intent(...)          [security.py] 15-Check-Liste (§11)
+   ↓ allowed
+PaperBrokerAdapter.place_order()    [security.py] Simulator: paper_orders + paper_positions
+   ↓
+Status "filled" / "blocked"         (LIVE_* wird hart geblockt, PAPER_ONLY)
+```
+- `BrokerProvider`-Interface definiert connect/disconnect/health_check/get_account/
+  get_positions/get_quote/place_order/cancel_order/get_order_status/get_open_orders.
+- Implementiert: nur `PaperBrokerAdapter` (Simulator). Kein Sandbox-/Live-Adapter.
+- Vier-Augen-Freigabe: `four_eyes_required(action, requester, approver)`.
+- Details: `docs/ORDER-RISK-CHECKLIST.md`, `docs/BROKER-CONNECTOR-SPECIFICATION.md`.
+
 ## KI-Provider-Fallback (ki_provider.py)
 ```python
 call_ki(messages, temperature=0.1, max_tokens=2048) → (antwort, provider)

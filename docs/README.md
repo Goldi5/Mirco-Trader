@@ -1,8 +1,8 @@
 # Micro-Trader — Projekt-Dokumentation
 
-> **Version:** v2.18.0 "Daily-Auswertungs-PDF" (2026-08-06)  
-> **Status:** Produktiv, Cron läuft alle 15min  
-> **Letztes Update:** 2026-08-06 20:30
+> **Version:** v2.37.0 "Phase 13 Code: Order-Intent + Broker-Adapter + Vier-Augen" (2026-08-09)
+> **Status:** Produktiv, Cron läuft, PAPER_ONLY (kein Echtgeld)
+> **Letztes Update:** 2026-08-09 09:50
 
 ## 📌 Was ist das?
 Papier-Trading-System mit KI-Lernen. 3 Kategorien:
@@ -79,7 +79,10 @@ zen (deepseek-v4-flash-free) → nous-step → nous-hy3 → openrouter
 ## 📚 Weitere Doku
 - `docs/CHANGELOG.md` — Vollständige Versions-Historie
 - `docs/ARCHITEKTUR.md` — System-Details
+- `docs/ORDER-RISK-CHECKLIST.md` — 15-Check-Liste vor jeder Order (Order-Intent, v2.37.0)
+- `docs/BROKER-CONNECTOR-SPECIFICATION.md` — BrokerProvider-Schnittstelle + Paper-Adapter (v2.37.0)
+- `docs/PLATFORM-IMPLEMENTATION-REPORT.md` — Abschlussbericht Mandanten-Ausbauauftrag (v2.37.0)
 - `PROJEKT-UEBERGABE-v2.8.4.md` — (veraltet, siehe CHANGELOG)
 
 ---
-*Diese Doku wird bei jeder Versionierung aktualisiert. Letzter Stand: v2.12.2*
+*Diese Doku wird bei jeder Versionierung aktualisiert. Letzter Stand: v2.37.0*

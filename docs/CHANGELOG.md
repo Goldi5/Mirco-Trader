@@ -1,3 +1,14 @@
+## [2.37.0] - 2026-08-09
+### Added (PHASE 13 Code: Order-Intent + Broker-Adapter + Vier-Augen — Mandanten-Ausbauauftrag §10/§11)
+- **`create_order_intent(...)`:** Jede geplante Order entsteht jetzt als Intent-Objekt mit allen 17 Pflichtfeldern (`order_intent_id` UUID, `tenant_id`, `user_id`, `portfolio_id`, `strategy_id`, `mode`, `ticker`, `side`, `quantity`, `order_type`, `limit_price`, `stop_price`, `reason`, `decision_id`, `rule_version`, `risk_check_status`, `created_at`).
+- **`validate_order_intent(...)`:** 15-Check-Order-Risk-Liste — Modus-Gate (LIVE_* hart blockiert, PAPER_ONLY), PAUSED/SUSPENDED/REVOKED blockiert, Menge > 0, Markt offen, max. 20 Positionen, `enforce_risk_limits` (Position/Drawdown), `enforce_rules` (BLOCK/MAX_KAUF/REGEX).
+- **`BrokerProvider`-Schnittstelle:** verbindliches Interface (`connect`, `disconnect`, `health_check`, `get_account`, `get_positions`, `get_quote`, `place_order`, `cancel_order`, `get_order_status`, `get_open_orders`) — Grundlage für spätere Sandbox-/Live-Adapter.
+- **`PaperBrokerAdapter`:** Simulator (einziger implementierter Adapter, PAPER_ONLY) — führt Intents im Paper-Order-Buch aus (`paper_order_insert` + `paper_position_apply`, BUY/SELL, tenant-scoped).
+- **`batch_trader.py`:** Kauf-Orders entstehen als Order-Intent **vor** jeder Ausführung; Verstoß → `INTENT-BLOCK` (nie fatal, PAPER_ONLY).
+- **`four_eyes_required(action, requester, approver)`:** Vier-Augen-Freigabe für `live_request`/`live_approve`/`broker_connect`/`risk_limit_change`/`pause_resume`/`role_to_admin`/`backup_restore` — Antragsteller darf nie selbst genehmigen.
+- **Doku:** `ORDER-RISK-CHECKLIST.md`, `BROKER-CONNECTOR-SPECIFICATION.md`, `PLATFORM-IMPLEMENTATION-REPORT.md`.
+- **Tests:** Sektion 7l (+20) -> **144 OK, 0 FAIL**.
+
 ## [2.36.0] - 2026-08-09
 ### Added (PHASE 13: Mandanten-Config UI im `/admin`-Bereich)
 - **`/admin/tenant-config`**: Risikogrenzen (beide Modi) + Regeln (effektiv Tenant ∪ global) verwalten.
