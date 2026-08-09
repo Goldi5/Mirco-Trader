@@ -320,6 +320,9 @@ h3{font-size:14px;font-weight:600}
 .badge-inverse{background:#f4f4f5;color:#52525b}
 .badge-lev-bull{background:#dcfce7;color:#15803d}
 .badge-lev-bear{background:var(--danger-soft);color:#b91c1c}
+/* Phase 15: einheitliche Modus/Status-Badges (Calm Trading, Slate-Töne statt Bunt) */
+.badge-modus{background:var(--surface-muted);color:var(--text-secondary);border:1px solid var(--border)}
+.badge-modus-active{background:var(--primary-soft);color:var(--primary);border:1px solid var(--primary-soft)}
 .badge-volatility{background:#ffedd5;color:#c2410c}
 .badge-commodity{background:var(--warning-soft);color:#a16207}
 .badge-ai{background:#eef2ff;color:#4338ca}
@@ -765,12 +768,12 @@ function renderPortfoliosUebersicht() {
     const katLabel = { stocks: "📈 Aktien", etf: "📦 ETF", spec: "🔥 Spekulation" }[typ];
     const cls = (p.rendite || 0) > 0.5 ? "positive" : (p.rendite || 0) < -0.5 ? "negative" : "neutral";
     const modus = p.modus || "shadow";
-    const modusBadge = modus === "paper" ? '<span class="badge badge-tech">PAPER</span>'
-      : modus === "live" ? '<span class="badge badge-meme">LIVE</span>'
-      : '<span class="badge badge-inverse">SHADOW</span>';
-    const statusBadge = p.gesperrt ? '<span class="badge badge-meme">🔒 Gesperrt</span>'
-      : (p.positionen || 0) > 0 ? '<span class="badge badge-tech">Aktiv</span>'
-      : '<span class="badge badge-inverse">Leer</span>';
+    const modusBadge = modus === "paper" ? '<span class="badge badge-modus">PAPER</span>'
+      : modus === "live" ? '<span class="badge badge-modus">LIVE</span>'
+      : '<span class="badge badge-modus">SHADOW</span>';
+    const statusBadge = p.gesperrt ? '<span class="badge badge-modus">🔒 Gesperrt</span>'
+      : (p.positionen || 0) > 0 ? '<span class="badge badge-modus-active">Aktiv</span>'
+      : '<span class="badge badge-modus">Leer</span>';
     return `<div class="card ${cls}" style="cursor:pointer" role="button" tabindex="0" onclick="showDepot(${JSON.stringify(p).replace(/"/g, "&quot;")},'${typ}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();__openDepotKey('${JSON.stringify(p).replace(/"/g, "&quot;")}','${typ}')}">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
         <h3 style="margin:0">${esc(p.ticker || ("Risk " + p.risk))}</h3>
@@ -1816,23 +1819,23 @@ async function load() {
       if (anzahl > 0) {
         const tq = st.trefferquote;
         const avg = st.lerneffekt_avg;
-        const farbeTq = tq >= 50 ? '#10b981' : tq >= 35 ? '#f59e0b' : '#ef4444';
-        const farbeAvg = avg >= 0.5 ? '#10b981' : avg >= 0 ? '#f59e0b' : '#ef4444';
+        const farbeTq = tq >= 50 ? 'var(--success)' : tq >= 35 ? 'var(--warning)' : 'var(--danger)';
+        const farbeAvg = avg >= 0.5 ? 'var(--success)' : avg >= 0 ? 'var(--warning)' : 'var(--danger)';
         statHtml = `<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px">
-          <div style="flex:1;min-width:150px;background:rgba(255,255,255,0.06);border-radius:12px;padding:10px;text-align:center">
-            <div style="font-size:11px;color:var(--text-dim)">🎯 Trefferquote (24h)</div>
+          <div style="flex:1;min-width:150px;background:var(--surface-muted);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center">
+            <div style="font-size:11px;color:var(--text-secondary)">🎯 Trefferquote (24h)</div>
             <div style="font-size:24px;font-weight:700;color:${farbeTq}">${tq}%</div>
-            <div style="font-size:11px;color:var(--text-dim)">${st.bestätigt || st.bestaetigt || 0} ✓ · ${st.widerlegt || 0} ✗ · ${st.neutral || 0} ○</div>
+            <div style="font-size:11px;color:var(--text-secondary)">${st.bestätigt || st.bestaetigt || 0} ✓ · ${st.widerlegt || 0} ✗ · ${st.neutral || 0} ○</div>
           </div>
-          <div style="flex:1;min-width:150px;background:rgba(255,255,255,0.06);border-radius:12px;padding:10px;text-align:center">
-            <div style="font-size:11px;color:var(--text-dim)">🧠 Ø Lerneffekt (24h)</div>
+          <div style="flex:1;min-width:150px;background:var(--surface-muted);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center">
+            <div style="font-size:11px;color:var(--text-secondary)">🧠 Ø Lerneffekt (24h)</div>
             <div style="font-size:24px;font-weight:700;color:${farbeAvg}">${avg >= 0 ? '+' : ''}${avg}</div>
-            <div style="font-size:11px;color:var(--text-dim)">Skala -5 (widerlegt) … +5 (bestätigt)</div>
+            <div style="font-size:11px;color:var(--text-secondary)">Skala -5 (widerlegt) … +5 (bestätigt)</div>
           </div>
-          <div style="flex:1;min-width:150px;background:rgba(255,255,255,0.06);border-radius:12px;padding:10px;text-align:center">
-            <div style="font-size:11px;color:var(--text-dim)">📌 Gewichtete Regeln</div>
-            <div style="font-size:24px;font-weight:700;color:var(--accent)">${regeln.length}</div>
-            <div style="font-size:11px;color:var(--text-dim)">aus KI-Lern-Bewertung</div>
+          <div style="flex:1;min-width:150px;background:var(--surface-muted);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center">
+            <div style="font-size:11px;color:var(--text-secondary)">📌 Gewichtete Regeln</div>
+            <div style="font-size:24px;font-weight:700;color:var(--primary)">${regeln.length}</div>
+            <div style="font-size:11px;color:var(--text-secondary)">aus KI-Lern-Bewertung</div>
           </div>
         </div>`;
         // Kategorien-Balken: Was wurde bestätigt/widerlegt?
@@ -1858,7 +1861,7 @@ async function load() {
           const w = Math.max(n/katMax*100, n>0?4:0);
           return `<div style="display:flex;align-items:center;margin:3px 0;font-size:11px">
             <span style="width:120px">${k.label}</span>
-            <div style="flex:1;height:14px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden">
+            <div style="flex:1;height:14px;background:var(--surface-muted);border-radius:3px;overflow:hidden">
               <div style="height:100%;width:${w}%;background:${k.farbe};border-radius:3px"></div>
             </div>
             <span style="width:36px;text-align:right;color:var(--text-dim)">${n}</span>
@@ -1906,7 +1909,7 @@ async function load() {
       if (decFilter !== 'alle') decRows = decRows.filter(e => (e.aktion||'') === decFilter);
       decRows = decRows.slice(0, 200);
       const decBtn = (key, label) =>
-        `<button onclick="window._kiDecFilter='${key}';load()" style="margin-right:6px;padding:3px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.25);background:${(window._kiDecFilter||'alle')===key?'rgba(139,92,246,0.25)':'rgba(255,255,255,0.08)'};color:var(--text);cursor:pointer;font-size:11px">${label}</button>`;
+        `<button onclick="window._kiDecFilter='${key}';load()" style="margin-right:6px;padding:3px 10px;border-radius:8px;border:1px solid var(--border);background:${(window._kiDecFilter||'alle')===key?'var(--primary-soft)':'var(--surface-muted)'};color:${'var(--text)'};cursor:pointer;font-size:11px">${label}</button>`;
       kiDecEl.innerHTML =
         '<div style="margin-bottom:8px">' + decBtn('alle','Alle') + decBtn('kaufen','🟢 kaufen') + decBtn('halten','⚪ halten') + decBtn('verkaufen','🔴 verkaufen') + `</div>` +
         `<div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">${decRows.length} Entscheidungen</div>` +
@@ -1961,7 +1964,7 @@ async function load() {
         '<div style="max-height:600px;overflow-y:auto">' +
         newsRows.map(e => {
           const s = e.score||0;
-          return `<div style="display:flex;gap:10px;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.06);font-size:12px;align-items:flex-start">
+          return `<div style="display:flex;gap:10px;padding:8px 10px;border-bottom:1px solid var(--border);font-size:12px;align-items:flex-start">
             <span style="min-width:44px;text-align:center;background:${scoreFarbe(s)}22;color:${scoreFarbe(s)};border-radius:8px;padding:2px 6px;font-weight:700">${s}${e.stars||''}</span>
             <div style="flex:1">
               <div>${esc(e.title||'')}${e.link ? ` <a href="${e.link}" target="_blank" style="color:var(--accent);text-decoration:none">🔗</a>` : ''}</div>
@@ -1998,7 +2001,7 @@ async function load() {
           const leBadge = (typeof le === 'number')
             ? `<span style="background:${g.farbe}22;color:${g.farbe};padding:1px 6px;border-radius:8px;font-size:10px;font-weight:700">${le >= 0 ? '+' : ''}${le}</span>`
             : '';
-          return `<div style="display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px">
+          return `<div style="display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-bottom:1px solid var(--border);font-size:12px">
             <span style="white-space:nowrap;color:var(--text-dim)">${(e.zeit||'').substring(11,16)}</span>
             ${leBadge}
             <span style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600">${e.ticker ? (Array.isArray(e.ticker) ? e.ticker.join(', ') : e.ticker) : '?'}</span>
@@ -2015,7 +2018,7 @@ async function load() {
         learnHtml += `<div style="font-size:12px;font-weight:600;margin:10px 0 4px;color:#8b5cf6">⚙️ System-Erkenntnisse (${sysRows.length})</div>`;
         learnHtml += sysRows.map(e => {
           const pre = (e.notiz||'').includes('News') ? '📰' : (e.notiz||'').includes('Konfidenz') ? '🎯' : (e.notiz||'').includes('Exit') ? '💰' : '🤖';
-          return `<div style="display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px">
+          return `<div style="display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-bottom:1px solid var(--border);font-size:12px">
             <span style="white-space:nowrap;color:var(--text-dim)">${(e.zeit||'').substring(11,16)}</span>
             <span>${pre}</span>
             <span class="title-col" title="${esc(e.notiz||'')}">${esc(e.notiz||'')}</span>
@@ -2077,7 +2080,7 @@ async function load() {
           else if (r.freigabe_status === 'nicht_freigegeben') govBadge = '<span style="background:#64748b22;color:#64748b;border-radius:6px;padding:2px 6px;font-weight:700;font-size:10px;margin-left:6px">⚪ Nicht freigegeben</span>';
           if (r.archiviert) govBadge += '<span style="background:#ef444422;color:#ef4444;border-radius:6px;padding:2px 6px;font-weight:700;font-size:10px;margin-left:6px">🔴 Archiviert</span>';
           const oosBadge = r.oos_confirmed ? '<span style="background:#3b82f622;color:#3b82f6;border-radius:6px;padding:2px 6px;font-weight:700;font-size:10px;margin-left:6px">✓ OOS</span>' : '<span style="background:#64748b22;color:#64748b;border-radius:6px;padding:2px 6px;font-weight:700;font-size:10px;margin-left:6px">? OOS offen</span>';
-          return `<div style="display:flex;gap:8px;align-items:flex-start;margin:5px 0;font-size:12px;padding:6px 8px;background:rgba(255,255,255,0.04);border-radius:8px${r.konflikt?';border:1px solid #ef444455':''}">
+          return `<div style="display:flex;gap:8px;align-items:flex-start;margin:5px 0;font-size:12px;padding:6px 8px;background:var(--surface-muted);border-radius:8px${r.konflikt?';border:1px solid #ef444455':''}">
             <span style="min-width:${anti?'88px':'64px'};text-align:center;background:${farbe}22;color:${farbe};border-radius:6px;padding:2px 6px;font-weight:700;white-space:nowrap">${anti?'⚠ NICHT':meta?'🎯 Meta':'G '+g+stern}</span>
             <span>${esc(r.muster||'')} → <b>${esc(r.regel||'')}</b>${metaBadge}${konfliktBadge}${statusBadge}${govBadge}${oosBadge}</span>
           </div>`;
@@ -2103,7 +2106,7 @@ async function load() {
           fam.map(f => {
             const q = f.quote;
             const farbe = q >= 50 ? '#10b981' : q >= 30 ? '#f59e0b' : '#ef4444';
-            return `<div style="padding:8px 10px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:11px">
+            return `<div style="padding:8px 10px;background:var(--surface-muted);border-radius:8px;font-size:11px">
               <div style="font-weight:600;margin-bottom:3px">${esc(f.familie||'')} <span style="color:${farbe};font-weight:700">${q}%</span></div>
               <div style="color:var(--text-dim)">${f.pos}✓ / ${f.neg}✗ von ${f.ges} Lerneffekten</div>
             </div>`;
@@ -2178,7 +2181,7 @@ async function load() {
       ];
       html += `<div style="font-size:12px;font-weight:600;margin-bottom:6px">🔧 7 Lern-Mechanismen</div><div style="display:grid;gap:8px;margin-bottom:16px">`;
       for (const [name, desc] of mech) {
-        html += `<div style="padding:9px 11px;background:rgba(255,255,255,0.06);border:1px solid var(--card-border);border-radius:10px;font-size:12px">
+        html += `<div style="padding:9px 11px;background:var(--surface-muted);border:1px solid var(--card-border);border-radius:10px;font-size:12px">
           <div style="font-weight:600;margin-bottom:2px">${name}</div>
           <div style="color:var(--text-dim);line-height:1.45">${desc}</div>
         </div>`;
@@ -2192,7 +2195,7 @@ async function load() {
         html += `<div style="max-height:260px;overflow-y:auto;margin-bottom:16px">`;
         for (const n of notizen) {
           const z = (n.zeit||'').replace('T',' ').substring(0,16);
-          html += `<div style="display:flex;gap:7px;align-items:flex-start;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:11.5px">
+          html += `<div style="display:flex;gap:7px;align-items:flex-start;padding:5px 8px;border-bottom:1px solid var(--border);font-size:11.5px">
             <span>${katIcon[n.kategorie]||'ℹ️'}</span>
             <span style="color:var(--text-dim);white-space:nowrap">${z}</span>
             <span>${esc(n.notiz||'')}</span>
@@ -2258,7 +2261,7 @@ async function load() {
           '<div style="max-height:560px;overflow-y:auto">' +
           sl.map(e => {
             const z = (e.zeit||'').replace('T',' ').substring(0,19);
-            return `<div style="display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.06);font-size:12px">
+            return `<div style="display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-bottom:1px solid var(--border);font-size:12px">
               <span style="white-space:nowrap;color:var(--text-dim)">${z}</span>
               <span>${quelleIcon[e.quelle]||'⚙️'}</span>
               <span style="min-width:70px;font-weight:600">${esc(e.quelle||'')}</span>
@@ -2806,7 +2809,7 @@ function renderSettingsTab(tab, s, meta) {
          <label style="font-size:12px;color:var(--text)">Lern-Modus:</label>
          <select data-pfad="lernen.lern_modus" onchange="markSettingsDirty()"
            style="padding:5px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);
-                  background:rgba(255,255,255,0.06);color:var(--text)">
+                  background:var(--surface-muted);color:var(--text)">
            ${["auto","deterministisch","pausiert"].map(m=>`<option ${s.lernen.lern_modus===m?'selected':''}>${m}</option>`).join('')}
          </select>
        </div>`
@@ -2829,7 +2832,7 @@ function renderSettingsTab(tab, s, meta) {
          <label style="font-size:12px;color:var(--text)">Aktive ETF-Stufen:</label>
          <select multiple data-pfad="depot_struktur.etf_stufen_aktiv" onchange="markSettingsDirty()"
            style="padding:5px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);
-                  background:rgba(255,255,255,0.06);color:var(--text);min-height:80px;flex:1">
+                  background:var(--surface-muted);color:var(--text);min-height:80px;flex:1">
            ${["Geldmarkt","Anleihen","Markt","Sektor","Thema","Gehebelt"].map(st=>
              `<option ${s.depot_struktur.etf_stufen_aktiv.includes(st)?'selected':''}>${st}</option>`).join('')}
          </select>
@@ -3085,7 +3088,7 @@ function anLaden2() {
       body.innerHTML = "";
       rows.forEach(r => {
         const tr = document.createElement("tr");
-        tr.style.borderBottom = "1px solid rgba(255,255,255,0.08)";
+        tr.style.borderBottom = "1px solid var(--border)";
         const farbe = (r.aktion === "kaufen") ? "#34d399" : (r.aktion === "verkaufen") ? "#f87171" : "#fbbf24";
         const fb = r.fallback === "True" ? " ⚠FB" : "";
         tr.innerHTML = "<td style='padding:5px'>" + esc((r.zeit||"").replace("T"," ").slice(0,19)) + "</td>"
@@ -3126,7 +3129,7 @@ function anLaden2() {
       box.innerHTML = "";
       cards.forEach(c => {
         const div = document.createElement("div");
-        div.style.cssText = "background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:8px 12px;min-width:120px";
+        div.style.cssText = "background:var(--surface-muted);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:8px 12px;min-width:120px";
         div.innerHTML = "<div style='font-size:11px;opacity:0.7'>" + esc(c[0]) + "</div><div style='font-size:15px;font-weight:600'>" + esc(String(c[1])) + "</div>";
         box.appendChild(div);
       });

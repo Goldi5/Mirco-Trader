@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.44.9] - 2026-08-09
+### Added (UI-Redesign Phase 15: Feinschliff pro Bereich)
+- **Badge-Konsistenz** (Portfolios-Übersicht): Modus/Status-Badges auf einheitliches `.badge-modus` (grau/Slate) + `.badge-modus-active` (Slate-Blau) umgestellt — kein rotes `badge-meme` mehr für LIVE/Gesperrt
+- **Glass-Relikte entfernt** in KI-/News-/Settings-/System-Bereichen: alle `rgba(255,255,255,0.0x)`-Hintergründe/Borders → `var(--surface-muted)` / `var(--border)`; alle `rgba(139,92,246,0.x)`-Purple (außer bewusst KI-Lila bei Lernmodul/swap) → `var(--primary-soft)`
+- **Farben vereinheitlicht**: Hardcoded `#10b981/#f59e0b/#ef4444` in KI-Stats → `var(--success)/var(--warning)/var(--danger)`; `var(--text-dim)` → `var(--text-secondary)` (Alias)
+- **Verifikation**: `node --check` clean, 0 Glass-RGBA verbleibend, Live-Login OK
+
 ## [2.44.8] - 2026-08-09
 ### Verified (UI-Redesign Phase 13: Regression + visuelle Prüfung)
 - **Regression**: Alle 8 Bereiche (Übersicht, Portfolios, Märkte, Analyse, Aktivität, KI, System, Einstellungen) + Portfolios-„Alle" rendern fehlerfrei, keine JS-Console-Fehler
