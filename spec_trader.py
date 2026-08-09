@@ -79,6 +79,7 @@ class SpecDepot:
                 "historie": self.historie[-100:],
                 "trades": self.trades[-50:],
                 "ki_letzte": self.ki_letzte,
+                "tenant_id": int(getattr(self, "tenant_id", 1) or 1),  # PHASE 3 §2.3
             }, f, indent=2, ensure_ascii=False)
 
     def wert(self, force_price=None):

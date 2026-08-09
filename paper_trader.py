@@ -171,7 +171,8 @@ class Depot:
     def speichern(self):
         with open(DATEI_DEPOT, "w") as f:
             json.dump({"bargeld": self.bargeld, "start_wert": self.start_wert,
-                       "positions": self.positions, "trades": self.trades}, f, indent=2)
+                       "positions": self.positions, "trades": self.trades,
+                       "tenant_id": int(getattr(self, "tenant_id", 1) or 1)}, f, indent=2)  # PHASE 3 §2.3
 
     def kaufen(self, symbol, kurs, budget_anteil=0.3):
         """Kauft mit budget_anteil des verfügbaren Bargelds."""

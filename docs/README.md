@@ -1,8 +1,8 @@
 # Micro-Trader — Projekt-Dokumentation
 
-> **Version:** v2.40.0 "Phase 2: Rollen x Berechtigungen — feine Permission-Matrix, deny-by-default" (2026-08-09)
+> **Version:** v2.41.0 "Phase 3: Tenant-Isolation — tenant-keyed Cache, tid-Guard, effektive Rolle" (2026-08-09)
 > **Status:** Produktiv, Cron läuft, PAPER_ONLY (kein Echtgeld)
-> **Letztes Update:** 2026-08-09 13:30
+> **Letztes Update:** 2026-08-09 14:00
 
 ## 📌 Was ist das?
 Papier-Trading-System mit KI-Lernen. 3 Kategorien:
@@ -85,4 +85,4 @@ zen (deepseek-v4-flash-free) → nous-step → nous-hy3 → openrouter
 - `PROJEKT-UEBERGABE-v2.8.4.md` — (veraltet, siehe CHANGELOG)
 
 ---
-*Diese Doku wird bei jeder Versionierung aktualisiert. Letzter Stand: v2.40.0*
+*Diese Doku wird bei jeder Versionierung aktualisiert. Letzter Stand: v2.41.0*

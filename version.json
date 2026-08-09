@@ -1,9 +1,25 @@
 {
-  "version": "2.40.0",
-  "build": "2026-08-09_1330",
-  "released_at": "2026-08-09 13:30",
-  "codename": "Phase 2: Rollen x Berechtigungen ausgebaut - feine Permission-Matrix, deny-by-default, Selbst-Privilegierung blockiert (231 Tests)",
+  "version": "2.41.0",
+  "build": "2026-08-09_1400",
+  "released_at": "2026-08-09 14:00",
+  "codename": "Phase 3: Tenant-Isolation abgesichert - tenant-keyed /data-Cache, tid-Guard, Tenant-Routen auf effektive Rolle, Depot-tenant_id (242 Tests)",
   "changes": [
+    {
+      "version": "2.41.0",
+      "date": "2026-08-09",
+      "phase": "3",
+      "title": "Tenant-Isolation verifizieren und absichern (§2.3 / §17 / §18)",
+      "changes": [
+        "/data-Cache tenant-keyed (_cache_tid): Tenant B bekommt nie die gecachten Portfolio-Daten von Tenant A",
+        "Tenant-Routen (/api/tenants*) auf require_tenant_role (effektive Rolle statt globaler Rolle) + ROUTE_ACCESS TENANT_ADMIN",
+        "tid-Guard: non-superadmin darf nur seinen eigenen Tenant lesen/verwalten (403 bei fremder tid)",
+        "Tenant-Liste: non-superadmin sieht nur seinen eigenen Tenant",
+        "Tenant anlegen: nur superadmin (403 sonst)",
+        "Depot-Speicher (engine/spec/etf/trader/paper_trader) schreiben tenant_id-Feld (Default 1) -> _tenant_scoped_depot_files ordnet korrekt zu",
+        "TENANT-ISOLATION-VERIFICATION.md erstellt (Ergebnisdatei §20)",
+        "Tests: Sektion 7p (+11) -> 242 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.40.0",
       "date": "2026-08-09",

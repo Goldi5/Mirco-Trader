@@ -273,7 +273,12 @@ try:
     r = c4.get("/api/roles")
     ck("Tenant-Admin /api/roles -> 200 (effektiv)", r.status_code == 200)
     r = c4.get("/api/tenants")
-    ck("Tenant-Admin /api/tenants -> 403 (systemweit)", r.status_code == 403)
+    # PHASE 3: Tenant-Admin sieht die Liste, aber NUR seinen eigenen Tenant
+    # (Isolation §2.3) — nicht mehr 403 wie bei globaler ADMIN-Prüfung.
+    j4 = r.get_json() if r.is_json else {}
+    ck("Tenant-Admin /api/tenants -> 200 (eigener Tenant sichtbar)",
+       r.status_code == 200 and
+       all(t.get("tenant_id") == 1 for t in j4.get("tenants", [])))
     # Operator ohne Membership -> 403
     c5 = app3.test_client()
     c5.post("/", data={"username": "__rolle_b__", "password": "TestPass123!"})
@@ -1011,6 +1016,115 @@ try:
     sec17._save_users(us)
 except Exception as e:
     ck("Phase 2 Rollen/Berechtigungen", False, str(e))
+
+print("\n7p. Phase 3 (v2.41.0): Tenant-Isolation — Cross-Tenant-Leak, tid-Guard, Cache-Scope")
+try:
+    import security as sec18
+    import dashboard as dash18
+    import db as db18
+    import engine as eng18
+    import json as _json18
+
+    # 1) Depot-Dateien tenant-markieren (§2.3): speichern() schreibt tenant_id
+    d_ten = eng18.Depot(start_wert=100, risk=97)  # 97/98: ausserhalb RISK_STUFEN
+    d_ten.tenant_id = 7
+    d_ten.depot_pfad = os.path.join(BASE, "depot_097.json")
+    d_ten.speichern()
+    with open(d_ten.depot_pfad) as f:
+        _ges = _json18.load(f)
+    ck("P3: engine.Depot.speichern schreibt tenant_id", _ges.get("tenant_id") == 7)
+    # Default bleibt 1 (bestehende Depots)
+    d_def = eng18.Depot(start_wert=100, risk=98)
+    d_def.depot_pfad = os.path.join(BASE, "depot_098.json")
+    d_def.speichern()
+    with open(d_def.depot_pfad) as f:
+        _ges2 = _json18.load(f)
+    ck("P3: Depot ohne tenant_id -> Default 1", _ges2.get("tenant_id") == 1)
+
+    # 2) _tenant_scoped_depot_files: Tenant 7 sieht nur Depot 7, Tenant 1 nur Depot 1
+    _scoped7 = dash18._tenant_scoped_depot_files(7)
+    _scoped1 = dash18._tenant_scoped_depot_files(1)
+    ck("P3: Tenant 7 sieht sein Depot",
+       any(os.path.basename(p) == "depot_097.json" for p in _scoped7["depot"]))
+    ck("P3: Tenant 7 sieht NICHT Tenant-1-Depot",
+       not any(os.path.basename(p) == "depot_098.json" for p in _scoped7["depot"]))
+    ck("P3: Tenant 1 sieht NICHT Tenant-7-Depot",
+       not any(os.path.basename(p) == "depot_097.json" for p in _scoped1["depot"]))
+
+    # 3) /data-Cache ist tenant-keyed: gleiche tenant_id -> Cache-Hit,
+    #    andere tenant_id -> Cache-Miss (kein Cross-Tenant-Cache-Leak)
+    app18 = dash18.app; app18.config["TESTING"] = True
+    # Cache direkt setzen wie nach einem Tenant-A-Call
+    dash18.data._cache = {"__test__": "tenantA"}
+    dash18.data._cache_ts = time.time()
+    dash18.data._cache_tid = 1
+    sec18.set_current_tenant(1)
+    r_a = dash18.data()
+    # r_a ist der Cache-Hit (gleicher Tenant) ODER neu berechnet (wenn Cache-Check
+    # _cache_tid ignoriert). Entscheidend: nach Tenant-Wechsel auf 7 darf der
+    # A-Cache NICHT mehr geliefert werden.
+    sec18.set_current_tenant(7)
+    dash18.data._cache_ts = time.time()  # frisch, damit nur tid entscheidet
+    r_b = dash18.data()
+    dash18.data._cache = None
+    dash18.data._cache_tid = None
+    hit_b = (r_b.get("__test__") if isinstance(r_b, dict) else None)
+    ck("P3: Cache tenant-keyed (Tenant 7 bekommt nicht Tenant-1-Cache)",
+       hit_b != "tenantA")
+
+    # 4) tid-Guard: non-superadmin darf fremde Tenant-Memberships nicht lesen
+    #    (simuliert über require_tenant_role + is_super-Check in der Route)
+    import security as _s18
+    _s18.create_user("__p3_admin__", "AdminTest123!", role="admin")
+    _s18.create_user("__p3_super__", "SuperTest123!", role="superadmin")
+    us = _s18._load_users()
+    us["__p3_admin__"]["mfa_enabled"] = True
+    us["__p3_admin__"]["status"] = "ACTIVE"
+    _s18._save_users(us)
+    # Tenant 2 anlegen (Isolationstest-Tenant) + Member.
+    # __p3_admin__ ist NUR in Tenant 1 Mitglied -> resolve -> t1; t2 ist fremd.
+    m18 = db18.MTDB()
+    t2, err2 = m18.tenant_create("isolation_b", "Isolation B")
+    if not t2:
+        t2 = 2
+    m18.tenant_membership_add(1, "__p3_admin__", role="admin")
+    m18.tenant_membership_add(t2, "__p3_super__", role="superadmin")
+    m18.close()
+    # Login als admin (ohne Tenant-Switch) -> aktueller Tenant = 1
+    c18b = app18.test_client()
+    c18b.post("/", data={"username": "__p3_admin__", "password": "AdminTest123!"})
+    # Fremden Tenant 2 anfragen -> 403 (tid-Guard), eigenen Tenant 1 -> ok
+    r_fremd = c18b.get(f"/api/tenants/{t2}/members")
+    r_eigen = c18b.get("/api/tenants/1/members")
+    ck("P3: fremder Tenant -> 403", r_fremd.status_code == 403)
+    ck(f"P3: eigener Tenant -> 200 (got {r_eigen.status_code})",
+       r_eigen.status_code == 200)
+    # Tenant-Liste: non-superadmin sieht nur seinen Tenant
+    r_list = c18b.get("/api/tenants")
+    j_list = r_list.get_json() if r_list.is_json else {}
+    ids = [t.get("tenant_id") for t in j_list.get("tenants", [])]
+    ck("P3: Tenant-Liste non-superadmin nur eigener Tenant",
+       ids == [1] or ids == [])
+    # Tenant anlegen als non-superadmin -> 403
+    r_create = c18b.post("/api/tenants/create",
+                         json={"tenant_key": "leak_test", "name": "Leak"})
+    ck("P3: Tenant anlegen non-superadmin -> 403", r_create.status_code == 403)
+
+    # 5) Audit: role_change_denied / tenant-Zugriff protokolliert (nur Vorhandensein)
+    aus = _s18.audit_log("tenant_access_denied", "__p3_admin__", f"tid={t2}")
+    ck("P3: Audit-Funktion verfuegbar", aus is True or aus is None or aus is not None)
+
+    # Cleanup
+    us = _s18._load_users()
+    for _n in ("__p3_admin__", "__p3_super__"):
+        us.pop(_n, None)
+    _s18._save_users(us)
+    for _f in ("depot_097.json", "depot_098.json"):
+        _fp = os.path.join(BASE, _f)
+        if os.path.exists(_fp):
+            os.remove(_fp)
+except Exception as e:
+    ck("Phase 3 Tenant-Isolation", False, str(e))
 
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")

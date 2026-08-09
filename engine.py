@@ -70,6 +70,10 @@ class Depot:
             "ki_letzte": self.ki_letzte,
             "aktualisiert": datetime.now().isoformat(),
         }
+        # PHASE 3 (Tenant-Isolation §2.3): Depot-Datei tenant-markieren, damit
+        # _tenant_scoped_depot_files() das Depot dem richtigen Tenant zuordnet.
+        # Default 1 = bestehende Einzel-Tenant-Depots.
+        data["tenant_id"] = int(getattr(self, "tenant_id", 1) or 1)
         # Börsen-Metadaten pro Position (für Marktzeiten-Skipping)
         try:
             from boersen import boerse_fuer_ticker

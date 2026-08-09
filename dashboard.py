@@ -699,19 +699,24 @@ def index():
 @app.route("/data")
 def data():
     # ── Cache: nur alle 60s neu berechnen (yfinance entlasten) ──
+    # PHASE 3 (Tenant-Isolation): Cache ist TENANT-SCOPED — Tenant B bekommt
+    # nie die gecachten Portfolio-Daten von Tenant A (Forderung §2.3).
     now = time.time()
-    if hasattr(data, "_cache") and data._cache and (now - data._cache_ts) < 60:
-        return data._cache
-
-    depots = []
-    ALLE_TICKER = set()
-    depot_raw = {}
-    # PHASE 4: Tenant-Scope — nur Dateien des aktiven Tenants
     try:
         import security as _sec
         _tid = _sec.get_current_tenant() or 1
     except Exception:
         _tid = 1
+    if hasattr(data, "_cache") and data._cache and \
+            getattr(data, "_cache_tid", None) == _tid and \
+            (now - data._cache_ts) < 60:
+        return data._cache
+
+    depots = []
+    ALLE_TICKER = set()
+    depot_raw = {}
+    # PHASE 4: Tenant-Scope — nur Dateien des aktiven Tenants (PHASE 3: _tid
+    # stammt aus dem Cache-Check oben, kein zweiter Lookup)
     _scoped = _tenant_scoped_depot_files(_tid)
     # Aktien-Depots (nur Tenant)
     for dp in _scoped["depot"]:
@@ -1143,9 +1148,10 @@ def data():
             'profil': _profil_info(),
             'verfuegbare_profile': _profile_liste(),
         }
-    # Cache aktualisieren
+    # Cache aktualisieren (PHASE 3: tenant-keyed)
     data._cache = result
     data._cache_ts = time.time()
+    data._cache_tid = _tid
     return result
 
 
@@ -1308,6 +1314,8 @@ def api_profile():
                 # Cache invalidieren, damit /data sofort das neue Profil liefert
                 if hasattr(data, "_cache"):
                     data._cache = None
+                    if hasattr(data, "_cache_tid"):
+                        data._cache_tid = None
                 p = lade_aktives_profil()
                 return {"ok": True, "gewechselt_zu": p.name, **p.to_dict()}
             return {"ok": False, "error": f"Profil {set_name} nicht gefunden"}
@@ -1402,6 +1410,8 @@ def clear_cache():
         delattr(data, '_cache')
     if hasattr(data, '_cache_ts'):
         delattr(data, '_cache_ts')
+    if hasattr(data, '_cache_tid'):
+        delattr(data, '_cache_tid')
     return {"ok": True}
 
 @app.route("/api/ki_log")
@@ -2996,23 +3006,34 @@ def api_me():
 
 
 @app.route("/api/tenants", methods=["GET"])
-@sec.require_role("admin")
+@sec.require_tenant_role("admin")
 def api_tenants():
-    """Tenant-Liste (Admin) — PHASE 1."""
+    """Tenant-Liste (Admin) — PHASE 1. PHASE 3: effektive Rolle (Membership),
+    nicht globale Rolle; non-superadmin sieht nur seinen eigenen Tenant."""
     try:
         import db as _db
         m = _db.MTDB()
         tenants = m.tenant_list()
         m.close()
-        return jsonify({"ok": True, "tenants": tenants})
+        u = sec.current_user()
+        if u and u.get("role", "").lower() == "superadmin":
+            return jsonify({"ok": True, "tenants": tenants})
+        # non-superadmin: nur der eigene Tenant (Isolation §2.3)
+        cur = sec.get_current_tenant() or 1
+        mine = [t for t in tenants if t.get("tenant_id") == cur]
+        return jsonify({"ok": True, "tenants": mine})
     except Exception as e:
         return jsonify({"ok": False, "error": str(e)}), 500
 
 
 @app.route("/api/tenants/create", methods=["POST"])
-@sec.require_role("admin")
+@sec.require_tenant_role("admin")
 def api_tenants_create():
-    """Neuen Tenant anlegen (Admin) — PHASE 1."""
+    """Neuen Tenant anlegen (Admin) — PHASE 1. PHASE 3: nur superadmin darf
+    neue Tenants anlegen (non-superadmin bleibt auf seinen Tenant beschraenkt)."""
+    u = sec.current_user()
+    if not (u and u.get("role", "").lower() == "superadmin"):
+        return jsonify({"ok": False, "error": "Tenant anlegen erfordert superadmin"}), 403
     data = request.get_json(silent=True) or {}
     key = str(data.get("tenant_key", "")).strip()
     name = str(data.get("name", "")).strip()
@@ -3037,9 +3058,15 @@ def api_tenants_create():
 
 
 @app.route("/api/tenants/<int:tid>/members", methods=["GET"])
-@sec.require_role("admin")
+@sec.require_tenant_role("admin")
 def api_tenants_members(tid):
-    """Mitglieder eines Tenants (Admin) — PHASE 1."""
+    """Mitglieder eines Tenants (Admin) — PHASE 1.
+    PHASE 3: tid aus der URL wird NICHT blind vertraut — non-superadmin darf
+    nur seinen eigenen Tenant sehen (Isolation §2.3 / §18)."""
+    u = sec.current_user()
+    is_super = bool(u and u.get("role", "").lower() == "superadmin")
+    if not is_super and tid != (sec.get_current_tenant() or 1):
+        return jsonify({"ok": False, "error": "forbidden"}), 403
     try:
         import db as _db
         m = _db.MTDB()
@@ -3062,9 +3089,15 @@ def api_tenants_members(tid):
 
 
 @app.route("/api/tenants/<int:tid>/members", methods=["POST"])
-@sec.require_role("admin")
+@sec.require_tenant_role("admin")
 def api_tenants_members_add(tid):
-    """User einem Tenant zuordnen (Admin) — PHASE 1."""
+    """User einem Tenant zuordnen (Admin) — PHASE 1.
+    PHASE 3: tid-Guard wie GET — non-superadmin darf nur im eigenen Tenant
+    Mitglieder verwalten."""
+    u = sec.current_user()
+    is_super = bool(u and u.get("role", "").lower() == "superadmin")
+    if not is_super and tid != (sec.get_current_tenant() or 1):
+        return jsonify({"ok": False, "error": "forbidden"}), 403
     data = request.get_json(silent=True) or {}
     username = str(data.get("username", "")).strip()
     role = str(data.get("role", "user")).strip() or "user"

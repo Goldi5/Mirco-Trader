@@ -294,7 +294,8 @@ class Depot:
         with open(DATEI_DEPOT, "w") as f:
             json.dump({"bargeld": self.bargeld, "start_wert": self.start_wert,
                        "positions": self.positions, "trades": self.trades,
-                       "risk_name": getattr(self, "risk_name", "moderate")}, f, indent=2)
+                       "risk_name": getattr(self, "risk_name", "moderate"),
+                       "tenant_id": int(getattr(self, "tenant_id", 1) or 1)}, f, indent=2)  # PHASE 3 §2.3
 
     def kaufen(self, symbol, kurs, ind, budget_anteil=0.35, stop_loss_pct=0.92, take_profit_pct=1.12):
         betrag = self.bargeld * budget_anteil

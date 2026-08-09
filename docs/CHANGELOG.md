@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.41.0] - 2026-08-09
+### Added (PHASE 3: Tenant-Isolation verifizieren und absichern — §2.3 / §17 / §18)
+- **`/data`-Cache tenant-keyed (`_cache_tid`):** Cache-Hit nur noch bei identischer `tenant_id` — **Cross-Tenant-Leak geschlossen** (Tenant B bekam zuvor die gecachten Portfolio-Daten von Tenant A im 60s-Fenster).
+- **Tenant-Routen auf effektive Rolle:** `/api/tenants`, `/api/tenants/create`, `/api/tenants/<tid>/members` (GET+POST) nutzen `require_tenant_role("admin")` statt `require_role("admin")`; ROUTE_ACCESS auf `TENANT_ADMIN` umgestellt (before_request setzt den Tenant-Kontext).
+- **`tid`-Guard:** non-superadmin darf ausschließlich seinen eigenen Tenant lesen/verwalten (403 bei fremder `tid` aus der URL) — Tenant-ID aus dem Request wird nicht vertraut (§18).
+- **Tenant-Liste isoliert:** non-superadmin sieht nur seinen eigenen Tenant; Tenant anlegen nur noch durch superadmin (403 sonst).
+- **Depot-Dateien tenant-markiert:** `engine.py`/`spec_trader.py`/`etf_trader.py`/`trader.py`/`paper_trader.py` schreiben `tenant_id` (Default 1) — `_tenant_scoped_depot_files` ordnet Depots korrekt zu, kein Rückfall auf Tenant 1 bei Tenant-2-Depots.
+- **Doku:** `TENANT-ISOLATION-VERIFICATION.md` (Ergebnisdatei §20).
+- **Tests:** Sektion 7p (+11) → **242 OK, 0 FAIL**.
+
 ## [2.40.0] - 2026-08-09
 ### Added (PHASE 2: Rollen & Berechtigungen ausbauen — Auftrag §7)
 - **Feine Permission-Kataloge:** `FINE_PERMISSIONS` (41 Permissions aus dem §7-Katalog: `profile.*`, `sessions.*`, `dashboard.read`, `portfolio.*`, `reports.read`, `analysis.read`, `strategy.*`, `rules.*`, `trading.pause/resume`, `paper.trade`, `live.request/review/approve/revoke`, `provider.*`, `broker.*`, `order.intent.*`, `users.*`, `roles.manage`, `audit.read`, `settings.*`, `backup.restore`) + `ROLE_FINE_PERMISSIONS` je Rolle — **deny-by-default** (nur explizit Erlaubtes zählt).

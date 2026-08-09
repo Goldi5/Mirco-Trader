@@ -57,6 +57,7 @@ def laden_oder_erstellen(risk):
 def speichern(d):
     data = {k: v for k, v in d.items() if k != "pfad"}
     data["aktualisiert"] = datetime.now().isoformat()
+    data.setdefault("tenant_id", 1)  # PHASE 3 §2.3: Depot tenant-markieren
     with open(d["pfad"], "w") as f:
         json.dump(data, f, indent=2)
 
