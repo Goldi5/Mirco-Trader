@@ -314,6 +314,53 @@ def enforce_rules(tenant_id, ticker, context=None, regel=None):
     return {"allowed": True, "reason": "ok", "matched": None}
 
 
+# ── PHASE 14: Freigabe-Workflow (§23/§21.5) ──
+APPROVAL_STATES = ["nicht_freigegeben", "in_pruefung", "freigegeben", "gesperrt"]
+
+
+def approval_set(tenant_id, target_type, target_id, status,
+                 approved_by=None, note=None):
+    """PHASE 14: Freigabestatus setzen (tenant-scoped)."""
+    import db as _db
+    m = _db.MTDB()
+    m.approval_set(tenant_id, target_type, target_id, status, approved_by, note)
+    m.close()
+
+
+def approval_get(tenant_id, target_type, target_id):
+    """PHASE 14: Aktueller Freigabestatus (Default: nicht_freigegeben)."""
+    import db as _db
+    m = _db.MTDB()
+    a = m.approval_get(tenant_id, target_type, target_id)
+    m.close()
+    return a
+
+
+def approval_list(tenant_id):
+    """PHASE 14: Alle Freigaben eines Tenants."""
+    import db as _db
+    m = _db.MTDB()
+    rows = m.approval_list(tenant_id)
+    m.close()
+    return rows
+
+
+def enforce_approval(tenant_id, target_type, target_id, action="trade"):
+    """PHASE 14: Blockt eine Aktion wenn Freigabestatus != 'freigegeben'.
+    Liefert {'allowed': bool, 'reason': str, 'status': str}.
+    Nur 'freigegeben' erlaubt Trading/Order-Aktionen (PAPER_ONLY-Enforcement).
+    """
+    a = approval_get(tenant_id, target_type, target_id)
+    st = a.get("status", "nicht_freigegeben")
+    if st == "freigegeben":
+        return {"allowed": True, "reason": "ok", "status": st}
+    if st == "gesperrt":
+        return {"allowed": False, "reason": f"Ziel {target_type}:{target_id} ist gesperrt", "status": st}
+    if st == "in_pruefung":
+        return {"allowed": False, "reason": f"Ziel {target_type}:{target_id} in Prüfung (noch nicht freigegeben)", "status": st}
+    return {"allowed": False, "reason": f"Ziel {target_type}:{target_id} nicht freigegeben", "status": st}
+
+
 # ── PHASE 13: Order-Intent + Broker-Connector-Schnittstelle (v2.36.0) ──
 # Architektur (Auftrag §11/§10): Trading-Strategie → Risk Engine → Order Intent
 # → Broker Adapter → Broker API. Order Intents entstehen IMMER als Objekt VOR
@@ -698,6 +745,7 @@ ROUTE_ACCESS = {
     "/api/risk": "TENANT_ADMIN", "/api/risk/set": "TENANT_ADMIN",
     "/api/rules": "TENANT_ADMIN", "/api/rules/add": "TENANT_ADMIN",
     "/api/rules/set_status": "TENANT_ADMIN",
+    "/api/approval": "TENANT_ADMIN", "/api/approval/set": "TENANT_ADMIN",
     "/api/tenants": "ADMIN", "/api/tenants/create": "ADMIN",
     "/api/tenants/<int:tid>/members": "ADMIN",
     "/api/users": "ADMIN", "/api/users/create": "ADMIN",
@@ -715,6 +763,8 @@ ROUTE_ACCESS = {
     "/admin/tenant-config": "ADMIN", "/admin/tenant-config/risk": "ADMIN",
     "/admin/tenant-config/rule": "ADMIN",
     "/admin/tenant-config/rule/<rule_id>/set": "ADMIN",
+    "/admin/tenant-config/approval": "ADMIN",
+    "/admin/tenant-config/approval/<int:appr_id>/set": "ADMIN",
 }
 ACCESS_ORDER = ["PUBLIC", "AUTHENTICATED", "ANALYST", "OPERATOR", "ADMIN", "SUPERADMIN"]
 

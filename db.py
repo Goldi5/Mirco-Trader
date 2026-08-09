@@ -38,6 +38,7 @@ class MTDB:
         self._init_secret_store()
         self._init_risk_tables()
         self._init_rule_tables()
+        self._init_approval_tables()
         self._migrate_schema()
 
     # ── PHASE 8: Secret-Store (tenant-isoliert, kein global .env) ──
@@ -182,6 +183,66 @@ class MTDB:
             "UPDATE tenant_rules SET status=? WHERE tenant_id=? AND rule_id=?",
             (status, tenant_id, rule_id))
         self.conn.commit()
+
+    # ── PHASE 14: Tenant-Scoped Freigabe-Workflow (§23/§21.5) ──
+    def _init_approval_tables(self):
+        c = self.conn.cursor()
+        c.executescript("""
+        CREATE TABLE IF NOT EXISTS tenant_approvals (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            target_type TEXT NOT NULL,
+            target_id TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'nicht_freigegeben',
+            requested_by INTEGER,
+            approved_by INTEGER,
+            approved_at TEXT,
+            note TEXT,
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(tenant_id, target_type, target_id)
+        );
+        CREATE INDEX IF NOT EXISTS idx_appr_tenant
+            ON tenant_approvals(tenant_id);
+        """)
+        self.conn.commit()
+
+    def approval_set(self, tenant_id, target_type, target_id, status,
+                    approved_by=None, note=None):
+        """PHASE 14: Freigabestatus setzen (INSERT OR REPLACE)."""
+        existing = self.conn.execute(
+            "SELECT approved_at FROM tenant_approvals "
+            "WHERE tenant_id=? AND target_type=? AND target_id=?",
+            (tenant_id, target_type, target_id)).fetchone()
+        approved_at = None
+        if status == "freigegeben" and (not existing or existing["approved_at"] is None):
+            approved_at = __import__("datetime").datetime.utcnow().isoformat() + "Z"
+        if status != "freigegeben":
+            approved_at = None
+        self.conn.execute(
+            "INSERT OR REPLACE INTO tenant_approvals "
+            "(tenant_id, target_type, target_id, status, requested_by, "
+            " approved_by, approved_at, note, created_at) "
+            "VALUES (?,?,?,?,?,?,?,?,datetime('now'))",
+            (tenant_id, target_type, target_id, status,
+             None, approved_by, approved_at, note))
+        self.conn.commit()
+
+    def approval_get(self, tenant_id, target_type, target_id):
+        """PHASE 14: Aktuellen Freigabestatus (oder Default 'nicht_freigegeben')."""
+        row = self.conn.execute(
+            "SELECT status, approved_by, approved_at, note FROM tenant_approvals "
+            "WHERE tenant_id=? AND target_type=? AND target_id=?",
+            (tenant_id, target_type, target_id)).fetchone()
+        if row:
+            return dict(row)
+        return {"status": "nicht_freigegeben", "approved_by": None,
+                "approved_at": None, "note": None}
+
+    def approval_list(self, tenant_id):
+        """PHASE 14: Alle Freigaben eines Tenants."""
+        return [dict(r) for r in self.conn.execute(
+            "SELECT * FROM tenant_approvals WHERE tenant_id = ?",
+            (tenant_id,)).fetchall()]
 
     def effective_rules(self, tenant_id):
         """PHASE 11: Tenant-Regeln ∪ globale learned_rules.json (Tenant gewinnt bei ID-Kollision)."""

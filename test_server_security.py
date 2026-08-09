@@ -650,6 +650,43 @@ try:
 except Exception as e:
     ck("Order-Intent/Broker/Vier-Augen", False, str(e))
 
+# ─── Phase 14: Freigabe-Workflow (v2.38.0, PHASE 14) ───────────────────────
+print("\n7m. Freigabe-Workflow (v2.38.0, PHASE 14)")
+try:
+    import security as sec14, db as db14
+    tid14 = sec14.resolve_tenant_for_user({"username": "admin"}) or 1
+    # Default: nicht_freigegeben
+    a0 = sec14.approval_get(tid14, "strategy", "s_demo")
+    ck("approval Default nicht_freigegeben", a0["status"] == "nicht_freigegeben")
+    # Enforcement blockt bei Default
+    e0 = sec14.enforce_approval(tid14, "strategy", "s_demo")
+    ck("enforce blockt bei nicht_freigegeben", e0["allowed"] is False and e0["status"] == "nicht_freigegeben")
+    # Setzen: in_pruefung
+    sec14.approval_set(tid14, "strategy", "s_demo", "in_pruefung")
+    e1 = sec14.enforce_approval(tid14, "strategy", "s_demo")
+    ck("enforce blockt bei in_pruefung", e1["allowed"] is False and "Prüfung" in e1["reason"])
+    # Setzen: freigegeben
+    sec14.approval_set(tid14, "strategy", "s_demo", "freigegeben", approved_by=1)
+    e2 = sec14.enforce_approval(tid14, "strategy", "s_demo")
+    ck("enforce erlaubt bei freigegeben", e2["allowed"] is True and e2["status"] == "freigegeben")
+    # gesperrt
+    sec14.approval_set(tid14, "strategy", "s_demo", "gesperrt")
+    e3 = sec14.enforce_approval(tid14, "strategy", "s_demo")
+    ck("enforce blockt bei gesperrt", e3["allowed"] is False and "gesperrt" in e3["reason"])
+    # Liste
+    sec14.approval_set(tid14, "portfolio", "p1", "freigegeben")
+    al = sec14.approval_list(tid14)
+    ck("approval_list enthaelt 2 Eintraege", len(al) == 2)
+    # Isolation: fremder Tenant sieht nichts
+    ck("Approval-Isolation (fremder Tenant)",
+       sec14.approval_get(tid14 + 999, "strategy", "s_demo")["status"] == "nicht_freigegeben")
+    # Cleanup
+    m14 = db14.MTDB()
+    m14.conn.execute("DELETE FROM tenant_approvals WHERE tenant_id=?", (tid14,))
+    m14.conn.commit(); m14.close()
+except Exception as e:
+    ck("Freigabe-Workflow", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

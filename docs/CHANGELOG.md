@@ -1,3 +1,11 @@
+## [2.38.0] - 2026-08-09
+### Added (PHASE 14: Freigabe-Workflow — §23 Status- und Freigabelogik / §21.5 Freigabeprinzip)
+- **`tenant_approvals`** (db.py): `target_type` (strategy/portfolio/depot/profile), `target_id`, `status`, `approved_by`, `approved_at`, `note`. UNIQUE(tenant_id, target_type, target_id).
+- **Zustände (§23):** `nicht_freigegeben` (Default) · `in_pruefung` · `freigegeben` · `gesperrt`.
+- **`security.approval_set/get/list`** + **`enforce_approval(tenant, target_type, target_id)`** — nur `freigegeben` erlaubt Trading-Aktionen (PAPER_ONLY-Enforcement analog Phase 12).
+- **UI:** `/admin/tenant-config` zeigt Freigaben-Sektion (Tabelle + Formular + Status-Toggle). Routen: `/api/approval` (GET), `/api/approval/set` (POST, TENANT_ADMIN), `/admin/tenant-config/approval` (POST), `/admin/tenant-config/approval/<id>/set`.
+- **Tests:** Sektion 7m (+9) → 151 OK, 0 FAIL.
+
 ## [2.37.0] - 2026-08-09
 ### Added (PHASE 13 Code: Order-Intent + Broker-Adapter + Vier-Augen — Mandanten-Ausbauauftrag §10/§11)
 - **`create_order_intent(...)`:** Jede geplante Order entsteht jetzt als Intent-Objekt mit allen 17 Pflichtfeldern (`order_intent_id` UUID, `tenant_id`, `user_id`, `portfolio_id`, `strategy_id`, `mode`, `ticker`, `side`, `quantity`, `order_type`, `limit_price`, `stop_price`, `reason`, `decision_id`, `rule_version`, `risk_check_status`, `created_at`).

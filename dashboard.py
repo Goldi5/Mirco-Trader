@@ -2679,10 +2679,11 @@ def admin_tenant_config():
 </form>
 <div class='hint'>Muster-Typen: <code>BLOCK:Text</code> (hart blockiert), <code>MAX_KAUF:n</code> (max n Käufe), <code>REGEX:pattern</code> (Ticker-Filter). Nur Status <b>aktiv</b> wird angewendet.</div>
 </div>
+{_render_approvals(tid)}
 """
     return _admin_layout("tenant", u,
         f"<h2 style='font-size:17px;margin-bottom:4px'>🏢 Mandanten-Config</h2>"
-        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>Tenant-ID {tid} · Risikogrenzen &amp; Regeln (PHASE 13)</div>",
+        f"<div style='font-size:12px;color:var(--text-dim);margin-bottom:16px'>Tenant-ID {tid} · Risikogrenzen &amp; Regeln &amp; Freigaben (PHASE 13/14)</div>",
         inhalt)
 
 
@@ -2742,6 +2743,103 @@ def admin_tenant_rule_set(rule_id):
 def u_name():
     u = sec.current_user()
     return u["username"] if u else "unbekannt"
+
+# ─── PHASE 14: Freigabe-Workflow APIs + Admin-UI (§23/§21.5) ───
+@app.route("/api/approval", methods=["GET"])
+def api_approval_get():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    ttype = request.args.get("target_type", "strategy")
+    tid_id = request.args.get("target_id", "")
+    return {"tenant_id": tid, "target_type": ttype, "target_id": tid_id,
+            "approval": _sec.approval_get(tid, ttype, tid_id)}
+
+
+@app.route("/api/approval/set", methods=["POST"])
+def api_approval_set():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    ttype = (request.form.get("target_type") or (request.json.get("target_type") if request.is_json else "")) or "strategy"
+    tid_id = (request.form.get("target_id") or (request.json.get("target_id") if request.is_json else "")) or ""
+    status = (request.form.get("status") or (request.json.get("status") if request.is_json else "")) or "nicht_freigegeben"
+    note = (request.form.get("note") or (request.json.get("note") if request.is_json else "")) or None
+    _sec.approval_set(tid, ttype, tid_id, status, approved_by=u.get("id"), note=note)
+    return {"ok": True, "tenant_id": tid, "target_type": ttype, "target_id": tid_id, "status": status}
+
+
+def _render_approvals(tid):
+    """PHASE 14: HTML-Block fuer Freigaben (in /admin/tenant-config eingebunden)."""
+    rows = sec.approval_list(tid)
+    state_labels = {"nicht_freigegeben": "⚪ nicht freigegeben",
+                    "in_pruefung": "🟡 in Prüfung", "freigegeben": "🟢 freigegeben",
+                    "gesperrt": "🔴 gesperrt"}
+    body = "".join(
+        f"<tr><td class='b'>{r.get('target_type','')}</td><td>{r.get('target_id','')}</td>"
+        f"<td><span class='src src-{'tenant' if r.get('status')=='freigegeben' else 'global'}'>"
+        f"{state_labels.get(r.get('status',''), r.get('status',''))}</span></td>"
+        f"<td style='color:var(--text-dim);font-size:11px'>{str(r.get('note',''))[:40]}</td>"
+        f"<td>{_approval_actions(tid, r)}</td></tr>"
+        for r in rows) or "<tr><td colspan=5 style='color:var(--text-dim)'>Keine Freigaben erfasst</td></tr>"
+    return f"""
+<div class='glass'><h2>✅ Freigaben (Status-Workflow, §23)</h2>
+<table><tr><th>Typ</th><th>ID</th><th>Status</th><th>Notiz</th><th>Aktion</th></tr>{body}</table>
+<form method='post' action='/admin/tenant-config/approval' style='margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:end'>
+  <label style='font-size:11px'>Typ<select name='target_type' style='margin-left:4px'>
+    <option value='strategy'>strategy</option><option value='portfolio'>portfolio</option>
+    <option value='depot'>depot</option><option value='profile'>profile</option></select></label>
+  <label style='font-size:11px'>ID<input name='target_id' style='width:120px;margin-left:4px'></label>
+  <label style='font-size:11px'>Status<select name='status' style='margin-left:4px'>
+    <option value='nicht_freigegeben'>nicht freigegeben</option>
+    <option value='in_pruefung'>in Prüfung</option>
+    <option value='freigegeben'>freigegeben</option>
+    <option value='gesperrt'>gesperrt</option></select></label>
+  <label style='font-size:11px'>Notiz<input name='note' style='width:160px;margin-left:4px'></label>
+  <button class='btn primary' type='submit'>💾 Setzen</button>
+</form>
+<div class='hint'>Zustände: ⚪ nicht freigegeben · 🟡 in Prüfung · 🟢 freigegeben · 🔴 gesperrt. Nur <b>freigegeben</b> erlaubt Trading (Enforcement, PHASE 14).</div>
+</div>"""
+
+
+def _approval_actions(tid, r):
+    rid = r.get("id")
+    cur = r.get("status")
+    nxt = {"nicht_freigegeben": "in_pruefung", "in_pruefung": "freigegeben",
+           "freigegeben": "gesperrt", "gesperrt": "nicht_freigegeben"}.get(cur, "freigegeben")
+    return (f"<a class='btn ghost' href='/admin/tenant-config/approval/{rid}/set?status={nxt}'>"
+            f"{'▶ Prüfen' if cur=='nicht_freigegeben' else '✅ Freigeben' if cur=='in_pruefung' else '🔒 Sperren' if cur=='freigegeben' else '↺ Zurücksetzen'}</a>")
+
+
+@app.route("/admin/tenant-config/approval", methods=["POST"])
+@sec.require_role("admin")
+def admin_tenant_approval_set():
+    tid = _get_tid()
+    sec.approval_set(tid, request.form.get("target_type", "strategy"),
+                     request.form.get("target_id", ""), request.form.get("status", "nicht_freigegeben"),
+                     approved_by=None, note=request.form.get("note") or None)
+    return redirect("/admin/tenant-config")
+
+
+@app.route("/admin/tenant-config/approval/<int:appr_id>/set")
+@sec.require_role("admin")
+def admin_tenant_approval_toggle(appr_id):
+    tid = _get_tid()
+    status = request.args.get("status", "freigegeben")
+    import db as _db
+    m = _db.MTDB()
+    row = m.conn.execute("SELECT target_type, target_id FROM tenant_approvals WHERE id=? AND tenant_id=?",
+                         (appr_id, tid)).fetchone()
+    if row:
+        sec.approval_set(tid, row["target_type"], row["target_id"], status, approved_by=None)
+    m.close()
+    return redirect("/admin/tenant-config")
+
+
 # ─── PHASE 15: Benutzerverwaltung-API (v2.23.0) ─────────────────────────────
 def _admin_actor():
     """Gibt den aktuellen Admin-Namen fuer Audit zurueck."""

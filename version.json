@@ -1,9 +1,20 @@
 {
-  "version": "2.37.0",
-  "build": "2026-08-09_0950",
-  "released_at": "2026-08-09 09:50",
-  "codename": "Phase 13 Code: Order-Intent + Broker-Adapter + Vier-Augen (144 Tests)",
+  "version": "2.38.0",
+  "build": "2026-08-09_1030",
+  "released_at": "2026-08-09 10:30",
+  "codename": "Freigabe-Workflow (PHASE 14, §23/§21.5), 151 Tests",
   "changes": [
+    {
+      "version": "2.38.0",
+      "date": "2026-08-09",
+      "changes": [
+        "PHASE 14: tenant_approvals Tabelle (target_type, target_id, status, approved_by/at)",
+        "Zustaende: nicht_freigegeben / in_pruefung / freigegeben / gesperrt (§23 Freigabelogik)",
+        "security.py: approval_set/get/list + enforce_approval (nur 'freigegeben' erlaubt Trading)",
+        "dashboard.py: /api/approval, /api/approval/set (TENANT_ADMIN) + Admin-UI in /admin/tenant-config",
+        "Tests Sektion 7m (+9) -> 151 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.37.0",
       "date": "2026-08-09",
@@ -13,367 +24,20 @@
         "PaperBrokerAdapter: Simulator fuehrt Intents im Paper-Order-Buch aus (tenant-scoped, BUY/SELL)",
         "batch_trader.py: Kauf-Orders entstehen jetzt als Order-Intent VOR Ausfuehrung (INTENT-BLOCK bei Verstoss)",
         "four_eyes_required: Vier-Augen-Freigabe fuer live_approve/broker_connect/risk_limit_change/pause_resume/role_to_admin/backup_restore",
-        "Sektion 7l: 20 neue Tests -> 144 OK, 0 FAIL",
-        "Doku: ORDER-RISK-CHECKLIST.md, BROKER-CONNECTOR-SPECIFICATION.md, PLATFORM-IMPLEMENTATION-REPORT.md"
+        "Sektion 7l: 20 neue Tests -> 144 OK, 0 FAIL"
       ]
     },
     {
       "version": "2.36.0",
       "date": "2026-08-09",
       "changes": [
-        "PHASE 13: /admin/tenant-config (Risiko + Regeln, tenant-scoped)",
+        "PHASE 13 UI: /admin/tenant-config (Risiko + Regeln, tenant-scoped)",
         "Nav-Tab 'Mandanten' eingefuegt",
         "Risiko-Formular (moderate/aggressive) -> /admin/tenant-config/risk POST",
         "Regeln-Tabelle + Hinzufuegen (/admin/tenant-config/rule) + Status-Toggle",
         "Quell-Tags (tenant/global/default) via .src-CSS-Klassen",
         "keine neuen Tests (UI-only, basiert auf v2.34/35 Enforcement)"
       ]
-    },
-    {
-      "version": "2.35.0",
-      "date": "2026-08-09",
-      "changes": [
-        "PHASE 12 Enforcement: enforce_risk_limits (Position-Size, Drawdown) in security.py",
-        "enforce_rules: Regel-Typen BLOCK / MAX_KAUF / REGEX (nur Status 'aktiv')",
-        "batch_trader.py: Risiko- + Regel-Check VOR jeder Kauf-Order (PAPER_ONLY)",
-        "Enforcement nie fatal (try/except) - Trading laeuft weiter bei Fehlern",
-        "Sektion 7k: 8 neue Tests -> 124 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.34.0",
-      "date": "2026-08-08",
-      "changes": [
-        "PHASE 10 Risikogrenzen: tenant_risk_limits Tabelle (tenant-scoped)",
-        "effective_risk_limits(tenant, mode): Tenant-Override -> globaler settings.json risk_parameter -> Default",
-        "PHASE 11 Regeln: tenant_rules Tabelle (tenant-scoped)",
-        "effective_rules(tenant): Tenant-Regeln ∪ global learned_rules.json (Tenant gewinnt bei ID-Kollision)",
-        "db.py: risk_set/get/list, rule_set/list/set_status; security.py Wrapper",
-        "dashboard.py: /api/risk, /api/risk/set, /api/rules, /api/rules/add, /api/rules/set_status (TENANT_ADMIN)",
-        "dashboard.html: Mandant-Panel (Risikogrenzen + Regeln, nur Tenant-Admin)",
-        "Sektion 7j: 8 neue Tests -> 116 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.33.0",
-      "date": "2026-08-08",
-      "changes": [
-        "PHASE 9 Paper-Order-Buch: paper_orders Tabelle (tenant_id, portfolio_id, ticker, side, quantity, price, status, order_type)",
-        "db.py: paper_order_insert/list (tenant-scoped), paper_position_apply (Buy erhoeht/Sell verringert, Avg-Preis)",
-        "FIX paper_portfolio_create liefert jetzt lastrowid (fehlender Return)",
-        "Sektion 7i: 5 neue Tests -> 108 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.32.0",
-      "date": "2026-08-08",
-      "changes": [
-        "PHASE 8 Secret-Store: secret_store Tabelle (tenant-scoped, Unique(tenant,key))",
-        "Secrets NUR tenant-isoliert - kein globaler .env-Key mehr",
-        "db.py: secret_set/get/list_keys; security.py: secret_set/get/list_keys",
-        "dashboard.py: /api/secrets (GET, nur Schluessel), /api/secrets/set (POST, TENANT_ADMIN)",
-        "ROUTE_ACCESS: 2 neue Routen auf TENANT_ADMIN",
-        "Sektion 7h: 6 neue Tests -> 103 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.31.0",
-      "date": "2026-08-08",
-      "changes": [
-        "PHASE 7 Provider-Connection-Manager: tenant-scoped, Secrets als Referenz",
-        "97 Tests"
-      ]
-    },
-    {
-      "version": "2.30.0",
-      "date": "2026-08-08",
-      "changes": [
-        "PHASE 6 Shadow->Paper Freigabe: Eligibility + virtuelles Paper-Portfolio",
-        "92 Tests"
-      ]
-    },
-    {
-      "version": "2.29.0",
-      "date": "2026-08-08",
-      "changes": [
-        "PHASE 5 Trading-Modi-Zustandsmaschine: 8 Zustaende, erzwungene Transitionen, Audit-Log",
-        "86 Tests"
-      ]
-    },
-    {
-      "version": "2.28.0",
-      "date": "2026-08-08",
-      "changes": [
-        "PHASE 4 Mandantentrennung: tenant-scoped Depots/DB/API",
-        "74 Tests"
-      ]
-    },
-    {
-      "version": "2.27.0",
-      "date": "2026-08-08 20:30",
-      "changes": [
-        "PHASE 2 Rollen-/Berechtigungsmodell: effektive Tenant-Rolle, TENANT_ADMIN-Klasse",
-        "/api/roles + /api/me/permissions, UI Mandant-Rolle, 69 Tests"
-      ]
-    },
-    {
-      "version": "2.26.0",
-      "date": "2026-08-08 19:00",
-      "changes": [
-        "PHASE 1 Mandanten-Modell: tenants/tenant_memberships/workspaces Tabellen",
-        "tenant_id-Spalten auf trades/ki_decisions (idempotente Migration)",
-        "Tenant-Kontext aus Session (OWASP: nie vom Client), ContextVar",
-        "Admin-Routen /api/tenants, /api/tenants/create, /api/tenants/<id>/members",
-        "UI Mandant-Anzeige; Sektion 7b: 10 Tests -> 55 OK"
-      ]
-    },
-    {
-      "version": "2.25.1",
-      "date": "2026-08-08",
-      "changes": [
-        "Drawdown-Warnungsbalken entfernt"
-      ]
-    },
-    {
-      "version": "2.25.0",
-      "date": "2026-08-08",
-      "changes": [
-        "Login-Rate-Limit (Brute-Force, OWASP A07)",
-        "Admin-Tabs Logins + Sicherheit (Checkliste)",
-        "IP+UA im Audit-Log"
-      ]
-    },
-    {
-      "version": "2.24.0",
-      "date": "2026-08-08",
-      "changes": [
-        "Admin-Bereich komplett neu (StufenPilot-Design)",
-        "Stat-Cards, Warnungen, System-Ereignisse, Datenbestand"
-      ]
-    },
-    {
-      "version": "2.23.1",
-      "date": "2026-08-08",
-      "changes": [
-        "Landingpage-Hero",
-        "User-Area im Header (Avatar+Dropdown)",
-        "Einstellungen listenartig"
-      ]
-    },
-    {
-      "version": "2.23.0",
-      "date": "2026-08-08",
-      "changes": [
-        "Benutzerverwaltung: 8 API-Routen, Mein Konto + Benutzer-Tabs"
-      ]
-    },
-    {
-      "version": "2.22.0",
-      "date": "2026-08-08 12:35",
-      "codename": "Server-Sicherheit Phasen 7-9 + Bugfixes",
-      "summary": "Phasen 7-9 abgeschlossen. NEU: oeffentliche Landingpage (/landing, PUBLIC, kein internes JSON). NEU: Admin-Bereich (/admin*: Uebersicht, Benutzerliste+Anlage, Systemstatus, Regel-Freigabe/Rollback mit Audit, Audit-Log-View, Backup-Liste) serverseitig via before_request + @sec.require_role('admin'). FIX (kritisch): current_user() las falsch flask.session statt request.cookies -> Auth brach. FIX: require_role mappt Rolle->Ebene (ROLE_TO_LEVEL), nicht Rolle direkt an access_level_met. FIX: access_level_met nutzt ROLE_TO_LEVEL statt user_role.upper(). FIX: ROUTE_ACCESS um /landing, /admin/users/create, /admin/system, /assets/*, /reports/* ergaenzt. FIX: .gitignore um security_users.json + security_audit.json (keine Credentials in Git). NEU: test_server_security.py (34 OK, 0 FAIL) deckt Netzwerk/Auth/Authz/Trading-Sicherheit/Regression ab. Paper/Shadow ONLY - keine Echtgeld-Pfade. Bekannte Luecken: Login-Rate-Limit (Brute-Force) + CSRF-Token in HTML-Forms noch offen.",
-      "files": [
-        "security.py",
-        "dashboard.py",
-        ".gitignore",
-        "test_server_security.py",
-        "version.json"
-      ]
-    },
-    {
-      "version": "2.21.0",
-      "date": "2026-08-08 11:15",
-      "codename": "Server-Sicherheit Phasen 1-6 (interne Bindung, Auth/Rollen/Session/MFA, Routenprüfung)",
-      "summary": "VORBEREITUNG fuer Serverbetrieb (Tailscale Funnel + Reverse Proxy, Paper/Shadow ONLY). Phase 1: SERVER-SECURITY-INVENTORY (Bestandsaufnahme). Phase 2: Flask bindet auf 127.0.0.1 statt 0.0.0.0. Phase 4-6: NEU security.py (Rollen, MFA TOTP RFC6238 via cryptography HMAC, serverseitige Sessions pbkdf2, CSRF, Audit-Log). dashboard.py: before_request prueft alle Routen serverseitig, after_request setzt OWASP-Header, Login/Logout/MFA-Routen. Keine Echtgeld-Funktionen. Dokumentation im Vault. Lokale Tests durch Guard-Bug blockiert.",
-      "files": [
-        "security.py",
-        "dashboard.py",
-        "version.json"
-      ]
-    },
-    {
-      "version": "2.20.2",
-      "date": "2026-08-08 08:55",
-      "codename": "Risk 70 Budget-Filter Fix",
-      "summary": "Budget-Filter pos_size-basiert statt bargeld*0.8.",
-      "files": [
-        "batch_trader.py",
-        "version.json"
-      ]
-    },
-    {
-      "version": "2.19.3",
-      "date": "2026-08-07 16:10",
-      "codename": "Cash-Anzeige-Fix (Risk-Depots)",
-      "summary": "FIX: Dashboard zeigte bei Risk-Depots (70-90) CASH=$0.00 obwohl Depot $123.96 Cash hat. Root-Cause: dashboard.html Z616 las dep.bargeld aus dem Overview-Objekt (dep) statt aus dem Detail-Response (full). Fix: dep.bargeld = full.bargeld || 0 (und dep.wert/dep.start korrekt aus full). ECHTE SITUATION Risk 70-90: Depots haben Cash ($107-124), KI laeuft (ki_log.json Entscheidungen heute 15:49), empfiehlt aber 'halten' (Marktlage: duennes Volumen, Abwaertstrends in Kandidaten). KEINE Positionen = korrekte Strategie, kein Bug. KI sieht im Prompt korrekt bargeld=123.96. Tracking-Note: spec-Depot-KI-Entscheidungen landen in ki_log.json unter depot_typ='aktien' (nicht 'spec_XX') -> DB-Filter spec_XX findet 0; kosmetisch, keine Kauf-Blockade.",
-      "files": [
-        "dashboard.html",
-        "version.json"
-      ]
-    },
-    {
-      "version": "2.19.0",
-      "date": "2026-08-07 14:15",
-      "codename": "Analyse- & Datenvertrauen-Stabilisierung",
-      "summary": "Arbeitsauftrag: Analyse-, Datenvertrauens- und Report-Stabilisierung. NEU: (Phase B) Datenvertrauens-Score im Daily-PDF. (Phase C) Statusuebersicht Produktiv/Shadow/Konzept/Offen. (Phase D/F) 9-Seiten-PDF mit Root-Cause-Historie. (Phase E) Analyse-Tab analyse2 + API /api/db_karten. (Phase G) KI-Provider-Stabilitaet transparent. KEINE neuen Maerkte/Profile/Live. DB-Schema unveraendert (decision_id/provider-Felder fehlen -> ehrlich n/a).",
-      "files": [
-        "report_pdf.py",
-        "dashboard.py",
-        "dashboard.html",
-        "db.py",
-        "version.json"
-      ]
-    },
-    {
-      "version": "2.18.3",
-      "date": "2026-08-06 22:15",
-      "codename": "KI-Wellen (gestreckte Calls)",
-      "summary": "KI-Taktung auf 30min zurueck (statt 120), aber Calls gestreckt statt gebündelt. NEU: Scheduler triggert KI-Wellen (--welle 0-3) alle 30min, jede Welle verarbeitet nur 13 der 49 Spec-Ticker (statt alle 49 auf einmal). Ursache des Rate-Limits (zen Free-Tier 429 nach ~20 Calls): 49 Calls auf einen Schlag. Jetzt ~13 Calls/Welle -> zen haelt durch, andere Provider springen ein. Scheduler: Engine (Daten) alle 15min, KI-Welle alle 30min rotierend (Welle = now_min//30 % 4). Verifiziert: Welle 0/1 laufen sauber durch, nur zen rate-limited (andere frei)."
-    },
-    {
-      "version": "2.18.2",
-      "date": "2026-08-06 21:30",
-      "codename": "Scheduler-Optimierung + Analyse-DB",
-      "summary": "Scheduler intelligent getaktet + SQLite-Analyse-DB. ROOT-CAUSE: 26 volle KI-Laeufe/Tag x ~90 Calls = 2340 Calls/Tag -> zen Free-Tier Rate-Limit (429) voll -> KI-Trading tot. Fix: Scheduler trennt Engine (Daten, alle 15min) von KI-Trading (nur alle 60min, MT_KI_INTERVAL=60) -> ~6 KI-Laeufe/Tag = ~540 Calls (unter Limit). NEU: micro_trader.db (SQLite) spiegelt alle JSONs fuer schnelles Auslesen + Quer-Analysen (db.py: trades/ki_decisions/depot_snapshot/markt_daten). Pipeline sync't nach jedem Lauf automatisch. Integritaetspruefung im Scheduler (pruefe_pipeline_ergebnis) warnt bei Cooldown-Blockade/0-Kursen/nur-halten-Fallback. Verifiziert: DB-Sync OK, 925 Trades in DB."
-    },
-    {
-      "version": "2.18.1",
-      "date": "2026-08-06 20:55",
-      "codename": "KI-Final-Fix",
-      "summary": "KRITISCHER FIX: KI-Trading war lahmgelegt. Root-Cause 1: alle 5 Provider im Circuit-Breaker-Cooldown (ki_cooldown.json) wegen haengengebliebenem State vom Hermes-Modell-Wechsel. Root-Cause 2: Reasoning-Modelle (nous-hy3/step) lieferten bei kleinem max_tokens KEIN content -> _ki_call wertete das als Fehler -> Cooldown. Fixes: (1) CALL_TIMEOUT 120→180s, (2) Cooldown-Datei >6h auto-verworfen, (3) _ki_call akzeptiert jetzt reasoning_content + leere Antworten loesen KEINEN Cooldown, (4) ki_cooldown.json geleert, (5) Spec-Trader Workers 3→8 + Pipeline-Timeout 300→600s. hy3 wieder in Rotation (braucht max_tokens>=1024 im Trader-Prompt, was gegeben ist). Verifiziert: Spec-Trader 93-106s sauber (OK), KI entscheidet echte kaufen/verkaufen, ki_log vollstaendig, kein Cooldown mehr.",
-      "files": [
-        "ki_provider.py",
-        "spec_trader.py",
-        "/c/Users/goldi/AppData/Local/hermes/scripts/micro-trader-pipeline.py"
-      ]
-    },
-    {
-      "version": "2.18.0",
-      "date": "2026-08-06",
-      "codename": "Phase-13-Live-Freigabe",
-      "summary": "Phase 13 (Live-Freigabe §29.F) durchgeführt: Profile us_shadow/de_shadow/jp_shadow auf modus=live aktiviert (freigegeben_am 2026-08-06T20:31, freigegeben_von=user) via freigabe.py --activate --confirm. Pre-Flight-Check bestanden (Shadow-Status, Risiko-Modell standard, Regelstand v2.16.12, Depotarten). 29 nicht-freigegebene Regeln (27 Meta-Caps + 2 Anti-Hold) bleiben bewusst Shadow. Dashboard zeigt Status=live in Profil-Karten. Backup: .backup/before_phase13_live_20260806_203146/.",
-      "files": [
-        "profile_us_shadow.json",
-        "profile_de_shadow.json",
-        "profile_jp_shadow.json",
-        "version.json"
-      ]
-    },
-    {
-      "version": "2.18.0",
-      "date": "2026-08-06",
-      "codename": "Daily-Auswertungs-PDF",
-      "summary": "Tagesauswertungs-PDF implementiert (6 Pflichtsektionen: Tagesstatus, Performance/P&L, Risiko/Exposure, Trades/Ausführung, KI/Regel/Governance, Systemstatus/Anomalien/Audit). Erweitert report_pdf.py (bisher v5: Banner/Logo/Graphen). Nutzt echte Datenquellen: ki_log.json, learned_rules.json, notifications.json, .backup/, hermes cron list. Ehrliche Darstellung: fehlende Werte (Slippage/Gebühren/decision_id in Depot-Trades) als n/a markiert. Report-ID + Audit-Fußzeile (KI GENERIERT, Seitenzahl) auf jeder Seite. Dateiname: daily_report_YYYY-MM-DD_v2.18.0_RPT-*.pdf. KI-Parse-Fehler (ungültiges JSON) behoben (Retry + Fallback, kein Crash). Anti-Hold-Regeln von VERBOT auf VORSICHT/ABWÄGEN (KI entscheidet final). max_workers 12→3 (Rate-Limit-Minderung).",
-      "files": [
-        "report_pdf.py",
-        "ki_decisions.py",
-        "spec_trader.py",
-        "version.json"
-      ]
-    },
-    {
-      "version": "2.17.0-dev",
-      "date": "2026-08-06",
-      "codename": "Phase2-4-MultiMarket",
-      "summary": "Phase 2-4 aus Zielarchitektur §28: Profil-Schema (profil_schema.py + 3 Profile US/DE/JP), Regime pro Markt (boersen.regime_pro_markt), Datenqualität-Check (datenqualitaet.py). Kursdaten DE/JP via yfinance-Suffix (SAP.DE, 7203.T) verifiziert. NOCH NICHT in Live (Phase 13 Live-Freigabe wartet auf User).",
-      "files": [
-        "profil_schema.py",
-        "profile_us_shadow.json",
-        "profile_de_shadow.json",
-        "profile_jp_shadow.json",
-        "boersen.py",
-        "datenqualitaet.py",
-        "version.json"
-      ]
-    },
-    {
-      "version": "2.16.12",
-      "date": "2026-08-05",
-      "codename": "Spec-Empty-Cleanup",
-      "summary": "7 leere Spec-Depots (0 Trades, 0 Pos, Cash uebrig) physisch geloescht (LABU/MARA/MNMD/QQQ/SOXS/TQQQ/VXX). Diese waren bewusst 'halten' (Hebele/Volatility + MNMD delisted) und blockierten die Spec-Uebersicht. Nur 42 aktive Spec-Depots uebrig."
-    },
-    {
-      "version": "2.16.11",
-      "date": "2026-08-05",
-      "codename": "Spec-Depot-Cleanup",
-      "summary": "38 tote Spec-Depot-Dateien (nicht in WATCHLIST, start=0) physisch geloescht. Dashboard filterte sie schon (data() Zeile 822), aber sie verzerrten Spec-Tab-Ansicht. Nur 49 gueltige Spec-Depots uebrig (alle in WATCHLIST)."
-    },
-    {
-      "version": "2.16.10",
-      "date": "2026-08-05",
-      "codename": "Spec-Fetch-Fallback + ETF-Reset",
-      "summary": "ETF-Depots (20x tot durch P55-0$-Verkauf) auf 100$ resetet; spec_trader.fetch_analyse() Super-Mix-Fallback (yfinance single + marktdaten.hole_kurs) + _MAX_SPEC-Limit-Fix (QQQ wurde abgeschnitten bei 48/49 Ticker); RSI-Berechnung robuster.",
-      "files": [
-        "spec_trader.py",
-        "etf_trader.py",
-        "settings.json",
-        "version.json"
-      ]
-    },
-    {
-      "version": "2.16.9",
-      "date": "2026-08-05",
-      "summary": "Spec-Trader: Leere Depots kaufen jetzt. Root-Cause: entscheide_ticker() zeigte bei shares=0 nur 'Keine Position' (kein Kauf-Hinweis) -> KI hielt konservativ. Fix: [LEER: BITTE KAUFEN] Hinweis bei bargeld>=20$. Verifiziert: 18 Spec-Depots mit neuen Käufen (ASTS, BB, COIN, CRSP, GME, IBIT, MSTR, RIVN, RGTI etc.). Volatility/Hebele-ETFs weiterhin per gelernter Regel geblockt (gewollt)."
-    },
-    {
-      "version": "2.16.8",
-      "date": "2026-08-05",
-      "summary": "Super-Mix Datenquellen: marktdaten.py mit 4-Tier-Live-Kurs (yfinance→Finnhub→TwelveData→AlphaVantage). scan_markt() yfinance-Primary + TwelveData-Fallback bei Rate-Limit. Loest 0-Preis-Crash (P55). Leere Depots kaufen jetzt via Budget-Filter-Fix (preis statt aktuell)."
-    },
-    {
-      "version": "2.16.7",
-      "date": "2026-08-05",
-      "summary": "ETF-Kauf-Fix (bezahlbare Kandidaten statt Top3-zu-teuer) + Back-Button-Tab + ETF-Karten-Klick"
-    },
-    {
-      "version": "2.16.6",
-      "date": "2026-08-05",
-      "summary": "Summary-Chips vereinheitlicht: Spec-Duplikat unten entfernt, Bester/Schlechtester in allen 3 Tabs oben"
-    },
-    {
-      "version": "2.16.5",
-      "date": "2026-08-05",
-      "summary": "Fix: Verkauf zum Preis 0 (yfinance Rate-Limit) verhindert; 14 Depots wiederhergestellt"
-    },
-    {
-      "version": "2.16.3",
-      "date": "2026-08-05 14:00",
-      "codename": "Profil-Modell",
-      "summary": "Phase 2 (Identität & Struktur): Profil-Schema + US_Test_Shadow Profil. NEU profile_schema.py (Profil-Klasse, JSON-Schema-Validierung, Default = US_Test_Shadow: US-Markt, Shadow-Modus, USD). Route /api/profile + profil in data() + Profil-Karte im Dashboard (Name/Modus/Währung/Märkte/Depotarten/Version). Reine Metadaten-Hülle (greift noch nicht steuernd in Trading ein — folgt Phase 3+). Gebaut im Dev-Clone (Port 5400), Produktiv (5300) unberührt. Verifiziert: /api/profile liefert Profil, /data profil-Block, HTTP 200."
-    },
-    {
-      "version": "2.16.2",
-      "date": "2026-08-05 13:35",
-      "codename": "Handel-Pause",
-      "summary": "Handel pausieren-Button (Phase 8 Sicherheit, Priorität 2). Neue Route /api/pause_trading (state=on/off) schreibt pause_flag.json. Scheduler (micro_trader_scheduler.py) prüft Flag vor run_once() -> bei PAUSIERT kein Start (keine Pipeline). Dashboard zeigt Button + Status (Grund + Zeit). Bestätigungs-Dialog vor Pause. Verifiziert: Pause ON -> Scheduler loggt 'PAUSIERT (test) -> kein Start', /data liefert paused-Status, Button toggelt korrekt."
-    },
-    {
-      "version": "2.16.1",
-      "date": "2026-08-05 12:15",
-      "codename": "Pipeline-Timing",
-      "summary": "Health-Karte zeigt 'Nächster Lauf in X Min' (Scheduler alle 15min, berechnet aus aktueller Zeit mod 15). Ergänzt _health_status() um naechster_lauf_min. Schließt Priorität 1 (Sichtbarkeit) ab: Health-Karte + Markt-Badges + Pipeline-Timing. Verifiziert: /data liefert naechster_lauf_min=2 (korrekt), HTTP 200, Badge rendert."
-    },
-    {
-      "version": "2.16.0",
-      "date": "2026-08-05 12:00",
-      "codename": "Markt-Badges",
-      "summary": "Markt-Badges in allen Asset-Tabs (Aktien/ETF/Spec + Health-Karte): zeigen pro Börse offen / zu + nächste Öffnung (aus boersen_chips/boersen.ist_offen). Globales window._maerkteHtml in load() gebaut, in Tab-Header eingefügt. Nutzt bestehende boersen.py (kein neuer Code-Pfad). Rein informativ. Verifiziert: /data liefert boersen_chips (NYSE/NASDAQ closed, next_open korrekt), JS-Syntax OK, Badges rendern in allen Tabs."
-    },
-    {
-      "version": "2.15.9",
-      "date": "2026-08-05 11:30",
-      "codename": "Health-Status",
-      "summary": "Dashboard Health-Status-Karte (Übersicht-Tab oben). Zeigt: WhatsApp-Gateway verbunden?, Dashboard up?, Pipeline aktiv/idle?, welche Börsen gerade offen (US/Xetra/London/Euronext via boersen.ist_offen), letzter batch_trader-Lauf (aus cron_pipeline.log, OK), Fehler 24h. Neu: _health_status() in data() liefert health-Block. Nutzt bestehende boersen.py + gateway_state.json. Rein informativ, kein Eingriff in Trading-Logik. Verifiziert: /data liefert health (gateway=True, offene_boersen, letzter_batch OK), HTTP 200, Karte rendert."
     }
-  ],
-  "features": [
-    "Phase 2-4 (Profil/Markt)",
-    "Phase 10 (PDF)",
-    "Phase 11 (Karten)",
-    "Phase 12 (Feiertage)",
-    "Phase 13 (Freigabe-Prep)",
-    "Phase 15/20 (Audit)",
-    "Phase 21 (Server-Sicherheit 1-6)"
-  ],
-  "notes": "Drawdown-Warnungsbalken entfernt (kein Mehrwert)"
+  ]
 }
