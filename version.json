@@ -1,9 +1,26 @@
 {
-  "version": "2.39.0",
-  "build": "2026-08-09_1300",
-  "released_at": "2026-08-09 13:00",
-  "codename": "Phase 1: Benutzer-Lebenszyklus, Sessions-GC, MFA-Pflicht, Recovery-Codes (183 Tests)",
+  "version": "2.40.0",
+  "build": "2026-08-09_1330",
+  "released_at": "2026-08-09 13:30",
+  "codename": "Phase 2: Rollen x Berechtigungen ausgebaut - feine Permission-Matrix, deny-by-default, Selbst-Privilegierung blockiert (231 Tests)",
   "changes": [
+    {
+      "version": "2.40.0",
+      "date": "2026-08-09",
+      "phase": "2",
+      "title": "Rollen und Berechtigungen ausbauen (§7)",
+      "changes": [
+        "Feine Permission-Kataloge: FINE_PERMISSIONS (41) + ROLE_FINE_PERMISSIONS je Rolle (deny-by-default)",
+        "Alias-Aufloesung PERMISSION_ALIASES: grobe Katalog-Namen (users/rules/audit/...) implizieren feine Permissions",
+        "role_has_permission/has_permission/has_permission_in/effective_permissions auf feine Ebene umgestellt",
+        "Selbst-Privilegierung blockiert: set_role verweigert Promote auf sich selbst (Audit role_change_denied)",
+        "Superadmin-Schutz: superadmin-Rolle nur durch superadmin vergeben/entzogen",
+        "api_users_role liefert 403 bei verweigertem Rollenwechsel",
+        "/api/roles: require_permission(roles.manage) + feine Permissions im Katalog",
+        "ROLE-PERMISSION-MATRIX.md erstellt (Ergebnisdatei §20)",
+        "Tests: Sektion 7o (+48) -> 231 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.39.0",
       "date": "2026-08-09",

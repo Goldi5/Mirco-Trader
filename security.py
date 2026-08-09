@@ -784,10 +784,68 @@ TENANT_ROLE_PERMISSIONS = {
                    "tenant_members", "tenant_delete"],
 }
 
-# Alle bekannten Permissions (global + tenant) — für Dokumentation/API
+# ─── PHASE 2 (v2.40.0): Feingranulare Berechtigungen (§7) ────────────────────
+# Feine Permissions ergänzen die groben Katalog-Namen. has_permission löst
+# Alias auf: "users" impliziert users.read/users.create/users.disable, usw.
+FINE_PERMISSIONS = [
+    "profile.read", "profile.edit", "sessions.read", "sessions.revoke",
+    "dashboard.read", "portfolio.read", "portfolio.edit",
+    "reports.read", "analysis.read",
+    "strategy.read", "strategy.edit",
+    "rules.read", "rules.propose", "rules.review", "rules.approve", "rules.rollback",
+    "trading.pause", "trading.resume",
+    "paper.trade", "live.request", "live.review", "live.approve", "live.revoke",
+    "provider.read", "provider.create", "provider.test", "provider.rotate", "provider.disable",
+    "broker.read", "broker.connect", "broker.disconnect",
+    "order.intent.create", "order.intent.approve", "order.execute",
+    "users.read", "users.create", "users.disable", "roles.manage",
+    "audit.read", "settings.read", "settings.edit", "backup.restore",
+]
+# Grobe Katalog-Namen -> implizierte feine Permissions (Alias-Auflösung)
+PERMISSION_ALIASES = {
+    "dashboard": ["dashboard.read", "portfolio.read"],
+    "reports": ["reports.read"],
+    "analysis": ["analysis.read"],
+    "rules": ["rules.read", "rules.propose", "rules.review", "rules.approve", "rules.rollback"],
+    "users": ["users.read", "users.create", "users.disable"],
+    "settings": ["settings.read", "settings.edit"],
+    "audit": ["audit.read"],
+    "backups": ["backup.restore"],
+    "pause_trading": ["trading.pause"],
+    "resume_trading": ["trading.resume"],
+    "tenant_manage": ["users.manage", "roles.manage"],
+    "tenant_members": ["users.read"],
+}
+
+# Feine Permissions je Rolle (§7, deny-by-default). Nur was hier steht, ist erlaubt.
+ROLE_FINE_PERMISSIONS = {
+    "user": ["profile.read", "profile.edit", "sessions.read", "sessions.revoke",
+             "dashboard.read", "portfolio.read"],
+    "analyst": ["profile.read", "profile.edit", "sessions.read", "sessions.revoke",
+                "dashboard.read", "portfolio.read", "reports.read", "analysis.read",
+                "strategy.read", "rules.read", "rules.propose"],
+    "operator": ["profile.read", "profile.edit", "sessions.read", "sessions.revoke",
+                 "dashboard.read", "portfolio.read", "reports.read", "analysis.read",
+                 "strategy.read", "rules.read", "rules.propose",
+                 "trading.pause", "trading.resume", "paper.trade"],
+    "admin": ["profile.read", "profile.edit", "sessions.read", "sessions.revoke",
+              "dashboard.read", "portfolio.read", "portfolio.edit", "reports.read",
+              "analysis.read", "strategy.read", "strategy.edit",
+              "rules.read", "rules.propose", "rules.review", "rules.approve", "rules.rollback",
+              "trading.pause", "trading.resume", "paper.trade",
+              "provider.read", "provider.create", "provider.test", "provider.rotate",
+              "provider.disable", "broker.read", "broker.connect", "broker.disconnect",
+              "order.intent.create", "order.intent.approve",
+              "users.read", "users.create", "users.disable", "roles.manage",
+              "audit.read", "settings.read", "settings.edit", "backup.restore",
+              "live.request", "live.review"],
+    "superadmin": FINE_PERMISSIONS,  # alle feinen Permissions
+}
+# Visitor: keine feinen Permissions (deny-by-default)
 ALL_PERMISSIONS = sorted(set(
     [p for ps in ROLE_PERMISSIONS.values() for p in ps] +
-    [p for ps in TENANT_ROLE_PERMISSIONS.values() for p in ps]
+    [p for ps in TENANT_ROLE_PERMISSIONS.values() for p in ps] +
+    FINE_PERMISSIONS
 ))
 
 # Routen-Zugriffsklassen (Phase 6 Zuordnung aus SERVER-SECURITY-INVENTORY)
@@ -1003,12 +1061,29 @@ def change_password(username, new_password):
 
 
 def set_role(username, new_role, by_admin):
+    """Rolle setzen (§7 Vorgaben):
+    - by_admin darf sich selbst NICHT privilegieren (Rollenwechsel auf sich selbst
+      nur als Downgrade; Promote auf sich selbst verboten).
+    - superadmin-Rolle darf nur durch einen superadmin vergeben/entzogen werden.
+    """
     if new_role not in ROLES:
         return False
     users = _load_users()
     if username not in users:
         return False
     old = users[username]["role"]
+    by_role = (users.get(by_admin, {}).get("role") or "visitor").lower()
+    # 1) Selbst-Privilegierung: gleicher User, neue Rolle hoeher als aktuelle -> verboten
+    if by_admin == username and _ROLE_RANK.get(new_role, 0) > _ROLE_RANK.get(old, 0):
+        audit_log("role_change_denied", by_admin,
+                  f"user={username} Selbst-Privilegierung {old}->{new_role} blockiert")
+        return False
+    # 2) Superadmin-Rolle nur durch superadmin (auch Entzug)
+    if old == "superadmin" or new_role == "superadmin":
+        if by_role != "superadmin":
+            audit_log("role_change_denied", by_admin,
+                      f"user={username} superadmin-Aenderung ohne superadmin blockiert")
+            return False
     users[username]["role"] = new_role
     users[username]["last_security_action"] = (
         datetime.utcnow().isoformat() + "Z role_change")
@@ -1021,6 +1096,10 @@ def set_role(username, new_role, by_admin):
         users[username]["status"] = USER_STATUS_ACTIVE
     _save_users(users)
     audit_log("role_change", by_admin, f"user={username} {old}->{new_role}")
+    return True
+
+
+_ROLE_RANK = {r: i for i, r in enumerate(ROLES)}
 
 
 def deactivate_user(username, by_admin):
@@ -1398,16 +1477,34 @@ def read_audit(limit=200):
 
 
 # ─── Berechtigungsprüfung (Phase 6) ─────────────────────────────────────────
+def _role_fine_perms(role):
+    """Feine Permissions einer Rolle (deny-by-default: leere Liste = nichts)."""
+    return ROLE_FINE_PERMISSIONS.get(role, [])
+
+
 def role_has_permission(role, required):
-    """Prüft, ob Rolle die angeforderte Berechtigung hat (inkl. Vererbung)."""
-    if role not in ROLE_PERMISSIONS:
-        return False
-    perms = ROLE_PERMISSIONS[role]
-    if required in perms:
-        return True
-    # Superadmin hat alles
+    """Prüft, ob Rolle die angeforderte Berechtigung hat (inkl. Vererbung).
+
+    Phase 2 (§7): feine Permissions + Alias-Auflösung. Deny-by-default.
+    """
     if role == "superadmin":
         return True
+    if role not in ROLE_PERMISSIONS and role not in TENANT_ROLE_PERMISSIONS:
+        return False
+    # 1) Direkte feine Permission
+    if required in _role_fine_perms(role):
+        return True
+    # 2) Grobe Katalog-Permission (bestehende Semantik)
+    if required in ROLE_PERMISSIONS.get(role, []) or \
+       required in TENANT_ROLE_PERMISSIONS.get(role, []):
+        return True
+    # 3) Alias-Auflösung: "users.read" via grobem "users"
+    for coarse, fines in PERMISSION_ALIASES.items():
+        if required in fines:
+            if coarse in ROLE_PERMISSIONS.get(role, []) or \
+               coarse in TENANT_ROLE_PERMISSIONS.get(role, []):
+                return True
+            break
     return False
 
 
@@ -1440,24 +1537,24 @@ def effective_role(user, tenant_id=None):
 
 
 def effective_permissions(user, tenant_id=None):
-    """Permissions der effektiven Rolle (Tenant-Permissions-Map)."""
+    """Permissions der effektiven Rolle (fein + grob, dedupliziert)."""
     role = effective_role(user, tenant_id)
-    return TENANT_ROLE_PERMISSIONS.get(role, ROLE_PERMISSIONS.get(role, []))
+    if role == "superadmin":
+        return list(ALL_PERMISSIONS)
+    fine = _role_fine_perms(role)
+    coarse = TENANT_ROLE_PERMISSIONS.get(role, ROLE_PERMISSIONS.get(role, []))
+    return sorted(set(fine + coarse))
 
 
 def has_permission(user, permission, tenant_id=None):
     """Prüft Permission im Tenant-Kontext. Superadmin hat immer alles."""
     role = effective_role(user, tenant_id)
-    if role == "superadmin":
-        return True
-    return permission in effective_permissions(user, tenant_id)
+    return role_has_permission(role, permission)
 
 
 def has_permission_in(role, permission):
     """Statische Prüfung: hat die ROLLE diese Permission (ohne User/DB)?"""
-    if role == "superadmin":
-        return True
-    return permission in TENANT_ROLE_PERMISSIONS.get(role, [])
+    return role_has_permission(role, permission)
 
 
 # Rolle → Zugriffsebene (konsistent mit ROLE_PERMISSIONS / ACCESS_ORDER)

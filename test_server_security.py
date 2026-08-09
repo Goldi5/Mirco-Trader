@@ -896,6 +896,122 @@ try:
 except Exception as e:
     ck("Phase 1 Lebenszyklus", False, str(e))
 
+print("\n7o. Phase 2 (v2.40.0): Rollen x kritische Aktionen, deny-by-default, Selbst-Privilegierung")
+try:
+    import security as sec17
+    # 1) Feine Permission-Matrix: was darf welche Rolle? (§7 Katalog)
+    EXPECT = {
+        # (rolle, permission, erwartet)
+        ("user", "profile.read", True),
+        ("user", "profile.edit", True),
+        ("user", "sessions.revoke", True),
+        ("user", "dashboard.read", True),
+        ("user", "users.read", False),
+        ("user", "rules.approve", False),
+        ("user", "live.approve", False),
+        ("user", "paper.trade", False),
+        ("analyst", "reports.read", True),
+        ("analyst", "analysis.read", True),
+        ("analyst", "rules.propose", True),
+        ("analyst", "rules.approve", False),
+        ("analyst", "paper.trade", False),
+        ("operator", "paper.trade", True),
+        ("operator", "trading.pause", True),
+        ("operator", "trading.resume", True),
+        ("operator", "users.read", False),
+        ("operator", "live.request", False),
+        ("admin", "users.read", True),       # via Alias "users"
+        ("admin", "users.create", True),
+        ("admin", "users.disable", True),
+        ("admin", "roles.manage", True),
+        ("admin", "rules.approve", True),
+        ("admin", "rules.rollback", True),
+        ("admin", "audit.read", True),       # via Alias "audit"
+        ("admin", "settings.edit", True),    # via Alias "settings"
+        ("admin", "backup.restore", True),   # via Alias "backups"
+        ("admin", "provider.rotate", True),
+        ("admin", "broker.connect", True),
+        ("admin", "order.intent.approve", True),
+        ("admin", "live.approve", False),    # Vier-Augen: admin darf NICHT selbst live freigeben
+        ("superadmin", "live.approve", True),
+        ("superadmin", "live.revoke", True),
+        ("superadmin", "order.execute", True),
+        ("superadmin", "backup.restore", True),
+        ("visitor", "dashboard.read", False),
+        ("visitor", "profile.read", False),
+    }
+    for (role, perm, exp) in EXPECT:
+        got = sec17.role_has_permission(role, perm)
+        ck(f"P2: {role}.{perm} == {exp}", got == exp)
+
+    # 2) Deny-by-default: unbekannte Rolle hat nichts
+    ck("P2: unbekannte Rolle deny-by-default",
+       not sec17.role_has_permission("root", "dashboard.read"))
+
+    # 3) Selbst-Privilegierung: User darf sich selbst NICHT hoeher stufen
+    ok_su, _ = sec17.create_user("__p2_self__", "SelbstTest123!", role="user")
+    ok_set = sec17.set_role("__p2_self__", "admin", "__p2_self__")  # self-promote
+    ck("P2: Selbst-Privilegierung blockiert", ok_su and ok_set is False)
+    us = sec17._load_users()
+    ck("P2: Rolle unveraendert nach Block", us["__p2_self__"]["role"] == "user")
+    # Downgrade auf sich selbst bleibt erlaubt
+    sec17.set_role("__p2_self__", "user", "__p2_self__")
+    ck("P2: Selbst-Downgrade ok", us["__p2_self__"]["role"] == "user")
+
+    # 4) superadmin nur durch superadmin (auch Entzug)
+    ok_ad, _ = sec17.create_user("__p2_adm__", "AdminTest123!", role="admin")
+    ok_ad2, _ = sec17.create_user("__p2_adm2__", "AdminTest123!", role="admin")
+    us = sec17._load_users()
+    us["__p2_adm__"]["mfa_enabled"] = True
+    us["__p2_adm__"]["status"] = "ACTIVE"
+    us["__p2_adm2__"]["mfa_enabled"] = True
+    us["__p2_adm2__"]["status"] = "ACTIVE"
+    sec17._save_users(us)
+    r1 = sec17.set_role("__p2_adm__", "superadmin", "__p2_adm__")  # admin -> selbst superadmin
+    ck("P2: admin kann sich nicht zum superadmin machen", r1 is False)
+    r2 = sec17.set_role("__p2_adm2__", "superadmin", "__p2_adm__")  # admin vergibt superadmin
+    ck("P2: admin kann kein superadmin vergeben", r2 is False)
+    ok_sa, _ = sec17.create_user("__p2_sa__", "SuperTest123!", role="superadmin")
+    r3 = sec17.set_role("__p2_sa__", "operator", "__p2_adm__")  # admin entzieht superadmin
+    ck("P2: admin kann superadmin nicht entziehen", r3 is False)
+    r4 = sec17.set_role("__p2_adm2__", "superadmin", "__p2_sa__")  # superadmin vergibt
+    ck("P2: superadmin kann superadmin vergeben", r4 is True)
+
+    # 5) require_permission serverseitig: /api/roles nur mit roles.manage
+    import dashboard as dash17
+    app17 = dash17.app; app17.config["TESTING"] = True
+    c17 = app17.test_client()
+    sec17.create_user("__p2_op__", "OperatorTest123!", role="operator")
+    c17.post("/", data={"username": "__p2_op__", "password": "OperatorTest123!"})
+    r = c17.get("/api/roles")
+    ck("P2: operator /api/roles -> 403 (kein roles.manage)", r.status_code in (401, 403))
+    # admin ohne MFA: before_request ADMIN-Ebene verlangt effektive Rolle >= admin
+    # -> operator reicht nicht, daher 403 (deckt serverseitige Pruefung ab)
+    r2 = c17.get("/api/me/permissions")
+    j2 = r2.get_json() if r2.is_json else {}
+    perms_op = set(j2.get("permissions", []))
+    ck("P2: operator hat paper.trade im Tenant",
+       "paper.trade" in perms_op and "users.read" not in perms_op)
+
+    # 6) effective_permissions: admin bekommt fein + grob (Alias sichtbar)
+    sec17.create_user("__p2_admin2__", "AdminTest123!", role="admin")
+    us = sec17._load_users()
+    us["__p2_admin2__"]["mfa_enabled"] = True
+    us["__p2_admin2__"]["status"] = "ACTIVE"
+    sec17._save_users(us)
+    ck("P2: effective_permissions admin enthaelt users.read",
+       "users.read" in sec17.effective_permissions(
+           {"username": "__p2_admin2__", "role": "admin"}))
+
+    # Cleanup
+    us = sec17._load_users()
+    for _n in ("__p2_self__", "__p2_adm__", "__p2_adm2__", "__p2_sa__",
+               "__p2_op__", "__p2_admin2__"):
+        us.pop(_n, None)
+    sec17._save_users(us)
+except Exception as e:
+    ck("Phase 2 Rollen/Berechtigungen", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

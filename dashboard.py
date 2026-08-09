@@ -2901,7 +2901,10 @@ def api_users_role(name):
         return jsonify({"ok": False, "error": "Benutzer nicht gefunden"}), 404
     if role not in sec.ROLES:
         return jsonify({"ok": False, "error": f"Unbekannte Rolle: {role}"}), 400
-    sec.set_role(name, role, _admin_actor())
+    ok_role = sec.set_role(name, role, _admin_actor())
+    if not ok_role:
+        return jsonify({"ok": False,
+                        "error": "Rollenwechsel verweigert (Selbst-Privilegierung oder superadmin-Schutz)"}), 403
     return jsonify({"ok": True})
 
 
@@ -3084,6 +3087,7 @@ def api_tenants_members_add(tid):
 
 @app.route("/api/roles", methods=["GET"])
 @sec.require_tenant_role("admin")
+@sec.require_permission("roles.manage")
 def api_roles():
     """Rollenkatalog + Permissions (Admin, PHASE 2)."""
     catalog = []
@@ -3091,8 +3095,10 @@ def api_roles():
         catalog.append({
             "role": role,
             "level": sec.ROLE_TO_LEVEL.get(role, "PUBLIC"),
-            "permissions": sec.TENANT_ROLE_PERMISSIONS.get(
-                role, sec.ROLE_PERMISSIONS.get(role, [])),
+            "permissions": sorted(set(
+                sec.TENANT_ROLE_PERMISSIONS.get(
+                    role, sec.ROLE_PERMISSIONS.get(role, [])) +
+                sec.ROLE_FINE_PERMISSIONS.get(role, []))),
         })
     return jsonify({"ok": True, "roles": catalog,
                     "all_permissions": sec.ALL_PERMISSIONS})

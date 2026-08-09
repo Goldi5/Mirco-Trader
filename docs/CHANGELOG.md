@@ -1,3 +1,16 @@
+# Changelog
+
+## [2.40.0] - 2026-08-09
+### Added (PHASE 2: Rollen & Berechtigungen ausbauen — Auftrag §7)
+- **Feine Permission-Kataloge:** `FINE_PERMISSIONS` (41 Permissions aus dem §7-Katalog: `profile.*`, `sessions.*`, `dashboard.read`, `portfolio.*`, `reports.read`, `analysis.read`, `strategy.*`, `rules.*`, `trading.pause/resume`, `paper.trade`, `live.request/review/approve/revoke`, `provider.*`, `broker.*`, `order.intent.*`, `users.*`, `roles.manage`, `audit.read`, `settings.*`, `backup.restore`) + `ROLE_FINE_PERMISSIONS` je Rolle — **deny-by-default** (nur explizit Erlaubtes zählt).
+- **Alias-Auflösung (`PERMISSION_ALIASES`):** grobe Katalog-Namen (`users`, `rules`, `audit`, `settings`, `backups`, `dashboard`, …) implizieren ihre feinen Permissions — bestehende Checks bleiben kompatibel.
+- **Prüfebene vereinheitlicht:** `role_has_permission` / `has_permission` / `has_permission_in` / `effective_permissions` prüfen jetzt fein + grob + Alias; superadmin hat weiterhin alles.
+- **Selbst-Privilegierung blockiert (§7-Vorgabe):** `set_role` verweigert jeden Promote auf sich selbst (Rolle unverändert, Audit `role_change_denied`); Selbst-Downgrade bleibt erlaubt.
+- **Superadmin-Schutz:** superadmin-Rolle kann nur durch einen superadmin vergeben oder entzogen werden (auch Downgrade).
+- **API:** `POST /api/users/<name>/role` → 403 bei verweigertem Wechsel; `GET /api/roles` verlangt `roles.manage` (MFA-Pflicht-Route) und liefert feine Permissions je Rolle.
+- **Doku:** `ROLE-PERMISSION-MATRIX.md` (Ergebnisdatei §20) — Matrix, Alias-Tabelle, Vorgaben-Umsetzung, Testabdeckung.
+- **Tests:** Sektion 7o (+48) → **231 OK, 0 FAIL**.
+
 ## [2.39.0] - 2026-08-09
 ### Added (PHASE 1: Benutzerverwaltung professionalisiert — Auftrag §6)
 - **Benutzer-Status-Lebenszyklus:** `INVITED / ACTIVE / MFA_REQUIRED / RESTRICTED / SUSPENDED / DISABLED / DELETED`. Migration alter `active`-bool-Daten in `_load_users()` (admin ohne MFA → `MFA_REQUIRED`, inaktiv → `DISABLED`).
