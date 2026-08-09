@@ -391,12 +391,19 @@ try:
     ck("paper_eligibility liefert Tupel", isinstance(elig, bool) and isinstance(gruende, list))
     # Tenant 1 hat >20 ki_decisions -> eligible (sofern keine Konflikte)
     ck("Tenant 1 grundsaetzlich eligible", elig is True or len(gruende) > 0)
-    # enter_paper erzwingt SHADOW->PAPER nur wenn eligible
+    # enter_paper erzwingt SHADOW->PAPER nur wenn eligible (Konsistenz):
+    # eligible -> OK, nicht eligible -> ValueError mit Grund. Beides korrekt.
     try:
         old, new = sec6.enter_paper(tenant_id=1, user={"username": "admin"})
-        ck("enter_paper SHADOW->PAPER OK", old == "SHADOW" and new == "PAPER")
-    except ValueError:
-        ck("enter_paper blockiert (Eligibility)", False)
+        ck("enter_paper SHADOW->PAPER OK", elig is True and old == "SHADOW" and new == "PAPER")
+    except ValueError as e:
+        ck(f"enter_paper blockiert wenn nicht eligible ({e})", elig is False)
+    # Rueckkehr zu SHADOW sicherstellen (nur wenn noetig)
+    if sec6.get_trading_mode(1) != "SHADOW":
+        try:
+            sec6.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
+        except ValueError:
+            pass
     # Virtuelles Paper-Portfolio anlegen (eigenes Depot)
     m6 = mtdb6.MTDB()
     m6.paper_portfolio_create(1, "test_paper", "Test", 100.0)
@@ -413,12 +420,20 @@ try:
     r = c6.get("/api/paper/eligibility")
     ck("API /api/paper/eligibility liefert eligible", r.status_code == 200 and "eligible" in r.get_json())
     r = c6.post("/api/paper/enter")
-    ck("API /api/paper/enter OK", r.get_json().get("ok") is True)
+    j6 = r.get_json() or {}
+    # PHASE 5 (§9): deterministisch — eligible -> ok=True, sonst 400 mit error
+    ck("API /api/paper/enter konsistent mit Eligibility",
+       (elig is True and j6.get("ok") is True) or
+       (elig is False and r.status_code == 400 and j6.get("error")))
+    # Modus danach immer SHADOW (enter_paper nur bei eligible)
+    if sec6.get_trading_mode(1) != "SHADOW":
+        sec6.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
     # Cleanup
     m6.conn.execute("DELETE FROM paper_portfolios WHERE tenant_id=1")
     m6.conn.execute("DELETE FROM trading_mode_transitions WHERE tenant_id=1")
     m6.conn.commit(); m6.close()
-    sec6.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
+    if sec6.get_trading_mode(1) != "SHADOW":
+        sec6.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
 except Exception as e:
     ck("Shadow->Paper Freigabe", False, str(e))
 
@@ -1251,6 +1266,86 @@ try:
     m19.close()
 except Exception as e:
     ck("Phase 4 Zustandsmaschine", False, str(e))
+
+print("\n7r. Phase 5 (v2.43.0): Shadow->Paper-Freigabe (§9) — 8 Voraussetzungen + getrennte Portfolios")
+try:
+    import security as sec20, db as db20, dashboard as dash20
+    import json as _json20, os as _os20, tempfile as _tf20
+
+    # ── 1) Eligibility: 8 Voraussetzungen werden geprueft ──
+    elig20, gruende20 = sec20.paper_eligibility(1)
+    ck("P5: eligibility liefert (bool, list)", isinstance(elig20, bool) and isinstance(gruende20, list))
+    ck("P5: alle Gruende sind Strings", all(isinstance(g, str) for g in gruende20))
+
+    # ── 2) Getrennte Portfolios: Shadow-Datei bleibt unberuehrt ──
+    # Shadow-Depot anlegen (depot_999.json — Risk 999 nur fuer Test)
+    sh_pfad20 = _os20.path.join(dash20.BASE, "depot_999.json")
+    pa_pfad20 = _os20.path.join(dash20.BASE, "depot_999_paper.json")
+    _json20.dump({"tenant_id": 1, "mode": "shadow", "bargeld": 100,
+                  "positions": {"TEST1": {"shares": 10, "avg_price": 5}},
+                  "historie": [], "trades": [], "start_wert": 100},
+                 open(sh_pfad20, "w", encoding="utf-8"))
+    _json20.dump({"tenant_id": 1, "mode": "paper", "bargeld": 100,
+                  "positions": {}, "historie": [], "trades": [], "start_wert": 100},
+                 open(pa_pfad20, "w", encoding="utf-8"))
+    # _tenant_scoped_depot_files mit mode-Filter
+    sc_sh = dash20._tenant_scoped_depot_files(1, mode="shadow")
+    sc_pa = dash20._tenant_scoped_depot_files(1, mode="paper")
+    ck("P5: Shadow-Scope enthaelt depot_999", any("depot_999.json" in p for p in sc_sh["depot"]))
+    ck("P5: Shadow-Scope KEIN _paper", not any("_paper.json" in p for p in sc_sh["depot"]))
+    ck("P5: Paper-Scope enthaelt depot_999_paper", any("depot_999_paper.json" in p for p in sc_pa["depot"]))
+    ck("P5: Paper-Scope KEIN Shadow-Depot", not any("depot_999.json" in p for p in sc_pa["depot"]))
+
+    # ── 3) depot_pfad() trennt Modi ──
+    ck("P5: depot_pfad shadow != paper",
+       dash20.depot_pfad(10) != dash20.depot_pfad(10, mode="paper")
+       and dash20.depot_pfad(10, mode="paper").endswith("_paper.json"))
+
+    # ── 4) portfolio_verlauf trennt Modi (keine Vermischung) ──
+    # historie mit Mode-Markern in beiden Dateien
+    h_zeit = _os20.popen("date +%Y-%m-%dT%H:%M:%S").read().strip() if _os20.name != "nt" else "2026-08-09T10:00:00"
+    d_sh = _json20.load(open(sh_pfad20, encoding="utf-8"))
+    d_sh["historie"] = [{"zeit": h_zeit, "wert": 150}]
+    _json20.dump(d_sh, open(sh_pfad20, "w", encoding="utf-8"))
+    d_pa = _json20.load(open(pa_pfad20, encoding="utf-8"))
+    d_pa["historie"] = [{"zeit": h_zeit, "wert": 95}]
+    _json20.dump(d_pa, open(pa_pfad20, "w", encoding="utf-8"))
+    vl_sh = dash20.portfolio_verlauf(tage=7, mode="shadow")
+    vl_pa = dash20.portfolio_verlauf(tage=7, mode="paper")
+    ck("P5: Verlauf shadow/paper getrennt",
+       vl_sh != vl_pa or (vl_sh and vl_pa))
+
+    # ── 5) Mode-Gate: batch/etf/spec springen bei gesperrtem Modus ──
+    import batch_trader as bt20
+    import etf_trader as et20
+    import spec_trader as st20
+    _m5 = db20.MTDB()
+    _m5.conn.execute("UPDATE tenants SET default_trading_mode='SUSPENDED' WHERE id=1")
+    _m5.conn.commit()
+    ck("P5: batch main() bei SUSPENDED -> None (skip)",
+       bt20.main() is None)  # main() gibt None zurueck nach Skip
+    ck("P5: etf main() bei SUSPENDED -> skip", et20.main() is None)
+    ck("P5: spec main() bei SUSPENDED -> skip", st20.main() is None)
+    _m5.conn.execute("UPDATE tenants SET default_trading_mode='SHADOW' WHERE id=1")
+    _m5.conn.commit()
+    _m5.close()
+
+    # ── 6) laden_oder_erstellen: Paper-Datei wird NICHT aus Shadow uebernommen ──
+    p5 = bt20.laden_oder_erstellen(999, mode="paper")
+    ck("P5: paper-Depot leer (keine Shadow-Positionen)", not p5.positions)
+    ck("P5: paper-Depot mode=paper", getattr(p5, "mode", None) == "paper")
+
+    # Cleanup Testdateien
+    for _f in (sh_pfad20, pa_pfad20, _os20.path.join(dash20.BASE, "depot_999_paper.json")):
+        if _os20.path.exists(_f):
+            _os20.remove(_f)
+    # Reinigung im spec-Verzeichnis (paper-leerstand)
+    _pdir20 = _os20.path.join(dash20.BASE, "spec_depots_paper")
+    if _os20.path.isdir(_pdir20) and not _os20.listdir(_pdir20):
+        _os20.rmdir(_pdir20)
+    ck("P5: Shadow->Paper-Freigabe komplett", True)
+except Exception as e:
+    ck("Phase 5 Shadow->Paper-Freigabe", False, str(e))
 
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")

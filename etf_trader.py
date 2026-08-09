@@ -19,11 +19,14 @@ QUIET = "--quiet" in sys.argv
 # 20 ETF-Depots mit Risiko 0-95 (5er Schritte wie Aktien)
 ETF_RISK_STUFEN = list(range(0, 100, 5))  # [0, 5, 10, ..., 95]
 
-def etf_pfad(risk):
+def etf_pfad(risk, mode="shadow"):
+    # PHASE 5 (§9): getrennte virtuelle Portfolios — PAPER nutzt etf_<risk>_paper.json
+    if mode == "paper":
+        return os.path.join(BASE, f"etf_{risk:03d}_paper.json")
     return os.path.join(BASE, f"etf_{risk:03d}.json")
 
-def laden_oder_erstellen(risk):
-    pfad = etf_pfad(risk)
+def laden_oder_erstellen(risk, mode="shadow"):
+    pfad = etf_pfad(risk, mode)
     if os.path.exists(pfad):
         with open(pfad) as f:
             data = json.load(f)
@@ -58,6 +61,7 @@ def speichern(d):
     data = {k: v for k, v in d.items() if k != "pfad"}
     data["aktualisiert"] = datetime.now().isoformat()
     data.setdefault("tenant_id", 1)  # PHASE 3 §2.3: Depot tenant-markieren
+    data.setdefault("mode", "shadow")  # PHASE 5 §9: Portfolio-Modus
     with open(d["pfad"], "w") as f:
         json.dump(data, f, indent=2)
 
@@ -109,6 +113,17 @@ def etf_bewerte(etf_liste, depot_risk):
     return erlaubt[:8]
 
 def main():
+    # PHASE 5 (§9): Modus bestimmt Portfolio-Satz (shadow/paper)
+    try:
+        import security as _sec9
+        _mode9 = _sec9.get_trading_mode(1) or "SHADOW"
+    except Exception:
+        _mode9 = "SHADOW"
+    if _mode9 in ("PAUSED", "SUSPENDED", "REVOKED") or _mode9.startswith("LIVE"):
+        if not QUIET:
+            print(f"⏸ Trading-Modus {_mode9} — ETF-Trader ueberspringt Lauf.", flush=True)
+        return
+    _emode = "paper" if _mode9 == "PAPER" else "shadow"
     scan = scan_markt(ETF_TICKERS)
     
     etf_liste = []
@@ -131,7 +146,7 @@ def main():
     ergebnisse = []
     
     for risk in ETF_RISK_STUFEN:
-        depot = laden_oder_erstellen(risk)
+        depot = laden_oder_erstellen(risk, mode=_emode)
         
         if depot["gesperrt"]:
             if not QUIET:

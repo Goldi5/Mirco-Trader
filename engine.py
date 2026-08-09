@@ -74,6 +74,9 @@ class Depot:
         # _tenant_scoped_depot_files() das Depot dem richtigen Tenant zuordnet.
         # Default 1 = bestehende Einzel-Tenant-Depots.
         data["tenant_id"] = int(getattr(self, "tenant_id", 1) or 1)
+        # PHASE 5 (§9): Portfolio-Modus (shadow/paper) — getrennte virtuelle
+        # Portfolios, Shadow-Positionen werden nie in Paper übernommen.
+        data["mode"] = getattr(self, "mode", "shadow") or "shadow"
         # Börsen-Metadaten pro Position (für Marktzeiten-Skipping)
         try:
             from boersen import boerse_fuer_ticker

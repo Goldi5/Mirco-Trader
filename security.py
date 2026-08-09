@@ -126,24 +126,27 @@ def trading_mode_history(tenant_id=None, limit=100):
         return []
 
 
-# ── PHASE 6: Shadow -> Paper Freigabe (Sektion 9) ──
+# ── PHASE 5 (§9): Shadow -> Paper Freigabe ──
 def paper_eligibility(tenant_id=None):
-    """PHASE 6: Prueft Voraussetzungen fuer Shadow->Paper.
+    """Prueft alle 8 Voraussetzungen aus §9 fuer Shadow->Paper.
     Gibt (eligible: bool, gruende: list) zurueck.
-    Voraussetzungen (Sektion 9 Stufe B):
-      - Benutzer aktiv
-      - Mindestanzahl Shadow-Entscheidungen
-      - Audit-Trail vollstaendig
-      - keine kritischen Fehler
-      - Regelstand reproduzierbar
-      - kein unaufgeloester Regelkonflikt
+      (1) Shadow-Mindestanzahl erreicht (>= 20 KI-Entscheidungen)
+      (2) Audit-Trail vollstaendig (Audit-Datei vorhanden und lesbar)
+      (3) Regelstand identifizierbar (regelstand_version.json mit Version)
+      (4) keine kritischen Fehler (keine CRITICAL/ERROR-Audit-Events in den
+          letzten 7 Tagen)
+      (5) keine ungeloesten Block-Regeln (kein shadow=True + konflikte)
+      (6) Providerdaten ausreichend stabil (markt_daten nicht zu alt)
+      (7) Portfolio korrekt tenant-scoped (Depot-JSONs tragen tenant_id)
+      (8) Shadow- und Paper-Portfolio getrennt (keine _paper-Dateien im
+          Shadow-Bestand vermischt; kein Depot ohne mode-Feld)
     """
     tid = tenant_id or get_current_tenant() or 1
     gruende = []
     try:
-        import db as _db
+        import db as _db, json as _json, os as _os
         m = _db.MTDB()
-        # Mindest-Shadow-Entscheidungen (z.B. >= 20)
+        # (1) Mindest-Shadow-Entscheidungen (z.B. >= 20)
         cnt = m.conn.execute(
             "SELECT COUNT(*) FROM ki_decisions WHERE tenant_id = ?", (tid,)
         ).fetchone()[0]
@@ -151,11 +154,53 @@ def paper_eligibility(tenant_id=None):
         if cnt < MIN_DECISIONS:
             gruende.append(
                 f"Zu wenig KI-Entscheidungen ({cnt}/{MIN_DECISIONS})")
-        # Kein offener Regelkonflikt (shadow=True im Regelstand-JSON)
-        import json as _json, os
-        rj = os.path.join(_db.BASE, "regelstand_version.json")
+        # (2) Audit-Trail vollstaendig
+        audit_pfad = _os.path.join(_db.BASE, "security_audit.jsonl")
+        if not _os.path.exists(audit_pfad):
+            gruende.append("Audit-Trail fehlt (security_audit.jsonl)")
+        else:
+            try:
+                with open(audit_pfad, encoding="utf-8") as _af:
+                    _af.readline()
+            except Exception:
+                gruende.append("Audit-Trail nicht lesbar")
+        # (3) Regelstand identifizierbar
+        rj = _os.path.join(_db.BASE, "regelstand_version.json")
+        regel_ok = False
+        if _os.path.exists(rj):
+            try:
+                _rd = _json.load(open(rj, encoding="utf-8"))
+                vers = _rd.get("version") or _rd.get("regelstand_version")
+                if vers:
+                    regel_ok = True
+            except Exception:
+                pass
+        if not regel_ok:
+            gruende.append("Regelstand nicht identifizierbar (Version fehlt)")
+        # (4) keine kritischen Fehler (letzte 7 Tage)
+        kritische = 0
+        if _os.path.exists(audit_pfad):
+            try:
+                import time as _time
+                _cut = _time.time() - 7 * 86400
+                with open(audit_pfad, encoding="utf-8") as _af:
+                    for _line in _af:
+                        try:
+                            _ev = _json.loads(_line)
+                        except Exception:
+                            continue
+                        if _ev.get("ts", _ev.get("timestamp", 0)) < _cut:
+                            continue
+                        _lvl = str(_ev.get("level", "")).upper()
+                        if _lvl in ("CRITICAL", "ERROR"):
+                            kritische += 1
+            except Exception:
+                pass
+        if kritische > 0:
+            gruende.append(f"{kritische} kritische Audit-Events in 7 Tagen")
+        # (5) keine ungeloesten Block-Regeln (shadow=True + konflikte)
         konflikte = 0
-        if os.path.exists(rj):
+        if _os.path.exists(rj):
             try:
                 data = _json.load(open(rj, encoding="utf-8"))
                 for r in (data if isinstance(data, list) else data.get("rules", [])):
@@ -165,6 +210,60 @@ def paper_eligibility(tenant_id=None):
                 pass
         if konflikte > 0:
             gruende.append(f"{konflikte} unaufgeloeste Regelkonflikte")
+        # (6) Providerdaten ausreichend stabil (markt_daten nicht zu alt)
+        try:
+            _md = m.conn.execute(
+                "SELECT MAX(ts) FROM markt_daten").fetchone()[0]
+            if not _md:
+                gruende.append("Keine Marktdaten persistiert")
+            else:
+                import time as _time2
+                _age = _time2.time() - float(_md)
+                if _age > 3 * 86400:
+                    gruende.append("Marktdaten aelter als 3 Tage")
+        except Exception:
+            gruende.append("Marktdaten-Status nicht pruefbar")
+        # (7) Portfolio korrekt tenant-scoped (Depot-JSONs tragen tenant_id)
+        import glob as _glob
+        _ohne_tenant = []
+        for _pat in ("depot_*.json", "etf_*.json"):
+            for _fp in _glob.glob(_os.path.join(_db.BASE, _pat)):
+                try:
+                    with open(_fp, encoding="utf-8") as _f:
+                        _d = _json.load(_f)
+                    if not _d.get("tenant_id"):
+                        _ohne_tenant.append(_os.path.basename(_fp))
+                except Exception:
+                    pass
+        for _sd in ("spec_depots", "spec_depots_paper"):
+            _sdp = _os.path.join(_db.BASE, _sd)
+            if _os.path.isdir(_sdp):
+                for _fn in _os.listdir(_sdp):
+                    if not _fn.endswith(".json"):
+                        continue
+                    try:
+                        with open(_os.path.join(_sdp, _fn), encoding="utf-8") as _f:
+                            _d = _json.load(_f)
+                        if not _d.get("tenant_id"):
+                            _ohne_tenant.append(f"{_sd}/{_fn}")
+                    except Exception:
+                        pass
+        if _ohne_tenant:
+            gruende.append(
+                f"{len(_ohne_tenant)} Depot(s) ohne tenant_id (Cross-Tenant-Risiko)")
+        # (8) Shadow-/Paper-Portfolios getrennt: keine _paper-Datei darf im
+        #     Shadow-Bestand stehen (depot_*_paper.json) ohne mode-Feld
+        _misch = 0
+        for _fp in _glob.glob(_os.path.join(_db.BASE, "*_paper.json")):
+            try:
+                with open(_fp, encoding="utf-8") as _f:
+                    _d = _json.load(_f)
+                if _d.get("mode") != "paper":
+                    _misch += 1
+            except Exception:
+                pass
+        if _misch > 0:
+            gruende.append(f"{_misch} Paper-Datei(en) ohne korrektes mode-Feld")
         m.close()
         eligible = len(gruende) == 0
         return eligible, gruende

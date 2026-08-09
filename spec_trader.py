@@ -29,15 +29,19 @@ except Exception:
 QUIET = "--quiet" in sys.argv
 
 DEPOT_DIR = os.path.join(BASE, "spec_depots")
+# PHASE 5 (§9): PAPER nutzt eigenes Verzeichnis -> getrennte virtuelle Portfolios
+DEPOT_DIR_PAPER = os.path.join(BASE, "spec_depots_paper")
 os.makedirs(DEPOT_DIR, exist_ok=True)
+os.makedirs(DEPOT_DIR_PAPER, exist_ok=True)
 
 
 class SpecDepot:
     """Ein Depot für ein Spekulations-Instrument ($100 Start)."""
-    def __init__(self, ticker, name="", kategorie=""):
+    def __init__(self, ticker, name="", kategorie="", mode="shadow"):
         self.ticker = ticker
         self.name = name
         self.kategorie = kategorie
+        self.mode = mode if mode in ("paper", "shadow") else "shadow"
         self.bargeld = 100.0
         self.shares = 0.0
         self.avg_price = 0.0
@@ -48,7 +52,8 @@ class SpecDepot:
         self.laden()
 
     def pfad(self):
-        return os.path.join(DEPOT_DIR, "%s.json" % self.ticker.replace("/", "_").replace("^", ""))
+        d = DEPOT_DIR_PAPER if self.mode == "paper" else DEPOT_DIR
+        return os.path.join(d, "%s.json" % self.ticker.replace("/", "_").replace("^", ""))
 
     def laden(self):
         p = self.pfad()
@@ -63,6 +68,7 @@ class SpecDepot:
             self.trades = d.get("trades", [])
             self.ki_letzte = d.get("ki_letzte")
             self.exchange = d.get("exchange")
+            self.mode = d.get("mode", self.mode)
 
     def speichern(self):
         p = self.pfad()
@@ -80,6 +86,7 @@ class SpecDepot:
                 "trades": self.trades[-50:],
                 "ki_letzte": self.ki_letzte,
                 "tenant_id": int(getattr(self, "tenant_id", 1) or 1),  # PHASE 3 §2.3
+                "mode": self.mode,  # PHASE 5 §9: Portfolio-Modus
             }, f, indent=2, ensure_ascii=False)
 
     def wert(self, force_price=None):
@@ -334,6 +341,17 @@ def ausführen(depot, kurs, ki_entscheidung):
 
 
 def main():
+    # PHASE 5 (§9): Modus bestimmt Portfolio-Satz (shadow/paper)
+    try:
+        import security as _sec9
+        _mode9 = _sec9.get_trading_mode(1) or "SHADOW"
+    except Exception:
+        _mode9 = "SHADOW"
+    if _mode9 in ("PAUSED", "SUSPENDED", "REVOKED") or _mode9.startswith("LIVE"):
+        if not QUIET:
+            print(f"⏸ Trading-Modus {_mode9} — Spekulation-Trader ueberspringt Lauf.", flush=True)
+        return
+    _smode = "paper" if _mode9 == "PAPER" else "shadow"
     if not QUIET:
         print(" 🔥 Spekulation-Trader (KI-gestützt) – %d Instrumente" % len(WATCHLIST), flush=True)
     
@@ -352,7 +370,7 @@ def main():
         def ticker_markt_status(t):
             return "open"
     for ticker, info in sorted(daten.items()):
-        depot = SpecDepot(ticker, info["name"], info.get("kat", ""))
+        depot = SpecDepot(ticker, info["name"], info.get("kat", ""), mode=_smode)
         ticker_data.append({
             "ticker": ticker,
             "name": info["name"],
@@ -398,7 +416,7 @@ def main():
     for i, ticker_info in enumerate(ticker_data):
         ticker = ticker_info["ticker"]
         info = daten[ticker]
-        depot = SpecDepot(ticker, info["name"], info.get("kat", ""))
+        depot = SpecDepot(ticker, info["name"], info.get("kat", ""), mode=_smode)
         depot.ki_letzte = ki_ergebnisse[i]
         
         if ki_ergebnisse[i]:

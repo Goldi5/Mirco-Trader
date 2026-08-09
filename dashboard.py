@@ -235,13 +235,16 @@ def market_status():
     return out
 
 
-def portfolio_verlauf(tage=7):
+def portfolio_verlauf(tage=7, mode=None):
     """Aggregiert depot_*/etf_*/spec_depots historie zu 4 Serien (gesamt/aktien/etf/spec).
 
     Forward-fill: jedes Depot traegt seinen letzten bekannten Wert <= Zeitpunkt bei,
     damit die Summe pro Zeitpunkt alle Depots enthaelt (keine Luecken durch
     unterschiedliche Speicher-Intervalle). Rendite gegen Startkapital (start_wert/start).
+    PHASE 5 (§9): mode='shadow'|'paper' bestimmt den Portfolio-Satz; None = shadow.
+    Shadow- und Paper-Outcomes werden nie gemeinsam bewertet (Forderung §9).
     """
+    _hmode = mode if mode in ("shadow", "paper") else "shadow"
     cutoff = datetime.now() - timedelta(days=tage)
 
     # Pro Kategorie: liste von (zeit, wert) pro Depot
@@ -267,10 +270,10 @@ def portfolio_verlauf(tage=7):
             kategorien[kat].append(pts)
 
     for risk in RISK_STUFEN:
-        _depot_historie(depot_pfad(risk), "aktien")
+        _depot_historie(depot_pfad(risk, mode=_hmode), "aktien")
     for risk in range(0, 100, 5):
-        _depot_historie(os.path.join(BASE, f"etf_{risk:03d}.json"), "etf")
-    sdd = os.path.join(BASE, "spec_depots")
+        _depot_historie(os.path.join(BASE, f"etf_{risk:03d}.json" if _hmode != "paper" else f"etf_{risk:03d}_paper.json"), "etf")
+    sdd = os.path.join(BASE, "spec_depots" if _hmode != "paper" else "spec_depots_paper")
     if os.path.isdir(sdd):
         for fn in os.listdir(sdd):
             if fn.endswith(".json"):
@@ -615,10 +618,13 @@ def _get_tid():
         return 1
 
 
-def _tenant_scoped_depot_files(tenant_id):
+def _tenant_scoped_depot_files(tenant_id, mode=None):
     """PHASE 4: Gibt nur Depot-Pfade zurueck, die zum Tenant gehoeren.
     Depot-JSONs tragen ein Feld 'tenant_id' (Default 1). Fehlt es, gilt
-    Default-Tenant 1. So sieht Tenant B niemals Depots von Tenant A."""
+    Default-Tenant 1. So sieht Tenant B niemals Depots von Tenant A.
+    PHASE 5 (§9): mode='shadow'|'paper' filtert zusaetzlich nach Portfolio-Modus —
+    Shadow- und Paper-Depots werden nie vermischt (Forderung §9).
+    Fehlt das mode-Feld in einer Datei, gilt 'shadow' (Bestand)."""
     import json as _json, glob as _glob
     scoped = {"depot": [], "etf": [], "spec": []}
     # Aktien-Depots: alle depot_*.json scannen (nicht nur RISK_STUFEN)
@@ -627,7 +633,8 @@ def _tenant_scoped_depot_files(tenant_id):
             with open(dp) as f:
                 d = _json.load(f)
             if d.get("tenant_id", 1) == tenant_id:
-                scoped["depot"].append(dp)
+                if mode is None or d.get("mode", "shadow") == mode:
+                    scoped["depot"].append(dp)
         except Exception:
             pass
     # ETF-Depots: alle etf_*.json scannen
@@ -636,26 +643,33 @@ def _tenant_scoped_depot_files(tenant_id):
             with open(ep) as f:
                 d = _json.load(f)
             if d.get("tenant_id", 1) == tenant_id:
-                scoped["etf"].append(ep)
+                if mode is None or d.get("mode", "shadow") == mode:
+                    scoped["etf"].append(ep)
         except Exception:
             pass
-    # Spec-Depots
-    sdd = os.path.join(BASE, "spec_depots")
-    if os.path.isdir(sdd):
-        for fn in os.listdir(sdd):
+    # Spec-Depots: shadow -> spec_depots/, paper -> spec_depots_paper/
+    for _dir, _m in ((os.path.join(BASE, "spec_depots"), "shadow"),
+                     (os.path.join(BASE, "spec_depots_paper"), "paper")):
+        if not os.path.isdir(_dir):
+            continue
+        for fn in os.listdir(_dir):
             if fn.endswith(".json"):
-                fp = os.path.join(sdd, fn)
+                fp = os.path.join(_dir, fn)
                 try:
                     with open(fp) as f:
                         d = _json.load(f)
                     if d.get("tenant_id", 1) == tenant_id:
-                        scoped["spec"].append(fp)
+                        if mode is None or d.get("mode", _m) == mode:
+                            scoped["spec"].append(fp)
                 except Exception:
                     pass
     return scoped
 
 
-def depot_pfad(risk):
+def depot_pfad(risk, mode="shadow"):
+    # PHASE 5 (§9): PAPER nutzt depot_<risk>_paper.json (getrenntes Portfolio)
+    if mode == "paper":
+        return os.path.join(BASE, "depot_%03d_paper.json" % risk)
     return os.path.join(BASE, "depot_%03d.json" % risk)
 
 
@@ -705,10 +719,17 @@ def data():
     try:
         import security as _sec
         _tid = _sec.get_current_tenant() or 1
+        _dmode = _sec.get_trading_mode(_tid) or "SHADOW"
     except Exception:
         _tid = 1
+        _dmode = "SHADOW"
+    # PHASE 5 (§9): Portfolio-Satz des aktiven Modus — SHADOW -> shadow-Depots,
+    # PAPER -> paper-Depots. Cache ist tenant- UND mode-keyed, damit ein
+    # Moduswechsel nie gecachte Daten des anderen Portfolios liefert.
+    _pmode = "paper" if _dmode == "PAPER" else "shadow"
     if hasattr(data, "_cache") and data._cache and \
             getattr(data, "_cache_tid", None) == _tid and \
+            getattr(data, "_cache_mode", None) == _pmode and \
             (now - data._cache_ts) < 60:
         return data._cache
 
@@ -717,7 +738,8 @@ def data():
     depot_raw = {}
     # PHASE 4: Tenant-Scope — nur Dateien des aktiven Tenants (PHASE 3: _tid
     # stammt aus dem Cache-Check oben, kein zweiter Lookup)
-    _scoped = _tenant_scoped_depot_files(_tid)
+    # PHASE 5: + Portfolio-Modus-Filter
+    _scoped = _tenant_scoped_depot_files(_tid, mode=_pmode)
     # Aktien-Depots (nur Tenant)
     for dp in _scoped["depot"]:
         try:
@@ -1045,7 +1067,8 @@ def data():
     total_start = akt_start + etf_start + spec_start
     total_rendite = round((total_wert / total_start - 1) * 100, 2) if total_start > 0 else 0.0
     # Verlauf berechnen und letzten Punkt jeder Serie mit Live-Werten syncen
-    verlauf = portfolio_verlauf(tage=7)
+    # PHASE 5 (§9): Verlauf nur des aktiven Portfolio-Modus
+    verlauf = portfolio_verlauf(tage=7, mode=_pmode)
     jetzt_str = datetime.now().strftime("%Y-%m-%d %H:%M")
     if verlauf.get("gesamt"):
         verlauf["gesamt"][-1] = {"zeit": jetzt_str, "wert": round(total_wert, 2), "rendite": total_rendite}
@@ -1148,10 +1171,11 @@ def data():
             'profil': _profil_info(),
             'verfuegbare_profile': _profile_liste(),
         }
-    # Cache aktualisieren (PHASE 3: tenant-keyed)
+    # Cache aktualisieren (PHASE 3: tenant-keyed; PHASE 5: + mode-keyed)
     data._cache = result
     data._cache_ts = time.time()
     data._cache_tid = _tid
+    data._cache_mode = _pmode
     return result
 
 
@@ -1316,6 +1340,8 @@ def api_profile():
                     data._cache = None
                     if hasattr(data, "_cache_tid"):
                         data._cache_tid = None
+                    if hasattr(data, "_cache_mode"):
+                        data._cache_mode = None
                 p = lade_aktives_profil()
                 return {"ok": True, "gewechselt_zu": p.name, **p.to_dict()}
             return {"ok": False, "error": f"Profil {set_name} nicht gefunden"}
@@ -1412,6 +1438,8 @@ def clear_cache():
         delattr(data, '_cache_ts')
     if hasattr(data, '_cache_tid'):
         delattr(data, '_cache_tid')
+    if hasattr(data, '_cache_mode'):
+        delattr(data, '_cache_mode')
     return {"ok": True}
 
 @app.route("/api/ki_log")

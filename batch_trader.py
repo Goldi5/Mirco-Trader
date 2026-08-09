@@ -68,9 +68,15 @@ def alle_ticker():
         ticker.extend(TIERS.get(t, []))
     return list(set(ticker))
 
-def laden_oder_erstellen(risk):
-    """Lädt Depot oder erstellt neues."""
-    pfad = os.path.join(BASE, f"depot_{risk:03d}.json")
+def laden_oder_erstellen(risk, mode="shadow"):
+    """Lädt Depot oder erstellt neues.
+    PHASE 5 (§9): mode='shadow' -> depot_<risk>.json (Bestand, rückwärtskompatibel),
+    mode='paper' -> depot_<risk>_paper.json (frisches virtuelles Portfolio,
+    Shadow-Positionen werden NIE übernommen)."""
+    if mode == "paper":
+        pfad = os.path.join(BASE, f"depot_{risk:03d}_paper.json")
+    else:
+        pfad = os.path.join(BASE, f"depot_{risk:03d}.json")
     if os.path.exists(pfad):
         with open(pfad) as f:
             data = json.load(f)
@@ -80,9 +86,11 @@ def laden_oder_erstellen(risk):
         d.historie = data.get("historie", [])
         d.trades = data.get("trades", [])
         d.ki_letzte = data.get("ki_letzte")
+        d.mode = data.get("mode", mode)
         return d
     else:
         d = Depot(start_wert=100, risk=risk, depot_pfad=pfad)
+        d.mode = mode
         d.speichern()
         return d
 
@@ -100,6 +108,9 @@ def main():
             print(f"⏸ Trading-Modus {_mode8} — Batch-Trader ueberspringt Lauf.",
                   flush=True)
         return
+    # PHASE 5 (§9): Modus bestimmt Depot-Satz — SHADOW nutzt depot_*.json,
+    # PAPER nutzt depot_*_paper.json (getrennte virtuelle Portfolios).
+    _depot_mode = "paper" if _mode8 == "PAPER" else "shadow"
     ticker = alle_ticker()
     if not QUIET:
         print(f"🔍 Scanne {len(ticker)} Aktien...", flush=True)
@@ -120,7 +131,7 @@ def main():
     depot_kontexte = []
     for risk in RISK_STUFEN:
         params = fuer_risk_stufe(risk)
-        depot = laden_oder_erstellen(risk)
+        depot = laden_oder_erstellen(risk, mode=_depot_mode)
         budget = depot.start_wert
         # 🛡 v2.16.8: Aktien-Liste NACH Preis filtern BEVOR bewertet wird.
         # bewerte() vergibt hohe Scores an teure Large-Caps -> top[:10] waeren fast
@@ -465,7 +476,7 @@ def main():
     # Restliche Depots: Cache verwenden oder leer
     for risk in RISK_STUFEN:
         if risk not in ki_ergebnisse:
-            depot = laden_oder_erstellen(risk)
+            depot = laden_oder_erstellen(risk, mode=_depot_mode)
             params = fuer_risk_stufe(risk)
             # Cache-Eintrag?
             cached = cache.get(str(risk), {})

@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.43.0] - 2026-08-09
+### Added (PHASE 5: Shadow→Paper-Freigabe — §9 / §19-Punkt 7)
+- **8 Voraussetzungen in `paper_eligibility`:** Shadow-Mindestanzahl (≥20 KI-Entscheidungen), Audit-Trail vollständig, Regelstand identifizierbar, keine kritischen Fehler (7 Tage), keine ungelösten Block-Regeln, Providerdaten stabil (markt_daten < 3 Tage), Portfolio tenant-scoped, Shadow/Paper getrennt.
+- **Getrennte Portfolios:** PAPER nutzt `depot_<risk>_paper.json` / `etf_<risk>_paper.json` / `spec_depots_paper/` — Shadow-Positionen werden nie übernommen, jedes Paper-Depot startet leer.
+- **mode-Feld** in allen Depot-Speichern (Default `shadow`, rückwärtskompatibel).
+- **`_tenant_scoped_depot_files(tid, mode)`** filtert zusätzlich nach Portfolio-Modus.
+- **/data-Cache tenant- UND mode-keyed** (`_cache_mode`) — Moduswechsel liefert nie fremde Daten.
+- **`portfolio_verlauf(tage, mode)`** aggregiert nur den aktiven Portfolio-Satz — keine gemeinsame Shadow/Paper-Bewertung (§9-Verbot).
+- **Trader-Mode-Gates:** batch/etf/spec `main()` nutzen den Portfolio-Satz des aktiven Modus.
+- **Doku:** `SHADOW-PAPER-APPROVAL.md` (Ergebnisdatei §20).
+- **Tests:** Sektion 7r (+14) → **273 OK, 0 FAIL**.
+
 ## [2.42.0] - 2026-08-09
 ### Added (PHASE 4: Shadow/Paper/Live-Zustandsmaschine vervollständigt — §8 / §14)
 - **Batch-Trader Mode-Gate:** `main()` bricht bei `PAUSED`/`SUSPENDED`/`REVOKED`/`LIVE_*` sofort ab (Log + Return) — vorher hätte der Cron auch in gesperrten Zuständen weitergetradet.

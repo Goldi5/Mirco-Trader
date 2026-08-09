@@ -1,9 +1,26 @@
 {
-  "version": "2.42.0",
-  "build": "2026-08-09_1500",
-  "released_at": "2026-08-09 15:00",
-  "codename": "Phase 4: Zustandsmaschine abgesichert - Batch-Trader Mode-Gate, Vier-Augen+MFA bei LIVE, allowed_transitions, TEMP-DEBUG entfernt (259 Tests)",
+  "version": "2.43.0",
+  "build": "2026-08-09_1600",
+  "released_at": "2026-08-09 16:00",
+  "codename": "Phase 5: Shadow->Paper-Freigabe - 8 Voraussetzungen, getrennte Portfolios (depot_*_paper), mode-keyed Cache, Trader-Mode-Gates (273 Tests)",
   "changes": [
+    {
+      "version": "2.43.0",
+      "date": "2026-08-09",
+      "phase": "5",
+      "title": "Shadow->Paper-Freigabe komplettiert (§9 / §19-Punkt 7)",
+      "changes": [
+        "paper_eligibility prueft jetzt alle 8 Voraussetzungen: Shadow-Mindestanzahl, Audit-Trail vollstaendig, Regelstand identifizierbar, keine kritischen Fehler (7 Tage), keine ungeloesten Block-Regeln, Providerdaten stabil (markt_daten < 3 Tage), Portfolio tenant-scoped, Shadow/Paper getrennt",
+        "Getrennte Portfolios: PAPER nutzt depot_<risk>_paper.json / etf_<risk>_paper.json / spec_depots_paper/ - Shadow-Positionen werden nie uebernommen",
+        "Depot.speichern/etf/spec schreiben mode-Feld (Default shadow, rueckwaertskompatibel)",
+        "_tenant_scoped_depot_files(tid, mode) filtert zusaetzlich nach Portfolio-Modus",
+        "/data-Cache tenant- UND mode-keyed (_cache_mode) - Moduswechsel liefert nie fremde Daten",
+        "portfolio_verlauf(tage, mode) aggregiert nur den aktiven Portfolio-Satz - keine gemeinsame Shadow/Paper-Bewertung",
+        "batch/etf/spec_trader main() nutzen Portfolio-Satz des aktiven Modus",
+        "SHADOW-PAPER-APPROVAL.md erstellt (Ergebnisdatei §20)",
+        "Tests: Sektion 7r (+14) -> 273 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.42.0",
       "date": "2026-08-09",
