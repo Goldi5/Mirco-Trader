@@ -1352,3 +1352,34 @@ markieren.
 <｜｜DSML｜｜tool_calls>
 <｜｜DSML｜｜invoke name="patch">
 <｜｜DSML｜｜parameter name="mode" string="true">replace
+---
+
+## UI-REDESIGN „CALM TRADING COMMAND CENTER" — STATUS (2026-08-09)
+
+> **STATUS:** ABGESCHLOSSEN (Phasen 2–13 implementiert + verifiziert, v2.44.0 → v2.44.8)
+> **EVIDENCE:** `git log --oneline` zeigt Commits `e32ca85` (Phase 0), `bda81fa` (2–5), `76bba94` (6), `2692af2` (7), `a196960` (8), `10a6794` (9), `a8b025a` (10), `396520b` (11), `893155d` (12), `d9c92cf` (13/14-Doku)
+> **DESIGN-REGEL:** Ausschließlich UI/Layout/IA geändert. Keine Trading-/KI-/Risk-/Security-/Tenant-Logik.
+
+### Ergebnis je Phase
+| Phase | Thema | Commit | Verifikation |
+|-------|-------|--------|--------------|
+| 2–5 | Designsystem, Topbar, 8-Bereichs-Nav, Hero/KPI, Drawer | `bda81fa` (v2.44.0) | Browser-Visuell: dunkle 56px-Topbar, opake Flächen, Slate-Blau ✓ |
+| 6 | Portfolios-Übersicht (max 6 Karten, Filter, Drawer-Detail) | `76bba94` (v2.44.1) | 6 Karten gerendert, Drawer öffnet/schließt ✓ |
+| 7 | Tabellen (table-scroll, num-col, Sortier-Indikator) | `2692af2` (v2.44.2) | node --check clean, Marker im Dashboard ✓ |
+| 8 | KI/News/Aktivität (Subtabs, Glass-Relikte entfernt) | `a196960` (v2.44.3) | node --check clean, Marker ✓ |
+| 9 | Einstellungen+Admin (Glass-Relikte entfernt) | `10a6794` (v2.44.4) | node --check clean, surface statt glass ✓ |
+| 10 | Login/MFA — **reviewed, keine Änderung** (Security-Bereich) | `a8b025a` (v2.44.5) | Login-Formular in dashboard.py, bewusst nicht angefasst (§2.1) |
+| 11 | Responsive (Filter/Summary/Karten mobil) | `396520b` (v2.44.6) | 6 Media-Queries, Grid 1-spaltig @480px ✓ |
+| 12 | Accessibility (Skip-Link, role=main, ARIA-Karten, Keyboard) | `893155d` (v2.44.7) | A11y-Marker alle vorhanden ✓ |
+| 13 | Regression + visuelle Prüfung | `d9c92cf` (v2.44.8) | Alle 8 Bereiche + Drawer fehlerfrei, visuell verifiziert ✓ |
+| 14 | Dokumentation (version.json, CHANGELOG, README, HANDOFF) | `d9c92cf` (v2.44.8) | README Designsystem-Sektion, CHANGELOG 2.44.0–2.44.8 ✓ |
+
+### OPEN WORK / HINWEISE
+- **Passwort-Reset-Hash-Problem:** `security_users.json` `password_hash` wurde während der Session mehrfach geleert (Ursache: Server lädt Datei in RAM beim Start, überschreibt bei Reload). Fix: `security.change_password()` ausführen **und** Server neu starten (PID kill + `dashboard.py 5300`). Aktuell: admin / `Admin2026!sicher` (Stand 21:15).
+- **Login-Formular (Phase 10):** Bewusst nicht angefasst — liegt in `dashboard.py` (Security-kritisch), nicht in `dashboard.html`. Keine Design-Inkonsistenz (minimales Formular ohne Glass).
+- **`etf_*.json`, `ki_log.json`, `notifications.json` etc.:** Laufzeit-Daten, nicht committet (nur `dashboard.html` + Doku-Dateien in den UI-Commits).
+
+### TESTS (ad-hoc, isoliert, ALL PASS)
+- JS-Syntax: `node --check` auf extrahiertem `<script>` → clean
+- Live: Login HTTP 200/302, `/data` Struktur (depots=20/etf=20/spec=49), Dashboard-Marker (panel-alle, table-scroll, ki-subtab, skip-link, role=main, drawer)
+- Visuell: Browser-Screenshot bestätigt Calm-Trading-Optik (dunkle Topbar, opake Flächen, Slate-Blau, keine Glass-Blöcke)
