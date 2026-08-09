@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.44.7] - 2026-08-09
+### Added (UI-Redesign Phase 12: Accessibility)
+- **Skip-Link** („Zum Hauptinhalt springen", bei Fokus sichtbar)
+- **`role="main"`** + `id="main-content"` + `tabindex="-1"` auf Hauptinhalt
+- **Karten als `role="button" tabindex="0"`** mit Keyboard-Handler (Enter/Space → Drawer), alle drei Render-Pfade (Portfolios, Aktien/ETF, ETF-Glass)
+- **Focus-visible** Outline (bereits vorhanden, bestätigt)
+- Keine Logik-Änderung, nur ARIA/Tastatur-Zugang
+
 ## [2.44.6] - 2026-08-09
 ### Added (UI-Redesign Phase 11: Responsive)
 - **Portfolios-Übersicht responsiv**: Summary-Stats und Filterleiste umbrechen auf Mobile (Selects/Input → 100% Breite bei ≤768px)

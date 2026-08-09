@@ -515,11 +515,15 @@ canvas{display:block;max-width:100%}
 
 /* ── ACCESSIBILITY (Phase 12) ── */
 :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:4px}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:var(--primary);color:#fff;padding:8px 14px;border-radius:0 0 8px 0;font-size:13px;font-weight:600}
+.skip-link:focus{left:0}
+[role="main"]:focus{outline:none}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
 
 <header class="app-header">
   <div class="app-header-inner">
@@ -581,7 +585,7 @@ canvas{display:block;max-width:100%}
   <div class="subnav-inner" id="subnavInner"></div>
 </div>
 
-<div id="profil-karten"></div>
+<div id="profil-karten" role="main" tabindex="-1"></div>
 <div id="report-liste" style="display:none; margin:8px 0"></div>
 
 <div id="panel-settings" class="panel">
@@ -767,7 +771,7 @@ function renderPortfoliosUebersicht() {
     const statusBadge = p.gesperrt ? '<span class="badge badge-meme">🔒 Gesperrt</span>'
       : (p.positionen || 0) > 0 ? '<span class="badge badge-tech">Aktiv</span>'
       : '<span class="badge badge-inverse">Leer</span>';
-    return `<div class="card ${cls}" style="cursor:pointer" onclick="showDepot(${JSON.stringify(p).replace(/"/g, "&quot;")},'${typ}')">
+    return `<div class="card ${cls}" style="cursor:pointer" role="button" tabindex="0" onclick="showDepot(${JSON.stringify(p).replace(/"/g, "&quot;")},'${typ}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();__openDepotKey('${JSON.stringify(p).replace(/"/g, "&quot;")}','${typ}')}">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
         <h3 style="margin:0">${esc(p.ticker || ("Risk " + p.risk))}</h3>
         <span style="font-size:10px;color:var(--text-muted)">${katLabel}</span>
@@ -1061,6 +1065,11 @@ function showDepot(dep, typ) {
   if (!dep || dep == null) return;
   openDrawer(dep.ticker || "Risk " + (dep.risk != null ? dep.risk : "?"), "Lade Detail-Daten…");
 
+  // Phase 12: Tastatur-Zugriff für Karten (Enter/Space)
+  window.__openDepotKey = function(depJson, typ) {
+    try { showDepot(JSON.parse(depJson), typ); } catch(e) {}
+  };
+
   const url = typ == "spec" ? `/spec_depot_json?ticker=${dep.ticker}`
             : typ == "etf" ? `/etf_depot_json?risk=${dep.risk}`
             : `/depot_json?risk=${dep.risk}`;
@@ -1256,7 +1265,7 @@ function renderCard(dep, typ) {
   }).filter(Boolean);
   const badges = posSectors.slice(0,4).map(s => sectorBadge(s)).join('');
 
-  return `<div class="card ${cls}" onclick="showDepot(${JSON.stringify(dep).replace(/\"/g,"&quot;")},'${typ}')">
+  return `<div class="card ${cls}" role="button" tabindex="0" onclick="showDepot(${JSON.stringify(dep).replace(/"/g,"&quot;")},'${typ}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();__openDepotKey('${JSON.stringify(dep).replace(/"/g,"&quot;")}','${typ}')}">
     <h3>${label}</h3>
     ${badges ? `<div style="margin-bottom:3px">${badges}</div>` : ""}
     ${nameHint ? `<div style="font-size:10px;color:var(--text-dim);margin-bottom:4px;font-weight:400">${esc(nameHint)}</div>` : ""}
@@ -1687,7 +1696,7 @@ async function load() {
       const stufe = Math.min(5, Math.floor(e.risk/20));
       const farbe = e.rendite >= 0 ? 'positiv' : 'negativ';
       const pos_list = e.positions||[];
-      return `<div class="glass" style="position:relative;cursor:pointer;padding:14px" onclick="showDepot(${JSON.stringify(e).replace(/\"/g,'&quot;')},'etf')">
+      return `<div class="glass" style="position:relative;cursor:pointer;padding:14px" role="button" tabindex="0" onclick="showDepot(${JSON.stringify(e).replace(/"/g,'&quot;')},'etf')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();__openDepotKey('${JSON.stringify(e).replace(/"/g,'&quot;')}','etf')}">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
           <div><b style="font-size:15px">Risk ${e.risk}</b> <span style="font-size:11px;color:var(--text-dim)">${etfStufen[stufe]}</span></div>
           <div class="${farbe}" style="font-weight:600">${e.rendite>=0?'+':''}${e.rendite.toFixed(2)}%</div>
