@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.42.0] - 2026-08-09
+### Added (PHASE 4: Shadow/Paper/Live-Zustandsmaschine vervollständigt — §8 / §14)
+- **Batch-Trader Mode-Gate:** `main()` bricht bei `PAUSED`/`SUSPENDED`/`REVOKED`/`LIVE_*` sofort ab (Log + Return) — vorher hätte der Cron auch in gesperrten Zuständen weitergetradet.
+- **Vier-Augen + MFA bei LIVE-Übergängen:** `LIVE_APPROVED`/`LIVE_ACTIVE` erfordern `approved_by` (anderer User als Antragsteller, kein Selbst-Genehmigen §14) + `mfa_confirmed=1`; sonst `ValueError` + kein Moduswechsel.
+- **`allowed_transitions`:** GET `/api/trading_mode` liefert die erlaubten Folgezustände aus der State-Machine (Frontend-Basis).
+- **TEMP-DEBUG entfernt:** `_budget_debug.txt`-Block (Risk 80/90) aus `batch_trader.py` gelöscht (Phase-0-Befund).
+- **Doku:** `TRADING-MODE-STATE-MACHINE.md` (Ergebnisdatei §20).
+- **Tests:** Sektion 7q (+17) → **259 OK, 0 FAIL**.
+
 ## [2.41.0] - 2026-08-09
 ### Added (PHASE 3: Tenant-Isolation verifizieren und absichern — §2.3 / §17 / §18)
 - **`/data`-Cache tenant-keyed (`_cache_tid`):** Cache-Hit nur noch bei identischer `tenant_id` — **Cross-Tenant-Leak geschlossen** (Tenant B bekam zuvor die gecachten Portfolio-Daten von Tenant A im 60s-Fenster).

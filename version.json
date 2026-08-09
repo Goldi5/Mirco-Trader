@@ -1,9 +1,23 @@
 {
-  "version": "2.41.0",
-  "build": "2026-08-09_1400",
-  "released_at": "2026-08-09 14:00",
-  "codename": "Phase 3: Tenant-Isolation abgesichert - tenant-keyed /data-Cache, tid-Guard, Tenant-Routen auf effektive Rolle, Depot-tenant_id (242 Tests)",
+  "version": "2.42.0",
+  "build": "2026-08-09_1500",
+  "released_at": "2026-08-09 15:00",
+  "codename": "Phase 4: Zustandsmaschine abgesichert - Batch-Trader Mode-Gate, Vier-Augen+MFA bei LIVE, allowed_transitions, TEMP-DEBUG entfernt (259 Tests)",
   "changes": [
+    {
+      "version": "2.42.0",
+      "date": "2026-08-09",
+      "phase": "4",
+      "title": "Shadow/Paper/Live-Zustandsmaschine vervollstaendigt (§8 / §14)",
+      "changes": [
+        "Batch-Trader Mode-Gate: main() bricht bei PAUSED/SUSPENDED/REVOKED/LIVE_* ab (kein Handel in gesperrten Zustaenden)",
+        "Vier-Augen + MFA bei LIVE_APPROVED/LIVE_ACTIVE: approved_by Pflicht, Antragsteller darf nicht selbst genehmigen, mfa_confirmed=1 Pflicht",
+        "GET /api/trading_mode liefert allowed_transitions aus der State-Machine (Frontend-Basis)",
+        "TEMP-DEBUG-Block (_budget_debug.txt) aus batch_trader entfernt",
+        "TRADING-MODE-STATE-MACHINE.md erstellt (Ergebnisdatei §20)",
+        "Tests: Sektion 7q (+17) -> 259 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.41.0",
       "date": "2026-08-09",

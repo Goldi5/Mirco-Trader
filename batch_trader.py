@@ -87,6 +87,19 @@ def laden_oder_erstellen(risk):
         return d
 
 def main():
+    # ── PHASE 4 (§8): Trading-Mode-Gate — bei PAUSED/SUSPENDED/REVOKED/LIVE_*
+    #    wird KEIN Handel ausgefuehrt. Nur SHADOW und PAPER erlauben Trading
+    #    (LIVE_* ohne Broker-Adapter und PAPER_ONLY = grundsaetzlich gesperrt).
+    try:
+        import security as _sec8
+        _mode8 = _sec8.get_trading_mode(1) or "SHADOW"
+    except Exception:
+        _mode8 = "SHADOW"
+    if _mode8 in ("PAUSED", "SUSPENDED", "REVOKED") or _mode8.startswith("LIVE"):
+        if not QUIET:
+            print(f"⏸ Trading-Modus {_mode8} — Batch-Trader ueberspringt Lauf.",
+                  flush=True)
+        return
     ticker = alle_ticker()
     if not QUIET:
         print(f"🔍 Scanne {len(ticker)} Aktien...", flush=True)
@@ -117,17 +130,7 @@ def main():
         # Erlaubt Aktien, die das Depot zu ~1.5x der Zielpositionsgroesse kaufen kann.
         kauf_budget = depot.bargeld * params["position_size"] * 1.5
         bezahlbare = [a for a in aktien_liste if 0 < a.get("aktuell", 0) <= kauf_budget]
-        # TEMP-DEBUG: was filtert der Budget-Filter?
-        try:
-            if risk in (80, 90):
-                with open(os.path.join(BASE, "_budget_debug.txt"), "a", encoding="utf-8") as _pf:
-                    _pf.write(f"Risk {risk}: Cash={depot.bargeld:.2f}, Budget={kauf_budget:.2f}, "
-                              f"aktien_liste={len(aktien_liste)}, bezahlbare={len(bezahlbare)}\n")
-                    if bezahlbare:
-                        g = sorted(bezahlbare, key=lambda x: x.get("aktuell", 0))[:5]
-                        _pf.write(f"  Guenstigste: {[(x['ticker'], round(x.get('aktuell',0),2)) for x in g]}\n")
-        except Exception:
-            pass
+        # (TEMP-DEBUG-Block entfernt in Phase 4 — schrieb _budget_debug.txt)
         if not bezahlbare:
             # Fallback: nur Ticker mit gueltigem Preis > 0
             mit_preis = [a for a in aktien_liste if a.get("aktuell", 0) > 0]

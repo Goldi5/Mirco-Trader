@@ -63,7 +63,13 @@ def get_trading_mode(tenant_id=None):
 def set_trading_mode(new_mode, tenant_id=None, user=None, reason="",
                      requested_by=None, approved_by=None, mfa_confirmed=0):
     """PHASE 5: Zustandswechsel mit erlaubter Transition (State Machine).
-    Wirft ValueError wenn Transition nicht erlaubt ist. Schreibt Audit-Log."""
+    Wirft ValueError wenn Transition nicht erlaubt ist. Schreibt Audit-Log.
+    PHASE 4 (§8+§14): LIVE-UEBERGAENGE sind kritisch:
+      - LIVE_REQUESTED: Antrag (Request), noetig: Admin/Operator
+      - LIVE_APPROVED / LIVE_ACTIVE: Vier-Augen + MFA — approved_by muss
+        ein ANDERER User als requested_by sein (kein Selbst-Genehmigen),
+        mfa_confirmed muss 1 sein.
+    """
     import db as _db
     m = _db.MTDB()
     tid = tenant_id or get_current_tenant() or 1
@@ -75,6 +81,20 @@ def set_trading_mode(new_mode, tenant_id=None, user=None, reason="",
         m.close()
         raise ValueError(
             f"Transition {old_mode} -> {new_mode} nicht erlaubt")
+    # ── PHASE 4: Vier-Augen + MFA bei LIVE-Freigabe/Start (§8, §14) ──
+    if new_mode in ("LIVE_APPROVED", "LIVE_ACTIVE"):
+        if not approved_by:
+            m.close()
+            raise ValueError(
+                f"{new_mode} erfordert Vier-Augen-Freigabe (approved_by)")
+        if requested_by and approved_by == requested_by:
+            m.close()
+            raise ValueError(
+                "Antragsteller darf LIVE-Uebergang nicht selbst genehmigen")
+        if not mfa_confirmed:
+            m.close()
+            raise ValueError(
+                f"{new_mode} erfordert MFA-Bestaetigung (mfa_confirmed=1)")
     # Tenant-Default aktualisieren
     m.conn.execute(
         "UPDATE tenants SET default_trading_mode = ? WHERE id = ?",

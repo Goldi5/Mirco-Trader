@@ -1126,6 +1126,132 @@ try:
 except Exception as e:
     ck("Phase 3 Tenant-Isolation", False, str(e))
 
+print("\n7q. Phase 4 (v2.42.0): Zustandsmaschine SHADOW/PAPER/LIVE_*/PAUSED/SUSPENDED/REVOKED (§8)")
+try:
+    import security as sec19
+    import db as db19
+    import batch_trader as bt19
+
+    m19 = db19.MTDB()
+    # Ausgangszustand merken und am Ende wiederherstellen (Test-Hygiene)
+    _start_mode19 = sec19.get_trading_mode(1) or "SHADOW"
+
+    # 1) Vollstaendige Zustandsmenge (§8)
+    ck("P4: 8 Zustandsmodi definiert",
+       set(m19.TRADING_MODES) == {"SHADOW", "PAPER", "LIVE_REQUESTED",
+                                   "LIVE_APPROVED", "LIVE_ACTIVE", "PAUSED",
+                                   "SUSPENDED", "REVOKED"})
+
+    # 2) Erlaubte Transitionen (§8-Kernregeln)
+    tr = m19.MODE_TRANSITIONS
+    ck("P4: SHADOW->PAPER erlaubt", "PAPER" in tr["SHADOW"])
+    ck("P4: SHADOW->LIVE_* NICHT direkt", "LIVE_ACTIVE" not in tr["SHADOW"])
+    ck("P4: PAPER->LIVE_REQUESTED erlaubt", "LIVE_REQUESTED" in tr["PAPER"])
+    ck("P4: LIVE_REQUESTED->LIVE_APPROVED", "LIVE_APPROVED" in tr["LIVE_REQUESTED"])
+    ck("P4: LIVE_APPROVED->LIVE_ACTIVE", "LIVE_ACTIVE" in tr["LIVE_APPROVED"])
+    ck("P4: LIVE_ACTIVE->PAUSED/SUSPENDED/REVOKED",
+       {"PAUSED", "SUSPENDED", "REVOKED"} <= set(tr["LIVE_ACTIVE"]))
+    ck("P4: SUSPENDED->REVOKED", "REVOKED" in tr["SUSPENDED"])
+    # Kein Zustand darf in sich selbst oder auf ungueltige Modi zeigen
+    ck("P4: keine Selbst-Transitionen",
+       all(mode not in tr[mode] for mode in m19.TRADING_MODES))
+
+    # 3) set_trading_mode: ungültige Transition wirft ValueError
+    sec19.set_trading_mode("PAPER", tenant_id=1, user="admin",
+                           reason="Test", requested_by=1)
+    sec19.set_trading_mode("SHADOW", tenant_id=1, user="admin",
+                           reason="zurueck", requested_by=1)
+    try:
+        sec19.set_trading_mode("LIVE_ACTIVE", tenant_id=1, user="admin",
+                               reason="sprung", requested_by=1)
+        ck("P4: SHADOW->LIVE_ACTIVE blockiert", False)
+    except ValueError:
+        ck("P4: SHADOW->LIVE_ACTIVE blockiert", True)
+
+    # 4) Vier-Augen + MFA bei LIVE_APPROVED (§8+§14)
+    sec19.set_trading_mode("PAPER", tenant_id=1, user="admin",
+                           reason="fuer live-test", requested_by=1)
+    try:
+        sec19.set_trading_mode("LIVE_REQUESTED", tenant_id=1, user="admin",
+                               reason="antrag", requested_by=11)
+        ck("P4: PAPER->LIVE_REQUESTED erlaubt", True)
+    except ValueError as e:
+        ck(f"P4: PAPER->LIVE_REQUESTED erlaubt (fail: {e})", False)
+    # Freigabe ohne approved_by -> blockiert
+    try:
+        sec19.set_trading_mode("LIVE_APPROVED", tenant_id=1, user="admin",
+                               reason="freigabe", requested_by=11)
+        ck("P4: LIVE_APPROVED ohne approved_by blockiert", False)
+    except ValueError:
+        ck("P4: LIVE_APPROVED ohne approved_by blockiert", True)
+    # Freigabe durch denselben User -> blockiert (kein Selbst-Genehmigen)
+    try:
+        sec19.set_trading_mode("LIVE_APPROVED", tenant_id=1, user="admin",
+                               reason="freigabe", requested_by=11,
+                               approved_by=11, mfa_confirmed=1)
+        ck("P4: Selbst-Genehmigen blockiert", False)
+    except ValueError:
+        ck("P4: Selbst-Genehmigen blockiert", True)
+    # Freigabe durch anderen User + MFA -> erlaubt
+    sec19.set_trading_mode("LIVE_APPROVED", tenant_id=1, user="admin",
+                           reason="freigabe durch zweiten", requested_by=11,
+                           approved_by=22, mfa_confirmed=1)
+    ck("P4: LIVE_APPROVED mit 4-Augen+MFA erlaubt",
+       sec19.get_trading_mode(1) == "LIVE_APPROVED")
+    # MFA fehlt -> blockiert (Rueckweg LIVE_APPROVED -> REVOKED -> SHADOW -> PAPER -> LIVE_REQUESTED)
+    sec19.set_trading_mode("REVOKED", tenant_id=1, user="admin",
+                           reason="zurueck", requested_by=11)
+    sec19.set_trading_mode("SHADOW", tenant_id=1, user="admin",
+                           reason="zurueck", requested_by=11)
+    sec19.set_trading_mode("PAPER", tenant_id=1, user="admin",
+                           reason="fuer mfa-test", requested_by=11)
+    sec19.set_trading_mode("LIVE_REQUESTED", tenant_id=1, user="admin",
+                           reason="antrag", requested_by=11)
+    try:
+        sec19.set_trading_mode("LIVE_APPROVED", tenant_id=1, user="admin",
+                               reason="ohne mfa", requested_by=11,
+                               approved_by=22, mfa_confirmed=0)
+        ck("P4: LIVE_APPROVED ohne MFA blockiert", False)
+    except ValueError:
+        ck("P4: LIVE_APPROVED ohne MFA blockiert", True)
+    # Aufraeumen -> Ausgangszustand (nicht hart SHADOW — Test-Hygiene)
+    _akt19 = sec19.get_trading_mode(1)
+    if _akt19 != _start_mode19:
+        try:
+            sec19.set_trading_mode("REVOKED", tenant_id=1, user="admin",
+                                   reason="test-aufraeum", requested_by=11)
+        except ValueError:
+            pass
+        sec19.set_trading_mode(_start_mode19, tenant_id=1, user="admin",
+                               reason="produktiv-zurueck", requested_by=11)
+    ck(f"P4: Rueckkehr zu Ausgangszustand {_start_mode19}",
+       sec19.get_trading_mode(1) == _start_mode19)
+
+    # 5) Batch-Trader Mode-Gate (§8): SUSPENDED -> main() tradet nicht
+    m19.conn.execute("UPDATE tenants SET default_trading_mode='SUSPENDED' WHERE id=1")
+    m19.conn.commit()
+    vor_main = os.path.getmtime(os.path.join(BASE, "depot_000.json")) \
+        if os.path.exists(os.path.join(BASE, "depot_000.json")) else None
+    # main() wird mit leerem Markt simuliert — wichtig ist: kein Crash und
+    # frueher Return. Wir patchen scan_markt, um zu sehen, ob es ueberhaupt aufgerufen wird.
+    _orig_scan = bt19.scan_markt
+    _aufgerufen = []
+    def _fake_scan(t):
+        _aufgerufen.append(True)
+        return {}
+    bt19.scan_markt = _fake_scan
+    try:
+        bt19.main()
+    finally:
+        bt19.scan_markt = _orig_scan
+    m19.conn.execute("UPDATE tenants SET default_trading_mode='SHADOW' WHERE id=1")
+    m19.conn.commit()
+    ck("P4: Batch-Gate: SUSPENDED -> kein Markt-Scan", len(_aufgerufen) == 0)
+
+    m19.close()
+except Exception as e:
+    ck("Phase 4 Zustandsmaschine", False, str(e))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

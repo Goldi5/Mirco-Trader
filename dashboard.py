@@ -1439,10 +1439,18 @@ def api_ki_log():
 @app.route("/api/trading_mode", methods=["GET"])
 def api_trading_mode():
     import security as _sec
+    import db as _db8
     tid = _get_tid()
     mode = _sec.get_trading_mode(tid)
+    # PHASE 4: erlaubte Transitionen aus der State-Machine liefern (Frontend-Basis)
+    try:
+        m8 = _db8.MTDB()
+        allowed = list(m8.MODE_TRANSITIONS.get(mode, []))
+        m8.close()
+    except Exception:
+        allowed = []
     return {"tenant_id": tid, "mode": mode,
-            "allowed_transitions": []}
+            "allowed_transitions": allowed}
 
 
 @app.route("/api/trading_mode/set", methods=["POST"])
