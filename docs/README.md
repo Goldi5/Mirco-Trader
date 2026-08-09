@@ -1,8 +1,8 @@
 # Micro-Trader — Projekt-Dokumentation
 
-> **Version:** v2.43.0 "Phase 5: Shadow→Paper-Freigabe — 8 Voraussetzungen, getrennte Portfolios" (2026-08-09)
+> **Version:** v2.44.0 „Calm Trading Foundation — UI-Redesign Phasen 2–5" (2026-08-09)
 > **Status:** Produktiv, Cron läuft, PAPER_ONLY (kein Echtgeld)
-> **Letztes Update:** 2026-08-09 16:00
+> **Letztes Update:** 2026-08-09 18:00
 
 ## 📌 Was ist das?
 Papier-Trading-System mit KI-Lernen. 3 Kategorien:

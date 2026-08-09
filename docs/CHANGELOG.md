@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.44.0] - 2026-08-09
+### Added (UI-Redesign Phasen 2–5: Calm Trading Foundation)
+- **PHASE 2 (Designsystem):** Neues Token-Set „Calm Trading Command Center" — opake weiße Flächen (`--surface:#ffffff`), Hintergrund `#f7f9fc`, Slate-Blau `#2563eb`; Glassmorphismus entfernt. Alte Variablennamen als Alias-Block erhalten (498 Inline-Styles funktionsfähig).
+- **PHASE 3 (Header/Navigation):** Dunkle 56px-Topbar (Logo, 8 Bereiche: Übersicht/Portfolios/Märkte/Analyse/Aktivität/KI/System/Einstellungen, Suche, User-Menü). Sub-Navigation via `AREA_MAP`/`AREA_SUBS` (Portfolios: Aktien/ETF/Spekulation; Analyse: Analyse/Analyse DB).
+- **PHASE 4 (Startseite):** Hero mit Gesamtwert (44px), 4 KPI-Karten (Aktien/ETF/Spekulation/System), 2-spaltiges Layout (Portfolio-Verlauf + KI-Konfidenz links, Aktivität rechts), Risiko- + KI-Status unten.
+- **PHASE 5 (Drawer):** Slide-in Detail-Drawer (480px, Overlay, Escape-Close, Body-Scroll-Lock); `showDepot()` auf Drawer umgeleitet; ARIA-Attribute (`role=dialog`, `aria-modal`, `aria-hidden`).
+- **Sicherheit:** Keine Änderung an Trading-/KI-/Risk-/Shadow-Paper-Live-/Provider-Logik, Security-Gates, Rollen oder Tenant-Isolation. `/data` ohne Auth liefert weiterhin JSON 401 (kein HTML-Redirect).
+- **Verifikation:** Alle 8 Bereiche + Sub-Nav getestet; Drawer öffnet/schließt via Escape; Body-Lock korrekt; Login/Session intakt.
+
 ## [2.43.0] - 2026-08-09
 ### Added (PHASE 5: Shadow→Paper-Freigabe — §9 / §19-Punkt 7)
 - **8 Voraussetzungen in `paper_eligibility`:** Shadow-Mindestanzahl (≥20 KI-Entscheidungen), Audit-Trail vollständig, Regelstand identifizierbar, keine kritischen Fehler (7 Tage), keine ungelösten Block-Regeln, Providerdaten stabil (markt_daten < 3 Tage), Portfolio tenant-scoped, Shadow/Paper getrennt.
