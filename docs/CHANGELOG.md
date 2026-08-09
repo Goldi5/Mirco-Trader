@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.44.1] - 2026-08-09
+### Added (UI-Redesign Phase 6: Portfolios)
+- **Portfolios-Hauptbereich** mit Sub-Nav (Alle / Aktien / ETF / Spekulation)
+- **Portfolios-Übersicht („Alle")**: ruhige Karten-Übersicht, **max. 6 Karten**, je Karten nur Name/Kategorie/Wert/Rendite/Modus/Risiko/Positionen/Status (Reduktion der Datendichte gem. §2.1)
+- **Filterleiste**: Kategorie, Modus (Shadow/Paper/Live), Risiko (Niedrig/Mittel/Hoch), Status (Aktiv/Frei/Gesperrt), Suche (Ticker), Sortierung (Wert/Rendite/Risiko)
+- **Klick auf Karte** → öffnet bestehenden Detail-**Drawer** (Phase 5), keine neue 3-Spalten-Ansicht
+- **Summary-Statistik** oben: Gesamtwert, Ø-Rendite, Anzahl Portfolios, Aktiv, Gesperrt, Modus
+- Keine Änderung an Trading-/KI-/Risk-/Security-/Tenant-Logik (nur Frontend-Rendering + Filter)
+
 ## [2.44.0] - 2026-08-09
 ### Added (UI-Redesign Phasen 2–5: Calm Trading Foundation)
 - **PHASE 2 (Designsystem):** Neues Token-Set „Calm Trading Command Center" — opake weiße Flächen (`--surface:#ffffff`), Hintergrund `#f7f9fc`, Slate-Blau `#2563eb`; Glassmorphismus entfernt. Alte Variablennamen als Alias-Block erhalten (498 Inline-Styles funktionsfähig).

@@ -1,8 +1,8 @@
 {
-  "version": "2.44.0",
-  "build": "2026-08-09_1800",
-  "released_at": "2026-08-09 18:00",
-  "codename": "Calm Trading Foundation - UI-Redesign Phasen 2-5 (Designsystem, Topbar, 8-Bereichs-Nav, Hero/KPI-Startseite, Detail-Drawer)",
+  "version": "2.44.1",
+  "build": "2026-08-09_1959",
+  "released_at": "2026-08-09 19:59",
+  "codename": "Calm Trading Foundation - Phase 6 Portfolios-Uebersicht (kartenbasiert, max 6, Filter, Drawer-Detail)",
   "changes": [
     {
       "version": "2.44.0",

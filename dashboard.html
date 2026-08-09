@@ -565,6 +565,7 @@ canvas{display:block;max-width:100%}
 </div>
 
 <div id="panel-overview" class="panel active"></div>
+<div id="panel-alle" class="panel"></div>
 <div id="panel-stocks" class="panel"></div>
 <div id="panel-etf" class="panel"></div>
 <div id="panel-charts" class="panel"></div>
@@ -656,6 +657,7 @@ function letzteAenderung(quelle, maxLen) {
 // Bereichs-Zuordnung: Panel-Name → Hauptbereich + Unterbereich
 const AREA_MAP = {
   overview: { area: "overview" },
+  alle:     { area: "portfolios", sub: "alle" },
   stocks:   { area: "portfolios", sub: "stocks" },
   etf:      { area: "portfolios", sub: "etf" },
   spec:     { area: "portfolios", sub: "spec" },
@@ -668,11 +670,137 @@ const AREA_MAP = {
   settings: { area: "settings" },
 };
 const AREA_SUBS = {
-  portfolios: [["stocks","📈 Aktien"],["etf","📦 ETF"],["spec","🔥 Spekulation"]],
+  portfolios: [["alle","🗂️ Alle"],["stocks","📈 Aktien"],["etf","📦 ETF"],["spec","🔥 Spekulation"]],
   analyse:    [["analyse","📊 Analyse"],["analyse2","🗃️ Analyse DB"]],
 };
 
-function showPortfolios() { showTab(window._aktiverPortfolioSub || "stocks"); }
+// ─── PORTFOLIOS-ÜBERSICHT (Phase 6: ruhige Karten-Übersicht, max 6, Drawer-Detail) ───
+const PF_FILTER = { kat: "alle", modus: "alle", risiko: "alle", status: "alle", suche: "", sort: "wert_desc" };
+
+function pfKartenBauen(d) {
+  let alle = [];
+  (d.depots || []).forEach(x => alle.push({ ...x, _kat: "stocks" }));
+  (d.etf_depots || []).forEach(x => alle.push({ ...x, _kat: "etf", ticker: x.ticker || ("ETF R" + x.risk) }));
+  (d.spec_depots || []).forEach(x => alle.push({ ...x, _kat: "spec", ticker: x.ticker || ("SPEC R" + x.risk) }));
+  return alle;
+}
+
+function renderPortfoliosUebersicht() {
+  const d = window.__data; if (!d) return;
+  const alle = pfKartenBauen(d);
+
+  // Filter anwenden
+  let liste = alle.filter(p => {
+    if (PF_FILTER.kat !== "alle" && p._kat !== PF_FILTER.kat) return false;
+    if (PF_FILTER.modus !== "alle" && (p.modus || "shadow") !== PF_FILTER.modus) return false;
+    if (PF_FILTER.status === "aktiv" && (p.positionen || 0) <= 0) return false;
+    if (PF_FILTER.status === "gesperrt" && !p.gesperrt) return false;
+    if (PF_FILTER.status === "frei" && p.gesperrt) return false;
+    if (PF_FILTER.risiko !== "alle") {
+      const r = p.risk || 0;
+      if (PF_FILTER.risiko === "niedrig" && r >= 34) return false;
+      if (PF_FILTER.risiko === "mittel" && (r < 34 || r >= 67)) return false;
+      if (PF_FILTER.risiko === "hoch" && r < 67) return false;
+    }
+    if (PF_FILTER.suche) {
+      const q = PF_FILTER.suche.toLowerCase();
+      if (!((p.ticker || "").toLowerCase().includes(q) || (p.name || "").toLowerCase().includes(q))) return false;
+    }
+    return true;
+  });
+
+  // Sortierung
+  liste.sort((a, b) => {
+    switch (PF_FILTER.sort) {
+      case "wert_desc": return (b.wert || 0) - (a.wert || 0);
+      case "wert_asc": return (a.wert || 0) - (b.wert || 0);
+      case "rend_desc": return (b.rendite || 0) - (a.rendite || 0);
+      case "rend_asc": return (a.rendite || 0) - (b.rendite || 0);
+      case "risk_desc": return (b.risk || 0) - (a.risk || 0);
+      case "risk_asc": return (a.risk || 0) - (b.risk || 0);
+      default: return 0;
+    }
+  });
+
+  const gesWert = alle.reduce((s, x) => s + (x.wert || 0), 0);
+  const gesRend = alle.length ? alle.reduce((s, x) => s + (x.rendite || 0), 0) / alle.length : 0;
+  const aktiv = alle.filter(x => (x.positionen || 0) > 0).length;
+  const gesperrt = alle.filter(x => x.gesperrt).length;
+  const maxKarten = 6;
+  const karten = liste.slice(0, maxKarten);
+
+  const opt = (v, l) => `<option value="${v}" ${PF_FILTER[v.split("_")[0]] === v || (v === "alle" && PF_FILTER[v] === "alle") ? "selected" : ""}>${l}</option>`;
+
+  const kartenHtml = karten.length ? karten.map(p => {
+    const typ = p._kat;
+    const katLabel = { stocks: "📈 Aktien", etf: "📦 ETF", spec: "🔥 Spekulation" }[typ];
+    const cls = (p.rendite || 0) > 0.5 ? "positive" : (p.rendite || 0) < -0.5 ? "negative" : "neutral";
+    const modus = p.modus || "shadow";
+    const modusBadge = modus === "paper" ? '<span class="badge badge-tech">PAPER</span>'
+      : modus === "live" ? '<span class="badge badge-meme">LIVE</span>'
+      : '<span class="badge badge-inverse">SHADOW</span>';
+    const statusBadge = p.gesperrt ? '<span class="badge badge-meme">🔒 Gesperrt</span>'
+      : (p.positionen || 0) > 0 ? '<span class="badge badge-tech">Aktiv</span>'
+      : '<span class="badge badge-inverse">Leer</span>';
+    return `<div class="card ${cls}" style="cursor:pointer" onclick="showDepot(${JSON.stringify(p).replace(/"/g, "&quot;")},'${typ}')">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <h3 style="margin:0">${esc(p.ticker || ("Risk " + p.risk))}</h3>
+        <span style="font-size:10px;color:var(--text-muted)">${katLabel}</span>
+      </div>
+      <div class="wert">$${(p.wert || 0).toFixed(2)}</div>
+      <div class="rendite ${cls === "positive" ? "positiv" : cls === "negative" ? "negativ" : ""}">${(p.rendite || 0) >= 0 ? "+" : ""}${(p.rendite || 0).toFixed(2)}%</div>
+      <div class="meta">Risk ${p.risk || 0} · ${(p.positionen || 0)} Pos · ${(p.trades || 0)} Trades</div>
+      <div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap">${modusBadge}${statusBadge}</div>
+    </div>`;
+  }).join("") : `<div class="glass" style="padding:24px;text-align:center;color:var(--text-muted)">Keine Portfolios entsprechen den gewählten Filtern.</div>`;
+
+  const mehr = liste.length > maxKarten
+    ? `<div style="text-align:center;margin-top:10px;font-size:12px;color:var(--text-muted)">${liste.length - maxKarten} weitere Portfolios — Filter anpassen oder Kategorie wählen.</div>` : "";
+
+  document.getElementById("panel-alle").innerHTML = `
+    <div class="summary-row" style="margin-bottom:12px">
+      <div class="stat"><div class="num">$${gesWert.toFixed(0)}</div><div class="lbl">Gesamtwert</div></div>
+      <div class="stat"><div class="num ${gesRend >= 0 ? "positiv" : "negativ"}">${gesRend >= 0 ? "+" : ""}${gesRend.toFixed(2)}%</div><div class="lbl">Ø Rendite</div></div>
+      <div class="stat"><div class="num">${alle.length}</div><div class="lbl">Portfolios</div></div>
+      <div class="stat"><div class="num">${aktiv}</div><div class="lbl">Aktiv</div></div>
+      <div class="stat"><div class="num">${gesperrt}</div><div class="lbl">Gesperrt</div></div>
+      <div class="stat"><div class="num" style="font-size:13px">SHADOW</div><div class="lbl">Modus</div></div>
+    </div>
+    <div class="surface" style="padding:14px;margin-bottom:14px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <input type="text" placeholder="🔍 Suche Ticker…" value="${PF_FILTER.suche}" oninput="PF_FILTER.suche=this.value;renderPortfoliosUebersicht()" style="padding:6px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;min-width:140px">
+        <select onchange="PF_FILTER.kat=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
+          ${opt("alle", "Kategorie: Alle")}${opt("stocks", "Aktien")}${opt("etf", "ETF")}${opt("spec", "Spekulation")}
+        </select>
+        <select onchange="PF_FILTER.modus=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
+          ${opt("alle", "Modus: Alle")}${opt("shadow", "Shadow")}${opt("paper", "Paper")}${opt("live", "Live")}
+        </select>
+        <select onchange="PF_FILTER.risiko=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
+          ${opt("alle", "Risiko: Alle")}${opt("niedrig", "Niedrig <34")}${opt("mittel", "Mittel 34–66")}${opt("hoch", "Hoch ≥67")}
+        </select>
+        <select onchange="PF_FILTER.status=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
+          ${opt("alle", "Status: Alle")}${opt("aktiv", "Aktiv")}${opt("frei", "Nicht gesperrt")}${opt("gesperrt", "Gesperrt")}
+        </select>
+        <select onchange="PF_FILTER.sort=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
+          <option value="wert_desc" ${PF_FILTER.sort === "wert_desc" ? "selected" : ""}>Sort: Wert ↓</option>
+          <option value="wert_asc" ${PF_FILTER.sort === "wert_asc" ? "selected" : ""}>Sort: Wert ↑</option>
+          <option value="rend_desc" ${PF_FILTER.sort === "rend_desc" ? "selected" : ""}>Sort: Rendite ↓</option>
+          <option value="rend_asc" ${PF_FILTER.sort === "rend_asc" ? "selected" : ""}>Sort: Rendite ↑</option>
+          <option value="risk_desc" ${PF_FILTER.sort === "risk_desc" ? "selected" : ""}>Sort: Risiko ↓</option>
+          <option value="risk_asc" ${PF_FILTER.sort === "risk_asc" ? "selected" : ""}>Sort: Risiko ↑</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid">${kartenHtml}</div>
+    ${mehr}
+  `;
+}
+
+function showPortfolios() {
+  const sub = window._aktiverPortfolioSub || "alle";
+  if (sub === "alle") renderPortfoliosUebersicht();
+  else showTab(sub);
+}
 function showAnalyse() { showTab(window._aktiverAnalyseSub || "analyse"); }
 
 document.querySelectorAll(".ki-subtab").forEach(tab => {
@@ -704,6 +832,7 @@ function showTab(name) {
   if (panel) panel.classList.add("active");
   if (name === "ki") kiSubTab(window._kiSubTab || "auswertung");
   if (name === "settings") renderSettings();
+  if (name === "alle") renderPortfoliosUebersicht();
   // scroll to top
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
