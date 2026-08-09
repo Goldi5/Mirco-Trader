@@ -324,6 +324,14 @@ th{text-align:left;font-weight:600;color:var(--text-secondary);padding:8px 10px;
 td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
 tr:hover td{background:var(--surface-muted)}
 .ranking-tbl td,.ranking-tbl th{padding:6px 10px}
+/* Phase 7: responsive Tabellen + Zahlenausrichtung + Sortier-Indikator */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.num-col{text-align:right;font-variant-numeric:tabular-nums}
+th.num-col{text-align:right}
+th.sortable{cursor:pointer;user-select:none;position:relative}
+th.sortable:hover{color:var(--primary)}
+th.sortable .sort-ico{font-size:9px;margin-left:4px;opacity:.5}
+th.sortable.sorted .sort-ico{opacity:1;color:var(--primary)}
 
 /* ── STATS / SUMMARY ── */
 .summary-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
@@ -961,14 +969,20 @@ function sortSpecWatch(field) {
     return dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
   });
   rows.forEach(r => body.appendChild(r));
-  // Update sort indicator
+  // Update sort indicator (visuell via .sort-ico + .sorted)
   document.querySelectorAll("#specWatchTbl th.sortable").forEach(th => {
-    th.textContent = th.textContent.replace(/[▴▾]/g,'').trim();
+    th.classList.remove("sorted");
+    const ico = th.querySelector(".sort-ico");
+    if (ico) ico.textContent = "";
   });
   const thIdx = ['ticker','name','aktuell','tagesrendite','woche','volatilitaet','hebel','kategorie'].indexOf(field);
   if (thIdx >= 0) {
     const th = document.querySelectorAll("#specWatchTbl th.sortable")[thIdx];
-    if (th) th.textContent = th.textContent.replace(/\s*$/, '') + (dir === 'asc' ? ' ▴' : ' ▾');
+    if (th) {
+      th.classList.add("sorted");
+      const ico = th.querySelector(".sort-ico");
+      if (ico) ico.textContent = dir === 'asc' ? "▲" : "▼";
+    }
   }
 }
 
@@ -1337,8 +1351,8 @@ function renderSpecTab(specDepots, specKeys, specData) {
         <button class="spec-filter active" data-cat="all" onclick="filterSpecWatch('all',this)">Alle (${specKeys.length})</button>
         ${catOrder.map(c=>{const cnt=Object.values(specData).filter(v=>v.kategorie===c).length;return cnt?`<button class="spec-filter" data-cat="${c}" onclick="filterSpecWatch('${c}',this)" style="border-color:${catColors[c]||'#94a3b8'}">${catNames[c]||c} (${cnt})</button>`:'';}).join('')}
       </div></div>
-      <div class="glass" style="overflow-x:auto;padding:0"><table class="spec-watch-tbl" id="specWatchTbl">
-        <thead><tr><th onclick="sortSpecWatch('ticker')" class="sortable" style="padding:5px 6px;font-size:10px">Ticker</th><th onclick="sortSpecWatch('name')" class="sortable" style="padding:5px 6px;font-size:10px">Name</th><th onclick="sortSpecWatch('aktuell')" class="sortable" style="padding:5px 6px;font-size:10px">Preis</th><th onclick="sortSpecWatch('tagesrendite')" class="sortable" style="padding:5px 6px;font-size:10px">24h</th><th onclick="sortSpecWatch('woche')" class="sortable" style="padding:5px 6px;font-size:10px">5T</th><th onclick="sortSpecWatch('volatilitaet')" class="sortable" style="padding:5px 6px;font-size:10px">Vola</th><th onclick="sortSpecWatch('hebel')" class="sortable" style="padding:5px 6px;font-size:10px">Hebel</th><th onclick="sortSpecWatch('kategorie')" class="sortable" style="padding:5px 6px;font-size:10px">Kat.</th></tr></thead>
+      <div class="glass table-scroll" style="padding:0"><table class="spec-watch-tbl" id="specWatchTbl">
+        <thead><tr><th onclick="sortSpecWatch('ticker')" class="sortable" style="padding:5px 6px;font-size:10px">Ticker<span class="sort-ico"></span></th><th onclick="sortSpecWatch('name')" class="sortable" style="padding:5px 6px;font-size:10px">Name<span class="sort-ico"></span></th><th onclick="sortSpecWatch('aktuell')" class="sortable num-col" style="padding:5px 6px;font-size:10px">Preis<span class="sort-ico"></span></th><th onclick="sortSpecWatch('tagesrendite')" class="sortable num-col" style="padding:5px 6px;font-size:10px">24h<span class="sort-ico"></span></th><th onclick="sortSpecWatch('woche')" class="sortable num-col" style="padding:5px 6px;font-size:10px">5T<span class="sort-ico"></span></th><th onclick="sortSpecWatch('volatilitaet')" class="sortable num-col" style="padding:5px 6px;font-size:10px">Vola<span class="sort-ico"></span></th><th onclick="sortSpecWatch('hebel')" class="sortable num-col" style="padding:5px 6px;font-size:10px">Hebel<span class="sort-ico"></span></th><th onclick="sortSpecWatch('kategorie')" class="sortable" style="padding:5px 6px;font-size:10px">Kat.<span class="sort-ico"></span></th></tr></thead>
         <tbody id="specWatchBody">${Object.entries(specData).sort((a,b)=>(b[1].tagesrendite||0)-(a[1].tagesrendite||0)).map(([t,v])=>{
           const bg=v.tagesrendite>5?'rgba(52,211,153,0.06)':v.tagesrendite<-5?'rgba(248,113,113,0.06)':'';
           return `<tr class="spec-row" data-cat="${v.kategorie||'?'}" style="cursor:pointer${bg?';background:'+bg:''}" onclick="showTickerChart('${t}','specChart_${t}','specRow_${t}')">

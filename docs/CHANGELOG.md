@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.44.2] - 2026-08-09
+### Added (UI-Redesign Phase 7: Tabellen/Datenansichten)
+- **`.table-scroll`**: Tabellen scrollen horizontal auf schmalen Viewports (statt Zeilenumbruch)
+- **`.num-col`**: Zahlen-Spalten rechtsbündig + `tabular-nums` (konsistente Ausrichtung bei Kursen/Prozenten)
+- **Sortier-Indikator**: `th.sortable` mit `.sort-ico` (▲/▼) bei aktiver Spalte in der Spekulations-Watchlist
+- Keine Logik-Änderung, nur Darstellung/Robustheit
+
 ## [2.44.1] - 2026-08-09
 ### Added (UI-Redesign Phase 6: Portfolios)
 - **Portfolios-Hauptbereich** mit Sub-Nav (Alle / Aktien / ETF / Spekulation)
