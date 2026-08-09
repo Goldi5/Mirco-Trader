@@ -1,485 +1,875 @@
-# Micro-Trader — Projekt-Dokumentation (zentral)
+# Micro-Trader
 
-![Micro Trader System Banner](assets/banner.png)
+**KI-unterstützte Paper-Trading-Plattform mit Risikomanagement, Strategiebewertung, Multi-Tenant-Architektur und kontrollierter Order-Ausführung.**
 
-> **Micro Trader System** — Governed AI Market Operations
-> AUDIT · RULES · LIVE GATE · LEARNING
+Micro-Trader ist eine modulare Trading-Plattform zur Kombination von Marktdatenanalyse, deterministischen Strategie- und Risikoregeln sowie KI-gestützter Entscheidungsfindung in einer kontrollierten **Paper-Trading-Umgebung**.
 
-> ## 🚨 REGEL #1 (unverhandelbar): BACKUP VOR JEDER ÄNDERUNG
-> **Kein File wird editiert, ohne ZUVOR ein Backup zu machen.**
-> ```bash
-> cd /c/Users/goldi/projects/micro-trader
-> env -u PYTHONPATH "/c/Program Files/Python312/python.exe" backup.py before "<beschreibung>"
-> # ... Änderung durchführen ...
-> env -u PYTHONPATH "/c/Program Files/Python312/python.exe" backup.py after "<beschreibung>"
-> ```
-> **Rollback bei Problemen:**
-> ```bash
-> env -u PYTHONPATH "/c/Program Files/Python312/python.exe" backup.py list
-> env -u PYTHONPATH "/c/Program Files/Python312/python.exe" backup.py restore <id|idx>
-> ```
-> Siehe `backup.py` (Helfer) + Abschnitt 10 (Backup-Strategie).
+Das zentrale Architekturprinzip lautet:
 
-**Stand:** 2026-08-02 · **Pfad:** `C:\Users\goldi\projects\micro-trader`
-**Runtime:** Python 3.12 (`C:\Program Files\Python312\python.exe` — **nicht** der Hermes-venv)
-**Dashboard:** Flask, Port **5300** (Auto-Refresh 30s)
-**Cron:** Hermes Job `c0e89575d724` (alle 15 min, `--mode ki`)
-
-> **Für zukünftige KI-Modelle:** Dieses Dokument ist der authoritative Einstiegspunkt.
-> Es beschreibt Architektur, Module, Datenfluss, Settings, bekannte Fallen und den
-> aktuellen Implementierungsstand. Alle Angaben sind aus dem **live laufenden Code**
-> extrahiert (nicht hypothetisch). Neuere Spezifikationen überschreiben ältere.
+> **Die KI darf analysieren und Vorschläge erzeugen – deterministische Risiko- und Governance-Schichten entscheiden, was tatsächlich erlaubt ist.**
 
 ---
 
-## 0. TL;DR für schnelles Einarbeiten
+# ⚠️ Aktueller Status
 
-1. **Was ist das?** Ein autonomes Paper-Trading-System (Aktien/ETF/Spekulation) mit
-   KI-gestützten Entscheidungen und einem **selbstlernenden Regelsystem**.
-2. **Wie läuft es?** Cron (15min) → Pipeline (News→KI-Entscheidungen→Lernen→Skill-Sync).
-   Separater Engine-Cron (5min) führt Trades aus (ohne LLM).
-3. **Was lernt die KI?** 7 Mechanismen: Anti-Regeln, Swap-Regeln, Konfidenz-Cap,
-   Exit-Score, News-Swap, Multi-Timeframe, Konzentrations-Lernen.
-4. **Wie konfiguriere ich?** Tab **⚙️ Einstellungen** im Dashboard (KI + Lernen + Bremsen + News).
-   Backend: `settings.json` + `settings_loader.py`.
-5. **Wichtigste Fallen:** Venv-Kontamination im Cron (PYTHONPATH entfernen!),
-   Zombie-Dashboard-Prozesse auf 5300 (via PowerShell PID killen), JSON-Decode in `ki_log`.
+> **Paper Trading — aktiv**
+> **Live Trading — deaktiviert**
+
+Micro-Trader ist derzeit als **Paper-Trading-System** ausgelegt und wird in diesem Modus betrieben.
+
+Eine Ausführung von Orders mit echtem Kapital ist aktuell nicht vorgesehen.
+
+## Systemstatus
+
+| Komponente      | Status                 | Bereich    | Anmerkung                              |
+| --------------- | ---------------------- | ---------- | -------------------------------------- |
+| Paper Trading   | 🟢 Aktiv               | Paper      | Hauptausführungsumgebung               |
+| KI-Analyse      | 🟢 Implementiert       | Paper      | Provider-Rotation/Fallback vorhanden   |
+| Risk Engine     | 🟡 Aktiv / Validierung | Paper      | Mehrere Risikoprofile                  |
+| Strategy Engine | 🟢 Implementiert       | Paper      | Zentralisierte Strategielogik          |
+| Order Intent    | 🟢 Implementiert       | Paper      | KI führt Orders nicht direkt aus       |
+| Multi-Tenant    | 🟢 Implementiert       | Anwendung  | Produktionsumfang derzeit begrenzt     |
+| Security Layer  | 🟡 Aktiv / Hardening   | Anwendung  | Weitere Härtung erforderlich           |
+| KI-Learning     | 🟡 Experimentell       | Paper      | Kontrollierte Validierung erforderlich |
+| Live Trading    | 🔴 Deaktiviert         | Produktion | Derzeit nicht freigegeben              |
+
+## Bekanntes kritisches Problem
+
+**Die Kandidatenauswahl für Risk 70 benötigt weitere Korrektur und Validierung.**
+
+Das dokumentierte Problem betrifft das Zusammenspiel zwischen verfügbarem Cash-Budget, Positionsgröße und dem Filter für bezahlbare Kandidaten.
+
+Dadurch können grundsätzlich geeignete Kandidaten bereits vor dem Scoring bzw. der KI-Analyse herausgefiltert werden.
+
+Dieses Problem wird hier bewusst sichtbar gemacht und nicht hinter einer allgemeinen Statusbeschreibung versteckt.
+
+Die vollständige Root-Cause-Analyse, Reproduktion und technischen Details befinden sich in der vollständigen Handoff-Dokumentation.
 
 ---
 
-## 1. System-Architektur
+# Was ist Micro-Trader?
 
+Micro-Trader ist eine experimentelle Trading-Plattform mit Fokus auf:
+
+* Marktüberwachung
+* Kandidatenauswahl
+* deterministische Bewertung
+* konfigurierbare Risikoprofile
+* KI-gestützte Analyse
+* kontrollierte Order Intents
+* Paper-Ausführung
+* Portfolio-Tracking
+* Analyse von Trade-Ergebnissen
+* Lernen aus historischen Entscheidungen
+* Multi-Tenant-Isolation
+* Nachvollziehbarkeit und Governance
+
+Die Plattform verfolgt bewusst den Ansatz, dass **die KI nicht die letzte Sicherheitsinstanz darstellt**.
+
+Der geplante Entscheidungsweg ist:
+
+```text
+Marktdaten
+    ↓
+Kandidatenscanner
+    ↓
+Strategie / Scoring
+    ↓
+Risikoprofil
+    ↓
+KI-Analyse
+    ↓
+Order Intent
+    ↓
+Validierung
+    ↓
+Risk Enforcement
+    ↓
+Governance / Freigabe
+    ↓
+Paper Broker
+    ↓
+Datenbank
+    ↓
+Learning / Analytics
 ```
-┌──────────────────────────────────────────────────────────────────────┐
-│  CRON (Hermes, 15min) → micro-trader-cron.py --mode ki               │
-│       │ (PYTHONPATH/PYTHONHOME KOMPLETT entfernt vor Subprozess!)     │
-│       ▼                                                              │
-│  micro-trader-pipeline.py --mode ki                                 │
-│       ├─ news_monitor.py     → RSS sammeln (5 Feeds)                │
-│       ├─ ki_news.py          → KI-News-Bewertung + VORFILTER         │
-│       ├─ spec_trader.py      → Spekulations-Entscheidungen (48 Tick) │
-│       ├─ ki_decisions.py     → KI-Entscheidungen + Caps/Swaps/R3     │
-│       ├─ ki_learning.py      → Lernmodul (Regeln, Scores, Kalibrier) │
-│       └─ skill_sync.py       → Regeln → Hermes-Skill (ki-trading…)   │
-│                                                                      │
-│  Engine-Cron (5min, KEIN LLM): boersen.py, engine.py, trader.py     │
-│       → Ausführung, Bremsen, Stop-Loss/Take-Profit                  │
-└──────────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-                   dashboard.py (Port 5300, Flask)
-                   liest JSON-State + ki_log.json
-                   rendert 8 Tabs (Übersicht/Aktien/ETF/Spek/Analyse/News/KI/Log/Settings)
+
+---
+
+# Grundprinzipien
+
+## 1. KI ist Analyst, nicht uneingeschränkter Ausführer
+
+Die KI kann Marktdaten bewerten und eine Handelsentscheidung vorschlagen.
+
+Sie darf jedoch nicht:
+
+* Positionslimits umgehen
+* Risikolimits umgehen
+* Strategieregeln umgehen
+* Freigaben umgehen
+* Execution Controls umgehen
+* Tenant-Grenzen überschreiten
+* die Paper-/Live-Trennung umgehen
+
+Das gewünschte Modell lautet:
+
+```text
+KI
+ ↓
+Vorschlag
+
+Risk Engine
+ ↓
+Erlaubt / Abgelehnt
+
+Execution Layer
+ ↓
+Paper Order
 ```
 
-### 1.1 Datenfluss (Lernen)
+---
+
+## 2. Paper First
+
+Micro-Trader ist darauf ausgelegt, Strategien und Entscheidungslogik zunächst ohne echtes Kapital zu entwickeln und zu validieren.
+
+Die aktuelle Execution-Architektur verwendet einen Paper-Broker.
+
+Live Execution ist bewusst deaktiviert.
+
+---
+
+## 3. Deterministische Kontrolle um probabilistische KI
+
+KI-Entscheidungen können probabilistisch und kontextabhängig sein.
+
+Risiko- und Ausführungsregeln sollten deshalb soweit möglich deterministisch bleiben.
+
+Beispiele:
+
+* maximale Positionsgröße
+* maximale Anzahl von Positionen
+* Mindestscore
+* Risikolevel
+* Budget-/Bezahlbarkeitsprüfung
+* Freigabeanforderungen
+* Tenant-Isolation
+
+---
+
+# Architektur
+
+```text
+                    ┌──────────────────┐
+                    │    Marktdaten    │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │ Kandidatenscanner│
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │ Strategie/Score  │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │   Risk Engine    │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │    KI-Analyse    │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │   Order Intent   │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │ Validierung/Gates│
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │    Paper Broker  │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │    Datenbank     │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │ Learning/Statistik│
+                    └──────────────────┘
 ```
-Trading-Entscheidung (ki_decisions)
-   → ki_log.json (typ=decision)
-   → Engine misst Kurs nach 4h/1d/1w (ki_learning.hole_kurs_entwicklung)
-   → Lerneffekt −5…+5 (ki_learning.lerneffekt)
-   → ki_learning.analysiere_entscheidungen
-       → Regeln (anti_muster_regeln, swap_score, multi_timeframe_regel_lernen)
-   → learned_rules.json (Source of Truth)
-   → nächste KI-Prompts (ki_decisions lädt via lade_regeln) + Hermes-Skill (skill_sync)
+
+---
+
+# Trading-Pipeline
+
+Die zentrale Trading-Pipeline besteht aus mehreren aufeinanderfolgenden Stufen.
+
+## 1. Marktdaten
+
+Marktdaten werden über konfigurierte Provider bezogen.
+
+Die dokumentierte Provider-/Fallback-Architektur umfasst unter anderem:
+
+* Yahoo Finance
+* Finnhub
+* Twelve Data
+* Alpha Vantage
+
+Bei der Interpretation der Ergebnisse müssen insbesondere Verfügbarkeit, Rate Limits und Datenaktualität berücksichtigt werden.
+
+---
+
+## 2. Kandidatenauswahl
+
+Der Scanner untersucht das konfigurierte Universum und wendet erste Filter an.
+
+Kandidaten können anschließend anhand verschiedener Kriterien bewertet werden:
+
+* Preis
+* Volumen
+* Volatilität
+* technische Indikatoren
+* Marktregime
+* strategische Faktoren
+* Risikolevel
+* Budget-/Bezahlbarkeitsregeln
+
+---
+
+## 3. Strategie und Scoring
+
+Die Strategie-Schicht überführt Markteigenschaften in deterministische Scores und Anpassungen.
+
+Beispiele:
+
+* Preisbewertung
+* Small-Cap-Anpassungen
+* Volumenanpassungen
+* Behandlung gehebelter ETFs
+* Diversifikationsregeln
+* Tier-basierte Logik
+
+Die Strategie soll zentralisiert bleiben und nicht an mehreren Stellen unabhängig voneinander implementiert werden.
+
+---
+
+## 4. Risikoprofile
+
+Micro-Trader unterstützt mehrere Risikoprofile.
+
+Das Risikolevel beeinflusst unter anderem:
+
+* Positionsgröße
+* maximale Anzahl von Positionen
+* Mindestscore
+* Stop Loss
+* Take Profit
+* erlaubte Instrumente/Tiers
+* Portfolio-Exposure
+* Budgetgrenzen
+
+Das Risikoprofil ist damit ein tatsächlicher Bestandteil der Ausführungslogik und nicht lediglich eine Information für die Benutzeroberfläche.
+
+---
+
+## 5. KI-Entscheidung
+
+Die KI erhält einen strukturierten Kontext mit relevanten Informationen, beispielsweise:
+
+* Kandidatendaten
+* Marktdaten
+* Strategiedaten
+* Risikokontext
+* Nachrichten bzw. Kontextinformationen
+* gelernte Regeln
+
+Anschließend erzeugt die KI eine strukturierte Entscheidung.
+
+Der vollständige aktuelle KI-Prompt und die detaillierte Entscheidungsarchitektur befinden sich bewusst in der technischen Handoff-Dokumentation und werden nicht vollständig in dieser README dupliziert.
+
+---
+
+# Order Governance
+
+Ein zentrales Architekturkonzept ist der **Order Intent**.
+
+Der vorgesehene Ablauf:
+
+```text
+KI-Entscheidung
+      ↓
+Order Intent erzeugen
+      ↓
+Order Intent validieren
+      ↓
+Risk Enforcement
+      ↓
+Rule Enforcement
+      ↓
+Freigabe / Governance
+      ↓
+Paper Broker
 ```
 
----
+Damit wird bewusst zwischen
 
-## 2. Module-Referenz (Funktionen)
+> **„Was möchte die KI tun?“**
 
-### 2.1 `ki_decisions.py` — KI-Entscheidungslogik
-| Funktion | Signatur | Zweck |
-|----------|----------|-------|
-| `entscheide_ticker` | `(ticker, name, kurs, sma20, sma50, rsi, shares, avg_price, bargeld, depot_start, news_liste, markt_status, sektor, atr_pct, vol_ratio)` | **Kern**: LLM-Call → kaufen/halten/verkaufen. Wendet Cap (R1/R3), Exit-Score (R3), News-Swap (R3), lädt **gelernte Regeln in Prompt** (R1), schreibt `angewandte_regeln` ins ki_log. |
-| `entscheide_spec_batch` | `(ticker_data_list, max_workers=5)` | Parallel (8 Worker) für 48 Spec-Ticker. |
-| `entscheide_aktien_depot` | `(depot, kandidaten, markt_status)` | Aktien-Risikostufen (20 Depots). |
-| `news_fuer_ticker` | `(ticker, ki_log, max_std=24)` | Holt News-Score für Ticker. |
-| `hole_vix` | `()` | Aktueller VIX. |
-| `lade_ki_log` / `schreibe_ki_log` | `(eintrag)` | Thread-safe ki_log.json Zugriff. |
+und
 
-**Settings-Bindung:** `_ki_set("konfidenz_cap")`, `_ki_set("ki_temperatur")`, `_ki_set("news_swap_min_score")`.
+> **„Was darf das System tatsächlich ausführen?“**
 
-### 2.2 `ki_learning.py` — Lern-Engine (80 KB, 1900+ Zeilen)
-| Funktion | Zweck |
-|----------|-------|
-| `lerneffekt(aktion, change)` | Differenzierter Lerneffekt −5…+5. |
-| `lerneffekt_multiskalen(ticker, aktion)` | 15min/1d/1w Skalen (R6-Multi-TF). |
-| `multi_timeframe_regel_lernen(entscheidungen, min_divergenz=3.0)` | Divergenz-Regeln. |
-| `news_swap_score(ticker, pnl, news_score, benchmark_ret)` | Swap-Score für Umschichtung. |
-| `news_swap_entscheidung_ueberschreiben(...)` | Überschreibt Entscheidung bei News-Impact. |
-| `exit_score_entscheidung_ueberschreiben(...)` | Exit-Score (Trend intakt → halten). |
-| `ki_bewerte_lernergebnisse(ergebnisse)` | LLM-Muster-Analyse. |
-| `anti_muster_regeln(ergebnisse)` | **R5**: Anti-Regeln ab `anti_min_n` (Settings, Default 5). |
-| `analysiere_entscheidungen(...)` | Haupt-Lernloop. |
-| `lade_lern_notizen(max_age_stunden)` | Lerneffekt-Notizen fürs Dashboard. |
-| `cross_depot_lernen()` | Konzentrations-Lernen. |
+unterschieden.
 
-**Settings-Bindung:** `_lern_set("anti_min_n")`, `_lern_set("decay_lambda")` (via learned_rules).
-
-### 2.3 `learned_rules.py` — Regelbasis (Source of Truth)
-| Funktion | Zweck |
-|----------|-------|
-| `lade_regeln(include_decay, max_alter_tage, inkl_arktiviert)` | **R2**: Sortiert nach `effektiv_gewicht` (Decay-respektierend). |
-| `speichere_regeln(neue_regeln)` | CRUD + Export `ki_regeln.json`. |
-| `decay_lambda_global()` | **Settings**: liest `lernen.decay_lambda`. |
-| `finde_konflikte(regeln)` | Konflikt-Erkennung (gleiche Aktion + AK, gegensätzlicher Typ). |
-| `lebenszyklus_status(regel)` | stabil/wackelig/veraltet. |
-| `regeln_mit_status()` | Regeln + Status für Dashboard. |
-
-### 2.4 `engine.py` — Trading-Engine (ohne LLM)
-| Funktion | Zweck |
-|----------|-------|
-| `Depot` (Klasse) | Depot-Logik (Positionen, peak_wert, gesperrt). |
-| `scan_markt(tickers, force)` | Markt-Scan. |
-| `bewerte(aktien, budget, risk_params)` | Risk-Scoring. |
-| `signal_aktion(depot, aktien_bewertet, params)` | Signal-Generierung. |
-| `ausführen(depot, aktionen, params)` | **P4**: Konzentrations-Bremse (`max_depot_pro_ticker`), Stop-Loss/TP. |
-| `max_depot_pro_ticker()` / `drawdown_sperre_prozent()` | **Settings**: Engine-Bremsen. |
-
-**Drawdown-Sperre (R-Settings):** `aktueller_wert < depot_peak * (1 - drawdown_sperre_prozent()/100)`.
-
-### 2.5 `trader.py` — Basis-Trader
-`berechne_indikatoren`, `scan_markt`, `bewerte`, `signal_aktion`, `Depot`-Klasse.
-Risk-Parameter: Risk 0–20 (35% pos, −8%/+12%), Risk 50+ (50% pos, −15%/+20%).
-
-### 2.6 `spec_trader.py` / `spec_watch.py` — Spekulation
-- `spec_watch.py`: **WATCHLIST** (48 Ticker, 14 Kategorien: crypto, inverse, volatility,
-  commodity, lev-bull, lev-bear, meme, ai, ev, biotech, space, index).
-- `spec_trader.py`: `SpecDepot`-Klasse, `fetch_analyse()` (6mo Kursdaten), `ausführen()`.
-
-### 2.7 `ki_news.py` — News-Bewertung
-- `ist_irrelevant(title)` — **VORFILTER** (Blacklist + Context + Min-Länge, wort-exakt).
-- `classify_headline(title)` — 12 Themen.
-- `find_tickers(title)` — Ticker-Erkennung.
-- `ki_bewerte_news(headlines)` — LLM-Score 0–100.
-- `news_analyse(max_headlines, force, min_interval_h)` — Pipeline-Entry.
-
-### 2.8 `settings_loader.py` — Zentrale Settings
-- `lade_settings()` — lädt `settings.json` (Fallback: Hardcodierte Defaults).
-- `validiere_und_risiko(neue)` — **Risiko**: MIN/MAX + empfohlener Bereich → Warnungen.
-- `speichere_settings(neue, bestaetigt)` — speichert nur bei `ok` (Warnung → Bestätigung nötig).
-- `ki(name)`, `lernen(name)`, `bremse(name)`, `news_opt(name)` — Modul-Helfer.
-
-### 2.9 `dashboard.py` — Web-UI
-- `data()` — JSON-Endpoint (30s Cache), baut alle Tab-Daten.
-- `api_settings_get/post()` — Settings-API (GET: Settings+Limits, POST: validiert+speichert).
-- Render-Funktionen: `renderOverview`, `renderStocks`, `renderEtf`, `renderSpec`,
-  `renderSettings` (⚙️ Tab), `renderKI` (6 Subtabs).
+Diese Trennung ist wesentlich für Sicherheit, Kontrolle und Nachvollziehbarkeit.
 
 ---
 
-## 3. Settings-System (⚙️ Einstellungen)
+# Risikomanagement
 
-**Datei:** `settings.json` (zentrale Defaults + Kommentar).
-**Loader:** `settings_loader.py` (Validierung + Risikowarnung).
+Das Risikomanagement bildet eine eigenständige Schicht um Strategie und KI.
 
-### 3.1 Felder
-| Pfad | Default | MIN | MAX | Empfohlen | Risiko-Warnung bei |
-|------|---------|-----|-----|-----------|-------------------|
-| `ki.konfidenz_cap` | 60 | 0 | 100 | 40–90 | <40: KI ungebremst; >90: lahmgelegt |
-| `ki.ki_temperatur` | 0.1 | 0.0 | 0.5 | 0–0.3 | >0.3: instabil |
-| `ki.min_konfidenz_kaufen` | 60 | 0 | 100 | 50–80 | <50: Rauschen |
-| `ki.exit_score_schwelle` | 70 | 0 | 100 | 50–90 | — |
-| `ki.news_swap_min_score` | 75 | 0 | 100 | 50–90 | — |
-| `ki.news_swap_aktiv` | true | — | — | — | — |
-| `ki.multi_timeframe_lernen` | true | — | — | — | — |
-| `lernen.decay_lambda` | 0.01 | 0.0 | 0.05 | 0.005–0.03 | außerhalb: Regeln verfallen zu schnell/langsam |
-| `lernen.anti_min_n` | 5 | 1 | 20 | 3–10 | <3: Überreaktion; >10: zu selten |
-| `lernen.anti_min_widerlegt_pct` | 60 | 0 | 100 | 40–80 | — |
-| `lernen.max_regeln` | 40 | 5 | 200 | 20–60 | >60: Inflation |
-| `lernen.lern_modus` | auto | — | — | auto/deterministisch/pausiert | — |
-| `kapital.gesamt_budget` | 10000 | 100 | 1000000 | 1000–100000 | zu klein/groß |
-| `kapital.aktien_anteil` | 40 | 0 | 100 | 20–60 | zu wenig/viel Exposure |
-| `kapital.etf_anteil` | 30 | 0 | 100 | 10–50 | kaum Basis/zu passiv |
-| `kapital.spec_anteil` | 30 | 0 | 100 | 5–50 | kaum Chance/zu spekulativ |
-| `kapital.max_gesamt_drawdown` | 25 | 5 | 60 | 15–40 | Stopp zu spät/früh |
-| `depot_struktur.aktien_stufen` | 20 | 1 | 40 | 5–20 | grob/unübersichtlich |
-| `depot_struktur.aktien_schritt` | 5 | 1 | 25 | 5–10 | zu fein/grob |
-| `depot_struktur.max_spec_depots` | 48 | 1 | 100 | 10–60 | wenig/viel Klumpenrisiko |
-| `depot_struktur.etf_stufen_aktiv` | [6 Stufen] | — | — | — | — |
-| `risk_parameter.moderate_position_size` | 0.35 | 0.05 | 0.95 | 0.20–0.50 | zu klein/groß |
-| `risk_parameter.moderate_stop_loss` | 0.92 | 0.50 | 0.99 | 0.85–0.95 | Stopp zu eng/weit |
-| `risk_parameter.moderate_take_profit` | 1.12 | 1.01 | 3.0 | 1.05–1.30 | TP zu nah/weit |
-| `risk_parameter.aggressive_position_size` | 0.50 | 0.05 | 0.95 | 0.30–0.60 | zu klein/groß |
-| `risk_parameter.aggressive_stop_loss` | 0.85 | 0.50 | 0.99 | 0.75–0.90 | Stopp zu eng/weit |
-| `risk_parameter.aggressive_take_profit` | 1.20 | 1.01 | 3.0 | 1.10–1.40 | TP zu nah/weit |
-| `engine_bremsen.max_depot_pro_ticker` | 4 | 1 | 20 | 2–8 | >8: Klumpenrisiko |
-| `engine_bremsen.drawdown_sperre_prozent` | 30 | 5 | 60 | 15–40 | <15: zu spät; >40: oft gesperrt |
-| `engine_bremsen.wochenende_handel` | false | — | — | — | — |
-| `news.news_min_score` | 20 | 0 | 100 | 10–40 | <10: Blindflug |
-| `news.news_max_alter_std` | 48 | 1 | 240 | 12–72 | — |
+Unterstützte Kontrollen umfassen unter anderem:
 
-### 3.2 Sicherheitsnetz (doppelt)
-1. **Harte Grenzen** (MIN/MAX): Verletzung → POST blockiert (`ok: False`, Fehlermeldung).
-2. **Risikowarnung** (empfohlener Bereich): Verletzung → Frontend `confirm()`-Dialog,
-   erst bei "OK" wird mit `bestaetigt: true` gespeichert.
-3. **Reset Defaults**-Button (eigene Bestätigung).
+* Positionsgrößen
+* Portfolio-Limits
+* maximale Anzahl von Positionen
+* Score-Schwellenwerte
+* Stop Loss
+* Take Profit
+* Budget-/Bezahlbarkeitsprüfung
+* Instrumentenbeschränkungen
+* Freigabeanforderungen
 
-### 3.3 Modul-Bindung (welche Settings wo greifen)
-- `ki_decisions`: `konfidenz_cap` (manuell überschreibt auto-Lernen), `ki_temperatur`, `news_swap_min_score`
-- `ki_learning`: `anti_min_n` (Mindest-Sample Anti-Regeln)
-- `learned_rules`: `decay_lambda` (via `decay_lambda_global()`)
-- `engine`: `max_depot_pro_ticker`, `drawdown_sperre_prozent`
-- `dashboard`: `news_min_score` (News-Nachfilter)
+Die vollständige Risikomatrix und sämtliche Formeln befinden sich in der technischen Handoff-Dokumentation.
 
 ---
 
-## 4. Das Lern-System (7 Mechanismen)
+# KI-Learning
 
-| # | Mechanismus | Quelle | Logik | Anwendung |
-|---|-------------|--------|-------|-----------|
-| 1 | **Anti-Regeln** | `anti_muster_regeln()` | Muster systematisch falsch → Verbot | Prompt-Constraint (NICHT-Regel) |
-| 2 | **Swap-Regeln** | `swap_score_berechnen()` | Halte-Position schlechter als Benchmark? | Umschichtungs-Regel (3 Typen) |
-| 3 | **Konfidenz-Cap** | `konfidenz_kalibrierung()` | Bin mit hoher Konf. aber 0% Treffer | KI-Konfidenz gedrosselt (60) |
-| 4 | **Exit-Score** | `exit_score_berechnen()` | Trend intakt + Verkauf-Wunsch | Verkauf → "halten" (Score ≥70) |
-| 5 | **News-Swap** | `news_swap_score()` | News ≥75 + schwach | Halten → "verkaufen" (Score ≥60) |
-| 6 | **Multi-Timeframe** | `multi_timeframe_regel_lernen()` | 15min↑/1d↓ Divergenz | Anti/Positiv-Regel |
-| 7 | **Konzentrations-Lernen** | `cross_depot_lernen()` | Ticker in ≥4 Depots | Anti-Regel "streuen" |
+Micro-Trader enthält eine experimentelle Learning-Schicht, die Informationen aus vergangenen Trading-Ergebnissen ableiten soll.
 
-**Governance-Reihenfolge (R3):** Engine-Bremsen (hart) > Meta-Cap > News-Swap (News≥75) > Exit-Score > KI.
-Bei Konflikt (Exit-Score=halten vs News-Swap=verkaufen) **gewinnt News-Swap** (härtere Evidenz),
-Konflikt wird in `ki_log` als `regel_konflikt` vermerkt.
+Das konzeptionelle Modell:
 
----
-
-## 5. Dashboard-Tabs (Optik + Inhalt)
-
-| Tab | Optik | Inhalt |
-|-----|-------|--------|
-| 📊 **Übersicht** | Hero + Depot-Cards pro Risikostufe | Gesamtwert, Rendite, KI-letzte pro Depot |
-| 📈 **Aktien** | Grid (20 Risikostufen) | `renderCard`, Detail mit Chart + News-Impact + KI-Entscheidung |
-| 📦 **ETF** | 6 Risikostufen (Geldmarkt→Gehebelt) | Positionen, MaxDD, Fortschrittsbalken |
-| 🔥 **Spekulation** | 3 Subtabs: Übersicht/Positionen/Watchlist | 48 Ticker, Kategorie-Filter, Mini-Charts |
-| 📊 **Analyse** | CSS-Bars | Top-Ticker + Grund-Statistik (Trefferquote pro Begründung) |
-| 📰 **News** | Glass-Cards | KI-bewertet (Score ≥ `news_min_score`), irrelevant rausgefiltert |
-| 🤖 **KI-Log** | 6 Subtabs: Auswertung/Entscheidungen/News/Lerneffekte/Regeln/**Was die KI lernt** | Live-Daten aus `ki_log` + `learned_rules` + `lade_lern_notizen` |
-| ⚙️ **Einstellungen** | 4 Sektionen (KI/Lernen/Bremsen/News) | Inputs + Risikowarnung + Reset |
-
-**Design:** Helles Glassmorphismus/Apple (Inter-Schrift, radius 12px, Pastell-Akzente).
-
----
-
-## 6. Bekannte Fallen (für künftige KI-Arbeit)
-
-### 6.1 Venv-Kontamination im Cron
-**Symptom:** `ModuleNotFoundError` oder falsche Packages im Cron-Lauf.
-**Ursache:** Hermes-venv in `PYTHONPATH`/`PYTHONHOME`.
-**Fix:** `micro-trader-cron.py` entfernt beide Variablen vor Subprozess-Start.
-**Regel:** Immer `env -u PYTHONPATH -u PYTHONHOME` für manuelle Tests nutzen!
-
-### 6.2 Zombie-Dashboard-Prozesse (Port 5300)
-**Symptom:** `curl localhost:5300/data` liefert **alte/veraltete Daten** (kein Code-Effekt sichtbar).
-**Ursache:** Mehrfache `dashboard.py 5300`-Starts (aus meinen vielen Neustarts) blockieren den Port;
-nur einer bindet, alle anderen crashen — curl trifft den **alten** Prozess.
-**Diagnose:**
-```powershell
-powershell.exe -NoProfile -Command "Get-NetTCPConnection -LocalPort 5300 -State Listen | Select-Object OwningProcess"
-powershell.exe -NoProfile -Command "Get-CimInstance Win32_Process -Filter \"Name='python.exe'\" | Where-Object { \$_.CommandLine -like '*dashboard*5300*' } | Select-Object ProcessId"
+```text
+Trade
+  ↓
+Ergebnis
+  ↓
+Beobachtung
+  ↓
+Regelkandidat
+  ↓
+Validierung
+  ↓
+Aktive Regel
 ```
-**Fix:** `taskkill /F /PID <pid>` für alle außer dem gewünschten.
-**Verifikation:** `curl` liefert `ki_lern_notizen: 291` (nicht 0), `konfidenz_cap: 60`.
 
-### 6.3 JSON-Decode in `ki_log.json`
-**Symptom:** `json.JSONDecodeError` beim Laden.
-**Ursache:** Concurrent Writes (Engine + KI parallel) ohne Lock.
-**Fix:** `ki_decisions.schreibe_ki_log` nutzt `_ki_lock` (threading.Lock). Bei Corruption:
-`ki_log.json` manuell bereinigen (letzte valide Zeile behalten).
+Dieser Bereich befindet sich bewusst in einer experimentellen Phase.
 
-### 6.4 Decay wird berechnet, aber ignoriert (R2, behoben)
-**Alt:** `lade_regeln` sortierte nach `gewicht` statt `effektiv_gewicht`.
-**Neu:** Sortierung nach `effektiv_gewicht` (Decay-respektierend).
+Eine gelernte Regel darf nicht allein deshalb zu einer aktiven Trading-Regel werden, weil sie in einer kleinen Anzahl vergangener Trades erfolgreich war.
 
-### 6.5 Regeln lernten, wirkten aber nicht (R1, behoben)
-**Alt:** `learned_rules` wurden im `ki_decisions`-Prompt **nicht** eingebunden.
-**Neu:** `GELERNTE REGELN`-Block im Prompt + `angewandte_regeln` im `ki_log`.
+Zu berücksichtigende Risiken sind unter anderem:
+
+* kleine Stichproben
+* Overfitting
+* Feedback Loops
+* Änderungen des Marktregimes
+* selbstverstärkende Regeln
+
+Die Governance des KI-Learnings bleibt daher ein aktives Entwicklungsgebiet.
 
 ---
 
-## 7. Aktueller Implementierungsstand
+# Multi-Tenant-Architektur
 
-### Abgeschlossen (verifiziert, live)
-- [x] **R1:** Gelernte Regeln in KI-Prompt + `angewandte_regeln` im ki_log
-- [x] **R2:** Decay-respektierende Sortierung (`effektiv_gewicht`)
-- [x] **R3:** Explizite Konflikt-Priorität (Governance + `regel_konflikt`-Log)
-- [x] **R4:** Einmal-News-Injektion (Score-Liste, nicht doppelter Fließtext)
-- [x] **R5:** Ausreißer-Schutz (Anti-Regeln ab `anti_min_n`=5, ≥60% widerlegt)
-- [x] **Settings:** `settings.json` + `settings_loader.py` + API + ⚙️ Tab + Modul-Bindung + Risikowarnung
-- [x] **News-Filter:** VORFILTER (irrelevant) + NACHFILTER (Score < `news_min_score`)
-- [x] **KI-Lern-Tab:** "Was die KI lernt" (Subtab, Live-Daten)
-- [x] **Dashboard:** 8 Tabs, Auto-Refresh 30s, alle Features live
+Micro-Trader besitzt eine Tenant-fähige Anwendungsarchitektur.
 
-### Bewusst NICHT gemacht (Scope-Eingrenzung durch User)
-- Keine Kapital-Allokation (Gesamt-Budget, %-Splits) — nur KI/Lernen/Bremsen/News in Settings
-- Keine Watchlist-Erweiterung (48 Ticker fix)
-- Keine neuen Lernmodule (nur Bestandshärtung)
+Der Tenant-Kontext soll sich durch die Anwendung ziehen:
+
+```text
+Request
+  ↓
+Authentifizierung
+  ↓
+Tenant Context
+  ↓
+Autorisierung
+  ↓
+Business Logic
+  ↓
+Datenbankzugriff
+```
+
+Das System ist darauf ausgelegt, dass ein Tenant nicht auf die Daten eines anderen Tenants zugreifen kann.
+
+Wichtig ist jedoch die Unterscheidung zwischen **implementiert** und **vollständig produktionsvalidiert**.
+
+Beispielsweise kann ein System:
+
+```text
+MULTI-TENANT — VERIFIED
+
+Status:
+VERIFIED
+
+Evidence:
+test_server_security.py
+Test-Tenant T2
+
+Last Verified:
+2026-08-09
+
+Code:
+Tenant-Isolation implementiert.
+
+Tests:
+Cross-Tenant-Access-Tests erfolgreich.
+
+Production:
+Aktuell 1 Tenant.
+
+Limitation:
+Ein zweiter unabhängiger Production-Tenant wurde noch nicht
+unter produktionsähnlicher Last validiert.
+
+Confidence:
+HIGH
+```
+
+Damit bedeutet „VERIFIED“ nicht automatisch „vollständig Production-ready“.
 
 ---
 
-## 8. Quick-Start für künftige KI-Sessions
+# Security
+
+Security wird als Architekturkomponente und nicht als einzelnes Feature betrachtet.
+
+Das System enthält bzw. ist um folgende Sicherheitsmechanismen aufgebaut:
+
+* Authentifizierung
+* rollenbasierte Autorisierung
+* Tenant-Isolation
+* Rate Limiting
+* Audit Logging
+* MFA-Unterstützung
+* sichere Secret-Verwaltung
+* Freigabeprozesse
+* Four-Eyes-Prinzip
+* lokale Service-Bindings
+* Reverse Proxy
+* explizite Live-Trading-Sperren
+
+Die Security-Härtung bleibt ein fortlaufender Entwicklungsbereich.
+
+Die vollständige technische Bewertung, bekannte Lücken und Implementierungsdetails befinden sich in der Handoff-Dokumentation.
+
+---
+
+# Technologiestack
+
+| Bereich           | Technologie                                 |
+| ----------------- | ------------------------------------------- |
+| Backend           | Python / Flask                              |
+| Datenbank         | SQLite                                      |
+| Trading-Modus     | Paper Trading                               |
+| KI                | Konfigurierbare KI-Provider                 |
+| Marktdaten        | Mehrere externe Provider                    |
+| Authentifizierung | Application Authentication Layer            |
+| Security          | Rollen-/Tenant-/Rate-Limit-Kontrollen       |
+| Scheduling        | Cron / Scheduler                            |
+| Deployment        | Lokaler Service + Reverse-Proxy-Architektur |
+
+Exakte Versionen und umgebungsspezifische Konfiguration gehören in die technische Dokumentation.
+
+---
+
+# Projektstruktur
+
+Das Repository ist nach Verantwortlichkeiten getrennt und nicht als monolithische Trading-Logik aufgebaut.
+
+Vereinfachte Darstellung:
+
+```text
+project/
+├── app/
+│   ├── routes/
+│   ├── trading/
+│   ├── strategy/
+│   ├── risk/
+│   ├── ai/
+│   ├── database/
+│   ├── security/
+│   └── ...
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   ├── security/
+│   ├── trading/
+│   └── ...
+│
+├── backups/
+├── docs/
+├── config/
+└── ...
+```
+
+Die tatsächliche aktuelle Repository-Struktur ist gegenüber dieser konzeptionellen Übersicht immer maßgeblich.
+
+---
+
+# Installation
+
+> **Nur für Entwicklungs- und Forschungszwecke.**
+
+Eine typische lokale Einrichtung:
 
 ```bash
-# 1. Environment sauber setzen (WICHTIG: kein Hermes-venv!)
-cd /c/Users/goldi/projects/micro-trader
-env -u PYTHONPATH -u PYTHONHOME "/c/Program Files/Python312/python.exe" -c "import ki_decisions; print('OK')"
+git clone <repository>
+cd micro-trader
 
-# 2. Dashboard starten (nur ein Prozess!)
-# (vorher alte 5300-Prozesse via PowerShell killen, siehe 6.2)
-env -u PYTHONPATH "/c/Program Files/Python312/python.exe" dashboard.py 5300
+python -m venv .venv
+source .venv/bin/activate
 
-# 3. Cron-Test (simuliert)
-env -u PYTHONPATH "/c/Program Files/Python312/python.exe" "C:/Users/goldi/AppData/Local/hermes/scripts/micro-trader-cron.py" --mode ki
-
-# 4. Settings testen
-curl -s http://127.0.0.1:5300/api/settings | python -m json.tool
+pip install -r requirements.txt
 ```
 
-### Verifikations-Checkliste (nach Code-Änderungen)
-- [ ] `env -u PYTHONPATH` genutzt (kein venv-Leak)
-- [ ] Dashboard neu gestartet (alter 5300-Prozess gekillt?)
-- [ ] `curl /data` liefert `ki_lern_notizen > 0`, `konfidenz_cap: 60`
-- [ ] Cron-Lauf: `tail cron_pipeline.log` → "Pipeline fertig", keine Fehler
-- [ ] Bei Settings-Änderung: API POST mit `bestaetigt: true` getestet
+Anschließend müssen die erforderlichen Umgebungsvariablen und Secrets entsprechend der Projektkonfiguration eingerichtet werden.
+
+**Keine API-Keys, Passwörter oder andere Secrets in das Repository einchecken.**
 
 ---
 
-## 10. Backup-Strategie (REGEL #1)
+# Konfiguration
 
-**Prinzip:** Kein File wird editiert, ohne ZUVOR ein Backup zu machen. Jede Änderung,
-die dem System nicht gut tut, muss sofort zurückgespielt werden können.
+Die Konfiguration kann unter anderem enthalten:
 
-### 10.1 Helfer: `backup.py`
-```bash
-# Vor jeder Änderung:
-env -u PYTHONPATH "/c/Program Files/Python312/python.exe" backup.py before "R6: news-filter tuning"
+* KI-Provider-Credentials
+* Marktdaten-API-Credentials
+* Datenbankkonfiguration
+* Tenant-Konfiguration
+* Authentifizierung
+* Scheduler
+* Strategieparameter
+* Risikoparameter
 
-# ... Änderung durchführen ...
+Secrets müssen über den vorgesehenen Secret-/Konfigurationsmechanismus bereitgestellt werden.
 
-# Nach erfolgreicher Verifikation:
-env -u PYTHONPATH "/c/Program Files/Python312/python.exe" backup.py after "R6: news-filter tuning"
+Produktive Zugangsdaten dürfen niemals direkt im Quellcode gespeichert werden.
 
-# Bei Problemen – letzte Snapshots anzeigen:
-env -u PYTHONPATH "/c/Program Files/Python312/python.exe" backup.py list
+---
 
-# Zurückspielen (idx aus list, oder id-Präfix):
-env -u PYTHONPATH "/c/Program Files/Python312/python.exe" backup.py restore 0
+# Anwendung starten
+
+Der genaue Startvorgang hängt von der jeweiligen Umgebung ab.
+
+Für die lokale Entwicklung wird die konfigurierte Flask-/Application-Entry-Point verwendet.
+
+Die produktionsähnliche Architektur sollte die dokumentierte Reverse-Proxy-/Netzwerkkonfiguration verwenden und den Flask-Service nicht ungeschützt direkt ins öffentliche Internet stellen.
+
+---
+
+# Tests
+
+Die Tests sind in mehrere Bereiche aufgeteilt:
+
+```text
+Unit
+Integration
+Trading
+Risk
+Security
+Multi-Tenant
+Database
+AI
+Regression
 ```
 
-### 10.2 Was wird gesichert
-- **Vollständig:** alle `*.py`, `*.json` (außer riesige Logs >5MB), `*.html`, `*.md`, `*.cfg`
-- **Nicht im Backup** (nur live-State, zu groß): `ki_log.json`, `spec_log.json`,
-  `system_log.json`, `regel_history.json` → beim Restore bleiben diese erhalten.
-- **Speicherort:** `backups/<ZEITSTEMPEL>__<BESCHREIBUNG>/` mit `_META.json`.
+Wichtig ist nicht nur die Code Coverage, sondern das korrekte Verhalten des Systems.
 
-### 10.3 Restore-Garantie
-- Restore kopiert Dateien 1:1 zurück (shutil.copy2, timestamps erhalten).
-- Danach: Modul-Import testen (`python -c "import dashboard, ki_decisions"`).
-- Dashboard-Neustart nicht vergessen (alter 5300-Prozess killen, siehe 6.2).
+Beispiele:
 
-### 10.4 Workflow-Checkliste (pro Änderung)
-- [ ] `backup.py before "<desc>"` ausgeführt
-- [ ] Änderung durchgeführt
-- [ ] Funktionstest (Modul-Import + ggf. Cron/API)
-- [ ] Bei Fehler: `backup.py restore <id>` → sofortiger Rollback
-- [ ] Bei Erfolg: `backup.py after "<desc>"`
+* Risikolevel erzeugen das erwartete Kandidatenverhalten.
+* Nicht autorisierte Tenant-Zugriffe werden abgewiesen.
+* Orders können die Risk Engine nicht umgehen.
+* Orders können erforderliche Freigaben nicht umgehen.
+* Live Execution bleibt deaktiviert.
+* Secrets werden nicht offengelegt.
+* Paper Execution verhält sich deterministisch.
+
+Die aktuelle Testanzahl sollte nicht dauerhaft in der README festgeschrieben werden. Sie sollte aus dem jeweils aktuellen Testlauf bzw. CI-Ergebnis stammen.
 
 ---
 
-## 11. Version-Log (Changelog)
+# Bekannte Einschränkungen
 
-**Quelle:** `version.json` (Single Source of Truth). Anzeige im Dashboard-Header
-(`#versionBadge`, via `/api/version`). Bei jeder Änderung: `version.json` aktualisieren!
+Micro-Trader befindet sich aktiv in Entwicklung.
 
-| Version | Datum | Codename | Änderung |
-|---------|-------|----------|----------|
-| Version | Datum | Codename | Änderung |
-|---------|-------|----------|----------|
-| **2.25.1** | 2026-08-08 | Drawdown weg | 🚫 Drawdown-Warnungsbalken entfernt (kein Mehrwert) |
-| **2.25.0** | 2026-08-08 | Security-Hardening | 🔐 Login-Rate-Limit (5 Fails → Exp-Backoff 30s+), IP+UA im Audit-Log, Admin-Tabs 🌐 Logins (IP-Analytik/Brute-Force) + 🛡️ Sicherheit (OWASP-Checkliste: Hashing/Headers/Netzwerk/MFA) |
-| **2.24.0** | 2026-08-08 | Admin neu | 🔧 Admin-Bereich komplett neu (StufenPilot-Design): Stat-Cards, Warnungen, System-Ereignisse, Datenbestand, Audit-Suche, Trading-Pause |
-| **2.23.1** | 2026-08-08 | UI-Politur | 🎨 Landingpage-Hero (2-Spalten + Features), User-Area im Header (Avatar+Dropdown: Konto/Einstellungen/Admin/Logout), Einstellungen listenartig |
-| **2.23.0** | 2026-08-08 | Benutzerverwaltung | 👥 8 API-Routen (users/me), Einstellungen-Tabs Mein Konto + Benutzer (Admin), Rollen-Auth, 45 Tests |
-| **2.22.3** | 2026-08-08 | Landing-Login | 🏠 Landingpage mit Banner+Logo+Inline-Login (StufenPilot-Muster), route_class-Pattern-Fix (assets/reports) |
-| **2.22.2** | 2026-08-08 | Route-Fix | 🔀 / = Landingpage PUBLIC, /dashboard = AUTHENTICATED, CSP-Fonts-Fix |
-| **2.22.1** | 2026-08-08 | UTF-8 + Port | 🐛 batch_trader UTF-8-Fix, start.bat Port 5299→5300 |
-| **2.22.0** | 2026-08-08 | Server-Sicherheit | 🔒 Phasen 7–9: ROUTE_ACCESS/require_role, Secret-Schutz, 34 Tests |
-| **2.21.0** | 2026-08-07 | Spec-Upgrade | 🔥 Spec-Trader 49 Depots, Watchlist, KI-Log-Integration |
-| **2.20.0** | 2026-08-07 | 20+20+49 | 📊 Depot-Struktur Aktien/ETF/Spekulation, PDF-Report, Archiv |
-| 2.19.x | 2026-08-06 | Stabilität | 🐛 Root-Cause-Fixes, Rendite-Korrekturen, Watchdog |
-| 2.18.x | 2026-08-05 | Analyse | 📈 Analyse-Tab, Analyse-DB, News-Swap |
-| 2.17.x | 2026-08-04 | Learning | 🧠 KI-Lernmodul Multi-Timeframe, Lerneffekt |
-| 2.16.x | 2026-08-03 | Base | 📦 ETF-Rating 5 Stufen, Depot-Rollout, Börsen-Chips |
-| **2.7.0** | 2026-08-02 20:45 | Chips & Clarity | 📡 Markt-Chips (nur reale Börsen im Portfolio + Wert-Anteil%) · 💡 Settings mit natürlichen Namen + Layman-Erklärungen + Tab-Einleitungen |
+## Risk 70 — Kandidatenauswahl
 
-**Version-Bump-Regel:** Bei jeder abgeschlossenen Änderung `version.json` hochzählen
-(MAJOR.MINOR.PATCH) + `released_at` + neuen Changelog-Eintrag. Dashboard zeigt
-`vX.Y.Z · <Datum> · <Codename>` im Header (Hover = letzte 3 Changes).
+Das Zusammenspiel zwischen Budgetfilter und Positionsgröße benötigt Korrektur bzw. weitere Validierung.
+
+## KI-Learning
+
+Die Learning Engine benötigt eine stärkere Validierung, bevor gelernte Regeln als zuverlässige Trading-Erkenntnisse behandelt werden können.
+
+## Production Multi-Tenancy
+
+Die Anwendung verfügt über Tenant-Isolation, aber der Umfang der realen Multi-Tenant-Produktionsvalidierung ist derzeit begrenzt.
+
+## Security Hardening
+
+Einige Sicherheitsmechanismen benötigen weitere Härtung und breitere Tests.
+
+## Marktdaten-Persistenz
+
+Nicht jeder Marktkontext wird möglicherweise so vollständig persistiert, dass jede historische KI-Entscheidung vollständig reproduzierbar wäre.
+
+Diese Einschränkungen werden bewusst transparent dargestellt.
+
+Die vollständige technische Analyse, Reproduktion und Root-Cause-Dokumentation befindet sich im Handoff.
 
 ---
 
-## 12. Börsen-Meta-Daten (Markt-Chips)
+# Roadmap
 
-**Quelle:** `boersen.py` (Mapping Ticker→Börse) + `exchanges`-Feld in Depot-JSONs.
+Die bevorzugte Entwicklungsreihenfolge ist:
 
-Die Markt-Chips im Header zeigen **nur die Börsen, die im Portfolio wirklich vorkommen**
-(samt Wert-Anteil %). Umsetzung:
+## 1. Trading Core stabilisieren
 
-1. `engine.py:74` schreibt beim Scan `data["exchanges"] = {t: boerse_fuer_ticker(t) for t in positions}`
-   → jedes Aktien-Depot (`depot_XXX.json`) hat ein `exchanges`-Feld (Ticker→Börse).
-2. `boersen.py` liefert das Mapping:
-   - `boerse_fuer_ticker(ticker)` → Suffix-basiert (`.DE/.F` → XETRA, sonst US/NYSE/NASDAQ)
-   - `BOERSEN` → Label + Zeitzone + Öffnungszeiten pro Börse
-   - `ist_offen(boerse)` → geöffnet/geschlossen (Werktag + Handelszeit)
-3. `dashboard.py: boersen_chips()` sammelt aus allen Depots (Aktien `exchanges`, ETF, Spec)
-   die gehaltenen Börsen + berechnet **Wert-Anteil** (Summe Positionen an Börse / Gesamtwert).
-   Crypto-Ticker (BTC/ETH/etc.) → eigener "🪙 Crypto 24/7"-Chip.
-4. Frontend rendert Chips (flex-wrap): `🔴 NYSE/NASDAQ 100%` (nur reale Börsen, kein toter Chip).
+* Risk 70 korrigieren
+* Budgetlogik zentralisieren
+* doppelte Filter entfernen
+* sämtliche Risikolevel validieren
+* Behavioral Tests erweitern
 
-**Hinweis:** `exchanges` ist leer (`{}`), wenn ein Depot keine Positionen hat — dann
-wird der Ticker beim Chip-Bauen live via `boerse_fuer_ticker()` bestimmt.
+## 2. Observability verbessern
+
+* vollständige Decision IDs
+* Market Snapshots
+* Strategy Versions
+* Prompt Versions
+* Ruleset Versions
+* Model-/Provider-Tracking
+
+## 3. Reproduzierbarkeit verbessern
+
+Eine historische KI-Entscheidung sollte langfristig anhand folgender Informationen rekonstruierbar sein:
+
+```text
+Market Snapshot
++
+Strategy Version
++
+Risk Profile
++
+Ruleset Version
++
+Prompt Version
++
+Model
++
+KI-Entscheidung
++
+Execution Result
+```
+
+## 4. KI-Learning kontrollieren
+
+Zielprozess:
+
+```text
+Beobachtung
+  ↓
+Regelkandidat
+  ↓
+Backtest
+  ↓
+Paper Validation
+  ↓
+Freigabe
+  ↓
+Aktive Regel
+```
+
+## 5. Security Hardening
+
+Weiterentwicklung von:
+
+* CSRF-Schutz
+* Session Security
+* MFA
+* Recovery
+* API Scopes
+* Audit Controls
+* Tenant-Isolation-Tests
+* Security Regression Tests
+
+## 6. Vorbereitung auf Live Trading
+
+Live Trading ist **nicht einfach das nächste Feature**.
+
+Vor einer möglichen Aktivierung müssen explizite Anforderungen für:
+
+* Security
+* Risk
+* Audit
+* Reproduzierbarkeit
+* Betrieb
+* Fehlerbehandlung
+* Recovery
+* Validierung
+
+erfüllt sein.
 
 ---
 
-## 13. Settings: Natürliche Namen + Erklärungen
+# Dokumentation
 
-Alle Einstellungsfelder haben in `settings_loader.py` (`LABELS`-Map) einen
-**Anzeige-Namen** (statt technischem Pfad) + **Layman-Erklärung** (1–2 Sätze, was es bewirkt).
-Das Frontend (`dashboard.html: settingsInput/settingsBool`) rendert:
-- Fettgedruckter Name (z.B. "Max. Selbstvertrauen der KI" statt `konfidenz_cap`)
-- Graue Erklärung darunter
-- Empfohlen-Bereich als "⚖ 40–90%"
-- Tab-Einleitung (TAB_INTRO) pro Kategorie
+Die README ist bewusst als **Einstiegspunkt** gehalten.
+
+Die vollständige technische Dokumentation enthält deutlich mehr Details, unter anderem:
+
+* vollständige Architektur
+* konkrete Dateien und Funktionen
+* Datenbankschema
+* Strategielogik und Formeln
+* Risikomatrizen
+* KI-Prompts
+* Provider-Fallbacks
+* Scheduler
+* Security-Implementierung
+* historische Bugs
+* Root-Cause-Analysen
+* Tests
+* Architecture Decision Records
+* Troubleshooting
+* Betriebsprozesse
+* Zielarchitektur
+
+Empfohlene Dokumentationsstruktur:
+
+```text
+README.md
+
+docs/
+├── HANDOFF.md
+├── ARCHITECTURE.md
+├── TRADING.md
+├── RISK.md
+├── AI.md
+├── SECURITY.md
+├── DATABASE.md
+├── TESTING.md
+├── OPERATIONS.md
+├── TROUBLESHOOTING.md
+├── ADR/
+└── ROADMAP.md
+```
+
+Die Aufgabenteilung ist bewusst:
+
+> **README = Was ist Micro-Trader und warum ist es interessant?**
+
+> **Handoff = Wie funktioniert Micro-Trader tatsächlich?**
 
 ---
 
-## 14. Modul-Größen (Referenz)
+# Mitwirken
 
-| Datei | Zeilen | Rolle |
-|-------|-------|------|
-| `ki_learning.py` | 1900+ | Lern-Engine (Regeln, Scores, Kalibrierung) |
-| `ki_decisions.py` | 550 | KI-Entscheidungen + Caps/Swaps/R1/R3 |
-| `learned_rules.py` | 490 | Regelbasis CRUD + Status + Konflikte |
-| `engine.py` | 570 | Trading-Engine (Bremsen, Ausführung) |
-| `trader.py` | 560 | Basis-Trader (Indikatoren, Depot) |
-| `spec_trader.py` | 240 | Spekulations-Logik |
-| `spec_watch.py` | 280 | 48-Ticker-Watchlist (14 Kategorien) |
-| `ki_news.py` | 390 | News-Bewertung + VORFILTER |
-| `settings_loader.py` | 160 | Settings-Validierung + Risiko |
-| `dashboard.py` | 820 | Flask + 8 Tabs + Settings-API |
-| `dashboard.html` | 1800+ | Vanilla-JS UI (Glassmorphism) |
-| `micro-trader-cron.py` | (Hermes scripts) | Cron-Orchestration |
+Beiträge sollten die Trennung zwischen folgenden Bereichen erhalten:
 
-### State-Files (JSON)
-- `ki_log.json` (220 KB) — alle Entscheidungen + Lerneffekte + News
-- `learned_rules.json` (16 KB) — Regelbasis (Source of Truth)
-- `settings.json` (0.7 KB) — zentrale Einstellungen
-- `news_cache.json` — bewertete News
-- `regel_history.json` (50 KB) — Regel-Änderungshistorie
-- `system_log.json` (80 KB) — System-Log
-- `depot_XXX.json` — Aktien-Depot-State (20×)
-- `spec_log.json` (1.7 MB) — Spec-Trading-Historie
+```text
+KI
+Strategy
+Risk
+Execution
+Governance
+Database
+Security
+```
+
+Änderungen an Trading-Logik müssen geeignete Regression Tests enthalten.
+
+Änderungen an Security, Tenant-Isolation oder Order Execution müssen entsprechende Security- und Behavioral Tests enthalten.
+
+Vor Änderungen an kritischer Trading-Logik:
+
+1. aktuelle Implementierung verstehen
+2. bestehende Tests prüfen
+3. bekannte Probleme prüfen
+4. Regression Test definieren
+5. Änderung durchführen
+6. relevante Tests ausführen
+7. technische Dokumentation aktualisieren
 
 ---
 
-*Dokument erstellt: 2026-08-02. Standbild aus live laufendem System.*
-*Vorgänger-Docs: `KI-SYSTEM-DOKUMENTATION.md`, `KI-LERNEN-DETAIL.md` (älter, vor R-Phasen/Settings).*
+# Haftungsausschluss
+
+Micro-Trader ist ein Softwareentwicklungs- und Forschungsprojekt.
+
+**Diese Software stellt keine Finanzberatung dar.**
+
+Ergebnisse aus Paper Trading garantieren keine Ergebnisse im realen Handel.
+
+Marktdaten können verspätet, unvollständig oder fehlerhaft sein.
+
+KI-generierte Analysen können falsch sein.
+
+Strategien können versagen.
+
+Historische Ergebnisse sind keine Garantie für zukünftige Ergebnisse.
+
+Eine Aktivierung von Echtgeldhandel sollte erst nach einer unabhängigen technischen, sicherheitsbezogenen und risikobezogenen Validierung sowie geeigneten betrieblichen Schutzmaßnahmen erfolgen.
+
+---
+
+# Philosophie
+
+Micro-Trader basiert auf einem einfachen Prinzip:
+
+> **KI dort einsetzen, wo Analyse und Mustererkennung hilfreich sind. Deterministische Systeme dort einsetzen, wo Sicherheit, Limits und Governance erforderlich sind.**
+
+Das Ziel ist nicht, eine KI zu bauen, die ohne Einschränkungen handeln kann.
+
+Das Ziel ist ein System, bei dem:
+
+```text
+KI
+ ↓
+Analyse
+
+Strategie
+ ↓
+Struktur
+
+Risk Engine
+ ↓
+Limits
+
+Governance
+ ↓
+Berechtigung
+
+Execution
+ ↓
+Kontrollierte Aktion
+
+Audit
+ ↓
+Nachvollziehbarkeit
+```
+
+Jede wichtige Entscheidung soll langfristig erklärbar, reproduzierbar und nachvollziehbar sein.
+
+---
+
+**Projektstatus:** Aktive Entwicklung / Paper Trading
+
+**Live Trading:** Deaktiviert
