@@ -1,9 +1,27 @@
 {
-  "version": "2.38.1",
-  "build": "2026-08-09_1200",
-  "released_at": "2026-08-09 12:00",
-  "codename": "Bugfixes: Freigabe im Order-Pfad, BLOCK-Ticker, KI-Regeln wirksam (165 Tests)",
+  "version": "2.39.0",
+  "build": "2026-08-09_1300",
+  "released_at": "2026-08-09 13:00",
+  "codename": "Phase 1: Benutzer-Lebenszyklus, Sessions-GC, MFA-Pflicht, Recovery-Codes (183 Tests)",
   "changes": [
+    {
+      "version": "2.39.0",
+      "date": "2026-08-09",
+      "phase": "1",
+      "title": "Benutzerverwaltung professionalisiert (Auftrag §6)",
+      "changes": [
+        "Benutzer-Status: INVITED/ACTIVE/MFA_REQUIRED/RESTRICTED/SUSPENDED/DISABLED/DELETED; Migration alter active-bool-Daten",
+        "User-Felder: created_by, updated_at, last_login_at, last_failed_login_at, mfa_verified_at, disabled_by, disabled_at",
+        "Sessions-GC: abgelaufene Sessions werden beim Laden entfernt (Idle 30min, Absolut 8h)",
+        "Passwortaenderung widerruft ALLE Sessions (Akzeptanzkriterium §6)",
+        "MFA-Aenderung invalidiert Sessions + erzeugt Audit (mfa_enable/mfa_disable)",
+        "MFA-Pflicht fuer admin/superadmin: kritische User-Routen verlangen MFA (Redirect /setup_mfa, kein Lockout)",
+        "Recovery-Codes: 8 einmalige Codes bei MFA-Aktivierung, verify_recovery_code verbraucht",
+        "Redaction: get_user/list_users liefern nie password_hash/mfa_secret/recovery_codes (Sicherheitsluecke geschlossen)",
+        "API: /api/users* mit require_recent_mfa; create_user mit email/display_name/created_by; deactivate ueber sec.deactivate_user",
+        "Tests: Sektion 7n (+18) -> 183 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.38.1",
       "date": "2026-08-09",

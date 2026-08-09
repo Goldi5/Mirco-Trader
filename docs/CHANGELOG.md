@@ -1,3 +1,16 @@
+## [2.39.0] - 2026-08-09
+### Added (PHASE 1: Benutzerverwaltung professionalisiert — Auftrag §6)
+- **Benutzer-Status-Lebenszyklus:** `INVITED / ACTIVE / MFA_REQUIRED / RESTRICTED / SUSPENDED / DISABLED / DELETED`. Migration alter `active`-bool-Daten in `_load_users()` (admin ohne MFA → `MFA_REQUIRED`, inaktiv → `DISABLED`).
+- **Neue User-Felder:** `created_by`, `updated_at`, `last_login_at`, `last_failed_login_at`, `mfa_verified_at`, `disabled_by`, `disabled_at`, `recovery_codes`.
+- **Sessions-GC:** `_load_users()` entfernt abgelaufene Sessions (Idle > 30 min, Absolut > 8 h) — behebt unbegrenztes Session-Wachstum (vorher 422 Sessions für admin).
+- **Passwortänderung widerruft ALLE Sessions** (`change_password` → `sessions={}`, Akzeptanzkriterium §6).
+- **MFA-Änderung invalidiert Sessions + erzeugt Audit:** `enable_mfa` (mfa_verified_at, Status → ACTIVE), `disable_mfa` (Sessions geleert, Status → MFA_REQUIRED für Pflicht-Rollen), `verify_recovery_code` (Audit `mfa_recovery_used`).
+- **MFA-Pflicht für Admin/Superadmin:** `mfa_recently_verified` → False ohne MFA; `require_recent_mfa` leitet auf `/setup_mfa` (Einrichtung) bzw. `/mfa` (Reauth) um — **kein Login-Lockout**. Angewendet auf: `/admin/users`, `/admin/security`, `/api/users`, `/api/users/create`, `/api/users/<name>/role|deactivate|reset-pw|revoke`.
+- **Recovery-Codes:** 8 einmalige Codes (`RECOVERY_CODE_COUNT=8`, Basis32 ohne 0/O/1/I) bei MFA-Aktivierung; `verify_recovery_code()` verbraucht einen.
+- **Redaction (Sicherheitsfix):** `get_user()`/`list_users()` liefern nie mehr `password_hash`, `mfa_secret`, `recovery_codes` — neue `_user_view()`-Schicht; `/api/users` nutzt `mfa_enabled`/`status`/`sessions_active` statt Secrets.
+- **API:** `create_user` mit `email`/`display_name`/`created_by`; Deaktivierung über `sec.deactivate_user` (Status+disabled_by/at+Audit); Reaktivierung berechnet Status neu (MFA-Pflicht beachtet).
+- **Tests:** Sektion 7n (+18) → **183 OK, 0 FAIL**.
+
 ## [2.38.1] - 2026-08-09
 ### Fixed (Bugfix-Release: 3 vom User gemeldete Bugs)
 - **FIX 1 — Freigabe wirkt jetzt im Order-Pfad:** `validate_order_intent` prüft die Portfolio-Freigabe über `enforce_approval_trade()` (neu). Semantik: **unregulierte Ziele** (kein Freigabeeintrag) laufen weiter — der Paper-Betrieb wird nicht lahmgelegt; **explizit gesperrte / in Prüfung** stehende Portfolios blocken die Order hart. `enforce_approval()` selbst bleibt deny-by-default (Sicherheits-API, §23).

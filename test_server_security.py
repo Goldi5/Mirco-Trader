@@ -133,11 +133,21 @@ try:
     ck("/api/users ohne Auth -> 401", r.status_code == 401)
     r = c.get("/api/me")
     ck("/api/me ohne Auth -> 401", r.status_code == 401)
-    # Admin-Login
-    c.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    # MFA-Pflicht (§6): Admin-Routen verlangen MFA. Daher Admin-Test-User
+    # mit eingerichtetem MFA anlegen und als dieser einloggen.
+    ok_mfa_admin, _ = sec.create_user("__v23admin__", "AdminTest123!", role="admin")
+    us = sec._load_users()
+    us["__v23admin__"]["mfa_pending_secret"] = sec.generate_mfa_secret()
+    sec._save_users(us)
+    secret = us["__v23admin__"]["mfa_pending_secret"]
+    code = sec._totp(secret, int(time.time()))
+    ok_en, _ = sec.enable_mfa("__v23admin__", code)
+    ck("MFA-Pflicht: Admin-Test-User mit MFA", ok_en)
+    c.post("/", data={"username": "__v23admin__", "password": "AdminTest123!"})
     r = c.get("/api/me")
     j = r.get_json()
-    ck("/api/me als admin -> 200 + superadmin", r.status_code == 200 and j.get("role") == "superadmin")
+    ck("/api/me als admin -> 200 + superadmin",
+       r.status_code == 200 and (j.get("role") == "superadmin" or j.get("role") == "admin"))
     r = c.get("/api/users")
     ck("/api/users als admin -> 200", r.status_code == 200 and "users" in (r.get_json() or {}))
     # Create/409/Role/Deactivate/ResetPW/Revoke
@@ -158,8 +168,18 @@ try:
     c2.post("/", data={"username": "__v23__", "password": "NeuPass123!"})
     r = c2.get("/api/users")
     ck("Nicht-Admin /api/users -> 403/401", r.status_code in (401, 403))
+    # Admin OHNE MFA darf /api/users NICHT sehen (MFA-Pflicht §6)
+    sec.create_user("__v23nomfa__", "NoMfaTest123!", role="admin")
+    c3 = app.test_client()
+    c3.post("/", data={"username": "__v23nomfa__", "password": "NoMfaTest123!"})
+    r = c3.get("/api/users")
+    ck("Admin ohne MFA /api/users -> blocked (MFA-Pflicht)",
+       r.status_code in (302, 401, 403))
     # cleanup
-    us = sec._load_users(); us.pop("__v23__", None); sec._save_users(us)
+    us = sec._load_users()
+    for _n in ("__v23__", "__v23admin__", "__v23nomfa__"):
+        us.pop(_n, None)
+    sec._save_users(us)
 except Exception as e:
     ck("Benutzerverwaltung-API", False, str(e))
 
@@ -776,6 +796,105 @@ try:
     m15.conn.commit(); m15.close()
 except Exception as e:
     ck("Bugfixes v2.37.1", False, str(e))
+
+print("\n7n. Phase 1 (v2.39.0): Benutzer-Lebenszyklus, Sessions-GC, MFA-Pflicht, Recovery-Codes")
+try:
+    import security as sec16
+    # Setup: Test-User mit sauberem Zustand
+    us = sec16._load_users()
+    for _n in ("__lz1__", "__lz2__", "__lz3__", "__lz_admin__"):
+        us.pop(_n, None)
+    sec16._save_users(us)
+
+    # 1) Lebenszyklus-Status: user -> ACTIVE, admin -> MFA_REQUIRED
+    ok1, _ = sec16.create_user("__lz1__", "Lebenszyklus1!", role="user", created_by="__test__")
+    us = sec16._load_users()
+    ck("LZ: user startet ACTIVE", ok1 and us["__lz1__"]["status"] == "ACTIVE")
+    ck("LZ: created_by gesetzt", us["__lz1__"].get("created_by") == "__test__")
+    ok2, _ = sec16.create_user("__lz_admin__", "Lebenszyklus2!", role="admin", created_by="__test__")
+    us = sec16._load_users()
+    ck("LZ: admin startet MFA_REQUIRED", ok2 and us["__lz_admin__"]["status"] == "MFA_REQUIRED")
+
+    # 2) verify_password trackt last_login_at / last_failed_login_at
+    r_ok = sec16.verify_password("__lz1__", "Lebenszyklus1!")
+    r_bad = sec16.verify_password("__lz1__", "falsch")
+    us = sec16._load_users()
+    ck("LZ: last_login_at gesetzt", r_ok and us["__lz1__"].get("last_login_at"))
+    ck("LZ: last_failed_login_at gesetzt", not r_bad and us["__lz1__"].get("last_failed_login_at"))
+
+    # 3) Sessions: GC entfernt abgelaufene, behält aktive
+    sid_a = sec16.create_session("__lz1__", ip="127.0.0.1")
+    us = sec16._load_users()
+    us["__lz1__"]["sessions"][sid_a]["last_seen"] = int(time.time()) - 3600 * 30  # 30h alt -> idle > 30min
+    sec16._save_users(us)
+    # eine zweite, frische Session
+    sid_b = sec16.create_session("__lz1__", ip="127.0.0.1")
+    sec16._load_users()  # GC läuft beim Laden
+    us = sec16._load_users()
+    sess = us["__lz1__"]["sessions"]
+    ck("LZ: Session-GC entfernt abgelaufene", sid_a not in sess and sid_b in sess)
+
+    # 4) Passwortänderung widerruft ALLE Sessions (§6)
+    sec16.change_password("__lz1__", "NeuLebenszyklus1!")
+    us = sec16._load_users()
+    ck("LZ: Passwortaenderung widerruft Sessions", len(us["__lz1__"]["sessions"]) == 0)
+
+    # 5) MFA + Recovery-Codes
+    us = sec16._load_users()
+    us["__lz1__"]["mfa_pending_secret"] = sec16.generate_mfa_secret()
+    sec16._save_users(us)
+    secret = us["__lz1__"]["mfa_pending_secret"]
+    code = sec16._totp(secret, int(time.time()))
+    ok_mfa, _ = sec16.enable_mfa("__lz1__", code)
+    us = sec16._load_users()
+    ck("LZ: MFA aktiv + 8 Recovery-Codes", ok_mfa and us["__lz1__"]["mfa_enabled"]
+       and len(us["__lz1__"].get("recovery_codes", [])) == 8)
+    rc = us["__lz1__"]["recovery_codes"][0]
+    ok_rc = sec16.verify_recovery_code("__lz1__", rc)
+    us = sec16._load_users()
+    ck("LZ: Recovery-Code verbraucht", ok_rc and len(us["__lz1__"]["recovery_codes"]) == 7)
+
+    # 6) Redaction: get_user/list_users leaken keine Secrets (§6)
+    v = sec16.get_user("__lz1__")
+    ck("LZ: get_user redactiert (kein Hash/Secret)",
+       v is not None and "password_hash" not in v and "mfa_secret" not in v
+       and "recovery_codes" not in v)
+    vlist = sec16.list_users()
+    ck("LZ: list_users redactiert",
+       all("password_hash" not in u and "mfa_secret" not in u for u in vlist))
+
+    # 7) Deaktivierte können sich nicht anmelden (§6)
+    sec16.deactivate_user("__lz1__", "__test__")
+    us = sec16._load_users()
+    ck("LZ: deactivate -> DISABLED + disabled_by/at",
+       us["__lz1__"]["status"] == "DISABLED" and us["__lz1__"].get("disabled_by") == "__test__")
+    ck("LZ: deaktivierter kann sich nicht anmelden",
+       not sec16.verify_password("__lz1__", "NeuLebenszyklus1!"))
+
+    # 8) MFA-Pflicht: mfa_recently_verified False für Admin ohne MFA
+    ok3, _ = sec16.create_user("__lz2__", "Lebenszyklus3!", role="user")
+    sid_x = sec16.create_session("__lz2__", ip="127.0.0.1")
+    ck("LZ: User ohne MFA gilt als verifiziert",
+       sec16.mfa_recently_verified("__lz2__", sid_x))
+    ok4, _ = sec16.create_user("__lz3__", "Lebenszyklus4!", role="admin")
+    sid_y = sec16.create_session("__lz3__", ip="127.0.0.1")
+    ck("LZ: Admin ohne MFA gilt als NICHT verifiziert (Pflicht)",
+       not sec16.mfa_recently_verified("__lz3__", sid_y))
+
+    # 9) MFA-Deaktivierung invalidiert Sessions (§6)
+    sec16.create_session("__lz3__", ip="127.0.0.1")
+    sec16.disable_mfa("__lz3__", "__test__")
+    us = sec16._load_users()
+    ck("LZ: MFA-Disable widerruft Sessions",
+       len(us["__lz3__"]["sessions"]) == 0 and us["__lz3__"]["status"] == "MFA_REQUIRED")
+
+    # Cleanup
+    us = sec16._load_users()
+    for _n in ("__lz1__", "__lz2__", "__lz3__", "__lz_admin__"):
+        us.pop(_n, None)
+    sec16._save_users(us)
+except Exception as e:
+    ck("Phase 1 Lebenszyklus", False, str(e))
 
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")

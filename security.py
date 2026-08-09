@@ -840,6 +840,20 @@ ACCESS_ORDER = ["PUBLIC", "AUTHENTICATED", "ANALYST", "OPERATOR", "ADMIN", "SUPE
 MFA_REQUIRED_ROLES = ["admin", "superadmin"]
 MFA_RECOMMENDED_ROLES = ["operator"]
 
+# ─── Phase 1 (v2.39.0): Benutzer-Lebenszyklus (§6) ──────────────────────────
+USER_STATUS_INVITED = "INVITED"
+USER_STATUS_ACTIVE = "ACTIVE"
+USER_STATUS_MFA_REQUIRED = "MFA_REQUIRED"
+USER_STATUS_RESTRICTED = "RESTRICTED"
+USER_STATUS_SUSPENDED = "SUSPENDED"
+USER_STATUS_DISABLED = "DISABLED"
+USER_STATUS_DELETED = "DELETED"
+USER_STATUSES = (USER_STATUS_INVITED, USER_STATUS_ACTIVE, USER_STATUS_MFA_REQUIRED,
+                 USER_STATUS_RESTRICTED, USER_STATUS_SUSPENDED, USER_STATUS_DISABLED,
+                 USER_STATUS_DELETED)
+RECOVERY_CODE_COUNT = 8
+RECOVERY_CODE_LENGTH = 10
+
 
 # ─── User-Store (JSON, Passwörter via werkzeug pbkdf2:sha256) ────────────────
 def _load_users():
@@ -847,9 +861,61 @@ def _load_users():
         return {}
     try:
         with open(USERS_FILE, encoding="utf-8") as f:
-            return json.load(f)
+            users = json.load(f)
     except Exception:
         return {}
+    now = int(time.time())
+    changed = False
+    for u in users.values():
+        # Phase 1 (§6): Status ableiten (Migration alter 'active'-bool-Daten)
+        if not u.get("status"):
+            if not u.get("active", True):
+                u["status"] = USER_STATUS_DISABLED
+            elif (u.get("role") in MFA_REQUIRED_ROLES and not u.get("mfa_enabled")):
+                u["status"] = USER_STATUS_MFA_REQUIRED
+            else:
+                u["status"] = USER_STATUS_ACTIVE
+            changed = True
+        # Phase 1 (§6): Session-GC — abgelaufene/leere Sessions entfernen
+        sess = u.get("sessions") or {}
+        before = len(sess)
+        sess = {sid: s for sid, s in sess.items()
+                if isinstance(s, dict)
+                and now - s.get("last_seen", 0) <= SESSION_IDLE_TIMEOUT
+                and now - s.get("created", now) <= SESSION_ABS_TIMEOUT}
+        if len(sess) != before:
+            u["sessions"] = sess
+            changed = True
+    if changed:
+        _save_users(users)
+    return users
+
+
+def _user_view(u, username=""):
+    """Phase 1 (§6): Redactierter Benutzer-Datensatz für API/UI.
+    NIE password_hash / mfa_secret / recovery_codes ausgeben."""
+    if u is None:
+        return None
+    return {
+        "username": u.get("username", username),
+        "display_name": u.get("display_name", ""),
+        "email": u.get("email", ""),
+        "role": u.get("role", "user"),
+        "status": u.get("status", USER_STATUS_ACTIVE),
+        "active": bool(u.get("active", True)),
+        "created_at": u.get("created_at"),
+        "updated_at": u.get("updated_at"),
+        "last_login_at": u.get("last_login_at"),
+        "last_failed_login_at": u.get("last_failed_login_at"),
+        "mfa_enabled": bool(u.get("mfa_enabled", False)),
+        "mfa_verified_at": u.get("mfa_verified_at"),
+        "created_by": u.get("created_by"),
+        "disabled_by": u.get("disabled_by"),
+        "disabled_at": u.get("disabled_at"),
+        "sessions_active": len(u.get("sessions") or {}),
+        "last_security_action": u.get("last_security_action"),
+        "recovery_codes_left": len(u.get("recovery_codes") or []),
+    }
 
 
 def _save_users(users):
@@ -861,13 +927,17 @@ def user_exists(username):
     return username in _load_users()
 
 
-def create_user(username, password, role="user", email="", display_name=""):
-    """Legt einen Benutzer an. Gibt (ok, fehler) zurück."""
+def create_user(username, password, role="user", email="", display_name="", created_by=None):
+    """Phase 1 (§6): Legt einen Benutzer mit Lebenszyklus-Status an.
+    Gibt (ok, fehler) zurück. Admin/Superadmin starten als MFA_REQUIRED."""
     if role not in ROLES:
         return False, "Unbekannte Rolle"
     if user_exists(username):
-        return False, "Benutzer existiert bereits"
+        return False, "Benutzer existiert bereit"
     users = _load_users()
+    jetzt = datetime.utcnow().isoformat() + "Z"
+    status = (USER_STATUS_MFA_REQUIRED if role in MFA_REQUIRED_ROLES
+              else USER_STATUS_ACTIVE)
     users[username] = {
         "username": username,
         "display_name": display_name or username,
@@ -875,30 +945,48 @@ def create_user(username, password, role="user", email="", display_name=""):
         "password_hash": generate_password_hash(password, method="pbkdf2:sha256"),
         "role": role,
         "active": True,
-        "created_at": datetime.utcnow().isoformat() + "Z",
+        "status": status,
+        "created_at": jetzt,
+        "updated_at": jetzt,
         "last_login": None,
+        "last_login_at": None,
+        "last_failed_login_at": None,
         "mfa_enabled": False,
         "mfa_secret": None,
         "mfa_pending_secret": None,
+        "mfa_verified_at": None,
+        "recovery_codes": [],
+        "created_by": created_by or "system",
+        "disabled_by": None,
+        "disabled_at": None,
         "sessions": {},          # session_id -> {created, last_seen, ip}
         "last_security_action": None,
     }
     _save_users(users)
-    audit_log("user_create", username, f"Rolle={role}")
+    audit_log("user_create", username, f"Rolle={role} Status={status} by={created_by or 'system'}")
     return True, ""
 
 
 def verify_password(username, password):
     users = _load_users()
     u = users.get(username)
-    if not u or not u.get("active"):
+    if not u or not u.get("active") or u.get("status") in (
+            USER_STATUS_DISABLED, USER_STATUS_DELETED):
         return False
+    jetzt = datetime.utcnow().isoformat() + "Z"
     if check_password_hash(u.get("password_hash", ""), password):
+        u["last_login"] = jetzt
+        u["last_login_at"] = jetzt
+        u["updated_at"] = jetzt
+        _save_users(users)
         return True
+    u["last_failed_login_at"] = jetzt
+    _save_users(users)
     return False
 
 
 def change_password(username, new_password):
+    """Phase 1 (§6): Passwortänderung widerruft ALLE alten Sessions."""
     users = _load_users()
     if username not in users:
         return False
@@ -906,8 +994,12 @@ def change_password(username, new_password):
         new_password, method="pbkdf2:sha256")
     users[username]["last_security_action"] = (
         datetime.utcnow().isoformat() + "Z password_change")
+    users[username]["updated_at"] = datetime.utcnow().isoformat() + "Z"
+    # §6 Akzeptanzkriterium: Passwortänderung widerruft alte Sessions
+    users[username]["sessions"] = {}
     _save_users(users)
-    audit_log("password_change", username)
+    audit_log("password_change", username, "alle Sessions widerrufen")
+    return True
 
 
 def set_role(username, new_role, by_admin):
@@ -920,26 +1012,41 @@ def set_role(username, new_role, by_admin):
     users[username]["role"] = new_role
     users[username]["last_security_action"] = (
         datetime.utcnow().isoformat() + "Z role_change")
+    users[username]["updated_at"] = datetime.utcnow().isoformat() + "Z"
+    # Phase 1: Rollenwechsel in MFA-Pflicht-Rolle -> Status anpassen
+    if new_role in MFA_REQUIRED_ROLES and not users[username].get("mfa_enabled"):
+        users[username]["status"] = USER_STATUS_MFA_REQUIRED
+    elif users[username].get("status") == USER_STATUS_MFA_REQUIRED \
+            and users[username].get("mfa_enabled"):
+        users[username]["status"] = USER_STATUS_ACTIVE
     _save_users(users)
     audit_log("role_change", by_admin, f"user={username} {old}->{new_role}")
 
 
 def deactivate_user(username, by_admin):
+    """Phase 1 (§6): Deaktivierung mit Status, Verursacher und Zeitpunkt."""
     users = _load_users()
     if username not in users:
         return
+    jetzt = datetime.utcnow().isoformat() + "Z"
     users[username]["active"] = False
+    users[username]["status"] = USER_STATUS_DISABLED
+    users[username]["disabled_by"] = by_admin
+    users[username]["disabled_at"] = jetzt
+    users[username]["updated_at"] = jetzt
     users[username]["sessions"] = {}
     _save_users(users)
     audit_log("user_deactivate", by_admin, f"user={username}")
 
 
 def get_user(username):
-    return _load_users().get(username)
+    """Phase 1: Liefert REDACTIERTEN Datensatz (kein Hash/Secret)."""
+    return _user_view(_load_users().get(username), username)
 
 
 def list_users():
-    return list(_load_users().values())
+    """Phase 1: Liefert REDACTIERTE Benutzerliste (kein Hash/Secret)."""
+    return [_user_view(u) for u in _load_users().values()]
 
 
 # ─── MFA (TOTP RFC 6238, HMAC-SHA1 über cryptography) ────────────────────────
@@ -987,8 +1094,18 @@ def mfa_provisioning_uri(secret_b32, username, issuer="MicroTrader"):
             f"&issuer={issuer}&algorithm=SHA1&digits=6&period=30")
 
 
+def _generate_recovery_codes(count=RECOVERY_CODE_COUNT):
+    """Phase 1 (§6): 8 einmalige Recovery-Codes (Basis32, ohne 0/O/1/I)."""
+    alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+    codes = []
+    for _ in range(count):
+        codes.append("".join(secrets.choice(alphabet)
+                             for _ in range(RECOVERY_CODE_LENGTH)))
+    return codes
+
+
 def enable_mfa(username, code):
-    """Aktiviert MFA nach Bestätigung des Codes. Gibt (ok, uri_or_err)."""
+    """Phase 1 (§6): Aktiviert MFA, generiert Recovery-Codes, Status -> ACTIVE."""
     users = _load_users()
     u = users.get(username)
     if not u:
@@ -1001,20 +1118,57 @@ def enable_mfa(username, code):
     u["mfa_secret"] = pending
     u["mfa_enabled"] = True
     u["mfa_pending_secret"] = None
+    u["mfa_verified_at"] = datetime.utcnow().isoformat() + "Z"
     u["last_security_action"] = datetime.utcnow().isoformat() + "Z mfa_enable"
+    u["updated_at"] = datetime.utcnow().isoformat() + "Z"
+    if not u.get("recovery_codes"):
+        u["recovery_codes"] = _generate_recovery_codes()
+    if u["status"] == USER_STATUS_MFA_REQUIRED:
+        u["status"] = USER_STATUS_ACTIVE
     _save_users(users)
-    audit_log("mfa_enable", username)
+    audit_log("mfa_enable", username, f"{len(u['recovery_codes'])} Recovery-Codes generiert")
     return True, ""
 
 
 def disable_mfa(username, by_admin):
+    """Phase 1 (§6): Deaktiviert MFA mit Audit; entfernt Recovery-Codes."""
     users = _load_users()
     if username not in users:
         return
-    users[username]["mfa_enabled"] = False
-    users[username]["mfa_secret"] = None
+    u = users[username]
+    u["mfa_enabled"] = False
+    u["mfa_secret"] = None
+    u["mfa_pending_secret"] = None
+    u["mfa_verified_at"] = None
+    u["recovery_codes"] = []
+    u["updated_at"] = datetime.utcnow().isoformat() + "Z"
+    # MFA-Pflicht-Rollen fallen zurück auf MFA_REQUIRED
+    if u["role"] in MFA_REQUIRED_ROLES:
+        u["status"] = USER_STATUS_MFA_REQUIRED
+    u["last_security_action"] = datetime.utcnow().isoformat() + "Z mfa_disable"
+    # §6: MFA-Änderung invalidiert Sessions (Sicherheitsereignis)
+    u["sessions"] = {}
     _save_users(users)
-    audit_log("mfa_disable", by_admin, f"user={username}")
+    audit_log("mfa_disable", by_admin, f"user={username}, alle Sessions widerrufen")
+
+
+def verify_recovery_code(username, code):
+    """Phase 1 (§6): Verbraucht einen einmaligen Recovery-Code."""
+    users = _load_users()
+    u = users.get(username)
+    if not u:
+        return False
+    codes = u.get("recovery_codes") or []
+    code = code.strip().upper()
+    if code in codes:
+        codes.remove(code)
+        u["recovery_codes"] = codes
+        u["mfa_verified_at"] = datetime.utcnow().isoformat() + "Z"
+        u["updated_at"] = datetime.utcnow().isoformat() + "Z"
+        _save_users(users)
+        audit_log("mfa_recovery_used", username)
+        return True
+    return False
 
 
 # ─── Session-Management (serverseitig) ──────────────────────────────────────
@@ -1102,7 +1256,9 @@ def mfa_recently_verified(username, sid):
     if not s:
         return False
     if not u.get("mfa_enabled"):
-        return True  # kein MFA → gilt als erfüllt
+        # Phase 1 (§6): MFA-Pflicht — Admin/Superadmin ohne MFA gelten
+        # als NICHT verifiziert (kritische Routen leiten zur Einrichtung).
+        return u.get("role") not in MFA_REQUIRED_ROLES
     return (int(time.time()) - s.get("mfa_verified_at", 0)) < MFA_GRACE
 
 
@@ -1459,7 +1615,9 @@ def require_permission(permission):
 
 
 def require_recent_mfa():
-    """Decorator: Route nur mit kürzlich verifiziertem MFA (für Admin/Critical)."""
+    """Phase 1 (§6): Route nur mit MFA (Pflicht für Admin/Superadmin).
+    Ohne eingerichtetes MFA -> /setup_mfa (Einrichtung); mit MFA aber
+    abgelaufener Reauth -> /mfa (Verifikation). Kein Login-Lockout."""
     def decorator(f):
         from functools import wraps
         @wraps(f)
@@ -1468,8 +1626,13 @@ def require_recent_mfa():
             if not u:
                 from flask import redirect as _r, url_for as _u
                 return _r((_u("login") if "login" in _ALL_ROUTES else "/login"))
-            if u["role"] in MFA_REQUIRED_ROLES and not mfa_recently_verified(
-                    u["username"], _current_sid()):
+            if u["role"] not in MFA_REQUIRED_ROLES:
+                return f(*a, **kw)
+            # Rolle in MFA-Pflicht: zuerst Einrichtung, dann Reauth
+            if not u.get("mfa_enabled"):
+                from flask import redirect as _r, url_for as _u
+                return _r(_u("setup_mfa") if "setup_mfa" in _ALL_ROUTES else "/setup_mfa")
+            if not mfa_recently_verified(u["username"], _current_sid()):
                 from flask import redirect as _r, url_for as _u
                 return _r(_u("mfa_verify") if "mfa_verify" in _ALL_ROUTES else "/mfa")
             return f(*a, **kw)

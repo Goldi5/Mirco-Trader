@@ -2410,8 +2410,9 @@ def admin_system():
 
 @app.route("/admin/users")
 @sec.require_role("admin")
+@sec.require_recent_mfa()
 def admin_users():
-    """Benutzerverwaltung (StufenPilot-Design)."""
+    """Benutzerverwaltung (StufenPilot-Design). MFA-Pflicht (§6)."""
     u = sec.current_user()
     rows = ""
     for usr in sec.list_users():
@@ -2441,8 +2442,9 @@ def admin_users():
 
 @app.route("/admin/security")
 @sec.require_role("admin")
+@sec.require_recent_mfa()
 def admin_security():
-    """Security-Status: Passwort-Hashing, Headers, Netzwerk, Login-Schutz (OWASP-Checkliste)."""
+    """Security-Status: Passwort-Hashing, Headers, Netzwerk, Login-Schutz (OWASP-Checkliste). MFA-Pflicht (§6)."""
     u = sec.current_user()
     checks = []
     # 1. Passwort-Hashing
@@ -2849,44 +2851,50 @@ def _admin_actor():
 
 @app.route("/api/users", methods=["GET"])
 @sec.require_role("admin")
+@sec.require_recent_mfa()
 def api_users_list():
-    """Liste aller Benutzer (Admin)."""
+    """Liste aller Benutzer (Admin). MFA-Pflicht (§6)."""
     rows = []
-    for u in sec.list_users():  # list_users() liefert User-Dicts
+    for u in sec.list_users():  # list_users() liefert redactierte User-Views (§6)
         rows.append({
             "username": u.get("username", "?"),
             "role": u.get("role", "user"),
             "active": u.get("active", True),
-            "mfa": bool(u.get("mfa_secret")),
-            "last_login": u.get("last_login", ""),
-            "sessions": len(u.get("sessions", {}) or {}),
+            "status": u.get("status", "ACTIVE"),
+            "mfa": bool(u.get("mfa_enabled")),
+            "last_login": u.get("last_login_at", ""),
+            "sessions": u.get("sessions_active", 0),
         })
     return jsonify({"ok": True, "users": rows})
 
 
 @app.route("/api/users/create", methods=["POST"])
 @sec.require_role("admin")
+@sec.require_recent_mfa()
 def api_users_create():
-    """Neuen Benutzer anlegen (Admin)."""
+    """Neuen Benutzer anlegen (Admin). MFA-Pflicht (§6)."""
     data = request.get_json(force=True, silent=True) or {}
     name = str(data.get("username", "")).strip()
     pw = str(data.get("password", "") or "")
     role = str(data.get("role", "user")).strip() or "user"
+    email = str(data.get("email", "")).strip()
+    display = str(data.get("display_name", "")).strip()
     if not name or not pw:
         return jsonify({"ok": False, "error": "Benutzername und Passwort erforderlich"}), 400
     if len(pw) < 8:
         return jsonify({"ok": False, "error": "Passwort muss mind. 8 Zeichen haben"}), 400
     if sec.user_exists(name):
         return jsonify({"ok": False, "error": f"Benutzer '{name}' existiert bereits"}), 409
-    sec.create_user(name, pw, role)
-    sec.audit_log("user_create", _admin_actor(), f"user={name} role={role}")
+    sec.create_user(name, pw, role, email=email, display_name=display,
+                    created_by=_admin_actor())
     return jsonify({"ok": True})
 
 
 @app.route("/api/users/<name>/role", methods=["POST"])
 @sec.require_role("admin")
+@sec.require_recent_mfa()
 def api_users_role(name):
-    """Rolle eines Benutzers setzen (Admin)."""
+    """Rolle eines Benutzers setzen (Admin). MFA-Pflicht (§6)."""
     data = request.get_json(force=True, silent=True) or {}
     role = str(data.get("role", "")).strip()
     if not sec.user_exists(name):
@@ -2899,27 +2907,37 @@ def api_users_role(name):
 
 @app.route("/api/users/<name>/deactivate", methods=["POST"])
 @sec.require_role("admin")
+@sec.require_recent_mfa()
 def api_users_deactivate(name):
-    """Benutzer aktivieren/deaktivieren (Admin)."""
+    """Benutzer aktivieren/deaktivieren (Admin). MFA-Pflicht (§6)."""
     data = request.get_json(force=True, silent=True) or {}
     active = bool(data.get("active", False))
     if not sec.user_exists(name):
         return jsonify({"ok": False, "error": "Benutzer nicht gefunden"}), 404
     if name == _admin_actor():
         return jsonify({"ok": False, "error": "Du kannst dein eigenes Konto nicht deaktivieren"}), 400
-    users = sec._load_users()
-    users[name]["active"] = active
-    if not active:
-        users[name]["sessions"] = {}
-    sec._save_users(users)
-    sec.audit_log("user_activate" if active else "user_deactivate", _admin_actor(), f"user={name}")
+    if active:
+        # Phase 1: Reaktivierung setzt Status zurueck (MFA-Pflicht beachten)
+        users = sec._load_users()
+        users[name]["active"] = True
+        if users[name].get("role") in sec.MFA_REQUIRED_ROLES \
+                and not users[name].get("mfa_enabled"):
+            users[name]["status"] = sec.USER_STATUS_MFA_REQUIRED
+        else:
+            users[name]["status"] = sec.USER_STATUS_ACTIVE
+        users[name]["updated_at"] = datetime.utcnow().isoformat() + "Z"
+        sec._save_users(users)
+        sec.audit_log("user_activate", _admin_actor(), f"user={name}")
+    else:
+        sec.deactivate_user(name, _admin_actor())
     return jsonify({"ok": True})
 
 
 @app.route("/api/users/<name>/reset-pw", methods=["POST"])
 @sec.require_role("admin")
+@sec.require_recent_mfa()
 def api_users_reset_pw(name):
-    """Passwort eines Benutzers zuruecksetzen (Admin)."""
+    """Passwort eines Benutzers zuruecksetzen (Admin). MFA-Pflicht (§6)."""
     data = request.get_json(force=True, silent=True) or {}
     pw = str(data.get("password", "") or "")
     if not sec.user_exists(name):
@@ -2933,8 +2951,9 @@ def api_users_reset_pw(name):
 
 @app.route("/api/users/<name>/revoke", methods=["POST"])
 @sec.require_role("admin")
+@sec.require_recent_mfa()
 def api_users_revoke(name):
-    """Alle Sessions eines Benutzers beenden (Admin)."""
+    """Alle Sessions eines Benutzers beenden (Admin). MFA-Pflicht (§6)."""
     if not sec.user_exists(name):
         return jsonify({"ok": False, "error": "Benutzer nicht gefunden"}), 404
     sec.revoke_all_sessions(name)
