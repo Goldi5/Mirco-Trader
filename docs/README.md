@@ -1,8 +1,8 @@
 # Micro-Trader — Projekt-Dokumentation
 
-> **Version:** v2.44.0 „Calm Trading Foundation — UI-Redesign Phasen 2–5" (2026-08-09)
+> **Version:** v2.44.8 „Calm Trading Foundation — UI-Redesign Phasen 2–13 (komplett)" (2026-08-09)
 > **Status:** Produktiv, Cron läuft, PAPER_ONLY (kein Echtgeld)
-> **Letztes Update:** 2026-08-09 18:00
+> **Letztes Update:** 2026-08-09 21:15
 
 ## 📌 Was ist das?
 Papier-Trading-System mit KI-Lernen. 3 Kategorien:
@@ -11,6 +11,17 @@ Papier-Trading-System mit KI-Lernen. 3 Kategorien:
 - **Spekulation:** 49 Watchlist-Depots (à $100 Start, Leverage/Volatility/Meme/etc.)
 
 Plus KI-Lernmodul (learned_rules.json), Skill-Sync, Audit-Trail, **Tagesauswertungs-PDF** (täglich 22:00 via Pipeline).
+
+## 🎨 UI-Designsystem (Calm Trading Command Center)
+- **Hintergrund:** `#f7f9fc` (hell), **Flächen:** opak weiß (`#ffffff`), **kein** Glassmorphismus
+- **Primärfarbe:** `#2563eb` (Slate-Blau), Dark-Varianten `#1d4ed8`
+- **Topbar:** dunkel, 56px, Logo + 8 Hauptbereiche + Suche + User-Menü
+- **8 Hauptbereiche:** Übersicht, Portfolios, Märkte, Analyse, Aktivität, KI, System, Einstellungen
+- **Drawer:** Slide-in (480px rechts) für Depot-Details, Escape-Close, ARIA `role="dialog"`
+- **Max. 4 KPI-Karten** auf Startseite, **max. 6 Portfolio-Karten** in der Übersicht
+- **Responsive:** Media-Queries 1200/1024/768/480px; Tabellen scrollen horizontal
+- **Accessibility:** Skip-Link, `role="main"`, `role="button"` + Keyboard-Handler auf Karten, `:focus-visible`-Outline
+- **Design-Regel:** ausschließlich UI/Layout/IA geändert — **keine** Trading-/KI-/Risk-/Security-/Tenant-Logik
 
 ## 🚀 Schnellstart
 ```bash

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.44.8] - 2026-08-09
+### Verified (UI-Redesign Phase 13: Regression + visuelle Prüfung)
+- **Regression**: Alle 8 Bereiche (Übersicht, Portfolios, Märkte, Analyse, Aktivität, KI, System, Einstellungen) + Portfolios-„Alle" rendern fehlerfrei, keine JS-Console-Fehler
+- **Drawer**: öffnet bei Karten-Klick, schließt bei Escape, max. 6 Karten in Portfolios-Übersicht
+- **Visuell verifiziert** (Browser-Screenshot): dunkle 56px-Topbar, weiße opake Flächen, Slate-Blau (#2563eb) als Akzent, ruhige Hierarchie, **kein** Glassmorphismus
+- **/data** liefert strukturierte Depots (depots=20, etf=20, spec=49)
+
 ## [2.44.7] - 2026-08-09
 ### Added (UI-Redesign Phase 12: Accessibility)
 - **Skip-Link** („Zum Hauptinhalt springen", bei Fokus sichtbar)
