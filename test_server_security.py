@@ -1347,6 +1347,44 @@ try:
 except Exception as e:
     ck("Phase 5 Shadow->Paper-Freigabe", False, str(e))
 
+# ─── Phase 9 (S19-P9): Provider-Connection Status-Workflow + Secret-Rotation ─
+print("\n9p. PHASE 9: Provider-Status + Secret-Rotation")
+try:
+    import db as db9
+    m9 = db9.MTDB()
+    tid9 = 1
+    # Connection anlegen (Legacy-Status 'aktiv')
+    m9.provider_connection_add(tid9, "MARKETDATA", "TestProvider", "PAPER", "read",
+                               f"sec:test_{tid9}", created_by=1)
+    conns9 = m9.provider_connection_list(tid9)
+    cid9 = conns9[-1]["id"]
+    ck("P9: Connection angelegt (status=aktiv)", conns9[-1]["status"] in ("aktiv", "CONFIGURED"))
+    # Disable (aktiv -> DISABLED erlaubt)
+    d9 = m9.provider_connection_disable(cid9, tid9)
+    ck("P9: Disable aktiv->DISABLED ok", d9["ok"] and d9["new"] == "DISABLED")
+    # Illegaler Sprung DISABLED -> HEALTHY blocked
+    bad9 = m9.provider_connection_set_status(cid9, tid9, "HEALTHY")
+    ck("P9: Illegaler Sprung DISABLED->HEALTHY blockiert", not bad9["ok"])
+    # Re-enable
+    e9 = m9.provider_connection_enable(cid9, tid9)
+    ck("P9: Enable DISABLED->CONFIGURED ok", e9["ok"] and e9["new"] == "CONFIGURED")
+    # Cross-Tenant-Block (tid=999 darf cid9 nicht aendern)
+    cross9 = m9.provider_connection_disable(cid9, 999)
+    ck("P9: Cross-Tenant Disable blockiert", not cross9["ok"])
+    # Delete
+    del9 = m9.provider_connection_delete(cid9, tid9)
+    ck("P9: Delete ok", del9["ok"])
+    # Secret-Rotation + Redaction
+    sec9 = __import__("security")
+    sec9.secret_set(tid9, "API_TEST9", "oldsecretAAAA")
+    rot9 = m9.secret_rotate(tid9, "API_TEST9", "newsecretBBBB")
+    ck("P9: Secret-Rotation ok", rot9["ok"] and rot9["last4"] == "BBBB")
+    ck("P9: Klartext NICHT in Antwort", "newsecretBBBB" not in str(rot9))
+    ck("P9: last4 nur letzte 4", m9.secret_last4(tid9, "API_TEST9") == "****BBBB")
+    m9.close()
+except Exception as e9:
+    ck("Phase 9 Provider-Status + Secret-Rotation", False, str(e9))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

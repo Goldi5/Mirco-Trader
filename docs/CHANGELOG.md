@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.45.0] - 2026-08-10
+### Added (Platform Expansion §19-Punkt 9: Secret-/Connection-Manager)
+- **Provider-Connection Status-Workflow** (db.py): `PROVIDER_CONN_STATES` (UNCONFIGURED/CONFIGURED/TESTING/HEALTHY/DEGRADED/FAILED/DISABLED/EXPIRED) + `PROVIDER_CONN_TRANSITIONS` (Guard gegen illegale Sprünge) + Legacy-Compat (`aktiv`/`fehler` gemapped)
+- **Tenant-scoped Connection-Operationen** (db.py): `provider_connection_get`, `set_status`, `disable`, `enable`, `delete` (alle tenant_id-geprüft, Cross-Tenant geblockt)
+- **Secret-Rotation** (db.py): `secret_rotate` (neuert Wert, Audit-fähig), `secret_last4` (nur letzte 4 Zeichen, niemals Klartext)
+- **API-Routen** (dashboard.py): `/api/providers/disable|enable|delete|status/<id>`, `/api/secrets/rotate` (alle TENANT_ADMIN, in ROUTE_ACCESS registriert)
+- **Audit**: alle Provider/Secret-Operationen via `sec.audit_log` (kein Klartext/Secret im Log)
+- **Tests**: 9 neue P9-Tests (Status-Transition, Illegal-Sprung-Block, Cross-Tenant-Block, Rotation, Redaction) → **282 OK / 0 FAIL**
+- **Doku**: PROVIDER-MANAGEMENT.md, SECRET-CONNECTION-MANAGEMENT.md (§20)
+
+### Security
+- Kein Klartext-Secret in API-Responses (nur `last4`), keine Secrets in Logs/Audit
+- Provider-Operationen strikt tenant-scoped (Cross-Tenant-Angriff blockiert)
+
 ## [2.44.9] - 2026-08-09
 ### Added (UI-Redesign Phase 15: Feinschliff pro Bereich)
 - **Badge-Konsistenz** (Portfolios-Übersicht): Modus/Status-Badges auf einheitliches `.badge-modus` (grau/Slate) + `.badge-modus-active` (Slate-Blau) umgestellt — kein rotes `badge-meme` mehr für LIVE/Gesperrt

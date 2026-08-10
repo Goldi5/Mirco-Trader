@@ -472,6 +472,82 @@ class MTDB:
             "last_error = ?, status = ? WHERE id = ?",
             (err, "aktiv" if ok else "fehler", conn_id))
         self.conn.commit()
+    # ── PHASE 9 (S19-P9): Provider-Connection-Status-Workflow ──
+    PROVIDER_CONN_STATES = (
+        "UNCONFIGURED", "CONFIGURED", "TESTING", "HEALTHY",
+        "DEGRADED", "FAILED", "DISABLED", "EXPIRED",
+    )
+    PROVIDER_CONN_TRANSITIONS = {
+        # Legacy-States (deutsch) -> englisches ENUM-Mapping (Backward-Compat)
+        "aktiv":        {"DISABLED", "TESTING", "CONFIGURED"},
+        "fehler":       {"DISABLED", "TESTING", "CONFIGURED"},
+        "UNCONFIGURED": {"CONFIGURED", "DISABLED"},
+        "CONFIGURED":   {"TESTING", "DISABLED", "EXPIRED"},
+        "TESTING":       {"HEALTHY", "DEGRADED", "FAILED", "DISABLED"},
+        "HEALTHY":       {"TESTING", "DEGRADED", "FAILED", "DISABLED", "EXPIRED"},
+        "DEGRADED":      {"TESTING", "HEALTHY", "FAILED", "DISABLED", "EXPIRED"},
+        "FAILED":        {"TESTING", "DISABLED", "CONFIGURED", "EXPIRED"},
+        "DISABLED":      {"CONFIGURED", "UNCONFIGURED", "aktiv"},
+        "EXPIRED":       {"CONFIGURED", "DISABLED"},
+    }
+
+    def provider_connection_get(self, conn_id, tenant_id=None):
+        q = "SELECT * FROM provider_connections WHERE id = ?"
+        pa = [conn_id]
+        if tenant_id is not None:
+            q += " AND tenant_id = ?"
+            pa.append(tenant_id)
+        r = self.conn.execute(q, pa).fetchone()
+        return dict(r) if r else None
+
+    def provider_connection_set_status(self, conn_id, tenant_id, new_status):
+        if new_status not in self.PROVIDER_CONN_STATES:
+            return {"ok": False, "reason": f"Unbekannter Status: {new_status}"}
+        cur = self.provider_connection_get(conn_id, tenant_id)
+        if not cur:
+            return {"ok": False, "reason": "Verbindung nicht gefunden (tenant-scoped)"}
+        old = cur["status"]
+        allowed = self.PROVIDER_CONN_TRANSITIONS.get(old, set())
+        if new_status not in allowed:
+            return {"ok": False, "reason": f"Transition {old} -> {new_status} nicht erlaubt"}
+        self.conn.execute(
+            "UPDATE provider_connections SET status = ?, updated_at = datetime('now') "
+            "WHERE id = ? AND tenant_id = ?",
+            (new_status, conn_id, tenant_id))
+        self.conn.commit()
+        return {"ok": True, "old": old, "new": new_status}
+
+    def provider_connection_disable(self, conn_id, tenant_id):
+        return self.provider_connection_set_status(conn_id, tenant_id, "DISABLED")
+
+    def provider_connection_enable(self, conn_id, tenant_id):
+        return self.provider_connection_set_status(conn_id, tenant_id, "CONFIGURED")
+
+    def provider_connection_delete(self, conn_id, tenant_id):
+        cur = self.provider_connection_get(conn_id, tenant_id)
+        if not cur:
+            return {"ok": False, "reason": "Verbindung nicht gefunden (tenant-scoped)"}
+        self.conn.execute(
+            "DELETE FROM provider_connections WHERE id = ? AND tenant_id = ?",
+            (conn_id, tenant_id))
+        self.conn.commit()
+        return {"ok": True, "deleted": conn_id}
+
+    # ── PHASE 9 (S19-P9): Secret-Rotation (tenant-isolated) ──
+    def secret_rotate(self, tenant_id, secret_key, new_secret_value):
+        existing = self.secret_get(tenant_id, secret_key)
+        if existing is None:
+            return {"ok": False, "reason": "Secret existiert nicht (setze es zuerst)"}
+        self.secret_set(tenant_id, secret_key, new_secret_value)
+        return {"ok": True, "rotated": secret_key,
+                "last4": new_secret_value[-4:] if new_secret_value else "****"}
+
+    def secret_last4(self, tenant_id, secret_key):
+        v = self.secret_get(tenant_id, secret_key)
+        if v is None:
+            return None
+        return "****" + (v[-4:] if v else "")
+
 
     # ── PHASE 5: Trading-Modi-Zustandsmaschine (Sektion 8) ──
     TRADING_MODES = ("SHADOW", "PAPER", "LIVE_REQUESTED", "LIVE_APPROVED",

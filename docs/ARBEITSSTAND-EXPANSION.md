@@ -52,7 +52,7 @@ BrokerProvider/PaperBrokerAdapter, Vier-Augen, 3 Doku-Dateien).
 | §19-Punkt | Status | Hinweise |
 |---|---|---|
 | 2. **Bekannte Fehler** | 🔜 NÄCHSTER | Risk-70-Filter: bereits pos_size-basiert gefixt (batch_trader Z142). BLOCK-Matching-Bug: `enforce_rules` (security.py Z427) blockiert bei `BLOCK:manuell gesperrt` pauschal ALLE Ticker (Over-Blocking) — muss geprüft/korrigiert werden. 2. Tenant: nur in Tests (T2), nicht Production |
-| 9. Secret-/Connection-Manager | OFFEN | secret_store + provider_connections existieren; Rotation/Status-Ausbau offen |
+| 9. **Secret-/Connection-Manager** | ✅ ABGESCHLOSSEN (v2.45.0) | Status-Workflow + Rotation + Redaction + tenant-scoped APIs; 9 P9-Tests; PROVIDER-MANAGEMENT.md + SECRET-CONNECTION-MANAGEMENT.md |
 | 10. Datenprovider-Abstraktion | OFFEN | MarketSnapshot-Interface fehlt (Trading-Core hängt direkt an yfinance etc.) |
 | 11. Paper-/Simulator-Broker | TEILWEISE | PaperBrokerAdapter existiert; Sandbox-Broker fehlt |
 | 12. Order-Intent- und Risk-Integration | TEILWEISE | create/validate_order_intent existieren; 18-Punkte-Checkliste (§13) nicht vollständig |

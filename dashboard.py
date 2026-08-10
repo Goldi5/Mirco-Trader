@@ -1609,6 +1609,95 @@ def api_providers_test(conn_id):
         return {"error": str(e)}, 500
 
 
+# ── PHASE 9 (S19-P9): Provider-Connection Status-Workflow (tenant-scoped) ──
+@app.route("/api/providers/disable/<int:conn_id>", methods=["POST"])
+def api_providers_disable(conn_id):
+    import security as _sec
+    if not _sec.current_user():
+        return {"error": "nicht eingeloggt"}, 401
+    tid = _get_tid()
+    from db import MTDB
+    m = MTDB()
+    r = m.provider_connection_disable(conn_id, tid)
+    m.close()
+    if not r["ok"]:
+        return {"error": r["reason"]}, 400
+    sec.audit_log("provider_disable", str(conn_id), f"{r.get('old')} -> {r.get('new')}")
+    return {"ok": True, "result": r}
+
+
+@app.route("/api/providers/enable/<int:conn_id>", methods=["POST"])
+def api_providers_enable(conn_id):
+    import security as _sec
+    if not _sec.current_user():
+        return {"error": "nicht eingeloggt"}, 401
+    tid = _get_tid()
+    from db import MTDB
+    m = MTDB()
+    r = m.provider_connection_enable(conn_id, tid)
+    m.close()
+    if not r["ok"]:
+        return {"error": r["reason"]}, 400
+    sec.audit_log("provider_enable", str(conn_id), f"{r.get('old')} -> {r.get('new')}")
+    return {"ok": True, "result": r}
+
+
+@app.route("/api/providers/delete/<int:conn_id>", methods=["POST"])
+def api_providers_delete(conn_id):
+    import security as _sec
+    if not _sec.current_user():
+        return {"error": "nicht eingeloggt"}, 401
+    tid = _get_tid()
+    from db import MTDB
+    m = MTDB()
+    r = m.provider_connection_delete(conn_id, tid)
+    m.close()
+    if not r["ok"]:
+        return {"error": r["reason"]}, 400
+    sec.audit_log("provider_delete", str(conn_id))
+    return {"ok": True, "result": r}
+
+
+@app.route("/api/providers/status/<int:conn_id>", methods=["POST"])
+def api_providers_status(conn_id):
+    import security as _sec
+    if not _sec.current_user():
+        return {"error": "nicht eingeloggt"}, 401
+    tid = _get_tid()
+    new_status = request.form.get("status") or (request.json.get("status") if request.is_json else "")
+    from db import MTDB
+    m = MTDB()
+    r = m.provider_connection_set_status(conn_id, tid, new_status)
+    m.close()
+    if not r["ok"]:
+        return {"error": r["reason"]}, 400
+    sec.audit_log("provider_status", str(conn_id), f"{r.get('old')} -> {r.get('new')}")
+    return {"ok": True, "result": r}
+
+
+@app.route("/api/secrets/rotate", methods=["POST"])
+def api_secrets_rotate():
+    import security as _sec
+    u = _sec.current_user()
+    if not u or _sec.effective_role(u) not in ("tenant_admin", "admin", "superadmin"):
+        return {"error": "keine Berechtigung"}, 403
+    tid = _get_tid()
+    skey = request.form.get("key") or (request.json.get("key") if request.is_json else "")
+    sval = request.form.get("value") or (request.json.get("value") if request.is_json else "")
+    if not skey or not sval:
+        return {"error": "key und value erforderlich"}, 400
+    from db import MTDB
+    m = MTDB()
+    r = m.secret_rotate(tid, skey, sval)
+    m.close()
+    if not r["ok"]:
+        return {"error": r["reason"]}, 400
+    sec.audit_log("secret_rotate", str(skey), "None -> rotated")
+    # NIEMALS Klartext zurueckgeben - nur last4
+    return {"ok": True, "rotated": skey, "last4": r.get("last4")}
+
+
+
 # ── PHASE 8: Secret-Store (tenant-isoliert, kein global .env) ──
 @app.route("/api/secrets", methods=["GET"])
 def api_secrets_list():
