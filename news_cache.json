@@ -1,31 +1,98 @@
 {
-  "zeit": "2026-08-10T17:47:18.766755",
+  "zeit": "2026-08-10T17:49:14.019762",
   "total": 55,
-  "relevant": 34,
+  "relevant": 48,
+  "irrelevant": 1,
   "headlines": [
     {
-      "title": "17 S&P 500 companies with growing revenue and profit margins \u2014 and some of their stocks are cheap",
+      "title": "17 S&P 500 companies with growing revenue and profit margins — and some of their stocks are cheap",
       "link": "https://www.marketwatch.com/story/17-s-p-500-companies-with-growing-revenue-and-profit-margins-and-some-of-their-stocks-are-cheap-e7c7fa14?mod=mw_rss_topstories",
       "date": "Mon, 10 Aug 2026 15:35:00 GMT",
       "topics": [
-        "market"
+        "markt"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
-      "title": "\u2018I want her to choose the best strategy\u2019: My wife\u2019s Social Security is just $900. Should she claim spousal benefit at 62?",
+      "title": "SpaceX’s stock moves above its IPO price for the first time in almost a month",
+      "link": "https://www.marketwatch.com/story/spacexs-stock-moves-above-its-ipo-price-for-the-first-time-in-almost-a-month-fc3f91b7?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 15:20:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "The size of the American workforce has fallen by over 1 million people in the past year. Here’s what’s going on.",
+      "link": "https://www.marketwatch.com/story/the-size-of-the-american-workforce-has-fallen-by-over-1-million-people-in-the-past-year-heres-whats-going-on-b8141aa3?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 15:00:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "‘I want her to choose the best strategy’: My wife’s Social Security is just $900. Should she claim spousal benefit at 62?",
       "link": "https://www.marketwatch.com/story/i-want-her-to-choose-the-best-strategy-my-wifes-social-security-is-just-900-should-she-claim-spousal-benefit-at-62-e3ef621d?mod=mw_rss_topstories",
       "date": "Mon, 10 Aug 2026 15:00:00 GMT",
       "topics": [
         "regulation",
-        "tech"
+        "tech",
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
-      "title": "The stocks of these \u2018toll takers\u2019 could be the AI boom\u2019s next big winners",
+      "title": "Here’s when Elon Musk’s Starlink internet is worth the steep monthly price — and $350 startup cost",
+      "link": "https://www.marketwatch.com/story/heres-when-elon-musks-starlink-internet-is-worth-the-steep-monthly-price-and-350-startup-cost-53735d59?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 14:51:00 GMT",
+      "topics": [],
+      "tickers": [
+        "MU"
+      ]
+    },
+    {
+      "title": "Taylor Farms recalls jalapeño-based foods in 26 states amid ongoing salmonella outbreak",
+      "link": "https://www.marketwatch.com/story/taylor-farms-recalls-jalapeno-based-foods-in-26-states-amid-ongoing-salmonella-outbreak-f873657b?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 14:41:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Is $1 million enough for a household to retire? The answer keeps changing.",
+      "link": "https://www.marketwatch.com/story/is-1-million-enough-for-a-household-to-retire-the-answer-keeps-changing-aee84a83?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 14:30:00 GMT",
+      "topics": [
+        "earnings"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "The stocks of these ‘toll takers’ could be the AI boom’s next big winners",
       "link": "https://www.marketwatch.com/story/the-stocks-of-these-toll-takers-could-be-the-ai-booms-next-big-winners-ae1081f1?mod=mw_rss_topstories",
       "date": "Mon, 10 Aug 2026 14:28:00 GMT",
       "topics": [
         "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Powerball jackpot climbs to $905 million. What you’d pocket after taxes, and what to do with the rest.",
+      "link": "https://finance.yahoo.com/personal-finance/banking/article/powerball-jackpot-climbs-to-905-million-what-youd-pocket-after-taxes-and-what-to-do-with-the-rest-154401967.html",
+      "date": "2026-08-10T15:44:01Z",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -35,23 +102,42 @@
       "topics": [
         "inflation",
         "tech",
-        "market"
+        "markt"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
-      "title": "2 Energy Dividend Stocks to Buy -- and the Risk Behind Each Payout",
-      "link": "https://finance.yahoo.com/energy/articles/2-energy-dividend-stocks-buy-153500100.html",
-      "date": "2026-08-10T15:35:00Z",
-      "topics": [
-        "energy"
+      "title": "'An unprecedented boom': Corporate profits are on pace for fastest growth since 2021",
+      "link": "https://finance.yahoo.com/markets/article/an-unprecedented-boom-corporate-profits-are-on-pace-for-fastest-growth-since-2021-152552912.html",
+      "date": "2026-08-10T15:25:52Z",
+      "topics": [],
+      "tickers": [
+        "F",
+        "FAS"
       ]
     },
     {
-      "title": "Record Backlog Powers NRC Health\u2019s (NRC) Upward Potential",
+      "title": "Record Backlog Powers NRC Health’s (NRC) Upward Potential",
       "link": "https://finance.yahoo.com/markets/stocks/articles/record-backlog-powers-nrc-health-153446918.html",
       "date": "2026-08-10T15:34:46Z",
       "topics": [
-        "geopolitics"
+        "geopolitik"
+      ],
+      "tickers": [
+        "BAC"
+      ]
+    },
+    {
+      "title": "Daily – Vickers Top Buyers & Sellers for 08/10/2026",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_47864_TopBottomInsiderActivity_1786362180000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-10T11:43:00Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -60,14 +146,27 @@
       "date": "2026-08-10T13:56:05Z",
       "topics": [
         "tech"
+      ],
+      "tickers": [
+        "META"
       ]
     },
     {
-      "title": "Daily \u2013 Vickers Top Buyers & Sellers for 08/10/2026",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47864_TopBottomInsiderActivity_1786362180000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-10T11:43:00Z",
+      "title": "2 Energy Dividend Stocks to Buy -- and the Risk Behind Each Payout",
+      "link": "https://finance.yahoo.com/energy/articles/2-energy-dividend-stocks-buy-153500100.html",
+      "date": "2026-08-10T15:35:00Z",
       "topics": [
-        "tech"
+        "energy"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "‘Massive Upgrade Cycle’ Coming – Ignore Memory Costs Panic and Buy Apple (AAPL)?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/massive-upgrade-cycle-coming-ignore-152241666.html",
+      "date": "2026-08-10T15:22:41Z",
+      "topics": [],
+      "tickers": [
+        "AAPL"
       ]
     },
     {
@@ -75,7 +174,19 @@
       "link": "https://finance.yahoo.com/markets/crypto/articles/bitmine-buys-another-7-391-152200064.html",
       "date": "2026-08-10T15:22:00Z",
       "topics": [
-        "crypto"
+        "krypto"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Daily – Vickers Top Insider Picks for 08/10/2026",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_47863_InsiderActivity_1786362180000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-10T11:43:00Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -84,14 +195,16 @@
       "date": "2026-08-10T15:05:07Z",
       "topics": [
         "earnings"
-      ]
+      ],
+      "tickers": []
     },
     {
-      "title": "Daily \u2013 Vickers Top Insider Picks for 08/10/2026",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47863_InsiderActivity_1786362180000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-10T11:43:00Z",
-      "topics": [
-        "tech"
+      "title": "The Mag 7 Face-Off: Only 2 Come Out on Top",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/mag-7-face-off-only-153022874.html",
+      "date": "2026-08-10T15:30:22Z",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -99,8 +212,9 @@
       "link": "https://finance.yahoo.com/energy/articles/japex-doubles-down-u-shale-150441995.html",
       "date": "2026-08-10T15:04:41Z",
       "topics": [
-        "market"
-      ]
+        "markt"
+      ],
+      "tickers": []
     },
     {
       "title": "Emerging Currencies Weaken as Iran Deal Remains Out of Sight",
@@ -108,6 +222,18 @@
       "date": "Mon, 10 Aug 2026 04:25:49 GMT",
       "topics": [
         "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "RocketLab Rises on Space Interest; Moderna Moves on Flu Shot | Stock Movers",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/rocketlab-up-on-space-interest-moderna-flu-shot-video",
+      "date": "Mon, 10 Aug 2026 15:12:36 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -115,10 +241,11 @@
       "link": "https://www.bloomberg.com/news/articles/2026-08-10/ibm-turns-to-canadian-bond-market-for-first-time-since-2012",
       "date": "Mon, 10 Aug 2026 15:05:12 GMT",
       "topics": [
-        "market"
+        "markt"
       ],
       "tickers": [
-        "F"
+        "F",
+        "DIA"
       ]
     },
     {
@@ -127,7 +254,10 @@
       "date": "Sun, 09 Aug 2026 22:02:45 GMT",
       "topics": [
         "energy",
-        "market"
+        "markt"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -135,17 +265,19 @@
       "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-high-grade-bond-market-sees-the-most-issuers-since-january",
       "date": "Mon, 10 Aug 2026 15:02:32 GMT",
       "topics": [
-        "market"
-      ]
+        "markt"
+      ],
+      "tickers": []
     },
     {
-      "title": "Stocks Churn as\u00a0Oil\u00a0Advance Boosts Treasury Yields: Markets Wrap",
+      "title": "Stocks Churn as Oil Advance Boosts Treasury Yields: Markets Wrap",
       "link": "https://www.bloomberg.com/news/articles/2026-08-09/stock-market-today-dow-s-p-live-updates",
       "date": "Sun, 09 Aug 2026 22:11:01 GMT",
       "topics": [
         "energy",
-        "market"
-      ]
+        "markt"
+      ],
+      "tickers": []
     },
     {
       "title": "Barrick Chairman's Planned Overhaul Meets Investor Backlash",
@@ -153,6 +285,18 @@
       "date": "Sun, 09 Aug 2026 12:01:32 GMT",
       "topics": [
         "tech"
+      ],
+      "tickers": [
+        "BAC"
+      ]
+    },
+    {
+      "title": "Taylor Farms Pulls Products Over Salmonella Concerns",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/taylor-farms-pulls-products-over-salmonella-concerns-video",
+      "date": "Mon, 10 Aug 2026 14:48:59 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -162,6 +306,9 @@
       "topics": [
         "tech",
         "energy"
+      ],
+      "tickers": [
+        "MU"
       ]
     },
     {
@@ -169,14 +316,14 @@
       "link": "https://www.bloomberg.com/news/articles/2026-08-10/french-trader-sucden-warns-of-sugar-oversupply-as-futures-rally",
       "date": "Mon, 10 Aug 2026 14:23:34 GMT",
       "topics": [
-        "geopolitics"
+        "geopolitik"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Energy Veteran Peter Abdo to Lead UK\u2019s Grain LNG From October",
+      "title": "Energy Veteran Peter Abdo to Lead UK’s Grain LNG From October",
       "link": "https://www.bloomberg.com/news/articles/2026-08-10/energy-veteran-peter-abdo-to-lead-uk-s-grain-lng-from-october",
       "date": "Mon, 10 Aug 2026 14:13:43 GMT",
       "topics": [
@@ -193,7 +340,8 @@
       "date": "Mon, 10 Aug 2026 03:26:41 GMT",
       "topics": [
         "tech"
-      ]
+      ],
+      "tickers": []
     },
     {
       "title": "US Stocks Open Flat as Focus Turns to Chipmaker Earnings, CPI",
@@ -214,14 +362,18 @@
       "date": "Mon, 10 Aug 2026 13:57:36 GMT",
       "topics": [
         "energy"
-      ]
+      ],
+      "tickers": []
     },
     {
       "title": "Weak Jobs Report Does Not Eliminate Prospects of Interest Rate Rise",
       "link": "https://www.nytimes.com/2026/08/07/business/economy/jobs-report-interest-rates-fed.html",
       "date": "Fri, 07 Aug 2026 14:24:49 +0000",
       "topics": [
-        "interest rate"
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -229,7 +381,10 @@
       "link": "https://www.nytimes.com/2026/08/07/business/economy/heres-the-latest.html",
       "date": "Fri, 07 Aug 2026 18:35:32 +0000",
       "topics": [
-        "market"
+        "markt"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -237,7 +392,28 @@
       "link": "https://www.nytimes.com/2026/08/06/us/politics/trump-tariffs-solar-panels.html",
       "date": "Thu, 06 Aug 2026 21:53:18 +0000",
       "topics": [
-        "geopolitics"
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "How Malta Became a Tax Haven for Crocs and Other U.S. Companies",
+      "link": "https://www.nytimes.com/2026/08/05/business/economy/crocs-malta-tax-haven.html",
+      "date": "Wed, 05 Aug 2026 18:38:58 +0000",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "What Are Companies Getting for All That A.I. Spending?",
+      "link": "https://www.nytimes.com/2026/08/03/business/economy/ai-spending-tokenomics.html",
+      "date": "Mon, 03 Aug 2026 18:56:22 +0000",
+      "topics": [],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -245,7 +421,7 @@
       "link": "https://www.nytimes.com/2026/07/31/business/economy/inflation-fed-dissent-interest-rates.html",
       "date": "Fri, 31 Jul 2026 16:16:55 +0000",
       "topics": [
-        "interest rate",
+        "zinsen",
         "inflation"
       ],
       "tickers": [
@@ -253,11 +429,11 @@
       ]
     },
     {
-      "title": "Bond Investors\u2019 Inflation Angst Rises on Fed\u2019s Lack of Guidance",
+      "title": "Bond Investors’ Inflation Angst Rises on Fed’s Lack of Guidance",
       "link": "https://www.nytimes.com/2026/07/30/business/federal-reserve-warsh-bonds.html",
       "date": "Thu, 30 Jul 2026 19:40:58 +0000",
       "topics": [
-        "interest rate",
+        "zinsen",
         "inflation"
       ],
       "tickers": [
@@ -265,12 +441,69 @@
       ]
     },
     {
-      "title": "Trump\u2019s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
+      "title": "Trump’s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
       "link": "https://www.nytimes.com/2026/07/30/business/economy/trump-tariffs-exemptions.html",
       "date": "Thu, 30 Jul 2026 20:24:37 +0000",
       "topics": [
         "energy",
-        "geopolitics"
+        "geopolitik"
+      ],
+      "tickers": [
+        "F",
+        "DIA"
+      ]
+    },
+    {
+      "title": "U.S. GDP Growth Slowed in Second Quarter of 2026",
+      "link": "https://www.nytimes.com/2026/07/30/business/economy/us-economy-gdp-growth.html",
+      "date": "Thu, 30 Jul 2026 16:29:07 +0000",
+      "topics": [
+        "regulation"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "China, Its Economy Stumbling, Signals Only Cautious Support",
+      "link": "https://www.nytimes.com/2026/07/30/business/china-economy-politburo.html",
+      "date": "Thu, 30 Jul 2026 13:59:54 +0000",
+      "topics": [
+        "geopolitik"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Government Borrowing Cost Hits Two-Decade High After Fed Rate Decision",
+      "link": "https://www.nytimes.com/2026/07/29/business/economy/treasury-yields-fed-inflation.html",
+      "date": "Wed, 29 Jul 2026 21:33:46 +0000",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "What to know about the Fed’s decision.",
+      "link": "https://www.nytimes.com/live/2026/07/29/business/fed-meeting-rates-kevin-warsh/what-to-know-about-the-feds-decision",
+      "date": "Wed, 29 Jul 2026 20:37:59 +0000",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "4 Takeaways From the Federal Reserve Meeting",
+      "link": "https://www.nytimes.com/2026/07/29/business/economy/fed-meeting-interest-rates-takeaways.html",
+      "date": "Wed, 29 Jul 2026 19:41:04 +0000",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
       ]
     }
   ]
