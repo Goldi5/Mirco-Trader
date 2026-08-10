@@ -1420,6 +1420,32 @@ try:
 except Exception as e10:
     ck("Phase 10 Datenprovider-Abstraktion", False, str(e10))
 
+# ─── Phase 11 (S19-P11): Paper-/Simulator-Broker (Sandbox) ─
+print("\n11p. PHASE 11: Paper-/Sandbox-Broker")
+try:
+    import security as sec11
+    # BrokerProvider-Interface
+    ck("P11: BrokerProvider-Interface", hasattr(sec11, "BrokerProvider"))
+    ck("P11: PaperBrokerAdapter", hasattr(sec11, "PaperBrokerAdapter"))
+    ck("P11: SandboxBrokerAdapter (neu)", hasattr(sec11, "SandboxBrokerAdapter"))
+    # Factory
+    sb11 = sec11.get_broker_adapter("SANDBOX")
+    pb11 = sec11.get_broker_adapter("PAPER")
+    ck("P11: Factory liefert Sandbox fuer SANDBOX", type(sb11).__name__ == "SandboxBrokerAdapter")
+    ck("P11: Factory liefert Paper fuer PAPER", type(pb11).__name__ == "PaperBrokerAdapter")
+    # Sandbox Order (durchlaeuft validate_order_intent)
+    intent11 = sec11.create_order_intent(tenant_id=1, ticker="AAPL", side="buy",
+                                          quantity=1, price=150.0, mode="paper")
+    r11 = sb11.place_order(intent11)
+    ck("P11: Sandbox Order ausgefuehrt", r11.get("ok") and r11.get("environment") == "SANDBOX")
+    # Keine echten Orders (PAPER_ONLY)
+    ck("P11: Sandbox ist PAPER_ONLY (kein Live)", "LIVE" not in sb11.environment)
+    # Health (nach connect)
+    sb11.connect()
+    ck("P11: Sandbox health_check", sb11.health_check().get("ok") is True)
+except Exception as e11:
+    ck("Phase 11 Paper-/Sandbox-Broker", False, str(e11))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)

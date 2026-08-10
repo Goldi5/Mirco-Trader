@@ -1,8 +1,8 @@
 {
-  "version": "2.46.0",
-  "build": "2026-08-10_0945",
-  "released_at": "2026-08-10 09:45",
-  "codename": "Platform Expansion P10 - Datenprovider-Abstraktion (MarketDataProvider-Interface, MarketSnapshot, Fallback-Kette)",
+  "version": "2.47.0",
+  "build": "2026-08-10_1000",
+  "released_at": "2026-08-10 10:00",
+  "codename": "Platform Expansion P11 - Paper-/Sandbox-Broker (SandboxBrokerAdapter + Factory)",
   "changes": [
     {
       "version": "2.44.0",

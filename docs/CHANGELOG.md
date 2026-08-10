@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.47.0] - 2026-08-10
+### Added (Platform Expansion §19-Punkt 11: Paper-/Simulator-Broker, §10)
+- **`SandboxBrokerAdapter`** (security.py): simulierter Broker (Market-Fill, environment=SANDBOX), erbt von `BrokerProvider`
+- **`get_broker_adapter(environment)`** Factory: liefert Paper/Sandbox-Adapter je Umgebung
+- Sandbox-Orders laufen durch `validate_order_intent` + `paper_order_insert`/`paper_position_apply` (tenant-scoped, PAPER_ONLY)
+- **Tests**: 8 P11-Tests (Interface, Factory, Sandbox-Order, PAPER_ONLY, Health) → **299 OK / 0 FAIL**
+
+### Security
+- Kein Live-Adapter, keine Echtgeld-Pfade (PAPER_ONLY hart)
+
 ## [2.46.0] - 2026-08-10
 ### Added (Platform Expansion §19-Punkt 10: Datenprovider-Abstraktion, §12)
 - **`market_data_provider.py`** (neu): `MarketDataProvider`-Interface + `MarketSnapshot`-Dataclass (alle §12-Felder)

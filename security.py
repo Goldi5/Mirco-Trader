@@ -816,6 +816,112 @@ FOUR_EYES_ACTIONS = [
 ]
 
 
+class SandboxBrokerAdapter(BrokerProvider):
+    """PHASE 11 (S19-P11): Sandbox-Broker (simulierter echter Broker).
+
+    Verhaelt sich wie ein echter Broker (Market-Fill, aber in Sandbox-Umgebung),
+    nutzt das Paper-Order-Buch mit environment=SANDBOX. Dient als Bruecke zwischen
+    Paper-Simulator und spaeterem Live-Broker (Auftrag S10: SIMULATOR/PAPER/SANDBOX/LIVE).
+    PAPER_ONLY: keine echten Orders, keine Echtgeld-Pfade.
+    """
+
+    def __init__(self):
+        self._connected = False
+        self._account_cache = {}
+        self.environment = "SANDBOX"
+
+    def connect(self):
+        self._connected = True
+        return {"ok": True, "broker": "sandbox-simulator", "environment": "SANDBOX"}
+
+    def disconnect(self):
+        self._connected = False
+        return {"ok": True}
+
+    def health_check(self):
+        return {"broker": "sandbox", "ok": self._connected, "environment": "SANDBOX"}
+
+    def get_account(self, tenant_id=None):
+        return {"environment": "SANDBOX", "buying_power": 0.0, "cash": 0.0,
+                "note": "Sandbox: keine Echtgeld-Konten (PAPER_ONLY)"}
+
+    def get_positions(self, tenant_id=None):
+        if not tenant_id:
+            return []
+        try:
+            import db as _db
+            m = _db.MTDB()
+            rows = m.conn.execute(
+                "SELECT * FROM paper_positions WHERE tenant_id=?", (tenant_id,)).fetchall()
+            m.close()
+            return [dict(r) for r in rows]
+        except Exception:
+            return []
+
+    def get_quote(self, ticker):
+        import market_data_provider as _mdp
+        snap = _mdp.get_quote_with_fallback(ticker)
+        return snap.price
+
+    def place_order(self, intent):
+        """Sandbox-Order: fuelhrt Order-Intent im paper_orders-Buch aus
+        (environment=SANDBOX). Kein externer Broker."""
+        import db as _db
+        v = validate_order_intent(intent, market_open=True)
+        if not v["allowed"]:
+            return {"ok": False, "error": v["reason"], "status": "blocked",
+                    "environment": "SANDBOX"}
+        m = _db.MTDB()
+        try:
+            pid = intent.get("portfolio_id") or 1
+            side_db = "BUY" if str(intent.get("side", "buy")).upper() in ("BUY", "KAUFEN") else "SELL"
+            oid = m.paper_order_insert(
+                tenant_id=intent.get("tenant_id", 1),
+                portfolio_id=pid,
+                ticker=intent.get("ticker"),
+                side=side_db,
+                quantity=intent.get("quantity", 0),
+                price=intent.get("limit_price") or intent.get("price") or 0.0)
+            m.paper_position_apply(
+                tenant_id=intent.get("tenant_id", 1),
+                portfolio_id=pid,
+                ticker=intent.get("ticker"), side=side_db,
+                quantity=intent.get("quantity", 0),
+                price=intent.get("limit_price") or intent.get("price") or 0.0)
+            return {"ok": True, "order_id": oid, "status": "filled",
+                    "environment": "SANDBOX", "sandbox": True}
+        finally:
+            m.close()
+
+    def cancel_order(self, order_id, tenant_id=None):
+        return {"ok": True, "cancelled": order_id, "environment": "SANDBOX"}
+
+    def get_order_status(self, order_id, tenant_id=None):
+        return {"order_id": order_id, "status": "filled", "environment": "SANDBOX"}
+
+    def get_open_orders(self, tenant_id=None):
+        if not tenant_id:
+            return []
+        try:
+            import db as _db
+            m = _db.MTDB()
+            rows = m.conn.execute(
+                "SELECT id, ticker, side, quantity, price, status "
+                "FROM paper_orders WHERE tenant_id=? AND environment='SANDBOX' "
+                "AND status IN ('open','filled')", (tenant_id,)).fetchall()
+            m.close()
+            return [dict(r) for r in rows]
+        except Exception:
+            return []
+
+
+def get_broker_adapter(environment="PAPER"):
+    """Factory: liefert den passenden Broker-Adapter fuer eine Umgebung."""
+    if environment == "SANDBOX":
+        return SandboxBrokerAdapter()
+    return PaperBrokerAdapter()
+
+
 def four_eyes_required(action, requester, approver):
     """PHASE 13: Vier-Augen-Prinzip — Antragsteller darf nicht selbst genehmigen.
 
