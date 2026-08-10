@@ -1696,6 +1696,82 @@ def api_secrets_rotate():
     # NIEMALS Klartext zurueckgeben - nur last4
     return {"ok": True, "rotated": skey, "last4": r.get("last4")}
 
+# ── PHASE 14 (S19-P14): Live-Antragsprozess ─────────────────────────────
+@app.route("/api/live-requests", methods=["GET", "POST"])
+def api_live_requests():
+    tid = _get_tid()
+    if not tid:
+        return {"error": "tenant?"}, 400
+    if request.method == "POST":
+        d = request.get_json(force=True, silent=True) or {}
+        res = db.live_request_create(
+            tid, d.get("requested_by", session.get("user_id")),
+            broker_connection_id=d.get("broker_connection_id"),
+            risk_assessment=d.get("risk_assessment"),
+            note=d.get("note"))
+        if not res["ok"]:
+            return res, 409
+        sec.audit_log("live_request_create", session.get("user_id"), f"tenant={tid} req={res['id']}")
+        return res, 201
+    return {"requests": db.live_request_list(tid)}
+
+
+@app.route("/api/live-requests/<int:req_id>/review", methods=["POST"])
+def api_live_request_review(req_id):
+    tid = _get_tid()
+    if not tid:
+        return {"error": "tenant?"}, 400
+    d = request.get_json(force=True, silent=True) or {}
+    res = db.live_request_review(req_id, tid, d.get("reviewed_by", session.get("user_id")))
+    if not res["ok"]:
+        return res, 400
+    sec.audit_log("live_request_review", session.get("user_id"), f"req={req_id} tenant={tid}")
+    return res
+
+
+@app.route("/api/live-requests/<int:req_id>/approve", methods=["POST"])
+def api_live_request_approve(req_id):
+    tid = _get_tid()
+    if not tid:
+        return {"error": "tenant?"}, 400
+    d = request.get_json(force=True, silent=True) or {}
+    res = db.live_request_approve(req_id, tid, d.get("approved_by", session.get("user_id")),
+                                   note=d.get("note"))
+    if not res["ok"]:
+        return res, 400
+    sec.set_trading_mode("LIVE_REQUESTED", tenant_id=tid, user=session.get("user_id"),
+                         reason=f"Live-Antrag {req_id} freigegeben")
+    sec.audit_log("live_request_approve", session.get("user_id"), f"req={req_id} tenant={tid}")
+    return res
+
+
+@app.route("/api/live-requests/<int:req_id>/reject", methods=["POST"])
+def api_live_request_reject(req_id):
+    tid = _get_tid()
+    if not tid:
+        return {"error": "tenant?"}, 400
+    d = request.get_json(force=True, silent=True) or {}
+    res = db.live_request_reject(req_id, tid, d.get("rejected_by", session.get("user_id")),
+                                  note=d.get("note"))
+    if not res["ok"]:
+        return res, 400
+    sec.audit_log("live_request_reject", session.get("user_id"), f"req={req_id} tenant={tid}")
+    return res
+
+
+@app.route("/api/live-requests/<int:req_id>/activate", methods=["POST"])
+def api_live_request_activate(req_id):
+    tid = _get_tid()
+    if not tid:
+        return {"error": "tenant?"}, 400
+    res = db.live_request_activate(req_id, tid)
+    if not res["ok"]:
+        return res, 400
+    sec.set_trading_mode("LIVE_APPROVED", tenant_id=tid, user=session.get("user_id"),
+                         reason=f"Live-Antrag {req_id} aktiviert")
+    sec.audit_log("live_request_activate", session.get("user_id"), f"req={req_id} tenant={tid}")
+    return res
+
 
 
 # ── PHASE 8: Secret-Store (tenant-isoliert, kein global .env) ──

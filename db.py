@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """Micro-Trader Analyse-Datenbank (SQLite).
 
@@ -203,6 +203,22 @@ class MTDB:
         );
         CREATE INDEX IF NOT EXISTS idx_appr_tenant
             ON tenant_approvals(tenant_id);
+        CREATE TABLE IF NOT EXISTS live_requests (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tenant_id INTEGER NOT NULL DEFAULT 1,
+            requested_by INTEGER,
+            status TEXT NOT NULL DEFAULT 'PENDING',
+            broker_connection_id INTEGER,
+            risk_assessment TEXT,
+            requested_at TEXT DEFAULT (datetime('now')),
+            reviewed_by INTEGER,
+            reviewed_at TEXT,
+            activated_at TEXT,
+            note TEXT,
+            UNIQUE(tenant_id, status)
+        );
+        CREATE INDEX IF NOT EXISTS idx_livereq_tenant
+            ON live_requests(tenant_id);
         """)
         self.conn.commit()
 
@@ -245,6 +261,102 @@ class MTDB:
         return [dict(r) for r in self.conn.execute(
             "SELECT * FROM tenant_approvals WHERE tenant_id = ?",
             (tenant_id,)).fetchall()]
+
+    # ── Live-Antragsprozess (S19-P14) ───────────────────────────────────
+    def live_request_create(self, tenant_id, requested_by, broker_connection_id=None,
+                            risk_assessment=None, note=None):
+        """Erstellt einen Live-Antrag (PENDING). Nur einer pro Tenant gleichzeitig."""
+        active = self.conn.execute(
+            "SELECT id FROM live_requests WHERE tenant_id=? AND status IN "
+            "('PENDING','IN_REVIEW','APPROVED','ACTIVATED')", (tenant_id,)).fetchone()
+        if active:
+            return {"ok": False, "reason": "Tenant hat bereits aktiven/offenen Live-Antrag",
+                    "id": active["id"]}
+        cur = self.conn.execute(
+            "INSERT INTO live_requests (tenant_id, requested_by, " 
+            "broker_connection_id, risk_assessment, note) VALUES (?,?,?,?,?)",
+            (tenant_id, requested_by, broker_connection_id, risk_assessment, note))
+        self.conn.commit()
+        return {"ok": True, "id": cur.lastrowid, "status": "PENDING"}
+
+    def live_request_review(self, req_id, tenant_id, reviewed_by):
+        """Verschiebt PENDING -> IN_REVIEW."""
+        row = self.conn.execute(
+            "SELECT * FROM live_requests WHERE id=? AND tenant_id=?",
+            (req_id, tenant_id)).fetchone()
+        if not row:
+            return {"ok": False, "reason": "Antrag nicht gefunden (tenant-scoped)"}
+        if row["status"] != "PENDING":
+            return {"ok": False, "reason": f"Status {row['status']} erlaubt kein Review"}
+        self.conn.execute(
+            "UPDATE live_requests SET status='IN_REVIEW', reviewed_by=?, " 
+            "reviewed_at=datetime('now') WHERE id=?",
+            (reviewed_by, req_id))
+        self.conn.commit()
+        return {"ok": True, "status": "IN_REVIEW"}
+
+    def live_request_approve(self, req_id, tenant_id, approved_by, note=None):
+        """IN_REVIEW -> APPROVED."""
+        row = self.conn.execute(
+            "SELECT * FROM live_requests WHERE id=? AND tenant_id=?",
+            (req_id, tenant_id)).fetchone()
+        if not row:
+            return {"ok": False, "reason": "Antrag nicht gefunden (tenant-scoped)"}
+        if row["status"] != "IN_REVIEW":
+            return {"ok": False, "reason": f"Status {row['status']} erlaubt keine Freigabe"}
+        self.conn.execute(
+            "UPDATE live_requests SET status='APPROVED', reviewed_by=?, " 
+            "reviewed_at=datetime('now'), note=? WHERE id=?",
+            (approved_by, note, req_id))
+        self.conn.commit()
+        return {"ok": True, "status": "APPROVED"}
+
+    def live_request_reject(self, req_id, tenant_id, rejected_by, note=None):
+        """IN_REVIEW -> REJECTED."""
+        cur = self.conn.cursor()
+        cur.execute(
+            "SELECT status FROM live_requests WHERE id=? AND tenant_id=?",
+            (req_id, tenant_id))
+        r = cur.fetchone()
+        if not r:
+            return {"ok": False, "reason": "Antrag nicht gefunden (tenant-scoped)"}
+        status = r[0]
+        if status not in ("PENDING", "IN_REVIEW"):
+            return {"ok": False, "reason": f"Status {status} erlaubt keine Ablehnung"}
+        self.conn.execute(
+            "UPDATE live_requests SET status='REJECTED', reviewed_by=?, " 
+            "reviewed_at=datetime('now'), note=? WHERE id=?",
+            (rejected_by, note, req_id))
+        self.conn.commit()
+        return {"ok": True, "status": "REJECTED"}
+
+    def live_request_activate(self, req_id, tenant_id):
+        """APPROVED -> ACTIVATED."""
+        row = self.conn.execute(
+            "SELECT * FROM live_requests WHERE id=? AND tenant_id=?",
+            (req_id, tenant_id)).fetchone()
+        if not row:
+            return {"ok": False, "reason": "Antrag nicht gefunden (tenant-scoped)"}
+        if row["status"] != "APPROVED":
+            return {"ok": False, "reason": f"Status {row['status']} erlaubt keine Aktivierung"}
+        self.conn.execute(
+            "UPDATE live_requests SET status='ACTIVATED', activated_at=datetime('now') " 
+            "WHERE id=?", (req_id,))
+        self.conn.commit()
+        return {"ok": True, "status": "ACTIVATED"}
+
+    def live_request_list(self, tenant_id):
+        """Alle Live-Antraege eines Tenants."""
+        return [dict(r) for r in self.conn.execute(
+            "SELECT * FROM live_requests WHERE tenant_id=? ORDER BY id DESC",
+            (tenant_id,)).fetchall()]
+
+    def live_request_get(self, req_id, tenant_id):
+        """Einzelner Live-Antrag (tenant-scoped)."""
+        row = self.conn.execute(
+            "SELECT * FROM live_requests WHERE id=? AND tenant_id=?",
+            (req_id, tenant_id)).fetchone()
+        return dict(row) if row else None
 
     def effective_rules(self, tenant_id):
         """PHASE 11: Tenant-Regeln ∪ globale learned_rules.json (Tenant gewinnt bei ID-Kollision)."""

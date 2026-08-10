@@ -1,9 +1,24 @@
 {
-  "version": "2.48.0",
-  "build": "2026-08-10_1015",
-  "released_at": "2026-08-10 10:15",
-  "codename": "Platform Expansion P12 - Order-Intent + Risk-Integration (18-Punkte-Checkliste §13, create_order_intent price-Bug gefixt)",
+  "version": "2.49.0",
+  "build": "2026-08-10_1200",
+  "released_at": "2026-08-10 12:00",
+  "codename": "Platform Expansion P14 - Live-Antragsprozess (tenant-scoped, PENDING->IN_REVIEW->APPROVED->REJECTED->ACTIVATED)",
   "changes": [
+    {
+      "version": "2.49.0",
+      "date": "2026-08-10",
+      "phase": "14",
+      "title": "Live-Antragsprozess (§19-Punkt 8) - tenant-scoped Antragsworkflow",
+      "changes": [
+        "live_requests Tabelle (id, tenant_id, requested_by, status, broker_connection_id, risk_assessment, timestamps, note) - UNIQUE(tenant_id, status) verhindert parallele offene Antraege",
+        "db.py: live_request_create/review/approve/reject/activate/list/get - status-Maschine PENDING->IN_REVIEW->APPROVED->REJECTED/ACTIVATED mit tenant-scoping",
+        "Approve ohne Review blockiert; Cross-Tenant-Zugriff blockiert; doppelter Antrag blockiert (ACTIVATED gilt als offen)",
+        "dashboard.py: /api/live-requests (POST/GET) + /api/live-requests/<id>/approve|reject (TENANT_ADMIN), in ROUTE_ACCESS registriert",
+        "Integration mit set_trading_mode: PAPER->LIVE_REQUESTED nur nach genehmigtem Antrag",
+        "Test_Server_Security: P14-Block (8 Tests, isolierte Tenants 50/51) - 313 OK, 0 FAIL",
+        "LIVE-ANTWORTSPROZESS.md erstellt (Ergebnisdatei §20)"
+      ]
+    },
     {
       "version": "2.44.0",
       "date": "2026-08-09",

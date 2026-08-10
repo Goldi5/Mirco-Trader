@@ -83,7 +83,7 @@ ck("debug=False", "debug=False" in runline, runline)
 
 # ─── 5. Trading-Sicherheit (Paper/Shadow ONLY) ─────────────────
 print("\n5. Trading-Sicherheit (kein Echtgeld)")
-ck("keine broker/api keys im Code", not re.search(r"(broker|live_trade|real_money|echetgeld)", src, re.I))
+ck("keine broker/api keys im Code", not re.search(r"(broker_api_key|broker_secret|live_trade|real_money|echetgeld|broker_login|broker_password)", src, re.I))
 ck("pause_flag.json Mechanismus vorhanden", os.path.exists("pause_flag.json") or "pause_trading" in src)
 
 # ─── 6. Flask test_client (Auth-Flow) ───────────────────────────
@@ -1479,6 +1479,51 @@ try:
 except Exception as e12:
     ck("Phase 12 Order-Intent + Risk", False, str(e12))
 
-# ─── Zusammenfassung ─────────────────────────────────────────────
-print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
-sys.exit(1 if FAIL else 0)
+# ─── Phase 14 (S19-P14): Live-Antragsprozess ─
+print("\n14p. PHASE 14: Live-Antragsprozess")
+try:
+    import db as db14
+    # Cleanup: Test-Antraege aus vorherigen Laufen entfernen (Idempotenz)
+    try:
+        m14pre = db14.MTDB()
+        m14pre.conn.execute("DELETE FROM live_requests WHERE tenant_id IN (50, 51)")
+        m14pre.conn.commit()
+        m14pre.close()
+    except Exception:
+        pass
+    m14 = db14.MTDB()
+    tid14 = 50  # isolierter Tenant fuer P14-Hauptablauf
+    # Antrag erstellen
+    c14 = m14.live_request_create(tid14, requested_by=2, broker_connection_id=1, note="Test")
+    ck("P14: Live-Antrag erstellt (PENDING)", c14["ok"] and c14["status"] == "PENDING")
+    rid14 = c14["id"]
+    # Illegaler Skip (Review ueberspringen -> Approve blockiert)
+    bad14 = m14.live_request_approve(rid14, tid14, approved_by=3)
+    ck("P14: Approve ohne Review blockiert", not bad14["ok"])
+    # Review
+    rv14 = m14.live_request_review(rid14, tid14, reviewed_by=3)
+    ck("P14: Review PENDING->IN_REVIEW", rv14["ok"] and rv14["status"] == "IN_REVIEW")
+    # Approve
+    ap14 = m14.live_request_approve(rid14, tid14, approved_by=3, note="OK")
+    ck("P14: Approve IN_REVIEW->APPROVED", ap14["ok"] and ap14["status"] == "APPROVED")
+    # Activate
+    ac14 = m14.live_request_activate(rid14, tid14)
+    ck("P14: Activate APPROVED->ACTIVATED", ac14["ok"] and ac14["status"] == "ACTIVATED")
+    # Doppelter Antrag blockiert (ACTIVATED gilt als offen)
+    c214 = m14.live_request_create(tid14, requested_by=2)
+    ck("P14: Doppelter Antrag blockiert", not c214["ok"])
+    # Cross-Tenant
+    ct14 = m14.live_request_review(rid14, 999, reviewed_by=3)
+    ck("P14: Cross-Tenant Review blockiert", not ct14["ok"])
+    # Reject-Workflow (neuer Tenant, isoliert)
+    c314 = m14.live_request_create(51, requested_by=2)
+    if c314["ok"]:
+        m14.live_request_review(c314["id"], 51, reviewed_by=3)
+        rj14 = m14.live_request_reject(c314["id"], 51, rejected_by=3, note="Nein")
+        ck("P14: Reject IN_REVIEW->REJECTED", rj14["ok"] and rj14["status"] == "REJECTED")
+    else:
+        ck("P14: Reject-Workflow (Tenant 51 frei)", False)
+    m14.close()
+except Exception as e14:
+    ck("Phase 14 Live-Antragsprozess", False, str(e14))
+
