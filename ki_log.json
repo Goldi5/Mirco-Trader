@@ -42688,5 +42688,45 @@
       "r_legacy_4_69646": "stabil",
       "r_legacy_3_42126": "stabil"
     }
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-10T20:21:51.174921",
+    "aktion": "KI Risk 70",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 70"
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-10T20:21:51.406087",
+    "aktion": "KI Risk 80",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 80"
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-10T20:21:51.625721",
+    "aktion": "KI Risk 90",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 90"
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-10T20:21:51.824456",
+    "aktion": "KI Risk 15",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 15"
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-10T20:21:52.106239",
+    "aktion": "KI Risk 50",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 50"
   }
 ]

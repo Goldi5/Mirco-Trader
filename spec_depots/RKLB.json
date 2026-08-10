@@ -324,6 +324,10 @@
     {
       "zeit": "2026-08-10T20:20:12.577029",
       "wert": 100.01
+    },
+    {
+      "zeit": "2026-08-10T20:24:33.484316",
+      "wert": 100.03
     }
   ],
   "trades": [
@@ -409,11 +413,11 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_201828_RKLB_aktien_na",
+    "decision_id": "d_20260810_203257_RKLB_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "RKLB",
-    "provider": "FAIL_FAST",
+    "provider": "ALLE_PROVIDER_KALT",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

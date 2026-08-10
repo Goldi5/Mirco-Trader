@@ -1,9 +1,20 @@
 {
-  "zeit": "2026-08-10T20:20:20.342859",
+  "zeit": "2026-08-10T20:33:05.703892",
   "total": 55,
-  "relevant": 49,
+  "relevant": 48,
   "irrelevant": 1,
   "headlines": [
+    {
+      "title": "Is $1 million enough for a household to retire? The answer keeps changing.",
+      "link": "https://www.marketwatch.com/story/is-1-million-enough-for-a-household-to-retire-the-answer-keeps-changing-aee84a83?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 18:30:00 GMT",
+      "topics": [
+        "earnings"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
     {
       "title": "2 charts showing just how insane the stock market’s August ‘crash-up’ has been so far",
       "link": "https://www.marketwatch.com/story/2-charts-showing-just-how-insane-the-stock-markets-august-crash-up-has-been-so-far-b822404d?mod=mw_rss_topstories",
@@ -83,47 +94,15 @@
       ]
     },
     {
-      "title": "‘I want her to choose the best strategy’: My wife’s Social Security is just $900. Should she claim spousal benefit at 62?",
-      "link": "https://www.marketwatch.com/story/i-want-her-to-choose-the-best-strategy-my-wifes-social-security-is-just-900-should-she-claim-spousal-benefit-at-62-e3ef621d?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 15:00:00 GMT",
+      "title": "What Happens to a Bond ETF's Price When the Fed Cuts Rates -- Using the Actual Historical Data",
+      "link": "https://finance.yahoo.com/markets/options/articles/happens-bond-etfs-price-fed-093500748.html",
+      "date": "2026-08-09T09:35:00Z",
       "topics": [
-        "regulation",
-        "tech",
-        "geopolitik"
+        "zinsen"
       ],
       "tickers": [
         "F"
       ]
-    },
-    {
-      "title": "Here’s when Elon Musk’s Starlink internet is worth the steep monthly price — and $350 startup cost",
-      "link": "https://www.marketwatch.com/story/heres-when-elon-musks-starlink-internet-is-worth-the-steep-monthly-price-and-350-startup-cost-53735d59?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 14:51:00 GMT",
-      "topics": [],
-      "tickers": [
-        "MU"
-      ]
-    },
-    {
-      "title": "This Could Be the Most Easily Confused Social Security Spousal Benefit Rule -- and It Could Cost You",
-      "link": "https://finance.yahoo.com/small-business/articles/could-most-easily-confused-social-090800404.html",
-      "date": "2026-08-09T09:08:00Z",
-      "topics": [
-        "regulation",
-        "geopolitik"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Eli Lilly (LLY) Posts Blowout Growth And Raises Its Outlook",
-      "link": "https://finance.yahoo.com/healthcare/articles/eli-lilly-lly-posts-blowout-085111847.html",
-      "date": "2026-08-09T08:51:11Z",
-      "topics": [
-        "tech"
-      ],
-      "tickers": []
     },
     {
       "title": "Americans say they need $530,000 to take a mini retirement — financial planners say you can do it for far less",
@@ -144,6 +123,15 @@
       ]
     },
     {
+      "title": "Eli Lilly (LLY) Posts Blowout Growth And Raises Its Outlook",
+      "link": "https://finance.yahoo.com/healthcare/articles/eli-lilly-lly-posts-blowout-085111847.html",
+      "date": "2026-08-09T08:51:11Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": []
+    },
+    {
       "title": "340,000 U.S. homes were inherited in 2025 — but a mortgage lien can lead to foreclosure if heirs don't act fast",
       "link": "https://finance.yahoo.com/real-estate/articles/340-000-u-homes-were-100000962.html",
       "date": "2026-08-09T10:00:00Z",
@@ -154,9 +142,9 @@
       ]
     },
     {
-      "title": "All It Takes Is $10,000 in Each of These 3 Dividend Stocks for $1,700+ a Year in Passive Income",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/takes-10-000-3-dividend-090500227.html",
-      "date": "2026-08-09T09:05:00Z",
+      "title": "If You Get in a Car Crash, the Risk Is Growing Your Insurance Won’t Pay",
+      "link": "https://www.wsj.com/finance/if-you-get-in-a-car-crash-the-risk-is-growing-your-insurance-wont-pay-1522236c?siteid=yhoof2&yptr=yahoo",
+      "date": "2026-08-09T09:30:00Z",
       "topics": [],
       "tickers": [
         "F"
@@ -210,19 +198,9 @@
       ]
     },
     {
-      "title": "Talos Energy Q2 Earnings Call Highlights",
-      "link": "https://finance.yahoo.com/energy/articles/talos-energy-q2-earnings-call-090353238.html",
-      "date": "2026-08-09T09:03:53Z",
-      "topics": [
-        "earnings",
-        "energy"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Mortgage and refinance rates today, Monday, August 10, 2026: Rates lower than last week",
-      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-rates-today-monday-august-10-2026-rates-lower-than-last-week-100000884.html",
-      "date": "2026-08-10T10:00:00Z",
+      "title": "How Liquid Are Private-Credit Funds? It Depends How You Define ‘Liquidity’",
+      "link": "https://www.wsj.com/articles/how-liquid-are-private-credit-funds-it-depends-how-you-define-liquidity-854ebcb0?siteid=yhoof2&yptr=yahoo",
+      "date": "2026-08-09T09:30:00Z",
       "topics": [],
       "tickers": [
         "F"
@@ -236,6 +214,15 @@
       "tickers": [
         "F"
       ]
+    },
+    {
+      "title": "Best high-yield savings interest rates today, Monday, August 10, 2026: Earn up to 4.15% APY with an HYSA",
+      "link": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-monday-august-10-2026-earn-up-to-415-apy-with-an-hysa-100000399.html",
+      "date": "2026-08-10T10:00:00Z",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": []
     },
     {
       "title": "ETFs Are 'Absolutely' Mainstream: Maier",

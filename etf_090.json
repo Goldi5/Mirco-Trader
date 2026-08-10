@@ -1896,6 +1896,21 @@
       "zeit": "2026-08-10T20:20:32.936811",
       "wert": 99.45,
       "bargeld": 61.71
+    },
+    {
+      "zeit": "2026-08-10T20:22:07.772089",
+      "wert": 99.42,
+      "bargeld": 61.71
+    },
+    {
+      "zeit": "2026-08-10T20:24:52.688460",
+      "wert": 99.42,
+      "bargeld": 61.71
+    },
+    {
+      "zeit": "2026-08-10T20:31:25.219471",
+      "wert": 61.71,
+      "bargeld": 61.71
     }
   ],
   "trades": [
@@ -1932,9 +1947,9 @@
       "grund": "Score 106 | RiskScore 88 | Inverse"
     }
   ],
-  "gesperrt": false,
+  "gesperrt": true,
   "peak_wert": 100.57999801635742,
-  "aktualisiert": "2026-08-10T20:20:32.936811",
+  "aktualisiert": "2026-08-10T20:31:25.219471",
   "tenant_id": 1,
   "mode": "shadow"
 }

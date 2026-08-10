@@ -2,16 +2,12 @@
   "ticker": "FAZ",
   "name": "Direxion Financial Bear 3x",
   "kategorie": "lev-bear",
-  "bargeld": 0.0,
-  "shares": 3.177848,
-  "avg_price": 31.6,
+  "bargeld": 100.39,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100.0,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T18:17:41.070989",
-      "wert": 99.84
-    },
     {
       "zeit": "2026-08-05T18:33:29.787418",
       "wert": 99.84
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-10T20:05:07.665587",
       "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-10T20:24:33.422104",
+      "wert": 100.39
     }
   ],
   "trades": [
@@ -506,17 +506,25 @@
       "preis": 31.6,
       "grund": "RSI 33.7 nahe überverkauft, aber Abwärtstrend intakt. Lev-Bear-ETF Warnregel beachten. Strategie erlaubt kleine Positionen (max 30% Cash = ~$30) zum Lernen. Volumen 0.73x akzeptabel.",
       "ki_konfidenz": 45
+    },
+    {
+      "zeit": "2026-08-10T20:24:33.422104",
+      "aktion": "verkaufen",
+      "menge": 3.177848,
+      "preis": 31.59,
+      "grund": "FAZ (3x Financial Bear) im Abwärtstrend (Finanzsektor steigt), RSI 33.6 nicht überverkauft genug, VIX 15.3 niedrig, Volumen schwach 0.74x. Gelernte Regeln warnen stark vor lev-bear-Titeln (Gewicht -1.61). Position flach (+/-0%), kein Cash für Nachkauf. Verkauf befreit Kapital für bessere Setups. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_201731_FAZ_aktien_na",
+    "decision_id": "d_20260810_203257_FAZ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "FAZ",
-    "provider": "FAIL_FAST",
+    "provider": "ALLE_PROVIDER_KALT",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

@@ -383,6 +383,10 @@
     {
       "zeit": "2026-08-10T20:21:41.403273",
       "wert": 101.05
+    },
+    {
+      "zeit": "2026-08-10T20:24:33.494796",
+      "wert": 101.05
     }
   ],
   "trades": [
@@ -440,12 +444,14 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 50,
-    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260810_202141_SCO_aktien_na",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_203257_SCO_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SCO",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

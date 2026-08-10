@@ -1891,6 +1891,21 @@
       "zeit": "2026-08-10T20:20:31.145365",
       "wert": 99.14,
       "bargeld": 17.0
+    },
+    {
+      "zeit": "2026-08-10T20:22:06.619945",
+      "wert": 99.14,
+      "bargeld": 17.0
+    },
+    {
+      "zeit": "2026-08-10T20:24:51.589702",
+      "wert": 99.14,
+      "bargeld": 17.0
+    },
+    {
+      "zeit": "2026-08-10T20:31:25.136325",
+      "wert": 17.0,
+      "bargeld": 17.0
     }
   ],
   "trades": [
@@ -1911,9 +1926,9 @@
       "grund": "Score 103 | RiskScore 15 | Anleihen"
     }
   ],
-  "gesperrt": false,
+  "gesperrt": true,
   "peak_wert": 100.87000274658203,
-  "aktualisiert": "2026-08-10T20:20:31.145365",
+  "aktualisiert": "2026-08-10T20:31:25.136325",
   "tenant_id": 1,
   "mode": "shadow"
 }

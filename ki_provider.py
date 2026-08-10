@@ -134,10 +134,11 @@ def _baue_provider_liste_cron():
     ntoken, nbase = _nous_creds()
     add("nous-hy3", nbase, ntoken, "tencent/hy3:free")
     add("nous-step", nbase, ntoken, "stepfun/step-3.7-flash:free")
-    # zen (deepseek) als Puffer - oft Quota-leer (429 FreeUsageLimitError)
+    # zen ling-3.0-flash-free (funktioniert, ~7s) als Puffer
+    # (deepseek quota-leer 429, laguna-s 401 ModelError bei diesem Account)
     add("zen", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
         os.environ.get("OPENCODE_ZEN_API_KEY"),
-        os.environ.get("KI_MODEL_ZEN", "deepseek-v4-flash-free"))
+        os.environ.get("KI_MODEL_ZEN", "ling-3.0-flash-free"))
     add("zen-nemotron", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
         os.environ.get("OPENCODE_ZEN_API_KEY"),
         os.environ.get("KI_MODEL_ZEN_NEMOTRON", "nemotron-3-ultra-free"))
