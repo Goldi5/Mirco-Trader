@@ -1,8 +1,8 @@
 {
-  "version": "2.45.0",
-  "build": "2026-08-10_0930",
-  "released_at": "2026-08-10 09:30",
-  "codename": "Platform Expansion P9 - Secret-/Connection-Manager (Status-Workflow, Rotation, Redaction, tenant-scoped APIs)",
+  "version": "2.46.0",
+  "build": "2026-08-10_0945",
+  "released_at": "2026-08-10 09:45",
+  "codename": "Platform Expansion P10 - Datenprovider-Abstraktion (MarketDataProvider-Interface, MarketSnapshot, Fallback-Kette)",
   "changes": [
     {
       "version": "2.44.0",

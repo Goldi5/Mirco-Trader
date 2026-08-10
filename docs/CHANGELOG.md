@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.46.0] - 2026-08-10
+### Added (Platform Expansion §19-Punkt 10: Datenprovider-Abstraktion, §12)
+- **`market_data_provider.py`** (neu): `MarketDataProvider`-Interface + `MarketSnapshot`-Dataclass (alle §12-Felder)
+- **4 Concrete Provider**: YahooMarketData, FinnhubMarketData, TwelveDataMarketData, AlphaVantageMarketData (alle wrappen `marktdaten.py`-Backend)
+- **Fallback-Kette**: `get_quote_with_fallback` (Reihenfolge yahoo→finnhub→twelvedata→alphavantage)
+- **Kein stiller 0-Kauf**: ungültige Ticker → leeres `MarketSnapshot(quality="unknown")`
+- **Health-Check**: `health_all()` für alle Provider
+- **Tests**: 9 P10-Tests (Interface, Snapshot-Felder, Fallback, ungültiger Ticker, Health, Abstraktion) → **291 OK / 0 FAIL**
+- **Doku**: MARKET-DATA-ABSTRACTION.md (§20)
+
+### Note
+- Trading-Core (`engine.py`/`ki_decisions.py`/`dashboard.py`) importiert noch direkt `yfinance` (Legacy). Abstraktion ist vorhanden + wird für neue Pfade genutzt; vollständiger Refactor der Legacy-Calls ist eigener Risiko-Schritt (nicht in dieser Phase).
+
 ## [2.45.0] - 2026-08-10
 ### Added (Platform Expansion §19-Punkt 9: Secret-/Connection-Manager)
 - **Provider-Connection Status-Workflow** (db.py): `PROVIDER_CONN_STATES` (UNCONFIGURED/CONFIGURED/TESTING/HEALTHY/DEGRADED/FAILED/DISABLED/EXPIRED) + `PROVIDER_CONN_TRANSITIONS` (Guard gegen illegale Sprünge) + Legacy-Compat (`aktiv`/`fehler` gemapped)

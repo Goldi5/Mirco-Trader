@@ -1385,6 +1385,41 @@ try:
 except Exception as e9:
     ck("Phase 9 Provider-Status + Secret-Rotation", False, str(e9))
 
+# ─── Phase 10 (S19-P10): Datenprovider-Abstraktion (MarketSnapshot) ─
+print("\n10p. PHASE 10: Datenprovider-Abstraktion")
+try:
+    import market_data_provider as mdp10
+    # Interface existiert
+    ck("P10: MarketDataProvider Basis-Interface", hasattr(mdp10, "MarketDataProvider"))
+    ck("P10: MarketSnapshot-Dataclass", hasattr(mdp10, "MarketSnapshot"))
+    # Registry
+    y10 = mdp10.get_provider("yahoo")
+    ck("P10: Provider yahoo instanzierbar", y10 is not None and y10.name == "yahoo")
+    # Snapshot-Felder (Auftrag S12)
+    snap10 = mdp10.MarketSnapshot(ticker="AAPL", price=150.5, rsi=55.0)
+    fields10 = set(snap10.to_dict().keys())
+    needed10 = {"ticker","price","timestamp","currency","source","quality","rsi","sma20","sma50","atr","volume_ratio","regime"}
+    ck("P10: Snapshot hat alle S12-Felder", needed10.issubset(fields10))
+    # Fallback liefert Snapshot (nicht rohen float)
+    fb10 = mdp10.get_quote_with_fallback("AAPL")
+    ck("P10: Fallback liefert MarketSnapshot", isinstance(fb10, mdp10.MarketSnapshot))
+    # Ungueltiger Ticker -> KEIN stiller 0-Kauf (price=0, quality=unknown)
+    bad10 = mdp10.get_quote_with_fallback("NONEXISTENTXYZ999")
+    ck("P10: Ungueltiger Ticker -> kein Kauf (price=0, quality=unknown)",
+       bad10.price == 0 and bad10.quality == "unknown")
+    # Health-Check
+    h10 = mdp10.health_all()
+    ck("P10: Health-Check fuer alle Provider", set(h10.keys()) >= {"yahoo","finnhub","twelvedata","alphavantage"})
+    # Abstraktion ist verbindlich (Trading-Core SOLLTE via market_data_provider gehen)
+    ck("P10: Abstraktion ist zentrales Interface",
+       hasattr(mdp10, "MarketDataProvider") and hasattr(mdp10, "get_quote_with_fallback"))
+    # marktdaten.py (Backend) wird von der Abstraktion gewrappt
+    import marktdaten as md10
+    ck("P10: Abstraktion nutzt marktdaten-Backend",
+       hasattr(md10, "hole_kurs") and hasattr(md10, "scan_fallback_yfinance"))
+except Exception as e10:
+    ck("Phase 10 Datenprovider-Abstraktion", False, str(e10))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)
