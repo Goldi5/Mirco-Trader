@@ -985,7 +985,8 @@ def baue_pdf(daten, pfad):
 
 VERSION = "2.18.3"  # Fallback; wird aus version.json ueberschrieben
 try:
-    _vj = _lade_json(os.path.join(BASE, "version.json"), {})
+    with open(os.path.join(BASE, "version.json"), encoding="utf-8") as _vf:
+        _vj = json.load(_vf)
     if _vj.get("version"):
         VERSION = _vj["version"]
     else:
