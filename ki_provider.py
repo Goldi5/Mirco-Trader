@@ -119,47 +119,48 @@ _PROVIDER_LISTE_CHAT = None
 def _baue_provider_liste_cron():
     """VOLLE Rotation für Batch/KI-Cron (deterministisch, viele Calls).
     Enthaelt auch nous-hy3/nous-step (Reasoning-Modelle) — die brauchen
-    max_tokens>=1024 im Trader-Prompt (sonst leeres content). _ki_call
-    akzeptiert jetzt auch reasoning_content; leere Antworten loesen KEINEN
-    Cooldown mehr aus."""
+    max_tokens>=1024 im Trader-Prompt (sonst leeres content).
+    Reihenfolge: funktionierende Free-Provider zuerst (openrouter nano/super,
+    nous-hy3), dann zen (deepseek) als Puffer (oft Quota-leer -> 429)."""
     liste = []
     def add(name, base_url, api_key, model):
         if api_key:
             liste.append({"name": name, "base_url": base_url,
                           "api_key": api_key, "model": model})
+    # OpenRouter: nemotron-3-nano-30b-a3b:free (schnell, ~1s) als Primary
+    add("openrouter", "https://openrouter.ai/api/v1",
+        os.environ.get("OPENROUTER_API_KEY"),
+        os.environ.get("KI_MODEL_OPENROUTER", "nvidia/nemotron-3-nano-30b-a3b:free"))
+    ntoken, nbase = _nous_creds()
+    add("nous-hy3", nbase, ntoken, "tencent/hy3:free")
+    add("nous-step", nbase, ntoken, "stepfun/step-3.7-flash:free")
+    # zen (deepseek) als Puffer - oft Quota-leer (429 FreeUsageLimitError)
     add("zen", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
         os.environ.get("OPENCODE_ZEN_API_KEY"),
         os.environ.get("KI_MODEL_ZEN", "deepseek-v4-flash-free"))
     add("zen-nemotron", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
         os.environ.get("OPENCODE_ZEN_API_KEY"),
         os.environ.get("KI_MODEL_ZEN_NEMOTRON", "nemotron-3-ultra-free"))
-    ntoken, nbase = _nous_creds()
-    add("nous-step", nbase, ntoken, "stepfun/step-3.7-flash:free")
-    add("nous-hy3", nbase, ntoken, "tencent/hy3:free")
-    add("openrouter", "https://openrouter.ai/api/v1",
-        os.environ.get("OPENROUTER_API_KEY"),
-        os.environ.get("KI_MODEL_OPENROUTER", "nvidia/nemotron-3-ultra-550b-a55b:free"))
     return liste
 
 
 def _baue_provider_liste_chat():
     """KURZE, SCHNELLE Kette für User-Chat (Conversational, temp=0.3).
-    Primär nemotron/deepseek via zen (free, schnell), OpenRouter als Puffer.
-    Verbraucht NICHT die Nous-free-Quota, die der Cron braucht."""
+    OpenRouter (nemotron nano, schnell) als Primary, zen (deepseek) als Puffer."""
     liste = []
     def add(name, base_url, api_key, model):
         if api_key:
             liste.append({"name": name, "base_url": base_url,
                           "api_key": api_key, "model": model})
-    add("zen-nemotron", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
-        os.environ.get("OPENCODE_ZEN_API_KEY"),
-        os.environ.get("KI_MODEL_ZEN_NEMOTRON", "nemotron-3-ultra-free"))
+    add("openrouter", "https://openrouter.ai/api/v1",
+        os.environ.get("OPENROUTER_API_KEY"),
+        os.environ.get("KI_MODEL_OPENROUTER", "nvidia/nemotron-3-nano-30b-a3b:free"))
     add("zen", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
         os.environ.get("OPENCODE_ZEN_API_KEY"),
         os.environ.get("KI_MODEL_ZEN", "deepseek-v4-flash-free"))
-    add("openrouter", "https://openrouter.ai/api/v1",
-        os.environ.get("OPENROUTER_API_KEY"),
-        os.environ.get("KI_MODEL_OPENROUTER", "nvidia/nemotron-3-ultra-550b-a55b:free"))
+    add("zen-nemotron", os.environ.get("OPENCODE_ZEN_BASE_URL", "https://opencode.ai/zen/v1"),
+        os.environ.get("OPENCODE_ZEN_API_KEY"),
+        os.environ.get("KI_MODEL_ZEN_NEMOTRON", "nemotron-3-ultra-free"))
     return liste
 
 
@@ -190,9 +191,14 @@ def get_client(provider):
     name = provider["name"]
     if name not in _client_cache:
         from openai import OpenAI
+        headers = {"User-Agent": UA}
+        # OpenRouter braucht HTTP-Referer + X-Title, sonst leere Antworten
+        if "openrouter" in provider["base_url"]:
+            headers["HTTP-Referer"] = "https://micro-trader.local"
+            headers["X-Title"] = "Micro-Trader"
         _client_cache[name] = OpenAI(
             api_key=provider["api_key"], base_url=provider["base_url"],
-            default_headers={"User-Agent": UA})
+            default_headers=headers)
     return _client_cache[name]
 
 
@@ -276,7 +282,13 @@ def _ki_call(client, provider, messages, temperature, max_tokens, model):
     """Führt den KI-Call aus (chat/completions für alle Provider).
     Liefert (text, fehler) — text None bei Fehler.
     Robust gegen Reasoning-Modelle (hy3/step), die statt content oft
-    nur reasoning_content liefern — beides wird akzeptiert."""
+    nur reasoning_content liefern — beides wird akzeptiert.
+    Reasoning-Modelle (nous-hy3, step-3.7) brauchen hohes max_tokens,
+    sonst ist finish_reason='length' und content bleibt leer -> wir
+    heben max_tokens für diese Modelle auf mind. 2048 an."""
+    model_l = (model or "").lower()
+    if "hy3" in model_l or "step" in model_l:
+        max_tokens = max(max_tokens, 2048)
     try:
         r = client.chat.completions.create(
             model=model, messages=messages, temperature=temperature,

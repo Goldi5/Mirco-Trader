@@ -2,24 +2,12 @@
   "ticker": "JDST",
   "name": "Direxion Gold Miners Bear 2x",
   "kategorie": "lev-bear",
-  "bargeld": 100.6,
+  "bargeld": 99.54,
   "shares": 0,
   "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-04T17:48:59.602378",
-      "wert": 98.0
-    },
-    {
-      "zeit": "2026-08-04T17:50:11.633060",
-      "wert": 98.0
-    },
-    {
-      "zeit": "2026-08-04T17:58:39.193850",
-      "wert": 98.0
-    },
     {
       "zeit": "2026-08-04T18:06:11.279985",
       "wert": 98.0
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T15:55:59.460955",
       "wert": 100.6
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.334150",
+      "wert": 100.6
+    },
+    {
+      "zeit": "2026-08-10T19:33:58.242736",
+      "wert": 99.96
+    },
+    {
+      "zeit": "2026-08-10T20:03:48.276004",
+      "wert": 99.54
     }
   ],
   "trades": [
@@ -532,17 +532,33 @@
       "preis": 27.56,
       "grund": "Downtrend bei Hebel-Bear-ETF (JDST), Regeln warnen vor Halt lev-bear-Titeln, kleiner Gewinn (+2,68%) mitnehmen, Cash freimachen für bessere Setups, niedriges Volumen (0,38x), hohe Vola (ATR 8,5%) [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.334150",
+      "aktion": "kaufen",
+      "menge": 3.791934,
+      "preis": 26.53,
+      "grund": "RSI 26.6 überverkauft im Abwärtstrend; Volumen 1.59x gesund; Hebel-Bear-ETF nur mit kleiner Position (max 30% Cash = ~$30) per Strategie erlaubt; Watchlist-Ticker mit Cash verfügbar; Anti-Hold-Regel für lev-bear beachtet aber kein hartes Verbot",
+      "ki_konfidenz": 52
+    },
+    {
+      "zeit": "2026-08-10T20:03:48.276004",
+      "aktion": "verkaufen",
+      "menge": 3.791934,
+      "preis": 26.25,
+      "grund": "Hebel-Bear-ETF (2x) mit Volatilitätsverfall; Anti-Hold-Regel für lev-bear (Gewicht -1.61); intakter Abwärtstrend trotz überverkauftem RSI (26,4); kein Cash für Management; kleines Depot ($99) braucht Flexibilität [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_191801_JDST_aktien_na",
+    "decision_id": "d_20260810_201827_JDST_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "JDST",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

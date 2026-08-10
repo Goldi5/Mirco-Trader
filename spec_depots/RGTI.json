@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-30T14:46:58.195444",
-      "wert": 100
-    },
-    {
-      "zeit": "2026-07-30T17:46:44.340362",
-      "wert": 100
-    },
-    {
-      "zeit": "2026-07-31T10:47:23.300842",
-      "wert": 100
-    },
-    {
       "zeit": "2026-07-31T11:02:25.188940",
       "wert": 100
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-07T21:52:37.849160",
       "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.377752",
+      "wert": 101.47
+    },
+    {
+      "zeit": "2026-08-10T19:51:29.217399",
+      "wert": 100.45
+    },
+    {
+      "zeit": "2026-08-10T20:04:37.917958",
+      "wert": 100.96
     }
   ],
   "trades": [
@@ -477,11 +477,11 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_191801_RGTI_aktien_na",
+    "decision_id": "d_20260810_201828_RGTI_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "RGTI",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

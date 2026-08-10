@@ -2,32 +2,12 @@
   "ticker": "FAZ",
   "name": "Direxion Financial Bear 3x",
   "kategorie": "lev-bear",
-  "bargeld": 100.42,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 3.177848,
+  "avg_price": 31.6,
   "start": 100.0,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T17:34:11.434534",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T17:34:36.008514",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T17:47:22.318923",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T17:49:24.135775",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T18:02:16.817433",
-      "wert": 99.84
-    },
     {
       "zeit": "2026-08-05T18:17:41.070989",
       "wert": 99.84
@@ -407,6 +387,26 @@
     {
       "zeit": "2026-08-10T15:55:59.436132",
       "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.312953",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-10T19:33:36.771997",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-10T19:33:58.218267",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-10T20:04:37.887946",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-10T20:05:07.665587",
+      "wert": 100.42
     }
   ],
   "trades": [
@@ -498,17 +498,25 @@
       "preis": 31.26,
       "grund": "Abwärtstrend und Anti-Regeln gegen Halten von Lev-Bear/Volatilität; hohe Konfidenz historisch unprofitabel.",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T20:05:07.665587",
+      "aktion": "kaufen",
+      "menge": 3.177848,
+      "preis": 31.6,
+      "grund": "RSI 33.7 nahe überverkauft, aber Abwärtstrend intakt. Lev-Bear-ETF Warnregel beachten. Strategie erlaubt kleine Positionen (max 30% Cash = ~$30) zum Lernen. Volumen 0.73x akzeptabel.",
+      "ki_konfidenz": 45
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_191801_FAZ_aktien_na",
+    "decision_id": "d_20260810_201731_FAZ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "FAZ",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

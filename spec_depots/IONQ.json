@@ -2,32 +2,12 @@
   "ticker": "IONQ",
   "name": "IonQ Inc.",
   "kategorie": "ai",
-  "bargeld": 0.0,
-  "shares": 2.341844,
-  "avg_price": 44.26,
+  "bargeld": 101.17,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-07-31T21:05:07.879639",
-      "wert": 103.83
-    },
-    {
-      "zeit": "2026-07-31T21:19:42.991806",
-      "wert": 103.83
-    },
-    {
-      "zeit": "2026-08-03T16:23:05.868928",
-      "wert": 103.83
-    },
-    {
-      "zeit": "2026-08-03T16:35:05.363371",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-03T22:40:46.276416",
-      "wert": 103.8
-    },
     {
       "zeit": "2026-08-04T17:46:58.322796",
       "wert": 103.8
@@ -407,6 +387,26 @@
     {
       "zeit": "2026-08-10T15:55:59.458144",
       "wert": 99.93
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.325633",
+      "wert": 101.12
+    },
+    {
+      "zeit": "2026-08-10T19:33:36.788895",
+      "wert": 101.17
+    },
+    {
+      "zeit": "2026-08-10T19:33:58.233896",
+      "wert": 101.17
+    },
+    {
+      "zeit": "2026-08-10T20:05:07.671941",
+      "wert": 101.17
+    },
+    {
+      "zeit": "2026-08-10T20:21:41.349379",
+      "wert": 101.17
     }
   ],
   "trades": [
@@ -561,18 +561,24 @@
       "preis": 44.26,
       "grund": "Neutraler Trend, RSI 68.4 (nicht überkauft), Volumen 1.22x über Schnitt, Cash verfügbar. Meta-Regeln warnen vor hoher Konfidenz (0% Treffer bei 60-100%), Anti-Hold-Regel für AI-Titel (-1.81), aber Swap-Regel favorisiert investiertes Kapital. Kleine Position für Lernsignal.",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T19:33:58.233896",
+      "aktion": "verkaufen",
+      "menge": 2.341844,
+      "preis": 43.2,
+      "grund": "Kleine Position mit -2,4% Verlust, kein Cash für Nachkauf, neutraler Trend, RSI 64, niedriges Volumen (0,5x), Warnregeln gegen Halten von AI/Quantum-Titeln (-1,75 Gewicht), Kapitalbindung unterperformt Benchmark (+1,82 Gewicht). Verkauf befreit Cash für diversifizierte Neuaufstellung. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_191801_IONQ_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260810_202012_IONQ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "IONQ",
-    "provider": "ALLE_PROVIDER_KALT",
-    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

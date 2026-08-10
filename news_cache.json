@@ -1,9 +1,40 @@
 {
-  "zeit": "2026-08-10T19:18:34.122529",
+  "zeit": "2026-08-10T20:20:20.342859",
   "total": 55,
-  "relevant": 44,
-  "irrelevant": 3,
+  "relevant": 49,
+  "irrelevant": 1,
   "headlines": [
+    {
+      "title": "2 charts showing just how insane the stock market’s August ‘crash-up’ has been so far",
+      "link": "https://www.marketwatch.com/story/2-charts-showing-just-how-insane-the-stock-markets-august-crash-up-has-been-so-far-b822404d?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 18:08:00 GMT",
+      "topics": [
+        "markt"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "‘I don’t wish to be cold-hearted’: My elderly relative can no longer care for himself. Am I wrong to leave his care to the state?",
+      "link": "https://www.marketwatch.com/story/i-dont-wish-to-be-cold-hearted-my-elderly-relative-can-no-longer-care-for-himself-am-i-wrong-to-leave-his-care-to-the-state-8d546b32?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 18:00:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Archer strikes deal with Boeing in latest bid to transform aviation through AI",
+      "link": "https://www.marketwatch.com/story/archer-strikes-deal-with-boeing-in-latest-bid-to-transform-aviation-through-ai-dac15322?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 17:22:00 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
     {
       "title": "Protect College Sports Act to be voted on next month: What it means for transfers and team spending",
       "link": "https://www.marketwatch.com/story/senate-vote-on-the-protect-college-sports-act-could-come-this-week-what-it-means-for-transfers-and-salary-caps-58088560?mod=mw_rss_topstories",
@@ -74,52 +105,11 @@
       ]
     },
     {
-      "title": "Taylor Farms recalls jalapeño-based foods in 26 states amid ongoing salmonella outbreak",
-      "link": "https://www.marketwatch.com/story/taylor-farms-recalls-jalapeno-based-foods-in-26-states-amid-ongoing-salmonella-outbreak-f873657b?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 14:41:00 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Is $1 million enough for a household to retire? The answer keeps changing.",
-      "link": "https://www.marketwatch.com/story/is-1-million-enough-for-a-household-to-retire-the-answer-keeps-changing-aee84a83?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 14:30:00 GMT",
+      "title": "This Could Be the Most Easily Confused Social Security Spousal Benefit Rule -- and It Could Cost You",
+      "link": "https://finance.yahoo.com/small-business/articles/could-most-easily-confused-social-090800404.html",
+      "date": "2026-08-09T09:08:00Z",
       "topics": [
-        "earnings"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Stock market today: Dow, S&P 500, Nasdaq slip as oil prices climb, Nvidia stock sinks",
-      "link": "https://finance.yahoo.com/markets/live/stock-market-today-dow-sp-500-nasdaq-slip-as-oil-prices-climb-nvidia-stock-sinks-104358890.html",
-      "date": "2026-08-10T10:43:58Z",
-      "topics": [
-        "energy",
-        "markt"
-      ],
-      "tickers": [
-        "DIA"
-      ]
-    },
-    {
-      "title": "The “Set It & Forget It” Stocks I’d Want to Own",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/set-forget-stocks-d-want-170014127.html",
-      "date": "2026-08-10T17:00:14Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "This stock market indicator just flashed a warning not seen since the dot-com bubble",
-      "link": "https://finance.yahoo.com/markets/article/this-stock-market-indicator-just-flashed-a-warning-not-seen-since-the-dot-com-bubble-165540336.html",
-      "date": "2026-08-10T16:55:40Z",
-      "topics": [
-        "markt",
+        "regulation",
         "geopolitik"
       ],
       "tickers": [
@@ -127,31 +117,68 @@
       ]
     },
     {
-      "title": "Embraer Flies On Booming Earnings And Backlog, Outpacing Boeing, Airbus",
-      "link": "https://www.investors.com/news/embraer-earnings-boeing-airbus-aerospace-jet-planes/?src=A00220&yptr=yahoo",
-      "date": "2026-08-10T16:45:00Z",
+      "title": "Eli Lilly (LLY) Posts Blowout Growth And Raises Its Outlook",
+      "link": "https://finance.yahoo.com/healthcare/articles/eli-lilly-lly-posts-blowout-085111847.html",
+      "date": "2026-08-09T08:51:11Z",
       "topics": [
-        "earnings",
         "tech"
       ],
-      "tickers": [
-        "BAC",
-        "F"
-      ]
+      "tickers": []
     },
     {
-      "title": "Shuffle Board: Genesco and Kohl’s Announce Retirements, and Niber Names Commercial Lead",
-      "link": "https://finance.yahoo.com/small-business/articles/shuffle-board-genesco-kohl-announce-170000746.html",
-      "date": "2026-08-10T17:00:00Z",
+      "title": "Americans say they need $530,000 to take a mini retirement — financial planners say you can do it for far less",
+      "link": "https://finance.yahoo.com/markets/articles/americans-530-000-mini-retirement-093000850.html",
+      "date": "2026-08-09T09:30:00Z",
       "topics": [],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Tech stocks still have plenty of believers on Wall Street, inflow data shows",
-      "link": "https://finance.yahoo.com/technology/article/tech-stocks-still-have-plenty-of-believers-on-wall-street-inflow-data-shows-163544665.html",
-      "date": "2026-08-10T16:35:44Z",
+      "title": "What Do Cost of Carry Tables Tell Us Heading Into Fall Harvest?",
+      "link": "https://finance.yahoo.com/markets/commodities/articles/cost-carry-tables-tell-us-094525020.html",
+      "date": "2026-08-09T09:45:25Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "340,000 U.S. homes were inherited in 2025 — but a mortgage lien can lead to foreclosure if heirs don't act fast",
+      "link": "https://finance.yahoo.com/real-estate/articles/340-000-u-homes-were-100000962.html",
+      "date": "2026-08-09T10:00:00Z",
+      "topics": [],
+      "tickers": [
+        "F",
+        "FAS"
+      ]
+    },
+    {
+      "title": "All It Takes Is $10,000 in Each of These 3 Dividend Stocks for $1,700+ a Year in Passive Income",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/takes-10-000-3-dividend-090500227.html",
+      "date": "2026-08-09T09:05:00Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Micron (MU) Secures Strategic Auto Deals and AI Momentum to Offset Cyclical Pressures",
+      "link": "https://finance.yahoo.com/technology/ai/articles/micron-mu-secures-strategic-auto-101757418.html",
+      "date": "2026-08-09T10:17:57Z",
+      "topics": [
+        "regulation",
+        "tech"
+      ],
+      "tickers": [
+        "F",
+        "MU"
+      ]
+    },
+    {
+      "title": "Jim Cramer says Wall Street is 'fleeing' the AI trade to buy these stocks instead. Do you own any?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-wall-street-102000243.html",
+      "date": "2026-08-09T10:20:00Z",
       "topics": [
         "tech"
       ],
@@ -160,15 +187,15 @@
       ]
     },
     {
-      "title": "Wall Street giants to partner with Nvidia on $500 billion AI financing deal, FT reports",
-      "link": "https://finance.yahoo.com/technology/ai/articles/wall-street-giants-partner-nvidia-163441421.html",
-      "date": "2026-08-10T16:34:41Z",
+      "title": "AMD (AMD) Buys Inference Chip Startup Taalas To Sharpen Its AI Edge",
+      "link": "https://finance.yahoo.com/technology/ai/articles/amd-amd-buys-inference-chip-102614063.html",
+      "date": "2026-08-09T10:26:14Z",
       "topics": [
         "tech"
       ],
       "tickers": [
-        "F",
-        "DIA"
+        "AMD",
+        "F"
       ]
     },
     {
@@ -183,37 +210,42 @@
       ]
     },
     {
-      "title": "Tech stocks today: Meta lays out new AI path, Intel to sell $15 billion in stock",
-      "link": "https://finance.yahoo.com/technology/live/tech-stocks-today-meta-lays-out-new-ai-path-intel-to-sell-15-billion-in-stock-135605566.html",
-      "date": "2026-08-10T13:56:05Z",
+      "title": "Talos Energy Q2 Earnings Call Highlights",
+      "link": "https://finance.yahoo.com/energy/articles/talos-energy-q2-earnings-call-090353238.html",
+      "date": "2026-08-09T09:03:53Z",
       "topics": [
-        "tech"
+        "earnings",
+        "energy"
       ],
-      "tickers": [
-        "META"
-      ]
+      "tickers": []
     },
     {
-      "title": "Weekly survey of mortgage lenders with the lowest rates: Lower rates and stiff fees",
-      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/weekly-survey-mortgage-lenders-with-the-best-lowest-rates-august-10-170834159.html",
-      "date": "2025-11-03T17:08:34Z",
+      "title": "Mortgage and refinance rates today, Monday, August 10, 2026: Rates lower than last week",
+      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-rates-today-monday-august-10-2026-rates-lower-than-last-week-100000884.html",
+      "date": "2026-08-10T10:00:00Z",
       "topics": [],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "US appeals court allows thousands of lawsuits against social media companies over user addiction claims to proceed",
-      "link": "https://finance.yahoo.com/media-advertising/articles/us-appeals-court-allows-thousands-161341980.html",
-      "date": "2026-08-10T16:13:41Z",
+      "title": "HELOC and home equity loan rates today, Monday, August 10, 2026: A 19-basis-point differential",
+      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-monday-august-10-2026-a-19-basis-point-differential-100000351.html",
+      "date": "2026-08-10T10:00:00Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "ETFs Are 'Absolutely' Mainstream: Maier",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/etfs-are-absolutely-mainstream-maier-video",
+      "date": "Mon, 10 Aug 2026 18:08:06 GMT",
       "topics": [
-        "regulation",
-        "tech",
-        "geopolitik"
+        "tech"
       ],
       "tickers": [
-        "F",
-        "DIA"
+        "F"
       ]
     },
     {
@@ -227,6 +259,60 @@
         "F",
         "DIA",
         "MU"
+      ]
+    },
+    {
+      "title": "Largest Private School Bond Deal in Two Years Hits Muni Market",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/largest-private-school-bond-deal-in-two-years-hits-muni-market",
+      "date": "Mon, 10 Aug 2026 17:56:13 GMT",
+      "topics": [
+        "markt"
+      ],
+      "tickers": [
+        "MU"
+      ]
+    },
+    {
+      "title": "Shipping Traffic Is Up Despite War in Iran, Says FreightWaves CEO",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/freightwaves-ceo-says-freight-recession-is-over-video",
+      "date": "Mon, 10 Aug 2026 17:25:23 GMT",
+      "topics": [
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Saudis Delay Restart of Jazan Plant to Late August, IIR Says",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/saudis-delay-restart-of-jazan-plant-to-late-august-iir-says",
+      "date": "Mon, 10 Aug 2026 17:41:50 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "IBM to Raise C$2.75 Billion in First Canada Bond Sale Since 2012",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/ibm-turns-to-canadian-bond-market-for-first-time-since-2012",
+      "date": "Mon, 10 Aug 2026 15:05:12 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Latest Oil Market News and Analysis for Aug. 10",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-09/latest-oil-market-news-and-analysis-for-aug-10",
+      "date": "Sun, 09 Aug 2026 22:02:45 GMT",
+      "topics": [
+        "energy",
+        "markt"
+      ],
+      "tickers": [
+        "F"
       ]
     },
     {
@@ -289,47 +375,6 @@
       ],
       "tickers": [
         "F"
-      ]
-    },
-    {
-      "title": "Stocks Churn as Oil Advance Boosts Treasury Yields",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/stocks-churn-as-oil-advance-boosts-treasury-yields-video",
-      "date": "Mon, 10 Aug 2026 15:58:15 GMT",
-      "topics": [
-        "energy"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Record Sales of Catastrophe Bonds Driven by Wildfires",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/record-sales-of-catastrophe-bonds-driven-by-wildfires-video",
-      "date": "Mon, 10 Aug 2026 15:54:16 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Yen Erases Half of Gains From Historic US-Japan Intervention",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/yen-underperforms-g-10-peers-as-intervention-boost-fades",
-      "date": "Mon, 10 Aug 2026 03:26:41 GMT",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Gold Holds Above $4,300 as Traders Weigh Hormuz Talks, Inflation",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-09/gold-holds-gain-after-soft-us-jobs-data-eases-rate-hike-concerns",
-      "date": "Sun, 09 Aug 2026 23:30:12 GMT",
-      "topics": [
-        "inflation"
-      ],
-      "tickers": [
-        "F",
-        "MU"
       ]
     },
     {

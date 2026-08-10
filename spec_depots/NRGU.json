@@ -2,27 +2,12 @@
   "ticker": "NRGU",
   "name": "MicroSectors FANG+ 3x",
   "kategorie": "commodity",
-  "bargeld": 103.95,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 2.364112,
+  "avg_price": 43.97,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-07-30T11:28:35.797691",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T11:30:35.204668",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T11:45:35.655830",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
     {
       "zeit": "2026-07-30T12:00:37.943931",
       "wert": 100.0,
@@ -417,6 +402,18 @@
     {
       "zeit": "2026-08-07T21:52:37.840286",
       "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.350434",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-10T19:51:29.204167",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-10T20:04:37.906654",
+      "wert": 104.33
     }
   ],
   "trades": [
@@ -507,17 +504,25 @@
       "preis": 37.35,
       "grund": "Mehrere gelernte Anti-Regeln verbieten Halten von lev-bull-Titeln (3x Hebel) und Volatilitätstiteln (ATR 7.14%). Position neu mit 0% P&L, aber Regelwerk klar gegen Halten. Kein Cash für Nachkauf. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T19:51:29.204167",
+      "aktion": "kaufen",
+      "menge": 2.364112,
+      "preis": 43.97,
+      "grund": "Aufwärtstrend intakt (Kurs > SMA20 > SMA50), RSI 51 neutral, VIX niedrig (15.3), Watchlist-Ticker mit Cash verfügbar. 3x Hebel-ETF erfordert kleine Positionsgröße (max 30% Depot-Cash ~$31). Volumen-Ratio 0.52x > 0.30x Schwelle. Meta-Regeln zeigen niedrige Trefferquote bei hoher Konfidenz -> konservative Konfidenz.",
+      "ki_konfidenz": 58
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_191801_NRGU_aktien_na",
+    "decision_id": "d_20260810_201752_NRGU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "NRGU",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

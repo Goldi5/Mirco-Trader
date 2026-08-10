@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T20:49:14.689898",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T21:03:34.142238",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T21:19:02.985454",
-      "wert": 100.32
-    },
-    {
       "zeit": "2026-08-05T21:34:22.050285",
       "wert": 100.32
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T19:06:51.971076",
       "wert": 100.15
+    },
+    {
+      "zeit": "2026-08-10T19:33:58.193515",
+      "wert": 100.15
+    },
+    {
+      "zeit": "2026-08-10T20:03:48.239331",
+      "wert": 100.15
+    },
+    {
+      "zeit": "2026-08-10T20:04:37.879379",
+      "wert": 100.15
     }
   ],
   "trades": [
@@ -590,11 +590,11 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_191801_BITX_aktien_na",
+    "decision_id": "d_20260810_201738_BITX_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "BITX",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

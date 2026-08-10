@@ -2,9 +2,9 @@
   "ticker": "TQQQ",
   "name": "ProShares UltraPro QQQ 3x",
   "kategorie": "lev-bull",
-  "bargeld": 100.06,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 1.350203,
+  "avg_price": 73.9,
   "start": 100.0,
   "exchange": "US",
   "historie": [
@@ -79,6 +79,22 @@
     {
       "zeit": "2026-08-07T16:34:49.729532",
       "wert": 100.06
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.405248",
+      "wert": 100.06
+    },
+    {
+      "zeit": "2026-08-10T19:51:29.230890",
+      "wert": 99.78
+    },
+    {
+      "zeit": "2026-08-10T20:20:12.597117",
+      "wert": 99.78
+    },
+    {
+      "zeit": "2026-08-10T20:21:41.429592",
+      "wert": 99.67
     }
   ],
   "trades": [
@@ -97,18 +113,40 @@
       "preis": 72.28,
       "grund": "3x Hebel-ETF mit Neutral-Trend, RSI 56.4, niedriges Volumen. Gelernte Regeln warnen stark vor Halten von lev-bull-Titeln (Gewicht -1.82). Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz. Kein klarer Aufwärtstrend, Volatilitätsverlust-Risiko bei Seitwärtsmarkt. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.405248",
+      "aktion": "kaufen",
+      "menge": 1.349609,
+      "preis": 74.14,
+      "grund": "Neutrales Setup (RSI 53.8, Kurs zwischen SMAs), aber Strategie erlaubt 3x-ETFs mit kleiner Position zum Lernen. Anti-Regeln warnen vor lev-bull, daher niedrige Konfidenz. Volumen 0.53x > 0.30-Schwelle. Max 30% Cash = ~$30 Position.",
+      "ki_konfidenz": 45
+    },
+    {
+      "zeit": "2026-08-10T19:51:29.230890",
+      "aktion": "verkaufen",
+      "menge": 1.349609,
+      "preis": 73.93,
+      "grund": "Neutraler Trend (Kurs zwischen SMA20/50), RSI 53.5, kein Cash für Nachkauf. Hebel-ETF (3x) in Seitwärtsphase leidet unter Volatility Decay. Anti-Hold-Regeln für lev-bull-Titel (Gewicht -1.75). Kleine Position ($100) mit minimalem Verlust glattstellen, Kapital freimachen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T20:20:12.597117",
+      "aktion": "kaufen",
+      "menge": 1.350203,
+      "preis": 73.9,
+      "grund": "Neutrales Setup (RSI 53.5, Kurs zwischen SMA20/50), aber VIX niedrig (15.3) und Cash verfügbar. Hebel-ETF (3x) nur mit kleiner Position (max 30% Depot = ~$30, vol-dämpft ~$21). Meta-Regeln zeigen 0% Treffer bei hoher Konfidenz → niedrige Konfidenz, Lern-Signal.",
+      "ki_konfidenz": 45
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_191802_TQQQ_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260810_202134_TQQQ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "TQQQ",
-    "provider": "ALLE_PROVIDER_KALT",
-    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

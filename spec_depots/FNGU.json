@@ -2,24 +2,12 @@
   "ticker": "FNGU",
   "name": "MicroSectors FANG+ 3x",
   "kategorie": "lev-bull",
-  "bargeld": 108.62,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 3.199411,
+  "avg_price": 33.95,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T17:30:57.278087",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-08-05T17:34:11.436684",
-      "wert": 108.19
-    },
-    {
-      "zeit": "2026-08-05T17:34:36.011104",
-      "wert": 108.19
-    },
     {
       "zeit": "2026-08-05T17:47:22.321944",
       "wert": 108.19
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T15:55:59.438395",
       "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.320211",
+      "wert": 108.62
+    },
+    {
+      "zeit": "2026-08-10T19:33:58.228331",
+      "wert": 108.4
+    },
+    {
+      "zeit": "2026-08-10T20:04:37.891997",
+      "wert": 108.01
     }
   ],
   "trades": [
@@ -533,17 +533,25 @@
       "preis": 31.95,
       "grund": "Neutraler Trend, RSI 66.4, sehr niedriges Volumen (0.34x), multiple ANTI-Regeln gegen lev-bull/AI/Volatility-Titel, Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz, Position leicht im Minus, kein Cash für Nachkauf",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.320211",
+      "aktion": "kaufen",
+      "menge": 3.199411,
+      "preis": 33.95,
+      "grund": "Klarer Aufwärtstrend (Kurs > SMA20 > SMA50), RSI 67.9 nicht überkauft, niedriger VIX (15.3). 3x Hebel-ETF erfordert kleine Positionsgröße (max 30% Cash ~$32) per Strategie. Volumen-Ratio 0.7x akzeptabel. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_191801_FNGU_aktien_na",
+    "decision_id": "d_20260810_201737_FNGU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "FNGU",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

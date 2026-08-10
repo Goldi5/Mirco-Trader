@@ -376,6 +376,26 @@
     {
       "zeit": "2026-08-07T21:52:37.842281",
       "wert": 111.33
+    },
+    {
+      "zeit": "2026-08-10T19:33:08.354987",
+      "wert": 115.35
+    },
+    {
+      "zeit": "2026-08-10T19:33:58.258639",
+      "wert": 115.24
+    },
+    {
+      "zeit": "2026-08-10T19:51:29.207519",
+      "wert": 115.16
+    },
+    {
+      "zeit": "2026-08-10T20:03:48.300012",
+      "wert": 114.63
+    },
+    {
+      "zeit": "2026-08-10T20:04:37.909699",
+      "wert": 114.91
     }
   ],
   "trades": [
@@ -429,11 +449,11 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_191801_PLTR_aktien_na",
+    "decision_id": "d_20260810_201835_PLTR_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "PLTR",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
