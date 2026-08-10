@@ -55,7 +55,7 @@ BrokerProvider/PaperBrokerAdapter, Vier-Augen, 3 Doku-Dateien).
 | 9. **Secret-/Connection-Manager** | ✅ ABGESCHLOSSEN (v2.45.0) | Status-Workflow + Rotation + Redaction + tenant-scoped APIs; 9 P9-Tests; PROVIDER-MANAGEMENT.md + SECRET-CONNECTION-MANAGEMENT.md |
 | 10. **Datenprovider-Abstraktion** | ✅ ABGESCHLOSSEN (v2.46.0) | market_data_provider.py: MarketDataProvider-Interface + MarketSnapshot + Fallback-Kette; Legacy-yfinance-Imports in Core nicht refaktoriert (eigener Risiko-Schritt) |
 | 11. **Paper-/Simulator-Broker** | ✅ ABGESCHLOSSEN (v2.47.0) | SandboxBrokerAdapter + get_broker_adapter Factory; PAPER_ONLY erhalten |
-| 12. Order-Intent- und Risk-Integration | TEILWEISE | create/validate_order_intent existieren; 18-Punkte-Checkliste (§13) nicht vollständig |
+| 12. **Order-Intent- und Risk-Integration** | ✅ ABGESCHLOSSEN (v2.48.0) | 18-Punkte-Checkliste (§13) + price-Bug gefixt; 306 OK |
 | 13. Vier-Augen-Freigabe | TEILWEISE | four_eyes_required existiert; approvals-Workflow (IN_REVIEW/EXPIRED/REVOKED) ausbauen |
 | 14. Live-Antragsprozess | OFFEN | LIVE_REQUESTED→IN_REVIEW→APPROVED Prozess fehlt |
 | 15. Admin-Oberfläche | TEILWEISE | Admin-Bereich (8 Tabs) existiert; Provider/Modi/Freigaben-Übersicht fehlt |
@@ -75,7 +75,7 @@ BrokerProvider/PaperBrokerAdapter, Vier-Augen, 3 Doku-Dateien).
 | 9. Secret-/Connection-Manager | OFFEN | secret_store existiert; Rotation/Status-Ausbau offen |
 | 10. **Datenprovider-Abstraktion** | ✅ ABGESCHLOSSEN (v2.46.0) | market_data_provider.py: MarketDataProvider-Interface + MarketSnapshot + Fallback-Kette; Legacy-yfinance-Imports in Core nicht refaktoriert (eigener Risiko-Schritt) |
 | 11. **Paper-/Simulator-Broker** | ✅ ABGESCHLOSSEN (v2.47.0) | SandboxBrokerAdapter + get_broker_adapter Factory; PAPER_ONLY erhalten |
-| 12. Order-Intent- und Risk-Integration | TEILWEISE | create/validate_order_intent existieren; 18-Punkte-Checkliste (§13) nicht vollständig |
+| 12. **Order-Intent- und Risk-Integration** | ✅ ABGESCHLOSSEN (v2.48.0) | 18-Punkte-Checkliste (§13) + price-Bug gefixt; 306 OK |
 | 13. Vier-Augen-Freigabe | TEILWEISE | four_eyes_required existiert; approvals-Workflow (IN_REVIEW/EXPIRED/REVOKED) ausbauen |
 | 14. Live-Antragsprozess | OFFEN | LIVE_REQUESTED→IN_REVIEW→APPROVED Prozess fehlt |
 | 15. Admin-Oberfläche | TEILWEISE | Admin-Bereich (8 Tabs) existiert; Provider/Modi/Freigaben-Übersicht fehlt |

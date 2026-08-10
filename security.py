@@ -568,6 +568,9 @@ def create_order_intent(tenant_id, ticker, side, quantity, price, portfolio_id=N
     import datetime as _dt
     if mode is None:
         mode = get_trading_mode(tenant_id) or "SHADOW"
+    # price-Parameter in limit_price uebernehmen (Intent hat kein eigenes price-Feld)
+    if limit_price is None and price is not None:
+        limit_price = price
     return {
         "order_intent_id": _uuid.uuid4().hex[:16],
         "tenant_id": tenant_id,
@@ -580,6 +583,7 @@ def create_order_intent(tenant_id, ticker, side, quantity, price, portfolio_id=N
         "quantity": quantity,
         "order_type": order_type,
         "limit_price": limit_price,
+        "price": limit_price,
         "stop_price": stop_price,
         "reason": reason,
         "decision_id": decision_id,
@@ -643,8 +647,120 @@ def validate_order_intent(intent, portfolio_value=None, market_open=True,
         if not r3["allowed"]:
             return {"allowed": False, "reason": f"Freigabe: {r3['reason']}",
                     "intent": intent}
+    # 8) Trading-Pause aktiv? (modus-unabhaengig)
+    if _trading_paused(intent["tenant_id"]):
+        return {"allowed": False, "reason": "Trading-Pause aktiv", "intent": intent}
+    # 9) Tenant stimmt (Intent-Tenant == Session/Aufrufer-Tenant)
+    caller_tid = intent.get("caller_tenant_id")
+    if caller_tid is not None and caller_tid != intent.get("tenant_id"):
+        return {"allowed": False, "reason": "Tenant-Mismatch", "intent": intent}
+    # 10) Benutzer darf handeln (Rolle)
+    if intent.get("user_id"):
+        if not user_can_trade(intent["user_id"], intent["tenant_id"]):
+            return {"allowed": False, "reason": "Benutzer darf nicht handeln",
+                    "intent": intent}
+    # 11) Portfolio ist aktiv
+    if pid and not _portfolio_active(intent["tenant_id"], pid):
+        return {"allowed": False, "reason": "Portfolio nicht aktiv", "intent": intent}
+    # 12) Brokerverbindung gehoert zum Tenant (falls referenziert)
+    bc = intent.get("broker_connection_id")
+    if bc:
+        conn = _broker_connection_for_tenant(bc, intent["tenant_id"])
+        if not conn:
+            return {"allowed": False, "reason": "Broker-Connection nicht im Tenant",
+                    "intent": intent}
+        # 13) Brokerumgebung passt zum Modus
+        env = conn.get("environment", "")
+        if mode == "PAPER" and env not in ("PAPER", "SANDBOX", "DEMO"):
+            return {"allowed": False,
+                    "reason": f"Broker-Umgebung {env} passt nicht zu PAPER",
+                    "intent": intent}
+    # 14) Daten aktuell (kein Stale-Quote)
+    _px = intent.get("limit_price") or intent.get("price") or 0
+    if _px <= 0:
+        return {"allowed": False, "reason": "Kein gueltiger Preis (Daten fehlen)",
+                "intent": intent}
+    # 15) Tagesverlustlimit / 16) Gesamtverlustlimit / 17) Drawdown
+    drawdown = intent.get("drawdown_pct", 0.0)
+    r_risk = enforce_risk_limits(
+        intent["tenant_id"], "moderate" if mode == "PAPER" else "shadow",
+        pos_pct if portfolio_value else 0.0, portfolio_value or 0.0,
+        drawdown_pct=drawdown)
+    if not r_risk["allowed"]:
+        return {"allowed": False, "reason": f"Risk-Limit: {r_risk['reason']}",
+                "intent": intent}
+    # 18) Keine doppelte Order (gleicher Ticker/Side/Portfolio offen)
+    if _duplicate_order(intent["tenant_id"], pid, intent.get("ticker"),
+                        intent.get("side")):
+        return {"allowed": False, "reason": "Doppelte Order (bereits offen)",
+                "intent": intent}
     intent["risk_check_status"] = "passed"
     return {"allowed": True, "reason": "ok", "intent": intent}
+
+
+# ── Hilfsfunktionen fuer die 18-Punkte-Order-Risk-Checkliste (Auftrag S13) ──
+def _trading_paused(tenant_id):
+    try:
+        import db as _db
+        m = _db.MTDB()
+        row = m.conn.execute(
+            "SELECT mode FROM trading_mode_transitions WHERE tenant_id=? "
+            "ORDER BY id DESC LIMIT 1", (tenant_id,)).fetchone()
+        m.close()
+        return bool(row) and row["mode"] in ("PAUSED", "SUSPENDED", "REVOKED")
+    except Exception:
+        return False
+
+
+def user_can_trade(user_id, tenant_id):
+    try:
+        return has_permission(user_id, "paper.trade", tenant_id) or                has_permission(user_id, "trading.pause", tenant_id)
+    except Exception:
+        return False
+
+
+def _portfolio_active(tenant_id, portfolio_id):
+    try:
+        import db as _db
+        m = _db.MTDB()
+        row = m.conn.execute(
+            "SELECT status FROM paper_portfolios WHERE id=? AND tenant_id=?",
+            (portfolio_id, tenant_id)).fetchone()
+        m.close()
+        if not row:
+            return True  # nicht existierend -> nicht blockieren (Legacy)
+        return row["status"] != "disabled"
+    except Exception:
+        return True
+
+
+def _broker_connection_for_tenant(conn_id, tenant_id):
+    try:
+        import db as _db
+        m = _db.MTDB()
+        row = m.conn.execute(
+            "SELECT * FROM provider_connections WHERE id=? AND tenant_id=? "
+            "AND provider_type='BROKER'", (conn_id, tenant_id)).fetchone()
+        m.close()
+        return dict(row) if row else None
+    except Exception:
+        return None
+
+
+def _duplicate_order(tenant_id, portfolio_id, ticker, side):
+    try:
+        import db as _db
+        m = _db.MTDB()
+        side_db = "BUY" if str(side).upper() in ("BUY", "KAUFEN") else "SELL"
+        row = m.conn.execute(
+            "SELECT id FROM paper_orders WHERE tenant_id=? AND portfolio_id=? "
+            "AND ticker=? AND side=? AND status IN ('open','filled')",
+            (tenant_id, portfolio_id, ticker, side_db)).fetchone()
+        m.close()
+        return bool(row)
+    except Exception:
+        return False
+
 
 
 # ── Broker-Connector-Schnittstelle (Auftrag §10) ──

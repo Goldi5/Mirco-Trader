@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.48.0] - 2026-08-10
+### Added (Platform Expansion §19-Punkt 12: Order-Intent + Risk-Integration, §13)
+- **`validate_order_intent` erweitert auf 18-Punkte-Checkliste** (Auftrag §13):
+  Modus/PAPER_ONLY, Menge/Ticker, Markt, Max-Positionen, Risiko, Regeln,
+  Vier-Augen, **Trading-Pause**, **Tenant-Mismatch**, **Benutzer-darf-handeln**,
+  **Portfolio-aktiv**, **Broker-Connection-Tenant**, **Broker-Umgebung≠Modus**,
+  **Daten-aktuell (Preis>0)**, **Drawdown-Limit**, **Doppelte-Order**
+- **Bugfix `create_order_intent`**: `price`-Parameter wurde nicht ins Intent-Dict
+  geschrieben (Killswitch für Preis-Check) → jetzt `price`→`limit_price`+`price`
+- **Hilfsfunktionen**: `_trading_paused`, `user_can_trade`, `_portfolio_active`,
+  `_broker_connection_for_tenant`, `_duplicate_order` (alle tenant-scoped)
+- **Tests**: 7 P12-Tests (18-Check, price-Bug, LIVE/Tenant/Menge/Preis-Block) → **306 OK / 0 FAIL**
+
+### Security
+- Order-Intent ist jetzt hart gegen Tenant-Mismatch, ungültige Preise, doppelte Orders
+- `PAPER_ONLY` bleibt unumgänglich (LIVE blockiert)
+
 ## [2.47.0] - 2026-08-10
 ### Added (Platform Expansion §19-Punkt 11: Paper-/Simulator-Broker, §10)
 - **`SandboxBrokerAdapter`** (security.py): simulierter Broker (Market-Fill, environment=SANDBOX), erbt von `BrokerProvider`

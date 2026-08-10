@@ -1,8 +1,8 @@
 {
-  "version": "2.47.0",
-  "build": "2026-08-10_1000",
-  "released_at": "2026-08-10 10:00",
-  "codename": "Platform Expansion P11 - Paper-/Sandbox-Broker (SandboxBrokerAdapter + Factory)",
+  "version": "2.48.0",
+  "build": "2026-08-10_1015",
+  "released_at": "2026-08-10 10:15",
+  "codename": "Platform Expansion P12 - Order-Intent + Risk-Integration (18-Punkte-Checkliste §13, create_order_intent price-Bug gefixt)",
   "changes": [
     {
       "version": "2.44.0",

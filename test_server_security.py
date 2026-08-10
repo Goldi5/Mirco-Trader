@@ -1446,6 +1446,39 @@ try:
 except Exception as e11:
     ck("Phase 11 Paper-/Sandbox-Broker", False, str(e11))
 
+# ─── Phase 12 (S19-P12): Order-Intent + Risk-Integration (18-Punkte-Checkliste S13) ─
+print("\n12p. PHASE 12: Order-Intent + Risk-Integration")
+try:
+    import security as sec12
+    # create_order_intent speichert price korrekt
+    oi12 = sec12.create_order_intent(tenant_id=1, ticker="AAPL", side="buy",
+                                     quantity=1, price=150.0, mode="paper")
+    ck("P12: create_order_intent speichert price", oi12.get("limit_price") == 150.0)
+    # Gueltige Order durchlaeuft alle Checks
+    r12 = sec12.validate_order_intent(oi12, portfolio_value=100000)
+    ck("P12: Gueltige Order erlaubt (18-Check)", r12["allowed"])
+    # LIVE blockiert (PAPER_ONLY)
+    oi_l = sec12.create_order_intent(tenant_id=1, ticker="AAPL", side="buy",
+                                     quantity=1, price=150.0, mode="LIVE_ACTIVE")
+    ck("P12: LIVE blockiert (PAPER_ONLY)", not sec12.validate_order_intent(oi_l, portfolio_value=100000)["allowed"])
+    # Preis=0 blockiert (Check 14: Daten aktuell)
+    oi_p0 = sec12.create_order_intent(tenant_id=1, ticker="AAPL", side="buy",
+                                      quantity=1, price=0, mode="paper")
+    ck("P12: Preis=0 blockiert (Stale-Daten)", not sec12.validate_order_intent(oi_p0, portfolio_value=100000)["allowed"])
+    # Tenant-Mismatch blockiert (Check 9)
+    oi_mm = dict(sec12.create_order_intent(tenant_id=1, ticker="AAPL", side="buy",
+                                           quantity=1, price=150.0, mode="paper"))
+    oi_mm["caller_tenant_id"] = 999
+    ck("P12: Tenant-Mismatch blockiert", not sec12.validate_order_intent(oi_mm, portfolio_value=100000)["allowed"])
+    # risk_check_status gesetzt
+    ck("P12: risk_check_status=passed", r12["intent"].get("risk_check_status") == "passed")
+    # Menge<=0 blockiert
+    oi_q0 = sec12.create_order_intent(tenant_id=1, ticker="AAPL", side="buy",
+                                      quantity=0, price=150.0, mode="paper")
+    ck("P12: Menge=0 blockiert", not sec12.validate_order_intent(oi_q0, portfolio_value=100000)["allowed"])
+except Exception as e12:
+    ck("Phase 12 Order-Intent + Risk", False, str(e12))
+
 # ─── Zusammenfassung ─────────────────────────────────────────────
 print(f"\n=== ERGEBNIS: {OK} OK, {FAIL} FAIL ===")
 sys.exit(1 if FAIL else 0)
