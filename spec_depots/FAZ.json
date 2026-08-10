@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T20:18:56.765959",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T20:49:14.701388",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T20:49:26.706392",
-      "wert": 99.84
-    },
-    {
       "zeit": "2026-08-05T21:02:47.655418",
       "wert": 99.84
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:18:54.479123",
       "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T21:31:17.726319",
+      "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T21:32:08.157500",
+      "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T21:33:11.502727",
+      "wert": 100.39
     }
   ],
   "trades": [
@@ -534,14 +534,12 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 0,
-    "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_211744_FAZ_aktien_na",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260810_213255_FAZ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "FAZ",
-    "provider": "FAIL_FAST",
-    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],

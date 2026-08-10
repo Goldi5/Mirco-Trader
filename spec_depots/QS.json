@@ -391,6 +391,18 @@
     {
       "zeit": "2026-08-10T21:19:35.583860",
       "wert": 106.44
+    },
+    {
+      "zeit": "2026-08-10T21:31:17.745812",
+      "wert": 106.79
+    },
+    {
+      "zeit": "2026-08-10T21:32:08.177671",
+      "wert": 106.79
+    },
+    {
+      "zeit": "2026-08-10T21:33:11.524248",
+      "wert": 107.31
     }
   ],
   "trades": [
@@ -477,18 +489,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:18:54.824942",
+    "zeit": "2026-08-10T21:32:59.187394",
     "ticker": "QS",
     "aktion": "halten",
     "konfidenz": 55,
-    "grund": "Neutrale Indikatoren (RSI 50.8, Trend seitwärts), Volumen unterdurchschnittlich (0.48x), kein Cash für Nachkauf, kleine Position im Gewinn (+0.83%), Warnregeln vor Volatilitätstiteln beachten",
+    "grund": "neutrale Trend, keine klaren Kaufsignale, Vorsicht vor volatilen Titeln",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 6.1,
-    "rsi": 50.8,
+    "kurs": 6.15,
+    "rsi": 51.5,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.83,
-    "depot_rendite": 6.44,
+    "p_pnl": 1.65,
+    "depot_rendite": 7.31,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -659,29 +671,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_211854_QS_aktien_na",
-    "provider": "zen-nemotron",
+    "decision_id": "d_20260810_213259_QS_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 6.1,
+      "kurs": 6.15,
       "sma20": 5.62,
       "sma50": 6.75,
-      "rsi": 50.8,
-      "atr_pct": 5.56,
-      "vol_ratio": 0.48,
-      "vix": 15.3,
+      "rsi": 51.5,
+      "atr_pct": 5.52,
+      "vol_ratio": 0.5,
+      "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 6.44
+      "depot_rendite": 7.31
     },
     "indikatoren": [
       "SMA20>5.6",
       "SMA50>6.8",
-      "RSI51",
-      "ATR5.6%"
+      "RSI52",
+      "ATR5.5%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",

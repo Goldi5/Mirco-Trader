@@ -1,9 +1,19 @@
 {
-  "zeit": "2026-08-10T21:19:40.317823",
+  "zeit": "2026-08-10T21:33:16.292245",
   "total": 55,
   "relevant": 47,
   "irrelevant": 1,
   "headlines": [
+    {
+      "title": "Microsoft’s stock is charging back. Here’s the case for it to rally another 30%.",
+      "link": "https://www.marketwatch.com/story/microsofts-stock-is-charging-back-heres-the-case-for-it-to-rally-another-30-1fe261cd?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 19:18:00 GMT",
+      "topics": [],
+      "tickers": [
+        "BAC",
+        "F"
+      ]
+    },
     {
       "title": "‘I want her to choose the best strategy’: My wife’s Social Security is just $900. Should she claim spousal benefit at 62?",
       "link": "https://www.marketwatch.com/story/i-want-her-to-choose-the-best-strategy-my-wifes-social-security-is-just-900-should-she-claim-spousal-benefit-at-62-e3ef621d?mod=mw_rss_topstories",
@@ -89,20 +99,20 @@
       ]
     },
     {
-      "title": "SpaceX’s stock moves above its IPO price for the first time in almost a month",
-      "link": "https://www.marketwatch.com/story/spacexs-stock-moves-above-its-ipo-price-for-the-first-time-in-almost-a-month-fc3f91b7?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 15:20:00 GMT",
+      "title": "Apple CEO Tim Cook Predicts a \"100-Year\" Flood. Here Are 2 Stocks Primed to Cash In.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/apple-ceo-tim-cook-predicts-102000843.html",
+      "date": "2026-08-09T10:20:00Z",
       "topics": [],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Here's the 1 Crypto I'd Buy If I Could Pick Only One",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/heres-1-crypto-id-buy-101200952.html",
-      "date": "2026-08-09T10:12:00Z",
+      "title": "Jim Cramer says Wall Street is 'fleeing' the AI trade to buy these stocks instead. Do you own any?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-wall-street-102000243.html",
+      "date": "2026-08-09T10:20:00Z",
       "topics": [
-        "krypto"
+        "tech"
       ],
       "tickers": [
         "F"
@@ -122,13 +132,14 @@
       ]
     },
     {
-      "title": "Jim Cramer says Wall Street is 'fleeing' the AI trade to buy these stocks instead. Do you own any?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-wall-street-102000243.html",
-      "date": "2026-08-09T10:20:00Z",
+      "title": "AMD (AMD) Buys Inference Chip Startup Taalas To Sharpen Its AI Edge",
+      "link": "https://finance.yahoo.com/technology/ai/articles/amd-amd-buys-inference-chip-102614063.html",
+      "date": "2026-08-09T10:26:14Z",
       "topics": [
         "tech"
       ],
       "tickers": [
+        "AMD",
         "F"
       ]
     },
@@ -143,18 +154,6 @@
       ]
     },
     {
-      "title": "AMD (AMD) Buys Inference Chip Startup Taalas To Sharpen Its AI Edge",
-      "link": "https://finance.yahoo.com/technology/ai/articles/amd-amd-buys-inference-chip-102614063.html",
-      "date": "2026-08-09T10:26:14Z",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "AMD",
-        "F"
-      ]
-    },
-    {
       "title": "Analyst Report: Sterling Infrastructure Inc",
       "link": "https://finance.yahoo.com/research/reports/ARGUS_6630_AnalystReport_1786384995000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
       "date": "2026-08-10T18:03:15Z",
@@ -164,12 +163,15 @@
       ]
     },
     {
-      "title": "Apple CEO Tim Cook Predicts a \"100-Year\" Flood. Here Are 2 Stocks Primed to Cash In.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/apple-ceo-tim-cook-predicts-102000843.html",
-      "date": "2026-08-09T10:20:00Z",
-      "topics": [],
+      "title": "Elon Musk's SpaceX Just Delivered Its First Earnings Report as a Public Company. Here's the 1 Number That Matters Most.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/elon-musks-spacex-just-delivered-102500426.html",
+      "date": "2026-08-09T10:25:00Z",
+      "topics": [
+        "earnings"
+      ],
       "tickers": [
-        "F"
+        "F",
+        "MU"
       ]
     },
     {
@@ -211,22 +213,38 @@
       "tickers": []
     },
     {
-      "title": "Toast Q2 Earnings Call Highlights",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/toast-q2-earnings-call-highlights-100400369.html",
-      "date": "2026-08-09T10:04:00Z",
-      "topics": [
-        "earnings"
-      ],
-      "tickers": []
+      "title": "Is Celsius a Buy After Tumbling 18% in 1 Day?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/celsius-buy-tumbling-18-1-103200124.html",
+      "date": "2026-08-09T10:32:00Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
     },
     {
-      "title": "Eli Lilly (LLY) Posts Blowout Growth And Raises Its Outlook",
-      "link": "https://finance.yahoo.com/healthcare/articles/eli-lilly-lly-posts-blowout-085111847.html",
-      "date": "2026-08-09T08:51:11Z",
+      "title": "IRS warns crypto investors of fake letters from fraudsters aimed at stealing wallet keys and passwords",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/irs-warns-crypto-investors-fake-113000642.html",
+      "date": "2026-08-09T11:30:00Z",
       "topics": [
-        "tech"
+        "tech",
+        "geopolitik",
+        "krypto"
       ],
-      "tickers": []
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Latest Oil Market News and Analysis for Aug. 10",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-09/latest-oil-market-news-and-analysis-for-aug-10",
+      "date": "Sun, 09 Aug 2026 22:02:45 GMT",
+      "topics": [
+        "energy",
+        "markt"
+      ],
+      "tickers": [
+        "F"
+      ]
     },
     {
       "title": "IBM Raises C$2.75 Billion in First Canada Bond Sale Since 2012",
@@ -339,15 +357,6 @@
       "topics": [
         "geopolitik"
       ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Saudis Delay Restart of Jazan Plant to Late August, IIR Says",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/saudis-delay-restart-of-jazan-plant-to-late-august-iir-says",
-      "date": "Mon, 10 Aug 2026 17:41:50 GMT",
-      "topics": [],
       "tickers": [
         "F"
       ]

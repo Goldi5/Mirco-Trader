@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-03T22:40:46.306794",
-      "wert": 103.0
-    },
-    {
-      "zeit": "2026-08-04T09:23:19.499517",
-      "wert": 102.4
-    },
-    {
-      "zeit": "2026-08-04T16:52:10.106898",
-      "wert": 102.4
-    },
-    {
       "zeit": "2026-08-04T16:54:38.476076",
       "wert": 102.26
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:19:35.575192",
       "wert": 103.61
+    },
+    {
+      "zeit": "2026-08-10T21:31:17.737429",
+      "wert": 103.75
+    },
+    {
+      "zeit": "2026-08-10T21:32:08.169103",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-10T21:33:11.515313",
+      "wert": 103.5
     }
   ],
   "trades": [
@@ -570,18 +570,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:19:35.535010",
+    "zeit": "2026-08-10T21:32:54.211608",
     "ticker": "MRNA",
     "aktion": "halten",
-    "konfidenz": 58,
-    "grund": "Kein Cash für Nachkauf; Position nahezu break-even (+0.10%); Technisch neutral (RSI 49, Trend seitwärts); Keine News-Katalysatoren; Meta-Regeln zeigen niedrige Trefferquoten bei hohen Konfidenzen",
+    "konfidenz": 55,
+    "grund": "neutrale Trend, RSI 49, keine klaren Aufwärtssignale, Vorsicht vor lev‑bull‑Warnungen",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 59.19,
-    "rsi": 49.1,
+    "kurs": 59.13,
+    "rsi": 49.0,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.1,
-    "depot_rendite": 3.61,
+    "p_pnl": 0.0,
+    "depot_rendite": 3.5,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -752,23 +752,23 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_211935_MRNA_aktien_na",
-    "provider": "zen-nemotron",
+    "decision_id": "d_20260810_213254_MRNA_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 59.19,
+      "kurs": 59.13,
       "sma20": 58.41,
       "sma50": 59.53,
-      "rsi": 49.1,
+      "rsi": 49.0,
       "atr_pct": 5.75,
-      "vol_ratio": 0.92,
-      "vix": 15.3,
+      "vol_ratio": 0.94,
+      "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 3.61
+      "depot_rendite": 3.5
     },
     "indikatoren": [
       "SMA20>58.4",
@@ -786,8 +786,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 58,
-    "konfidenz_nach_cap": 58,
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,
