@@ -14,7 +14,13 @@ RUNS = 8  # 8 * 15 = 120 Min
 def snapshot():
     c = app.test_client()
     c.post('/', data={'username': 'goldi5', 'password': 'Goldi2026!'})
-    d = c.get('/data').get_json()
+    r = c.get('/data')
+    if r.status_code != 200:
+        return f"\n=== {datetime.datetime.now().strftime('%H:%M:%S')} ===\nWARN: /data lieferte HTTP {r.status_code} (API temporär nicht erreichbar)"
+    try:
+        d = r.get_json()
+    except Exception as e:
+        return f"\n=== {datetime.datetime.now().strftime('%H:%M:%S')} ===\nWARN: JSON-Parse fehlgeschlagen: {e}"
     now = datetime.datetime.now().strftime('%H:%M:%S')
     lines = [f"\n=== {now} ==="]
     lines.append("Börsen: " + ', '.join(f"{b.get('name')}={b.get('status')}" for b in (d.get('boersen') or [])))

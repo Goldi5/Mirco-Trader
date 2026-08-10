@@ -1,9 +1,9 @@
 Analysiere 5 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
 
-Risk 75: Cash $72.4, Wert $132.4, Pos: ALLO: 28.98st @$2.01 (Kurs $2.07, P&L +3.24%), Kandidaten: CLOU $27.3 (38% Cash), LGI $18.5 (25% Cash), RDW $13.6 (19% Cash), TNDM $22.4 (31% Cash), EIDO $12.9 (18% Cash)
-Risk 80: Cash $0.0, Wert $114.0, Pos: WKHS: 35.12st @$3.35 (Kurs $3.25, P&L -2.91%), Kandidaten: keine
-Risk 85: Cash $6.9, Wert $116.5, Pos: WKHS: 16.83st @$3.35 (Kurs $3.25, P&L -2.91%), RDW: 4.14st @$13.59 (Kurs $13.27, P&L -2.35%), Kandidaten: VFF $2.1 (30% Cash), AMC $2.6 (37% Cash), CRON $3.1 (45% Cash), WKHS $3.3 (48% Cash), ALLO $2.0 (29% Cash)
-Risk 90: Cash $0.0, Wert $128.0, Pos: ALLO: 61.82st @$2.01 (Kurs $2.07, P&L +3.24%), Kandidaten: keine
-Risk 95: Cash $8.8, Wert $115.2, Pos: ALLO: 20.97st @$2.01 (Kurs $2.07, P&L +3.24%), SENS: 8.28st @$7.02 (Kurs $7.60, P&L +8.26%), Kandidaten: VFF $2.1 (24% Cash), AMC $2.6 (29% Cash), CRON $3.1 (35% Cash), DOMO $3.9 (44% Cash), WKHS $3.3 (38% Cash)
+Risk 80: Cash $0.0, Wert $113.4, Pos: WKHS: 35.12st @$3.35 (Kurs $3.23, P&L -3.44%), Kandidaten: keine
+Risk 85: Cash $6.9, Wert $116.2, Pos: WKHS: 16.83st @$3.35 (Kurs $3.23, P&L -3.44%), RDW: 4.14st @$13.59 (Kurs $13.26, P&L -2.43%), Kandidaten: VFF $2.1 (30% Cash), AMC $2.6 (37% Cash), CRON $3.1 (45% Cash), WKHS $3.3 (48% Cash), ALLO $2.0 (29% Cash)
+Risk 90: Cash $0.0, Wert $127.0, Pos: ALLO: 61.82st @$2.01 (Kurs $2.06, P&L +2.49%), Kandidaten: keine
+Risk 15: Cash $0.0, Wert $99.7, Pos: DOMO: 6.19st @$3.67 (Kurs $3.92, P&L +6.67%), BF-B: 2.67st @$28.36 (Kurs $28.25, P&L -0.39%), Kandidaten: keine
+Risk 95: Cash $8.8, Wert $115.4, Pos: ALLO: 20.97st @$2.01 (Kurs $2.06, P&L +2.49%), SENS: 8.28st @$7.02 (Kurs $7.67, P&L +9.26%), Kandidaten: VFF $2.1 (24% Cash), AMC $2.6 (29% Cash), CRON $3.1 (35% Cash), DOMO $3.9 (44% Cash), WKHS $3.3 (38% Cash)
 
 Antworte NUR mit JSON [{"risk":0, "aktionen":[{"ticker":"AAPL","aktion":"kaufen"|"verkaufen"|"halten","menge":"voll"|"teil","grund":"..."}]}]

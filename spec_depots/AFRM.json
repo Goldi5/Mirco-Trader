@@ -55,6 +55,14 @@
     {
       "zeit": "2026-08-10T17:19:16.865495",
       "wert": 99.83
+    },
+    {
+      "zeit": "2026-08-10T17:34:03.399416",
+      "wert": 99.7
+    },
+    {
+      "zeit": "2026-08-10T17:34:04.985250",
+      "wert": 99.72
     }
   ],
   "trades": [
@@ -69,18 +77,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T17:18:11.438995",
+    "zeit": "2026-08-10T17:32:35.604317",
     "ticker": "AFRM",
     "aktion": "halten",
     "konfidenz": 60,
-    "grund": "Intakter Aufwärtstrend (Kurs > SMA20 > SMA50), RSI neutral bei 52, aber Volumen gering (0.25x) und kein Cash für Nachkauf. Position minimal im Minus (-0.17%), Trend intakt -> halten. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "grund": "Aufwärtstrend intakt (Kurs > SMA20 > SMA50), RSI neutral bei 52, leicht negatives P&L (-0.28%) aber kein Verkaufssignal. Kein Cash für Nachkauf. Volumen niedrig (0.26x) aber nur als Dämpfer für Neukäufe relevant. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 75.82,
-    "rsi": 52.1,
+    "kurs": 75.74,
+    "rsi": 52.0,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": -0.17,
-    "depot_rendite": -0.17,
+    "p_pnl": -0.28,
+    "depot_rendite": -0.28,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -251,23 +259,23 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_171811_AFRM_aktien_na",
-    "provider": "openrouter",
+    "decision_id": "d_20260810_173235_AFRM_aktien_na",
+    "provider": "zen-nemotron",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 75.82,
+      "kurs": 75.74,
       "sma20": 75.38,
       "sma50": 75.01,
-      "rsi": 52.1,
-      "atr_pct": 3.95,
-      "vol_ratio": 0.25,
-      "vix": 15.2,
+      "rsi": 52.0,
+      "atr_pct": 3.96,
+      "vol_ratio": 0.26,
+      "vix": 15.1,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": -0.17
+      "depot_rendite": -0.28
     },
     "indikatoren": [
       "SMA20>75.4",
