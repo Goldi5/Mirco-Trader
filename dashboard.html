@@ -1087,6 +1087,7 @@ function showDepot(dep, typ) {
     try { showDepot(JSON.parse(depJson), typ); } catch(e) {}
   };
 
+  const label = dep.ticker ? dep.ticker : "Risk " + (dep.risk != null ? dep.risk : "?");
   const url = typ == "spec" ? `/spec_depot_json?ticker=${dep.ticker}`
             : typ == "etf" ? `/etf_depot_json?risk=${dep.risk}`
             : `/depot_json?risk=${dep.risk}`;
