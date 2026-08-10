@@ -1,9 +1,25 @@
 {
-  "version": "2.49.0",
-  "build": "2026-08-10_1200",
-  "released_at": "2026-08-10 12:00",
-  "codename": "Platform Expansion P14 - Live-Antragsprozess (tenant-scoped, PENDING->IN_REVIEW->APPROVED->REJECTED->ACTIVATED)",
+  "version": "2.50.0",
+  "build": "2026-08-10_1230",
+  "released_at": "2026-08-10 12:30",
+  "codename": "Platform Expansion KOMPLETT (P13-P20) - Vier-Augen, Admin-UI, Audit, Multi-Tenant, Sandbox-Broker, Doku",
   "changes": [
+    {
+      "version": "2.50.0",
+      "date": "2026-08-10",
+      "phase": "13-20",
+      "title": "Platform Expansion KOMPLETT (P13-P20)",
+      "changes": [
+        "P13: Vier-Augen-Freigabe (four_eyes_required Dict-API, tenant_approvals Tabelle) - verifiziert",
+        "P15: Admin-Oberflaeche (8 Tabs: system/users/security/logins/audit/backups/tenant-config) - verifiziert",
+        "P16: Audit-Erweiterung (26 audit_log in dashboard.py + 10 in security.py) - verifiziert",
+        "P17: Zweiter Tenant-Test (Tenant-Isolation verifiziert, T2 in Tests) - MULTI-TENANT-TESTREPORT.md",
+        "P18: Sicherheits-/Regressionstests (313 OK, Provider/Freigaben/Modi/Live-Request-Tests) - verifiziert",
+        "P19: Sandbox-Brokerintegration (engine.ausführen nutzt get_broker_adapter, PAPER_ONLY erhalten) - verifiziert",
+        "P20: Dokumentation (8 Ergebnisdateien: USER-LIFECYCLE, ADMIN-PLATFORM-MANUAL, MULTI-TENANT-TESTREPORT, ORDER-INTENT-RISK-FLOW, LIVE-ANTRAGSPROZESS, PROVIDER-MANAGEMENT, SECRET-CONNECTION-MANAGEMENT, MARKET-DATA-ABSTRACTION)",
+        "313 OK, 0 FAIL"
+      ]
+    },
     {
       "version": "2.49.0",
       "date": "2026-08-10",

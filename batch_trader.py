@@ -11,6 +11,10 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE)
 
 from engine import scan_markt, bewerte, signal_aktion, ausführen, historie_aktualisieren, Depot
+try:
+    from security import get_broker_adapter
+except Exception:
+    get_broker_adapter = None
 from ki_decisions import entscheide_aktien_depot, hole_kurs_fuer, get_client, MODEL, API_KEY, ZEN_URL, schreibe_ki_log
 from ki_provider import call_ki  # Fallback-Kette: openai → zen → nous → openrouter
 
@@ -503,7 +507,8 @@ def main():
         sells = [a for a in aktionen if a["typ"] == "verkaufen"]
 
         for a in aktionen:
-            ausführen(depot, [a], params)
+            broker = get_broker_adapter(depot.tenant_id) if get_broker_adapter else None
+            ausführen(depot, [a], params, broker=broker)
             if not QUIET:
                 t = a["ticker"]
                 if a["typ"] == "kaufen":

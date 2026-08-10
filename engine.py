@@ -487,7 +487,12 @@ def signal_aktion(depot, aktien_bewertet, params):
 
     return aktionen
 
-def ausführen(depot, aktionen, params):
+try:
+    from security import get_broker_adapter
+except Exception:
+    get_broker_adapter = None
+
+def ausführen(depot, aktionen, params, broker=None):
     """Führt Aktionen aus, aktualisiert Depot."""
     for a in aktionen:
         if a["typ"] == "kaufen":
@@ -539,6 +544,12 @@ def ausführen(depot, aktionen, params):
                     "menge": a["menge"], "preis": round(a["preis"], 2),
                     "grund": a["grund"], "zeit": datetime.now().isoformat(),
                 })
+                # P19: Broker-Adapter (Sandbox/Paper) für Order-Tracking/Audit
+                if broker is not None:
+                    try:
+                        broker.place_order(a["ticker"], "BUY", a["menge"], a["preis"])
+                    except Exception:
+                        pass
 
         elif a["typ"] == "verkaufen":
             ticker = a["ticker"]
@@ -558,6 +569,12 @@ def ausführen(depot, aktionen, params):
                     "menge": a["menge"], "preis": round(a["preis"], 2),
                     "grund": a["grund"], "zeit": datetime.now().isoformat(),
                 })
+                # P19: Broker-Adapter (Sandbox/Paper) für Order-Tracking/Audit
+                if broker is not None:
+                    try:
+                        broker.place_order(ticker, "SELL", a["menge"], preis)
+                    except Exception:
+                        pass
                 # Position entfernen oder reduzieren
                 if a["menge"] >= p["shares"] - 0.001:
                     del depot.positions[ticker]

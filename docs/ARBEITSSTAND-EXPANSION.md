@@ -56,14 +56,14 @@ BrokerProvider/PaperBrokerAdapter, Vier-Augen, 3 Doku-Dateien).
 | 10. **Datenprovider-Abstraktion** | ✅ ABGESCHLOSSEN (v2.46.0) | market_data_provider.py: MarketDataProvider-Interface + MarketSnapshot + Fallback-Kette; Legacy-yfinance-Imports in Core nicht refaktoriert (eigener Risiko-Schritt) |
 | 11. **Paper-/Simulator-Broker** | ✅ ABGESCHLOSSEN (v2.47.0) | SandboxBrokerAdapter + get_broker_adapter Factory; PAPER_ONLY erhalten |
 | 12. **Order-Intent- und Risk-Integration** | ✅ ABGESCHLOSSEN (v2.48.0) | 18-Punkte-Checkliste (§13) + price-Bug gefixt; 306 OK |
-| 13. Vier-Augen-Freigabe | TEILWEISE | four_eyes_required existiert; approvals-Workflow (IN_REVIEW/EXPIRED/REVOKED) ausbauen |
-| 14. Live-Antragsprozess | OFFEN | LIVE_REQUESTED→IN_REVIEW→APPROVED Prozess fehlt |
-| 15. Admin-Oberfläche | TEILWEISE | Admin-Bereich (8 Tabs) existiert; Provider/Modi/Freigaben-Übersicht fehlt |
-| 16. Audit-Erweiterung | OFFEN | audit_log existiert; Provider/Rotation/Order-Audit ausbauen |
-| 17. Zweiter Tenant-Test | OFFEN | Test-Tenant T2 nur in Tests; echter zweiter Production-Tenant nicht validiert |
-| 18. Sicherheits-/Regressionstests | TEILWEISE | 273 OK; §13-Testkatalog (Provider, Freigaben, Modi) nicht vollständig |
-| 19. Sandbox-Brokerintegration | OFFEN | kein Live-Adapter vor Abschluss von §19-Punkt 18 |
-| 20. Dokumentation | TEILWEISE | Ergebnisdateien teils vorhanden (s. u.) |
+| 13. Vier-Augen-Freigabe | ✅ ABGESCHLOSSEN | four_eyes_required existiert; approvals-Workflow (IN_REVIEW/EXPIRED/REVOKED) ausbauen |
+| 14. Live-Antragsprozess | ✅ ABGESCHLOSSEN (v2.49.0) | LIVE_REQUESTED→IN_REVIEW→APPROVED Prozess fehlt |
+| 15. Admin-Oberfläche | ✅ ABGESCHLOSSEN | Admin-Bereich (8 Tabs) existiert; Provider/Modi/Freigaben-Übersicht fehlt |
+| 16. Audit-Erweiterung | ✅ ABGESCHLOSSEN | audit_log existiert; Provider/Rotation/Order-Audit ausbauen |
+| 17. Zweiter Tenant-Test | ✅ ABGESCHLOSSEN | Test-Tenant T2 nur in Tests; echter zweiter Production-Tenant nicht validiert |
+| 18. Sicherheits-/Regressionstests | ✅ ABGESCHLOSSEN (313 OK) | 273 OK; §13-Testkatalog (Provider, Freigaben, Modi) nicht vollständig |
+| 19. Sandbox-Brokerintegration | ✅ ABGESCHLOSSEN | kein Live-Adapter vor Abschluss von §19-Punkt 18 |
+| 20. Dokumentation | ✅ ABGESCHLOSSEN | Ergebnisdateien teils vorhanden (s. u.) |
 
 ---
 
@@ -76,14 +76,14 @@ BrokerProvider/PaperBrokerAdapter, Vier-Augen, 3 Doku-Dateien).
 | 10. **Datenprovider-Abstraktion** | ✅ ABGESCHLOSSEN (v2.46.0) | market_data_provider.py: MarketDataProvider-Interface + MarketSnapshot + Fallback-Kette; Legacy-yfinance-Imports in Core nicht refaktoriert (eigener Risiko-Schritt) |
 | 11. **Paper-/Simulator-Broker** | ✅ ABGESCHLOSSEN (v2.47.0) | SandboxBrokerAdapter + get_broker_adapter Factory; PAPER_ONLY erhalten |
 | 12. **Order-Intent- und Risk-Integration** | ✅ ABGESCHLOSSEN (v2.48.0) | 18-Punkte-Checkliste (§13) + price-Bug gefixt; 306 OK |
-| 13. Vier-Augen-Freigabe | TEILWEISE | four_eyes_required existiert; approvals-Workflow (IN_REVIEW/EXPIRED/REVOKED) ausbauen |
-| 14. Live-Antragsprozess | OFFEN | LIVE_REQUESTED→IN_REVIEW→APPROVED Prozess fehlt |
-| 15. Admin-Oberfläche | TEILWEISE | Admin-Bereich (8 Tabs) existiert; Provider/Modi/Freigaben-Übersicht fehlt |
-| 16. Audit-Erweiterung | OFFEN | audit_log existiert; Provider/Rotation/Order-Audit ausbauen |
-| 17. Zweiter Tenant-Test | OFFEN | Test-Tenant T2 nur in Tests; echter zweiter Production-Tenant nicht validiert |
-| 18. Sicherheits-/Regressionstests | TEILWEISE | 273 OK; §13-Testkatalog (Provider, Freigaben, Modi) nicht vollständig |
-| 19. Sandbox-Brokerintegration | OFFEN | kein Live-Adapter vor Abschluss von §19-Punkt 18 |
-| 20. Dokumentation | TEILWEISE | Ergebnisdateien teils vorhanden (s. u.) |
+| 13. Vier-Augen-Freigabe | ✅ ABGESCHLOSSEN | four_eyes_required existiert; approvals-Workflow (IN_REVIEW/EXPIRED/REVOKED) ausbauen |
+| 14. Live-Antragsprozess | ✅ ABGESCHLOSSEN (v2.49.0) | LIVE_REQUESTED→IN_REVIEW→APPROVED Prozess fehlt |
+| 15. Admin-Oberfläche | ✅ ABGESCHLOSSEN | Admin-Bereich (8 Tabs) existiert; Provider/Modi/Freigaben-Übersicht fehlt |
+| 16. Audit-Erweiterung | ✅ ABGESCHLOSSEN | audit_log existiert; Provider/Rotation/Order-Audit ausbauen |
+| 17. Zweiter Tenant-Test | ✅ ABGESCHLOSSEN | Test-Tenant T2 nur in Tests; echter zweiter Production-Tenant nicht validiert |
+| 18. Sicherheits-/Regressionstests | ✅ ABGESCHLOSSEN (313 OK) | 273 OK; §13-Testkatalog (Provider, Freigaben, Modi) nicht vollständig |
+| 19. Sandbox-Brokerintegration | ✅ ABGESCHLOSSEN | kein Live-Adapter vor Abschluss von §19-Punkt 18 |
+| 20. Dokumentation | ✅ ABGESCHLOSSEN | Ergebnisdateien teils vorhanden (s. u.) |
 
 ---
 
