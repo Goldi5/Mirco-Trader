@@ -2,44 +2,12 @@
   "ticker": "IONQ",
   "name": "IonQ Inc.",
   "kategorie": "ai",
-  "bargeld": 101.17,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 2.35553,
+  "avg_price": 42.95,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-04T17:48:59.598856",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-04T17:49:03.169800",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-04T17:50:11.628574",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-04T18:12:36.110218",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-04T18:15:13.376450",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-04T18:35:14.405683",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-04T21:18:48.277730",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-04T21:20:07.796816",
-      "wert": 103.8
-    },
     {
       "zeit": "2026-08-04T21:20:12.245789",
       "wert": 103.8
@@ -407,6 +375,38 @@
     {
       "zeit": "2026-08-10T20:24:33.438931",
       "wert": 101.17
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.370994",
+      "wert": 101.17
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.608792",
+      "wert": 101.01
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.733301",
+      "wert": 100.84
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.917327",
+      "wert": 100.68
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.216614",
+      "wert": 100.72
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.194305",
+      "wert": 100.75
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.930543",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.486344",
+      "wert": 100.89
     }
   ],
   "trades": [
@@ -569,17 +569,25 @@
       "preis": 43.2,
       "grund": "Kleine Position mit -2,4% Verlust, kein Cash für Nachkauf, neutraler Trend, RSI 64, niedriges Volumen (0,5x), Warnregeln gegen Halten von AI/Quantum-Titeln (-1,75 Gewicht), Kapitalbindung unterperformt Benchmark (+1,82 Gewicht). Verkauf befreit Cash für diversifizierte Neuaufstellung. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.370994",
+      "aktion": "kaufen",
+      "menge": 2.35553,
+      "preis": 42.95,
+      "grund": "neutrale Trend, moderates RSI, low Volumen, kleine Position empfohlen [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_IONQ_aktien_na",
+    "decision_id": "d_20260810_211745_IONQ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "IONQ",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

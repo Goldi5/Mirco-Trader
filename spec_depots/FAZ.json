@@ -9,38 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T18:33:29.787418",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T19:02:33.494927",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T19:17:43.204510",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T19:18:16.585162",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T19:32:50.860050",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T20:02:54.988417",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T20:03:03.101673",
-      "wert": 99.84
-    },
-    {
-      "zeit": "2026-08-05T20:18:09.195558",
-      "wert": 99.84
-    },
-    {
       "zeit": "2026-08-05T20:18:56.765959",
       "wert": 99.84
     },
@@ -407,6 +375,38 @@
     {
       "zeit": "2026-08-10T20:24:33.422104",
       "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.363057",
+      "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.591293",
+      "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.724878",
+      "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.911301",
+      "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.210613",
+      "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.187758",
+      "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.925707",
+      "wert": 100.39
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.479123",
+      "wert": 100.39
     }
   ],
   "trades": [
@@ -514,17 +514,33 @@
       "preis": 31.59,
       "grund": "FAZ (3x Financial Bear) im Abwärtstrend (Finanzsektor steigt), RSI 33.6 nicht überverkauft genug, VIX 15.3 niedrig, Volumen schwach 0.74x. Gelernte Regeln warnen stark vor lev-bear-Titeln (Gewicht -1.61). Position flach (+/-0%), kein Cash für Nachkauf. Verkauf befreit Kapital für bessere Setups. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.187758",
+      "aktion": "kaufen",
+      "menge": 3.172882,
+      "preis": 31.64,
+      "grund": "RSI 33.8 signalisiert oversold, potenzieller Umkehrimpuls, jedoch warnt die anti-Halte-Regel für lev-bear-Titel; daher nur moderate Konfidenz.",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.479123",
+      "aktion": "verkaufen",
+      "menge": 3.172882,
+      "preis": 31.64,
+      "grund": "abwärts trend, anti lev‑bear Warnsignal, bereits voll investiert [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_FAZ_aktien_na",
+    "decision_id": "d_20260810_211744_FAZ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "FAZ",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

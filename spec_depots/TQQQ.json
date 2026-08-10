@@ -3,8 +3,8 @@
   "name": "ProShares UltraPro QQQ 3x",
   "kategorie": "lev-bull",
   "bargeld": 0.0,
-  "shares": 1.350203,
-  "avg_price": 73.9,
+  "shares": 1.348928,
+  "avg_price": 74.17,
   "start": 100.0,
   "exchange": "US",
   "historie": [
@@ -99,6 +99,38 @@
     {
       "zeit": "2026-08-10T20:24:33.515478",
       "wert": 99.73
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.428748",
+      "wert": 99.93
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.730631",
+      "wert": 99.94
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.794908",
+      "wert": 99.93
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.954110",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.250271",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.222148",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.953970",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.512290",
+      "wert": 100.05
     }
   ],
   "trades": [
@@ -141,13 +173,29 @@
       "preis": 73.9,
       "grund": "Neutrales Setup (RSI 53.5, Kurs zwischen SMA20/50), aber VIX niedrig (15.3) und Cash verfügbar. Hebel-ETF (3x) nur mit kleiner Position (max 30% Depot = ~$30, vol-dämpft ~$21). Meta-Regeln zeigen 0% Treffer bei hoher Konfidenz → niedrige Konfidenz, Lern-Signal.",
       "ki_konfidenz": 45
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.954110",
+      "aktion": "verkaufen",
+      "menge": 1.350203,
+      "preis": 74.1,
+      "grund": "zu große Position, leveraged bull ETF, anti-Halt-Regel [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.512290",
+      "aktion": "kaufen",
+      "menge": 1.348928,
+      "preis": 74.17,
+      "grund": "neutrale Trend, moderates Volumen, kleine Position erlaubt, Lernchance",
+      "ki_konfidenz": 55
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_TQQQ_aktien_na",
+    "decision_id": "d_20260810_211810_TQQQ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "TQQQ",

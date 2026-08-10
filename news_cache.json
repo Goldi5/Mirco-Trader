@@ -1,9 +1,22 @@
 {
-  "zeit": "2026-08-10T20:33:05.703892",
+  "zeit": "2026-08-10T21:19:40.317823",
   "total": 55,
-  "relevant": 48,
+  "relevant": 47,
   "irrelevant": 1,
   "headlines": [
+    {
+      "title": "‘I want her to choose the best strategy’: My wife’s Social Security is just $900. Should she claim spousal benefit at 62?",
+      "link": "https://www.marketwatch.com/story/i-want-her-to-choose-the-best-strategy-my-wifes-social-security-is-just-900-should-she-claim-spousal-benefit-at-62-e3ef621d?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 19:00:00 GMT",
+      "topics": [
+        "regulation",
+        "tech",
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
     {
       "title": "Is $1 million enough for a household to retire? The answer keeps changing.",
       "link": "https://www.marketwatch.com/story/is-1-million-enough-for-a-household-to-retire-the-answer-keeps-changing-aee84a83?mod=mw_rss_topstories",
@@ -85,67 +98,12 @@
       ]
     },
     {
-      "title": "The size of the American workforce has fallen by over 1 million people in the past year. Here’s what’s going on.",
-      "link": "https://www.marketwatch.com/story/the-size-of-the-american-workforce-has-fallen-by-over-1-million-people-in-the-past-year-heres-whats-going-on-b8141aa3?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 15:00:00 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "What Happens to a Bond ETF's Price When the Fed Cuts Rates -- Using the Actual Historical Data",
-      "link": "https://finance.yahoo.com/markets/options/articles/happens-bond-etfs-price-fed-093500748.html",
-      "date": "2026-08-09T09:35:00Z",
+      "title": "Here's the 1 Crypto I'd Buy If I Could Pick Only One",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/heres-1-crypto-id-buy-101200952.html",
+      "date": "2026-08-09T10:12:00Z",
       "topics": [
-        "zinsen"
+        "krypto"
       ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Americans say they need $530,000 to take a mini retirement — financial planners say you can do it for far less",
-      "link": "https://finance.yahoo.com/markets/articles/americans-530-000-mini-retirement-093000850.html",
-      "date": "2026-08-09T09:30:00Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "What Do Cost of Carry Tables Tell Us Heading Into Fall Harvest?",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/cost-carry-tables-tell-us-094525020.html",
-      "date": "2026-08-09T09:45:25Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Eli Lilly (LLY) Posts Blowout Growth And Raises Its Outlook",
-      "link": "https://finance.yahoo.com/healthcare/articles/eli-lilly-lly-posts-blowout-085111847.html",
-      "date": "2026-08-09T08:51:11Z",
-      "topics": [
-        "tech"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "340,000 U.S. homes were inherited in 2025 — but a mortgage lien can lead to foreclosure if heirs don't act fast",
-      "link": "https://finance.yahoo.com/real-estate/articles/340-000-u-homes-were-100000962.html",
-      "date": "2026-08-09T10:00:00Z",
-      "topics": [],
-      "tickers": [
-        "F",
-        "FAS"
-      ]
-    },
-    {
-      "title": "If You Get in a Car Crash, the Risk Is Growing Your Insurance Won’t Pay",
-      "link": "https://www.wsj.com/finance/if-you-get-in-a-car-crash-the-risk-is-growing-your-insurance-wont-pay-1522236c?siteid=yhoof2&yptr=yahoo",
-      "date": "2026-08-09T09:30:00Z",
-      "topics": [],
       "tickers": [
         "F"
       ]
@@ -175,6 +133,16 @@
       ]
     },
     {
+      "title": "340,000 U.S. homes were inherited in 2025 — but a mortgage lien can lead to foreclosure if heirs don't act fast",
+      "link": "https://finance.yahoo.com/real-estate/articles/340-000-u-homes-were-100000962.html",
+      "date": "2026-08-09T10:00:00Z",
+      "topics": [],
+      "tickers": [
+        "F",
+        "FAS"
+      ]
+    },
+    {
       "title": "AMD (AMD) Buys Inference Chip Startup Taalas To Sharpen Its AI Edge",
       "link": "https://finance.yahoo.com/technology/ai/articles/amd-amd-buys-inference-chip-102614063.html",
       "date": "2026-08-09T10:26:14Z",
@@ -187,9 +155,83 @@
       ]
     },
     {
-      "title": "Daily – Vickers Top Buyers & Sellers for 08/10/2026",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47864_TopBottomInsiderActivity_1786362180000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-10T11:43:00Z",
+      "title": "Analyst Report: Sterling Infrastructure Inc",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_6630_AnalystReport_1786384995000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-10T18:03:15Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Apple CEO Tim Cook Predicts a \"100-Year\" Flood. Here Are 2 Stocks Primed to Cash In.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/apple-ceo-tim-cook-predicts-102000843.html",
+      "date": "2026-08-09T10:20:00Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "What Do Cost of Carry Tables Tell Us Heading Into Fall Harvest?",
+      "link": "https://finance.yahoo.com/markets/commodities/articles/cost-carry-tables-tell-us-094525020.html",
+      "date": "2026-08-09T09:45:25Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Americans say they need $530,000 to take a mini retirement — financial planners say you can do it for far less",
+      "link": "https://finance.yahoo.com/markets/articles/americans-530-000-mini-retirement-093000850.html",
+      "date": "2026-08-09T09:30:00Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Trump’s $100 billion tariff refund going to big names despite Americans paying higher prices. Can you still get a cut?",
+      "link": "https://finance.yahoo.com/economy/policy/articles/trump-100-billion-tariff-refund-111500641.html",
+      "date": "2026-08-09T11:15:00Z",
+      "topics": [
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Market Update: ENB, CVX, EXPE, ORLY, XOM, STRL",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_47871_MarketUpdate_1786384995000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-10T18:03:15Z",
+      "topics": [
+        "markt"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Toast Q2 Earnings Call Highlights",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/toast-q2-earnings-call-highlights-100400369.html",
+      "date": "2026-08-09T10:04:00Z",
+      "topics": [
+        "earnings"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Eli Lilly (LLY) Posts Blowout Growth And Raises Its Outlook",
+      "link": "https://finance.yahoo.com/healthcare/articles/eli-lilly-lly-posts-blowout-085111847.html",
+      "date": "2026-08-09T08:51:11Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "IBM Raises C$2.75 Billion in First Canada Bond Sale Since 2012",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/ibm-turns-to-canadian-bond-market-for-first-time-since-2012",
+      "date": "Mon, 10 Aug 2026 15:05:12 GMT",
       "topics": [
         "tech"
       ],
@@ -198,31 +240,75 @@
       ]
     },
     {
-      "title": "How Liquid Are Private-Credit Funds? It Depends How You Define ‘Liquidity’",
-      "link": "https://www.wsj.com/articles/how-liquid-are-private-credit-funds-it-depends-how-you-define-liquidity-854ebcb0?siteid=yhoof2&yptr=yahoo",
-      "date": "2026-08-09T09:30:00Z",
+      "title": "Iran Doing Good Job of Rattling Trump, Says Bernard Haykel",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/iran-doing-good-job-of-rattling-trump-bernard-haykel-video",
+      "date": "Mon, 10 Aug 2026 19:07:24 GMT",
       "topics": [],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "HELOC and home equity loan rates today, Monday, August 10, 2026: A 19-basis-point differential",
-      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-monday-august-10-2026-a-19-basis-point-differential-100000351.html",
-      "date": "2026-08-10T10:00:00Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Best high-yield savings interest rates today, Monday, August 10, 2026: Earn up to 4.15% APY with an HYSA",
-      "link": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-monday-august-10-2026-earn-up-to-415-apy-with-an-hysa-100000399.html",
-      "date": "2026-08-10T10:00:00Z",
+      "title": "Fed’s Hammack Says ‘Some Number’ of Rate Hikes May Be Needed",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/fed-s-hammack-says-some-number-of-rate-hikes-may-be-needed",
+      "date": "Mon, 10 Aug 2026 19:06:07 GMT",
       "topics": [
         "zinsen"
       ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "US Natural Gas Surges as Hotter Outlooks Trigger Short-Covering",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-natural-gas-surges-as-hotter-outlooks-trigger-short-covering",
+      "date": "Mon, 10 Aug 2026 13:57:36 GMT",
+      "topics": [
+        "energy"
+      ],
       "tickers": []
+    },
+    {
+      "title": "Yen Weakens 1%, Erases Half of US-Japan Intervention Gains",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/yen-underperforms-g-10-peers-as-intervention-boost-fades",
+      "date": "Mon, 10 Aug 2026 03:26:41 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Test Your ETF Knowledge In Our IQ Test",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/test-your-etf-knowledge-in-our-iq-test-video",
+      "date": "Mon, 10 Aug 2026 19:03:31 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Stocks Churn as Hormuz Standoff Spurs Rally in Oil: Markets Wrap",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-09/stock-market-today-dow-s-p-live-updates",
+      "date": "Sun, 09 Aug 2026 22:11:01 GMT",
+      "topics": [
+        "energy",
+        "markt"
+      ],
+      "tickers": [
+        "F",
+        "MU"
+      ]
+    },
+    {
+      "title": "Avantis ETF Cracks Small-Cap Code",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/avantis-etf-cracks-small-cap-code-video",
+      "date": "Mon, 10 Aug 2026 18:43:08 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
     },
     {
       "title": "ETFs Are 'Absolutely' Mainstream: Maier",
@@ -233,19 +319,6 @@
       ],
       "tickers": [
         "F"
-      ]
-    },
-    {
-      "title": "Stocks Wobble on Hormuz Standoff as Nvidia Sinks: Markets Wrap",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-09/stock-market-today-dow-s-p-live-updates",
-      "date": "Sun, 09 Aug 2026 22:11:01 GMT",
-      "topics": [
-        "markt"
-      ],
-      "tickers": [
-        "F",
-        "DIA",
-        "MU"
       ]
     },
     {
@@ -275,91 +348,6 @@
       "link": "https://www.bloomberg.com/news/articles/2026-08-10/saudis-delay-restart-of-jazan-plant-to-late-august-iir-says",
       "date": "Mon, 10 Aug 2026 17:41:50 GMT",
       "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "IBM to Raise C$2.75 Billion in First Canada Bond Sale Since 2012",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/ibm-turns-to-canadian-bond-market-for-first-time-since-2012",
-      "date": "Mon, 10 Aug 2026 15:05:12 GMT",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Latest Oil Market News and Analysis for Aug. 10",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-09/latest-oil-market-news-and-analysis-for-aug-10",
-      "date": "Sun, 09 Aug 2026 22:02:45 GMT",
-      "topics": [
-        "energy",
-        "markt"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Wheat Climbs With USDA Seen Tightening Global Grain Supply",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/wheat-hits-highest-week-supply-disruptions-black-sea",
-      "date": "Mon, 10 Aug 2026 03:23:27 GMT",
-      "topics": [
-        "tech"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "US Stocks ‘Directionless’ as Chipmaker Earnings, CPI to Set Pace",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-futures-drop-as-focus-turns-on-chipmaker-earnings-inflation",
-      "date": "Mon, 10 Aug 2026 13:28:32 GMT",
-      "topics": [
-        "earnings",
-        "inflation",
-        "tech"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Iran’s Oil Terminals Look Idle as US Keeps Up Naval Blockade",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/iran-s-oil-terminals-look-idle-as-us-keeps-up-naval-blockade",
-      "date": "Mon, 10 Aug 2026 16:10:51 GMT",
-      "topics": [
-        "earnings",
-        "energy"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Copper Holds $14,000 as Weaker US Rate Outlook Boosts Metals",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/copper-holds-14-000-as-weaker-us-rate-outlook-boosts-metals",
-      "date": "Mon, 10 Aug 2026 04:39:06 GMT",
-      "topics": [],
-      "tickers": [
-        "META"
-      ]
-    },
-    {
-      "title": "Europe Gas Prices Surge as Hormuz Deal Prospects Remain Murky",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/european-gas-rises-as-hormuz-deal-prospects-remain-murky",
-      "date": "Mon, 10 Aug 2026 06:52:31 GMT",
-      "topics": [
-        "tech",
-        "energy"
-      ],
-      "tickers": [
-        "MU"
-      ]
-    },
-    {
-      "title": "Soft US Jobs Cast Doubt on September Fed Hike",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/soft-us-jobs-cast-doubt-on-september-fed-hike-video",
-      "date": "Mon, 10 Aug 2026 15:58:39 GMT",
-      "topics": [
-        "zinsen"
-      ],
       "tickers": [
         "F"
       ]

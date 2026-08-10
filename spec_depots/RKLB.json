@@ -2,9 +2,9 @@
   "ticker": "RKLB",
   "name": "Rocket Lab USA",
   "kategorie": "space",
-  "bargeld": 0.0,
-  "shares": 1.242963,
-  "avg_price": 81.0,
+  "bargeld": 100.16,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100.0,
   "exchange": "US",
   "historie": [
@@ -328,6 +328,38 @@
     {
       "zeit": "2026-08-10T20:24:33.484316",
       "wert": 100.03
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.412863",
+      "wert": 99.86
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.697648",
+      "wert": 99.82
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.774051",
+      "wert": 99.81
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.943298",
+      "wert": 99.8
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.239137",
+      "wert": 99.95
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.214251",
+      "wert": 99.92
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.947043",
+      "wert": 100.17
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.504432",
+      "wert": 100.16
     }
   ],
   "trades": [
@@ -407,13 +439,21 @@
       "preis": 81.0,
       "grund": "Watchlist-Wert mit solidem RSI (63.4), durchschnittlichem Volumen und neutralem Trend; Einstieg für Diversifikation bei verfügbarem Cash [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.504432",
+      "aktion": "verkaufen",
+      "menge": 1.242963,
+      "preis": 80.58,
+      "grund": "Neutraler Trend, RSI 62.8 nicht überkauft, Anti-Halt Regel für volatile Titel, kein Cash für Zukauf, kleiner Verlust -> Position schließen",
+      "ki_konfidenz": 55
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_RKLB_aktien_na",
+    "decision_id": "d_20260810_211810_RKLB_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "RKLB",

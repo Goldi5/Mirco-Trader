@@ -2,44 +2,12 @@
   "ticker": "CRSP",
   "name": "CRISPR Therapeutics",
   "kategorie": "biotech",
-  "bargeld": 101.33,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 1.897844,
+  "avg_price": 53.35,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T16:46:00.544086",
-      "wert": 101.68
-    },
-    {
-      "zeit": "2026-08-05T16:48:33.911429",
-      "wert": 101.41
-    },
-    {
-      "zeit": "2026-08-05T16:49:54.853157",
-      "wert": 101.29
-    },
-    {
-      "zeit": "2026-08-05T17:02:35.089118",
-      "wert": 101.29
-    },
-    {
-      "zeit": "2026-08-05T17:17:46.890812",
-      "wert": 101.29
-    },
-    {
-      "zeit": "2026-08-05T17:20:59.958514",
-      "wert": 101.29
-    },
-    {
-      "zeit": "2026-08-05T17:30:57.269857",
-      "wert": 101.29
-    },
-    {
-      "zeit": "2026-08-05T17:34:36.002557",
-      "wert": 101.29
-    },
     {
       "zeit": "2026-08-05T17:47:22.306661",
       "wert": 101.29
@@ -407,6 +375,38 @@
     {
       "zeit": "2026-08-10T20:24:33.413665",
       "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.359304",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.582486",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.720461",
+      "wert": 101.25
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.907697",
+      "wert": 101.25
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.208337",
+      "wert": 101.25
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.184657",
+      "wert": 101.25
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.921614",
+      "wert": 101.25
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.475925",
+      "wert": 101.25
     }
   ],
   "trades": [
@@ -570,17 +570,41 @@
       "preis": 52.45,
       "grund": "Neutraler Trend, RSI nahe überkauft, Anti-Halten-Regel für volatile Titel, keine Liquidität",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.359304",
+      "aktion": "kaufen",
+      "menge": 1.890485,
+      "preis": 53.6,
+      "grund": "neutrale Trend, RSI 71 überbought aber keine klaren Abwärtssignale, geringe Volumen, kleine Position empfehlenswert [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.720461",
+      "aktion": "verkaufen",
+      "menge": 1.890485,
+      "preis": 53.56,
+      "grund": "RSI überkauft (70.9), neutraler Trend, niedriges Volumen, anti-Volatilitäts-Warnung [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.921614",
+      "aktion": "kaufen",
+      "menge": 1.897844,
+      "preis": 53.35,
+      "grund": "neutrale Trend, RSI 69.8 nahe Overbought, aber kein klares Verkaufssignal, moderater Volume und Cash verfügbar [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_CRSP_aktien_na",
+    "decision_id": "d_20260810_211813_CRSP_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "CRSP",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

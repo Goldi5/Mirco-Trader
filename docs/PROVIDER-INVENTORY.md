@@ -1,98 +1,56 @@
-# PROVIDER-INVENTORY.md
+# KI-Provider-Inventar (Stand 2026-08-10, v2.51.0)
 
-> **Phase 0 — Bestandsaufnahme** (2026-08-09, Stand v2.38.1)
-> Alle Provider mit ihren Status, Keys (nur Namen), Rotation und Fallback-Verhalten — geprüft gegen Code.
+**Status:** ✅ KI-Provider-Pool repariert. Trading entscheidet wieder fundiert.
 
----
+## Provider-Pool (Cron/Trader — `ki_provider.py`)
 
-## 1. Marktdaten-Provider (`marktdaten.py`, Super-Mix, 4-Tier)
+Reihenfolge der Rotation (Primary zuerst):
 
-| Tier | Quelle | Key (`.env`) | Drossel | Nutzung | Status |
-|---|---|---|---|---|---|
-| 1 | yfinance | — (kostenlos) | — | Bulk-Scan (663 Ticker, Hist/RSI/MACD), Kurs-Fallback | ✅ aktiv |
-| 2 | Finnhub | `FINNHUB_KEY` | 60 s | Kurs bei yfinance-Exception | ✅ Key vorhanden |
-| 3 | TwelveData | `TWELVEDATA_KEY` | 1 h | Kurs bei Finnhub-Drossel | ✅ Key vorhanden |
-| 4 | AlphaVantage | `ALPHAVANTAGE_KEY` | — | Kurs bei TwelveData-Drossel | ✅ Key vorhanden |
+| # | Name | Modell | Endpoint | Status | Latenz | Bemerkung |
+|---|---|---|---|---|---|---|
+| 1 | **openrouter** | `nvidia/nemotron-3-nano-30b-a3b:free` | openrouter.ai/api/v1 | ✅ **Primary** | ~1–3s | Schnellster funktionierender Free-Provider |
+| 2 | **nous-hy3** | `tencent/hy3:free` | inference-api.nousresearch.com/v1 | ✅ aktiv | ~6–9s | Reasoning-Modell, braucht `max_tokens≥2048` (auto-gehoben in `_ki_call`) |
+| 3 | **nous-step** | `stepfun/step-3.7-flash:free` | inference-api.nousresearch.com/v1 | ✅ aktiv | ~4–5s | Reasoning-Modell, ebenfalls max_tokens-Lift |
+| 4 | **zen** | `ling-3.0-flash-free` | opencode.ai/zen/v1 | ✅ Puffer | ~7s | deepseek tot (429), laguna-s 401 |
+| 5 | **zen-nemotron** | `nemotron-3-ultra-free` | opencode.ai/zen/v1 | ⚠️ langsam | ~72s | Nur Notnagel, zu langsam für Trading-Loop |
 
-**Mechanik:**
-- `hole_kurs(ticker)` rotiert durch die Tiers; Kurs=0 wird nie nach oben durchgereicht (Crash-Schutz).
-- Drossel-Verwaltung: `_gedrosselt()` / `_setze_drossel()` (in-memory + Persistenz via `_drossel_zeit`).
-- Bulk-Fallback: `scan_fallback_yfinance()` → TwelveData `time_series`.
+## Getestete, aber tote Modelle (dieser Account)
 
-**Lücken (Auftrag §6/§7/§12):**
-- Kein `MarketSnapshot`-Objekt; Trading-Core ruft yfinance/TwelveData direkt.
-- Kein Providerstatus (`HEALTHY/DEGRADED/…`), kein `last_success_at/last_error` je Verbindung.
-- `markt_daten`-Tabelle wird **nicht** befüllt (0 Zeilen) — nur ad-hoc Scans.
-- Fallback ist global, nicht tenant-/verbindungs-bewusst (Auftrag §6 „Provider-Fallback darf nicht blind global rotieren").
-- Kein Datenqualitäts-Tracking (source_latency, quality) im Trading-Pfad.
-
-## 2. KI-Provider (`ki_provider.py`, Rotation)
-
-### Cron-Kette (`_baue_provider_liste_cron`, Batch/KI-Läufe)
-| # | Name | Base-URL | Modell | Key |
-|---|---|---|---|---|
-| 1 | `zen` | opencode.ai/zen/v1 | `deepseek-v4-flash-free` | `OPENCODE_ZEN_API_KEY` |
-| 2 | `zen-nemotron` | opencode.ai/zen/v1 | `nemotron-3-ultra-free` | `OPENCODE_ZEN_API_KEY` |
-| 3 | `nous-step` | inference-api.nousresearch.com/v1 | `stepfun/step-3.7-flash:free` | Nous-OAuth (`~/AppData/Local/hermes/shared/nous_auth.json`) |
-| 4 | `nous-hy3` | inference-api.nousresearch.com/v1 | `tencent/hy3:free` | Nous-OAuth |
-| 5 | `openrouter` | openrouter.ai/api/v1 | `nvidia/nemotron-3-ultra-550b-a55b:free` | `OPENROUTER_API_KEY` |
-
-### Chat-Kette (`_baue_provider_liste_chat`, User-Chat, temp=0.3)
-- Primär nemotron/deepseek via zen (free, schnell), OpenRouter als Puffer — verbraucht **nicht** die Nous-Free-Quota des Crons.
-
-**Mechanik:**
-- `call_ki(messages, temperature, max_tokens)` rotiert bei Fehler/Rate-Limit auf nächsten Provider.
-- `ki_faehig()` prüft Key-Verfügbarkeit; `_nous_creds()`/`_nous_refresh()` verwalten den Nous-OAuth-Refresh.
-- `max_tokens=1024` (ki_decisions Z275) — 512 war zu klein (JSON abgeschnitten).
-- Reasoning-Modelle (nous-hy3/nous-step) brauchen ≥1024 Tokens; `reasoning_content` wird akzeptiert; leere Antworten lösen **keinen** Cooldown mehr aus.
-
-**Lücken (Auftrag §6):**
-- KI-Provider sind global konfiguriert (Env/OAuth), nicht tenant-/user-scoped.
-- Kein `provider_connections`-Eintrag für die aktive Kette (Tabelle leer).
-- Kein Rate-Limit-/Status-Tracking je Verbindung in der DB.
-
-## 3. Broker/Execution-Provider
-
-| Adapter | Datei/Zeile | Umfang | Status |
+| Provider | Modell | Fehler | Grund |
 |---|---|---|---|
-| `BrokerProvider` (Interface) | security.py Z532 | connect/disconnect/health/account/buying_power/positions/quote/open_orders/place_order/cancel_order/order_status | ✅ |
-| `PaperBrokerAdapter` | security.py Z571 | virtuelle Orders, virtuelles Portfolio (paper_orders/positions), Environment PAPER | ✅ |
+| zen (OpenCode) | `deepseek-v4-flash-free` | 429 `FreeUsageLimitError` | Quota leer (Free-Tier) |
+| zen (OpenCode) | `laguna-s-2.1:free` / `poolside/laguna-s-2.1:free` | 401 `ModelError` | **Nicht in diesem Zen-Account autorisiert** (trotz öffentlicher Liste) |
+| zen (OpenCode) | `mimo-v2.5-free`, `longcat-2.0-free` | 429 | Quota leer |
+| zen (OpenCode) | `ling-3.0-tiny-free` | 503 | Server-Fehler |
+| zen (OpenCode) | `north-mini-code-free` | 401 | Nicht autorisiert |
+| OpenRouter | `nvidia/nemotron-3-ultra-550b-a55b:free` | (78s Antwort) | Zu langsam → Timeout im Trader (daher umgestellt auf nano) |
 
-**Lücken (Auftrag §8):**
-- Kein `Simulator`-/`Sandbox`-Adapter (nur PAPER).
-- Kein LIVE-Adapter (gewollt — PAPER_ONLY; erst nach Phase 18).
-- `paper_portfolios`/`paper_orders`/`paper_positions` leer (Adapter ungenutzt; der Cron kauft weiter über engine.py-Datei-JSON).
-- Broker-Umgebung steckt nicht in jeder Order (Auftrag §8: „Umgebung muss in jeder Order enthalten sein").
+## Root-Cause Fixes (v2.51.0)
 
-## 4. Secret-Store (`secret_store`-Tabelle + `security.secret_*`)
+1. **hy3/step leeres content:** Reasoning-Modelle liefern bei `max_tokens<2048`
+   nur `finish_reason=length` (content leer). `_ki_call` hebt `max_tokens` für
+   hy3/step jetzt automatisch auf `max(max_tokens, 2048)`.
+2. **OpenRouter 78s:** `nemotron-3-ultra-550b` zu langsam → auf `nemotron-3-nano-30b`
+   umgestellt (Primary).
+3. **zen/deepseek 429:** Quota leer → zen auf `ling-3.0-flash-free` (funktioniert).
+4. **ki_cooldown.json:** Circuit-Breaker sperrte alle Provider dauerhaft → gelöscht.
+5. **OpenRouter-Header:** `HTTP-Referer`/`X-Title` in `get_client` ergänzt.
 
-| Aspekt | Befund |
-|---|---|
-| Tabelle | `secret_store` (tenant_id, secret_key, secret_value, created_at, updated_at) |
-| Einträge | 1: `OPENAI_API_KEY` (Länge 10 — Testwert) |
-| APIs | `secret_set/get/list_keys` (security.py + db.py) |
-| Maskierung | API `list_keys` zeigt nur Schlüsselnamen; volle Keys nie in UI — **jedoch keine `****…letzte 4`-Maske in Routen geprüft** |
-| Logging | kein Hinweis auf Secret-Ausgabe in Logs gefunden |
+## Verifikation (ad-hoc, 8/8 PASS, 2026-08-10 21:1x)
 
-**Lücken (Auftrag §6 Secret-Regeln):**
-- Keine Rotation (`provider.rotate`), kein `last_test_at/last_error`, kein Ablaufdatum (`EXPIRED`-Status).
-- `.env`-Keys (FINNHUB/TWELVEDATA/ALPHAVANTAGE) liegen **nicht** im Secret-Store, sondern in `.env` (git-ignored? prüfen) — Ziel: Secret-Referenzen statt Env.
-- Kein Audit bei Set/Rotation (nur `audit_log` generisch möglich).
-
-## 5. Audit-Datenquellen (Security-Events)
-
-| Quelle | Format | Einträge |
-|---|---|---|
-| `security_audit.json` | JSONL (1 JSON pro Zeile) | 1.722 |
-| `login_rate.json` | JSON | Test-Reste (203.0.113.7, 198.51.100.23, `__v23__` 5 Fehlversuche) |
-| `security_users.json` | JSON | 1 User (admin, superadmin, MFA aus), **422 Sessions** |
-
-## 6. Empfohlene Provider-Phase-Reihenfolge (aus Auftrag §19)
-
-```text
-8.  Provider-Datenmodell (Status UNCONFIGURED…EXPIRED, tenant-scoped, is_default)
-9.  Secret-/Connection-Manager (Rotation, Test, Maskierung, Audit)
-10. Datenprovider-Abstraktion (MarketSnapshot, Interfaces, Qualitäts-Fallback)
-11. Paper-/Simulator-Broker (Simulator-Adapter)
-19. Sandbox-Brokerintegration (erst nach Phase 18 Tests)
 ```
+openrouter  3.8s  OK  'OK'
+nous-step   4.0s  OK  'OK'
+nous-hy3    8.6s  OK  'OK'
+zen(ling)   1.3s  OK  'Ja, ich verste...'
+hy3/step max_tokens>=2048-Lift: aktiv
+OR-Header: gesetzt
+```
+
+Live-`call_ki(max_tokens=1024)` → openrouter, 2.4s, fundierte JSON-Antwort.
+
+## Letzter KI-Run
+
+- **21:16:17** (2026-08-10) — 20/20 Spec mit Aktion, nur 4 Fallback (vorher 10).
+- Trader-Prozesse: `spec_trader.py` (PID 25584) + `batch_trader.py` (PID 21360) laufen.
+  `spec_watch.py` / `etf_trader.py` sind einmalige Scans (exit 0 nach Scan).

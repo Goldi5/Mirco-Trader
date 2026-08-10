@@ -2,22 +2,12 @@
   "ticker": "SCO",
   "name": "ProShares UltraShort Crude",
   "kategorie": "commodity",
-  "bargeld": 101.05,
+  "bargeld": 101.13,
   "shares": 0,
   "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-07-30T13:59:39.980949",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
-    {
-      "zeit": "2026-07-30T14:00:27.430570",
-      "wert": 100.0,
-      "bargeld": 10.0
-    },
     {
       "zeit": "2026-07-30T14:16:18.274989",
       "wert": 100.0,
@@ -387,6 +377,38 @@
     {
       "zeit": "2026-08-10T20:24:33.494796",
       "wert": 101.05
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.412863",
+      "wert": 101.05
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.704145",
+      "wert": 101.13
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.775452",
+      "wert": 101.13
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.945327",
+      "wert": 101.13
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.241374",
+      "wert": 101.13
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.217287",
+      "wert": 101.13
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.948215",
+      "wert": 101.13
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.507000",
+      "wert": 101.13
     }
   ],
   "trades": [
@@ -440,13 +462,29 @@
       "preis": 29.61,
       "grund": "Niedriges Volumen, neutraler Trend, Warnhinweise gegen Halten bei volatilen Titeln. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.412863",
+      "aktion": "kaufen",
+      "menge": 3.867202,
+      "preis": 26.13,
+      "grund": "Abwärtstrend, neutraler RSI, vorsichtige Anti-Regel, kleine Position möglich",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.704145",
+      "aktion": "verkaufen",
+      "menge": 3.867202,
+      "preis": 26.15,
+      "grund": "Abwärtstrend, lev-bear ETF, vorsichtige Regel, keine Aufwärtssignale [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_SCO_aktien_na",
+    "decision_id": "d_20260810_211810_SCO_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SCO",

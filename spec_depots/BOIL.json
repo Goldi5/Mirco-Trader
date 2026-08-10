@@ -2,36 +2,12 @@
   "ticker": "BOIL",
   "name": "ProShares Ultra NatGas 2x",
   "kategorie": "commodity",
-  "bargeld": 100.28,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": -0.0,
+  "shares": 4.821205,
+  "avg_price": 20.75,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T18:32:34.017507",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T18:33:56.352316",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T18:47:33.232209",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T19:02:33.473912",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T19:32:45.804026",
-      "wert": 100.0
-    },
-    {
-      "zeit": "2026-08-05T20:02:54.980853",
-      "wert": 100.0
-    },
     {
       "zeit": "2026-08-05T20:03:03.091387",
       "wert": 100.0
@@ -407,6 +383,30 @@
     {
       "zeit": "2026-08-10T20:24:33.408569",
       "wert": 100.28
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.580865",
+      "wert": 100.28
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.715144",
+      "wert": 100.28
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.903688",
+      "wert": 100.04
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.205013",
+      "wert": 100.04
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.182110",
+      "wert": 100.04
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.472406",
+      "wert": 100.04
     }
   ],
   "trades": [
@@ -545,17 +545,41 @@
       "preis": 19.16,
       "grund": "Downtrend intakt (Kurs < SMA20 < SMA50), RSI 36 noch nicht überverkauft genug, Hebel-ETF (lev-bull) mit historischen Warnregeln gegen Halten, Depot zu 100% in dieser einen riskanten Position konzentriert, kein Cash für Nachkäufe, kleine Gewinnmitnahme (+0.37%) befreit Kapital für Diversifikation [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.715144",
+      "aktion": "kaufen",
+      "menge": 4.821154,
+      "preis": 20.8,
+      "grund": "neutrale RSI, moderates Volumen, aber Anti-Volatilitäts-Warnung; kleine Position empfohlen [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.903688",
+      "aktion": "verkaufen",
+      "menge": 4.821154,
+      "preis": 20.75,
+      "grund": "Abwärtstrend, Anti-Regel für Leveraged Bull, keine Aufwärtssignale [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.472406",
+      "aktion": "kaufen",
+      "menge": 4.821205,
+      "preis": 20.75,
+      "grund": "abwärts Trend, RSI neutral, leveraged bull Warnsignal, moderater Volumen",
+      "ki_konfidenz": 45
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_BOIL_aktien_na",
+    "decision_id": "d_20260810_211742_BOIL_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "BOIL",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

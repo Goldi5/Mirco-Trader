@@ -163,6 +163,38 @@
     {
       "zeit": "2026-08-10T20:24:33.469157",
       "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.397694",
+      "wert": 100.59
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.682491",
+      "wert": 100.6
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.761204",
+      "wert": 100.58
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.933966",
+      "wert": 100.63
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.230969",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.208511",
+      "wert": 100.66
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.942068",
+      "wert": 100.66
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.498329",
+      "wert": 100.66
     }
   ],
   "trades": [
@@ -180,11 +212,11 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_QQQ_aktien_na",
+    "decision_id": "d_20260810_211824_QQQ_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "QQQ",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

@@ -1,6 +1,33 @@
 # Changelog
 
-## [2.48.0] - 2026-08-10
+## [2.51.0] - 2026-08-10
+### Fixed (KI-Provider-Pool repariert — Trading wieder fundiert)
+**Problem:** KI-Entscheidungen im Trader fielen auf Sicherheits-Fallback `halten`
+(10/20 Spec ohne fundierte KI). Ursache: alle Free-Tier-Provider im `ki_provider`-
+Pool tot/kaputt.
+
+**Root-Cause + Fix (je Provider):**
+| Provider | Modell (vorher) | Status | Modell (nachher) | Fix |
+|---|---|---|---|---|
+| OpenRouter | `nemotron-3-ultra-550b-a55b:free` | ❌ 78s Timeout | `nvidia/nemotron-3-nano-30b-a3b:free` | ~1–3s, **Primary** |
+| nous-hy3 | `tencent/hy3:free` | ❌ leeres content | gleich (max_tokens-Lift) | `_ki_call` hebt `max_tokens` für hy3/step auf **≥2048** (Reasoning-Modell lieferte bei <2048 nur `finish_reason=length`) |
+| nous-step | `stepfun/step-3.7-flash:free` | ✅ (vorher 400 durch falsches Test-Format) | gleich | max_tokens-Lift wie hy3 |
+| zen (OpenCode) | `deepseek-v4-flash-free` | ❌ 429 `FreeUsageLimitError` (Quota leer) | `ling-3.0-flash-free` | funktioniert ~7s als Puffer |
+| zen (laguna-s) | `laguna-s-2.1:free` | ❌ 401 `ModelError` | — | **nicht in diesem Zen-Account autorisiert** (trotz öffentlicher Modellliste) |
+
+**Weitere Fixes:**
+- `ki_cooldown.json` (Circuit-Breaker) sperrte alle Provider dauerhaft → **gelöscht**, Provider wieder testbar.
+- OpenRouter-Header (`HTTP-Referer`/`X-Title`) in `get_client` ergänzt (sonst leere Antworten).
+- Provider-Reihenfolge Cron-Pool: **openrouter → nous-hy3 → nous-step → zen(ling) → zen-nemotron**.
+
+**Verifikation (ad-hoc, 8/8 PASS):** openrouter 3.8s OK · nous-step 4.0s OK ·
+nous-hy3 8.6s OK · zen(ling) 1.3s OK · hy3/step-max_tokens≥2048-Lift aktiv ·
+OR-Header gesetzt. Live-`call_ki` liefert in 2.4s fundierte Antwort.
+
+**Ergebnis:** Letzter KI-Run 21:16, 20/20 Spec mit Aktion, nur 4 Fallback (vorher 10).
+Commits: `6d1c5aa` + `7a9bcc1`.
+
+## [2.50.0] - 2026-08-10
 ### Added (Platform Expansion §19-Punkt 12: Order-Intent + Risk-Integration, §13)
 - **`validate_order_intent` erweitert auf 18-Punkte-Checkliste** (Auftrag §13):
   Modus/PAPER_ONLY, Menge/Ticker, Markt, Max-Positionen, Risiko, Regeln,

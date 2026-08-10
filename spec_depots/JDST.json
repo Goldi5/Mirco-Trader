@@ -2,44 +2,12 @@
   "ticker": "JDST",
   "name": "Direxion Gold Miners Bear 2x",
   "kategorie": "lev-bear",
-  "bargeld": 0.0,
-  "shares": 3.790556,
-  "avg_price": 26.26,
+  "bargeld": 98.93,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-04T18:06:24.811454",
-      "wert": 98.0
-    },
-    {
-      "zeit": "2026-08-04T18:12:36.112374",
-      "wert": 98.0
-    },
-    {
-      "zeit": "2026-08-04T18:15:13.378606",
-      "wert": 98.0
-    },
-    {
-      "zeit": "2026-08-04T18:16:03.910971",
-      "wert": 98.0
-    },
-    {
-      "zeit": "2026-08-04T18:35:14.407741",
-      "wert": 98.0
-    },
-    {
-      "zeit": "2026-08-04T21:18:48.277730",
-      "wert": 98.0
-    },
-    {
-      "zeit": "2026-08-04T21:20:07.799382",
-      "wert": 98.0
-    },
-    {
-      "zeit": "2026-08-04T21:20:12.248901",
-      "wert": 98.0
-    },
     {
       "zeit": "2026-08-04T21:26:12.461546",
       "wert": 98.0
@@ -407,6 +375,38 @@
     {
       "zeit": "2026-08-10T20:24:33.447109",
       "wert": 99.54
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.375681",
+      "wert": 98.74
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.617192",
+      "wert": 98.93
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.733301",
+      "wert": 98.93
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.919927",
+      "wert": 98.93
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.219619",
+      "wert": 98.93
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.196823",
+      "wert": 98.93
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.933271",
+      "wert": 98.93
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.488793",
+      "wert": 98.93
     }
   ],
   "trades": [
@@ -556,17 +556,25 @@
       "preis": 26.26,
       "grund": "RSI 26.4 stark überverkauft, Volumen 1.78x über Schnitt, aber Abwärtstrend & Hebel-Bear-ETF Warnregel. Nur kleine Position (30% Cash) für Mean-Reversion-Trade.",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.617192",
+      "aktion": "verkaufen",
+      "menge": 3.790556,
+      "preis": 26.1,
+      "grund": "abwärts trend, anti-lev-bear Warnsignal, RSI oversold, keine klaren Aufwärtsignale [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_JDST_aktien_na",
+    "decision_id": "d_20260810_211810_JDST_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "JDST",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

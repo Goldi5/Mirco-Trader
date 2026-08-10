@@ -2,44 +2,12 @@
   "ticker": "BITX",
   "name": "Volatility Bitcoin 2x",
   "kategorie": "crypto",
-  "bargeld": 100.15,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": -0.0,
+  "shares": 8.387636,
+  "avg_price": 11.97,
   "start": 100.0,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T21:49:02.339928",
-      "wert": 100.32
-    },
-    {
-      "zeit": "2026-08-05T21:49:05.574721",
-      "wert": 100.32
-    },
-    {
-      "zeit": "2026-08-06T15:32:37.012750",
-      "wert": 100.32
-    },
-    {
-      "zeit": "2026-08-06T15:47:04.230535",
-      "wert": 100.32
-    },
-    {
-      "zeit": "2026-08-06T15:47:41.971653",
-      "wert": 100.32
-    },
-    {
-      "zeit": "2026-08-06T16:02:42.453276",
-      "wert": 100.32
-    },
-    {
-      "zeit": "2026-08-06T16:17:27.930278",
-      "wert": 100.32
-    },
-    {
-      "zeit": "2026-08-06T16:18:26.071901",
-      "wert": 100.32
-    },
     {
       "zeit": "2026-08-06T16:31:12.487635",
       "wert": 100.32
@@ -407,6 +375,38 @@
     {
       "zeit": "2026-08-10T20:24:33.402388",
       "wert": 100.15
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.352867",
+      "wert": 100.15
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.575429",
+      "wert": 100.15
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.708498",
+      "wert": 100.15
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.900312",
+      "wert": 100.23
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.202422",
+      "wert": 100.4
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.179942",
+      "wert": 100.4
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.915560",
+      "wert": 100.4
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.467367",
+      "wert": 100.4
     }
   ],
   "trades": [
@@ -584,17 +584,41 @@
       "preis": 12.31,
       "grund": "Mehrere Warnregeln gegen Volatility/Leveraged-Produkte, niedrige VIX (15.2), sehr niedriges Volumen (0.29x), neutraler/bärischer Trend, Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz, kleiner Gewinn realisierbar, Cash freimachen für bessere Gelegenheiten [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.708498",
+      "aktion": "kaufen",
+      "menge": 8.387772,
+      "preis": 11.94,
+      "grund": "neutrale Trend, RSI 37, moderater Volumen, Anti-Volatilitäts-Warnung, dennoch moderater Kauf [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.202422",
+      "aktion": "verkaufen",
+      "menge": 8.387772,
+      "preis": 11.97,
+      "grund": "Neutraler Trend, anti-Regel für Volatility-Titel, hohe Depotskonzentration – Verkauf empfohlen [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.467367",
+      "aktion": "kaufen",
+      "menge": 8.387636,
+      "preis": 11.97,
+      "grund": "neutrale Trend, RSI 37.5, moderater Volatilität, ausreichender Volume, cash verfügbar [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_BITX_aktien_na",
+    "decision_id": "d_20260810_211749_BITX_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "BITX",
-    "provider": "ALLE_PROVIDER_KALT",
+    "provider": "FAIL_FAST",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",

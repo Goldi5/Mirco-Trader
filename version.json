@@ -1,180 +1,24 @@
 {
-  "version": "2.50.0",
-  "build": "2026-08-10_1230",
-  "released_at": "2026-08-10 12:30",
-  "codename": "Platform Expansion KOMPLETT (P13-P20) - Vier-Augen, Admin-UI, Audit, Multi-Tenant, Sandbox-Broker, Doku",
+  "version": "2.51.0",
+  "build": "2026-08-10_2117",
+  "released_at": "2026-08-10 21:17",
+  "codename": "KI-Provider-Pool repariert (OpenRouter Primary, hy3 max_tokens-Lift, Zen=ling)",
   "changes": [
     {
-      "version": "2.50.0",
+      "version": "2.51.0",
       "date": "2026-08-10",
-      "phase": "13-20",
-      "title": "Platform Expansion KOMPLETT (P13-P20)",
+      "phase": "KI-Fix",
+      "title": "KI-Provider-Pool repariert - Trading wieder fundiert",
       "changes": [
-        "P13: Vier-Augen-Freigabe (four_eyes_required Dict-API, tenant_approvals Tabelle) - verifiziert",
-        "P15: Admin-Oberflaeche (8 Tabs: system/users/security/logins/audit/backups/tenant-config) - verifiziert",
-        "P16: Audit-Erweiterung (26 audit_log in dashboard.py + 10 in security.py) - verifiziert",
-        "P17: Zweiter Tenant-Test (Tenant-Isolation verifiziert, T2 in Tests) - MULTI-TENANT-TESTREPORT.md",
-        "P18: Sicherheits-/Regressionstests (313 OK, Provider/Freigaben/Modi/Live-Request-Tests) - verifiziert",
-        "P19: Sandbox-Brokerintegration (engine.ausführen nutzt get_broker_adapter, PAPER_ONLY erhalten) - verifiziert",
-        "P20: Dokumentation (8 Ergebnisdateien: USER-LIFECYCLE, ADMIN-PLATFORM-MANUAL, MULTI-TENANT-TESTREPORT, ORDER-INTENT-RISK-FLOW, LIVE-ANTRAGSPROZESS, PROVIDER-MANAGEMENT, SECRET-CONNECTION-MANAGEMENT, MARKET-DATA-ABSTRACTION)",
-        "313 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.49.0",
-      "date": "2026-08-10",
-      "phase": "14",
-      "title": "Live-Antragsprozess (§19-Punkt 8) - tenant-scoped Antragsworkflow",
-      "changes": [
-        "live_requests Tabelle (id, tenant_id, requested_by, status, broker_connection_id, risk_assessment, timestamps, note) - UNIQUE(tenant_id, status) verhindert parallele offene Antraege",
-        "db.py: live_request_create/review/approve/reject/activate/list/get - status-Maschine PENDING->IN_REVIEW->APPROVED->REJECTED/ACTIVATED mit tenant-scoping",
-        "Approve ohne Review blockiert; Cross-Tenant-Zugriff blockiert; doppelter Antrag blockiert (ACTIVATED gilt als offen)",
-        "dashboard.py: /api/live-requests (POST/GET) + /api/live-requests/<id>/approve|reject (TENANT_ADMIN), in ROUTE_ACCESS registriert",
-        "Integration mit set_trading_mode: PAPER->LIVE_REQUESTED nur nach genehmigtem Antrag",
-        "Test_Server_Security: P14-Block (8 Tests, isolierte Tenants 50/51) - 313 OK, 0 FAIL",
-        "LIVE-ANTWORTSPROZESS.md erstellt (Ergebnisdatei §20)"
-      ]
-    },
-    {
-      "version": "2.44.0",
-      "date": "2026-08-09",
-      "phase": "UI-2-5",
-      "title": "Calm Trading Command Center - UI-Fundament (Phasen 2-5)",
-      "changes": [
-        "PHASE 2 (Designsystem): Neues Token-Set (Calm Trading) - opake weisse Flaechen (#ffffff), #f7f9fc Hintergrund, Slate-Blau #2563eb; Glassmorphismus entfernt; alte Variablennamen als Alias-Block erhalten (498 Inline-Styles bleiben funktionsfaehig)",
-        "PHASE 3 (Header/Navigation): Dunkle 56px-Topbar (Logo, 8 Bereiche: Uebersicht/Portfolios/Maerkte/Analyse/Aktivitaet/KI/System/Einstellungen, Suche, User-Menue); Sub-Navigation via AREA_MAP/AREA_SUBS (Portfolios: Aktien/ETF/Spekulation; Analyse: Analyse/Analyse DB)",
-        "PHASE 4 (Startseite): Hero mit Gesamtwert (44px), 4 KPI-Karten (Aktien/ETF/Spekulation/System), 2-spaltiges Layout (Portfolio-Verlauf + KI-Konfidenz links, Aktivitaet rechts), Risiko- + KI-Status unten",
-        "PHASE 5 (Drawer): Slide-in Detail-Drawer (480px, Overlay, Escape-Close, Body-Scroll-Lock); showDepot() auf Drawer umgeleitet; ARIA-Attribute (role=dialog, aria-modal, aria-hidden)",
-        "Keine Aenderung an Trading-/KI-/Risk-/Shadow-Paper-Live-/Provider-Logik, Security-Gates, Rollen oder Tenant-Isolation",
-        "Verifiziert: /data ohne Auth liefert JSON 401 (kein HTML-Redirect); alle 8 Bereiche + Sub-Nav; Drawer oeffnet/schliesst via Escape; Body-Lock korrekt"
-      ]
-    },
-    {
-      "version": "2.43.0",
-      "date": "2026-08-09",
-      "phase": "5",
-      "title": "Shadow->Paper-Freigabe komplettiert (§9 / §19-Punkt 7)",
-      "changes": [
-        "paper_eligibility prueft jetzt alle 8 Voraussetzungen: Shadow-Mindestanzahl, Audit-Trail vollstaendig, Regelstand identifizierbar, keine kritischen Fehler (7 Tage), keine ungeloesten Block-Regeln, Providerdaten stabil (markt_daten < 3 Tage), Portfolio tenant-scoped, Shadow/Paper getrennt",
-        "Getrennte Portfolios: PAPER nutzt depot_<risk>_paper.json / etf_<risk>_paper.json / spec_depots_paper/ - Shadow-Positionen werden nie uebernommen",
-        "Depot.speichern/etf/spec schreiben mode-Feld (Default shadow, rueckwaertskompatibel)",
-        "_tenant_scoped_depot_files(tid, mode) filtert zusaetzlich nach Portfolio-Modus",
-        "/data-Cache tenant- UND mode-keyed (_cache_mode) - Moduswechsel liefert nie fremde Daten",
-        "portfolio_verlauf(tage, mode) aggregiert nur den aktiven Portfolio-Satz - keine gemeinsame Shadow/Paper-Bewertung",
-        "batch/etf/spec_trader main() nutzen Portfolio-Satz des aktiven Modus",
-        "SHADOW-PAPER-APPROVAL.md erstellt (Ergebnisdatei §20)",
-        "Tests: Sektion 7r (+14) -> 273 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.42.0",
-      "date": "2026-08-09",
-      "phase": "4",
-      "title": "Shadow/Paper/Live-Zustandsmaschine vervollstaendigt (§8 / §14)",
-      "changes": [
-        "Batch-Trader Mode-Gate: main() bricht bei PAUSED/SUSPENDED/REVOKED/LIVE_* ab (kein Handel in gesperrten Zustaenden)",
-        "Vier-Augen + MFA bei LIVE_APPROVED/LIVE_ACTIVE: approved_by Pflicht, Antragsteller darf nicht selbst genehmigen, mfa_confirmed=1 Pflicht",
-        "GET /api/trading_mode liefert allowed_transitions aus der State-Machine (Frontend-Basis)",
-        "TEMP-DEBUG-Block (_budget_debug.txt) aus batch_trader entfernt",
-        "TRADING-MODE-STATE-MACHINE.md erstellt (Ergebnisdatei §20)",
-        "Tests: Sektion 7q (+17) -> 259 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.41.0",
-      "date": "2026-08-09",
-      "phase": "3",
-      "title": "Tenant-Isolation verifizieren und absichern (§2.3 / §17 / §18)",
-      "changes": [
-        "/data-Cache tenant-keyed (_cache_tid): Tenant B bekommt nie die gecachten Portfolio-Daten von Tenant A",
-        "Tenant-Routen (/api/tenants*) auf require_tenant_role (effektive Rolle statt globaler Rolle) + ROUTE_ACCESS TENANT_ADMIN",
-        "tid-Guard: non-superadmin darf nur seinen eigenen Tenant lesen/verwalten (403 bei fremder tid)",
-        "Tenant-Liste: non-superadmin sieht nur seinen eigenen Tenant",
-        "Tenant anlegen: nur superadmin (403 sonst)",
-        "Depot-Speicher (engine/spec/etf/trader/paper_trader) schreiben tenant_id-Feld (Default 1) -> _tenant_scoped_depot_files ordnet korrekt zu",
-        "TENANT-ISOLATION-VERIFICATION.md erstellt (Ergebnisdatei §20)",
-        "Tests: Sektion 7p (+11) -> 242 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.40.0",
-      "date": "2026-08-09",
-      "phase": "2",
-      "title": "Rollen und Berechtigungen ausbauen (§7)",
-      "changes": [
-        "Feine Permission-Kataloge: FINE_PERMISSIONS (41) + ROLE_FINE_PERMISSIONS je Rolle (deny-by-default)",
-        "Alias-Aufloesung PERMISSION_ALIASES: grobe Katalog-Namen (users/rules/audit/...) implizieren feine Permissions",
-        "role_has_permission/has_permission/has_permission_in/effective_permissions auf feine Ebene umgestellt",
-        "Selbst-Privilegierung blockiert: set_role verweigert Promote auf sich selbst (Audit role_change_denied)",
-        "Superadmin-Schutz: superadmin-Rolle nur durch superadmin vergeben/entzogen",
-        "api_users_role liefert 403 bei verweigertem Rollenwechsel",
-        "/api/roles: require_permission(roles.manage) + feine Permissions im Katalog",
-        "ROLE-PERMISSION-MATRIX.md erstellt (Ergebnisdatei §20)",
-        "Tests: Sektion 7o (+48) -> 231 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.39.0",
-      "date": "2026-08-09",
-      "phase": "1",
-      "title": "Benutzerverwaltung professionalisiert (Auftrag §6)",
-      "changes": [
-        "Benutzer-Status: INVITED/ACTIVE/MFA_REQUIRED/RESTRICTED/SUSPENDED/DISABLED/DELETED; Migration alter active-bool-Daten",
-        "User-Felder: created_by, updated_at, last_login_at, last_failed_login_at, mfa_verified_at, disabled_by, disabled_at",
-        "Sessions-GC: abgelaufene Sessions werden beim Laden entfernt (Idle 30min, Absolut 8h)",
-        "Passwortaenderung widerruft ALLE Sessions (Akzeptanzkriterium §6)",
-        "MFA-Aenderung invalidiert Sessions + erzeugt Audit (mfa_enable/mfa_disable)",
-        "MFA-Pflicht fuer admin/superadmin: kritische User-Routen verlangen MFA (Redirect /setup_mfa, kein Lockout)",
-        "Recovery-Codes: 8 einmalige Codes bei MFA-Aktivierung, verify_recovery_code verbraucht",
-        "Redaction: get_user/list_users liefern nie password_hash/mfa_secret/recovery_codes (Sicherheitsluecke geschlossen)",
-        "API: /api/users* mit require_recent_mfa; create_user mit email/display_name/created_by; deactivate ueber sec.deactivate_user",
-        "Tests: Sektion 7n (+18) -> 183 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.38.1",
-      "date": "2026-08-09",
-      "changes": [
-        "FIX 1: enforce_approval wirkt jetzt im Trading-Pfad - validate_order_intent prueft Portfolio-Freigabe (enforce_approval_trade: unreguliert erlaubt, gesperrt/in_pruefung blockt Order)",
-        "FIX 2: BLOCK-Regel-Matching korrigiert - BLOCK:GME blockt nur GME, BLOCK:manuell gesperrt (ohne Ticker) blockt weiterhin alle",
-        "FIX 3: KI-Regeln aktivierbar - effective_rules reicht freigabe_status/shadow/typ durch; freigegebene globale KI-Regeln (nicht shadow) wirken im Enforcement",
-        "FIX 3b: KI-Muster mit Ticker-Klammer '[MTF] ... (RIVN)' blocken gezielt den genannten Ticker; meta_conf_cap blockt nicht hart (KI-Prompt-Steuerung)",
-        "Tests Sektion 7m (+14) -> 165 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.38.0",
-      "date": "2026-08-09",
-      "changes": [
-        "PHASE 14: tenant_approvals Tabelle (target_type, target_id, status, approved_by/at)",
-        "Zustaende: nicht_freigegeben / in_pruefung / freigegeben / gesperrt (§23 Freigabelogik)",
-        "security.py: approval_set/get/list + enforce_approval (nur 'freigegeben' erlaubt Trading)",
-        "dashboard.py: /api/approval, /api/approval/set (TENANT_ADMIN) + Admin-UI in /admin/tenant-config",
-        "Tests Sektion 7m (+9) -> 151 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.37.0",
-      "date": "2026-08-09",
-      "changes": [
-        "PHASE 13 Code: create_order_intent (17 Pflichtfelder, UUID) + validate_order_intent (15-Check-Liste, LIVE/PAPER_ONLY-Gate)",
-        "BrokerProvider-Schnittstelle (connect/disconnect/health/get_account/get_positions/get_quote/place_order/cancel_order/get_order_status/get_open_orders)",
-        "PaperBrokerAdapter: Simulator fuehrt Intents im Paper-Order-Buch aus (tenant-scoped, BUY/SELL)",
-        "batch_trader.py: Kauf-Orders entstehen jetzt als Order-Intent VOR Ausfuehrung (INTENT-BLOCK bei Verstoss)",
-        "four_eyes_required: Vier-Augen-Freigabe fuer live_approve/broker_connect/risk_limit_change/pause_resume/role_to_admin/backup_restore",
-        "Sektion 7l: 20 neue Tests -> 144 OK, 0 FAIL"
-      ]
-    },
-    {
-      "version": "2.36.0",
-      "date": "2026-08-09",
-      "changes": [
-        "PHASE 13 UI: /admin/tenant-config (Risiko + Regeln, tenant-scoped)",
-        "Nav-Tab 'Mandanten' eingefuegt",
-        "Risiko-Formular (moderate/aggressive) -> /admin/tenant-config/risk POST",
-        "Regeln-Tabelle + Hinzufuegen (/admin/tenant-config/rule) + Status-Toggle",
-        "Quell-Tags (tenant/global/default) via .src-CSS-Klassen",
-        "keine neuen Tests (UI-only, basiert auf v2.34/35 Enforcement)"
+        "PROBLEM: KI-Entscheidungen im Trader fielen auf Sicherheits-Fallback 'halten' (10/20 Spec ohne fundierte KI). Ursache: alle Free-Tier-Provider im ki_provider-Pool tot/kaputt.",
+        "ROOT-CAUSE 1: hy3/step (Reasoning-Modelle) lieferten leeres content bei max_tokens<2048 -> finish_reason='length'. _ki_call hebt max_tokens fuer hy3/step jetzt automatisch auf min. 2048.",
+        "ROOT-CAUSE 2: OpenRouter nutzte nemotron-3-ultra-550b-a55b:free (78s Antwortzeit -> Timeout im Trader). Umgestellt auf nvidia/nemotron-3-nano-30b-a3b:free (~1-3s).",
+        "ROOT-CAUSE 3: zen/deepseek (deepseek-v4-flash-free) -> 429 FreeUsageLimitError (Quota leer). Zen auf ling-3.0-flash-free umgestellt (funktioniert ~7s). laguna-s-2.1:free bei diesem Zen-Account: 401 ModelError (nicht autorisiert).",
+        "ROOT-CAUSE 4: ki_cooldown.json sperrte alle Provider dauerhaft (Circuit-Breaker). Geloescht -> Provider wieder testbar.",
+        "OpenRouter-Header (HTTP-Referer/X-Title) in get_client ergaenzt (sonst leere Antworten).",
+        "Provider-Reihenfolge Cron-Pool: openrouter (Primary) -> nous-hy3 -> nous-step -> zen(ling) -> zen-nemotron.",
+        "VERIFIKATION (ad-hoc, 8/8 PASS): openrouter 3.8s OK, nous-step 4.0s OK, nous-hy3 8.6s OK, zen(ling) 1.3s OK; hy3/step max_tokens>=2048-Lift aktiv; OR-Header gesetzt.",
+        "ERGEBNIS: Live-call_ki liefert in 2.4s fundierte Antwort (openrouter). Letzter KI-Run 21:16, 20/20 Spec mit Aktion, nur 4 Fallback (vorher 10)."
       ]
     }
   ]

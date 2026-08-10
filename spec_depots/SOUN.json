@@ -2,36 +2,12 @@
   "ticker": "SOUN",
   "name": "SoundHound AI",
   "kategorie": "ai",
-  "bargeld": 105.51,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 14.124498,
+  "avg_price": 7.47,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-07-30T13:59:39.981495",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
-      "zeit": "2026-07-30T14:00:27.431533",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
-      "zeit": "2026-07-30T14:16:18.276539",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
-      "zeit": "2026-07-30T14:30:27.063562",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
-      "zeit": "2026-07-30T14:42:10.474883",
-      "wert": 100
-    },
     {
       "zeit": "2026-07-30T14:46:58.201597",
       "wert": 100
@@ -399,6 +375,38 @@
     {
       "zeit": "2026-08-10T20:24:33.503555",
       "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.419434",
+      "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-10T20:47:02.714919",
+      "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-10T20:48:14.784200",
+      "wert": 105.23
+    },
+    {
+      "zeit": "2026-08-10T21:01:02.947328",
+      "wert": 105.23
+    },
+    {
+      "zeit": "2026-08-10T21:01:58.244915",
+      "wert": 105.23
+    },
+    {
+      "zeit": "2026-08-10T21:03:29.219445",
+      "wert": 105.23
+    },
+    {
+      "zeit": "2026-08-10T21:16:17.950280",
+      "wert": 105.09
+    },
+    {
+      "zeit": "2026-08-10T21:18:54.508151",
+      "wert": 105.09
     }
   ],
   "trades": [
@@ -489,13 +497,21 @@
       "preis": 7.31,
       "grund": "Neutraler Trend, sehr geringes Volumen, historische Warnsignale gegen Halten bei AI/Volatilität, begrenzte Gewinnmitnahme",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T20:46:04.419434",
+      "aktion": "kaufen",
+      "menge": 14.124498,
+      "preis": 7.47,
+      "grund": "neutrale Trend, AI-Titel-Vorsicht, moderater Volumen, verfügbares Cash",
+      "ki_konfidenz": 55
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_203257_SOUN_aktien_na",
+    "decision_id": "d_20260810_211810_SOUN_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SOUN",
