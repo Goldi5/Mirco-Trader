@@ -1,0 +1,528 @@
+{
+  "ticker": "FAZ",
+  "name": "Direxion Financial Bear 3x",
+  "kategorie": "lev-bear",
+  "bargeld": 100.42,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100.0,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-05T17:34:11.434534",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T17:34:36.008514",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T17:47:22.318923",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T17:49:24.135775",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T18:02:16.817433",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T18:17:41.070989",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T18:33:29.787418",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T19:02:33.494927",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T19:17:43.204510",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T19:18:16.585162",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T19:32:50.860050",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T20:02:54.988417",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.101673",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.195558",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T20:18:56.765959",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.701388",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T20:49:26.706392",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T21:02:47.655418",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.157697",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T21:18:28.235998",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T21:19:02.998592",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T21:32:50.530719",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.062259",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T21:47:33.479280",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T21:49:02.353056",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T21:49:05.588109",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T15:32:26.525723",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T15:32:37.028845",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T15:47:41.999642",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T16:02:45.495505",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.585967",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.944680",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.084681",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T16:31:54.962710",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.847556",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.885537",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T17:01:43.144911",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T17:01:51.219455",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.951241",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T17:18:02.130890",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T17:32:16.072700",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T17:32:33.539278",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.172201",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.280720",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.327795",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.894047",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.344950",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T18:48:25.046357",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T19:03:17.944303",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T19:33:20.115504",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.713249",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.647675",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T20:03:44.959685",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T20:48:26.278968",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T20:48:55.955198",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.320823",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.596710",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T20:49:21.943030",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.386205",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.650873",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.195281",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.548482",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:09:22.005782",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:17:54.858861",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.888818",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:28:50.568461",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.277182",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.445333",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-06T22:07:07.162515",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.085160",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.786238",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.692147",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.831771",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.615470",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.168275",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.352133",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.178955",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.786591",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.303579",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.787218",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.869027",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.673867",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T17:03:34.470607",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T17:32:43.306851",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.664300",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T18:32:50.089600",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.260338",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T18:47:09.237379",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T19:17:35.792436",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T19:32:40.445777",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T20:17:19.814594",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T20:33:10.243384",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T20:46:44.449503",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:02:19.887579",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.549774",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.447102",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.198964",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.632397",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.805862",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.436132",
+      "wert": 100.42
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-04T17:48:59.584773",
+      "aktion": "kaufen",
+      "menge": 3.203075,
+      "preis": 31.22,
+      "grund": "Abwärtstrend des Basiswerts und RSI unter 50 könnten den Bear-ETF stützen; aber hohe Volatilität und Meta-Caps begrenzen die Konfidenz.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-04T17:58:39.185510",
+      "aktion": "verkaufen",
+      "menge": 3.203075,
+      "preis": 31.17,
+      "grund": "FAZ ist ein leveraged Bear ETF (3x Short Financials). Gelernte Regel verbietet Halten von lev-bear-Titeln (Gewicht -1.71). Abwärtstrend intakt (Kurs < SMA20 < SMA50), VIX niedrig (16.2), Position leicht im Minus (-0.16%). [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.585967",
+      "aktion": "kaufen",
+      "menge": 3.212355,
+      "preis": 31.08,
+      "grund": "Watchlist-Signal, keine Position und Cash verfügbar; RSI bereits unter 40, kurzfristige Gegenbewegung möglich, aber wegen Anti-Signal bei lev-bear nur moderate Konfidenz.",
+      "ki_konfidenz": 58,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.944680",
+      "aktion": "verkaufen",
+      "menge": 3.212355,
+      "preis": 31.08,
+      "grund": "Abwärtstrend, niedriger VIX, Halten-Regel negativ für levered Bear; Verkauf ohne Bargeld.",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:31:54.962710",
+      "aktion": "kaufen",
+      "menge": 3.212355,
+      "preis": 31.08,
+      "grund": "Watchlist-Kauf, aber Konfidenz wegen historisch schlechter hoher Konfidenz gedeckelt.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.847556",
+      "aktion": "verkaufen",
+      "menge": 3.212355,
+      "preis": 31.08,
+      "grund": "Regel verbietet Halten von leveraged-bear-ETFs (Gewicht -1.68); FAZ in Abwärtstrend (Kurs < SMA20 < SMA50), VIX niedrig (15.9), Position bei 0% P&L auflösen [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:18:02.130890",
+      "aktion": "kaufen",
+      "menge": 3.212355,
+      "preis": 31.08,
+      "grund": "Vorgegebener Kaufwunsch, aber Abwärtstrend und Anti-Regeln für lev-bear-Titel deuten auf Risiko hin.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:32:16.072700",
+      "aktion": "verkaufen",
+      "menge": 3.212355,
+      "preis": 31.08,
+      "grund": "FAZ ist ein 3x Hebel-Bear-ETF (lev-bear). Gelernte Regel verbietet Halten von lev-bear-Titeln (Gewicht -1.68). Trend ist abwärts (Kurs < SMA20 < SMA50), VIX niedrig (15.9), Position bei Break-even. Meta-Cap-Regeln zeigen 0% Trefferquote bei hoher Konfidenz. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.172201",
+      "aktion": "kaufen",
+      "menge": 3.212355,
+      "preis": 31.08,
+      "grund": "Keine Position und explizite Watchlist-Anfrage; RSI unter 40 und Abwärtstrend für Short-Produkt günstig, aber Konfidenz wegen Meta-Cap und Volatilität begrenzt.",
+      "ki_konfidenz": 60,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.327795",
+      "aktion": "verkaufen",
+      "menge": 3.212355,
+      "preis": 31.26,
+      "grund": "Abwärtstrend und Anti-Regeln gegen Halten von Lev-Bear/Volatilität; hohe Konfidenz historisch unprofitabel.",
+      "ki_konfidenz": 55
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_FAZ_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "FAZ",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

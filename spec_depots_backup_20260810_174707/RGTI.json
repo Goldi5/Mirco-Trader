@@ -1,0 +1,501 @@
+{
+  "ticker": "RGTI",
+  "name": "Rigetti Computing",
+  "kategorie": "ai",
+  "bargeld": -0.0,
+  "shares": 5.668555,
+  "avg_price": 17.65,
+  "start": 100,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-07-30T14:46:58.195444",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-30T17:46:44.340362",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T10:47:23.300842",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T11:02:25.188940",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T11:17:12.339476",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T11:32:17.687863",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T11:47:05.723348",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T12:02:19.111036",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T12:17:10.894329",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T12:31:29.885325",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T12:46:20.287550",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T13:01:52.490246",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T13:16:34.987712",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T13:31:56.992196",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T14:01:55.687688",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T15:33:42.116344",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T20:05:30.641301",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T20:31:14.858831",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T20:34:50.809658",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T20:50:21.781502",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T21:05:07.909588",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-07-31T21:19:43.012408",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-08-03T16:35:05.380547",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-08-03T22:40:46.320759",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-08-04T09:23:19.507197",
+      "wert": 100
+    },
+    {
+      "zeit": "2026-08-04T16:52:10.115971",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:46:58.343444",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T17:48:10.186257",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T17:48:59.636663",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T17:49:03.204270",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T17:50:11.679238",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T17:58:39.221485",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T18:02:50.077778",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T18:06:02.371123",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T18:06:11.306642",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T18:12:36.131492",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T18:15:13.395830",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T18:16:03.931074",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T18:35:14.419738",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T21:18:48.302982",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T21:26:12.479440",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T21:33:57.373184",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T21:34:31.963350",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T21:35:44.853629",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T21:48:28.692888",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-04T21:49:55.146102",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T16:11:47.073095",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T16:28:18.148850",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T16:49:54.885921",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T17:20:59.994765",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T17:30:57.302073",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T17:34:11.459894",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T17:34:36.036159",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T18:17:51.327458",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T18:32:34.063484",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T18:47:38.073782",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T19:32:50.888950",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.986268",
+      "wert": 100.65
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.127615",
+      "wert": 100.47
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.223863",
+      "wert": 100.47
+    },
+    {
+      "zeit": "2026-08-05T20:19:18.768821",
+      "wert": 100.47
+    },
+    {
+      "zeit": "2026-08-05T20:33:05.780044",
+      "wert": 100.47
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.723174",
+      "wert": 100.47
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.182535",
+      "wert": 100.47
+    },
+    {
+      "zeit": "2026-08-05T21:18:28.261652",
+      "wert": 100.47
+    },
+    {
+      "zeit": "2026-08-05T21:32:50.557602",
+      "wert": 100.47
+    },
+    {
+      "zeit": "2026-08-05T21:33:49.664450",
+      "wert": 100.11
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.087736",
+      "wert": 100.17
+    },
+    {
+      "zeit": "2026-08-05T21:47:33.506446",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T15:47:42.059687",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T16:02:45.518212",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.107477",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T16:47:06.279346",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T17:18:02.154628",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.308079",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.353926",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T18:17:34.988504",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.374042",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T20:49:22.004555",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.419932",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.227459",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.909955",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.576238",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T21:09:22.033815",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.918125",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T21:28:50.595789",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.305729",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.138568",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.838254",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.456670",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.778764",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.960611",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.670131",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.202843",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.392272",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.216861",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.698664",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.343109",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.705839",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.849160",
+      "wert": 100.05
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-04T16:52:10.115971",
+      "aktion": "kaufen",
+      "menge": 5.885815,
+      "preis": 16.99,
+      "grund": "Neutraler Trend, RSI moderat, aber niedriges Volumen; Kauf wegen Anti-Halten-Regeln bei AI-Titeln",
+      "ki_konfidenz": 40,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-04T17:46:58.343444",
+      "aktion": "verkaufen",
+      "menge": 5.885815,
+      "preis": 17.1,
+      "grund": "Starke Anti-Regeln gegen AI/Volatility-Titel, neutrale Technik mit niedrigem Volumen, kleine Gewinnmitnahme sinnvoll [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.986268",
+      "aktion": "kaufen",
+      "menge": 5.934552,
+      "preis": 16.96,
+      "grund": "Watchlist-Titel mit verfügbarem Cash, aber Anti-AI-Regel (Gewicht -1.84), neutraler Trend, niedriges Volumen (0.57x) und RSI 63.1 nahe Überkauft mahnen zur Vorsicht; Meta-Regeln zeigen Konfidenz >60 als fehlgeschlagen",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.127615",
+      "aktion": "verkaufen",
+      "menge": 5.934552,
+      "preis": 16.93,
+      "grund": "Anti-Hold-Regel für AI-Titel (Gewicht -1.84), RSI 62.9 nähert sich überkauft, Volumen nur 0.59x Schnitt, Position leicht im Minus (-0.18%), Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:32:50.557602",
+      "aktion": "kaufen",
+      "menge": 5.952014,
+      "preis": 16.88,
+      "grund": "Watchlist-Ticker mit Cash-Verfügbarkeit, aber Meta-Regeln zeigen 0% Treffer bei hoher Konfidenz; Anti-Regeln warnen vor AI/Space/Volatility-Titeln (Quantum Computing), niedriges Volumen (0.68x), RSI 62.6 nahe überkauft - nur kleine Position mit niedriger Konfidenz",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:47:33.506446",
+      "aktion": "verkaufen",
+      "menge": 5.952014,
+      "preis": 16.81,
+      "grund": "Anti-Hold-Regel für KI-Titel (Gewicht -1.84), Position leicht im Minus, kein Cash für Nachkauf, hohes ATR (6%), Volumen unterdurchschnittlich [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.849160",
+      "aktion": "kaufen",
+      "menge": 5.668555,
+      "preis": 17.65,
+      "grund": "Watchlist-Titel mit Cash-Verfügbarkeit, gesundes Volumen (1.12x), RSI nicht überkauft (63.8), aber neutraler Trend und Sektor-Warnungen (AI/Volatility) limitieren Konfidenz. Kleine Position zur Diversifikation.",
+      "ki_konfidenz": 55
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_RGTI_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "RGTI",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

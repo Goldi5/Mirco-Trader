@@ -1,0 +1,409 @@
+{
+  "ticker": "RKLB",
+  "name": "Rocket Lab USA",
+  "kategorie": "space",
+  "bargeld": 100.68,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100.0,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-07-30T00:00:00",
+      "wert": 100.0,
+      "bargeld": 100.0
+    },
+    {
+      "zeit": "2026-08-03T22:40:46.339818",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:46:58.350207",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:48:10.197971",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:49:03.211388",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:50:11.692019",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T17:58:39.230221",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:02:50.082235",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:02.378748",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:11.313312",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:12:36.137526",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:15:13.399403",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:16:03.936394",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T18:35:14.424716",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:18:48.308553",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:20:07.826334",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:26:12.490477",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:34:31.971497",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:35:44.859374",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-04T21:48:42.390114",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T15:35:57.427722",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T15:37:44.135413",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T15:56:40.830673",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:28:18.153548",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:49:54.890852",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:20:59.998583",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:30:57.306796",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:34:11.465729",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:34:36.041746",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:49:24.163769",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:18:16.639145",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.991330",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.131283",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.228021",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-05T20:19:18.772964",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-05T20:33:05.785794",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.726712",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.186659",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-05T21:18:28.266617",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-05T21:19:03.027283",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-05T21:32:50.562834",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-05T21:33:49.668456",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.092279",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-05T21:47:33.510452",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-06T15:47:42.070064",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.613277",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-06T16:47:44.609022",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-06T17:01:53.049455",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-06T17:18:02.159168",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-06T17:32:33.575008",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.201254",
+      "wert": 100.53
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.378042",
+      "wert": 102.96
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.640411",
+      "wert": 103.2
+    },
+    {
+      "zeit": "2026-08-06T20:49:22.014910",
+      "wert": 103.2
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.425187",
+      "wert": 102.49
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.682153",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.231979",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.915161",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.583680",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-06T21:09:22.038357",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.922401",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-06T21:28:50.600079",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.310424",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.145592",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.845231",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.477193",
+      "wert": 102.48
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.790450",
+      "wert": 101.69
+    },
+    {
+      "zeit": "2026-08-07T15:49:12.019683",
+      "wert": 100.87
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.675557",
+      "wert": 100.68
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.207365",
+      "wert": 100.68
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.400250",
+      "wert": 100.68
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.222131",
+      "wert": 100.68
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.705180",
+      "wert": 100.68
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.828498",
+      "wert": 100.68
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.347140",
+      "wert": 100.68
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-05T20:03:03.131283",
+      "aktion": "kaufen",
+      "menge": 1.340842,
+      "preis": 74.58,
+      "grund": "Watchlist, leer, niedrige VIX, RSI neutral; Kauf trotz Space-Anti-Halt Regel",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.228021",
+      "aktion": "verkaufen",
+      "menge": 1.340842,
+      "preis": 74.62,
+      "grund": "Explizite Regel gegen Space-Titel (Gewicht -1.62), neutrales Setup ohne Katalysator, Volumen unterdurchschnittlich, Kapitalbindung vermeiden [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:33:05.785794",
+      "aktion": "kaufen",
+      "menge": 1.344939,
+      "preis": 74.39,
+      "grund": "Watchlist-Kauf trotz Space-Risiko, Leerposition, Meta-Cap 60 aktiv",
+      "ki_konfidenz": 60,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.726712",
+      "aktion": "verkaufen",
+      "menge": 1.344939,
+      "preis": 74.75,
+      "grund": "Gelerntes Verbot gegen Space-Titel (Gewicht -1.62), neutraler Trend, Volumen unterdurchschnittlich (0.69x), kleiner Gewinn realisierbar [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.201254",
+      "aktion": "kaufen",
+      "menge": 1.343625,
+      "preis": 74.82,
+      "grund": "Watchlist-Ticker mit Cash verfügbar, aber Space-Sektor-Regel (Anti halten) und Meta-Cap-Regeln (hohe Konfidenz = 0% Treffer) mahnen zur Vorsicht; RSI 59.3 neutral, Trend seitwärts, Volumen leicht unterdurchschnittlich",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.682153",
+      "aktion": "verkaufen",
+      "menge": 1.343625,
+      "preis": 76.27,
+      "grund": "Neutraler Trend, hohe Volatilität, unterdurchschnittliches Volumen; historische Warnsignale gegen Halten von Space-/Volatilitätstiteln.",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.477193",
+      "aktion": "kaufen",
+      "menge": 1.261292,
+      "preis": 81.25,
+      "grund": "Explizite Kaufanweisung; RSI nicht überkauft, aber geringes Volumen und Warnsignal space. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.675557",
+      "aktion": "verkaufen",
+      "menge": 1.261292,
+      "preis": 79.82,
+      "grund": "Neutraler Trend, sehr geringes Handelsvolumen (0.24x), hohe Volatilität (ATR 6.41%), Verlustposition unter Einstiegskurs; historische Warnsignale sprechen gegen Halten bei Space-Titeln. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_RKLB_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "RKLB",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

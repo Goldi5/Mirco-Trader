@@ -1,0 +1,537 @@
+{
+  "ticker": "NRGU",
+  "name": "MicroSectors FANG+ 3x",
+  "kategorie": "commodity",
+  "bargeld": 103.95,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-07-30T11:28:35.797691",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T11:30:35.204668",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T11:45:35.655830",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T12:00:37.943931",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T12:15:48.477008",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T12:30:41.618398",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T13:59:39.974646",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T14:00:27.424398",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T14:16:18.204745",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T14:30:27.056729",
+      "wert": 100.0,
+      "bargeld": 10.0
+    },
+    {
+      "zeit": "2026-07-30T14:42:10.458372",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-07-30T14:46:58.190444",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-07-30T17:46:44.330867",
+      "wert": 97.9
+    },
+    {
+      "zeit": "2026-07-31T10:47:23.293879",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T11:02:25.186893",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T11:17:12.335151",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T11:32:17.685341",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T11:47:05.719737",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T12:02:19.106861",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T12:17:10.890701",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T12:31:29.882138",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T12:46:20.284548",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T13:01:52.487245",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T13:16:34.981049",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T13:31:56.984027",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T13:46:51.200761",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T14:01:55.684088",
+      "wert": 102.75
+    },
+    {
+      "zeit": "2026-07-31T15:33:42.107912",
+      "wert": 103.85
+    },
+    {
+      "zeit": "2026-07-31T20:05:30.636964",
+      "wert": 102.77
+    },
+    {
+      "zeit": "2026-07-31T20:31:14.850100",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-07-31T20:34:50.801888",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-03T22:33:49.995748",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T17:50:11.667792",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T17:58:39.215457",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T18:02:50.072670",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T18:06:24.909552",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T18:12:36.127492",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T18:15:13.391272",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T18:16:03.925743",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T21:18:48.294503",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T21:20:07.816398",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T21:20:12.261045",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T21:26:12.478313",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T21:33:57.358141",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T21:34:31.957001",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T21:35:44.845980",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T21:48:28.676337",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-04T21:48:42.370195",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T15:56:40.812952",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T16:32:16.147080",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T16:49:54.880910",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T17:30:57.298073",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T17:47:22.370232",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T18:17:51.314677",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T18:32:34.055156",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T18:47:38.069031",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.980453",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.217849",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T20:19:18.765234",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.719175",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.178401",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T21:18:28.256637",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T21:19:03.019935",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T21:32:50.552006",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T21:33:49.661171",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.082260",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T21:47:33.501710",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-05T21:49:05.609658",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T15:32:37.064447",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T15:47:42.051953",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.606006",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.518244",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T16:47:06.254703",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.945796",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T16:47:44.581021",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T17:01:53.026394",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T17:17:16.103452",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T17:32:16.103839",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T17:32:33.564882",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.191984",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T18:17:41.353978",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.367759",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T20:49:21.991519",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.671778",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.219453",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.569080",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-06T21:17:54.883679",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.126891",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.456670",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.759852",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.935554",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.660329",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.194952",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.383451",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.689946",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.332992",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.715679",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.291492",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.230913",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.840286",
+      "wert": 103.95
+    }
+  ],
+  "trades": [
+    {
+      "typ": "kauf",
+      "ticker": "NRGU",
+      "menge": 2.1201,
+      "preis": 42.45,
+      "grund": "uptrend",
+      "zeit": "2026-07-29T17:46:39.129278"
+    },
+    {
+      "zeit": "2026-07-31T11:32:17.685341",
+      "aktion": "verkaufen",
+      "menge": 2.1201,
+      "preis": 43.75,
+      "grund": "RSI über 70, mögliche Überhitzung",
+      "ki_konfidenz": 70,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-07-31T11:47:05.719737",
+      "aktion": "kaufen",
+      "menge": 2.348571,
+      "preis": 43.75,
+      "grund": "Aufwärtstrend und hoher RSI",
+      "ki_konfidenz": 75,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T12:31:29.882138",
+      "aktion": "verkaufen",
+      "menge": 2.348571,
+      "preis": 43.75,
+      "grund": "RSI über 70, überkauft",
+      "ki_konfidenz": 70,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-07-31T12:46:20.284548",
+      "aktion": "kaufen",
+      "menge": 2.348571,
+      "preis": 43.75,
+      "grund": "Aufwärtstrend, Kurs > SMA20 > SMA50",
+      "ki_konfidenz": 75,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T20:31:14.850100",
+      "aktion": "verkaufen",
+      "menge": 2.348571,
+      "preis": 44.26,
+      "grund": "Schwache Signalqualität, hohe Volatilität, niedriges Volumen; Gewinn realisieren",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:17:16.103452",
+      "aktion": "kaufen",
+      "menge": 2.783133,
+      "preis": 37.35,
+      "grund": "Leerposition, Watchlist-Kaufauftrag; Konfidenz durch Meta-Cap auf 60 begrenzt; Lev-Bull-Risiko beachtet",
+      "ki_konfidenz": 60,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:32:16.103839",
+      "aktion": "verkaufen",
+      "menge": 2.783133,
+      "preis": 37.35,
+      "grund": "3x Hebel-Bull-ETN (lev-bull) mit expliziter Verbot-Regel (Gewicht -1.82), hohe Volatilität (ATR 7.14%), neutrale Technik, kein Cash für Nachkauf, Volatilitätsverlust-Risiko [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.191984",
+      "aktion": "kaufen",
+      "menge": 2.783133,
+      "preis": 37.35,
+      "grund": "Leerposition, Watchlist-Kaufvorgabe; Konfidenz auf 60 gedeckelt wegen Meta-Cap (0% Treffer 60-100)",
+      "ki_konfidenz": 60,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T18:17:41.353978",
+      "aktion": "verkaufen",
+      "menge": 2.783133,
+      "preis": 37.35,
+      "grund": "Mehrere gelernte Anti-Regeln verbieten Halten von lev-bull-Titeln (3x Hebel) und Volatilitätstiteln (ATR 7.14%). Position neu mit 0% P&L, aber Regelwerk klar gegen Halten. Kein Cash für Nachkauf. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_NRGU_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "NRGU",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}
