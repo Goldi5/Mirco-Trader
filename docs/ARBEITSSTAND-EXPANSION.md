@@ -39,7 +39,14 @@ BrokerProvider/PaperBrokerAdapter, Vier-Augen, 3 Doku-Dateien).
 
 ## ⏳ OFFEN — NÄCHSTE §19-PUNKTE (in exakter Reihenfolge)
 
-**NÄCHSTER SCHRITT = §19-Punkt 2: Bekannte Fehler prüfen** (Risk-70, BLOCK-Regel, 2. Tenant)
+**Wieder-Einstieg (verifiziert 2026-08-10):**
+1. 3 Fixes (Juli-Session) geprueft gegen echten Code: ALLE SCHON GEFIXT (v2.38.1)
+   - Bug1 enforce_approval im Pfad: validate_order_intent ruft enforce_approval_trade (security.py Z642), batch_trader Z405-420 OK
+   - Bug2 BLOCK-Over-Blocking: BLOCK:GME blockt nur GME, generische Sperre blockt alles (Test 594 erwartet) OK
+   - Bug3 KI-Regeln: enforce_rules filtert freigabe_status==freigegeben OK
+2. **NÄCHSTER SCHRITT = §19-Punkt 9: Secret-/Connection-Manager** (Rotation/Status-Ausbau)
+   - secret_store + provider_connections existieren; Rotation/Status/Health-Check ausbauen
+   - ARBEITSSTAND-HANDOFF-V3.md Z53: "Naechster §19-Punkt nach §9"
 → danach §19-Punkt 9 (Secret-/Connection-Manager Rotation) usw.
 
 | §19-Punkt | Status | Hinweise |
