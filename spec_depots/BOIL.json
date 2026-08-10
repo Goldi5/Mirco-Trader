@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T17:02:35.085102",
-      "wert": 100.0
-    },
-    {
       "zeit": "2026-08-05T17:17:46.882810",
       "wert": 100.0
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-10T15:55:23.522494",
       "wert": 100.28
+    },
+    {
+      "zeit": "2026-08-10T18:52:33.968435",
+      "wert": 100.28
     }
   ],
   "trades": [
@@ -551,7 +551,7 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_174810_BOIL_aktien_na",
+    "decision_id": "d_20260810_190542_BOIL_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "BOIL",

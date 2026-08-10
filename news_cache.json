@@ -1,9 +1,27 @@
 {
-  "zeit": "2026-08-10T17:49:14.019762",
+  "zeit": "2026-08-10T19:06:57.701656",
   "total": 55,
-  "relevant": 48,
-  "irrelevant": 1,
+  "relevant": 44,
+  "irrelevant": 3,
   "headlines": [
+    {
+      "title": "Protect College Sports Act to be voted on next month: What it means for transfers and team spending",
+      "link": "https://www.marketwatch.com/story/senate-vote-on-the-protect-college-sports-act-could-come-this-week-what-it-means-for-transfers-and-salary-caps-58088560?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 16:48:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "‘This has been an emotionally difficult time’: My brother has cancer and my father is 94. How do I shoulder this responsibility?",
+      "link": "https://www.marketwatch.com/story/this-has-been-an-emotionally-difficult-time-my-brother-has-cancer-and-my-father-is-94-how-do-i-shoulder-this-responsibility-9da09dc4?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 16:01:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
     {
       "title": "17 S&P 500 companies with growing revenue and profit margins — and some of their stocks are cheap",
       "link": "https://www.marketwatch.com/story/17-s-p-500-companies-with-growing-revenue-and-profit-margins-and-some-of-their-stocks-are-cheap-e7c7fa14?mod=mw_rss_topstories",
@@ -76,9 +94,43 @@
       ]
     },
     {
-      "title": "The stocks of these ‘toll takers’ could be the AI boom’s next big winners",
-      "link": "https://www.marketwatch.com/story/the-stocks-of-these-toll-takers-could-be-the-ai-booms-next-big-winners-ae1081f1?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 14:28:00 GMT",
+      "title": "This stock market indicator just flashed a warning not seen since the dot-com bubble",
+      "link": "https://finance.yahoo.com/markets/article/this-stock-market-indicator-just-flashed-a-warning-not-seen-since-the-dot-com-bubble-165540336.html",
+      "date": "2026-08-10T16:55:40Z",
+      "topics": [
+        "markt",
+        "geopolitik"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "CFO4Life's Leaders Accuse Focus Financial of 'Bullying' Tactics",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/cfo4lifes-leaders-accuse-focus-financial-165049839.html",
+      "date": "2026-08-10T16:50:49Z",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Embraer Flies On Booming Earnings And Backlog, Outpacing Boeing, Airbus",
+      "link": "https://www.investors.com/news/embraer-earnings-boeing-airbus-aerospace-jet-planes/?src=A00220&yptr=yahoo",
+      "date": "2026-08-10T16:45:00Z",
+      "topics": [
+        "earnings",
+        "tech"
+      ],
+      "tickers": [
+        "BAC",
+        "F"
+      ]
+    },
+    {
+      "title": "Tech stocks still have plenty of believers on Wall Street, inflow data shows",
+      "link": "https://finance.yahoo.com/technology/article/tech-stocks-still-have-plenty-of-believers-on-wall-street-inflow-data-shows-163544665.html",
+      "date": "2026-08-10T16:35:44Z",
       "topics": [
         "tech"
       ],
@@ -87,12 +139,26 @@
       ]
     },
     {
-      "title": "Powerball jackpot climbs to $905 million. What you’d pocket after taxes, and what to do with the rest.",
-      "link": "https://finance.yahoo.com/personal-finance/banking/article/powerball-jackpot-climbs-to-905-million-what-youd-pocket-after-taxes-and-what-to-do-with-the-rest-154401967.html",
-      "date": "2026-08-10T15:44:01Z",
-      "topics": [],
+      "title": "Destiny USA CMBS Debt Faces More Than $350M in Losses",
+      "link": "https://finance.yahoo.com/real-estate/articles/destiny-usa-cmbs-debt-faces-164231802.html",
+      "date": "2026-08-10T16:42:31Z",
+      "topics": [
+        "geopolitik"
+      ],
       "tickers": [
         "F"
+      ]
+    },
+    {
+      "title": "Wall Street giants to partner with Nvidia on $500 billion AI financing deal, FT reports",
+      "link": "https://finance.yahoo.com/technology/ai/articles/wall-street-giants-partner-nvidia-163441421.html",
+      "date": "2026-08-10T16:34:41Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F",
+        "DIA"
       ]
     },
     {
@@ -109,27 +175,6 @@
       ]
     },
     {
-      "title": "'An unprecedented boom': Corporate profits are on pace for fastest growth since 2021",
-      "link": "https://finance.yahoo.com/markets/article/an-unprecedented-boom-corporate-profits-are-on-pace-for-fastest-growth-since-2021-152552912.html",
-      "date": "2026-08-10T15:25:52Z",
-      "topics": [],
-      "tickers": [
-        "F",
-        "FAS"
-      ]
-    },
-    {
-      "title": "Record Backlog Powers NRC Health’s (NRC) Upward Potential",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/record-backlog-powers-nrc-health-153446918.html",
-      "date": "2026-08-10T15:34:46Z",
-      "topics": [
-        "geopolitik"
-      ],
-      "tickers": [
-        "BAC"
-      ]
-    },
-    {
       "title": "Daily – Vickers Top Buyers & Sellers for 08/10/2026",
       "link": "https://finance.yahoo.com/research/reports/ARGUS_47864_TopBottomInsiderActivity_1786362180000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
       "date": "2026-08-10T11:43:00Z",
@@ -138,6 +183,17 @@
       ],
       "tickers": [
         "F"
+      ]
+    },
+    {
+      "title": "SpaceX Stock Has Plunged 34%. Elon Musk's \"Secret Master Plan\" Points to What Could Come Next.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/spacex-stock-plunged-34-elon-164000282.html",
+      "date": "2026-08-10T16:40:00Z",
+      "topics": [
+        "regulation"
+      ],
+      "tickers": [
+        "MU"
       ]
     },
     {
@@ -152,155 +208,68 @@
       ]
     },
     {
-      "title": "2 Energy Dividend Stocks to Buy -- and the Risk Behind Each Payout",
-      "link": "https://finance.yahoo.com/energy/articles/2-energy-dividend-stocks-buy-153500100.html",
-      "date": "2026-08-10T15:35:00Z",
-      "topics": [
-        "energy"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "‘Massive Upgrade Cycle’ Coming – Ignore Memory Costs Panic and Buy Apple (AAPL)?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/massive-upgrade-cycle-coming-ignore-152241666.html",
-      "date": "2026-08-10T15:22:41Z",
-      "topics": [],
-      "tickers": [
-        "AAPL"
-      ]
-    },
-    {
-      "title": "Bitmine Buys Another 7,391 Ethereum And Increases Staked Position",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/bitmine-buys-another-7-391-152200064.html",
-      "date": "2026-08-10T15:22:00Z",
-      "topics": [
-        "krypto"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Daily – Vickers Top Insider Picks for 08/10/2026",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47863_InsiderActivity_1786362180000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-10T11:43:00Z",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "SpaceX Rivals Rocket Lab, AST SpaceMobile About To Report Earnings. What To Expect.",
-      "link": "https://www.investors.com/news/spacex-rocket-lab-ast-spacemobile-earnings-electron-launch-neutron-rocket/?src=A00220&yptr=yahoo",
-      "date": "2026-08-10T15:05:07Z",
-      "topics": [
-        "earnings"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "The Mag 7 Face-Off: Only 2 Come Out on Top",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/mag-7-face-off-only-153022874.html",
-      "date": "2026-08-10T15:30:22Z",
+      "title": "Weekly survey of mortgage lenders with the lowest rates: Lower rates and stiff fees",
+      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/weekly-survey-mortgage-lenders-with-the-best-lowest-rates-august-10-170834159.html",
+      "date": "2025-11-03T17:08:34Z",
       "topics": [],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "JAPEX Doubles Down on U.S. Shale With $320 Million Colorado-Wyoming Deal",
-      "link": "https://finance.yahoo.com/energy/articles/japex-doubles-down-u-shale-150441995.html",
-      "date": "2026-08-10T15:04:41Z",
-      "topics": [
-        "markt"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Emerging Currencies Weaken as Iran Deal Remains Out of Sight",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/emerging-market-stocks-currencies-gain-after-soft-us-jobs-data",
-      "date": "Mon, 10 Aug 2026 04:25:49 GMT",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "RocketLab Rises on Space Interest; Moderna Moves on Flu Shot | Stock Movers",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/rocketlab-up-on-space-interest-moderna-flu-shot-video",
-      "date": "Mon, 10 Aug 2026 15:12:36 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "IBM Turns to Canadian Bond Market for First Time Since 2012",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/ibm-turns-to-canadian-bond-market-for-first-time-since-2012",
-      "date": "Mon, 10 Aug 2026 15:05:12 GMT",
+      "title": "Stocks Wobble on Hormuz Standoff as Nvidia Sinks: Markets Wrap",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-09/stock-market-today-dow-s-p-live-updates",
+      "date": "Sun, 09 Aug 2026 22:11:01 GMT",
       "topics": [
         "markt"
       ],
       "tickers": [
         "F",
-        "DIA"
+        "DIA",
+        "MU"
       ]
     },
     {
-      "title": "Latest Oil Market News and Analysis for Aug. 10",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-09/latest-oil-market-news-and-analysis-for-aug-10",
-      "date": "Sun, 09 Aug 2026 22:02:45 GMT",
-      "topics": [
-        "energy",
-        "markt"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "US High-Grade Bond Market Sees the Most Issuers Since January",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-high-grade-bond-market-sees-the-most-issuers-since-january",
-      "date": "Mon, 10 Aug 2026 15:02:32 GMT",
-      "topics": [
-        "markt"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Stocks Churn as Oil Advance Boosts Treasury Yields: Markets Wrap",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-09/stock-market-today-dow-s-p-live-updates",
-      "date": "Sun, 09 Aug 2026 22:11:01 GMT",
-      "topics": [
-        "energy",
-        "markt"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Barrick Chairman's Planned Overhaul Meets Investor Backlash",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-09/goldman-veteran-s-plan-to-split-barrick-runs-into-opposition",
-      "date": "Sun, 09 Aug 2026 12:01:32 GMT",
+      "title": "Wheat Climbs With USDA Seen Tightening Global Grain Supply",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/wheat-hits-highest-week-supply-disruptions-black-sea",
+      "date": "Mon, 10 Aug 2026 03:23:27 GMT",
       "topics": [
         "tech"
       ],
-      "tickers": [
-        "BAC"
-      ]
+      "tickers": []
     },
     {
-      "title": "Taylor Farms Pulls Products Over Salmonella Concerns",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/taylor-farms-pulls-products-over-salmonella-concerns-video",
-      "date": "Mon, 10 Aug 2026 14:48:59 GMT",
+      "title": "US Stocks ‘Directionless’ as Chipmaker Earnings, CPI to Set Pace",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-futures-drop-as-focus-turns-on-chipmaker-earnings-inflation",
+      "date": "Mon, 10 Aug 2026 13:28:32 GMT",
+      "topics": [
+        "earnings",
+        "inflation",
+        "tech"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Iran’s Oil Terminals Look Idle as US Keeps Up Naval Blockade",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/iran-s-oil-terminals-look-idle-as-us-keeps-up-naval-blockade",
+      "date": "Mon, 10 Aug 2026 16:10:51 GMT",
+      "topics": [
+        "earnings",
+        "energy"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Copper Holds $14,000 as Weaker US Rate Outlook Boosts Metals",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/copper-holds-14-000-as-weaker-us-rate-outlook-boosts-metals",
+      "date": "Mon, 10 Aug 2026 04:39:06 GMT",
       "topics": [],
       "tickers": [
-        "F"
+        "META"
       ]
     },
     {
-      "title": "European Gas Prices Rally as Hormuz Deal Prospects Remain Murky",
+      "title": "Europe Gas Prices Surge as Hormuz Deal Prospects Remain Murky",
       "link": "https://www.bloomberg.com/news/articles/2026-08-10/european-gas-rises-as-hormuz-deal-prospects-remain-murky",
       "date": "Mon, 10 Aug 2026 06:52:31 GMT",
       "topics": [
@@ -312,58 +281,56 @@
       ]
     },
     {
-      "title": "French Trader Sucden Warns of Sugar Oversupply as Futures Rally",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/french-trader-sucden-warns-of-sugar-oversupply-as-futures-rally",
-      "date": "Mon, 10 Aug 2026 14:23:34 GMT",
+      "title": "Soft US Jobs Cast Doubt on September Fed Hike",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/soft-us-jobs-cast-doubt-on-september-fed-hike-video",
+      "date": "Mon, 10 Aug 2026 15:58:39 GMT",
       "topics": [
-        "geopolitik"
+        "zinsen"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Energy Veteran Peter Abdo to Lead UK’s Grain LNG From October",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/energy-veteran-peter-abdo-to-lead-uk-s-grain-lng-from-october",
-      "date": "Mon, 10 Aug 2026 14:13:43 GMT",
+      "title": "Stocks Churn as Oil Advance Boosts Treasury Yields",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/stocks-churn-as-oil-advance-boosts-treasury-yields-video",
+      "date": "Mon, 10 Aug 2026 15:58:15 GMT",
       "topics": [
-        "tech",
         "energy"
       ],
+      "tickers": []
+    },
+    {
+      "title": "Record Sales of Catastrophe Bonds Driven by Wildfires",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/record-sales-of-catastrophe-bonds-driven-by-wildfires-video",
+      "date": "Mon, 10 Aug 2026 15:54:16 GMT",
+      "topics": [],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Yen Extends Losses, Halving Gains Spurred by Joint Intervention",
+      "title": "Yen Erases Half of Gains From Historic US-Japan Intervention",
       "link": "https://www.bloomberg.com/news/articles/2026-08-10/yen-underperforms-g-10-peers-as-intervention-boost-fades",
       "date": "Mon, 10 Aug 2026 03:26:41 GMT",
       "topics": [
         "tech"
       ],
-      "tickers": []
-    },
-    {
-      "title": "US Stocks Open Flat as Focus Turns to Chipmaker Earnings, CPI",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-futures-drop-as-focus-turns-on-chipmaker-earnings-inflation",
-      "date": "Mon, 10 Aug 2026 13:28:32 GMT",
-      "topics": [
-        "earnings",
-        "inflation",
-        "tech"
-      ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "US Natural Gas Surges as Hotter Outlooks Trigger Short-Covering",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-natural-gas-surges-as-hotter-outlooks-trigger-short-covering",
-      "date": "Mon, 10 Aug 2026 13:57:36 GMT",
+      "title": "Gold Holds Above $4,300 as Traders Weigh Hormuz Talks, Inflation",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-09/gold-holds-gain-after-soft-us-jobs-data-eases-rate-hike-concerns",
+      "date": "Sun, 09 Aug 2026 23:30:12 GMT",
       "topics": [
-        "energy"
+        "inflation"
       ],
-      "tickers": []
+      "tickers": [
+        "F",
+        "MU"
+      ]
     },
     {
       "title": "Weak Jobs Report Does Not Eliminate Prospects of Interest Rate Rise",

@@ -1,0 +1,559 @@
+{
+  "ticker": "JNUG",
+  "name": "Direxion Gold Miners 2x",
+  "kategorie": "commodity",
+  "bargeld": 90.57,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-07-31T20:50:21.769743",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-07-31T21:19:42.994064",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-03T16:35:05.366436",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-03T22:33:49.983139",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-03T22:40:46.286293",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-04T09:23:19.492013",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-04T16:54:38.467316",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-04T17:46:58.325942",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-04T17:48:10.150268",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-04T17:48:59.605475",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-04T17:50:11.637202",
+      "wert": 90.04
+    },
+    {
+      "zeit": "2026-08-04T17:58:39.195924",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T18:02:50.059148",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T18:06:24.822805",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T18:12:36.115919",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T18:15:13.379602",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T18:16:03.912986",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T18:35:14.407741",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T21:18:48.281857",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T21:20:07.799382",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T21:26:12.464313",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T21:34:31.939599",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T21:35:44.823332",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T21:48:28.578263",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T21:48:42.339566",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-04T21:49:55.141238",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T15:36:01.108572",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T16:11:47.058638",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T16:19:17.928828",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T17:02:35.105264",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T17:17:46.931258",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T17:20:59.977229",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T17:34:11.445099",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T17:34:36.020447",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T17:47:22.344463",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T18:02:16.836287",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T18:17:51.285857",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T18:32:34.043957",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T18:47:38.057987",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T19:17:43.223884",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T19:18:16.599475",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T19:32:45.934293",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T19:32:50.870264",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.111502",
+      "wert": 91.23
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.208421",
+      "wert": 90.72
+    },
+    {
+      "zeit": "2026-08-05T20:18:56.775742",
+      "wert": 90.72
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.709169",
+      "wert": 90.72
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.167969",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-05T21:19:03.010188",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-05T21:32:50.541138",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-05T21:33:49.649701",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.071754",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-05T21:47:33.490845",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-05T21:49:02.363815",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-05T21:49:05.598964",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T15:47:04.340466",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T15:47:42.027031",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T16:02:45.505807",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.596274",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.508656",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.864086",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.913258",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T17:01:51.241482",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.993862",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T17:32:33.550207",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.181578",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.341618",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.906182",
+      "wert": 90.71
+    },
+    {
+      "zeit": "2026-08-06T18:17:41.340510",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T19:33:20.159110",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.755937",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.689678",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.336507",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.612428",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T20:49:21.968398",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.660902",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.207664",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.892374",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.559819",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:09:22.016846",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:17:54.872412",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.901869",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:28:50.578432",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.288686",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:47:06.213692",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.460882",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-06T22:13:16.103996",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.876728",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.193026",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.676428",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.801222",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.685910",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T17:03:34.536733",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.688621",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T19:32:40.461952",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T19:47:10.649590",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T20:33:10.263756",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.567169",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.465192",
+      "wert": 90.57
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.463482",
+      "wert": 90.57
+    }
+  ],
+  "trades": [
+    {
+      "typ": "kauf",
+      "ticker": "JNUG",
+      "menge": 0.7597,
+      "preis": 118.46,
+      "grund": "uptrend",
+      "zeit": "2026-07-29T20:01:10.407828"
+    },
+    {
+      "typ": "verkauf",
+      "ticker": "JNUG",
+      "menge": 0.7597,
+      "preis": 115.98,
+      "grund": "downtrend",
+      "zeit": "2026-07-29T20:16:17.522916"
+    },
+    {
+      "typ": "kauf",
+      "ticker": "JNUG",
+      "menge": 0.7388,
+      "preis": 119.52,
+      "grund": "uptrend",
+      "zeit": "2026-07-29T21:01:12.821036"
+    },
+    {
+      "typ": "verkauf",
+      "ticker": "JNUG",
+      "menge": 0.7388,
+      "preis": 114.86,
+      "grund": "downtrend",
+      "zeit": "2026-07-29T21:31:46.250449"
+    },
+    {
+      "zeit": "2026-07-31T10:47:23.286023",
+      "aktion": "kaufen",
+      "menge": 0.791273,
+      "preis": 119.63,
+      "grund": "neutraler Trend, RSI nahe 50",
+      "ki_konfidenz": 65,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T15:33:42.091512",
+      "aktion": "verkaufen",
+      "menge": 0.791273,
+      "preis": 113.79,
+      "grund": "Abwärtstrend bestätigt (Kurs<SMA20<SMA50), geringes Volumen, Verlustbegrenzung; kein Bargeld für Nachkauf.",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-04T17:48:10.150268",
+      "aktion": "kaufen",
+      "menge": 0.723039,
+      "preis": 124.53,
+      "grund": "Neutraler Trend, aber Halten bei Volatilität/Lev-Bull laut Regeln negativ; daher kleiner Kauf mit begrenzter Konfidenz.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-04T17:58:39.195924",
+      "aktion": "verkaufen",
+      "menge": 0.723039,
+      "preis": 126.18,
+      "grund": "JNUG ist ein 2x Hebel-ETF (lev-bull), explizite Regel verbietet Halten solcher Titel (Gewicht -1.86). Kleiner Gewinn (+1,32%) sichern vor Zeitwertverfall und Underperformance vs. Benchmark. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.111502",
+      "aktion": "kaufen",
+      "menge": 0.630913,
+      "preis": 144.6,
+      "grund": "Watchlist-Aufforderung, aber RSI überkauft und hohe Volatilität dämpfen Konfidenz",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.208421",
+      "aktion": "verkaufen",
+      "menge": 0.630913,
+      "preis": 143.79,
+      "grund": "RSI 70.2 überkauft, gelernte Regel 'Anti halten bei lev-bull-Titeln' (Gewicht -1.84), 2x Hebel-ETF unterliegt Volatilitätsverfall, Position leicht im Minus, kein Cash für Nachkauf [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.709169",
+      "aktion": "kaufen",
+      "menge": 0.633298,
+      "preis": 143.25,
+      "grund": "Keine Position, Watchlist und Cash verfügbar; jedoch überkauft (RSI 70) und volatiler 2x-ETF daher nur niedrige Konfidenz.",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.167969",
+      "aktion": "verkaufen",
+      "menge": 0.633298,
+      "preis": 143.23,
+      "grund": "RSI 70 überkauft, gehebeltes 2x-Produkt und hohe Volatilität (ATR 5.1%); gelernte Regeln raten von Halten ab. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.906182",
+      "aktion": "kaufen",
+      "menge": 0.640607,
+      "preis": 141.6,
+      "grund": "Klare Kaufanweisung für Watchlist-Ticker, aber hohe Volatilität und leveraged Titel; Konfidenz durch Meta-Regeln gedeckelt.",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-06T18:17:41.340510",
+      "aktion": "verkaufen",
+      "menge": 0.640607,
+      "preis": 141.38,
+      "grund": "Gelernte Regel verbietet Halten von leveraged-bull-ETFs (lev-bull-Titeln); Position leicht im Minus; kein Cash für Nachkauf; Volatilitätsverfall bei 2x-ETFs langfristig nachteilig [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_JNUG_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "JNUG",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

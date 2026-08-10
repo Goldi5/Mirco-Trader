@@ -1,0 +1,600 @@
+{
+  "ticker": "CRSP",
+  "name": "CRISPR Therapeutics",
+  "kategorie": "biotech",
+  "bargeld": 101.33,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-04T21:48:28.520632",
+      "wert": 101.68
+    },
+    {
+      "zeit": "2026-08-05T15:35:57.396804",
+      "wert": 101.68
+    },
+    {
+      "zeit": "2026-08-05T16:03:01.893179",
+      "wert": 101.68
+    },
+    {
+      "zeit": "2026-08-05T16:03:35.087768",
+      "wert": 101.68
+    },
+    {
+      "zeit": "2026-08-05T16:19:17.895288",
+      "wert": 101.68
+    },
+    {
+      "zeit": "2026-08-05T16:32:16.117863",
+      "wert": 101.68
+    },
+    {
+      "zeit": "2026-08-05T16:46:00.544086",
+      "wert": 101.68
+    },
+    {
+      "zeit": "2026-08-05T16:48:33.911429",
+      "wert": 101.41
+    },
+    {
+      "zeit": "2026-08-05T16:49:54.853157",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T17:02:35.089118",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T17:17:46.890812",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T17:20:59.958514",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T17:30:57.269857",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T17:34:36.002557",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T17:47:22.306661",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T18:02:16.813223",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T18:17:41.064170",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T18:32:34.020020",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T18:47:33.235807",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T18:47:38.039328",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T19:18:16.568894",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T19:32:45.812910",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.944816",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-05T19:46:43.397105",
+      "wert": 101.17
+    },
+    {
+      "zeit": "2026-08-05T20:02:54.983314",
+      "wert": 101.0
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.094475",
+      "wert": 101.12
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.187834",
+      "wert": 101.12
+    },
+    {
+      "zeit": "2026-08-05T20:32:47.756881",
+      "wert": 101.12
+    },
+    {
+      "zeit": "2026-08-05T20:33:05.741917",
+      "wert": 101.25
+    },
+    {
+      "zeit": "2026-08-05T21:02:47.648668",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.149377",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-05T21:19:02.990968",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-05T21:33:49.633587",
+      "wert": 100.9
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.055101",
+      "wert": 100.75
+    },
+    {
+      "zeit": "2026-08-05T21:49:02.345066",
+      "wert": 100.54
+    },
+    {
+      "zeit": "2026-08-06T15:47:04.241914",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T15:47:41.982649",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:02:42.458469",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.578552",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.215639",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.936577",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.077071",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.491861",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:31:54.955355",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:46:53.085746",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.834243",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:47:06.134815",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.865853",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:47:16.546423",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T16:47:44.508971",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.895020",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T17:17:16.079041",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T17:17:31.435756",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T17:32:16.061593",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T17:32:33.532228",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.272529",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.886027",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.337646",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T18:33:46.603868",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T18:48:25.040321",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T19:02:18.590290",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T19:03:17.936635",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.688649",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.624845",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T19:47:29.469840",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T20:03:44.935055",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T20:48:26.269005",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T20:48:55.945947",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.311994",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T20:54:21.757710",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.378911",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.643873",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.875144",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.541851",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:09:21.997802",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:17:54.848174",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.879134",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:28:50.561707",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.269526",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.434073",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-06T22:07:07.144227",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.662939",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.800270",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.601682",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.160449",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.341618",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.651752",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.775821",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.860698",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.663864",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T17:03:01.628135",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T17:47:28.019320",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T18:03:03.318161",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T18:32:50.078246",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.249207",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T19:32:40.435512",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T19:33:08.809699",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T20:02:41.876775",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.803676",
+      "wert": 101.33
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.414898",
+      "wert": 101.33
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-07-30T14:42:10.424082",
+      "aktion": "kaufen",
+      "menge": 2.099076,
+      "preis": 47.64,
+      "grund": "RSI mit 22.2 stark überverkauft, potenzielle Erholung trotz Abwärtstrend",
+      "ki_konfidenz": 70,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T13:46:51.181658",
+      "aktion": "verkaufen",
+      "menge": 2.099076,
+      "preis": 48.44,
+      "grund": "Abwärtstrend, Kurs unter gleitenden Durchschnitten; RSI 31,7 noch nicht überverkauft. Kleinen Gewinn sichern.",
+      "ki_konfidenz": 70,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T16:46:00.544086",
+      "aktion": "kaufen",
+      "menge": 1.950134,
+      "preis": 52.14,
+      "grund": "Niedriges Volumen und neutraler Trend, aber Halten bei volatilen Titeln vermeiden; Kauf mit niedriger Konfidenz.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T16:49:54.853157",
+      "aktion": "verkaufen",
+      "menge": 1.950134,
+      "preis": 51.94,
+      "grund": "Niedriges Volumen (0.19x), RSI erhöht (62.5), Meta-Regeln zeigen hohe Konfidenz scheitert, Swap-Regel: Positionen unterperformen SPY, Biotech-Volatilität passt zu Anti-Hold-Muster [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.944816",
+      "aktion": "kaufen",
+      "menge": 1.922011,
+      "preis": 52.7,
+      "grund": "Watchlist-Wert mit verfügbarem Cash, aber niedriges Volumen (0.46x) und RSI 66.2 nahe Überkauft deuten auf geduldigen Einstieg hin",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.094475",
+      "aktion": "verkaufen",
+      "menge": 1.922011,
+      "preis": 52.61,
+      "grund": "Kapital in Position blockiert Benchmark, Volatilitätstitel meiden, geringes Volumen und RSI nahe überkauft",
+      "ki_konfidenz": 45,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:32:47.756881",
+      "aktion": "kaufen",
+      "menge": 1.926829,
+      "preis": 52.48,
+      "grund": "Keine Position vorhanden, Ticker in Watchlist, $101 Cash verfügbar. Technisch neutral (RSI 65, Trend seitwärts), Volumen schwach (0.6x). Meta-Regeln warnen vor hoher Konfidenz (>60% Trefferquote 0%), daher moderate Einstiegsgröße.",
+      "ki_konfidenz": 58,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.149377",
+      "aktion": "verkaufen",
+      "menge": 1.926829,
+      "preis": 52.44,
+      "grund": "Hohe Volatilitaet, schwaches Volumen; Regeln raten von Halten ab.",
+      "ki_konfidenz": 45,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:19:02.990968",
+      "aktion": "kaufen",
+      "menge": 1.931931,
+      "preis": 52.3,
+      "grund": "Watchlist-Ticker, Cash verfügbar, neutrales Setup mit leicht erhöhtem RSI (64), niedriges Volumen (0.66x), Biotech nicht in Vermeidungsliste",
+      "ki_konfidenz": 60,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.578552",
+      "aktion": "verkaufen",
+      "menge": 1.931931,
+      "preis": 52.45,
+      "grund": "Neutraler Trend, RSI nähert sich überkauft (64.9), Biotech-Volatilität (ATR 3.41%), Kapitalbindung unterperformt SPY laut Swap-Regel, kleiner Gewinn realisierbar [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.215639",
+      "aktion": "kaufen",
+      "menge": 1.931935,
+      "preis": 52.45,
+      "grund": "Watchlist-Titel mit neutralem Trend, RSI 64.9 nicht überkauft, ausreichend Cash für 1 Aktie, Biotech nicht in Verbotskategorien",
+      "ki_konfidenz": 58,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:31:54.955355",
+      "aktion": "verkaufen",
+      "menge": 1.931935,
+      "preis": 52.45,
+      "grund": "Volatile Titel sollen laut Regel nicht gehalten werden; kein Bargeld für Nachkauf, daher Position schließen.",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:46:53.085746",
+      "aktion": "kaufen",
+      "menge": 1.931935,
+      "preis": 52.45,
+      "grund": "Watchlist-Wert mit verfügbarem Cash, aber neutraler Trend, RSI nahe überkauft (64.9) und Volumen unter Durchschnitt; Meta-Regeln zeigen hohe Konfidenz als kontraproduktiv",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.895020",
+      "aktion": "verkaufen",
+      "menge": 1.931935,
+      "preis": 52.45,
+      "grund": "Trend neutral, RSI naht Überkauf, unterdurchschnittliches Volumen und Anti-Hold-Regel bei volatilen Titeln: Position verkaufen.",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:17:16.079041",
+      "aktion": "kaufen",
+      "menge": 1.931935,
+      "preis": 52.45,
+      "grund": "Kurs im neutralen Trend, RSI 64.9, Cash verfügbar, aber wegen Regeln vorsichtig",
+      "ki_konfidenz": 50,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:32:16.061593",
+      "aktion": "verkaufen",
+      "menge": 1.931935,
+      "preis": 52.45,
+      "grund": "Anti-Halten-Regel bei Volatilität, RSI nahe überkauft, Position blockiert Kapital",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.272529",
+      "aktion": "kaufen",
+      "menge": 1.931935,
+      "preis": 52.45,
+      "grund": "RSI zeigt Momentum, VIX niedrig, neutraler Trend; kleinen Kauf aus Watchlist-Regel",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.886027",
+      "aktion": "verkaufen",
+      "menge": 1.931935,
+      "preis": 52.45,
+      "grund": "Neutraler Trend, RSI nahe überkauft, Anti-Halten-Regel für volatile Titel, keine Liquidität",
+      "ki_konfidenz": 55
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_CRSP_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "CRSP",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

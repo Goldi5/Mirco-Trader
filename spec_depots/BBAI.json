@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T18:17:41.052261",
-      "wert": 112.16
-    },
-    {
-      "zeit": "2026-08-05T18:33:29.772050",
-      "wert": 112.16
-    },
-    {
-      "zeit": "2026-08-05T18:33:56.344595",
-      "wert": 112.16
-    },
-    {
       "zeit": "2026-08-05T18:47:33.226879",
       "wert": 112.16
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T17:19:12.693972",
       "wert": 115.33
+    },
+    {
+      "zeit": "2026-08-10T18:36:34.005188",
+      "wert": 115.69
+    },
+    {
+      "zeit": "2026-08-10T18:38:50.793220",
+      "wert": 116.05
+    },
+    {
+      "zeit": "2026-08-10T19:06:14.303276",
+      "wert": 115.69
     }
   ],
   "trades": [
@@ -595,7 +595,7 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260810_174729_BBAI_aktien_na",
+    "decision_id": "d_20260810_190429_BBAI_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "BBAI",

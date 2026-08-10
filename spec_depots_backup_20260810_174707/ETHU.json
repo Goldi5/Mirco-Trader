@@ -1,0 +1,491 @@
+{
+  "ticker": "ETHU",
+  "name": "Volatility Ether 2x",
+  "kategorie": "crypto",
+  "bargeld": 98.64,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-05T18:47:33.238878",
+      "wert": 98.14
+    },
+    {
+      "zeit": "2026-08-05T18:47:38.044588",
+      "wert": 98.14
+    },
+    {
+      "zeit": "2026-08-05T19:02:33.488121",
+      "wert": 98.82
+    },
+    {
+      "zeit": "2026-08-05T19:17:43.194629",
+      "wert": 98.27
+    },
+    {
+      "zeit": "2026-08-05T19:32:45.824216",
+      "wert": 98.27
+    },
+    {
+      "zeit": "2026-08-05T19:32:50.854046",
+      "wert": 98.21
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.949275",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-05T19:46:43.400630",
+      "wert": 99.8
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.097979",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-05T20:18:56.762912",
+      "wert": 101.22
+    },
+    {
+      "zeit": "2026-08-05T20:32:47.763256",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-05T20:33:05.746348",
+      "wert": 100.85
+    },
+    {
+      "zeit": "2026-08-05T20:49:14.697797",
+      "wert": 101.16
+    },
+    {
+      "zeit": "2026-08-05T20:49:26.703344",
+      "wert": 101.09
+    },
+    {
+      "zeit": "2026-08-05T21:02:47.651208",
+      "wert": 100.73
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.153700",
+      "wert": 100.97
+    },
+    {
+      "zeit": "2026-08-05T21:19:02.995008",
+      "wert": 100.91
+    },
+    {
+      "zeit": "2026-08-05T21:33:49.638179",
+      "wert": 100.97
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.059644",
+      "wert": 101.03
+    },
+    {
+      "zeit": "2026-08-05T21:49:02.349116",
+      "wert": 101.09
+    },
+    {
+      "zeit": "2026-08-06T15:47:04.251658",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T15:47:41.991207",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.403608",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:02:42.461681",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:02:45.492920",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.582677",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.220278",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.939723",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.081681",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.496859",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:46:53.089926",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.877430",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:47:16.560450",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T16:47:44.518991",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T17:01:43.137435",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.933384",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T17:17:31.439074",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T17:18:02.127775",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T17:32:33.536280",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.167915",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.276058",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T17:48:04.809364",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.322557",
+      "wert": 100.54
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.890766",
+      "wert": 100.17
+    },
+    {
+      "zeit": "2026-08-06T18:17:34.959150",
+      "wert": 100.11
+    },
+    {
+      "zeit": "2026-08-06T18:17:41.324545",
+      "wert": 100.11
+    },
+    {
+      "zeit": "2026-08-06T18:17:44.395054",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.340903",
+      "wert": 99.93
+    },
+    {
+      "zeit": "2026-08-06T18:48:25.043354",
+      "wert": 100.48
+    },
+    {
+      "zeit": "2026-08-06T19:03:17.940713",
+      "wert": 100.6
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.702963",
+      "wert": 100.48
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.637588",
+      "wert": 100.66
+    },
+    {
+      "zeit": "2026-08-06T19:47:29.486598",
+      "wert": 100.3
+    },
+    {
+      "zeit": "2026-08-06T20:03:44.949330",
+      "wert": 100.36
+    },
+    {
+      "zeit": "2026-08-06T20:48:26.273688",
+      "wert": 99.68
+    },
+    {
+      "zeit": "2026-08-06T20:48:55.951006",
+      "wert": 99.68
+    },
+    {
+      "zeit": "2026-08-06T20:49:21.936074",
+      "wert": 99.5
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.383096",
+      "wert": 99.44
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.647695",
+      "wert": 99.62
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.192279",
+      "wert": 99.62
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.878333",
+      "wert": 99.62
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.544850",
+      "wert": 99.8
+    },
+    {
+      "zeit": "2026-08-06T21:09:22.002118",
+      "wert": 99.68
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.884234",
+      "wert": 99.68
+    },
+    {
+      "zeit": "2026-08-06T21:28:50.565302",
+      "wert": 99.74
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.273639",
+      "wert": 99.68
+    },
+    {
+      "zeit": "2026-08-06T21:47:06.198606",
+      "wert": 99.87
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.439673",
+      "wert": 99.87
+    },
+    {
+      "zeit": "2026-08-06T22:07:07.155410",
+      "wert": 100.05
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.078624",
+      "wert": 102.32
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.779091",
+      "wert": 102.32
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.408981",
+      "wert": 102.32
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.677526",
+      "wert": 102.39
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.818031",
+      "wert": 101.83
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.609757",
+      "wert": 101.83
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.164570",
+      "wert": 101.34
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.346792",
+      "wert": 101.09
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.175909",
+      "wert": 101.16
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.655383",
+      "wert": 100.42
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.782084",
+      "wert": 100.48
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.297251",
+      "wert": 100.54
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.782682",
+      "wert": 101.22
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.864899",
+      "wert": 101.34
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.668685",
+      "wert": 101.22
+    },
+    {
+      "zeit": "2026-08-07T17:32:43.303502",
+      "wert": 100.73
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.658453",
+      "wert": 101.4
+    },
+    {
+      "zeit": "2026-08-07T18:32:50.084051",
+      "wert": 100.3
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.255193",
+      "wert": 100.54
+    },
+    {
+      "zeit": "2026-08-07T18:47:09.232069",
+      "wert": 100.48
+    },
+    {
+      "zeit": "2026-08-07T19:02:39.020091",
+      "wert": 99.99
+    },
+    {
+      "zeit": "2026-08-07T19:17:35.787335",
+      "wert": 99.62
+    },
+    {
+      "zeit": "2026-08-07T19:32:40.440197",
+      "wert": 99.68
+    },
+    {
+      "zeit": "2026-08-07T19:33:08.817263",
+      "wert": 99.62
+    },
+    {
+      "zeit": "2026-08-07T20:17:19.802485",
+      "wert": 100.36
+    },
+    {
+      "zeit": "2026-08-07T20:46:44.444307",
+      "wert": 99.68
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.442400",
+      "wert": 100.79
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.193655",
+      "wert": 101.22
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.627859",
+      "wert": 101.09
+    },
+    {
+      "zeit": "2026-08-10T15:55:23.549089",
+      "wert": 98.64
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.428993",
+      "wert": 98.64
+    }
+  ],
+  "trades": [
+    {
+      "typ": "kauf",
+      "ticker": "ETHU",
+      "menge": 5.6426,
+      "preis": 15.95,
+      "grund": "uptrend",
+      "zeit": "2026-07-30T13:59:39.962456"
+    },
+    {
+      "zeit": "2026-08-03T16:23:05.857374",
+      "aktion": "verkaufen",
+      "menge": 5.6426,
+      "preis": 15.36,
+      "grund": "Anti-Halten-Regeln für Volatility/Lev-Bull/Crypto; Verlust begrenzen und Kapital freisetzen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T16:11:47.046959",
+      "aktion": "kaufen",
+      "menge": 6.129994,
+      "preis": 15.77,
+      "grund": "Keine Position, neutraler Trend und moderater RSI, aber Anti-Halten-Regel bei Volatilitätstiteln; kleiner Kauf mit geringer Konfidenz.",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T16:19:17.907972",
+      "aktion": "verkaufen",
+      "menge": 6.129994,
+      "preis": 15.77,
+      "grund": "ETHU ist 2x leveraged Ether (volatility + lev-bull). Gelernte Regeln verbieten explizit Halten bei volatility-Titeln (-1.87) und lev-bull-Titeln (-1.86). Position bei +/-0% P&L auflösen vor weiterem Decay. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T17:49:24.132396",
+      "aktion": "kaufen",
+      "menge": 6.145582,
+      "preis": 15.73,
+      "grund": "Neutraler Trend, RSI im Gleichgewicht, aber schwaches Volumen. Keine Position vorhanden; Anti-Regeln sprechen gegen Halten, daher kleiner Kauf mit niedriger Konfidenz.",
+      "ki_konfidenz": 40,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-10T15:55:23.549089",
+      "aktion": "verkaufen",
+      "menge": 6.145582,
+      "preis": 16.05,
+      "grund": "Gewinnmitnahme bei 2x Hebel-ETF: Historische Warnregeln gegen Halten von Volatility- und Lev-Bull-Titeln (Gewicht -1.78/-1.77), neutraler Trend, sehr niedriges Volumen (0.16x), VIX niedrig (15.4). Position +2% im Plus - Cash freimachen für bessere Gelegenheiten. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_ETHU_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "ETHU",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

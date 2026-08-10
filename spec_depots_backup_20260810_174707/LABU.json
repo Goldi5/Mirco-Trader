@@ -1,0 +1,275 @@
+{
+  "ticker": "LABU",
+  "name": "Direxion Biotech Bull 3x",
+  "kategorie": "lev-bull",
+  "bargeld": 0.0,
+  "shares": 0.388214,
+  "avg_price": 257.59,
+  "start": 100.0,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-06T15:47:04.351210",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.601368",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.960737",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.514618",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.873171",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.929802",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T16:47:44.569329",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T17:01:53.011017",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.186607",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.297219",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.911095",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T18:17:34.979015",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.361462",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.773202",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.708113",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.620103",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T20:49:21.978418",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.405862",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.665544",
+      "wert": 100.37
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.212893",
+      "wert": 100.37
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.897537",
+      "wert": 100.37
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.563434",
+      "wert": 100.46
+    },
+    {
+      "zeit": "2026-08-06T21:09:22.022601",
+      "wert": 100.46
+    },
+    {
+      "zeit": "2026-08-06T21:17:54.878325",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.906447",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-06T21:28:50.584192",
+      "wert": 100.76
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.294866",
+      "wert": 100.6
+    },
+    {
+      "zeit": "2026-08-06T21:47:06.218692",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.468144",
+      "wert": 101.29
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.111734",
+      "wert": 106.68
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.818136",
+      "wert": 106.68
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.446291",
+      "wert": 106.68
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.744407",
+      "wert": 106.32
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.901790",
+      "wert": 106.56
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.642024",
+      "wert": 106.08
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.188187",
+      "wert": 106.45
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.374925",
+      "wert": 107.08
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.199071",
+      "wert": 105.87
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.683568",
+      "wert": 104.59
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.806543",
+      "wert": 104.59
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.326104",
+      "wert": 104.79
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.812725",
+      "wert": 104.45
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.691109",
+      "wert": 105.38
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.700573",
+      "wert": 104.01
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.281532",
+      "wert": 103.28
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.574574",
+      "wert": 105.69
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.473065",
+      "wert": 106.11
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.831285",
+      "wert": 107.24
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-06T16:03:21.601368",
+      "aktion": "kaufen",
+      "menge": 0.391144,
+      "preis": 255.66,
+      "grund": "Ticker in Watchlist, RSI neutral, Cash verfügbar; wegen hoher Volatilität nur kleiner Kauf mit moderater Konfidenz.",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.960737",
+      "aktion": "verkaufen",
+      "menge": 0.391144,
+      "preis": 255.66,
+      "grund": "Gelernte Regeln verbieten stark das Halten von lev-bull und volatility Titeln (Gewicht -1.84/-1.85); Kapitalbindung unterperformt SPY Benchmark (+1.89). Position ist flach, Exit vermeidet weiteren Hebel-Verfall. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.873171",
+      "aktion": "kaufen",
+      "menge": 0.391144,
+      "preis": 255.66,
+      "grund": "Watchlist-Eintrag und Cash verfügbar; RSI neutral, aber hohe Volatilität und gehebelter Titel begrenzen Konfidenz.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:01:53.011017",
+      "aktion": "verkaufen",
+      "menge": 0.391144,
+      "preis": 255.66,
+      "grund": "Gelernte Regeln verbieten explizit das Halten von leveraged-bull (-1.82) und volatility-Titeln (-1.83). LABU ist 3x gehebelt Biotech-ETF mit 8.17% ATR - extremes Decay-Risiko. Position erst seit heute, P&L 0%, sofortiger Exit optimal. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.405862",
+      "aktion": "kaufen",
+      "menge": 0.388214,
+      "preis": 257.59,
+      "grund": "Aufwärtstrend (Kurs > SMA20 > SMA50), RSI neutral, VIX niedrig, leicht überdurchschnittliches Volumen und hohe Volatilität (ATR 7.74%) erlauben trotz Warnregeln einen Kauf mit minimaler Konfidenz.",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_LABU_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "LABU",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

@@ -1,0 +1,42 @@
+{
+  "ticker": "DGP",
+  "name": "DB Gold Double Long",
+  "kategorie": "commodity",
+  "bargeld": 100.0,
+  "shares": 0.0,
+  "avg_price": 0.0,
+  "start": 100.0,
+  "exchange": null,
+  "historie": [
+    {
+      "zeit": "2026-08-10T15:55:23.540115",
+      "wert": 100.0
+    }
+  ],
+  "trades": [],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_DGP_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "DGP",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

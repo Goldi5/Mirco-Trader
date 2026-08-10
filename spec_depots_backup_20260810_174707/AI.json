@@ -1,0 +1,78 @@
+{
+  "ticker": "AI",
+  "name": "C3.ai Inc.",
+  "kategorie": "ai",
+  "bargeld": 100.0,
+  "shares": 0.0,
+  "avg_price": 0.0,
+  "start": 100.0,
+  "exchange": null,
+  "historie": [
+    {
+      "zeit": "2026-08-10T16:04:22.783720",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:05:08.487482",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:19:34.466419",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:21:11.404737",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:34:14.407545",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:48:42.741358",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:04:46.121000",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:04:54.440129",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:19:16.867709",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:34:03.401421",
+      "wert": 100.0
+    }
+  ],
+  "trades": [],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173216_AI_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "AI",
+    "provider": "FAIL_FAST",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

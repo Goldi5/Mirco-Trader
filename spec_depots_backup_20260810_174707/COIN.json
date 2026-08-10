@@ -1,0 +1,528 @@
+{
+  "ticker": "COIN",
+  "name": "Coinbase Global",
+  "kategorie": "crypto",
+  "bargeld": 99.77,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100.0,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-05T16:19:17.895288",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:46:00.542085",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T16:48:33.909272",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:34:11.425951",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:34:36.000976",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:47:22.303505",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T17:49:24.127064",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:02:16.810579",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:17:41.052261",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:32:34.018515",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:33:56.354840",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:47:33.234732",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T18:47:38.038046",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:02:33.479341",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:18:16.568894",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:32:45.812910",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.939848",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-05T19:46:43.396015",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.093474",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-05T20:49:26.698415",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.147347",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T15:47:04.238124",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.395902",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:02:42.456915",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:02:45.487259",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.576551",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.934335",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.075900",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.490785",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:31:54.953848",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.832269",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:47:06.131846",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.861260",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:47:16.541212",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T16:47:44.505899",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T17:17:31.432149",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.163394",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.271371",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.315293",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.884875",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:17:41.318459",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.335483",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:33:46.601869",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T18:48:25.038278",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:02:18.588218",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:03:17.934641",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:33:20.080364",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.682553",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.621290",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:47:29.465799",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T19:48:00.231080",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T20:48:55.943945",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.310481",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.377367",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.876589",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:33:37.709254",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.266842",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:47:06.194076",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.431074",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-06T22:07:07.134703",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.068579",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.770872",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.390066",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.655957",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.596949",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.158103",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.338328",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.169611",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.648969",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.772308",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.290736",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.771433",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.858691",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.660865",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T17:03:34.461979",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T17:17:35.250062",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T17:47:28.017316",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T18:03:03.316162",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T18:17:02.966671",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.650212",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.246247",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T19:02:39.012766",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T19:17:58.614788",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T19:32:40.432140",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T19:47:10.617018",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T20:02:20.818180",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T20:02:41.873725",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T20:17:19.784222",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T20:32:29.941071",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T20:33:10.229484",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:02:19.877375",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:17:27.128760",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.537695",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:32:40.964455",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.433177",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.184280",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.622135",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.801232",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-10T15:55:23.532486",
+      "wert": 99.77
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.410286",
+      "wert": 99.77
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-05T19:45:22.939848",
+      "aktion": "kaufen",
+      "menge": 0.655566,
+      "preis": 152.54,
+      "grund": "Anweisung zum Kaufen, aber Abwärtstrend und niedriges Volumen; geringe Konfidenz",
+      "ki_konfidenz": 40,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.093474",
+      "aktion": "verkaufen",
+      "menge": 0.655566,
+      "preis": 152.19,
+      "grund": "Abwärtstrend, geringes Volumen, Halten laut Regeln negativ",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.395902",
+      "aktion": "kaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Kaufen gemäß Watchlist und verfügbarem Cash, aber Abwärtstrend und hohe Volatilität begrenzen die Konfidenz.",
+      "ki_konfidenz": 50,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:02:45.487259",
+      "aktion": "verkaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Abwärtstrend, hohe Volatilität, gelernte Regeln raten von Halten bei Volatilität ab.",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.934335",
+      "aktion": "kaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Kaufanweisung für Watchlist, Cash vorhanden; Abwärtstrend und hohe Volatilität begrenzen Konfidenz",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.490785",
+      "aktion": "verkaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Abwärtstrend bestätigt (Kurs < SMA20 < SMA50), Anti-Regel gegen Volatilitätstitel, Meta-Regeln zeigen hohe Konfidenz-Trades scheitern, Position neu mit 0% P&L [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:31:54.953848",
+      "aktion": "kaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Watchlist-Ticker, Cash verfügbar, aber Abwärtstrend und hohe Volatilität begrenzen Konfidenz.",
+      "ki_konfidenz": 60,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.832269",
+      "aktion": "verkaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Abwärtstrend, negative Haltungs-Regeln für Volatilitätstitel",
+      "ki_konfidenz": 40,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.163394",
+      "aktion": "kaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Watchlist und verfügbares Cash, aber Abwärtstrend/hohe Volatilität; Konfidenz wegen Meta-Caps gedeckelt.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.315293",
+      "aktion": "verkaufen",
+      "menge": 0.665621,
+      "preis": 149.89,
+      "grund": "Abwärtstrend (Kurs < SMA20 < SMA50), hohe Volatilität und negative Regel für Halten bei Volatilitätstitle. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_COIN_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "COIN",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

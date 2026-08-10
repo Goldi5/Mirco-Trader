@@ -1,0 +1,89 @@
+{
+  "ticker": "ACB",
+  "name": "Aurora Cannabis",
+  "kategorie": "cannabis",
+  "bargeld": -0.0,
+  "shares": 34.843206,
+  "avg_price": 2.87,
+  "start": 100.0,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-10T15:55:23.459607",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.379008",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:19:34.456197",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:21:11.393954",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:48:26.294730",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:48:42.738627",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:04:54.434370",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:19:12.678675",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:19:16.864338",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:34:03.396902",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:34:04.983993",
+      "wert": 100.35
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-10T17:34:03.396902",
+      "aktion": "kaufen",
+      "menge": 34.843206,
+      "preis": 2.87,
+      "grund": "RSI 64.2 nicht überkauft, neutraler Trend, Volumen-Ratio 0.31x dämpft Positionsgröße (70% normal), $100 Cash für kleine Einstiegsposition gemäß Diversifikationsstrategie, Cannabis-Sektor spekulativ aber in Watchlist",
+      "ki_konfidenz": 58
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260810_173326_ACB_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "ACB",
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

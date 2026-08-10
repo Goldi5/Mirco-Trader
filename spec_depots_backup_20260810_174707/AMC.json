@@ -1,0 +1,804 @@
+{
+  "ticker": "AMC",
+  "name": "AMC Entertainment",
+  "kategorie": "meme",
+  "bargeld": 0.0,
+  "shares": 37.547325,
+  "avg_price": 2.43,
+  "start": 100,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-05T21:19:02.970391",
+      "wert": 101.84
+    },
+    {
+      "zeit": "2026-08-05T21:33:49.621986",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.042085",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-05T21:49:02.329842",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-05T21:49:05.559905",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T15:32:36.994727",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T15:47:04.205847",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T15:47:41.949359",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.372904",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T16:02:42.445068",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.565071",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.192955",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.478237",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T16:46:53.070174",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T16:47:06.080651",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.826845",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T16:47:16.499086",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T16:47:44.464311",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.798464",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T17:17:16.064621",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T17:17:31.418543",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T17:32:16.041736",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T17:32:33.518925",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.258294",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.292896",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.871126",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-06T18:17:34.935037",
+      "wert": 99.57
+    },
+    {
+      "zeit": "2026-08-06T18:17:44.371766",
+      "wert": 99.57
+    },
+    {
+      "zeit": "2026-08-06T18:26:46.319815",
+      "wert": 98.81
+    },
+    {
+      "zeit": "2026-08-06T18:33:10.675302",
+      "wert": 98.43
+    },
+    {
+      "zeit": "2026-08-06T18:33:46.589053",
+      "wert": 98.81
+    },
+    {
+      "zeit": "2026-08-06T18:48:25.025177",
+      "wert": 99.19
+    },
+    {
+      "zeit": "2026-08-06T19:02:18.575399",
+      "wert": 97.3
+    },
+    {
+      "zeit": "2026-08-06T19:03:17.921199",
+      "wert": 97.3
+    },
+    {
+      "zeit": "2026-08-06T19:17:20.571975",
+      "wert": 98.43
+    },
+    {
+      "zeit": "2026-08-06T19:33:19.997947",
+      "wert": 98.43
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.564204",
+      "wert": 98.43
+    },
+    {
+      "zeit": "2026-08-06T19:47:29.436927",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T20:01:47.780943",
+      "wert": 96.92
+    },
+    {
+      "zeit": "2026-08-06T20:33:52.589326",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T20:48:55.925939",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.291502",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T20:49:21.899357",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T20:54:21.737572",
+      "wert": 97.3
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.360238",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.628696",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.167461",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.857147",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T21:05:12.521253",
+      "wert": 98.05
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.853544",
+      "wert": 98.05
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.253094",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T21:47:06.179328",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.413375",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-06T22:07:07.077404",
+      "wert": 97.3
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.047123",
+      "wert": 98.05
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.747030",
+      "wert": 98.05
+    },
+    {
+      "zeit": "2026-08-07T15:47:11.367720",
+      "wert": 98.05
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.582126",
+      "wert": 97.67
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.748771",
+      "wert": 96.92
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.574954",
+      "wert": 97.3
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.135014",
+      "wert": 93.51
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.319635",
+      "wert": 93.89
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.154769",
+      "wert": 93.89
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.631533",
+      "wert": 94.27
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.751974",
+      "wert": 94.65
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.270244",
+      "wert": 93.89
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.747354",
+      "wert": 94.65
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.838413",
+      "wert": 94.65
+    },
+    {
+      "zeit": "2026-08-07T16:47:10.923635",
+      "wert": 94.65
+    },
+    {
+      "zeit": "2026-08-07T17:03:01.611994",
+      "wert": 95.4
+    },
+    {
+      "zeit": "2026-08-07T17:03:34.446424",
+      "wert": 95.4
+    },
+    {
+      "zeit": "2026-08-07T17:32:43.282294",
+      "wert": 95.4
+    },
+    {
+      "zeit": "2026-08-07T17:47:28.001086",
+      "wert": 95.4
+    },
+    {
+      "zeit": "2026-08-07T18:03:03.301171",
+      "wert": 95.78
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.224446",
+      "wert": 96.16
+    },
+    {
+      "zeit": "2026-08-07T18:47:09.203027",
+      "wert": 95.78
+    },
+    {
+      "zeit": "2026-08-07T19:02:38.993871",
+      "wert": 95.4
+    },
+    {
+      "zeit": "2026-08-07T19:17:35.758945",
+      "wert": 96.16
+    },
+    {
+      "zeit": "2026-08-07T19:32:40.414276",
+      "wert": 96.16
+    },
+    {
+      "zeit": "2026-08-07T19:47:10.599557",
+      "wert": 96.54
+    },
+    {
+      "zeit": "2026-08-07T20:02:41.858189",
+      "wert": 96.54
+    },
+    {
+      "zeit": "2026-08-07T20:17:19.731418",
+      "wert": 97.3
+    },
+    {
+      "zeit": "2026-08-07T21:02:19.860295",
+      "wert": 96.54
+    },
+    {
+      "zeit": "2026-08-07T21:17:27.114171",
+      "wert": 96.92
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.518284",
+      "wert": 96.54
+    },
+    {
+      "zeit": "2026-08-07T21:32:40.942775",
+      "wert": 96.92
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.162503",
+      "wert": 96.92
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.606309",
+      "wert": 96.92
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.782219",
+      "wert": 96.54
+    },
+    {
+      "zeit": "2026-08-10T15:55:23.462771",
+      "wert": 95.02
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.383303",
+      "wert": 94.65
+    },
+    {
+      "zeit": "2026-08-10T16:19:34.468421",
+      "wert": 91.62
+    },
+    {
+      "zeit": "2026-08-10T16:21:11.407047",
+      "wert": 91.24
+    },
+    {
+      "zeit": "2026-08-10T16:34:08.783310",
+      "wert": 91.24
+    },
+    {
+      "zeit": "2026-08-10T16:34:14.408563",
+      "wert": 91.24
+    },
+    {
+      "zeit": "2026-08-10T16:48:26.299339",
+      "wert": 91.24
+    },
+    {
+      "zeit": "2026-08-10T17:19:12.682818",
+      "wert": 89.74
+    },
+    {
+      "zeit": "2026-08-10T17:19:16.868716",
+      "wert": 89.74
+    },
+    {
+      "zeit": "2026-08-10T17:34:03.403417",
+      "wert": 90.49
+    },
+    {
+      "zeit": "2026-08-10T17:34:04.990037",
+      "wert": 90.49
+    }
+  ],
+  "trades": [
+    {
+      "typ": "kauf",
+      "ticker": "AMC",
+      "menge": 32.7273,
+      "preis": 2.75,
+      "grund": "uptrend",
+      "zeit": "2026-07-30T13:59:39.917526"
+    },
+    {
+      "zeit": "2026-07-30T14:42:10.389251",
+      "aktion": "verkaufen",
+      "menge": 32.7273,
+      "preis": 2.75,
+      "grund": "RSI ueberkauft bei 74.9 und Position bereits 90% des Depots; Risikoreduktion.",
+      "ki_konfidenz": 80,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-07-30T14:46:58.140665",
+      "aktion": "kaufen",
+      "menge": 36.363636,
+      "preis": 2.75,
+      "grund": "Aufwärtstrend mit Kurs über SMA20 und SMA50, aber RSI nahe überkauft",
+      "ki_konfidenz": 65,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T10:47:23.259175",
+      "aktion": "verkaufen",
+      "menge": 36.363636,
+      "preis": 2.77,
+      "grund": "RSI überkauft",
+      "ki_konfidenz": 70,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-07-31T11:02:25.168202",
+      "aktion": "kaufen",
+      "menge": 36.364621,
+      "preis": 2.77,
+      "grund": "Aufwärtstrend und RSI zeigt starke Bewegung",
+      "ki_konfidenz": 75,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T11:17:12.308932",
+      "aktion": "verkaufen",
+      "menge": 36.364621,
+      "preis": 2.77,
+      "grund": "RSI überkauft",
+      "ki_konfidenz": 70,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-07-31T11:32:17.660352",
+      "aktion": "kaufen",
+      "menge": 36.364621,
+      "preis": 2.77,
+      "grund": "Aufwärtstrend, Kurs > SMA20 > SMA50",
+      "ki_konfidenz": 75,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T11:47:05.695687",
+      "aktion": "verkaufen",
+      "menge": 36.364621,
+      "preis": 2.77,
+      "grund": "RSI über 70 zeigt überkauft",
+      "ki_konfidenz": 65,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-07-31T12:02:19.079057",
+      "aktion": "kaufen",
+      "menge": 36.364621,
+      "preis": 2.77,
+      "grund": "Aufwärtstrend, Kurs > SMA20 > SMA50",
+      "ki_konfidenz": 75,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T12:17:10.865655",
+      "aktion": "verkaufen",
+      "menge": 36.364621,
+      "preis": 2.77,
+      "grund": "RSI überkauft",
+      "ki_konfidenz": 70,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-07-31T12:31:29.859086",
+      "aktion": "kaufen",
+      "menge": 36.364621,
+      "preis": 2.77,
+      "grund": "Aufwärtstrend und Kurs > SMA20 > SMA50",
+      "ki_konfidenz": 75,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T12:46:20.259728",
+      "aktion": "verkaufen",
+      "menge": 36.364621,
+      "preis": 2.77,
+      "grund": "RSI überkauft",
+      "ki_konfidenz": 70,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-07-31T13:31:56.935409",
+      "aktion": "kaufen",
+      "menge": 36.364621,
+      "preis": 2.77,
+      "grund": "Aufwärtstrend, aber RSI überkauft - kleine Position empfohlen.",
+      "ki_konfidenz": 60,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T20:05:30.592943",
+      "aktion": "verkaufen",
+      "menge": 36.364621,
+      "preis": 2.79,
+      "grund": "RSI überkauft, Volumen schwach, Barbestand 0, vorsichtig wegen schlechter Signalqualität",
+      "ki_konfidenz": 65,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T19:18:16.549369",
+      "aktion": "kaufen",
+      "menge": 37.858209,
+      "preis": 2.68,
+      "grund": "Aufwärtstrend, aber niedriges Volumen; kleine Position.",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-10T16:21:11.407047",
+      "aktion": "verkaufen",
+      "menge": 37.858209,
+      "preis": 2.41,
+      "grund": "Position zeigt -10% Verlust bei neutralem Trend (RSI 59.4), extrem niedrigem Volumen (0.1x) und keinem Katalysator. Regeln warnen vor Halten von Volatilitätstiteln und Kapitalblockade vs. Benchmark. Kein Cash für Nachkauf, Depot zu konzentriert in einzelner Meme-Aktie. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T16:48:26.299339",
+      "aktion": "kaufen",
+      "menge": 37.547325,
+      "preis": 2.43,
+      "grund": "Watchlist-Wert mit Cash-Verfügbarkeit, RSI 60.1 nicht überkauft, aber niedriges Volumen (0.16x) und neutraler Trend erfordern kleine Position (70% per Strategie). Penny-Stock-Risiko beachtet.",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "typ": "decision",
+    "zeit": "2026-08-10T17:32:45.203699",
+    "ticker": "AMC",
+    "aktion": "halten",
+    "konfidenz": 55,
+    "grund": "Kein Cash für Zukauf; Position nur -0,82% im Minus; Volumen sehr niedrig (0,21x), Trend neutral, RSI 59; Warnregeln für Volatilitätstitel beachten, aber kein klares Verkaufssignal",
+    "menge": "voll",
+    "ziel_kurs": null,
+    "kurs": 2.41,
+    "rsi": 59.1,
+    "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
+    "p_pnl": -0.82,
+    "depot_rendite": -9.51,
+    "angewandte_regeln": [
+      {
+        "id": "r_20260802_32531",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.35,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_92036",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.35,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_09535",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.35,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260802_74417",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.35,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_79559",
+        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.35,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260803_18173",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.35,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260801_07584",
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "typ": "swap",
+        "gewicht": 1.89,
+        "effektiv_gewicht": 1.82,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_1_87577",
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "typ": "anti",
+        "gewicht": -1.87,
+        "effektiv_gewicht": -1.76,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_2_74438",
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.75,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_5_20387",
+        "muster": "[Anti] halten bei ai-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.75,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_4_69646",
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "typ": "anti",
+        "gewicht": -1.71,
+        "effektiv_gewicht": -1.61,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_3_42126",
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "typ": "anti",
+        "gewicht": -1.63,
+        "effektiv_gewicht": -1.54,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      }
+    ],
+    "decision_id": "d_20260810_173245_AMC_aktien_na",
+    "provider": "zen-nemotron",
+    "fallback": false,
+    "depot_typ": "aktien",
+    "risk": null,
+    "quelle": "ki_decisions.entscheide_ticker",
+    "regime": "open",
+    "rohdaten": {
+      "kurs": 2.41,
+      "sma20": 2.44,
+      "sma50": 2.21,
+      "rsi": 59.1,
+      "atr_pct": 8.54,
+      "vol_ratio": 0.21,
+      "vix": 15.1,
+      "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
+      "depot_rendite": -9.51
+    },
+    "indikatoren": [
+      "SMA20>2.4",
+      "SMA50>2.2",
+      "RSI59",
+      "ATR8.5%"
+    ],
+    "news_score": null,
+    "regelstand_ref": "v_live",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
+    "konfidenz_cap": 60,
+    "erwarteter_ausgang": "unbekannt",
+    "shadow": false,
+    "regelstatus_beim_entscheid": {
+      "r_20260802_32531": "stabil",
+      "r_20260802_92036": "stabil",
+      "r_20260802_09535": "stabil",
+      "r_20260802_74417": "stabil",
+      "r_20260803_79559": "stabil",
+      "r_20260803_18173": "stabil",
+      "r_20260801_07584": "stabil",
+      "r_legacy_1_87577": "stabil",
+      "r_legacy_2_74438": "stabil",
+      "r_legacy_5_20387": "stabil",
+      "r_legacy_4_69646": "stabil",
+      "r_legacy_3_42126": "stabil"
+    }
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

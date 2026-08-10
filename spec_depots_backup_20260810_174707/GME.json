@@ -1,0 +1,633 @@
+{
+  "ticker": "GME",
+  "name": "GameStop Corp.",
+  "kategorie": "meme",
+  "bargeld": 87.53,
+  "shares": 0,
+  "avg_price": 0,
+  "start": 100,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-07-31T13:46:51.189057",
+      "wert": 100.17
+    },
+    {
+      "zeit": "2026-07-31T14:01:55.674096",
+      "wert": 100.17
+    },
+    {
+      "zeit": "2026-07-31T15:33:42.080430",
+      "wert": 100.29
+    },
+    {
+      "zeit": "2026-07-31T20:05:30.610382",
+      "wert": 99.75
+    },
+    {
+      "zeit": "2026-07-31T20:31:14.816968",
+      "wert": 99.84
+    },
+    {
+      "zeit": "2026-07-31T20:34:50.775776",
+      "wert": 99.67
+    },
+    {
+      "zeit": "2026-07-31T21:05:07.874004",
+      "wert": 99.59
+    },
+    {
+      "zeit": "2026-08-03T22:33:49.975851",
+      "wert": 88.54
+    },
+    {
+      "zeit": "2026-08-03T22:40:46.257005",
+      "wert": 88.54
+    },
+    {
+      "zeit": "2026-08-04T16:08:26.694671",
+      "wert": 89.0
+    },
+    {
+      "zeit": "2026-08-04T16:52:10.089165",
+      "wert": 89.0
+    },
+    {
+      "zeit": "2026-08-04T17:48:10.134204",
+      "wert": 89.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:02.334124",
+      "wert": 89.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:11.273049",
+      "wert": 89.0
+    },
+    {
+      "zeit": "2026-08-04T18:06:24.781156",
+      "wert": 89.0
+    },
+    {
+      "zeit": "2026-08-04T19:03:34.694455",
+      "wert": 89.0
+    },
+    {
+      "zeit": "2026-08-04T21:20:07.792056",
+      "wert": 89.0
+    },
+    {
+      "zeit": "2026-08-04T21:20:12.241140",
+      "wert": 89.19
+    },
+    {
+      "zeit": "2026-08-04T21:26:12.456182",
+      "wert": 89.05
+    },
+    {
+      "zeit": "2026-08-04T21:33:57.315780",
+      "wert": 89.19
+    },
+    {
+      "zeit": "2026-08-04T21:34:31.920697",
+      "wert": 89.19
+    },
+    {
+      "zeit": "2026-08-04T21:35:44.808341",
+      "wert": 89.19
+    },
+    {
+      "zeit": "2026-08-04T21:49:55.133532",
+      "wert": 89.19
+    },
+    {
+      "zeit": "2026-08-05T15:35:57.406785",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T15:36:19.364116",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T16:03:35.105136",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T16:28:18.127547",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T16:49:54.862470",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T17:34:11.437681",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T17:34:36.013278",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T18:02:16.826125",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T19:02:33.498471",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T19:17:43.211214",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T19:32:45.842024",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.957202",
+      "wert": 88.35
+    },
+    {
+      "zeit": "2026-08-05T20:02:54.990918",
+      "wert": 87.66
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.103750",
+      "wert": 87.66
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.199560",
+      "wert": 87.66
+    },
+    {
+      "zeit": "2026-08-05T20:49:26.709407",
+      "wert": 87.61
+    },
+    {
+      "zeit": "2026-08-05T21:02:47.658417",
+      "wert": 87.61
+    },
+    {
+      "zeit": "2026-08-05T21:18:28.239995",
+      "wert": 87.52
+    },
+    {
+      "zeit": "2026-08-05T21:19:03.002146",
+      "wert": 87.48
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.066085",
+      "wert": 87.48
+    },
+    {
+      "zeit": "2026-08-05T21:47:33.483059",
+      "wert": 87.3
+    },
+    {
+      "zeit": "2026-08-05T21:49:02.357105",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-05T21:49:05.591147",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T15:32:26.531636",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T15:32:37.033349",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T15:47:42.007680",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.416543",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T16:02:45.498541",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.588966",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T16:17:27.948240",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.088928",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.502661",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T16:46:53.098848",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.851107",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T16:47:12.894703",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.963759",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T17:47:59.175348",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.332258",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.897850",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T18:17:34.966445",
+      "wert": 87.25
+    },
+    {
+      "zeit": "2026-08-06T19:03:17.948645",
+      "wert": 87.43
+    },
+    {
+      "zeit": "2026-08-06T19:33:20.132047",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.731423",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.663653",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T20:03:44.970692",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.325344",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.601012",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T20:49:21.949719",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.654524",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.199383",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.885021",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T21:17:54.863029",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.892868",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.280475",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T21:47:06.205605",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.451046",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-06T22:13:16.088599",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.705758",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.845205",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.622142",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.359478",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.666080",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.791272",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T16:47:10.986571",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T17:03:34.473772",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T17:17:35.261622",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T17:32:43.311438",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T18:47:09.243586",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T19:02:39.030222",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T19:17:35.796192",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T20:02:41.888392",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T20:33:10.249046",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T21:02:19.892193",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.451703",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.637045",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.811473",
+      "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.447224",
+      "wert": 87.53
+    }
+  ],
+  "trades": [
+    {
+      "typ": "kauf",
+      "ticker": "GME",
+      "menge": 4.1209,
+      "preis": 21.84,
+      "grund": "uptrend",
+      "zeit": "2026-07-30T13:59:39.966835"
+    },
+    {
+      "zeit": "2026-08-04T16:08:26.694671",
+      "aktion": "verkaufen",
+      "menge": 4.1209,
+      "preis": 19.17,
+      "grund": "Abwärtstrend, geringes Volumen, Regeln gegen Halten bei Volatilität",
+      "ki_konfidenz": 45,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-04T21:20:07.792056",
+      "aktion": "kaufen",
+      "menge": 4.652378,
+      "preis": 19.13,
+      "grund": "RSI 21 extrem überverkauft + Volumen 1.49x Schnitt = potenzielle Gegenbewegung, aber starker Abwärtstrend und Meta-Regeln warnen vor hoher Konfidenz",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-04T21:33:57.315780",
+      "aktion": "verkaufen",
+      "menge": 4.652378,
+      "preis": 19.17,
+      "grund": "Downtrend intakt, RSI extrem überverkauft (21.5) aber Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz; gelernte Regeln verbieten Halten von Volatilitätstiteln; Kapital blockiert Benchmark; kein Cash für Nachkauf; Depot -10.81% [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-04T21:49:55.133532",
+      "aktion": "kaufen",
+      "menge": 4.640479,
+      "preis": 19.22,
+      "grund": "RSI 22.2 stark überverkauft + Volumen 1.77x Schnitt deutet auf mögliche Gegenbewegung hin, aber intakter Abwärtstrend und Meta-Regeln warnen vor hoher Konfidenz",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T15:35:57.406785",
+      "aktion": "verkaufen",
+      "menge": 4.640479,
+      "preis": 19.04,
+      "grund": "Abwärtstrend, extrem niedriges Volumen, Verlustposition; gelernte Regeln raten von Halten ab bei volatilen Titeln.",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T19:45:22.957202",
+      "aktion": "kaufen",
+      "menge": 4.570616,
+      "preis": 19.33,
+      "grund": "RSI überverkauft, aber Abwärtstrend; kleiner Testkauf gemäß Watchlist, niedrige Konfidenz wegen Meta-Caps.",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:03:03.103750",
+      "aktion": "verkaufen",
+      "menge": 4.570616,
+      "preis": 19.18,
+      "grund": "Abwärtstrend und RSI-Cap-Regeln deuten auf Verlustrisiko; Halten bei volatilen Titeln wird gemieden. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T20:18:09.199560",
+      "aktion": "kaufen",
+      "menge": 4.568004,
+      "preis": 19.19,
+      "grund": "RSI 14 ist stark überverkauft, aber Abwärtstrend und unterdurchschnittliches Volumen; moderate Konfidenz wegen Meta-Cap-Regel.",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:19:03.002146",
+      "aktion": "verkaufen",
+      "menge": 4.568004,
+      "preis": 19.15,
+      "grund": "Abwärtstrend + RSI überverkauft aber Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz, Regel gegen Volatilitäts-Titel, kein Cash für Nachkauf, Depot -12.52% [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.066085",
+      "aktion": "kaufen",
+      "menge": 4.577708,
+      "preis": 19.11,
+      "grund": "RSI 23.2 extrem überverkauft, mögliche Mean-Reversion; aber intakter Abwärtstrend & Meta-Regeln warnen vor hoher Konfidenz bei Meme-Aktien",
+      "ki_konfidenz": 48,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:49:02.357105",
+      "aktion": "verkaufen",
+      "menge": 4.577708,
+      "preis": 19.06,
+      "grund": "Bestätigter Abwärtstrend (Kurs < SMA20 < SMA50), kein Cash für Nachkauf, Portfolio bereits -12.75%, Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz, RSI 22.9 zwar überverkauft aber Trend intakt [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T15:32:26.531636",
+      "aktion": "kaufen",
+      "menge": 4.58969,
+      "preis": 19.01,
+      "grund": "RSI 22.7 stark überverkauft, Watchlist-Ticker mit Cash verfügbar, Volumen 1.5x erhöht; aber Abwärtstrend und Meta-Regeln warnen vor niedriger Konfidenz",
+      "ki_konfidenz": 58,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.416543",
+      "aktion": "verkaufen",
+      "menge": 4.58969,
+      "preis": 19.01,
+      "grund": "Abwärtstrend und negative Halten-Regel für Volatilitätstitel; RSI überverkauft, aber Trend überwiegt.",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.588966",
+      "aktion": "kaufen",
+      "menge": 4.58969,
+      "preis": 19.01,
+      "grund": "RSI extrem überverkauft (22.7) und Volumenanstieg, aber Abwärtstrend begrenzt Konfidenz",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.088928",
+      "aktion": "verkaufen",
+      "menge": 4.58969,
+      "preis": 19.01,
+      "grund": "Abwärtstrend und negative Haltesignale bei Volatilität; Position verkaufen.",
+      "ki_konfidenz": 45,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:31:12.502661",
+      "aktion": "kaufen",
+      "menge": 4.58969,
+      "preis": 19.01,
+      "grund": "Leerposition, explizite Kaufaufforderung, RSI überverkauft, Meta-Konfidenz-Cap begrenzt",
+      "ki_konfidenz": 60,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.851107",
+      "aktion": "verkaufen",
+      "menge": 4.58969,
+      "preis": 19.01,
+      "grund": "Abwärtstrend mit RSI überverkauft, aber Anti-Halten-Regeln und fehlende Bestätigung; Position liquidieren.",
+      "ki_konfidenz": 40,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.963759",
+      "aktion": "kaufen",
+      "menge": 4.58969,
+      "preis": 19.01,
+      "grund": "RSI stark überverkauft (22.7) und Volumen erhöht, aber Abwärtstrend und Meta-Regeln begrenzen Konfidenz.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.332258",
+      "aktion": "verkaufen",
+      "menge": 4.58969,
+      "preis": 19.01,
+      "grund": "Abwärtstrend und negative Halte-Regeln (volatility) überwiegen, überverkauftes RSI bietet keine Trendwende.",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-06T18:17:34.966445",
+      "aktion": "kaufen",
+      "menge": 4.584866,
+      "preis": 19.03,
+      "grund": "RSI extrem überverkauft, aber Abwärtstrend und geringes Volumen; kleine Position gemäß Cash.",
+      "ki_konfidenz": 50
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.731423",
+      "aktion": "verkaufen",
+      "menge": 4.584866,
+      "preis": 19.09,
+      "grund": "Abwärtstrend intakt (Kurs < SMA20 < SMA50), RSI 24 zwar überverkauft aber kein Volumen (0.54x) für Reversal. Warnregeln gegen Halten von Volatilitätstiteln, Kapital blockiert Benchmark, Depot -12.47%, keine Cash-Reserve. Kleine Position glattstellen für Risikoreduktion. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173309_GME_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "GME",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

@@ -1,0 +1,619 @@
+{
+  "ticker": "BBAI",
+  "name": "BigBear.ai Holdings",
+  "kategorie": "ai",
+  "bargeld": 0.0,
+  "shares": 35.927445,
+  "avg_price": 3.17,
+  "start": 100,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-05T18:17:41.052261",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T18:33:29.772050",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T18:33:56.344595",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T18:47:33.226879",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T18:47:38.031353",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T19:02:33.468274",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T19:18:16.557008",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T19:32:45.786594",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T19:32:50.843270",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T19:46:43.388844",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T20:02:54.975586",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T20:18:56.751282",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T20:33:05.734649",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T21:02:47.641856",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.137637",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T21:19:02.980314",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T21:34:22.046299",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T21:49:02.335885",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-05T21:49:05.568397",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.382273",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T16:02:42.449167",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T16:03:21.570117",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T16:18:26.067834",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T16:46:54.822847",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.819107",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T17:18:02.115261",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T17:48:04.797513",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.303098",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T18:02:43.877362",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T18:17:34.943934",
+      "wert": 114.43
+    },
+    {
+      "zeit": "2026-08-06T18:17:44.378957",
+      "wert": 114.43
+    },
+    {
+      "zeit": "2026-08-06T18:33:46.594967",
+      "wert": 114.43
+    },
+    {
+      "zeit": "2026-08-06T18:48:25.030485",
+      "wert": 114.43
+    },
+    {
+      "zeit": "2026-08-06T19:02:18.580711",
+      "wert": 114.43
+    },
+    {
+      "zeit": "2026-08-06T19:03:17.927199",
+      "wert": 114.43
+    },
+    {
+      "zeit": "2026-08-06T19:17:20.588356",
+      "wert": 113.67
+    },
+    {
+      "zeit": "2026-08-06T19:35:08.659142",
+      "wert": 114.05
+    },
+    {
+      "zeit": "2026-08-06T19:36:44.591541",
+      "wert": 113.67
+    },
+    {
+      "zeit": "2026-08-06T19:47:29.447096",
+      "wert": 112.54
+    },
+    {
+      "zeit": "2026-08-06T19:48:00.200731",
+      "wert": 112.54
+    },
+    {
+      "zeit": "2026-08-06T20:48:26.255877",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T20:48:55.933878",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T20:48:57.299619",
+      "wert": 112.54
+    },
+    {
+      "zeit": "2026-08-06T20:54:21.746507",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T21:00:03.368246",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T21:01:54.633465",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T21:02:08.177825",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T21:03:05.865921",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T21:19:57.864046",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T21:33:37.700578",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T21:34:36.259894",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T21:47:06.186539",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T21:48:15.421240",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-06T22:07:07.102847",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.056590",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.759580",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-07T15:48:30.620414",
+      "wert": 112.16
+    },
+    {
+      "zeit": "2026-08-07T15:49:11.769011",
+      "wert": 111.44
+    },
+    {
+      "zeit": "2026-08-07T15:50:09.585198",
+      "wert": 111.08
+    },
+    {
+      "zeit": "2026-08-07T16:02:56.148264",
+      "wert": 111.44
+    },
+    {
+      "zeit": "2026-08-07T16:04:03.328143",
+      "wert": 111.44
+    },
+    {
+      "zeit": "2026-08-07T16:05:01.160409",
+      "wert": 111.08
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.638672",
+      "wert": 110.72
+    },
+    {
+      "zeit": "2026-08-07T16:18:51.760465",
+      "wert": 110.72
+    },
+    {
+      "zeit": "2026-08-07T16:19:32.279279",
+      "wert": 110.72
+    },
+    {
+      "zeit": "2026-08-07T16:34:01.759961",
+      "wert": 110.72
+    },
+    {
+      "zeit": "2026-08-07T16:34:09.845696",
+      "wert": 110.72
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.650870",
+      "wert": 110.72
+    },
+    {
+      "zeit": "2026-08-07T16:47:10.938965",
+      "wert": 110.01
+    },
+    {
+      "zeit": "2026-08-07T17:03:34.452704",
+      "wert": 109.66
+    },
+    {
+      "zeit": "2026-08-07T17:17:35.243441",
+      "wert": 110.72
+    },
+    {
+      "zeit": "2026-08-07T17:32:43.288559",
+      "wert": 111.78
+    },
+    {
+      "zeit": "2026-08-07T17:47:28.007334",
+      "wert": 111.43
+    },
+    {
+      "zeit": "2026-08-07T18:03:03.307435",
+      "wert": 112.84
+    },
+    {
+      "zeit": "2026-08-07T18:17:02.956867",
+      "wert": 113.19
+    },
+    {
+      "zeit": "2026-08-07T18:17:53.638856",
+      "wert": 113.19
+    },
+    {
+      "zeit": "2026-08-07T18:33:17.233883",
+      "wert": 112.84
+    },
+    {
+      "zeit": "2026-08-07T18:47:09.212683",
+      "wert": 112.84
+    },
+    {
+      "zeit": "2026-08-07T19:17:35.768659",
+      "wert": 115.66
+    },
+    {
+      "zeit": "2026-08-07T19:17:58.594150",
+      "wert": 115.66
+    },
+    {
+      "zeit": "2026-08-07T19:32:40.422224",
+      "wert": 115.3
+    },
+    {
+      "zeit": "2026-08-07T20:02:20.806249",
+      "wert": 114.95
+    },
+    {
+      "zeit": "2026-08-07T20:02:41.864968",
+      "wert": 114.95
+    },
+    {
+      "zeit": "2026-08-07T20:32:29.930572",
+      "wert": 114.95
+    },
+    {
+      "zeit": "2026-08-07T20:33:10.215192",
+      "wert": 114.25
+    },
+    {
+      "zeit": "2026-08-07T20:46:44.425115",
+      "wert": 113.89
+    },
+    {
+      "zeit": "2026-08-07T21:02:19.867489",
+      "wert": 114.25
+    },
+    {
+      "zeit": "2026-08-07T21:17:58.526206",
+      "wert": 114.95
+    },
+    {
+      "zeit": "2026-08-07T21:32:40.951926",
+      "wert": 114.25
+    },
+    {
+      "zeit": "2026-08-07T21:33:16.422037",
+      "wert": 114.25
+    },
+    {
+      "zeit": "2026-08-07T21:52:20.171571",
+      "wert": 115.66
+    },
+    {
+      "zeit": "2026-08-07T21:52:32.613079",
+      "wert": 115.66
+    },
+    {
+      "zeit": "2026-08-07T21:52:37.791822",
+      "wert": 115.66
+    },
+    {
+      "zeit": "2026-08-10T15:55:23.471220",
+      "wert": 114.25
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.393218",
+      "wert": 113.89
+    },
+    {
+      "zeit": "2026-08-10T16:05:08.496717",
+      "wert": 113.89
+    },
+    {
+      "zeit": "2026-08-10T16:21:11.427119",
+      "wert": 113.89
+    },
+    {
+      "zeit": "2026-08-10T16:48:42.753687",
+      "wert": 113.89
+    },
+    {
+      "zeit": "2026-08-10T17:04:46.130216",
+      "wert": 113.89
+    },
+    {
+      "zeit": "2026-08-10T17:19:12.693972",
+      "wert": 115.33
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-07-30T14:42:10.405248",
+      "aktion": "kaufen",
+      "menge": 38.610039,
+      "preis": 2.59,
+      "grund": "RSI extrem überverkauft (19.8), potenzielle Erholung trotz Abwärtstrend",
+      "ki_konfidenz": 65,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-07-31T13:01:52.459231",
+      "aktion": "verkaufen",
+      "menge": 38.610039,
+      "preis": 2.83,
+      "grund": "Abwärtstrend und RSI deuten auf weitere Schwäche hin; Gewinn von +9.27% sichern.",
+      "ki_konfidenz": 70,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-04T16:52:10.063509",
+      "aktion": "kaufen",
+      "menge": 36.062706,
+      "preis": 3.03,
+      "grund": "Neutraler Trend, aber niedriges Volumen; Regel vermeidet Halten bei AI-Titeln, daher Kauf mit niedriger Konfidenz.",
+      "ki_konfidenz": 40,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-04T17:48:10.086976",
+      "aktion": "verkaufen",
+      "menge": 36.062706,
+      "preis": 3.1,
+      "grund": "AI-/Volatilitätstitel laut Meta-Regeln negativ bewertet; schwaches Volumen, neutraler Trend, Position im Plus realisieren.",
+      "ki_konfidenz": 50,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T18:05:19.269413",
+      "aktion": "kaufen",
+      "menge": 37.263333,
+      "preis": 3.0,
+      "grund": "Niedriges Volumen und neutraler Trend, aber Regeln raten von Halten bei AI-Titeln ab; daher Kaufen.",
+      "ki_konfidenz": 45,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T18:17:41.052261",
+      "aktion": "verkaufen",
+      "menge": 37.263333,
+      "preis": 3.01,
+      "grund": "Gelernte Regel 'Anti halten bei ai-Titeln' (Gewicht -1.84) verbietet Halten von KI-Aktien; kleine Gewinnmitnahme bei niedrigem Volumen (0.36x) und neutralem RSI; Kapital freisetzen für Benchmark-Vergleich [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:03:34.137637",
+      "aktion": "kaufen",
+      "menge": 37.139073,
+      "preis": 3.02,
+      "grund": "Watchlist und Cash verfügbar, aber schwaches Volumen und AI-Titel-Risiko begrenzen die Konfidenz.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-05T21:19:02.980314",
+      "aktion": "verkaufen",
+      "menge": 37.139073,
+      "preis": 3.02,
+      "grund": "Gelernte Regeln verbieten Halten von KI-Titeln (Gewicht -1.84), niedriges Volumen (0.55x), neutraler Trend ohne Katalysator [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T15:48:02.382273",
+      "aktion": "kaufen",
+      "menge": 37.016502,
+      "preis": 3.03,
+      "grund": "Watchlist, Cash verfügbar, neutraler Trend; aber hohe ATR und schwaches Volumen, daher kleine Position.",
+      "ki_konfidenz": 50,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T16:02:42.449167",
+      "aktion": "verkaufen",
+      "menge": 37.016502,
+      "preis": 3.03,
+      "grund": "Gelernte Regel 'Anti halten bei ai-Titeln' (-1.84 Gewicht) rät stark vom Halten von KI-Aktien ab; neutrale Techniks (RSI 53.7, Trend seitwärts) und unterdurchschnittliches Volumen (0.71x) unterstützen Exit. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:01:52.819107",
+      "aktion": "kaufen",
+      "menge": 37.016502,
+      "preis": 3.03,
+      "grund": "Keine Position, Ticker auf Watchlist, neutraler Trend; aber AI-Titel und geringes Volumen, daher modere Konfidenz wegen Regel-Einschränkungen.",
+      "ki_konfidenz": 55,
+      "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-06T17:18:02.115261",
+      "aktion": "verkaufen",
+      "menge": 37.016502,
+      "preis": 3.03,
+      "grund": "Neutraler Trend, RSI neutral, geringes Volumen. Lerneffekte zeigen: Halten bei AI-Titeln ist nachteilig. Bargeld 0, daher Verkauf zur Kapitalfreisetzung.",
+      "ki_konfidenz": 55,
+      "typ": "verkaufen"
+    },
+    {
+      "zeit": "2026-08-06T18:02:42.303098",
+      "aktion": "kaufen",
+      "menge": 37.76431,
+      "preis": 2.97,
+      "grund": "Watchlist-Setup mit verfügbarem Cash, aber sehr geringes Volumen und hohe Volatilität begrenzen die Konfidenz.",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-06T18:17:34.943934",
+      "aktion": "verkaufen",
+      "menge": 37.76431,
+      "preis": 3.03,
+      "grund": "Niedriges Volumen, neutraler Trend, und gelernte Regeln raten von Halten bei AI/Volatilität ab; Position mit kleinem Gewinn verkaufen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-06T19:02:18.580711",
+      "aktion": "kaufen",
+      "menge": 37.765677,
+      "preis": 3.03,
+      "grund": "Keine Position, Watchlist-Empfehlung, RSI neutral, aber hohe Volatilität und geringes Volumen; Konfidenz auf 60 gedeckelt.",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-06T20:54:21.746507",
+      "aktion": "verkaufen",
+      "menge": 37.765677,
+      "preis": 2.97,
+      "grund": "Neutraler Trend, unterdurchschnittliches Volumen, hohe Volatilität und historische Warnsignale gegen Halten bei AI-/Volatilitätstiteln. Position reduzieren.",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-07T15:47:07.056590",
+      "aktion": "kaufen",
+      "menge": 35.948718,
+      "preis": 3.12,
+      "grund": "Leere Position, Bargeld verfügbar, Ticker auf Watchlist; RSI mit 60.1 nicht überkauft, VIX niedrig. Volumen und Trend neutral, daher moderate Konfidenz. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-07T16:18:03.638672",
+      "aktion": "verkaufen",
+      "menge": 35.948718,
+      "preis": 3.08,
+      "grund": "Kein klares Aufwärtssignal, sehr schwaches Volumen; AI/Volatilitäts-Titel: Halten laut Historie negativ, Position leicht im Minus.",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-07T16:34:49.650870",
+      "aktion": "kaufen",
+      "menge": 35.261146,
+      "preis": 3.14,
+      "grund": "Keine Position, Ticker in Watchlist und Cash verfügbar; aber Trend neutral, Volumen sehr niedrig und KI/Volatilitäts-Warnregeln aktiv, daher nur moderate Konfidenz.",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.393218",
+      "aktion": "verkaufen",
+      "menge": 35.261146,
+      "preis": 3.23,
+      "grund": "Gewinnmitnahme bei extrem niedrigem Volumen (0.08x), neutralem Trend und fehlendem Aufwärtssignal; Bargeld fuer bessere Gelegenheiten freisetzen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T17:04:46.130216",
+      "aktion": "kaufen",
+      "menge": 35.927445,
+      "preis": 3.17,
+      "grund": "Watchlist-Ticker mit Cash-Verfügbarkeit, aber neutrale Trendlage, niedriges Volumen (0.23x) und AI-Warnregel limitieren Konfidenz. Kleine Position per Strategie (70% wegen Volumen).",
+      "ki_konfidenz": 45
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_173256_BBAI_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "BBAI",
+    "provider": "FAIL_FAST",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}
