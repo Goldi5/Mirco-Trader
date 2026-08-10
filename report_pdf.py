@@ -920,11 +920,14 @@ def baue_pdf(daten, pfad):
     el.append(Spacer(1, 0.2*cm))
     phase_rows = [["Phase", "Thema", "Status", "Beleg", "Nächster Schritt"]]
     phase_rows += [
-        ["Phase 10", "Daily PDF Report", "teilweise umgesetzt", "Report vorhanden (v"+VERSION+")", "Restpunkte schließen"],
-        ["Phase 11", "Dashboard Profil-/Markt-Karten", "aktiv", "Projektstatus", "Umsetzung fortsetzen"],
-        ["Phase 13", "Live-Freigabe", "wartet auf Freigabe", "Benutzerfreigabe fehlt", "Freigabeentscheidung"],
-        ["WhatsApp", "Bridge-Verbindung", "blockiert", "Session corrupt", "QR-Scan nötig"],
-        ["7-Tage-Snapshot", "Automatischer Job", "aktiv", "tagesverlauf.py", "täglich 22:00"],
+        ["Phase 10-14", "Expansion (Mandantenfähig, P9-P14)", "ABGESCHLOSSEN", "Multi-Tenant, Rollen, Trennung", "Doku spiegeln"],
+        ["Phase 15-20", "UI/Admin/Markt/Broker (offen)", "IN ARBEIT", "Calm Trading UI v2.44.9, Admin-UI", "P15-P20 umsetzen"],
+        ["KI-Pool", "Provider-Reparatur", "REPARIERT", "openrouter Primary, hy3 max_tokens, v2.51.0", "Burst-Rate-Limit strecken"],
+        ["markt_daten", "DB-Persistenz", "OFFEN (Blocker)", "Tabelle leer -> Shadow->Paper blockiert", "monitor->db schreiben"],
+        ["News-Pipeline", "Strukturierung", "OFFEN", "news_monitor.py RSS, news_evaluator alt", "Ticker-Map + ki_provider"],
+        ["Man. Depotsteuerung", "Kill-Switch/PAUSE/CLOSE", "OFFEN", "Kein SUSPEND/CLOSE im Paper", "Paper-Test bauen"],
+        ["WhatsApp", "Bridge-Verbindung", "AKTIV", "Bridge connected (uptime>1h)", "kein QR nötig"],
+        ["Live-Freigabe", "Phase 13", "WARTET", "Paper_only Pflicht, Freigabe nötig", "Micro-Live nach P6/7"],
     ]
     t_ph = Table(phase_rows, colWidths=[W*0.13, W*0.22, W*0.18, W*0.22, W*0.25], repeatRows=1)
     t_ph.setStyle(TableStyle([
@@ -942,10 +945,13 @@ def baue_pdf(daten, pfad):
     # Offene Aufgaben + Ideen
     el.append(Paragraph("Offene Aufgaben", body))
     tasks = [
-        "Phase 10: Daily PDF Report — erweitert (Restpunkte: Gebühren/Slippage/decision_id fehlen)",
-        "Phase 13: Live-Freigabe — wartet auf Benutzerfreigabe",
-        "WhatsApp: Bridge-Neustart + QR-Scan nötig (Session corrupt)",
-        "Noch nicht erfasste Kennzahlen: Gebühren, Slippage, Drawdown-Snapshot, decision_id-Zuordnung",
+        "markt_daten: DB-Persistenz fixen (monitor_boerse.py -> db), sonst Shadow->Paper blockiert",
+        "Burst-Rate-Limit: KI-Calls strecken statt bündeln (Circuit-Breaker ki_cooldown sonst gesperrt)",
+        "Risiko-Slider: XY% Appetit -> KI beim nächsten Trade (User-Wunsch)",
+        "Depot-Reduktion je 10 (nach Wert) + man. Depotsteuerung (PAUSE/CLOSE/SUSPEND)",
+        "News-Pipeline: news_evaluator.py auf ki_provider.call_ki umstellen + Schema erweitern",
+        "Spec-Trade-Historie bereinigen (279 Juli-Trades noch in spec_depots/*.json)",
+        "Live-Freigabe (Phase 13) wartet auf Benutzerfreigabe - aktuell Paper_only",
     ]
     el.append(ListFlowable([ListItem(Paragraph(t, body)) for t in tasks], bulletType="bullet"))
     el.append(Spacer(1, 0.2*cm))
