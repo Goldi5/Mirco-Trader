@@ -2,11 +2,13 @@
 
 > Merknotiz für spätere Fortsetzung. Auftrag: „Micro-Trader — Benutzerplattform,
 > Shadow/Paper/Live, Provider-Management und Broker-Architektur" (v2.38.0-Basis,
-> 20-Punkte-Reihenfolge §19). Stand: 2026-08-09, HEAD `f6a3d11`.
+> 20-Punkte-Reihenfolge §19). Stand: 2026-08-10, HEAD `88eecdf` (v2.44.9, UI-Redesign fertig).
+> **WICHTIG:** Auftrag basiert auf v2.38.0 — tatsächlicher Stand ist **v2.44.9**.
+> Phase 0–5 + Provider-Datenmodell (§19-Punkt 8) sind bereits committet (v2.38.1–v2.43.0).
 
 ---
 
-## ✅ ABGESCHLOSSEN (Phase 0–5, Versionen v2.38.1–v2.43.0)
+## ✅ ABGESCHLOSSEN (Phase 0–5 + Provider-Datenmodell, Versionen v2.38.1–v2.44.9)
 
 | §19-Punkt | Umsetzung | Version | Commit | Tests | Ergebnisdatei |
 |---|---|---|---|---|---|
@@ -24,7 +26,41 @@ BrokerProvider/PaperBrokerAdapter, Vier-Augen, 3 Doku-Dateien).
 
 ---
 
+## 🔍 PHASE 0 RE-VERIFIZIERT (2026-08-10, v2.44.9)
+
+- **Version**: v2.44.9 (Auftrag sagte v2.38.0 — veraltet)
+- **Tests**: `test_server_security.py` → **273 OK / 0 FAIL** (nach Passwort-Fix:
+  Test nutzte altes `MicroTrader2026!`, korrekt ist `Admin2026!sicher`; 7 Stellen
+  in `test_server_security.py` gepatched — Test-Wartung, keine funktionale Änderung)
+- **Phase 0–5 bereits committet** (v2.38.1–v2.43.0); Inventory-Docs von v2.38.1 sind
+  weiterhin gültig (keine neuen Architektur-Änderungen in v2.44.x außer UI-Redesign)
+- **Provider-Datenmodell (§19-Punkt 8) bereits da**: `provider_connections`-Tabelle in
+  db.py (Z299) + `provider_connection_add/list/test` + API `/api/providers[/add/test]`
+
 ## ⏳ OFFEN — NÄCHSTE §19-PUNKTE (in exakter Reihenfolge)
+
+**NÄCHSTER SCHRITT = §19-Punkt 2: Bekannte Fehler prüfen** (Risk-70, BLOCK-Regel, 2. Tenant)
+→ danach §19-Punkt 9 (Secret-/Connection-Manager Rotation) usw.
+
+| §19-Punkt | Status | Hinweise |
+|---|---|---|
+| 2. **Bekannte Fehler** | 🔜 NÄCHSTER | Risk-70-Filter: bereits pos_size-basiert gefixt (batch_trader Z142). BLOCK-Matching-Bug: `enforce_rules` (security.py Z427) blockiert bei `BLOCK:manuell gesperrt` pauschal ALLE Ticker (Over-Blocking) — muss geprüft/korrigiert werden. 2. Tenant: nur in Tests (T2), nicht Production |
+| 9. Secret-/Connection-Manager | OFFEN | secret_store + provider_connections existieren; Rotation/Status-Ausbau offen |
+| 10. Datenprovider-Abstraktion | OFFEN | MarketSnapshot-Interface fehlt (Trading-Core hängt direkt an yfinance etc.) |
+| 11. Paper-/Simulator-Broker | TEILWEISE | PaperBrokerAdapter existiert; Sandbox-Broker fehlt |
+| 12. Order-Intent- und Risk-Integration | TEILWEISE | create/validate_order_intent existieren; 18-Punkte-Checkliste (§13) nicht vollständig |
+| 13. Vier-Augen-Freigabe | TEILWEISE | four_eyes_required existiert; approvals-Workflow (IN_REVIEW/EXPIRED/REVOKED) ausbauen |
+| 14. Live-Antragsprozess | OFFEN | LIVE_REQUESTED→IN_REVIEW→APPROVED Prozess fehlt |
+| 15. Admin-Oberfläche | TEILWEISE | Admin-Bereich (8 Tabs) existiert; Provider/Modi/Freigaben-Übersicht fehlt |
+| 16. Audit-Erweiterung | OFFEN | audit_log existiert; Provider/Rotation/Order-Audit ausbauen |
+| 17. Zweiter Tenant-Test | OFFEN | Test-Tenant T2 nur in Tests; echter zweiter Production-Tenant nicht validiert |
+| 18. Sicherheits-/Regressionstests | TEILWEISE | 273 OK; §13-Testkatalog (Provider, Freigaben, Modi) nicht vollständig |
+| 19. Sandbox-Brokerintegration | OFFEN | kein Live-Adapter vor Abschluss von §19-Punkt 18 |
+| 20. Dokumentation | TEILWEISE | Ergebnisdateien teils vorhanden (s. u.) |
+
+---
+
+## 📄 ERGEBNISDATEIEN (§20) — Status
 
 | §19-Punkt | Status | Hinweise |
 |---|---|---|

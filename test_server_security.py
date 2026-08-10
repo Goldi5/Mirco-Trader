@@ -211,7 +211,7 @@ try:
     cc = app2.test_client()
     r = cc.get("/api/tenants")
     ck("API /api/tenants ohne Auth -> 401", r.status_code == 401)
-    cc.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    cc.post("/", data={"username": "admin", "password": "Admin2026!sicher"})
     r = cc.get("/api/tenants")
     ck("API /api/tenants als admin -> 200", r.status_code == 200 and "tenants" in r.get_json())
     r = cc.post("/api/tenants/create", json={"tenant_key": "BAD KEY!", "name": "x"})
@@ -258,7 +258,7 @@ try:
     import dashboard as dash2
     app3 = dash2.app; app3.config["TESTING"] = True
     c3 = app3.test_client()
-    c3.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    c3.post("/", data={"username": "admin", "password": "Admin2026!sicher"})
     r = c3.get("/api/me/permissions")
     j = r.get_json()
     ck("API /api/me/permissions superadmin",
@@ -319,7 +319,7 @@ try:
     # /api/db_query erzwingt Session-Tenant (Client-Parameter wird ignoriert)
     app3 = dash3.app; app3.config["TESTING"] = True
     c3 = app3.test_client()
-    c3.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    c3.post("/", data={"username": "admin", "password": "Admin2026!sicher"})
     r = c3.get("/api/db_query?mode=trades&tenant_id=999&limit=500")
     j = r.get_json()
     ck("/api/db_query ignoriert Client-tenant (nutzt Session)",
@@ -364,7 +364,7 @@ try:
     # API-Test
     app5 = dash5.app; app5.config["TESTING"] = True
     c5 = app5.test_client()
-    c5.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    c5.post("/", data={"username": "admin", "password": "Admin2026!sicher"})
     r = c5.get("/api/trading_mode")
     ck("API GET /api/trading_mode liefert Modus", r.status_code == 200 and "mode" in r.get_json())
     r = c5.post("/api/trading_mode/set", data={"mode": "PAPER", "reason": "t"})
@@ -411,7 +411,7 @@ try:
     # API
     app6 = dash6.app; app6.config["TESTING"] = True
     c6 = app6.test_client()
-    c6.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    c6.post("/", data={"username": "admin", "password": "Admin2026!sicher"})
     # Sicher auf SHADOW zuruecksetzen (Isolation)
     try:
         sec6.set_trading_mode("SHADOW", tenant_id=1, user={"username": "admin"})
@@ -457,7 +457,7 @@ try:
     # API: Secret wird maskiert
     app7 = dash7.app; app7.config["TESTING"] = True
     c7 = app7.test_client()
-    c7.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    c7.post("/", data={"username": "admin", "password": "Admin2026!sicher"})
     c7.post("/api/providers/add", data={"provider_type": "market_data",
             "provider_name": "yfinance", "secret_reference": "vault://mt/yf"})
     r = c7.get("/api/providers")
@@ -486,7 +486,7 @@ try:
     # API: setzt + listet (keine Werte im Response)
     app8 = dash8.app; app8.config["TESTING"] = True
     c8 = app8.test_client()
-    c8.post("/", data={"username": "admin", "password": "MicroTrader2026!"})
+    c8.post("/", data={"username": "admin", "password": "Admin2026!sicher"})
     r = c8.post("/api/secrets/set", data={"key": "TEST_KEY", "value": "supersecret"})
     ck("API /api/secrets/set OK", r.get_json().get("ok") is True)
     r = c8.get("/api/secrets")
