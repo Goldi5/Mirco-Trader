@@ -9,10 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T13:31:56.961210",
-      "wert": 100.17
-    },
-    {
       "zeit": "2026-07-31T13:46:51.189057",
       "wert": 100.17
     },
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T21:52:37.811473",
       "wert": 87.53
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.447224",
+      "wert": 87.53
     }
   ],
   "trades": [
@@ -607,12 +607,14 @@
   ],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 50,
-    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_215114_GME_aktien_na",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_171749_GME_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "GME",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],
@@ -625,5 +627,7 @@
     ],
     "konfidenz_original": 0,
     "konfidenz_nach_cap": 0
-  }
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
 }

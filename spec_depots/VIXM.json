@@ -1,0 +1,37 @@
+{
+  "ticker": "VIXM",
+  "name": "ProShares VIX Mid-Term",
+  "kategorie": "volatility",
+  "bargeld": 100.0,
+  "shares": 0.0,
+  "avg_price": 0.0,
+  "start": 100.0,
+  "exchange": null,
+  "historie": [],
+  "trades": [],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_171749_VIXM_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "VIXM",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

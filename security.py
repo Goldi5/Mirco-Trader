@@ -2063,9 +2063,11 @@ def require_permission(permission):
 
 
 def require_recent_mfa():
-    """Phase 1 (§6): Route nur mit MFA (Pflicht für Admin/Superadmin).
-    Ohne eingerichtetes MFA -> /setup_mfa (Einrichtung); mit MFA aber
-    abgelaufener Reauth -> /mfa (Verifikation). Kein Login-Lockout."""
+    """Phase 1 (§6): Route mit MFA-Freigabe für Admin/Superadmin.
+    KEIN Login-Lockout und KEIN harter Redirect mehr bei fehlendem MFA:
+    Ohne eingerichtetes MFA -> Route wird DURCHGELASSEN (nur UI-Hinweis,
+    User-Entscheidung 2026-08-10: MFA-Zwang blockt nicht den Zugang).
+    Mit MFA aber abgelaufener Reauth -> /mfa (Verifikation)."""
     def decorator(f):
         from functools import wraps
         @wraps(f)
@@ -2076,11 +2078,10 @@ def require_recent_mfa():
                 return _r((_u("login") if "login" in _ALL_ROUTES else "/login"))
             if u["role"] not in MFA_REQUIRED_ROLES:
                 return f(*a, **kw)
-            # Rolle in MFA-Pflicht: zuerst Einrichtung, dann Reauth
-            if not u.get("mfa_enabled"):
-                from flask import redirect as _r, url_for as _u
-                return _r(_u("setup_mfa") if "setup_mfa" in _ALL_ROUTES else "/setup_mfa")
-            if not mfa_recently_verified(u["username"], _current_sid()):
+            # Rolle in MFA-Pflicht: KEIN Zwang bei fehlendem MFA (durchlassen,
+            # Hinweis erfolgt im UI-Banner). Nur Reauth erzwingen, wenn MFA
+            # eingerichtet ist (Verifikation).
+            if u.get("mfa_enabled") and not mfa_recently_verified(u["username"], _current_sid()):
                 from flask import redirect as _r, url_for as _u
                 return _r(_u("mfa_verify") if "mfa_verify" in _ALL_ROUTES else "/mfa")
             return f(*a, **kw)

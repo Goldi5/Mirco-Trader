@@ -483,7 +483,7 @@
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_215148_SOUN_aktien_na",
+    "decision_id": "d_20260810_171749_SOUN_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "SOUN",
@@ -501,5 +501,7 @@
     ],
     "konfidenz_original": 0,
     "konfidenz_nach_cap": 0
-  }
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
 }

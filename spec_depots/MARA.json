@@ -176,12 +176,14 @@
   "trades": [],
   "ki_letzte": {
     "aktion": "halten",
-    "konfidenz": 50,
-    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260807_215214_MARA_aktien_na",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_171749_MARA_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "MARA",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
     "konflikte": [],
@@ -194,5 +196,7 @@
     ],
     "konfidenz_original": 0,
     "konfidenz_nach_cap": 0
-  }
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
 }

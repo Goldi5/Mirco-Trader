@@ -1,0 +1,71 @@
+{
+  "ticker": "BE",
+  "name": "Bloom Energy",
+  "kategorie": "energy",
+  "bargeld": 0.0,
+  "shares": 0.460109,
+  "avg_price": 217.34,
+  "start": 100.0,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-10T15:55:23.473306",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.395798",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:05:08.498918",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:34:14.420607",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:48:42.757364",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:19:12.697544",
+      "wert": 100.0
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-10T17:19:12.697544",
+      "aktion": "kaufen",
+      "menge": 0.460109,
+      "preis": 217.34,
+      "grund": "Neutraler Trend (RSI 47.2, Kurs zwischen SMA20/50), aber sehr niedriges Volumen (0.21x) dämpft Position auf ~70%. Watchlist-Ticker, $100 Cash frei, Diversifikation sinnvoll. META-CAP-Regeln warnen vor hoher Konfidenz.",
+      "ki_konfidenz": 55
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_171748_BE_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "BE",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

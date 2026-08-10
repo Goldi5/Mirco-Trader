@@ -830,8 +830,8 @@ function renderPortfoliosUebersicht() {
 
 function showPortfolios() {
   const sub = window._aktiverPortfolioSub || "alle";
-  if (sub === "alle") renderPortfoliosUebersicht();
-  else showTab(sub);
+  // showTab aktiviert das Panel (active-class) UND rendert den Inhalt
+  showTab(sub);
 }
 function showAnalyse() { showTab(window._aktiverAnalyseSub || "analyse"); }
 
@@ -865,8 +865,22 @@ function showTab(name) {
   if (name === "ki") kiSubTab(window._kiSubTab || "auswertung");
   if (name === "settings") renderSettings();
   if (name === "alle") renderPortfoliosUebersicht();
+  if (name === "charts") renderMaerkte();
   // scroll to top
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ─── Märkte-Tab (Bootstrap) ───
+function renderMaerkte() {
+  const box = document.getElementById("panel-charts");
+  if (!box) return;
+  const chips = window._maerkteHtml || "<b>Marktstatus unbekannt</b>";
+  box.innerHTML = `
+    <div class="surface" style="padding:16px">
+      <h2 style="margin:0 0 12px">🌐 Märkte &amp; Börsenstatus</h2>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">${chips}</div>
+      <div id="maerkteDetail">${window._maerkteDetailHtml || "Lade Details…"}</div>
+    </div>`;
 }
 
 // KI-Untertabs
@@ -1437,14 +1451,14 @@ async function load() {
     } catch(e) {}
 
     // ── Kategorien ──
-    const aktienTotal = d.depots.reduce((s,x) => s + x.wert, 0);
-    const aktienInvest = d.depots.reduce((s,x) => s + x.start, 0);
+    const aktienTotal = (d.depots||[]).reduce((s,x) => s + x.wert, 0);
+    const aktienInvest = (d.depots||[]).reduce((s,x) => s + x.start, 0);
     const aktienRendite = aktienInvest > 0 ? ((aktienTotal - aktienInvest) / aktienInvest * 100) : 0;
     const etfTotal = (d.etf_depots||[]).reduce((s,x) => s + x.wert, 0);
     const etfInvest = (d.etf_depots||[]).reduce((s,x) => s + x.start, 0);
     const etfRendite = etfInvest > 0 ? ((etfTotal - etfInvest) / etfInvest * 100) : 0;
-    const specTotal = d.spec_depots.reduce((s,x) => s + x.wert, 0);
-    const specInvest = d.spec_depots.reduce((s,x) => s + (x.start||0), 0);
+    const specTotal = (d.spec_depots||[]).reduce((s,x) => s + x.wert, 0);
+    const specInvest = (d.spec_depots||[]).reduce((s,x) => s + (x.start||0), 0);
     const specRendite = specInvest > 0 ? ((specTotal - specInvest) / specInvest * 100) : 0;
     const total = aktienTotal + etfTotal + specTotal;
     const totalInvest = aktienInvest + etfInvest + specInvest;
@@ -1491,7 +1505,17 @@ async function load() {
       return `<span style='display:inline-flex;align-items:center;gap:3px;margin-right:5px;padding:1px 7px;border-radius:9px;background:var(--surface-muted);border:1px solid var(--border);font-size:10px;white-space:nowrap' title='${c.label}: ${tip}'>${dot} <b>${c.label}</b>${next}</span>`;
     }).join('');
 
-    // ── Notifications ──
+    // ── Detail-Tabelle (Märkte-Tab) ──
+    window._maerkteDetailHtml = (d.boersen || []).map(b => {
+      const dot = b.status === 'open' ? '🟢' : '🔴';
+      return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+        <span>${b.flag || ''} <b>${b.name}</b></span>
+        <span style="font-size:12px;opacity:.8">${dot} ${b.label || ''}</span>
+        <span style="font-size:11px;opacity:.6">${b.open_local || ''}–${b.close_local || ''} MEZ</span>
+      </div>`;
+    }).join('') || "<i>Keine Börseninformationen verfügbar.</i>";
+
+
     const notifs = d.notifications || [];
     const badge = document.getElementById("notifBadge");
     if (badge) {
@@ -1525,10 +1549,10 @@ async function load() {
     // ════════════════════════════════════════════════════════
     // 📊 ÜBERSICHT (3 Kategorien)
     // ════════════════════════════════════════════════════════
-    const best = d.depots.reduce((a,b) => a.rendite > b.rendite ? a : b);
-    const worst = d.depots.reduce((a,b) => a.rendite < b.rendite ? a : b);
-    const active = d.depots.filter(x => x.positionen > 0).length;
-    const trades = d.depots.reduce((s,x) => s + x.trades, 0);
+    const best = (d.depots||[]).reduce((a,b) => (a.rendite||0) > (b.rendite||0) ? a : b, {rendite:-1e9} );
+    const worst = (d.depots||[]).reduce((a,b) => (a.rendite||0) < (b.rendite||0) ? a : b, {rendite:1e9} );
+    const active = (d.depots||[]).filter(x => (x.positionen||0) > 0).length;
+    const trades = (d.depots||[]).reduce((s,x) => s + (x.trades||0), 0);
 
         document.getElementById("panel-overview").innerHTML = `
       <!-- ═══ HERO: Gesamtwert ═══ -->

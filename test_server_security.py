@@ -173,8 +173,8 @@ try:
     c3 = app.test_client()
     c3.post("/", data={"username": "__v23nomfa__", "password": "NoMfaTest123!"})
     r = c3.get("/api/users")
-    ck("Admin ohne MFA /api/users -> blocked (MFA-Pflicht)",
-       r.status_code in (302, 401, 403))
+    ck("Admin ohne MFA /api/users -> Durchlass (MFA-Zwang entfernt 2026-08-10)",
+       r.status_code == 200)
     # cleanup
     us = sec._load_users()
     for _n in ("__v23__", "__v23admin__", "__v23nomfa__"):

@@ -1,0 +1,80 @@
+{
+  "ticker": "AGQ",
+  "name": "ProShares Ultra Silver 2x",
+  "kategorie": "commodity",
+  "bargeld": 100.0,
+  "shares": 0.0,
+  "avg_price": 0.0,
+  "start": 100.0,
+  "exchange": null,
+  "historie": [
+    {
+      "zeit": "2026-08-10T15:55:23.460617",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.381341",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:04:22.782713",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:19:34.464419",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:21:11.401743",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:34:14.406398",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:48:26.297818",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:48:42.739808",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:04:54.437958",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:19:12.680818",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:19:16.866520",
+      "wert": 100.0
+    }
+  ],
+  "trades": [],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260810_171819_AGQ_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "AGQ",
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

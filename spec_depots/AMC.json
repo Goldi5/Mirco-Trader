@@ -3,47 +3,11 @@
   "name": "AMC Entertainment",
   "kategorie": "meme",
   "bargeld": 0.0,
-  "shares": 37.858209,
-  "avg_price": 2.68,
+  "shares": 37.547325,
+  "avg_price": 2.43,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T19:45:22.927991",
-      "wert": 102.6
-    },
-    {
-      "zeit": "2026-08-05T19:46:43.381788",
-      "wert": 102.97
-    },
-    {
-      "zeit": "2026-08-05T20:02:54.970137",
-      "wert": 103.35
-    },
-    {
-      "zeit": "2026-08-05T20:03:03.078233",
-      "wert": 102.97
-    },
-    {
-      "zeit": "2026-08-05T20:18:09.175877",
-      "wert": 102.6
-    },
-    {
-      "zeit": "2026-08-05T20:18:56.746233",
-      "wert": 102.97
-    },
-    {
-      "zeit": "2026-08-05T20:32:47.731705",
-      "wert": 102.22
-    },
-    {
-      "zeit": "2026-08-05T20:33:05.728396",
-      "wert": 102.22
-    },
-    {
-      "zeit": "2026-08-05T20:49:14.682291",
-      "wert": 101.46
-    },
     {
       "zeit": "2026-08-05T20:49:26.687445",
       "wert": 101.46
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-07T21:52:37.782219",
       "wert": 96.54
+    },
+    {
+      "zeit": "2026-08-10T15:55:23.462771",
+      "wert": 95.02
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.383303",
+      "wert": 94.65
+    },
+    {
+      "zeit": "2026-08-10T16:19:34.468421",
+      "wert": 91.62
+    },
+    {
+      "zeit": "2026-08-10T16:21:11.407047",
+      "wert": 91.24
+    },
+    {
+      "zeit": "2026-08-10T16:34:08.783310",
+      "wert": 91.24
+    },
+    {
+      "zeit": "2026-08-10T16:34:14.408563",
+      "wert": 91.24
+    },
+    {
+      "zeit": "2026-08-10T16:48:26.299339",
+      "wert": 91.24
+    },
+    {
+      "zeit": "2026-08-10T17:19:12.682818",
+      "wert": 89.74
+    },
+    {
+      "zeit": "2026-08-10T17:19:16.868716",
+      "wert": 89.74
     }
   ],
   "trades": [
@@ -543,29 +543,45 @@
       "grund": "Aufwärtstrend, aber niedriges Volumen; kleine Position.",
       "ki_konfidenz": 45,
       "typ": "kaufen"
+    },
+    {
+      "zeit": "2026-08-10T16:21:11.407047",
+      "aktion": "verkaufen",
+      "menge": 37.858209,
+      "preis": 2.41,
+      "grund": "Position zeigt -10% Verlust bei neutralem Trend (RSI 59.4), extrem niedrigem Volumen (0.1x) und keinem Katalysator. Regeln warnen vor Halten von Volatilitätstiteln und Kapitalblockade vs. Benchmark. Kein Cash für Nachkauf, Depot zu konzentriert in einzelner Meme-Aktie. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T16:48:26.299339",
+      "aktion": "kaufen",
+      "menge": 37.547325,
+      "preis": 2.43,
+      "grund": "Watchlist-Wert mit Cash-Verfügbarkeit, RSI 60.1 nicht überkauft, aber niedriges Volumen (0.16x) und neutraler Trend erfordern kleine Position (70% per Strategie). Penny-Stock-Risiko beachtet.",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T21:50:44.209749",
+    "zeit": "2026-08-10T17:18:10.030507",
     "ticker": "AMC",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "Kein Cash verfügbar für Nachkauf; Trend intakt (Kurs > SMA20 > SMA50), RSI neutral bei 53,4, kleiner Verlust (-4,85%) rechtfertigt keinen Verkauf. Volumen niedrig (0,3x) aber nur Dämpfer. Position halten auf Erholung oder besseren Einstieg warten. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "konfidenz": 58,
+    "grund": "Kein Cash für Nachkauf; Position nur -1,65% im Minus; RSI 58,4 neutral, Trend seitwärts, Volumen sehr niedrig (0,19x), keine News-Katalysatoren. Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz.",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 2.55,
-    "rsi": 53.4,
-    "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": -4.85,
-    "depot_rendite": -3.46,
+    "kurs": 2.39,
+    "rsi": 58.4,
+    "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
+    "p_pnl": -1.65,
+    "depot_rendite": -10.26,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
         "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -579,7 +595,7 @@
         "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -593,7 +609,7 @@
         "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -607,7 +623,7 @@
         "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -621,7 +637,7 @@
         "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -635,7 +651,7 @@
         "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -649,7 +665,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.87,
+        "effektiv_gewicht": 1.82,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -663,7 +679,7 @@
         "muster": "[Anti] halten bei volatility-Titeln",
         "typ": "anti",
         "gewicht": -1.87,
-        "effektiv_gewicht": -1.81,
+        "effektiv_gewicht": -1.76,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -677,7 +693,7 @@
         "muster": "[Anti] halten bei lev-bull-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.81,
+        "effektiv_gewicht": -1.75,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -691,7 +707,7 @@
         "muster": "[Anti] halten bei ai-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.81,
+        "effektiv_gewicht": -1.75,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -705,7 +721,7 @@
         "muster": "[Anti] halten bei lev-bear-Titeln",
         "typ": "anti",
         "gewicht": -1.71,
-        "effektiv_gewicht": -1.66,
+        "effektiv_gewicht": -1.61,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -715,11 +731,11 @@
         "durchgesetzt": false
       },
       {
-        "id": "r_legacy_7_07487",
-        "muster": "[Anti] halten bei space-Titeln",
+        "id": "r_legacy_3_42126",
+        "muster": "[Anti] halten bei crypto-Titeln",
         "typ": "anti",
-        "gewicht": -1.64,
-        "effektiv_gewicht": -1.59,
+        "gewicht": -1.63,
+        "effektiv_gewicht": -1.54,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -729,29 +745,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_215044_AMC_aktien_na",
-    "provider": "zen-nemotron",
+    "decision_id": "d_20260810_171810_AMC_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 2.55,
-      "sma20": 2.41,
-      "sma50": 2.2,
-      "rsi": 53.4,
-      "atr_pct": 8.7,
-      "vol_ratio": 0.3,
-      "vix": 14.8,
-      "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": -3.46
+      "kurs": 2.39,
+      "sma20": 2.44,
+      "sma50": 2.21,
+      "rsi": 58.4,
+      "atr_pct": 8.59,
+      "vol_ratio": 0.19,
+      "vix": 15.2,
+      "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
+      "depot_rendite": -10.26
     },
     "indikatoren": [
       "SMA20>2.4",
       "SMA50>2.2",
-      "RSI53",
-      "ATR8.7%"
+      "RSI58",
+      "ATR8.6%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -763,8 +779,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 75.0,
-    "konfidenz_nach_cap": 60,
+    "konfidenz_original": 58,
+    "konfidenz_nach_cap": 58,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,
@@ -780,7 +796,9 @@
       "r_legacy_2_74438": "stabil",
       "r_legacy_5_20387": "stabil",
       "r_legacy_4_69646": "stabil",
-      "r_legacy_7_07487": "stabil"
+      "r_legacy_3_42126": "stabil"
     }
-  }
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
 }

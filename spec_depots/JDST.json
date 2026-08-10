@@ -2,16 +2,12 @@
   "ticker": "JDST",
   "name": "Direxion Gold Miners Bear 2x",
   "kategorie": "lev-bear",
-  "bargeld": 0.0,
-  "shares": 3.650149,
-  "avg_price": 26.84,
+  "bargeld": 100.6,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-04T16:54:38.465297",
-      "wert": 98.0
-    },
     {
       "zeit": "2026-08-04T17:48:59.602378",
       "wert": 98.0
@@ -407,6 +403,10 @@
     {
       "zeit": "2026-08-07T21:33:16.461585",
       "wert": 97.39
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.460955",
+      "wert": 100.6
     }
   ],
   "trades": [
@@ -524,17 +524,25 @@
       "preis": 26.84,
       "grund": "RSI 22.8 stark überverkauft, Volumen 2.0x über Schnitt, keine Position vorhanden. Leveraged Bear-ETF nur kleine Position (max 30% Cash ≈ $29) wegen Vola/Decay. Gold-Miner-Trend unsicher, aber Short-Term-Bounce möglich.",
       "ki_konfidenz": 58
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.460955",
+      "aktion": "verkaufen",
+      "menge": 3.650149,
+      "preis": 27.56,
+      "grund": "Downtrend bei Hebel-Bear-ETF (JDST), Regeln warnen vor Halt lev-bear-Titeln, kleiner Gewinn (+2,68%) mitnehmen, Cash freimachen für bessere Setups, niedriges Volumen (0,38x), hohe Vola (ATR 8,5%) [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "aktion": "halten",
     "konfidenz": 0,
     "grund": "KI-Call fehlgeschlagen (alle Provider)",
-    "decision_id": "d_20260807_215119_JDST_aktien_na",
+    "decision_id": "d_20260810_171749_JDST_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
     "ticker": "JDST",
-    "provider": "FAIL_FAST",
+    "provider": "ALLE_PROVIDER_KALT",
     "fallback": true,
     "shadow": false,
     "regelstand_ref": "v_legacy",
@@ -548,5 +556,7 @@
     ],
     "konfidenz_original": 0,
     "konfidenz_nach_cap": 0
-  }
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
 }

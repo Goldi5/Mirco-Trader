@@ -1,5 +1,9 @@
-Analysiere 1 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
+Analysiere 5 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
 
-Risk 70: Cash $107.2, Wert $107.2, Pos: keine, Kandidaten: CLOU $27.3 (25% Cash), LGI $18.5 (17% Cash), RDW $13.6 (13% Cash), TNDM $22.4 (21% Cash), EIDO $12.9 (12% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 75: Cash $72.4, Wert $132.4, Pos: ALLO: 28.98st @$2.01 (Kurs $2.07, P&L +3.24%), Kandidaten: CLOU $27.3 (38% Cash), LGI $18.5 (25% Cash), RDW $13.6 (19% Cash), TNDM $22.4 (31% Cash), EIDO $12.9 (18% Cash)
+Risk 80: Cash $0.0, Wert $114.0, Pos: WKHS: 35.12st @$3.35 (Kurs $3.25, P&L -2.91%), Kandidaten: keine
+Risk 85: Cash $6.9, Wert $116.5, Pos: WKHS: 16.83st @$3.35 (Kurs $3.25, P&L -2.91%), RDW: 4.14st @$13.59 (Kurs $13.27, P&L -2.35%), Kandidaten: VFF $2.1 (30% Cash), AMC $2.6 (37% Cash), CRON $3.1 (45% Cash), WKHS $3.3 (48% Cash), ALLO $2.0 (29% Cash)
+Risk 90: Cash $0.0, Wert $128.0, Pos: ALLO: 61.82st @$2.01 (Kurs $2.07, P&L +3.24%), Kandidaten: keine
+Risk 95: Cash $8.8, Wert $115.2, Pos: ALLO: 20.97st @$2.01 (Kurs $2.07, P&L +3.24%), SENS: 8.28st @$7.02 (Kurs $7.60, P&L +8.26%), Kandidaten: VFF $2.1 (24% Cash), AMC $2.6 (29% Cash), CRON $3.1 (35% Cash), DOMO $3.9 (44% Cash), WKHS $3.3 (38% Cash)
 
 Antworte NUR mit JSON [{"risk":0, "aktionen":[{"ticker":"AAPL","aktion":"kaufen"|"verkaufen"|"halten","menge":"voll"|"teil","grund":"..."}]}]

@@ -1,0 +1,67 @@
+{
+  "ticker": "BITF",
+  "name": "Bitfarms Ltd.",
+  "kategorie": "crypto",
+  "bargeld": 0.0,
+  "shares": 25.773196,
+  "avg_price": 3.88,
+  "start": 100.0,
+  "exchange": "US",
+  "historie": [
+    {
+      "zeit": "2026-08-10T15:55:23.474295",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.395798",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:05:08.500951",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T16:48:42.758364",
+      "wert": 100.0
+    },
+    {
+      "zeit": "2026-08-10T17:19:12.698638",
+      "wert": 100.0
+    }
+  ],
+  "trades": [
+    {
+      "zeit": "2026-08-10T15:55:59.395798",
+      "aktion": "kaufen",
+      "menge": 25.773196,
+      "preis": 3.88,
+      "grund": "Kaufanweisung aus Watchlist, neutrale technische Lage, keine klaren Warnsignale",
+      "ki_konfidenz": 60
+    }
+  ],
+  "ki_letzte": {
+    "aktion": "halten",
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_171748_BITF_aktien_na",
+    "depot_typ": "aktien",
+    "risk": null,
+    "ticker": "BITF",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
+    "konflikte": [],
+    "prioritaetsreihenfolge": [
+      "engine_bremse",
+      "meta_cap",
+      "news_swap",
+      "exit_score",
+      "ki"
+    ],
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
+}

@@ -2,32 +2,12 @@
   "ticker": "BITX",
   "name": "Volatility Bitcoin 2x",
   "kategorie": "crypto",
-  "bargeld": 99.58,
+  "bargeld": 100.15,
   "shares": 0,
   "avg_price": 0,
   "start": 100.0,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T18:33:56.350319",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-08-05T18:47:33.230552",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-08-05T18:47:38.035080",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-08-05T19:02:33.471384",
-      "wert": 99.51
-    },
-    {
-      "zeit": "2026-08-05T19:46:43.392431",
-      "wert": 99.51
-    },
     {
       "zeit": "2026-08-05T20:18:56.754068",
       "wert": 99.51
@@ -407,6 +387,26 @@
     {
       "zeit": "2026-08-07T21:52:37.798233",
       "wert": 99.58
+    },
+    {
+      "zeit": "2026-08-10T15:55:23.476306",
+      "wert": 99.58
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.398986",
+      "wert": 99.58
+    },
+    {
+      "zeit": "2026-08-10T16:19:34.499955",
+      "wert": 100.15
+    },
+    {
+      "zeit": "2026-08-10T16:34:14.424146",
+      "wert": 100.15
+    },
+    {
+      "zeit": "2026-08-10T17:19:12.701741",
+      "wert": 100.15
     }
   ],
   "trades": [
@@ -568,218 +568,36 @@
       "preis": 12.47,
       "grund": "Neutraler Trend, sehr schwaches Volumen und Anti-Halte-Regeln für Volatilität/Lev-Bull überwiegen. Kein Cash für Nachkauf, Position realisiert kleinen Gewinn.",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T15:55:23.476306",
+      "aktion": "kaufen",
+      "menge": 8.135621,
+      "preis": 12.24,
+      "grund": "Kauf auf Watchlist, aber neutraler Trend und sehr niedriges Volumen; Leveraged-ETF daher nur als kleine Position.",
+      "ki_konfidenz": 52
+    },
+    {
+      "zeit": "2026-08-10T16:19:34.499955",
+      "aktion": "verkaufen",
+      "menge": 8.135621,
+      "preis": 12.31,
+      "grund": "Mehrere Warnregeln gegen Volatility/Leveraged-Produkte, niedrige VIX (15.2), sehr niedriges Volumen (0.29x), neutraler/bärischer Trend, Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz, kleiner Gewinn realisierbar, Cash freimachen für bessere Gelegenheiten [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
-    "typ": "decision",
-    "zeit": "2026-08-07T21:51:04.915613",
-    "ticker": "BITX",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "Doppelwarnung: Volatility- und Lev-Bull-Titel (Gewicht -1.81 each). Technisch neutral (RSI 48.5, Kurs zwischen SMAs), niedriger VIX (14.8), Volumen unterdurchschnittlich (0.85x). Meta-Regeln zeigen hohe Konfidenz historisch erfolglos. Kein klares Aufwärtssignal für Einstieg. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
-    "menge": "voll",
-    "ziel_kurs": null,
-    "kurs": 12.43,
-    "rsi": 48.5,
-    "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0,
-    "depot_rendite": -0.42,
-    "angewandte_regeln": [
-      {
-        "id": "r_20260802_32531",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_92036",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_09535",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_74417",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_79559",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_18173",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260801_07584",
-        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
-        "typ": "swap",
-        "gewicht": 1.89,
-        "effektiv_gewicht": 1.87,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_1_87577",
-        "muster": "[Anti] halten bei volatility-Titeln",
-        "typ": "anti",
-        "gewicht": -1.87,
-        "effektiv_gewicht": -1.81,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_2_74438",
-        "muster": "[Anti] halten bei lev-bull-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.81,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_5_20387",
-        "muster": "[Anti] halten bei ai-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.81,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_4_69646",
-        "muster": "[Anti] halten bei lev-bear-Titeln",
-        "typ": "anti",
-        "gewicht": -1.71,
-        "effektiv_gewicht": -1.66,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_7_07487",
-        "muster": "[Anti] halten bei space-Titeln",
-        "typ": "anti",
-        "gewicht": -1.64,
-        "effektiv_gewicht": -1.59,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      }
-    ],
-    "decision_id": "d_20260807_215104_BITX_aktien_na",
-    "provider": "zen-nemotron",
-    "fallback": false,
+    "konfidenz": 0,
+    "grund": "KI-Call fehlgeschlagen (alle Provider)",
+    "decision_id": "d_20260810_171748_BITX_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
-    "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "open",
-    "rohdaten": {
-      "kurs": 12.43,
-      "sma20": 12.28,
-      "sma50": 12.31,
-      "rsi": 48.5,
-      "atr_pct": 3.21,
-      "vol_ratio": 0.85,
-      "vix": 14.8,
-      "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": -0.42
-    },
-    "indikatoren": [
-      "SMA20>12.3",
-      "SMA50>12.3",
-      "RSI48",
-      "ATR3.2%"
-    ],
-    "news_score": null,
-    "regelstand_ref": "v_live",
+    "ticker": "BITX",
+    "provider": "ALLE_PROVIDER_KALT",
+    "fallback": true,
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
     "konflikte": [],
     "prioritaetsreihenfolge": [
       "engine_bremse",
@@ -788,24 +606,9 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 68.0,
-    "konfidenz_nach_cap": 60,
-    "konfidenz_cap": 60,
-    "erwarteter_ausgang": "unbekannt",
-    "shadow": false,
-    "regelstatus_beim_entscheid": {
-      "r_20260802_32531": "stabil",
-      "r_20260802_92036": "stabil",
-      "r_20260802_09535": "stabil",
-      "r_20260802_74417": "stabil",
-      "r_20260803_79559": "stabil",
-      "r_20260803_18173": "stabil",
-      "r_20260801_07584": "stabil",
-      "r_legacy_1_87577": "stabil",
-      "r_legacy_2_74438": "stabil",
-      "r_legacy_5_20387": "stabil",
-      "r_legacy_4_69646": "stabil",
-      "r_legacy_7_07487": "stabil"
-    }
-  }
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
 }

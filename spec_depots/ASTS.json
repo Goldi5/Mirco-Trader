@@ -9,46 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T20:33:05.731396",
-      "wert": 99.68
-    },
-    {
-      "zeit": "2026-08-05T20:49:26.690020",
-      "wert": 99.47
-    },
-    {
-      "zeit": "2026-08-05T21:02:47.638856",
-      "wert": 99.47
-    },
-    {
-      "zeit": "2026-08-05T21:19:02.974316",
-      "wert": 99.47
-    },
-    {
-      "zeit": "2026-08-05T21:33:49.623578",
-      "wert": 99.47
-    },
-    {
-      "zeit": "2026-08-05T21:34:22.043283",
-      "wert": 99.47
-    },
-    {
-      "zeit": "2026-08-05T21:49:02.331383",
-      "wert": 99.47
-    },
-    {
-      "zeit": "2026-08-06T15:32:26.503674",
-      "wert": 99.47
-    },
-    {
-      "zeit": "2026-08-06T15:47:04.214424",
-      "wert": 99.47
-    },
-    {
-      "zeit": "2026-08-06T15:48:02.376410",
-      "wert": 99.47
-    },
-    {
       "zeit": "2026-08-06T16:02:45.476569",
       "wert": 99.47
     },
@@ -407,6 +367,46 @@
     {
       "zeit": "2026-08-07T21:52:37.785321",
       "wert": 97.45
+    },
+    {
+      "zeit": "2026-08-10T15:55:23.466413",
+      "wert": 97.08
+    },
+    {
+      "zeit": "2026-08-10T15:55:59.387013",
+      "wert": 97.13
+    },
+    {
+      "zeit": "2026-08-10T16:19:34.478506",
+      "wert": 97.34
+    },
+    {
+      "zeit": "2026-08-10T16:21:11.415396",
+      "wert": 97.03
+    },
+    {
+      "zeit": "2026-08-10T16:34:14.412752",
+      "wert": 96.87
+    },
+    {
+      "zeit": "2026-08-10T16:48:26.304551",
+      "wert": 96.53
+    },
+    {
+      "zeit": "2026-08-10T16:48:42.748470",
+      "wert": 96.27
+    },
+    {
+      "zeit": "2026-08-10T17:04:54.447113",
+      "wert": 95.74
+    },
+    {
+      "zeit": "2026-08-10T17:19:12.688383",
+      "wert": 96.02
+    },
+    {
+      "zeit": "2026-08-10T17:19:16.871886",
+      "wert": 96.01
     }
   ],
   "trades": [
@@ -581,25 +581,25 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-07T21:50:37.748114",
+    "zeit": "2026-08-10T17:18:12.846248",
     "ticker": "ASTS",
     "aktion": "halten",
-    "konfidenz": 55,
-    "grund": "Kein Cash für Nachkauf; Position nahezu break-even. Trend neutral, RSI 65.4 (nicht überkauft), Volumen unterdurchschnittlich (0.69x), ATR hoch (7.17%). Historische Warnregel für Space-Titel ([Anti] halten, Gewicht -1.59), aber keine harten Verkaufssignale. Abwarten auf klareres Setup.",
+    "konfidenz": 60,
+    "grund": "Neutrales technisches Bild (RSI 58, Kurs zwischen SMA20/50), niedriges Volumen (0.27x), keine News, nur -1.6% Verlust. Kein Cash für Nachkauf. Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz -> Vorsicht. Position klein genug zum Halten. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 71.04,
-    "rsi": 65.4,
+    "kurs": 69.99,
+    "rsi": 58.1,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": -0.11,
-    "depot_rendite": -2.55,
+    "p_pnl": -1.59,
+    "depot_rendite": -3.99,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
         "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -613,7 +613,7 @@
         "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -627,7 +627,7 @@
         "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -641,7 +641,7 @@
         "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -655,7 +655,7 @@
         "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -669,7 +669,7 @@
         "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.43,
+        "effektiv_gewicht": 2.35,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -683,7 +683,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.87,
+        "effektiv_gewicht": 1.82,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -697,7 +697,7 @@
         "muster": "[Anti] halten bei volatility-Titeln",
         "typ": "anti",
         "gewicht": -1.87,
-        "effektiv_gewicht": -1.81,
+        "effektiv_gewicht": -1.76,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -711,7 +711,7 @@
         "muster": "[Anti] halten bei lev-bull-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.81,
+        "effektiv_gewicht": -1.75,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -725,7 +725,7 @@
         "muster": "[Anti] halten bei ai-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.81,
+        "effektiv_gewicht": -1.75,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -739,7 +739,7 @@
         "muster": "[Anti] halten bei lev-bear-Titeln",
         "typ": "anti",
         "gewicht": -1.71,
-        "effektiv_gewicht": -1.66,
+        "effektiv_gewicht": -1.61,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -749,11 +749,11 @@
         "durchgesetzt": false
       },
       {
-        "id": "r_legacy_7_07487",
-        "muster": "[Anti] halten bei space-Titeln",
+        "id": "r_legacy_3_42126",
+        "muster": "[Anti] halten bei crypto-Titeln",
         "typ": "anti",
-        "gewicht": -1.64,
-        "effektiv_gewicht": -1.59,
+        "gewicht": -1.63,
+        "effektiv_gewicht": -1.54,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -763,29 +763,29 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260807_215037_ASTS_aktien_na",
-    "provider": "zen-nemotron",
+    "decision_id": "d_20260810_171812_ASTS_aktien_na",
+    "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 71.04,
-      "sma20": 61.98,
-      "sma50": 77.55,
-      "rsi": 65.4,
-      "atr_pct": 7.17,
-      "vol_ratio": 0.69,
-      "vix": 14.8,
+      "kurs": 69.99,
+      "sma20": 62.14,
+      "sma50": 76.3,
+      "rsi": 58.1,
+      "atr_pct": 7.08,
+      "vol_ratio": 0.27,
+      "vix": 15.2,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": -2.55
+      "depot_rendite": -3.99
     },
     "indikatoren": [
-      "SMA20>62.0",
-      "SMA50>77.5",
-      "RSI65",
-      "ATR7.2%"
+      "SMA20>62.1",
+      "SMA50>76.3",
+      "RSI58",
+      "ATR7.1%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -797,8 +797,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 55,
-    "konfidenz_nach_cap": 55,
+    "konfidenz_original": 62.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,
@@ -814,7 +814,9 @@
       "r_legacy_2_74438": "stabil",
       "r_legacy_5_20387": "stabil",
       "r_legacy_4_69646": "stabil",
-      "r_legacy_7_07487": "stabil"
+      "r_legacy_3_42126": "stabil"
     }
-  }
+  },
+  "tenant_id": 1,
+  "mode": "shadow"
 }

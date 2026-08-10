@@ -507,7 +507,7 @@ def main():
         sells = [a for a in aktionen if a["typ"] == "verkaufen"]
 
         for a in aktionen:
-            broker = get_broker_adapter(depot.tenant_id) if get_broker_adapter else None
+            broker = get_broker_adapter(getattr(depot, "tenant_id", 1)) if get_broker_adapter else None
             ausführen(depot, [a], params, broker=broker)
             if not QUIET:
                 t = a["ticker"]
