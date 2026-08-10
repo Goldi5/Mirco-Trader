@@ -1,134 +1,89 @@
 {
-  "zeit": "2026-08-10T21:33:16.292245",
+  "zeit": "2026-08-10T22:17:34.509019",
   "total": 55,
-  "relevant": 47,
-  "irrelevant": 1,
+  "relevant": 33,
   "headlines": [
     {
-      "title": "Microsoft’s stock is charging back. Here’s the case for it to rally another 30%.",
-      "link": "https://www.marketwatch.com/story/microsofts-stock-is-charging-back-heres-the-case-for-it-to-rally-another-30-1fe261cd?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 19:18:00 GMT",
-      "topics": [],
+      "title": "Should wealthier Americans forgo their Social Security benefits as a charitable gesture?",
+      "link": "https://www.marketwatch.com/story/should-wealthier-americans-forgo-their-social-security-benefits-as-a-charitable-gesture-2c7b6801?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 20:00:00 GMT",
+      "topics": [
+        "regulation"
+      ]
+    },
+    {
+      "title": "Good news for stock-market bulls: Corporate earnings growth is no longer being driven just by tech",
+      "link": "https://www.marketwatch.com/story/good-news-for-stock-market-bulls-corporate-earnings-growth-is-no-longer-being-driven-just-by-tech-ddac973b?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 20:00:00 GMT",
+      "topics": [
+        "earnings",
+        "tech",
+        "market"
+      ]
+    },
+    {
+      "title": "Fed Chair Kevin Warsh promises 2% inflation, but skyrocketing U.S. debt makes that a pipe dream",
+      "link": "https://www.marketwatch.com/story/fed-chair-kevin-warsh-promises-2-inflation-but-skyrocketing-u-s-debt-makes-that-a-pipe-dream-ba448651?mod=mw_rss_topstories",
+      "date": "Mon, 10 Aug 2026 19:31:00 GMT",
+      "topics": [
+        "interest rate",
+        "inflation",
+        "tech",
+        "geopolitics"
+      ],
       "tickers": [
-        "BAC",
         "F"
       ]
     },
     {
-      "title": "‘I want her to choose the best strategy’: My wife’s Social Security is just $900. Should she claim spousal benefit at 62?",
+      "title": "\u2018I want her to choose the best strategy\u2019: My wife\u2019s Social Security is just $900. Should she claim spousal benefit at 62?",
       "link": "https://www.marketwatch.com/story/i-want-her-to-choose-the-best-strategy-my-wifes-social-security-is-just-900-should-she-claim-spousal-benefit-at-62-e3ef621d?mod=mw_rss_topstories",
       "date": "Mon, 10 Aug 2026 19:00:00 GMT",
       "topics": [
         "regulation",
-        "tech",
-        "geopolitik"
-      ],
-      "tickers": [
-        "F"
+        "tech"
       ]
     },
     {
-      "title": "Is $1 million enough for a household to retire? The answer keeps changing.",
-      "link": "https://www.marketwatch.com/story/is-1-million-enough-for-a-household-to-retire-the-answer-keeps-changing-aee84a83?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 18:30:00 GMT",
-      "topics": [
-        "earnings"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "2 charts showing just how insane the stock market’s August ‘crash-up’ has been so far",
+      "title": "2 charts showing just how insane the stock market\u2019s August \u2018crash-up\u2019 has been so far",
       "link": "https://www.marketwatch.com/story/2-charts-showing-just-how-insane-the-stock-markets-august-crash-up-has-been-so-far-b822404d?mod=mw_rss_topstories",
       "date": "Mon, 10 Aug 2026 18:08:00 GMT",
       "topics": [
-        "markt"
-      ],
-      "tickers": [
-        "F"
+        "market"
       ]
     },
     {
-      "title": "‘I don’t wish to be cold-hearted’: My elderly relative can no longer care for himself. Am I wrong to leave his care to the state?",
-      "link": "https://www.marketwatch.com/story/i-dont-wish-to-be-cold-hearted-my-elderly-relative-can-no-longer-care-for-himself-am-i-wrong-to-leave-his-care-to-the-state-8d546b32?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 18:00:00 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
+      "title": "Trump\u2019s $100 billion tariff refund going to big names despite Americans paying higher prices. Can you still get a cut?",
+      "link": "https://finance.yahoo.com/economy/policy/articles/trump-100-billion-tariff-refund-111500641.html",
+      "date": "2026-08-09T11:15:00Z",
+      "topics": [
+        "geopolitics"
       ]
     },
     {
-      "title": "Archer strikes deal with Boeing in latest bid to transform aviation through AI",
-      "link": "https://www.marketwatch.com/story/archer-strikes-deal-with-boeing-in-latest-bid-to-transform-aviation-through-ai-dac15322?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 17:22:00 GMT",
+      "title": "Nvidia CEO Jensen Huang Told Investors in Seoul to \"Buy at a Discount\" During the Recent AI Stock Sell-Off. Here's Whether His Call Has Paid Off.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-ceo-jensen-huang-told-111500874.html",
+      "date": "2026-08-09T11:15:00Z",
       "topics": [
         "tech"
-      ],
-      "tickers": [
-        "F"
       ]
     },
     {
-      "title": "Protect College Sports Act to be voted on next month: What it means for transfers and team spending",
-      "link": "https://www.marketwatch.com/story/senate-vote-on-the-protect-college-sports-act-could-come-this-week-what-it-means-for-transfers-and-salary-caps-58088560?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 16:48:00 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "‘This has been an emotionally difficult time’: My brother has cancer and my father is 94. How do I shoulder this responsibility?",
-      "link": "https://www.marketwatch.com/story/this-has-been-an-emotionally-difficult-time-my-brother-has-cancer-and-my-father-is-94-how-do-i-shoulder-this-responsibility-9da09dc4?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 16:01:00 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "17 S&P 500 companies with growing revenue and profit margins — and some of their stocks are cheap",
-      "link": "https://www.marketwatch.com/story/17-s-p-500-companies-with-growing-revenue-and-profit-margins-and-some-of-their-stocks-are-cheap-e7c7fa14?mod=mw_rss_topstories",
-      "date": "Mon, 10 Aug 2026 15:35:00 GMT",
+      "title": "IRS warns crypto investors of fake letters from fraudsters aimed at stealing wallet keys and passwords",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/irs-warns-crypto-investors-fake-113000642.html",
+      "date": "2026-08-09T11:30:00Z",
       "topics": [
-        "markt"
-      ],
-      "tickers": [
-        "F"
+        "tech",
+        "geopolitics",
+        "crypto"
       ]
     },
     {
-      "title": "Apple CEO Tim Cook Predicts a \"100-Year\" Flood. Here Are 2 Stocks Primed to Cash In.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/apple-ceo-tim-cook-predicts-102000843.html",
-      "date": "2026-08-09T10:20:00Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Jim Cramer says Wall Street is 'fleeing' the AI trade to buy these stocks instead. Do you own any?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-wall-street-102000243.html",
-      "date": "2026-08-09T10:20:00Z",
+      "title": "New cars just hit $52K and Social Security faces a 24% cut \u2014 5 things to buy before you retire",
+      "link": "https://finance.yahoo.com/economy/policy/articles/cars-just-hit-52k-social-114500144.html",
+      "date": "2026-08-09T11:45:00Z",
       "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Micron (MU) Secures Strategic Auto Deals and AI Momentum to Offset Cyclical Pressures",
-      "link": "https://finance.yahoo.com/technology/ai/articles/micron-mu-secures-strategic-auto-101757418.html",
-      "date": "2026-08-09T10:17:57Z",
-      "topics": [
-        "regulation",
-        "tech"
-      ],
-      "tickers": [
-        "F",
-        "MU"
+        "regulation"
       ]
     },
     {
@@ -139,96 +94,78 @@
         "tech"
       ],
       "tickers": [
-        "AMD",
-        "F"
+        "AMD"
       ]
     },
     {
-      "title": "340,000 U.S. homes were inherited in 2025 — but a mortgage lien can lead to foreclosure if heirs don't act fast",
-      "link": "https://finance.yahoo.com/real-estate/articles/340-000-u-homes-were-100000962.html",
-      "date": "2026-08-09T10:00:00Z",
-      "topics": [],
-      "tickers": [
-        "F",
-        "FAS"
-      ]
-    },
-    {
-      "title": "Analyst Report: Sterling Infrastructure Inc",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_6630_AnalystReport_1786384995000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-10T18:03:15Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Elon Musk's SpaceX Just Delivered Its First Earnings Report as a Public Company. Here's the 1 Number That Matters Most.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/elon-musks-spacex-just-delivered-102500426.html",
-      "date": "2026-08-09T10:25:00Z",
+      "title": "Jim Cramer says Wall Street is 'fleeing' the AI trade to buy these stocks instead. Do you own any?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-wall-street-102000243.html",
+      "date": "2026-08-09T10:20:00Z",
       "topics": [
-        "earnings"
-      ],
-      "tickers": [
-        "F",
-        "MU"
+        "tech"
       ]
     },
     {
-      "title": "What Do Cost of Carry Tables Tell Us Heading Into Fall Harvest?",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/cost-carry-tables-tell-us-094525020.html",
-      "date": "2026-08-09T09:45:25Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Americans say they need $530,000 to take a mini retirement — financial planners say you can do it for far less",
-      "link": "https://finance.yahoo.com/markets/articles/americans-530-000-mini-retirement-093000850.html",
-      "date": "2026-08-09T09:30:00Z",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Trump’s $100 billion tariff refund going to big names despite Americans paying higher prices. Can you still get a cut?",
-      "link": "https://finance.yahoo.com/economy/policy/articles/trump-100-billion-tariff-refund-111500641.html",
-      "date": "2026-08-09T11:15:00Z",
+      "title": "Micron (MU) Secures Strategic Auto Deals and AI Momentum to Offset Cyclical Pressures",
+      "link": "https://finance.yahoo.com/technology/ai/articles/micron-mu-secures-strategic-auto-101757418.html",
+      "date": "2026-08-09T10:17:57Z",
       "topics": [
-        "geopolitik"
+        "regulation",
+        "tech"
+      ]
+    },
+    {
+      "title": "Strategy Sells More Bitcoin, Stock to Bolster Cash Stockpile",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/strategy-sells-more-bitcoin-stock-to-bolster-cash-stockpile",
+      "date": "Mon, 10 Aug 2026 13:02:43 GMT",
+      "topics": [
+        "crypto"
+      ]
+    },
+    {
+      "title": "Stocks Churn as Hormuz Standoff Spurs Rally in Oil: Markets Wrap",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-09/stock-market-today-dow-s-p-live-updates",
+      "date": "Sun, 09 Aug 2026 22:11:01 GMT",
+      "topics": [
+        "energy",
+        "market"
+      ]
+    },
+    {
+      "title": "US High-Grade Bond Market Sees Most Issuers Since January",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-high-grade-bond-market-sees-the-most-issuers-since-january",
+      "date": "Mon, 10 Aug 2026 15:02:32 GMT",
+      "topics": [
+        "market"
+      ]
+    },
+    {
+      "title": "Gautam Adani Wins Dismissal of US Securities Fraud Charges",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/gautam-adani-wins-dismissal-of-us-securities-fraud-charges",
+      "date": "Mon, 10 Aug 2026 19:44:24 GMT",
+      "topics": [
+        "regulation"
       ],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Market Update: ENB, CVX, EXPE, ORLY, XOM, STRL",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47871_MarketUpdate_1786384995000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-10T18:03:15Z",
+      "title": "US Stocks \u2018Directionless\u2019 as Chipmaker Earnings, CPI to Set Pace",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-futures-drop-as-focus-turns-on-chipmaker-earnings-inflation",
+      "date": "Mon, 10 Aug 2026 13:28:32 GMT",
       "topics": [
-        "markt"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Is Celsius a Buy After Tumbling 18% in 1 Day?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/celsius-buy-tumbling-18-1-103200124.html",
-      "date": "2026-08-09T10:32:00Z",
-      "topics": [],
-      "tickers": [
-        "F"
+        "earnings",
+        "inflation",
+        "tech"
       ]
     },
     {
-      "title": "IRS warns crypto investors of fake letters from fraudsters aimed at stealing wallet keys and passwords",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/irs-warns-crypto-investors-fake-113000642.html",
-      "date": "2026-08-09T11:30:00Z",
+      "title": "Dating App Grindr Unveils New AI Features, Premium Tier",
+      "link": "https://www.bloomberg.com/news/videos/2026-08-10/dating-app-grindr-unveils-new-ai-features-premium-tier-video",
+      "date": "Mon, 10 Aug 2026 19:43:01 GMT",
       "topics": [
-        "tech",
-        "geopolitik",
-        "krypto"
+        "tech"
       ],
       "tickers": [
         "F"
@@ -240,10 +177,7 @@
       "date": "Sun, 09 Aug 2026 22:02:45 GMT",
       "topics": [
         "energy",
-        "markt"
-      ],
-      "tickers": [
-        "F"
+        "market"
       ]
     },
     {
@@ -258,20 +192,11 @@
       ]
     },
     {
-      "title": "Iran Doing Good Job of Rattling Trump, Says Bernard Haykel",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/iran-doing-good-job-of-rattling-trump-bernard-haykel-video",
-      "date": "Mon, 10 Aug 2026 19:07:24 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Fed’s Hammack Says ‘Some Number’ of Rate Hikes May Be Needed",
+      "title": "Fed\u2019s Hammack Says \u2018Some Number\u2019 of Rate Hikes May Be Needed",
       "link": "https://www.bloomberg.com/news/articles/2026-08-10/fed-s-hammack-says-some-number-of-rate-hikes-may-be-needed",
       "date": "Mon, 10 Aug 2026 19:06:07 GMT",
       "topics": [
-        "zinsen"
+        "interest rate"
       ],
       "tickers": [
         "F"
@@ -283,8 +208,7 @@
       "date": "Mon, 10 Aug 2026 13:57:36 GMT",
       "topics": [
         "energy"
-      ],
-      "tickers": []
+      ]
     },
     {
       "title": "Yen Weakens 1%, Erases Half of US-Japan Intervention Gains",
@@ -292,73 +216,6 @@
       "date": "Mon, 10 Aug 2026 03:26:41 GMT",
       "topics": [
         "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Test Your ETF Knowledge In Our IQ Test",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/test-your-etf-knowledge-in-our-iq-test-video",
-      "date": "Mon, 10 Aug 2026 19:03:31 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Stocks Churn as Hormuz Standoff Spurs Rally in Oil: Markets Wrap",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-09/stock-market-today-dow-s-p-live-updates",
-      "date": "Sun, 09 Aug 2026 22:11:01 GMT",
-      "topics": [
-        "energy",
-        "markt"
-      ],
-      "tickers": [
-        "F",
-        "MU"
-      ]
-    },
-    {
-      "title": "Avantis ETF Cracks Small-Cap Code",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/avantis-etf-cracks-small-cap-code-video",
-      "date": "Mon, 10 Aug 2026 18:43:08 GMT",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "ETFs Are 'Absolutely' Mainstream: Maier",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/etfs-are-absolutely-mainstream-maier-video",
-      "date": "Mon, 10 Aug 2026 18:08:06 GMT",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Largest Private School Bond Deal in Two Years Hits Muni Market",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/largest-private-school-bond-deal-in-two-years-hits-muni-market",
-      "date": "Mon, 10 Aug 2026 17:56:13 GMT",
-      "topics": [
-        "markt"
-      ],
-      "tickers": [
-        "MU"
-      ]
-    },
-    {
-      "title": "Shipping Traffic Is Up Despite War in Iran, Says FreightWaves CEO",
-      "link": "https://www.bloomberg.com/news/videos/2026-08-10/freightwaves-ceo-says-freight-recession-is-over-video",
-      "date": "Mon, 10 Aug 2026 17:25:23 GMT",
-      "topics": [
-        "geopolitik"
-      ],
-      "tickers": [
-        "F"
       ]
     },
     {
@@ -366,10 +223,7 @@
       "link": "https://www.nytimes.com/2026/08/07/business/economy/jobs-report-interest-rates-fed.html",
       "date": "Fri, 07 Aug 2026 14:24:49 +0000",
       "topics": [
-        "zinsen"
-      ],
-      "tickers": [
-        "F"
+        "interest rate"
       ]
     },
     {
@@ -377,10 +231,7 @@
       "link": "https://www.nytimes.com/2026/08/07/business/economy/heres-the-latest.html",
       "date": "Fri, 07 Aug 2026 18:35:32 +0000",
       "topics": [
-        "markt"
-      ],
-      "tickers": [
-        "F"
+        "market"
       ]
     },
     {
@@ -388,28 +239,7 @@
       "link": "https://www.nytimes.com/2026/08/06/us/politics/trump-tariffs-solar-panels.html",
       "date": "Thu, 06 Aug 2026 21:53:18 +0000",
       "topics": [
-        "geopolitik"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "How Malta Became a Tax Haven for Crocs and Other U.S. Companies",
-      "link": "https://www.nytimes.com/2026/08/05/business/economy/crocs-malta-tax-haven.html",
-      "date": "Wed, 05 Aug 2026 18:38:58 +0000",
-      "topics": [],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "What Are Companies Getting for All That A.I. Spending?",
-      "link": "https://www.nytimes.com/2026/08/03/business/economy/ai-spending-tokenomics.html",
-      "date": "Mon, 03 Aug 2026 18:56:22 +0000",
-      "topics": [],
-      "tickers": [
-        "F"
+        "geopolitics"
       ]
     },
     {
@@ -417,7 +247,7 @@
       "link": "https://www.nytimes.com/2026/07/31/business/economy/inflation-fed-dissent-interest-rates.html",
       "date": "Fri, 31 Jul 2026 16:16:55 +0000",
       "topics": [
-        "zinsen",
+        "interest rate",
         "inflation"
       ],
       "tickers": [
@@ -425,11 +255,11 @@
       ]
     },
     {
-      "title": "Bond Investors’ Inflation Angst Rises on Fed’s Lack of Guidance",
+      "title": "Bond Investors\u2019 Inflation Angst Rises on Fed\u2019s Lack of Guidance",
       "link": "https://www.nytimes.com/2026/07/30/business/federal-reserve-warsh-bonds.html",
       "date": "Thu, 30 Jul 2026 19:40:58 +0000",
       "topics": [
-        "zinsen",
+        "interest rate",
         "inflation"
       ],
       "tickers": [
@@ -437,16 +267,12 @@
       ]
     },
     {
-      "title": "Trump’s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
+      "title": "Trump\u2019s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
       "link": "https://www.nytimes.com/2026/07/30/business/economy/trump-tariffs-exemptions.html",
       "date": "Thu, 30 Jul 2026 20:24:37 +0000",
       "topics": [
         "energy",
-        "geopolitik"
-      ],
-      "tickers": [
-        "F",
-        "DIA"
+        "geopolitics"
       ]
     },
     {
@@ -455,51 +281,6 @@
       "date": "Thu, 30 Jul 2026 16:29:07 +0000",
       "topics": [
         "regulation"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "China, Its Economy Stumbling, Signals Only Cautious Support",
-      "link": "https://www.nytimes.com/2026/07/30/business/china-economy-politburo.html",
-      "date": "Thu, 30 Jul 2026 13:59:54 +0000",
-      "topics": [
-        "geopolitik"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Government Borrowing Cost Hits Two-Decade High After Fed Rate Decision",
-      "link": "https://www.nytimes.com/2026/07/29/business/economy/treasury-yields-fed-inflation.html",
-      "date": "Wed, 29 Jul 2026 21:33:46 +0000",
-      "topics": [
-        "zinsen"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "What to know about the Fed’s decision.",
-      "link": "https://www.nytimes.com/live/2026/07/29/business/fed-meeting-rates-kevin-warsh/what-to-know-about-the-feds-decision",
-      "date": "Wed, 29 Jul 2026 20:37:59 +0000",
-      "topics": [
-        "zinsen"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "4 Takeaways From the Federal Reserve Meeting",
-      "link": "https://www.nytimes.com/2026/07/29/business/economy/fed-meeting-interest-rates-takeaways.html",
-      "date": "Wed, 29 Jul 2026 19:41:04 +0000",
-      "topics": [
-        "zinsen"
-      ],
-      "tickers": [
-        "F"
       ]
     }
   ]

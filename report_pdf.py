@@ -78,7 +78,7 @@ def lade_depots_flat():
     wert = MARKTWERT (Live-Kurs via hole_kurs, Fallback avg_price),
     wie das Dashboard es rechnet (nicht Einstandskurs)."""
     out = []
-    # 1. Alle Tickern mit Positionen sammeln (für Live-Kurse)
+    # 1. Alle Ticker mit Positionen sammeln (für Live-Kurse) — NUR Paper-Portfolio
     alle_ticker = set()
     for f in sorted(glob.glob(os.path.join(BASE, "spec_depots", "*.json"))):
         if "summary" in f:
@@ -89,7 +89,7 @@ def lade_depots_flat():
                 alle_ticker.add(d["ticker"])
         except Exception:
             pass
-    for pat in ["depot_*.json", "etf_*.json"]:
+    for pat in ["depot_*_paper.json", "etf_*_paper.json"]:
         for f in sorted(glob.glob(os.path.join(BASE, pat))):
             if "summary" in f:
                 continue
@@ -121,7 +121,7 @@ def lade_depots_flat():
             out.append({"ticker": ticker, "kat": "Spec", "start": start, "wert": wert, "pnl_pct": pnl_pct})
         except Exception:
             pass
-    for pat, kat in [("depot_*.json", "Aktien"), ("etf_*.json", "ETF")]:
+    for pat, kat in [("depot_*_paper.json", "Aktien"), ("etf_*_paper.json", "ETF")]:
         for f in sorted(glob.glob(os.path.join(BASE, pat))):
             if "summary" in f:
                 continue
@@ -309,9 +309,9 @@ def sammle_daten():
 
 
 def _alle_trades_flat():
-    """Alle Trades aus depot_*/etf_*/spec_depots/*.json (flatten)."""
+    """Alle Trades aus *_paper.json/spec_depots/*.json (flatten, NUR Paper-Portfolio)."""
     trades = []
-    for pat in ["depot_*.json", "etf_*.json", "spec_depots/*.json"]:
+    for pat in ["depot_*_paper.json", "etf_*_paper.json", "spec_depots/*.json"]:
         for f in glob.glob(os.path.join(BASE, pat)):
             try:
                 d = json.load(open(f, encoding="utf-8"))
@@ -1251,14 +1251,23 @@ def _seite_governance(el, S, W, daten):
     cd = daten.get("ki_cooldown", {})
     aktive = {p: v for p, v in cd.items() if v.get("bis", 0) > __import__("time").time()} if cd else {}
     prov_status = "gestört" if aktive else ("Fallback (abgelaufen)" if cd else "stabil")
+    # Echte Provider-Liste aus ki_provider (openrouter Primary, zen deepseek tot, etc.)
+    prov_conf = []
+    try:
+        import ki_provider
+        ki_provider._cooldown_state.clear()
+        pl = ki_provider.provider_liste()
+        role = {0: "Primary", 1: "2nd", 2: "3rd", 3: "Puffer", 4: "Puffer"}
+        for i, p in enumerate(pl):
+            prov_conf.append((p["name"], "Free-Tier", f"{role.get(i,'')} | {p['model']}"))
+    except Exception:
+        prov_conf = [
+            ("openrouter", "Free-Tier", "Primary | nemotron-nano"),
+            ("nous-hy3", "Free-Tier", "Reasoning (max_tokens>=2048)"),
+            ("nous-step", "Free-Tier", "Reasoning (max_tokens>=2048)"),
+            ("zen", "Free-Tier", "Puffer | ling-3.0-flash-free (deepseek tot: 429)"),
+        ]
     g_rows = [["Provider", "Status", "Konfiguration"]]
-    prov_conf = [
-        ("zen", "Free-Tier", "rate_limit → nur dieser gekühlt"),
-        ("zen-nemotron", "Free-Tier", "Batch-Splitting 4×5"),
-        ("openrouter", "Free-Tier", "Fallback-Kette"),
-        ("nous-hy3", "Free-Tier", "max_tokens>=1024, reasoning_content"),
-        ("nous-step", "Free-Tier", "max_tokens>=1024, reasoning_content"),
-    ]
     for p, tier, conf in prov_conf:
         st = "⚠ Cooldown" if p in aktive else "✓ aktiv"
         g_rows.append([p, st, conf])

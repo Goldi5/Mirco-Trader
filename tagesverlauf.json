@@ -73,5 +73,30 @@
       }
     },
     "ki_konfidenz": 56.3
+  },
+  {
+    "datum": "2026-08-10",
+    "ges_wert": 4933.42,
+    "ges_start": 8400.0,
+    "pnl": -3466.58,
+    "pnl_pct": -41.27,
+    "kategorien": {
+      "spec": {
+        "wert": 2054.22,
+        "start": 2000.0,
+        "pnl_pct": 2.71
+      },
+      "aktien": {
+        "wert": 1634.31,
+        "start": 4400,
+        "pnl_pct": -62.86
+      },
+      "etf": {
+        "wert": 1244.89,
+        "start": 2000.0,
+        "pnl_pct": -37.76
+      }
+    },
+    "ki_konfidenz": 54.5
   }
 ]

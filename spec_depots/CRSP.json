@@ -2,24 +2,12 @@
   "ticker": "CRSP",
   "name": "CRISPR Therapeutics",
   "kategorie": "biotech",
-  "bargeld": 0.0,
-  "shares": 1.897844,
-  "avg_price": 53.35,
+  "bargeld": 101.44,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T18:47:33.235807",
-      "wert": 101.29
-    },
-    {
-      "zeit": "2026-08-05T18:47:38.039328",
-      "wert": 101.29
-    },
-    {
-      "zeit": "2026-08-05T19:18:16.568894",
-      "wert": 101.29
-    },
     {
       "zeit": "2026-08-05T19:32:45.812910",
       "wert": 101.29
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:33:11.497863",
       "wert": 101.52
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.907859",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.472908",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.751256",
+      "wert": 101.44
     }
   ],
   "trades": [
@@ -594,22 +594,30 @@
       "preis": 53.35,
       "grund": "neutrale Trend, RSI 69.8 nahe Overbought, aber kein klares Verkaufssignal, moderater Volume und Cash verfügbar [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.907859",
+      "aktion": "verkaufen",
+      "menge": 1.897844,
+      "preis": 53.45,
+      "grund": "RSI überkauft, neutraler Trend, geringe Nachfrage [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:32:44.566899",
+    "zeit": "2026-08-10T21:47:55.287649",
     "ticker": "CRSP",
     "aktion": "halten",
-    "konfidenz": 55,
-    "grund": "neutrale Trend, überkauftes RSI, geringe Volumen, keine neuen Infos",
+    "konfidenz": 45,
+    "grund": "neutraler Trend, RSI überkauft, kein klares Aufwärtssignal",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 53.49,
-    "rsi": 70.6,
+    "kurs": 53.41,
+    "rsi": 70.2,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.26,
-    "depot_rendite": 1.52,
+    "p_pnl": 0,
+    "depot_rendite": 1.44,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -780,7 +788,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213244_CRSP_aktien_na",
+    "decision_id": "d_20260810_214755_CRSP_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -788,20 +796,20 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 53.49,
-      "sma20": 49.34,
+      "kurs": 53.41,
+      "sma20": 49.33,
       "sma50": 52.28,
-      "rsi": 70.6,
+      "rsi": 70.2,
       "atr_pct": 3.41,
-      "vol_ratio": 0.56,
+      "vol_ratio": 0.59,
       "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 1.52
+      "depot_rendite": 1.44
     },
     "indikatoren": [
       "SMA20>49.3",
       "SMA50>52.3",
-      "RSI71",
+      "RSI70",
       "ATR3.4%"
     ],
     "news_score": null,
@@ -814,8 +822,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 55,
-    "konfidenz_nach_cap": 55,
+    "konfidenz_original": 45,
+    "konfidenz_nach_cap": 45,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

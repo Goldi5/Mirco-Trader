@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T15:33:42.116344",
-      "wert": 100
-    },
-    {
-      "zeit": "2026-07-31T20:05:30.641301",
-      "wert": 100
-    },
-    {
-      "zeit": "2026-07-31T20:31:14.858831",
-      "wert": 100
-    },
-    {
       "zeit": "2026-07-31T20:34:50.809658",
       "wert": 100
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:33:11.526326",
       "wert": 100.11
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.936626",
+      "wert": 99.6
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.495890",
+      "wert": 99.71
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.770262",
+      "wert": 99.94
     }
   ],
   "trades": [
@@ -475,18 +475,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:33:03.992770",
+    "zeit": "2026-08-10T21:48:02.776412",
     "ticker": "RGTI",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "neutrale Trend, RSI 60, moderater Volumen, Vorsicht vor Anti-Regeln",
+    "konfidenz": 55,
+    "grund": "neutrale Trend, moderates Volumen, leichte Verlustposition, anti-Volatilitäts-Warnung",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 17.66,
-    "rsi": 60.0,
+    "kurs": 17.63,
+    "rsi": 59.9,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.06,
-    "depot_rendite": 0.11,
+    "p_pnl": -0.11,
+    "depot_rendite": -0.06,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -657,7 +657,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213303_RGTI_aktien_na",
+    "decision_id": "d_20260810_214802_RGTI_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -665,15 +665,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 17.66,
-      "sma20": 15.45,
+      "kurs": 17.63,
+      "sma20": 15.44,
       "sma50": 18.36,
-      "rsi": 60.0,
-      "atr_pct": 6.17,
-      "vol_ratio": 0.61,
+      "rsi": 59.9,
+      "atr_pct": 6.18,
+      "vol_ratio": 0.64,
       "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 0.11
+      "depot_rendite": -0.06
     },
     "indikatoren": [
       "SMA20>15.4",
@@ -691,8 +691,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 60,
-    "konfidenz_nach_cap": 60,
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

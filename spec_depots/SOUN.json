@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T11:02:25.192531",
-      "wert": 101.82
-    },
-    {
-      "zeit": "2026-07-31T11:17:12.342478",
-      "wert": 101.82
-    },
-    {
-      "zeit": "2026-07-31T11:32:17.690906",
-      "wert": 101.82
-    },
-    {
       "zeit": "2026-07-31T11:47:05.726497",
       "wert": 101.82
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:33:11.532101",
       "wert": 105.23
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.942388",
+      "wert": 105.51
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.501919",
+      "wert": 105.23
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.775955",
+      "wert": 105.23
     }
   ],
   "trades": [
@@ -509,15 +509,15 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:33:03.917238",
+    "zeit": "2026-08-10T21:48:06.317784",
     "ticker": "SOUN",
     "aktion": "halten",
-    "konfidenz": 55,
-    "grund": "neutrale Trend, RSI 59.9, AI-Titel-Vorsicht, kein klares Aufwärtssignal",
+    "konfidenz": 60,
+    "grund": "neutrale Trend, RSI 60, AI-Titel-Vorsicht, bestehende Position leicht im Minus [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
     "kurs": 7.45,
-    "rsi": 59.9,
+    "rsi": 60.0,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
     "p_pnl": -0.27,
     "depot_rendite": 5.23,
@@ -691,7 +691,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213303_SOUN_aktien_na",
+    "decision_id": "d_20260810_214806_SOUN_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -702,9 +702,9 @@
       "kurs": 7.45,
       "sma20": 6.48,
       "sma50": 6.85,
-      "rsi": 59.9,
-      "atr_pct": 6.45,
-      "vol_ratio": 0.77,
+      "rsi": 60.0,
+      "atr_pct": 6.44,
+      "vol_ratio": 0.79,
       "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
       "depot_rendite": 5.23
@@ -713,7 +713,7 @@
       "SMA20>6.5",
       "SMA50>6.8",
       "RSI60",
-      "ATR6.5%"
+      "ATR6.4%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -725,8 +725,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 55,
-    "konfidenz_nach_cap": 55,
+    "konfidenz_original": 65.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

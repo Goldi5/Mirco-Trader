@@ -395,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:33:11.534102",
       "wert": 104.18
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.943927",
+      "wert": 104.11
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.504431",
+      "wert": 104.13
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.777952",
+      "wert": 104.22
     }
   ],
   "trades": [
@@ -435,18 +447,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:33:01.101009",
+    "zeit": "2026-08-10T21:48:10.491713",
     "ticker": "TNA",
-    "aktion": "kaufen",
-    "konfidenz": 60,
-    "grund": "Aufwärtstrend, RSI 53, volatilität moderat, klares Kaufsignal trotz Anti-Regel, Konfidenz >=60 [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "aktion": "halten",
+    "konfidenz": 55,
+    "grund": "lev-bull-Warnsignal, Aufwärtstrend aber Vorsicht",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 73.51,
-    "rsi": 53.5,
+    "kurs": 73.54,
+    "rsi": 53.6,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 0.96,
-    "depot_rendite": 4.18,
+    "p_pnl": 1.0,
+    "depot_rendite": 4.22,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -617,7 +629,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213301_TNA_aktien_na",
+    "decision_id": "d_20260810_214810_TNA_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -625,15 +637,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 73.51,
+      "kurs": 73.54,
       "sma20": 70.49,
       "sma50": 70.25,
-      "rsi": 53.5,
+      "rsi": 53.6,
       "atr_pct": 3.65,
-      "vol_ratio": 0.73,
+      "vol_ratio": 0.75,
       "vix": 15.4,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 4.18
+      "depot_rendite": 4.22
     },
     "indikatoren": [
       "SMA20>70.5",
@@ -651,8 +663,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 68.0,
-    "konfidenz_nach_cap": 60,
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

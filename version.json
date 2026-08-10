@@ -1,8 +1,8 @@
 {
-  "version": "2.51.0",
-  "build": "2026-08-10_2117",
-  "released_at": "2026-08-10 21:17",
-  "codename": "KI-Provider-Pool repariert (OpenRouter Primary, hy3 max_tokens-Lift, Zen=ling)",
+  "version": "2.51.1",
+  "build": "2026-08-10_2230",
+  "released_at": "2026-08-10 22:30",
+  "codename": "Daily-Report Fix (Paper-Only Datenquellen + echte Provider-Liste)",
   "changes": [
     {
       "version": "2.51.0",

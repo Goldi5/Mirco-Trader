@@ -372,6 +372,18 @@
     {
       "zeit": "2026-08-10T21:33:11.528322",
       "wert": 100.61
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.938173",
+      "wert": 99.95
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.497221",
+      "wert": 99.96
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.772362",
+      "wert": 99.87
     }
   ],
   "trades": [
@@ -471,18 +483,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:33:01.327836",
+    "zeit": "2026-08-10T21:48:04.459016",
     "ticker": "RKLB",
     "aktion": "halten",
     "konfidenz": 55,
-    "grund": "neutrale Trend, RSI 62.6, keine klaren Aufwärtssignale, bestehende Position",
+    "grund": "neutrale Trend, moderates RSI, keine klaren Aufwärtsignale",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 80.45,
-    "rsi": 62.6,
+    "kurs": 79.86,
+    "rsi": 61.8,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.45,
-    "depot_rendite": 0.61,
+    "p_pnl": -0.29,
+    "depot_rendite": -0.13,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -653,7 +665,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213301_RKLB_aktien_na",
+    "decision_id": "d_20260810_214804_RKLB_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -661,20 +673,20 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 80.45,
-      "sma20": 70.31,
-      "sma50": 89.2,
-      "rsi": 62.6,
-      "atr_pct": 6.78,
-      "vol_ratio": 1.2,
+      "kurs": 79.86,
+      "sma20": 70.28,
+      "sma50": 89.18,
+      "rsi": 61.8,
+      "atr_pct": 6.84,
+      "vol_ratio": 1.25,
       "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 0.61
+      "depot_rendite": -0.13
     },
     "indikatoren": [
       "SMA20>70.3",
       "SMA50>89.2",
-      "RSI63",
+      "RSI62",
       "ATR6.8%"
     ],
     "news_score": null,

@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T21:48:28.569072",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-04T21:48:42.331720",
-      "wert": 103.8
-    },
-    {
-      "zeit": "2026-08-05T16:19:17.923446",
-      "wert": 103.8
-    },
-    {
       "zeit": "2026-08-05T17:17:46.924721",
       "wert": 103.8
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:33:11.508853",
       "wert": 101.07
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.917862",
+      "wert": 100.81
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.481195",
+      "wert": 101.03
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.758087",
+      "wert": 101.1
     }
   ],
   "trades": [
@@ -597,18 +597,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:32:42.958159",
+    "zeit": "2026-08-10T21:47:52.543000",
     "ticker": "IONQ",
     "aktion": "halten",
     "konfidenz": 55,
-    "grund": "neutrale Trend, moderates Volumen, keine klaren Auf- oder Abwärtssignale",
+    "grund": "neutrale Trend, RSI 63, niedriges Volumen, anti-AI-Warnung, kein klares Aufwärtssignal",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 42.87,
+    "kurs": 42.88,
     "rsi": 63.3,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.21,
-    "depot_rendite": 1.07,
+    "p_pnl": 0.23,
+    "depot_rendite": 1.1,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -779,7 +779,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213242_IONQ_aktien_na",
+    "decision_id": "d_20260810_214752_IONQ_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -787,15 +787,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 42.87,
+      "kurs": 42.88,
       "sma20": 36.98,
       "sma50": 48.13,
       "rsi": 63.3,
       "atr_pct": 6.07,
-      "vol_ratio": 0.6,
+      "vol_ratio": 0.61,
       "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 1.07
+      "depot_rendite": 1.1
     },
     "indikatoren": [
       "SMA20>37.0",

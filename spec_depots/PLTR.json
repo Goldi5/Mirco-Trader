@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T17:49:03.197512",
-      "wert": 104.21
-    },
-    {
-      "zeit": "2026-08-04T17:58:39.217005",
-      "wert": 103.93
-    },
-    {
-      "zeit": "2026-08-04T18:02:50.073668",
-      "wert": 103.34
-    },
-    {
       "zeit": "2026-08-04T18:06:02.365844",
       "wert": 103.34
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:33:11.519420",
       "wert": 114.24
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.930268",
+      "wert": 113.97
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.489542",
+      "wert": 113.9
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.765260",
+      "wert": 113.87
     }
   ],
   "trades": [
@@ -458,18 +458,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:32:53.980317",
+    "zeit": "2026-08-10T21:48:03.602540",
     "ticker": "PLTR",
     "aktion": "halten",
     "konfidenz": 60,
-    "grund": "RSI überkauft (72.8), AI-Title-Warnung, Gewinnmitnahme ratsam [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen] [Exit-Score 80: Trend läuft noch → Halten statt Verkauf]",
+    "grund": "RSI überkauft, keine neuen Signale, anti-AI-Warnung, bestehende Gewinnposition [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 175.83,
-    "rsi": 72.8,
+    "kurs": 175.26,
+    "rsi": 72.6,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 10.55,
-    "depot_rendite": 14.24,
+    "p_pnl": 10.19,
+    "depot_rendite": 13.87,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -640,7 +640,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213253_PLTR_aktien_na",
+    "decision_id": "d_20260810_214803_PLTR_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -648,15 +648,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 175.83,
-      "sma20": 137.33,
-      "sma50": 133.25,
-      "rsi": 72.8,
-      "atr_pct": 4.27,
-      "vol_ratio": 1.05,
+      "kurs": 175.26,
+      "sma20": 137.3,
+      "sma50": 133.24,
+      "rsi": 72.6,
+      "atr_pct": 4.28,
+      "vol_ratio": 1.07,
       "vix": 15.4,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 14.24
+      "depot_rendite": 13.87
     },
     "indikatoren": [
       "SMA20>137.3",
@@ -692,9 +692,7 @@
       "r_legacy_5_20387": "stabil",
       "r_legacy_4_69646": "stabil",
       "r_legacy_3_42126": "stabil"
-    },
-    "aktion_original": "verkaufen",
-    "exit_score": 80
+    }
   },
   "tenant_id": 1,
   "mode": "shadow"

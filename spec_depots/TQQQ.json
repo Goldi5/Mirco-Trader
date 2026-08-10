@@ -2,9 +2,9 @@
   "ticker": "TQQQ",
   "name": "ProShares UltraPro QQQ 3x",
   "kategorie": "lev-bull",
-  "bargeld": 0.0,
-  "shares": 1.348928,
-  "avg_price": 74.17,
+  "bargeld": 99.87,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100.0,
   "exchange": "US",
   "historie": [
@@ -147,6 +147,18 @@
     {
       "zeit": "2026-08-10T21:33:11.536070",
       "wert": 99.98
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.946043",
+      "wert": 99.85
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.506450",
+      "wert": 99.82
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.779954",
+      "wert": 99.87
     }
   ],
   "trades": [
@@ -205,22 +217,30 @@
       "preis": 74.17,
       "grund": "neutrale Trend, moderates Volumen, kleine Position erlaubt, Lernchance",
       "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.779954",
+      "aktion": "verkaufen",
+      "menge": 1.348928,
+      "preis": 74.04,
+      "grund": "lev-bull anti-Signal, neutraler Trend, keine klaren Aufwärtsignale [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:33:05.508077",
+    "zeit": "2026-08-10T21:48:05.577734",
     "ticker": "TQQQ",
-    "aktion": "halten",
+    "aktion": "verkaufen",
     "konfidenz": 60,
-    "grund": "neutrale Trend, niedriges Volumen, Anti-Lev-Bull-Warnung [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "grund": "lev-bull anti-Signal, neutraler Trend, keine klaren Aufwärtsignale [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 74.12,
-    "rsi": 53.8,
+    "kurs": 74.04,
+    "rsi": 53.7,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": -0.07,
-    "depot_rendite": -0.02,
+    "p_pnl": -0.18,
+    "depot_rendite": -0.13,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -391,7 +411,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213305_TQQQ_aktien_na",
+    "decision_id": "d_20260810_214805_TQQQ_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -399,15 +419,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 74.12,
+      "kurs": 74.04,
       "sma20": 68.71,
       "sma50": 74.1,
-      "rsi": 53.8,
-      "atr_pct": 4.67,
-      "vol_ratio": 0.6,
+      "rsi": 53.7,
+      "atr_pct": 4.68,
+      "vol_ratio": 0.61,
       "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": -0.02
+      "depot_rendite": -0.13
     },
     "indikatoren": [
       "SMA20>68.7",
@@ -425,7 +445,7 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 65.0,
+    "konfidenz_original": 68.0,
     "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",

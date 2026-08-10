@@ -9,11 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-30T13:59:39.976651",
-      "wert": 100,
-      "bargeld": 100
-    },
-    {
       "zeit": "2026-07-30T14:00:27.427441",
       "wert": 100,
       "bargeld": 100
@@ -403,6 +398,18 @@
     {
       "zeit": "2026-08-10T21:33:11.524248",
       "wert": 107.31
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.933469",
+      "wert": 107.49
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.493765",
+      "wert": 107.31
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.768257",
+      "wert": 107.49
     }
   ],
   "trades": [
@@ -489,18 +496,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:32:59.187394",
+    "zeit": "2026-08-10T21:47:59.205051",
     "ticker": "QS",
     "aktion": "halten",
     "konfidenz": 55,
-    "grund": "neutrale Trend, keine klaren Kaufsignale, Vorsicht vor volatilen Titeln",
+    "grund": "neutrale Trendlage, kein klares Auf- oder Abwärtssignal, bestehende Position mit leichtem Gewinn",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 6.15,
-    "rsi": 51.5,
+    "kurs": 6.16,
+    "rsi": 51.8,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 1.65,
-    "depot_rendite": 7.31,
+    "p_pnl": 1.82,
+    "depot_rendite": 7.49,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -671,7 +678,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213259_QS_aktien_na",
+    "decision_id": "d_20260810_214759_QS_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -679,15 +686,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 6.15,
-      "sma20": 5.62,
+      "kurs": 6.16,
+      "sma20": 5.63,
       "sma50": 6.75,
-      "rsi": 51.5,
+      "rsi": 51.8,
       "atr_pct": 5.52,
-      "vol_ratio": 0.5,
+      "vol_ratio": 0.53,
       "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 7.31
+      "depot_rendite": 7.49
     },
     "indikatoren": [
       "SMA20>5.6",

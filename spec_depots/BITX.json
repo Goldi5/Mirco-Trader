@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-06T16:47:12.851837",
-      "wert": 100.32
-    },
-    {
-      "zeit": "2026-08-06T16:47:16.527894",
-      "wert": 100.32
-    },
-    {
-      "zeit": "2026-08-06T16:47:44.493670",
-      "wert": 100.32
-    },
-    {
       "zeit": "2026-08-06T17:01:43.119919",
       "wert": 100.32
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:33:11.489458",
       "wert": 100.9
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.897601",
+      "wert": 100.82
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.468360",
+      "wert": 100.82
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.746586",
+      "wert": 100.74
     }
   ],
   "trades": [
@@ -612,18 +612,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:33:08.051265",
+    "zeit": "2026-08-10T21:47:55.492570",
     "ticker": "BITX",
     "aktion": "halten",
-    "konfidenz": 55,
-    "grund": "neutrale Trendlage, RSI leicht überverkauft, aber keine klaren Aufwärtssignale; anti-crypto-Warnsignal",
+    "konfidenz": 45,
+    "grund": "neutrale Trend, kein klares Aufwärtssignal, vorsichtige Anti-Crypto-Regel",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 12.03,
-    "rsi": 38.0,
+    "kurs": 12.01,
+    "rsi": 37.8,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.5,
-    "depot_rendite": 0.9,
+    "p_pnl": 0.33,
+    "depot_rendite": 0.74,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -794,7 +794,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213308_BITX_aktien_na",
+    "decision_id": "d_20260810_214755_BITX_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -802,15 +802,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 12.03,
-      "sma20": 12.31,
+      "kurs": 12.01,
+      "sma20": 12.3,
       "sma50": 12.22,
-      "rsi": 38.0,
-      "atr_pct": 3.37,
-      "vol_ratio": 0.89,
+      "rsi": 37.8,
+      "atr_pct": 3.38,
+      "vol_ratio": 0.92,
       "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 0.9
+      "depot_rendite": 0.74
     },
     "indikatoren": [
       "SMA20>12.3",
@@ -828,8 +828,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 55,
-    "konfidenz_nach_cap": 55,
+    "konfidenz_original": 45,
+    "konfidenz_nach_cap": 45,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

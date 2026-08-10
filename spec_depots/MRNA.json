@@ -9,18 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T16:54:38.476076",
-      "wert": 102.26
-    },
-    {
-      "zeit": "2026-08-04T17:46:58.334674",
-      "wert": 103.22
-    },
-    {
-      "zeit": "2026-08-04T17:50:11.658571",
-      "wert": 103.22
-    },
-    {
       "zeit": "2026-08-04T18:06:02.358481",
       "wert": 103.22
     },
@@ -407,6 +395,18 @@
     {
       "zeit": "2026-08-10T21:33:11.515313",
       "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-10T21:46:26.925270",
+      "wert": 104.01
+    },
+    {
+      "zeit": "2026-08-10T21:47:08.484371",
+      "wert": 103.89
+    },
+    {
+      "zeit": "2026-08-10T21:48:15.761087",
+      "wert": 104.04
     }
   ],
   "trades": [
@@ -570,18 +570,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:32:54.211608",
+    "zeit": "2026-08-10T21:47:58.410355",
     "ticker": "MRNA",
     "aktion": "halten",
     "konfidenz": 55,
-    "grund": "neutrale Trend, RSI 49, keine klaren Aufwärtssignale, Vorsicht vor lev‑bull‑Warnungen",
+    "grund": "neutrale Trend- und RSI-Lage, kein klarer Aufwärtssignal, bestehende Position klein",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 59.13,
-    "rsi": 49.0,
+    "kurs": 59.44,
+    "rsi": 49.6,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.0,
-    "depot_rendite": 3.5,
+    "p_pnl": 0.52,
+    "depot_rendite": 4.04,
     "angewandte_regeln": [
       {
         "id": "r_20260802_32531",
@@ -752,7 +752,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_213254_MRNA_aktien_na",
+    "decision_id": "d_20260810_214758_MRNA_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -760,21 +760,21 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 59.13,
-      "sma20": 58.41,
+      "kurs": 59.44,
+      "sma20": 58.43,
       "sma50": 59.53,
-      "rsi": 49.0,
-      "atr_pct": 5.75,
-      "vol_ratio": 0.94,
+      "rsi": 49.6,
+      "atr_pct": 5.72,
+      "vol_ratio": 0.99,
       "vix": 15.4,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 3.5
+      "depot_rendite": 4.04
     },
     "indikatoren": [
       "SMA20>58.4",
       "SMA50>59.5",
-      "RSI49",
-      "ATR5.8%"
+      "RSI50",
+      "ATR5.7%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
