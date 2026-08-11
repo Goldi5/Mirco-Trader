@@ -9,42 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T13:46:51.204903",
-      "wert": 103.02
-    },
-    {
-      "zeit": "2026-07-31T15:33:42.114239",
-      "wert": 105.19
-    },
-    {
-      "zeit": "2026-07-31T20:05:30.641301",
-      "wert": 105.19
-    },
-    {
-      "zeit": "2026-07-31T20:50:21.781502",
-      "wert": 105.19
-    },
-    {
-      "zeit": "2026-07-31T21:19:43.012408",
-      "wert": 105.19
-    },
-    {
-      "zeit": "2026-08-03T22:33:50.002926",
-      "wert": 105.19
-    },
-    {
-      "zeit": "2026-08-04T17:49:03.201749",
-      "wert": 105.19
-    },
-    {
-      "zeit": "2026-08-04T18:02:50.075776",
-      "wert": 105.19
-    },
-    {
-      "zeit": "2026-08-04T18:12:36.130486",
-      "wert": 105.19
-    },
-    {
       "zeit": "2026-08-04T18:15:13.394350",
       "wert": 105.19
     },
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-11T17:34:13.911805",
       "wert": 109.23
+    },
+    {
+      "zeit": "2026-08-11T17:46:49.732639",
+      "wert": 109.23
+    },
+    {
+      "zeit": "2026-08-11T17:47:51.472577",
+      "wert": 109.23
+    },
+    {
+      "zeit": "2026-08-11T17:48:57.876544",
+      "wert": 109.23
+    },
+    {
+      "zeit": "2026-08-11T18:03:07.050184",
+      "wert": 109.58
+    },
+    {
+      "zeit": "2026-08-11T18:03:37.398780",
+      "wert": 109.93
+    },
+    {
+      "zeit": "2026-08-11T18:04:44.049116",
+      "wert": 109.58
+    },
+    {
+      "zeit": "2026-08-11T18:17:48.804118",
+      "wert": 109.93
+    },
+    {
+      "zeit": "2026-08-11T18:18:30.270824",
+      "wert": 109.93
+    },
+    {
+      "zeit": "2026-08-11T18:19:16.124912",
+      "wert": 109.58
     }
   ],
   "trades": [
@@ -493,18 +493,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-11T17:33:55.152602",
+    "zeit": "2026-08-11T18:19:01.564416",
     "ticker": "QS",
     "aktion": "halten",
-    "konfidenz": 55,
-    "grund": "neutrale Trend, niedriges Volumen, anti-Space-Warnung, bestehende Position",
+    "konfidenz": 60,
+    "grund": "neutrale Trend, niedriges Volumen, EV-Anti-Regel, bestehende Position",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 6.26,
-    "rsi": 56.2,
+    "kurs": 6.28,
+    "rsi": 56.5,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 3.47,
-    "depot_rendite": 9.23,
+    "p_pnl": 3.8,
+    "depot_rendite": 9.58,
     "angewandte_regeln": [
       {
         "id": "r_20260802_92036",
@@ -675,7 +675,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260811_173355_QS_aktien_na",
+    "decision_id": "d_20260811_181901_QS_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -683,21 +683,21 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 6.26,
+      "kurs": 6.28,
       "sma20": 5.62,
-      "sma50": 6.69,
-      "rsi": 56.2,
-      "atr_pct": 5.27,
-      "vol_ratio": 0.2,
+      "sma50": 6.7,
+      "rsi": 56.5,
+      "atr_pct": 5.25,
+      "vol_ratio": 0.25,
       "vix": 15.3,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 9.23
+      "depot_rendite": 9.58
     },
     "indikatoren": [
       "SMA20>5.6",
       "SMA50>6.7",
       "RSI56",
-      "ATR5.3%"
+      "ATR5.2%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -709,8 +709,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 55,
-    "konfidenz_nach_cap": 55,
+    "konfidenz_original": 60,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

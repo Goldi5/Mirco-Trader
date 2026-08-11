@@ -9,42 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T18:15:13.391272",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-04T18:16:03.925743",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-04T21:18:48.294503",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-04T21:20:07.816398",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-04T21:20:12.261045",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-04T21:26:12.478313",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-04T21:33:57.358141",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-04T21:34:31.957001",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-04T21:35:44.845980",
-      "wert": 103.95
-    },
-    {
       "zeit": "2026-08-04T21:48:28.676337",
       "wert": 103.95
     },
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-11T17:34:13.903488",
       "wert": 110.45
+    },
+    {
+      "zeit": "2026-08-11T17:46:49.727612",
+      "wert": 111.61
+    },
+    {
+      "zeit": "2026-08-11T17:47:51.461264",
+      "wert": 111.3
+    },
+    {
+      "zeit": "2026-08-11T17:48:57.870042",
+      "wert": 111.3
+    },
+    {
+      "zeit": "2026-08-11T18:03:07.042275",
+      "wert": 111.42
+    },
+    {
+      "zeit": "2026-08-11T18:03:37.392240",
+      "wert": 111.42
+    },
+    {
+      "zeit": "2026-08-11T18:04:44.043595",
+      "wert": 111.42
+    },
+    {
+      "zeit": "2026-08-11T18:17:48.797857",
+      "wert": 111.11
+    },
+    {
+      "zeit": "2026-08-11T18:18:30.264700",
+      "wert": 111.11
+    },
+    {
+      "zeit": "2026-08-11T18:19:16.121271",
+      "wert": 111.11
     }
   ],
   "trades": [
@@ -509,18 +509,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-11T17:33:39.788148",
+    "zeit": "2026-08-11T18:18:41.342030",
     "ticker": "NRGU",
     "aktion": "halten",
     "konfidenz": 60,
-    "grund": "lev-bull Titel mit anti-Regel, niedriges Volumen und Gewinnmitnahme nach leichtem Anstieg [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen] [Exit-Score 100: Trend läuft noch → Halten statt Verkauf]",
+    "grund": "aufwärtstrend und moderater RSI, jedoch leveraged ETF mit starkem Anti-Warnsignal und niedrigem Volumen – vorsichtige Haltung [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 46.72,
-    "rsi": 54.1,
+    "kurs": 47.0,
+    "rsi": 54.5,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 6.25,
-    "depot_rendite": 10.45,
+    "p_pnl": 6.89,
+    "depot_rendite": 11.11,
     "angewandte_regeln": [
       {
         "id": "r_20260802_92036",
@@ -691,7 +691,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260811_173339_NRGU_aktien_na",
+    "decision_id": "d_20260811_181841_NRGU_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -699,23 +699,23 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 46.72,
-      "sma20": 41.73,
-      "sma50": 36.94,
-      "rsi": 54.1,
-      "atr_pct": 6.12,
-      "vol_ratio": 0.17,
+      "kurs": 47.0,
+      "sma20": 41.74,
+      "sma50": 36.95,
+      "rsi": 54.5,
+      "atr_pct": 6.16,
+      "vol_ratio": 0.24,
       "vix": 15.3,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 10.45
+      "depot_rendite": 11.11
     },
     "indikatoren": [
       "SMA20>41.7",
-      "SMA50>36.9",
+      "SMA50>37.0",
       "RSI54",
-      "ATR6.1%"
+      "ATR6.2%"
     ],
-    "news_score": 70,
+    "news_score": null,
     "regelstand_ref": "v_live",
     "konflikte": [],
     "prioritaetsreihenfolge": [
@@ -743,9 +743,7 @@
       "r_legacy_8_71340": "stabil",
       "r_legacy_9_23764": "stabil",
       "r_legacy_10_24603": "stabil"
-    },
-    "aktion_original": "verkaufen",
-    "exit_score": 100
+    }
   },
   "tenant_id": 1,
   "mode": "shadow"

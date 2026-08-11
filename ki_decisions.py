@@ -105,20 +105,54 @@ def lade_ki_log():
         return data if isinstance(data, list) else []
 
 def schreibe_ki_log(eintrag):
-    with _ki_lock:
-        if os.path.exists(KI_LOG):
-            try:
-                with open(KI_LOG, encoding="utf-8") as f:
-                    log = json.load(f)
-            except (json.JSONDecodeError, FileNotFoundError):
+    """Schreibt einen Eintrag an ki_log.json (atomar + race-sicher).
+    Fix 4: Vorher las die Funktion die Datei, appendete, schrieb zurueck.
+    Bei gleichzeitigem Schreiben (Pipeline + Batch-Trader) kam es zu
+    Read-Modify-Write-Races UND zum Vollverlust: json.load waehrend eines
+    fremden Schreibvorgangs warf JSONDecodeError -> except fing auf [] ->
+    ki_log geleert.
+    Jetzt: atomarer Write (temp + os.replace) + Optimistic-Retry beim Lesen.
+    Kein msvcrt-Lock noetig: os.replace ist atomar, eine halbgeschriebene
+    Datei wird nie gelesen. Bei Parse-Fehler wird der alte Stand behalten
+    (nicht geleert)."""
+    import tempfile as _tf
+    for attempt in range(5):
+        try:
+            with _ki_lock:
+                # Aktuellen Stand lesen (optimistisch)
                 log = []
-        else:
-            log = []
-        log.append(eintrag)
-        if len(log) > 1000:
-            log = log[-1000:]
-        with open(KI_LOG, "w", encoding="utf-8") as f:
-            json.dump(log, f, ensure_ascii=False, indent=2)
+                if os.path.exists(KI_LOG) and os.path.getsize(KI_LOG) > 0:
+                    try:
+                        with open(KI_LOG, encoding="utf-8") as f:
+                            log = json.load(f)
+                    except (json.JSONDecodeError, ValueError, OSError):
+                        # Datei gerade im Schreiben eines anderen Prozesses:
+                        # kurz warten und neu versuchen (nicht auf [] zurueckfallen)
+                        import time as _t
+                        _t.sleep(0.05 * (attempt + 1))
+                        continue
+                if not isinstance(log, list):
+                    log = []
+                log.append(eintrag)
+                if len(log) > 1000:
+                    log = log[-1000:]
+                # Atomarer Write: temp -> os.replace (niemals halbgeschrieben)
+                _dir = os.path.dirname(KI_LOG) or "."
+                _tmp = os.path.join(_dir, ".ki_log_%d.tmp" % os.getpid())
+                with open(_tmp, "w", encoding="utf-8") as f:
+                    json.dump(log, f, ensure_ascii=False, indent=2)
+                os.replace(_tmp, KI_LOG)
+            return
+        except Exception:
+            import time as _t
+            _t.sleep(0.1 * (attempt + 1))
+    # Alle Retries fehlgeschlagen: Eintrag nicht verlieren
+    try:
+        with open(os.path.join(os.path.dirname(KI_LOG) or ".", ".ki_log_failed"),
+                  "a", encoding="utf-8") as f:
+            f.write(json.dumps(eintrag, ensure_ascii=False) + "\n")
+    except Exception:
+        pass
 
 # ─── News für einen Ticker aus ki_log holen ─────────────────
 def news_fuer_ticker(ticker, ki_log, max_std=24):

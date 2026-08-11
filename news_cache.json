@@ -1,9 +1,52 @@
 {
-  "zeit": "2026-08-11T17:33:06.902133",
+  "zeit": "2026-08-11T18:19:22.566417",
   "total": 55,
-  "relevant": 51,
-  "irrelevant": 1,
+  "relevant": 48,
+  "irrelevant": 2,
   "headlines": [
+    {
+      "title": "Musk’s Starlink boasts of doubled subscriber base, but mainstream remains a far-off destination for the satellite internet service",
+      "link": "https://www.marketwatch.com/story/heres-when-elon-musks-starlink-internet-is-worth-the-steep-monthly-price-and-350-startup-cost-53735d59?mod=mw_rss_topstories",
+      "date": "Tue, 11 Aug 2026 16:11:00 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F",
+        "MU"
+      ]
+    },
+    {
+      "title": "‘My wife and I are both retired’: Should we dip into our $2.3 million investments to pay off our 2.9% $300,000 mortgage?",
+      "link": "https://www.marketwatch.com/story/my-wife-and-i-are-both-retired-do-we-dip-into-our-2-3-million-fund-to-pay-off-our-300-000-mortgage-at-2-9-2d23d1df?mod=mw_rss_topstories",
+      "date": "Tue, 11 Aug 2026 15:45:00 GMT",
+      "topics": [],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "If you can answer this one question, you’ll never worry about money again",
+      "link": "https://www.marketwatch.com/story/if-you-can-answer-this-one-question-youll-never-worry-about-money-again-6cf8d0a8?mod=mw_rss_topstories",
+      "date": "Tue, 11 Aug 2026 15:44:00 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "A historically strong stretch for the U.S. stock market is about to begin",
+      "link": "https://www.marketwatch.com/story/a-historically-strong-stretch-for-the-u-s-stock-market-is-about-to-begin-07281312?mod=mw_rss_topstories",
+      "date": "Tue, 11 Aug 2026 15:40:00 GMT",
+      "topics": [
+        "markt"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
     {
       "title": "‘I don’t wish to be cold-hearted’: My elderly relative can no longer care for himself. Am I wrong to leave his care to the state?",
       "link": "https://www.marketwatch.com/story/i-dont-wish-to-be-cold-hearted-my-elderly-relative-can-no-longer-care-for-himself-am-i-wrong-to-leave-his-care-to-the-state-8d546b32?mod=mw_rss_topstories",
@@ -49,33 +92,9 @@
       ]
     },
     {
-      "title": "My wife can claim $900 at 62. Should she take it now — or wait for her spousal benefit?",
-      "link": "https://www.marketwatch.com/story/i-want-her-to-choose-the-best-strategy-my-wifes-social-security-is-just-900-should-she-claim-spousal-benefit-at-62-e3ef621d?mod=mw_rss_topstories",
-      "date": "Tue, 11 Aug 2026 14:00:00 GMT",
-      "topics": [
-        "tech",
-        "geopolitik"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Airbnb has added thousands of new hotel listings. Will that damage the brand’s identity?",
-      "link": "https://www.marketwatch.com/story/airbnb-has-added-thousands-of-new-hotel-listings-will-that-ruin-its-charm-0af2d3b0?mod=mw_rss_topstories",
-      "date": "Tue, 11 Aug 2026 13:58:00 GMT",
-      "topics": [
-        "tech",
-        "geopolitik"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "This fund manager tunes out AI hype to flag the infrastructure stocks to buy now. Think roads, water and telecom towers.",
-      "link": "https://www.marketwatch.com/story/roads-water-and-telecom-towers-can-beat-the-ai-hype-this-fund-manager-flags-the-infrastructure-stocks-to-buy-now-54c62a77?mod=mw_rss_topstories",
-      "date": "Tue, 11 Aug 2026 13:39:00 GMT",
+      "title": "AI Manufacturing Stock Rises Above Key Level On Analyst 'Buy' Rating",
+      "link": "https://www.investors.com/news/jabil-jbl-stock-ai-manufacturing-analyst-upgrade/?src=A00220&yptr=yahoo",
+      "date": "2026-08-11T16:06:40Z",
       "topics": [
         "tech"
       ],
@@ -84,10 +103,79 @@
       ]
     },
     {
-      "title": "We live on a farm and have $2.2 million saved for retirement. We’re ready to retire abroad. Can we afford it?",
-      "link": "https://www.marketwatch.com/story/we-live-on-a-farm-and-have-2-2-million-saved-for-retirement-were-ready-to-retire-abroad-can-we-afford-it-85e56105?mod=mw_rss_topstories",
-      "date": "Tue, 11 Aug 2026 13:00:00 GMT",
-      "topics": [],
+      "title": "Cardinal Infrastructure Group Q2 Earnings Call Highlights",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/cardinal-infrastructure-group-q2-earnings-160434664.html",
+      "date": "2026-08-11T16:04:34Z",
+      "topics": [
+        "earnings"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Stock Market Today: Dow Falls, Oil Rises Despite Iran Claim; Roger Federer Play Dives On This (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-trump-us-iran-spacex-rocket-lab-rklb/?src=A00220&yptr=yahoo",
+      "date": "2026-08-11T15:53:58Z",
+      "topics": [
+        "zinsen",
+        "tech",
+        "energy",
+        "markt"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Hims & Hers stock trims losses following quarterly results",
+      "link": "https://finance.yahoo.com/markets/stocks/article/hims--hers-stock-trims-losses-following-quarterly-results-155021166.html",
+      "date": "2026-08-11T15:50:21Z",
+      "topics": [
+        "earnings"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "Nvidia Stock Rises As Chipmaker Rounds Up Funding For AI Buildout",
+      "link": "https://www.investors.com/news/technology/nvidia-stock-ai-buildout-financing/?src=A00220&yptr=yahoo",
+      "date": "2026-08-11T15:41:11Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F",
+        "DIA"
+      ]
+    },
+    {
+      "title": "Daily Spotlight: Sovereign Debt Yields",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_47879_MarketOutlook_1786447655000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-11T11:27:35Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Broadwind Energy Q2 Earnings Call Highlights",
+      "link": "https://finance.yahoo.com/energy/articles/broadwind-energy-q2-earnings-call-160434904.html",
+      "date": "2026-08-11T16:04:34Z",
+      "topics": [
+        "earnings",
+        "energy"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Is Hims The Next Big Name In Peptides? Shares Recover From Earnings Dive.",
+      "link": "https://www.investors.com/news/technology/hims-stock-hims-hers-health-earnings-q2-2026/?src=A00220&yptr=yahoo",
+      "date": "2026-08-11T15:27:22Z",
+      "topics": [
+        "earnings"
+      ],
       "tickers": [
         "F"
       ]
@@ -112,86 +200,6 @@
       ]
     },
     {
-      "title": "Stock market today: Dow, S&P 500, Nasdaq edge higher as US, Iran reach impasse",
-      "link": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-august-11-dow-sp-500-nasdaq-102827503.html",
-      "date": "2026-08-11T10:28:27Z",
-      "topics": [
-        "markt"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Cherry Hill Mortgage’s 29% Premium Deal: $9B Merger Opens Door to Bigger Upside – Quarterly Update Report",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/cherry-hill-mortgage-29-premium-150508758.html",
-      "date": "2026-08-11T15:05:08Z",
-      "topics": [
-        "m&a"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Daily Spotlight: Sovereign Debt Yields",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47879_MarketOutlook_1786447655000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-11T11:27:35Z",
-      "topics": [
-        "tech"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Plug Power Reports $178 Million in Revenue and Raises Its 2026 Guidance. Here's What PLUG Investors Need to Know.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/plug-power-reports-178-million-151601522.html",
-      "date": "2026-08-11T15:16:01Z",
-      "topics": [
-        "tech"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "US fuel exports to Cuba spur chaotic black market",
-      "link": "https://finance.yahoo.com/news/us-fuel-sales-cuban-business-100512481.html",
-      "date": "2026-08-11T14:58:58Z",
-      "topics": [
-        "markt"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Russia to Allow Bitcoin, Ether, Tether Trading on Official Exchanges",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/russia-allow-bitcoin-ether-tether-145700776.html",
-      "date": "2026-08-11T14:57:00Z",
-      "topics": [
-        "krypto"
-      ],
-      "tickers": [
-        "COIN",
-        "F"
-      ]
-    },
-    {
-      "title": "Sharplink Posts $394M Loss as Ether Treasury Weighs on Q2 Results",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/sharplink-posts-394m-loss-ether-145500529.html",
-      "date": "2026-08-11T14:55:00Z",
-      "topics": [
-        "earnings",
-        "krypto"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Consistent Results Restored Confidence in Forgent Power Solutions (FPS)",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/consistent-results-restored-confidence-forgent-144635619.html",
-      "date": "2026-08-11T14:46:35Z",
-      "topics": [
-        "earnings"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
       "title": "Technical Assessment: Bullish in the Intermediate-Term",
       "link": "https://finance.yahoo.com/research/reports/ARGUS_47878_TechnicalAnalysis_1786447618000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
       "date": "2026-08-11T11:26:58Z",
@@ -203,11 +211,40 @@
       ]
     },
     {
-      "title": "The Market Now Says a Rate HIKE Is Coming. There’s a Dividend Fund Literally Built for This",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/market-now-says-rate-hike-151256941.html",
-      "date": "2026-08-11T15:12:56Z",
+      "title": "Stock market today: Dow, S&P 500, Nasdaq edge higher as US, Iran reach impasse",
+      "link": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-august-11-dow-sp-500-nasdaq-102827503.html",
+      "date": "2026-08-11T10:28:27Z",
       "topics": [
-        "zinsen",
+        "markt"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Consolidated Water Q2 Earnings Call Highlights",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/consolidated-water-q2-earnings-call-160434304.html",
+      "date": "2026-08-11T16:04:34Z",
+      "topics": [
+        "earnings"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "Oil again gains with eyes on potential US-Iran deal; stocks climb",
+      "link": "https://finance.yahoo.com/energy/articles/oil-prices-rise-asia-stocks-014100980.html",
+      "date": "2026-08-11T15:21:12Z",
+      "topics": [
+        "tech",
+        "energy"
+      ],
+      "tickers": []
+    },
+    {
+      "title": "S&P 500 Wavers as Oil Climbs Before Inflation Data: Markets Wrap",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-10/stock-market-today-dow-s-p-live-updates",
+      "date": "Mon, 10 Aug 2026 22:08:16 GMT",
+      "topics": [
+        "inflation",
+        "energy",
         "markt"
       ],
       "tickers": [
@@ -215,27 +252,53 @@
       ]
     },
     {
-      "title": "Wendy's has a massive problem: It's closing restaurants left and right",
-      "link": "https://finance.yahoo.com/markets/article/wendys-has-a-massive-problem-its-closing-restaurants-left-and-right-171131528.html",
-      "date": "2026-08-10T17:11:31Z",
+      "title": "Atlanta Airport Taps Munis for $1.1 Billion Mega Bond Sale",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-11/atlanta-airport-taps-munis-for-1-1-billion-as-sector-sales-lag",
+      "date": "Tue, 11 Aug 2026 14:36:41 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F",
+        "MU"
+      ]
+    },
+    {
+      "title": "Latvia’s Air Baltic Plans Smaller Fleet, Debt-for-Equity Swap",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-11/latvia-s-air-baltic-plans-smaller-fleet-debt-for-equity-swap",
+      "date": "Tue, 11 Aug 2026 15:49:22 GMT",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "US Opens In-Depth Antitrust Review of Kone-TK Elevator Deal",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-11/us-opens-in-depth-antitrust-review-of-kone-tk-elevator-deal",
+      "date": "Tue, 11 Aug 2026 15:41:14 GMT",
       "topics": [],
       "tickers": [
         "F"
       ]
     },
     {
-      "title": "Nvidia Rises Amid Massive Wall Street Partnership; Is Nvidia A Buy Now?",
-      "link": "https://www.investors.com/research/nvidia-nvda-stock-earnings-august-2026/?src=A00220&yptr=yahoo",
-      "date": "2026-08-11T14:42:50Z",
-      "topics": [],
+      "title": "Trend-Chasing Funds’ Big Short on Bonds Raises Stakes for CPI",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-11/trend-chasing-funds-big-short-on-bonds-raises-stakes-for-cpi",
+      "date": "Tue, 11 Aug 2026 15:30:01 GMT",
+      "topics": [
+        "inflation",
+        "tech"
+      ],
       "tickers": [
-        "DIA"
+        "F"
       ]
     },
     {
-      "title": "Who Has the Leverage Right Now? SONAR’s Pricing Power Index Has the Answer",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/leverage-now-sonar-pricing-power-143911378.html",
-      "date": "2026-08-11T14:39:11Z",
+      "title": "Blue Owl Sets $500 Million Bond Sale to Pay Down Credit Lines",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-11/blue-owl-sets-500-million-bond-sale-to-pay-down-credit-lines",
+      "date": "Tue, 11 Aug 2026 15:25:51 GMT",
       "topics": [
         "markt"
       ],
@@ -257,16 +320,6 @@
       "link": "https://www.bloomberg.com/news/videos/2026-08-11/s-p-500-hovers-near-record-highs-on-us-iran-hopes-video",
       "date": "Tue, 11 Aug 2026 15:24:14 GMT",
       "topics": [
-        "markt"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "Treasuries Climb as US-Iran Hopes Trim Oil Rally: Markets Wrap",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/stock-market-today-dow-s-p-live-updates",
-      "date": "Mon, 10 Aug 2026 22:08:16 GMT",
-      "topics": [
-        "energy",
         "markt"
       ],
       "tickers": []
@@ -319,85 +372,6 @@
       "topics": [
         "tech"
       ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Atlanta Airport Taps Munis for $1.1 Billion as Sector Sales Lag",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-11/atlanta-airport-taps-munis-for-1-1-billion-as-sector-sales-lag",
-      "date": "Tue, 11 Aug 2026 14:36:41 GMT",
-      "topics": [
-        "regulation",
-        "tech"
-      ],
-      "tickers": [
-        "F",
-        "MU"
-      ]
-    },
-    {
-      "title": "Yen Edges Toward 160 per Dollar, Raising Intervention Risks",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-11/yen-slides-toward-160-per-dollar-raising-intervention-concerns",
-      "date": "Tue, 11 Aug 2026 10:03:19 GMT",
-      "topics": [
-        "tech",
-        "geopolitik"
-      ],
-      "tickers": []
-    },
-    {
-      "title": "EM Assets Recover as Iran Deal Hopes Pull Oil Back From Highs",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-11/emerging-assets-pressured-as-higher-oil-stokes-inflation-worries",
-      "date": "Tue, 11 Aug 2026 08:49:50 GMT",
-      "topics": [
-        "energy"
-      ],
-      "tickers": [
-        "BAC",
-        "F"
-      ]
-    },
-    {
-      "title": "AI Stock Heavy ETF Risks Spread to Broader Equity Market",
-      "link": "https://www.bloomberg.com/graphics/2026-leveraged-etf-ai-companies/",
-      "date": "Mon, 10 Aug 2026 21:00:23 GMT",
-      "topics": [
-        "tech",
-        "markt"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "US Stocks Waver Near Record as Oil Retreats Ahead of Inflation",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-11/us-stock-futures-rise-as-oil-erases-gains-on-iran-optimism",
-      "date": "Tue, 11 Aug 2026 12:10:15 GMT",
-      "topics": [
-        "inflation",
-        "energy"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Chobani Cuts Annual Earnings Forecast on Rising Material Costs",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-11/chobani-cuts-annual-earnings-forecast-on-rising-material-costs",
-      "date": "Tue, 11 Aug 2026 14:04:41 GMT",
-      "topics": [
-        "earnings"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "CSN Gets Financial Relief as $1 Billion Debt Exchange Approved",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-11/csn-gets-financial-relief-as-1-billion-debt-exchange-approved",
-      "date": "Tue, 11 Aug 2026 14:01:47 GMT",
-      "topics": [],
       "tickers": [
         "F"
       ]
@@ -523,6 +497,17 @@
       "title": "Government Borrowing Cost Hits Two-Decade High After Fed Rate Decision",
       "link": "https://www.nytimes.com/2026/07/29/business/economy/treasury-yields-fed-inflation.html",
       "date": "Wed, 29 Jul 2026 21:33:46 +0000",
+      "topics": [
+        "zinsen"
+      ],
+      "tickers": [
+        "F"
+      ]
+    },
+    {
+      "title": "What to know about the Fed’s decision.",
+      "link": "https://www.nytimes.com/live/2026/07/29/business/fed-meeting-rates-kevin-warsh/what-to-know-about-the-feds-decision",
+      "date": "Wed, 29 Jul 2026 20:37:59 +0000",
       "topics": [
         "zinsen"
       ],

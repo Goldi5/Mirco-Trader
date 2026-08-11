@@ -9,42 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-07-31T13:16:35.001239",
-      "wert": 104.04
-    },
-    {
-      "zeit": "2026-07-31T13:31:57.020213",
-      "wert": 104.04
-    },
-    {
-      "zeit": "2026-07-31T13:46:51.217839",
-      "wert": 104.04
-    },
-    {
-      "zeit": "2026-07-31T14:01:55.698108",
-      "wert": 104.04
-    },
-    {
-      "zeit": "2026-07-31T15:33:42.143499",
-      "wert": 104.95
-    },
-    {
-      "zeit": "2026-07-31T20:05:30.658437",
-      "wert": 103.16
-    },
-    {
-      "zeit": "2026-07-31T20:31:14.885900",
-      "wert": 102.93
-    },
-    {
-      "zeit": "2026-07-31T20:50:21.803287",
-      "wert": 103.19
-    },
-    {
-      "zeit": "2026-08-03T16:35:05.395941",
-      "wert": 103.19
-    },
-    {
       "zeit": "2026-08-04T16:54:38.556708",
       "wert": 103.19
     },
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-11T17:34:13.924988",
       "wert": 105.07
+    },
+    {
+      "zeit": "2026-08-11T17:46:49.735819",
+      "wert": 104.95
+    },
+    {
+      "zeit": "2026-08-11T17:47:51.481458",
+      "wert": 104.93
+    },
+    {
+      "zeit": "2026-08-11T17:48:57.880655",
+      "wert": 104.93
+    },
+    {
+      "zeit": "2026-08-11T18:03:07.057534",
+      "wert": 105.39
+    },
+    {
+      "zeit": "2026-08-11T18:03:37.406331",
+      "wert": 105.44
+    },
+    {
+      "zeit": "2026-08-11T18:04:44.055185",
+      "wert": 105.4
+    },
+    {
+      "zeit": "2026-08-11T18:17:48.808747",
+      "wert": 105.5
+    },
+    {
+      "zeit": "2026-08-11T18:18:30.276549",
+      "wert": 105.67
+    },
+    {
+      "zeit": "2026-08-11T18:19:16.129399",
+      "wert": 105.76
     }
   ],
   "trades": [
@@ -446,15 +446,215 @@
     }
   ],
   "ki_letzte": {
+    "typ": "decision",
+    "zeit": "2026-08-11T18:19:16.041020",
+    "ticker": "TNA",
     "aktion": "halten",
-    "konfidenz": 50,
-    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
-    "decision_id": "d_20260811_173413_TNA_aktien_na",
+    "konfidenz": 60,
+    "grund": "Aufwärtstrend und RSI okay, aber Hebel-ETF-Risiko und niedriges Volumen limitieren weiteres Kaufen; daher Halten. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "menge": "voll",
+    "ziel_kurs": null,
+    "kurs": 74.62,
+    "rsi": 59.9,
+    "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
+    "p_pnl": 2.49,
+    "depot_rendite": 5.76,
+    "angewandte_regeln": [
+      {
+        "id": "r_20260802_92036",
+        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
+        "typ": "meta_conf_cap",
+        "gewicht": 2.5,
+        "effektiv_gewicht": 2.5,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 2,
+        "wirkung": "befolgen",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_20260801_07584",
+        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
+        "typ": "swap",
+        "gewicht": 1.89,
+        "effektiv_gewicht": 1.89,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_1_87577",
+        "muster": "[Anti] halten bei volatility-Titeln",
+        "typ": "anti",
+        "gewicht": -1.87,
+        "effektiv_gewicht": -1.87,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_2_74438",
+        "muster": "[Anti] halten bei lev-bull-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.86,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_5_20387",
+        "muster": "[Anti] halten bei ai-Titeln",
+        "typ": "anti",
+        "gewicht": -1.86,
+        "effektiv_gewicht": -1.86,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_4_69646",
+        "muster": "[Anti] halten bei lev-bear-Titeln",
+        "typ": "anti",
+        "gewicht": -1.71,
+        "effektiv_gewicht": -1.71,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_7_07487",
+        "muster": "[Anti] halten bei space-Titeln",
+        "typ": "anti",
+        "gewicht": -1.64,
+        "effektiv_gewicht": -1.64,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_3_42126",
+        "muster": "[Anti] halten bei crypto-Titeln",
+        "typ": "anti",
+        "gewicht": -1.63,
+        "effektiv_gewicht": -1.63,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_6_42979",
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "typ": "anti",
+        "gewicht": -1.63,
+        "effektiv_gewicht": -1.63,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_8_71340",
+        "muster": "[Anti] halten bei ev-Titeln",
+        "typ": "anti",
+        "gewicht": -1.62,
+        "effektiv_gewicht": -1.62,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_9_23764",
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "typ": "anti",
+        "gewicht": -1.55,
+        "effektiv_gewicht": -1.55,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_10_24603",
+        "muster": "[Anti] halten bei index-Titeln",
+        "typ": "anti",
+        "gewicht": -1.47,
+        "effektiv_gewicht": -1.47,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      }
+    ],
+    "decision_id": "d_20260811_181916_TNA_aktien_na",
+    "provider": "openrouter",
+    "fallback": false,
     "depot_typ": "aktien",
     "risk": null,
-    "ticker": "TNA",
-    "shadow": false,
-    "regelstand_ref": "v_legacy",
+    "quelle": "ki_decisions.entscheide_ticker",
+    "regime": "open",
+    "rohdaten": {
+      "kurs": 74.62,
+      "sma20": 70.69,
+      "sma50": 70.37,
+      "rsi": 59.9,
+      "atr_pct": 3.48,
+      "vol_ratio": 0.45,
+      "vix": 15.3,
+      "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
+      "depot_rendite": 5.76
+    },
+    "indikatoren": [
+      "SMA20>70.7",
+      "SMA50>70.4",
+      "RSI60",
+      "ATR3.5%"
+    ],
+    "news_score": null,
+    "regelstand_ref": "v_live",
     "konflikte": [],
     "prioritaetsreihenfolge": [
       "engine_bremse",
@@ -463,8 +663,25 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 0,
-    "konfidenz_nach_cap": 0
+    "konfidenz_original": 68.0,
+    "konfidenz_nach_cap": 60,
+    "konfidenz_cap": 60,
+    "erwarteter_ausgang": "unbekannt",
+    "shadow": false,
+    "regelstatus_beim_entscheid": {
+      "r_20260802_92036": "stabil",
+      "r_20260801_07584": "stabil",
+      "r_legacy_1_87577": "stabil",
+      "r_legacy_2_74438": "stabil",
+      "r_legacy_5_20387": "stabil",
+      "r_legacy_4_69646": "stabil",
+      "r_legacy_7_07487": "stabil",
+      "r_legacy_3_42126": "stabil",
+      "r_legacy_6_42979": "stabil",
+      "r_legacy_8_71340": "stabil",
+      "r_legacy_9_23764": "stabil",
+      "r_legacy_10_24603": "stabil"
+    }
   },
   "tenant_id": 1,
   "mode": "shadow"

@@ -2,48 +2,12 @@
   "ticker": "CRSP",
   "name": "CRISPR Therapeutics",
   "kategorie": "biotech",
-  "bargeld": 0.0,
-  "shares": 1.89289,
-  "avg_price": 53.59,
+  "bargeld": 101.04,
+  "shares": 0,
+  "avg_price": 0,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-06T16:17:27.215639",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:17:27.936577",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:18:26.077071",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:31:12.491861",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:31:54.955355",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:46:53.085746",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:46:54.834243",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:47:06.134815",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:47:12.865853",
-      "wert": 101.33
-    },
     {
       "zeit": "2026-08-06T16:47:16.546423",
       "wert": 101.33
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-11T17:34:13.887328",
       "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-11T17:46:49.721075",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T17:47:51.453005",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T17:48:57.852483",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:03:07.024605",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:03:37.372216",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:04:44.031949",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:17:48.784163",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:18:30.256261",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:19:16.112197",
+      "wert": 101.04
     }
   ],
   "trades": [
@@ -610,22 +610,30 @@
       "preis": 53.59,
       "grund": "RSI überkauft bei neutralem Trend, biotech-Anti-Warnsignal, aber niedriges Volumen erlaubt kleine Position",
       "ki_konfidenz": 45
+    },
+    {
+      "zeit": "2026-08-11T17:46:49.721075",
+      "aktion": "verkaufen",
+      "menge": 1.89289,
+      "preis": 53.38,
+      "grund": "RSI überkauft, geringe Liquidität, biotech-Anti-Signal [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-11T17:32:51.622173",
+    "zeit": "2026-08-11T18:18:12.653017",
     "ticker": "CRSP",
     "aktion": "halten",
     "konfidenz": 55,
-    "grund": "neutraler Trend, RSI überkauft, anti-biotech-Warnsignal, niedriges Volumen",
+    "grund": "RSI überkauft, anti-biotech-Warnung, niedriges Volumen, keine klare Aufwärtssignale",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 53.4,
-    "rsi": 75.4,
+    "kurs": 53.56,
+    "rsi": 76.2,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": -0.35,
-    "depot_rendite": 1.08,
+    "p_pnl": 0,
+    "depot_rendite": 1.04,
     "angewandte_regeln": [
       {
         "id": "r_20260802_92036",
@@ -796,7 +804,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260811_173251_CRSP_aktien_na",
+    "decision_id": "d_20260811_181812_CRSP_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -804,20 +812,20 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 53.4,
-      "sma20": 49.48,
-      "sma50": 52.22,
-      "rsi": 75.4,
-      "atr_pct": 3.44,
-      "vol_ratio": 0.17,
+      "kurs": 53.56,
+      "sma20": 49.49,
+      "sma50": 52.23,
+      "rsi": 76.2,
+      "atr_pct": 3.43,
+      "vol_ratio": 0.21,
       "vix": 15.3,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 1.08
+      "depot_rendite": 1.04
     },
     "indikatoren": [
       "SMA20>49.5",
       "SMA50>52.2",
-      "RSI75",
+      "RSI76",
       "ATR3.4%"
     ],
     "news_score": null,

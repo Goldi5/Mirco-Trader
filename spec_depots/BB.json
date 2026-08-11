@@ -9,42 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-06T20:48:55.931876",
-      "wert": 105.6
-    },
-    {
-      "zeit": "2026-08-06T20:48:57.297613",
-      "wert": 105.6
-    },
-    {
-      "zeit": "2026-08-06T20:54:21.743073",
-      "wert": 105.6
-    },
-    {
-      "zeit": "2026-08-06T21:00:03.366246",
-      "wert": 105.6
-    },
-    {
-      "zeit": "2026-08-06T21:01:54.632422",
-      "wert": 105.6
-    },
-    {
-      "zeit": "2026-08-06T21:02:08.174138",
-      "wert": 105.6
-    },
-    {
-      "zeit": "2026-08-06T21:03:05.862877",
-      "wert": 105.6
-    },
-    {
-      "zeit": "2026-08-06T21:05:12.527418",
-      "wert": 105.6
-    },
-    {
-      "zeit": "2026-08-06T21:19:57.860541",
-      "wert": 105.6
-    },
-    {
       "zeit": "2026-08-06T21:33:37.699458",
       "wert": 105.6
     },
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-11T17:34:13.865725",
       "wert": 103.83
+    },
+    {
+      "zeit": "2026-08-11T17:46:49.714434",
+      "wert": 103.61
+    },
+    {
+      "zeit": "2026-08-11T17:47:51.440556",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-11T17:48:57.834553",
+      "wert": 103.38
+    },
+    {
+      "zeit": "2026-08-11T18:03:07.013306",
+      "wert": 102.93
+    },
+    {
+      "zeit": "2026-08-11T18:03:37.352896",
+      "wert": 103.16
+    },
+    {
+      "zeit": "2026-08-11T18:04:44.023935",
+      "wert": 103.38
+    },
+    {
+      "zeit": "2026-08-11T18:17:48.772367",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-11T18:18:30.248166",
+      "wert": 103.5
+    },
+    {
+      "zeit": "2026-08-11T18:19:16.107406",
+      "wert": 103.38
     }
   ],
   "trades": [
@@ -652,18 +652,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-11T17:32:37.523409",
+    "zeit": "2026-08-11T18:17:43.503829",
     "ticker": "BB",
     "aktion": "halten",
-    "konfidenz": 55,
-    "grund": "neutrale Trend, niedriges Volumen, bestehende Position",
+    "konfidenz": 60,
+    "grund": "neutrale Trend, RSI 53.7, keine klaren Aufwärtssignale, bestehende Position [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 9.22,
-    "rsi": 54.3,
+    "kurs": 9.18,
+    "rsi": 53.7,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0.99,
-    "depot_rendite": 3.83,
+    "p_pnl": 0.55,
+    "depot_rendite": 3.38,
     "angewandte_regeln": [
       {
         "id": "r_20260802_92036",
@@ -834,7 +834,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260811_173237_BB_aktien_na",
+    "decision_id": "d_20260811_181743_BB_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -842,15 +842,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 9.22,
-      "sma20": 8.8,
+      "kurs": 9.18,
+      "sma20": 8.79,
       "sma50": 9.64,
-      "rsi": 54.3,
-      "atr_pct": 5.07,
-      "vol_ratio": 0.3,
+      "rsi": 53.7,
+      "atr_pct": 5.1,
+      "vol_ratio": 0.38,
       "vix": 15.3,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 3.83
+      "depot_rendite": 3.38
     },
     "indikatoren": [
       "SMA20>8.8",
@@ -868,8 +868,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 55,
-    "konfidenz_nach_cap": 55,
+    "konfidenz_original": 70.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

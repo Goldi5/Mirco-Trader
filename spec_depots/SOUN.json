@@ -9,42 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-03T22:33:50.015685",
-      "wert": 101.32
-    },
-    {
-      "zeit": "2026-08-03T22:40:46.348503",
-      "wert": 101.32
-    },
-    {
-      "zeit": "2026-08-04T09:23:19.513045",
-      "wert": 101.82
-    },
-    {
-      "zeit": "2026-08-04T16:54:38.543917",
-      "wert": 101.82
-    },
-    {
-      "zeit": "2026-08-04T17:48:10.203524",
-      "wert": 101.82
-    },
-    {
-      "zeit": "2026-08-04T17:50:11.700416",
-      "wert": 101.82
-    },
-    {
-      "zeit": "2026-08-04T17:58:39.234502",
-      "wert": 101.82
-    },
-    {
-      "zeit": "2026-08-04T18:02:50.085757",
-      "wert": 101.82
-    },
-    {
-      "zeit": "2026-08-04T18:06:02.385095",
-      "wert": 101.82
-    },
-    {
       "zeit": "2026-08-04T18:06:25.009717",
       "wert": 101.82
     },
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-11T17:34:13.922437",
       "wert": 103.53
+    },
+    {
+      "zeit": "2026-08-11T17:46:49.735306",
+      "wert": 103.53
+    },
+    {
+      "zeit": "2026-08-11T17:47:51.477166",
+      "wert": 103.53
+    },
+    {
+      "zeit": "2026-08-11T17:48:57.876544",
+      "wert": 103.53
+    },
+    {
+      "zeit": "2026-08-11T18:03:07.054972",
+      "wert": 103.53
+    },
+    {
+      "zeit": "2026-08-11T18:03:37.403810",
+      "wert": 103.53
+    },
+    {
+      "zeit": "2026-08-11T18:04:44.052797",
+      "wert": 103.67
+    },
+    {
+      "zeit": "2026-08-11T18:17:48.807682",
+      "wert": 103.67
+    },
+    {
+      "zeit": "2026-08-11T18:18:30.273932",
+      "wert": 103.53
+    },
+    {
+      "zeit": "2026-08-11T18:19:16.127193",
+      "wert": 103.53
     }
   ],
   "trades": [
@@ -513,22 +513,38 @@
       "preis": 7.33,
       "grund": "anti AI-Vorsicht, neutrale Trendlage, niedriges Volumen [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-11T18:03:37.402801",
+      "aktion": "kaufen",
+      "menge": 14.028455,
+      "preis": 7.38,
+      "grund": "neutrale Trend, RSI 60, sehr niedriges Volumen, AI-Titel-Vorsicht, aber kleine Position sinnvoll [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-11T18:18:30.273932",
+      "aktion": "verkaufen",
+      "menge": 14.028455,
+      "preis": 7.38,
+      "grund": "Anti-KI-Regel, neutrale Trend, niedriges Volumen, keine News [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-11T17:34:00.891533",
+    "zeit": "2026-08-11T18:19:07.943916",
     "ticker": "SOUN",
     "aktion": "halten",
     "konfidenz": 55,
-    "grund": "neutraler Trend, niedriges Volumen, AI-Anti-Regel, aktuelle Verlustposition",
+    "grund": "neutrale Trend, RSI 60, anti-AI-Warnsignal, niedriges Volumen, bestehende Position",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 7.32,
-    "rsi": 59.6,
+    "kurs": 7.39,
+    "rsi": 60.4,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": -2.01,
-    "depot_rendite": 3.39,
+    "p_pnl": 0.14,
+    "depot_rendite": 3.67,
     "angewandte_regeln": [
       {
         "id": "r_20260802_92036",
@@ -699,7 +715,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260811_173400_SOUN_aktien_na",
+    "decision_id": "d_20260811_181907_SOUN_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -707,15 +723,15 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 7.32,
+      "kurs": 7.39,
       "sma20": 6.52,
       "sma50": 6.82,
-      "rsi": 59.6,
-      "atr_pct": 6.52,
-      "vol_ratio": 0.22,
+      "rsi": 60.4,
+      "atr_pct": 6.47,
+      "vol_ratio": 0.26,
       "vix": 15.3,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 3.39
+      "depot_rendite": 3.67
     },
     "indikatoren": [
       "SMA20>6.5",

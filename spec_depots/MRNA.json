@@ -9,42 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T17:20:59.985958",
-      "wert": 103.62
-    },
-    {
-      "zeit": "2026-08-05T17:30:57.293566",
-      "wert": 103.44
-    },
-    {
-      "zeit": "2026-08-05T17:34:11.453038",
-      "wert": 103.65
-    },
-    {
-      "zeit": "2026-08-05T17:47:22.363988",
-      "wert": 102.79
-    },
-    {
-      "zeit": "2026-08-05T17:49:24.154392",
-      "wert": 102.75
-    },
-    {
-      "zeit": "2026-08-05T18:17:51.306291",
-      "wert": 102.27
-    },
-    {
-      "zeit": "2026-08-05T18:32:34.052666",
-      "wert": 102.57
-    },
-    {
-      "zeit": "2026-08-05T18:47:38.066504",
-      "wert": 102.19
-    },
-    {
-      "zeit": "2026-08-05T19:02:33.513189",
-      "wert": 102.68
-    },
-    {
       "zeit": "2026-08-05T19:18:16.618342",
       "wert": 102.21
     },
@@ -407,6 +371,42 @@
     {
       "zeit": "2026-08-11T17:34:13.899352",
       "wert": 100.56
+    },
+    {
+      "zeit": "2026-08-11T17:46:49.725102",
+      "wert": 100.95
+    },
+    {
+      "zeit": "2026-08-11T17:47:51.461264",
+      "wert": 101.14
+    },
+    {
+      "zeit": "2026-08-11T17:48:57.864969",
+      "wert": 101.1
+    },
+    {
+      "zeit": "2026-08-11T18:03:07.037759",
+      "wert": 101.32
+    },
+    {
+      "zeit": "2026-08-11T18:03:37.387761",
+      "wert": 101.65
+    },
+    {
+      "zeit": "2026-08-11T18:04:44.040596",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T18:17:48.793280",
+      "wert": 101.6
+    },
+    {
+      "zeit": "2026-08-11T18:18:30.263176",
+      "wert": 101.58
+    },
+    {
+      "zeit": "2026-08-11T18:19:16.117970",
+      "wert": 101.65
     }
   ],
   "trades": [
@@ -586,18 +586,18 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-11T17:33:31.031701",
+    "zeit": "2026-08-11T18:18:28.679523",
     "ticker": "MRNA",
     "aktion": "halten",
     "konfidenz": 55,
-    "grund": "neutrale Trend, anti-biotech Warnsignal, leichte Verluste, keine klaren Aufwärtsignale",
+    "grund": "neutrale Trendlage, anti-biotech-Warnsignal, geringe Kaufsignale, daher Halten",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 59.1,
-    "rsi": 52.0,
+    "kurs": 59.74,
+    "rsi": 53.3,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": -3.02,
-    "depot_rendite": 0.56,
+    "p_pnl": -1.97,
+    "depot_rendite": 1.65,
     "angewandte_regeln": [
       {
         "id": "r_20260802_92036",
@@ -768,7 +768,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260811_173331_MRNA_aktien_na",
+    "decision_id": "d_20260811_181828_MRNA_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -776,20 +776,20 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 59.1,
-      "sma20": 58.03,
-      "sma50": 59.78,
-      "rsi": 52.0,
-      "atr_pct": 5.84,
-      "vol_ratio": 0.47,
+      "kurs": 59.74,
+      "sma20": 58.06,
+      "sma50": 59.79,
+      "rsi": 53.3,
+      "atr_pct": 5.78,
+      "vol_ratio": 0.56,
       "vix": 15.3,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 0.56
+      "depot_rendite": 1.65
     },
     "indikatoren": [
-      "SMA20>58.0",
+      "SMA20>58.1",
       "SMA50>59.8",
-      "RSI52",
+      "RSI53",
       "ATR5.8%"
     ],
     "news_score": null,
