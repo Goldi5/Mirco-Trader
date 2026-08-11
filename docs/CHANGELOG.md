@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.55.0] - 2026-08-11
+### Dashboard-Stabilität + KI-Ketten-Beobachtung (P11-User-Feedback)
+
+**Dashboard-Verbesserungen (User-Feedback "alle 5 bitte"):**
+- **Broker-Tab**: echte Inhalte (Paper-Cash, Positionen-Anzahl, Orders, Sync-Status) statt Minimal-Anzeige
+- **Risk-Appetite-Slider**: steuert jetzt echte KI-Strategie (konservativ/ausgewogen/aggressiv) — Profil als Prompt-Text + Erklärzeile; `ki_decisions` nutzt `risk_appetite_profil()` im Prompt
+- **Portfolio-Filter-Bug**: harter Slice auf 6 Karten entfernt → alle Portfolios werden geladen (Pagination bei Bedarf)
+- **Analyse-Tab-Umbau**: Untertabs `📊 Analyse` / `🧠 KI-Auswertung` (128+ decisions) / `🧠` / `📚 Lerneffekte` (pending_rules)
+- **News-Tab**: aus `ki_log` ausgelagert, Tabelle (Zeit/Ticker/Prio/Event/Richtung/KI-Bewertung), filterbar
+
+**Stabilitäts-Fixes:**
+- `security_users.json` Korruption + `db_karten` 500 (atomic save + optional lock)
+- Single-Instance-Guard Dashboard (Port 5300) — beendet Doppel-Starts
+- Login-Page aufgehübscht (Segoe UI Variable, Slate) + Logout → Landingpage
+
+**KI-Ketten-Beobachtung (Börse offen, mehrfache Prüfung A–I):**
+1. **pending_rules → learned_rules Übernahme**: Regeln mit `violation_count >= 5` werden validiert übernommen (waren ewig "offen"/OOS)
+2. **News-Ticker-Map Firmenname-Fallback**: 35 statische Firmen + Depot-Namen → News-Zuordnung 57% → 70%
+3. **KI-Parse-Fehler sichtbar**: `schreibe_ki_log(typ="error")` statt stillem `except: pass`
+4. **ki_log.json Vollverlust behoben**: `schreibe_ki_log` war Read-Modify-Write-Race → bei Concurrent-Writes `JSONDecodeError` → `log=[]` → komplett geleert. Jetzt: atomarer Write (temp+os.replace) + Optimistic-Retry, kein Leeren bei Parse-Fehler
+
+**Fix (Nachbeobachtung): Konfidenz-Cap Regeln explodierten** — `OOS offen` Regeln wuchsen unendlich (Dedup-Schlüssel enthielt Live-Werte quote/n). Stabiler Key `[Meta] Konfidenz-Cap {cap}` → 48 → 17 Regeln (Dedup hält).
+
+**Verifiziert (ad-hoc, keine grüne Test-Suite):** 17/17 + 12/12 + 6/6 + 11/11 + 5/5 PASS (jeweils Live-Checks gegen laufendes Dashboard/Module).
+
 ## [2.54.0] - 2026-08-11
 ### Roadmap Live-Freigabe: Depotsteuerung + News-Pipeline + MarketSnapshot + Broker
 **P4/P5:** Depot-Steuerung pro Depot (Aktien/ETF/Spec):
