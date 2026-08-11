@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Dashboard - Web-Oberflaeche fuer alle 20 Depots + Charts + News + Spekulation."""
-import json, os, sys, time, glob, re
+import json, os, sys, time, glob, re, shutil
 from datetime import datetime, timedelta, date
 import yfinance as yf
 from flask import Flask, send_from_directory, request, jsonify, session, redirect, url_for, make_response
@@ -1491,6 +1491,46 @@ def depot_schliessen():
         with open(pf, "w") as f:
             json.dump(flags, f, indent=2)
         return {"ok": True, "erloes": round(erloes, 2), "zustand": "CLOSED", "depot": depot_id}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+@app.route("/api/depot_loeschen")
+def depot_loeschen():
+    """Löscht ein Depot NUR in der Kette: verkauft (0 Shares) + CLOSED.
+    Verschiebt die Datei nach .backup/geloeschte_depots/ (kein hartes Löschen).
+    Kette laut User: erst verkaufen -> dann schließen -> dann löschen."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    depot_id = request.args.get("id", "")
+    f = _depot_pfad_aus_id(depot_id)
+    if not f:
+        return {"ok": False, "error": "Depot nicht gefunden: " + depot_id}
+    try:
+        d = json.load(open(f, encoding="utf-8"))
+        # Kette prüfen: keine Shares/Positionen mehr
+        sh = d.get("shares", 0) or 0
+        pos = d.get("positions", {}) or {}
+        if sh > 0 or (isinstance(pos, dict) and pos):
+            return {"ok": False, "error": "Depot hat noch Positionen — erst verkaufen!", "kette": "verkaufen"}
+        if d.get("zustand") != "CLOSED":
+            return {"ok": False, "error": "Depot ist nicht CLOSED — erst schließen!", "kette": "schliessen"}
+        # Verschieben nach .backup/geloeschte_depots/
+        ziel_dir = os.path.join(BASE, ".backup", "geloeschte_depots")
+        os.makedirs(ziel_dir, exist_ok=True)
+        ziel = os.path.join(ziel_dir, os.path.basename(f))
+        shutil.move(f, ziel)
+        # Pause-Flag entfernen
+        pf = os.path.join(BASE, "depot_pause.json")
+        if os.path.exists(pf):
+            try:
+                flags = json.load(open(pf))
+                flags.pop(depot_id, None)
+                with open(pf, "w") as fh:
+                    json.dump(flags, fh, indent=2)
+            except Exception:
+                pass
+        return {"ok": True, "depot": depot_id, "verschoben": os.path.basename(f)}
     except Exception as e:
         return {"ok": False, "error": str(e)}
 

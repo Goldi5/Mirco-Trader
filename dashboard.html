@@ -1123,6 +1123,7 @@ function showDepot(dep, typ) {
         <button style="flex:1;min-width:120px;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:12px;font-family:inherit" onclick="toggleDepotPause('${typ}','${dep.ticker||''}','${dep.risk!=null?dep.risk:''}')">⏸ Depot pausieren</button>
         <button style="flex:1;min-width:120px;padding:8px 10px;border-radius:8px;border:1px solid var(--danger);background:rgba(220,38,38,.08);color:var(--danger);cursor:pointer;font-size:12px;font-family:inherit" onclick="depotVerkaufen('${typ}','${dep.ticker||''}','${dep.risk!=null?dep.risk:''}')">💸 Alles verkaufen</button>
         <button style="flex:1;min-width:120px;padding:8px 10px;border-radius:8px;border:1px solid var(--danger);background:var(--danger);color:#fff;cursor:pointer;font-size:12px;font-family:inherit" onclick="depotSchliessen('${typ}','${dep.ticker||''}','${dep.risk!=null?dep.risk:''}')">🔒 Depot schließen</button>
+        <button style="flex:1;min-width:120px;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);cursor:pointer;font-size:12px;font-family:inherit" onclick="depotLoeschen('${typ}','${dep.ticker||''}','${dep.risk!=null?dep.risk:''}')">🗑 Depot löschen</button>
       </div>
       ${ki ? `<div class="glass" style="padding:8px 12px;margin-bottom:8px;border-left:3px solid ${ki.aktion === 'kaufen' ? 'var(--green)' : ki.aktion === 'verkaufen' ? 'var(--red)' : 'var(--orange)'}">
         <div style="display:flex;align-items:center;gap:8px;font-size:12px">
@@ -3063,6 +3064,23 @@ function depotSchliessen(typ, ticker, risk) {
     .then(j => {
       if (!j.ok) { alert('Fehler: ' + (j.error || 'unbekannt')); return; }
       alert('Depot ' + id + ' geschlossen. (Zustand: CLOSED)');
+      showTab('overview');
+    })
+    .catch(e => alert('Netzwerk-Fehler: ' + e.message));
+}
+
+function depotLoeschen(typ, ticker, risk) {
+  const id = depotIdent(typ, ticker, risk);
+  if (!confirm('Wirklich Depot ' + id + ' LÖSCHEN?\n\nNur möglich in der Kette:\n1. Alles verkaufen\n2. Depot schließen\n3. Dann löschen\n\nDie Datei wird nach .backup/geloeschte_depots/ verschoben (kein hartes Löschen).')) return;
+  fetch('/api/depot_loeschen?id=' + encodeURIComponent(id))
+    .then(r => r.json())
+    .then(j => {
+      if (!j.ok) {
+        const hinweis = j.kette === 'verkaufen' ? '\n→ Erst: 💸 Alles verkaufen' : j.kette === 'schliessen' ? '\n→ Erst: 🔒 Depot schließen' : '';
+        alert('Fehler: ' + (j.error || 'unbekannt') + hinweis);
+        return;
+      }
+      alert('Depot ' + id + ' gelöscht (verschoben ins Backup).');
       showTab('overview');
     })
     .catch(e => alert('Netzwerk-Fehler: ' + e.message));
