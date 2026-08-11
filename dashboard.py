@@ -3737,6 +3737,18 @@ def api_me_mfa():
 
 
 if __name__ == "__main__":
+    # SINGLE-INSTANCE-GUARD (FIX 2026-08-11):
+    # Verhindert, dass mehrere dashboard.py-Instanzen gleichzeitig starten
+    # (Hermes auto-restart, background-starts, Doppelklicks) und sich gegenseitig
+    # den Port 5300 wegnehmen + security_users.json korrumpiert.
+    import socket as _sock
+    _s = _sock.socket(_sock.AF_INET, _sock.SOCK_STREAM)
+    try:
+        _s.bind(("127.0.0.1", PORT))
+        _s.close()
+    except OSError:
+        print("[GUARD] Port %d bereits belegt — beende diese Instanz." % PORT)
+        sys.exit(0)
     print("Dashboard -> http://localhost:%d" % PORT)
     # PHASE 2 (Server-Sicherheit): nur intern binden, niemals 0.0.0.0 (Regel 4).
     # Interner Port bleibt 5300; der Reverse Proxy (Phase 3) ist der einzige
