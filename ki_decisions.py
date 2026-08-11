@@ -174,6 +174,15 @@ def entscheide_ticker(ticker, name, kurs, sma20, sma50, rsi, shares, avg_price,
     except Exception:
         pass
 
+    # MarketSnapshot (Roadmap Punkt 5, v2.54.0): Snapshot-ID + Datenalter in KI
+    snap_kontext = ""
+    try:
+        from market_snapshot import MarketSnapshot
+        _snap = MarketSnapshot([ticker])
+        snap_kontext = " " + _snap.kontext()
+    except Exception:
+        pass
+
     # ── R1: Gelernte Regeln laden (Top-N nach effektiv_gewicht) ──
     regel_text = ""
     angewandte_regeln = []
@@ -241,6 +250,7 @@ DEPOT-WERT: ${depot_wert:.2f} (Rendite {depot_rendite:+.2f}%)
 KONTEXT:
 {kontext_block if kontext_block else "  Keine Zusatz-Infos"}
 {selbst_text if selbst_text else ""}
+{snap_kontext if snap_kontext else ""}
 
 GELERNTE REGELN (aus bisherigen Trades, nach Stärke sortiert):
 {regel_text if regel_text else "  Keine bisher"}
