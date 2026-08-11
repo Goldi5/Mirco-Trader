@@ -265,10 +265,26 @@ Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "k
             return {"aktion": "halten", "konfidenz": 0, "grund": "Kein API-Key",
                     "provider": "none", "fallback": True}
         # Settings: KI-Temperatur (Default 0.1)
+        # P3: Risiko-Appetit aus config.json laden (Slider im Dashboard)
+        try:
+            import os as _os
+            _cf = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "config.json")
+            with open(_cf) as _f:
+                _cfg = json.load(_f)
+            _ra = int(_cfg.get("risk_appetite", 50))
+        except Exception:
+            _ra = 50
+        _ra_label = "sehr konservativ" if _ra < 25 else "konservativ" if _ra < 45 else "ausgewogen" if _ra < 60 else "aggressiv" if _ra < 80 else "sehr aggressiv"
+        _ra_hinweis = (
+            f"RISIKO-APPETIT DES USERS: {_ra}% ({_ra_label}). "
+            f"Bei <=30%: nur sichere Trades, kleine Positionen, häufiger halten. "
+            f"Bei >=70%: mehr Wagnis erlaubt, größere Positionen, Schnäppchen-Käufe bevorzugt. "
+            f"Dies ist ein Globaler Rahmen — einzelne Setup-Qualität schlägt immer."
+        )
         temp = _ki_set("ki_temperatur", 0.1)
         raus, _provider = call_ki(
             [
-                {"role": "system", "content": "Du antwortest NUR mit JSON. Kein Denken, keine Erklärung, nur das JSON-Objekt."},
+                {"role": "system", "content": "Du antwortest NUR mit JSON. Kein Denken, keine Erklärung, nur das JSON-Objekt.\n\n" + _ra_hinweis},
                 {"role": "user", "content": prompt}
             ],
             temperature=temp,
@@ -434,30 +450,34 @@ Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "k
                 "regelstand_ref": "v_legacy", "konflikte": [], "konfidenz_original": 0, "konfidenz_nach_cap": 0}
 
 # ─── Batch für Spec-Trader (parallel) ───────────────────────
-def entscheide_spec_batch(ticker_data_list, max_workers=3):
-    """Bekommt Liste von dicts mit Ticker-Daten, ruft KI parallel auf."""
+def entscheide_spec_batch(ticker_data_list, max_workers=1):
+    """Bekommt Liste von dicts mit Ticker-Daten, ruft KI SEQUENZIELL auf.
+
+    P2-Fix (2026-08-10): max_workers=1 (kein Parallel-Burst mehr).
+    Free-Tier-Provider (openrouter/nous) drosseln bei 3 gleichzeitigen Calls
+    -> ki_cooldown sperrte alle -> 9/20 Spec FAIL_FAST. Sequenziell + 1.5s
+    Delay vermeidet das Rate-Limit.
+    """
     ki_log = lade_ki_log()
     ergebnisse = [None] * len(ticker_data_list)
-
-    def call_ki(i, td):
-        news = news_fuer_ticker(td["ticker"], ki_log)
-        return i, entscheide_ticker(
-            td["ticker"], td.get("name", ""),
-            td["kurs"], td["sma20"], td["sma50"],
-            td["rsi"], td["shares"], td["avg_price"],
-            td["bargeld"], td.get("start", 100),
-            news_liste=news, markt_status=td.get("markt", "open"),
-            sektor=td.get("sektor", ""),
-            atr_pct=td.get("atr_pct"),
-            vol_ratio=td.get("vol_ratio"),
-        )
-
-    with ThreadPoolExecutor(max_workers=max_workers) as pool:
-        futures = [pool.submit(call_ki, i, td) for i, td in enumerate(ticker_data_list)]
-        for f in as_completed(futures):
-            i, entscheidung = f.result()
-            ergebnisse[i] = entscheidung
-
+    import time
+    for i, td in enumerate(ticker_data_list):
+        try:
+            news = news_fuer_ticker(td["ticker"], ki_log)
+            ergebnisse[i] = entscheide_ticker(
+                td["ticker"], td.get("name", ""),
+                td["kurs"], td["sma20"], td["sma50"],
+                td["rsi"], td["shares"], td["avg_price"],
+                td["bargeld"], td.get("start", 100),
+                news_liste=news, markt_status=td.get("markt", "open"),
+                sektor=td.get("sektor", ""),
+                atr_pct=td.get("atr_pct"),
+                vol_ratio=td.get("vol_ratio"),
+            )
+        except Exception as e:
+            ergebnisse[i] = {"aktion": "halten", "fehler": str(e)[:80]}
+        if i < len(ticker_data_list) - 1:
+            time.sleep(1.5)  # Rate-Limit-Schutz
     return ergebnisse
 
 # ─── Depot-Entscheidung für Batch-Trader (Aktien) ────────────

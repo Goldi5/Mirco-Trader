@@ -799,6 +799,11 @@ function renderPortfoliosUebersicht() {
       <div class="stat"><div class="num" style="font-size:13px">SHADOW</div><div class="lbl">Modus</div></div>
     </div>
     <div class="surface" style="padding:14px;margin-bottom:14px">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+        <label style="font-size:13px;font-weight:600;color:var(--text)">🎚 Risiko-Appetit (KI-Strategie): <span id="raVal">50</span>%</label>
+        <input type="range" id="riskAppetite" min="0" max="100" value="50" oninput="document.getElementById('raVal').textContent=this.value" onchange="setRiskAppetite(this.value)" style="flex:1;min-width:200px;accent-color:var(--slate)">
+        <span id="raLabel" style="font-size:11px;color:var(--text-soft)">Ausgewogen</span>
+      </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         <input type="text" placeholder="🔍 Suche Ticker…" value="${PF_FILTER.suche}" oninput="PF_FILTER.suche=this.value;renderPortfoliosUebersicht()" style="padding:6px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;min-width:140px">
         <select onchange="PF_FILTER.kat=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
@@ -2963,6 +2968,7 @@ async function resetSettings() {
 }
 
 load();
+loadRiskAppetite();
 setInterval(load, 30000);
 
 // Block 6: Audit-Detail ein/ausklappen
@@ -2985,6 +2991,30 @@ function togglePause() {
       else { alert('Fehler: ' + (j.error||'unbekannt')); }
     })
     .catch(e => alert('Netzwerk-Fehler: ' + e.message));
+}
+
+function setRiskAppetite(v) {
+  const pct = parseInt(v, 10);
+  const label = pct < 25 ? 'Sehr konservativ' : pct < 45 ? 'Konservativ' : pct < 60 ? 'Ausgewogen' : pct < 80 ? 'Aggressiv' : 'Sehr aggressiv';
+  document.getElementById('raLabel').textContent = label;
+  fetch('/api/risk_appetite?value=' + pct)
+    .then(r => r.json())
+    .then(j => { if (!j.ok) alert('Fehler: ' + (j.error||'unbekannt')); })
+    .catch(e => alert('Netzwerk-Fehler: ' + e.message));
+}
+
+function loadRiskAppetite() {
+  fetch('/api/risk_appetite')
+    .then(r => r.json())
+    .then(j => {
+      if (j.ok && typeof j.value === 'number') {
+        document.getElementById('riskAppetite').value = j.value;
+        document.getElementById('raVal').textContent = j.value;
+        const pct = j.value;
+        document.getElementById('raLabel').textContent = pct < 25 ? 'Sehr konservativ' : pct < 45 ? 'Konservativ' : pct < 60 ? 'Ausgewogen' : pct < 80 ? 'Aggressiv' : 'Sehr aggressiv';
+      }
+    })
+    .catch(() => {});
 }
 
 function wechselProfil(name) {

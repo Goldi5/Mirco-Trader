@@ -1280,6 +1280,27 @@ def pause_trading():
             pass
     return {"ok": True, "paused": False}
 
+@app.route("/api/risk_appetite")
+def risk_appetite():
+    """Liest/Schreibt den globalen Risiko-Appetit (0-100%) aus config.json.
+    P3 (2026-08-10): Slider im Dashboard -> KI-Strategie (aggressiv/konservativ)."""
+    cf = os.path.join(BASE, "config.json")
+    if request.args.get("value") is not None:
+        try:
+            v = max(0, min(100, int(request.args.get("value"))))
+            data = {"risk_appetite": v, "risk_appetite_updated": time.strftime("%Y-%m-%dT%H:%M:%S")}
+            with open(cf, "w") as f:
+                json.dump(data, f, indent=2)
+            return {"ok": True, "value": v}
+        except Exception as e:
+            return {"ok": False, "error": str(e)}
+    try:
+        with open(cf) as f:
+            d = json.load(f)
+        return {"ok": True, "value": d.get("risk_appetite", 50)}
+    except Exception:
+        return {"ok": True, "value": 50}
+
 
 
 def _ist_pausiert():
