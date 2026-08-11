@@ -28489,5 +28489,413 @@
       "r_legacy_4_69646": "stabil",
       "r_legacy_3_42126": "stabil"
     }
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Should wealthier Americans forgo their Social Security benefits as a charitable gesture?",
+    "score": 20,
+    "stars": "⭐",
+    "topics": [
+      "sonstiges"
+    ],
+    "tickers": [],
+    "urgency": "P3",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Diskussion über Sozialleistungen, keine direkte Marktauswirkung.",
+    "link": "https://www.marketwatch.com/story/should-wealthier-americans-forgo-their-social-security-benefits-as-a-charitable-gesture-2c7b6801?mod=mw_rss_topstories",
+    "dedup_id": "7556fea717b9"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Good news for stock-market bulls: Corporate earnings growth is no longer being driven just by tech",
+    "score": 70,
+    "stars": "⭐⭐⭐",
+    "topics": [
+      "markt",
+      "tech",
+      "earnings"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "earnings",
+    "direction": "positive",
+    "reason": "Breitere Gewinnentwicklung außerhalb des Tech‑Sektors.",
+    "link": "https://www.marketwatch.com/story/good-news-for-stock-market-bulls-corporate-earnings-growth-is-no-longer-being-driven-just-by-tech-ddac973b?mod=mw_rss_topstories",
+    "dedup_id": "3233f36ea134"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Fed Chair Kevin Warsh promises 2% inflation, but skyrocketing U.S. debt makes that a pipe dream",
+    "score": 75,
+    "stars": "⭐⭐⭐",
+    "topics": [
+      "zinsen"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "negative",
+    "reason": "Inflationsziel durch hohe Schulden gefährdet.",
+    "link": "https://www.marketwatch.com/story/fed-chair-kevin-warsh-promises-2-inflation-but-skyrocketing-u-s-debt-makes-that-a-pipe-dream-ba448651?mod=mw_rss_topstories",
+    "dedup_id": "794d8a443220"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Nvidia CEO Jensen Huang Told Investors in Seoul to \"Buy at a Discount\" During the Recent AI Stock Sell-Off. Here's Whether His Call Has Paid Off.",
+    "score": 85,
+    "stars": "⭐⭐⭐",
+    "topics": [
+      "tech",
+      "markt"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "positive",
+    "reason": "CEO empfiehlt Kauf, Aktie profitierte.",
+    "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-ceo-jensen-huang-told-111500874.html",
+    "dedup_id": "27b7ed28ab1d"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "IRS warns crypto investors of fake letters from fraudsters aimed at stealing wallet keys and passwords",
+    "score": 35,
+    "stars": "⭐",
+    "topics": [
+      "regulation",
+      "sonstiges"
+    ],
+    "tickers": [],
+    "urgency": "P3",
+    "event_type": "regulation",
+    "direction": "neutral",
+    "reason": "Warnung vor Betrug, begrenzte Kurswirkung.",
+    "link": "https://finance.yahoo.com/markets/crypto/articles/irs-warns-crypto-investors-fake-113000642.html",
+    "dedup_id": "373661830732"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "New cars just hit $52K and Social Security faces a 24% cut — 5 things to buy before you retire",
+    "score": 15,
+    "stars": "",
+    "topics": [
+      "sonstiges"
+    ],
+    "tickers": [],
+    "urgency": "P3",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Hohe Fahrzeugpreise und Sozialabbau, keine direkte Marktauswirkung.",
+    "link": "https://finance.yahoo.com/economy/policy/articles/cars-just-hit-52k-social-114500144.html",
+    "dedup_id": "02f07e6420cc"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Strategy Sells More Bitcoin, Stock to Bolster Cash Stockpile",
+    "score": 30,
+    "stars": "⭐",
+    "topics": [
+      "sonstiges"
+    ],
+    "tickers": [],
+    "urgency": "P3",
+    "event_type": "sonstiges",
+    "direction": "negative",
+    "reason": "Verkauf von Bitcoin erhöht Angebot, drückt Kurs.",
+    "link": "https://www.bloomberg.com/news/articles/2026-08-10/strategy-sells-more-bitcoin-stock-to-bolster-cash-stockpile",
+    "dedup_id": "b07653ed9ca9"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Stocks Churn as Hormuz Standoff Spurs Rally in Oil: Markets Wrap",
+    "score": 55,
+    "stars": "⭐⭐",
+    "topics": [
+      "geopolitik",
+      "energie"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Geopolitische Spannungen treiben Ölpreis, wirkt sich auf Märkte aus.",
+    "link": "https://www.bloomberg.com/news/articles/2026-08-09/stock-market-today-dow-s-p-live-updates",
+    "dedup_id": "2693cf226f29"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "US High-Grade Bond Market Sees Most Issuers Since January",
+    "score": 45,
+    "stars": "⭐⭐",
+    "topics": [
+      "zinsen"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Erhöhte Emission von Hochgrad-Bonds, signalisiert Marktnachfrage.",
+    "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-high-grade-bond-market-sees-the-most-issuers-since-january",
+    "dedup_id": "0118f0515b80"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "US Stocks ‘Directionless’ as Chipmaker Earnings, CPI to Set Pace",
+    "score": 78,
+    "stars": "⭐⭐⭐",
+    "topics": [
+      "earnings",
+      "tech",
+      "markt"
+    ],
+    "tickers": [],
+    "urgency": "P1",
+    "event_type": "earnings",
+    "direction": "neutral",
+    "reason": "Chipmaker earnings and CPI data could move markets, but no clear direction is indicated.",
+    "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-futures-drop-as-focus-turns-on-chipmaker-earnings-inflation",
+    "dedup_id": "5c108952bc4d"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Dating App Grindr Unveils New AI Features, Premium Tier",
+    "score": 20,
+    "stars": "⭐",
+    "topics": [
+      "tech"
+    ],
+    "tickers": [],
+    "urgency": "P3",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "AI feature launch is unlikely to have a material impact on trading.",
+    "link": "https://www.bloomberg.com/news/videos/2026-08-10/dating-app-grindr-unveils-new-ai-features-premium-tier-video",
+    "dedup_id": "46fbf2bf9068"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Latest Oil Market News and Analysis for Aug. 10",
+    "score": 55,
+    "stars": "⭐⭐",
+    "topics": [
+      "energie",
+      "markt"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Oil market update may affect energy stocks but lacks immediate trading catalyst.",
+    "link": "https://www.bloomberg.com/news/articles/2026-08-09/latest-oil-market-news-and-analysis-for-aug-10",
+    "dedup_id": "af0ef417c40a"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "IBM Raises C$2.75 Billion in First Canada Bond Sale Since 2012",
+    "score": 30,
+    "stars": "⭐",
+    "topics": [
+      "regulation"
+    ],
+    "tickers": [],
+    "urgency": "P3",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Large bond issuance by IBM is a financing event with limited market impact.",
+    "link": "https://www.bloomberg.com/news/articles/2026-08-10/ibm-turns-to-canadian-bond-market-for-first-time-since-2012",
+    "dedup_id": "e6f70cecb2b8"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Fed’s Hammack Says ‘Some Number’ of Rate Hikes May Be Needed",
+    "score": 80,
+    "stars": "⭐⭐⭐",
+    "topics": [
+      "zinsen"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Fed comment on future rate hikes influences market expectations but is not a direct earnings release.",
+    "link": "https://www.bloomberg.com/news/articles/2026-08-10/fed-s-hammack-says-some-number-of-rate-hikes-may-be-needed",
+    "dedup_id": "cd834bcb1a03"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "US Natural Gas Surges as Hotter Outlooks Trigger Short-Covering",
+    "score": 70,
+    "stars": "⭐⭐⭐",
+    "topics": [
+      "energie",
+      "markt"
+    ],
+    "tickers": [
+      "NRGU"
+    ],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "positive",
+    "reason": "Natural gas price surge could boost NRGU and related energy stocks.",
+    "link": "https://www.bloomberg.com/news/articles/2026-08-10/us-natural-gas-surges-as-hotter-outlooks-trigger-short-covering",
+    "dedup_id": "7c4cf3a43705"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Yen Weakens 1%, Erases Half of US-Japan Intervention Gains",
+    "score": 40,
+    "stars": "⭐",
+    "topics": [
+      "geopolitik"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Yen movement reflects geopolitical tension but is unlikely to drive immediate trading decisions.",
+    "link": "https://www.bloomberg.com/news/articles/2026-08-10/yen-underperforms-g-10-peers-as-intervention-boost-fades",
+    "dedup_id": "6752a8e5cb88"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Weak Jobs Report Does Not Eliminate Prospects of Interest Rate Rise",
+    "score": 55,
+    "stars": "⭐⭐",
+    "topics": [
+      "markt",
+      "zinsen"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Mixed jobs data keeps rate hike prospects alive, affecting market sentiment.",
+    "link": "https://www.nytimes.com/2026/08/07/business/economy/jobs-report-interest-rates-fed.html",
+    "dedup_id": "421f14b9bfc9"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Labor Market Shifts Into Reverse as Employers Balk at Hiring",
+    "score": 50,
+    "stars": "⭐⭐",
+    "topics": [
+      "markt"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "negative",
+    "reason": "Reverse labor market could dampen economic growth expectations, pressuring equities.",
+    "link": "https://www.nytimes.com/2026/08/07/business/economy/heres-the-latest.html",
+    "dedup_id": "646a1d1e48b2"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Trump Issues Tariffs on Key Ingredient for Electronics and Solar Panels",
+    "score": 65,
+    "stars": "⭐⭐",
+    "topics": [
+      "regulation",
+      "geopolitik"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "regulierung",
+    "direction": "negative",
+    "reason": "Tariffs on critical materials may increase costs for tech and solar firms, weighing on related stocks.",
+    "link": "https://www.nytimes.com/2026/08/06/us/politics/trump-tariffs-solar-panels.html",
+    "dedup_id": "03b5ca86591b"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Inflation Worries Prompted Fed Officials to Dissent on Holding Rates Steady",
+    "score": 75,
+    "stars": "⭐⭐⭐",
+    "topics": [
+      "zinsen",
+      "sonstiges"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "neutral",
+    "reason": "Makroökonomische Entwicklung ohne direkte Unternehmensauswirkung",
+    "link": "https://www.nytimes.com/2026/07/31/business/economy/inflation-fed-dissent-interest-rates.html",
+    "dedup_id": "85ebdcb7c40b"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Bond Investors’ Inflation Angst Rises on Fed’s Lack of Guidance",
+    "score": 70,
+    "stars": "⭐⭐⭐",
+    "topics": [
+      "zinsen",
+      "sonstiges"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "negative",
+    "reason": "Wachstumsängste könnten Märkte belasten",
+    "link": "https://www.nytimes.com/2026/07/30/business/federal-reserve-warsh-bonds.html",
+    "dedup_id": "b910fa879710"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "Trump’s Tariff Exemptions Include Diamonds, Oil and Gas, Copper and Other Items",
+    "score": 65,
+    "stars": "⭐⭐",
+    "topics": [
+      "regulation",
+      "sonstiges"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "regulierung",
+    "direction": "neutral",
+    "reason": "Sektorabhängige Auswirkungen, aber keine sofortige Kursbewegung",
+    "link": "https://www.nytimes.com/2026/07/30/business/economy/trump-tariffs-exemptions.html",
+    "dedup_id": "a4a22f511e34"
+  },
+  {
+    "zeit": "2026-08-11T12:35:45.117662",
+    "typ": "news",
+    "title": "U.S. GDP Growth Slowed in Second Quarter of 2026",
+    "score": 60,
+    "stars": "⭐⭐",
+    "topics": [
+      "markt",
+      "sonstiges"
+    ],
+    "tickers": [],
+    "urgency": "P2",
+    "event_type": "sonstiges",
+    "direction": "negative",
+    "reason": "Langsamere Wirtschaftsentwicklung drückt Sentiment",
+    "link": "https://www.nytimes.com/2026/07/30/business/economy/us-economy-gdp-growth.html",
+    "dedup_id": "1bb6ad7a2331"
   }
 ]
