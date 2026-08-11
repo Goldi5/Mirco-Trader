@@ -1,22 +1,22 @@
 {
-  "zeit": "2026-08-11T15:02:24.352982",
+  "zeit": "2026-08-11T15:19:24.056394",
   "aktien": {
     "name": "Aktien",
     "depots": 22,
     "total_trades": 796,
-    "buys": 89,
+    "buys": 91,
     "sells": 64,
-    "wert": 561.8,
+    "wert": 350.23,
     "start": 0,
     "rendite": 0,
     "top_ticker": [
       [
         "DOMO",
         {
-          "buys": 316,
+          "buys": 315,
           "sells": 2,
-          "volume": 14485.71187100003,
-          "trades": 318
+          "volume": 14368.09704300003,
+          "trades": 317
         }
       ],
       [
@@ -49,19 +49,19 @@
       [
         "COTY",
         {
-          "buys": 27,
+          "buys": 26,
           "sells": 3,
-          "volume": 2697.7120239999995,
-          "trades": 30
+          "volume": 2590.6246989999995,
+          "trades": 29
         }
       ],
       [
         "ACHR",
         {
-          "buys": 20,
+          "buys": 21,
           "sells": 6,
-          "volume": 976.0012859999998,
-          "trades": 26
+          "volume": 1089.9526919999996,
+          "trades": 27
         }
       ],
       [
@@ -102,7 +102,7 @@
       ]
     ],
     "grund_stats": {
-      "Konzentrations-Brems": 643,
+      "Konzentrations-Brems": 641,
       "aus_bewertung": 17,
       "🤖 KI: negatives P&L": 7,
       "🤖 KI: Negative P&L u": 4,
@@ -147,7 +147,7 @@
       {
         "risk": 30,
         "trades": 50,
-        "volume": 5212.21
+        "volume": 5202.75
       },
       {
         "risk": 35,
@@ -197,7 +197,7 @@
       {
         "risk": 80,
         "trades": 50,
-        "volume": 5878.53
+        "volume": 5874.87
       },
       {
         "risk": 85,
@@ -511,7 +511,7 @@
   "risiko_aktien": {
     "name": "Aktien",
     "max_drawdown": 3.4,
-    "ges_drawdown": -305.3,
+    "ges_drawdown": -170.8,
     "depot_details": [
       {
         "risk": 0,
@@ -551,9 +551,9 @@
       },
       {
         "risk": 30,
-        "wert": 97.62,
+        "wert": 0.0,
         "dd": 2.1,
-        "positionen": 0
+        "positionen": 1
       },
       {
         "risk": 35,
@@ -611,9 +611,9 @@
       },
       {
         "risk": 80,
-        "wert": 113.95,
+        "wert": 0.0,
         "dd": 2.1,
-        "positionen": 0
+        "positionen": 1
       },
       {
         "risk": 85,

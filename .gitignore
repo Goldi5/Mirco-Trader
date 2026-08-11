@@ -27,3 +27,8 @@ batch_summary.json
 active_profile.json
 _budget_debug.txt
 .scan_cache.json
+
+# Hermes/Process-Watcher Temp-Files (nicht ins Repo)
+.hermes-tmp.*
+_monitor_tmp*.py
+*.tmp

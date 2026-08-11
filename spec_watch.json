@@ -13,7 +13,7 @@
     "sharpe": -1.18,
     "woche": 12.94,
     "monat": -7.18,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   },
   "FNGU": {
     "name": "MicroSectors FANG+ 3x",
@@ -29,7 +29,7 @@
     "sharpe": 1.0,
     "woche": 16.89,
     "monat": 40.59,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   },
   "QS": {
     "name": "QuantumScape Corp.",
@@ -45,7 +45,7 @@
     "sharpe": -1.26,
     "woche": 15.92,
     "monat": -13.55,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   },
   "SOUN": {
     "name": "SoundHound AI",
@@ -61,7 +61,7 @@
     "sharpe": -0.4,
     "woche": 22.3,
     "monat": 16.38,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   },
   "NRGU": {
     "name": "MicroSectors FANG+ 3x",
@@ -77,7 +77,7 @@
     "sharpe": 1.41,
     "woche": 6.3,
     "monat": 49.3,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   },
   "BB": {
     "name": "BlackBerry Ltd.",
@@ -93,7 +93,7 @@
     "sharpe": 2.17,
     "woche": 3.64,
     "monat": -22.54,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   },
   "MRNA": {
     "name": "Moderna Inc.",
@@ -109,7 +109,7 @@
     "sharpe": 1.31,
     "woche": 8.47,
     "monat": -11.09,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   },
   "PLTR": {
     "name": "Palantir Technologies",
@@ -125,7 +125,7 @@
     "sharpe": 1.87,
     "woche": 39.46,
     "monat": 55.17,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   },
   "TNA": {
     "name": "Direxion SmallCap Bull 3x",
@@ -141,7 +141,7 @@
     "sharpe": 1.33,
     "woche": 3.52,
     "monat": 0.35,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   },
   "CRSP": {
     "name": "CRISPR Therapeutics",
@@ -157,6 +157,6 @@
     "sharpe": 0.38,
     "woche": 7.95,
     "monat": -2.57,
-    "letztes_update": "2026-08-11T15:02:30.713716"
+    "letztes_update": "2026-08-11T15:17:35.256171"
   }
 }

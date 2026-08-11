@@ -1,7 +1,7 @@
 {
-  "zeit": "2026-08-11T15:02:26.816386",
+  "zeit": "2026-08-11T15:17:30.000507",
   "total": 55,
-  "relevant": 39,
+  "relevant": 38,
   "headlines": [
     {
       "title": "This fund manager tunes out AI hype to flag the infrastructure stocks to buy now. Think roads, water and telecom towers.",
@@ -60,12 +60,74 @@
       ]
     },
     {
+      "title": "Microsoft stock just cleared a big hurdle but still trails the S&P 500",
+      "link": "https://finance.yahoo.com/markets/stocks/article/microsoft-stock-just-cleared-a-big-hurdle-but-still-trails-the-sp-500-130843662.html",
+      "date": "2026-08-11T13:08:43Z",
+      "topics": [
+        "tech",
+        "market"
+      ]
+    },
+    {
+      "title": "Put options explained: How trading puts pays off and when it doesn't",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/put-option-130000345.html",
+      "date": "2026-08-11T13:00:00Z",
+      "topics": [
+        "tech"
+      ]
+    },
+    {
+      "title": "United Airlines Holdings Inc. (UAL) Wanted to Merge With Delta Air Lines Inc. (DAL). Here Is Why It Never Happened.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/united-airlines-holdings-inc-ual-125618628.html",
+      "date": "2026-08-11T12:56:18Z",
+      "topics": [
+        "tech"
+      ]
+    },
+    {
+      "title": "Daily Spotlight: Sovereign Debt Yields",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_47879_MarketOutlook_1786447655000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-11T11:27:35Z",
+      "topics": [
+        "tech"
+      ]
+    },
+    {
+      "title": "Hinde Group Boosts Amazon.com (AMZN) Amid AI Capacity Bottlenecks and High Enterprise Backlog in AWS",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/hinde-group-boosts-amazon-com-125556579.html",
+      "date": "2026-08-11T12:55:56Z",
+      "topics": [
+        "tech"
+      ],
+      "tickers": [
+        "AMZN"
+      ]
+    },
+    {
+      "title": "Stock Market Today: Dow Rises On Iran Claim; SpaceX Rival Rocket Lab Dives On Earnings News (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-trump-us-iran-spacex-rocket-lab-rklb/?src=A00220&yptr=yahoo",
+      "date": "2026-08-11T12:52:38Z",
+      "topics": [
+        "earnings",
+        "tech",
+        "market"
+      ]
+    },
+    {
       "title": "Bitcoin and ethereum prices today, Tuesday, August 11, 2026: Opening prices fall back ahead of inflation reports this week",
       "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-tuesday-august-11-2026-opening-prices-fall-back-ahead-of-inflation-reports-this-week-124608146.html",
       "date": "2026-08-11T12:46:08Z",
       "topics": [
         "inflation",
         "crypto"
+      ]
+    },
+    {
+      "title": "Technical Assessment: Bullish in the Intermediate-Term",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_47878_TechnicalAnalysis_1786447618000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-11T11:26:58Z",
+      "topics": [
+        "tech"
       ]
     },
     {
@@ -85,81 +147,11 @@
       ]
     },
     {
-      "title": "Daily Spotlight: Sovereign Debt Yields",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47879_MarketOutlook_1786447655000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-11T11:27:35Z",
+      "title": "Severe Thunderstorms Across US Midwest Trigger Flood Warnings",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-11/severe-thunderstorms-across-us-midwest-trigger-flood-warnings",
+      "date": "Tue, 11 Aug 2026 13:07:47 GMT",
       "topics": [
-        "tech"
-      ]
-    },
-    {
-      "title": "SEG Solar opens second PV module factory, lifting US capacity to 6GW",
-      "link": "https://finance.yahoo.com/energy/articles/seg-solar-opens-second-pv-124650942.html",
-      "date": "2026-08-11T12:46:50Z",
-      "topics": [
-        "regulation"
-      ]
-    },
-    {
-      "title": "Intel's huge rally is helping pay for its AI comeback: Chart of the Day",
-      "link": "https://finance.yahoo.com/markets/article/intels-huge-rally-is-helping-pay-for-its-ai-comeback-chart-of-the-day-100000146.html",
-      "date": "2026-08-11T10:00:00Z",
-      "topics": [
-        "tech"
-      ]
-    },
-    {
-      "title": "Israeli Defense Contractor Beats Earnings; Stock Sinks Over Iran War Renewal",
-      "link": "https://www.investors.com/news/elbit-systems-iran-war-israel-defense-aerospace/?src=A00220&yptr=yahoo",
-      "date": "2026-08-11T12:34:30Z",
-      "topics": [
-        "earnings",
         "geopolitics"
-      ]
-    },
-    {
-      "title": "Oil firm as US-Iran impasse drags on; stocks edge up",
-      "link": "https://finance.yahoo.com/energy/articles/oil-prices-rise-asia-stocks-014100980.html",
-      "date": "2026-08-11T12:31:24Z",
-      "topics": [
-        "energy"
-      ]
-    },
-    {
-      "title": "Pfizer Inc. (PFE) vs. BioNTech SE (BNTX): Which Pharma Giant Is Better Positioned for the Post-COVID Era?",
-      "link": "https://finance.yahoo.com/healthcare/articles/pfizer-inc-pfe-vs-biontech-123110407.html",
-      "date": "2026-08-11T12:31:10Z",
-      "topics": [
-        "tech"
-      ],
-      "tickers": [
-        "F"
-      ]
-    },
-    {
-      "title": "Technical Assessment: Bullish in the Intermediate-Term",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47878_TechnicalAnalysis_1786447618000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-11T11:26:58Z",
-      "topics": [
-        "tech"
-      ]
-    },
-    {
-      "title": "Stock Market Today: Dow Rises On Iran Claim; SpaceX Rival Rocket Lab Dives On Earnings News (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-trump-us-iran-spacex-rocket-lab-rklb/?src=A00220&yptr=yahoo",
-      "date": "2026-08-11T12:30:50Z",
-      "topics": [
-        "earnings",
-        "tech",
-        "market"
-      ]
-    },
-    {
-      "title": "Fortrea (FTRE) Gains Traction in Turnaround",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/fortrea-ftre-gains-traction-turnaround-122428153.html",
-      "date": "2026-08-11T12:24:28Z",
-      "topics": [
-        "tech"
       ],
       "tickers": [
         "F"
@@ -272,6 +264,14 @@
       ],
       "tickers": [
         "F"
+      ]
+    },
+    {
+      "title": "Weak Jobs Report Does Not Eliminate Prospects of Interest Rate Rise",
+      "link": "https://www.nytimes.com/2026/08/07/business/economy/jobs-report-interest-rates-fed.html",
+      "date": "Fri, 07 Aug 2026 14:24:49 +0000",
+      "topics": [
+        "interest rate"
       ]
     }
   ]
