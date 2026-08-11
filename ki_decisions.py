@@ -15,6 +15,26 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 KI_LOG = os.path.join(BASE, "ki_log.json")
 sys.path.insert(0, BASE)
 
+
+def risk_appetite_profil(v):
+    """KI-Strategie-Profil aus Risiko-Appetit (0-100%).
+    Steuert das KI-Verhalten (Slider im Dashboard)."""
+    if v < 25:
+        return {"stufe": "sehr_konservativ", "label": "Sehr konservativ",
+                "ki_regel": "Nur A-/B-Klassen-Titel. Minimale Positionen, kein Hebel, keine Spekulation. Konfidenz-Schwellen hoch (>=75)."}
+    if v < 45:
+        return {"stufe": "konservativ", "label": "Konservativ",
+                "ki_regel": "Bevorzuge Aktien/ETF mit klarem Setup. Spekulation nur bei sehr starker Lage. Max 1 neue Position pro Lauf."}
+    if v < 60:
+        return {"stufe": "ausgewogen", "label": "Ausgewogen",
+                "ki_regel": "Normale Regeln. Aktien/ETF/Spekulation ausgewogen, bis zu 2 neue Positionen pro Lauf."}
+    if v < 80:
+        return {"stufe": "aggressiv", "label": "Aggressiv",
+                "ki_regel": "Mehr Spekulation erlaubt. Konfidenz-Schwellen moderat (>=55). Bis zu 3 neue Positionen, hoeheres Risiko-Budget."}
+    return {"stufe": "sehr_aggressiv", "label": "Sehr aggressiv",
+            "ki_regel": "Volle Spekulations-Freigabe. Konfidenz >=50. Aggressive Positionierung, Risiko-Budget maximal."}
+
+
 # Settings-Loader (mit Fallback auf Hardcodiertes, falls settings.json fehlt)
 try:
     from settings_loader import ki as _ki_set, lernen as _lern_set, bremse as _bremse_set, news_opt as _news_set
@@ -285,11 +305,13 @@ Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "k
         except Exception:
             _ra = 50
         _ra_label = "sehr konservativ" if _ra < 25 else "konservativ" if _ra < 45 else "ausgewogen" if _ra < 60 else "aggressiv" if _ra < 80 else "sehr aggressiv"
+        # KI-Strategie-Profil (2026-08-11): konkrete Handlungsregel statt vager Hinweis
+        _prof = risk_appetite_profil(_ra)
         _ra_hinweis = (
-            f"RISIKO-APPETIT DES USERS: {_ra}% ({_ra_label}). "
-            f"Bei <=30%: nur sichere Trades, kleine Positionen, häufiger halten. "
-            f"Bei >=70%: mehr Wagnis erlaubt, größere Positionen, Schnäppchen-Käufe bevorzugt. "
-            f"Dies ist ein Globaler Rahmen — einzelne Setup-Qualität schlägt immer."
+            f"RISIKO-APPETIT DES USERS: {_ra}% ({_ra_label}).\n"
+            f"STRATEGIE-REGEL (verbindlich): {_prof['ki_regel']}\n"
+            f"Einzelne Setup-Qualität schlaegt im Zweifel den Rahmen, aber halte dich "
+            f"innerhalb der Positions-/Konfidenz-Grenzen des Profils."
         )
         temp = _ki_set("ki_temperatur", 0.1)
         raus, _provider = call_ki(

@@ -602,30 +602,33 @@ canvas{display:block;max-width:100%}
 <div id="panel-etf" class="panel"></div>
 <div id="panel-charts" class="panel"></div>
 <div id="panel-analyse" class="panel"></div>
-<div id="panel-analyse2" class="panel">
+<div id="panel-ki_auswertung" class="panel">
   <div class="surface" style="padding:16px">
-    <h2 style="margin:0 0 12px">🗃️ Daten-Analyse (SQLite)</h2>
+    <h2 style="margin:0 0 4px">🧠 KI-Auswertung</h2>
+    <p style="margin:0 0 12px;font-size:12px;color:var(--text-dim)">Was die KI entschieden hat — Kauf/Verkauf/Halten mit Konfidenz und Begründung. Aktualisiert bei jedem KI-Lauf.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
-      <select id="an2Mode"><option value="trades">Traders</option><option value="ki">KI-Entscheidungen</option></select>
-      <select id="an2Typ"><option value="">Alle Typen</option><option value="aktien">Aktien</option><option value="etf">ETF</option><option value="spec">Spekulation</option></select>
-      <input id="an2Ticker" placeholder="Ticker-Suche" style="padding:6px 10px;border-radius:8px;background:var(--surface);color:var(--text);border:1px solid var(--border);min-width:140px;font-family:inherit">
-      <select id="an2Aktion"><option value="">Alle Aktionen</option><option value="kaufen">Kaufen</option><option value="verkaufen">Verkaufen</option><option value="halten">Halten</option></select>
-      <select id="an2Provider"><option value="">Alle Provider</option><option value="zen">zen</option><option value="zen-nemotron">zen-nemotron</option><option value="openrouter">openrouter</option><option value="nous-hy3">nous-hy3</option><option value="nous-step">nous-step</option><option value="unknown">unknown</option></select>
-      <select id="an2Fallback"><option value="">Alle</option><option value="true">Fallback</option><option value="false">Echte KI</option></select>
-      <select id="an2Tage"><option value="7">7 Tage</option><option value="30" selected>30 Tage</option><option value="90">90 Tage</option><option value="365">1 Jahr</option></select>
-      <select id="an2Order"><option value="DESC">Neueste</option><option value="ASC">Älteste</option></select>
-      <button onclick="anLaden2()" style="padding:6px 14px;border-radius:8px;background:var(--primary);color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:600">🔄 Laden</button>
+      <select id="kiAFilter"><option value="">Alle Aktionen</option><option value="kaufen">Kaufen</option><option value="verkaufen">Verkaufen</option><option value="halten">Halten</option></select>
+      <input id="kiATicker" placeholder="Ticker-Suche" style="padding:6px 10px;border-radius:8px;background:var(--surface);color:var(--text);border:1px solid var(--border);min-width:140px;font-family:inherit">
+      <select id="kiATage"><option value="7">7 Tage</option><option value="30" selected>30 Tage</option><option value="90">90 Tage</option><option value="365">1 Jahr</option></select>
+      <button onclick="renderKiAuswertung()" style="padding:6px 14px;border-radius:8px;background:var(--primary);color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:600">🔄 Laden</button>
     </div>
-    <div id="an2Karten" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"></div>
-    <div id="an2Count" style="font-size:12px;opacity:0.7;margin-bottom:8px"></div>
+    <div id="kiAKarten" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"></div>
+    <div id="kiACount" style="font-size:12px;opacity:0.7;margin-bottom:8px"></div>
     <div style="overflow-x:auto;max-height:520px;overflow-y:auto">
       <table style="width:100%;border-collapse:collapse;font-size:13px">
         <thead><tr style="position:sticky;top:0;background:var(--primary-soft)">
-          <th style="padding:6px;text-align:left">Zeit</th><th style="padding:6px;text-align:left">Typ</th><th style="padding:6px;text-align:left">Ticker</th><th style="padding:6px;text-align:left">Aktion</th><th style="padding:6px;text-align:right">Menge</th><th style="padding:6px;text-align:right">Preis</th><th style="padding:6px;text-align:left">Grund</th><th style="padding:6px;text-align:right">Konf.</th><th style="padding:6px;text-align:left">Provider</th><th style="padding:6px;text-align:left">decision_id</th><th style="padding:6px;text-align:left">Regel-ID</th>
+          <th style="padding:6px;text-align:left">Zeit</th><th style="padding:6px;text-align:left">Ticker</th><th style="padding:6px;text-align:left">Aktion</th><th style="padding:6px;text-align:right">Konf.</th><th style="padding:6px;text-align:left">Grund</th><th style="padding:6px;text-align:left">Provider</th>
         </tr></thead>
-        <tbody id="an2Body"></tbody>
+        <tbody id="kiABody"></tbody>
       </table>
     </div>
+  </div>
+</div>
+<div id="panel-lernen" class="panel">
+  <div class="surface" style="padding:16px">
+    <h2 style="margin:0 0 4px">📚 Lerneffekte</h2>
+    <p style="margin:0 0 12px;font-size:12px;color:var(--text-dim)">Was das System aus bisherigen Trades gelernt hat — automatisch vorgeschlagene Regeln (pending_rules.json).</p>
+    <div id="lernenBox">lädt…</div>
   </div>
 </div>
 <div id="panel-news" class="panel"><div class="surface" id="newsBox">lädt…</div></div>
@@ -697,15 +700,16 @@ const AREA_MAP = {
   spec:     { area: "portfolios", sub: "spec" },
   charts:   { area: "maerkte" },
   analyse:  { area: "analyse", sub: "analyse" },
-  analyse2: { area: "analyse", sub: "analyse2" },
-  news:     { area: "aktivitaet" },
+  ki_auswertung: { area: "analyse", sub: "ki_auswertung" },
+  lernen:  { area: "analyse", sub: "lernen" },
+  news:     { area: "analyse", sub: "news" },
   ki:       { area: "ki" },
   log:      { area: "system" },
   settings: { area: "settings" },
 };
 const AREA_SUBS = {
   portfolios: [["alle","🗂️ Alle"],["stocks","📈 Aktien"],["etf","📦 ETF"],["spec","🔥 Spekulation"]],
-  analyse:    [["analyse","📊 Analyse"],["analyse2","🗃️ Analyse DB"]],
+  analyse:    [["analyse","📊 Analyse"],["ki_auswertung","🧠 KI-Auswertung"],["news","📰 News"],["lernen","📚 Lerneffekte"]],
 };
 
 // ─── PORTFOLIOS-ÜBERSICHT (Phase 6: ruhige Karten-Übersicht, max 6, Drawer-Detail) ───
@@ -760,7 +764,9 @@ function renderPortfoliosUebersicht() {
   const gesRend = alle.length ? alle.reduce((s, x) => s + (x.rendite || 0), 0) / alle.length : 0;
   const aktiv = alle.filter(x => (x.positionen || 0) > 0).length;
   const gesperrt = alle.filter(x => x.gesperrt).length;
-  const maxKarten = 6;
+  // Pagination: standard 12 Karten, "Alle laden" zeigt restliche
+  const showAll = window.__pfShowAll || false;
+  const maxKarten = showAll ? liste.length : 12;
   const karten = liste.slice(0, maxKarten);
 
   const opt = (v, l) => `<option value="${v}" ${PF_FILTER[v.split("_")[0]] === v || (v === "alle" && PF_FILTER[v] === "alle") ? "selected" : ""}>${l}</option>`;
@@ -789,7 +795,8 @@ function renderPortfoliosUebersicht() {
   }).join("") : `<div class="glass" style="padding:24px;text-align:center;color:var(--text-muted)">Keine Portfolios entsprechen den gewählten Filtern.</div>`;
 
   const mehr = liste.length > maxKarten
-    ? `<div style="text-align:center;margin-top:10px;font-size:12px;color:var(--text-muted)">${liste.length - maxKarten} weitere Portfolios — Filter anpassen oder Kategorie wählen.</div>` : "";
+    ? `<div style="text-align:center;margin-top:10px;font-size:12px;color:var(--text-muted)">${liste.length - maxKarten} weitere Portfolios — <a href="#" onclick="window.__pfShowAll=true;renderPortfoliosUebersicht();return false" style="color:var(--slate);font-weight:600">Alle ${liste.length} laden</a> oder Filter anpassen.</div>`
+    : (showAll && liste.length > 12 ? `<div style="text-align:center;margin-top:10px;font-size:12px;color:var(--text-muted)"><a href="#" onclick="window.__pfShowAll=false;renderPortfoliosUebersicht();return false" style="color:var(--slate);font-weight:600">Weniger anzeigen</a></div>` : "");
 
   document.getElementById("panel-alle").innerHTML = `
     <div class="summary-row" style="margin-bottom:12px">
@@ -801,11 +808,12 @@ function renderPortfoliosUebersicht() {
       <div class="stat"><div class="num" style="font-size:13px">SHADOW</div><div class="lbl">Modus</div></div>
     </div>
     <div class="surface" style="padding:14px;margin-bottom:14px">
-      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
         <label style="font-size:13px;font-weight:600;color:var(--text)">🎚 Risiko-Appetit (KI-Strategie): <span id="raVal">50</span>%</label>
         <input type="range" id="riskAppetite" min="0" max="100" value="50" oninput="document.getElementById('raVal').textContent=this.value" onchange="setRiskAppetite(this.value)" style="flex:1;min-width:200px;accent-color:var(--slate)">
-        <span id="raLabel" style="font-size:11px;color:var(--text-soft)">Ausgewogen</span>
+        <span id="raLabel" style="font-size:11px;font-weight:600;color:var(--slate);background:var(--primary-soft);padding:3px 10px;border-radius:999px">Ausgewogen</span>
       </div>
+      <div id="raHinweis" style="margin-top:6px;font-size:11.5px;color:var(--text-soft);line-height:1.5;max-width:680px">Lade Strategie-Profil…</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         <input type="text" placeholder="🔍 Suche Ticker…" value="${PF_FILTER.suche}" oninput="PF_FILTER.suche=this.value;renderPortfoliosUebersicht()" style="padding:6px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;min-width:140px">
         <select onchange="PF_FILTER.kat=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
@@ -874,6 +882,10 @@ function showTab(name) {
   if (name === "alle") renderPortfoliosUebersicht();
   if (name === "charts") renderMaerkte();
   if (name === "broker") renderBroker();
+  if (name === "analyse") renderAnalyse();
+  if (name === "ki_auswertung") renderKiAuswertung();
+  if (name === "news") renderNews();
+  if (name === "lernen") renderLernen();
   // scroll to top
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -891,6 +903,12 @@ function renderBroker() {
       const pSt = p.status === 'verbunden' ? '🟢' : '🔴';
       const sSt = s.status === 'verbunden' ? '🟢' : '🔴';
       const syncCol = j.sync_status === 'SYNCED' ? 'var(--green)' : j.sync_status === 'LEER' ? 'var(--text-dim)' : 'var(--danger)';
+      const posHtml = (j.top_positionen && j.top_positionen.length)
+        ? `<div style="margin-top:14px"><div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px">📈 Top-Positionen (Paper-Sim)</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+            ${j.top_positionen.map(p => `<div class="stat" style="min-width:120px"><div class="num" style="font-size:14px">${esc(p.ticker||'?')}</div><div class="lbl">${p.markt||''} · ${p.shares||0} Stk · $${(p.wert||0).toFixed(0)}</div></div>`).join('')}
+            </div></div>`
+        : `<div style="margin-top:14px;font-size:12px;color:var(--text-dim)">Noch keine Paper-Positionen (Simulation läuft, aber keine Käufe getätigt).</div>`;
       box.innerHTML = `
         <h3 style="margin-bottom:10px;font-size:14px;font-weight:600">Broker-Verbindungen</h3>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
@@ -899,7 +917,10 @@ function renderBroker() {
           <div class="stat"><div class="num" style="color:${syncCol}">${j.sync_status}</div><div class="lbl">Order/Pos-Sync</div></div>
           <div class="stat"><div class="num">${p.portfolios||0}</div><div class="lbl">Paper-Portfolios</div></div>
           <div class="stat"><div class="num">$${(p.wert||0).toFixed(2)}</div><div class="lbl">Sim-Wert</div></div>
+          <div class="stat"><div class="num">${j.positionen_anzahl||0}</div><div class="lbl">Positionen</div></div>
+          <div class="stat"><div class="num">${j.orders_anzahl||0}</div><div class="lbl">Orders</div></div>
         </div>
+        ${posHtml}
         <div style="margin-top:10px;font-size:12px;color:var(--text-dim)">
           <b>Paper:</b> ${p.broker} · ${p.umgebung}<br>
           <b>Sandbox:</b> ${s.broker} · ${s.umgebung} · Buying Power $${(s.buying_power||0).toFixed(2)}<br>
@@ -912,6 +933,138 @@ function renderBroker() {
         </div>`;
     })
     .catch(e => { box.innerHTML = '<b>Netzwerk-Fehler:</b> ' + e.message; });
+}
+
+// ─── Analyse: Ticker-Statistik (Meistgehandelte Ticker / Trades nach Grund) ───
+function renderAnalyse() {
+  const box = document.getElementById("panel-analyse");
+  if (!box) return;
+  box.innerHTML = "<div class='surface' style='padding:16px'><h2 style='margin:0 0 12px'>📊 Analyse</h2><div id='anBoot' style='font-size:13px;color:var(--text-dim)'>lädt…</div></div>";
+  fetch('/api/analysis').then(r => r.json()).then(j => {
+    window.__analysis = j;
+    const teile = [];
+    for (const kat of ["aktien", "etf", "spekulation"]) {
+      const k = j[kat] || {};
+      const tick = k.meistgehandelte_ticker || {};
+      const grund = k.trades_nach_grund || {};
+      const tickArr = Object.entries(tick).sort((a,b)=>b[1]-a[1]).slice(0,8);
+      const grundArr = Object.entries(grund).sort((a,b)=>b[1]-a[1]).slice(0,8);
+      const maxT = tickArr.length ? tickArr[0][1] : 1;
+      const maxG = grundArr.length ? grundArr[0][1] : 1;
+      const label = { aktien: "Aktien", etf: "ETF", spekulation: "Spekulation" }[kat];
+      teile.push(`<div class='surface' style='padding:14px;margin-bottom:12px'>
+        <h3 style='margin:0 0 10px;font-size:14px'>${label}</h3>
+        <div style='display:flex;gap:24px;flex-wrap:wrap'>
+          <div style='flex:1;min-width:240px'>
+            <div style='font-size:11px;font-weight:600;color:var(--text-dim);margin-bottom:6px'>Meistgehandelte Ticker</div>
+            ${tickArr.map(([t,n])=>`<div style='display:flex;align-items:center;gap:8px;margin:3px 0'><span style='width:70px;font-size:12px'>${esc(t)}</span><div style='flex:1;height:10px;background:var(--primary-soft);border-radius:6px;overflow:hidden'><div style='width:${(n/maxT*100).toFixed(0)}%;height:100%;background:var(--slate)'></div></div><span style='font-size:11px;color:var(--text-dim)'>${n}</span></div>`).join('') || '<div style="font-size:12px;color:var(--text-dim)">keine Daten</div>'}
+          </div>
+          <div style='flex:1;min-width:240px'>
+            <div style='font-size:11px;font-weight:600;color:var(--text-dim);margin-bottom:6px'>Trades nach Grund</div>
+            ${grundArr.map(([g,n])=>`<div style='display:flex;align-items:center;gap:8px;margin:3px 0'><span style='width:120px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap' title='${esc(g)}'>${esc(g)}</span><div style='flex:1;height:10px;background:#ede9fe;border-radius:6px;overflow:hidden'><div style='width:${(n/maxG*100).toFixed(0)}%;height:100%;background:#8b5cf6'></div></div><span style='font-size:11px;color:var(--text-dim)'>${n}</span></div>`).join('') || '<div style="font-size:12px;color:var(--text-dim)">keine Daten</div>'}
+          </div>
+        </div>
+      </div>`);
+    }
+    box.innerHTML = `<div class='surface' style='padding:16px'><h2 style='margin:0 0 12px'>📊 Analyse</h2>${teile.join('')}</div>`;
+  }).catch(e => { box.innerHTML = `<div class='surface' style='padding:16px'>Fehler: ${e.message}</div>`; });
+}
+
+// ─── KI-Auswertung (ki_log Typ=decision) ───
+function renderKiAuswertung() {
+  const box = document.getElementById("kiABody");
+  if (!box) return;
+  const tage = parseInt(document.getElementById("kiATage").value) || 30;
+  const aktion = document.getElementById("kiAFilter").value;
+  const q = (document.getElementById("kiATicker").value || "").toLowerCase();
+  fetch('/api/ki_log?typ=decision&tage=' + tage).then(r => r.json()).then(rows => {
+    let data = Array.isArray(rows) ? rows : [];
+    if (aktion) data = data.filter(e => (e.aktion||'') === aktion);
+    if (q) data = data.filter(e => (e.ticker||'').toLowerCase().includes(q));
+    document.getElementById("kiACount").textContent = data.length + " KI-Entscheidungen";
+    if (!data.length) { box.innerHTML = "<tr><td colspan='6' style='padding:12px;color:var(--text-dim)'>Keine Entscheidungen für Filter.</td></tr>"; return; }
+    box.innerHTML = data.slice(0,200).map(e => {
+      const ak = (e.aktion||'').toLowerCase();
+      const col = ak === 'kaufen' ? 'var(--green)' : ak === 'verkaufen' ? 'var(--amber)' : 'var(--text-dim)';
+      return `<tr>
+        <td style='padding:6px'>${(e.zeit||'').slice(0,16).replace('T',' ')}</td>
+        <td style='padding:6px;font-weight:600'>${esc(e.ticker||'-')}</td>
+        <td style='padding:6px;color:${col};font-weight:600'>${esc(e.aktion||'-')}</td>
+        <td style='padding:6px;text-align:right'>${e.konfidenz!=null?e.konfidenz:'-'}</td>
+        <td style='padding:6px;font-size:12px;max-width:340px'>${esc(e.grund||'-')}</td>
+        <td style='padding:6px;font-size:11px;color:var(--text-dim)'>${esc(e.provider||'-')}</td>
+      </tr>`;
+    }).join('');
+  }).catch(e => { box.innerHTML = `<tr><td colspan='6'>Fehler: ${e.message}</td></tr>`; });
+}
+
+// ─── News-Tab (ki_log Typ=news, P0-P3 Bewertung) ───
+function renderNews() {
+  const box = document.getElementById("newsBox");
+  if (!box) return;
+  box.innerHTML = "lädt…";
+  fetch('/api/ki_log?typ=news&tage=30').then(r => r.json()).then(rows => {
+    const data = Array.isArray(rows) ? rows : [];
+    if (!data.length) { box.innerHTML = "<div class='surface' style='padding:16px'>Keine News-Bewertungen in den letzten 30 Tagen.</div>"; return; }
+    const urgColor = { P0: "var(--danger)", P1: "#f59e0b", P2: "var(--slate)", P3: "var(--text-dim)" };
+    const dirIcon = { positive: "🟢", negative: "🔴", neutral: "⚪" };
+    const rowsHtml = data.slice().reverse().map(e => {
+      const u = e.urgency || "P3";
+      const stars = e.stars || "";
+      const tick = (e.tickers && e.tickers.length) ? e.tickers.join(", ") : "—";
+      return `<div class="glass" style="padding:12px 14px;margin-bottom:8px;border-left:4px solid ${urgColor[u]||'var(--text-dim)'}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:600;color:var(--text)">${esc(e.title||'(ohne Titel)')}</div>
+            <div style="font-size:11px;color:var(--text-dim);margin-top:3px">${esc((e.zeit||'').slice(0,16).replace('T',' '))} · ${esc((e.topics||[]).join(', '))}</div>
+          </div>
+          <div style="text-align:right;white-space:nowrap">
+            <span style="font-size:11px;font-weight:700;color:${urgColor[u]||'var(--text-dim)'};background:var(--primary-soft);padding:2px 8px;border-radius:999px">${u}</span>
+            <div style="font-size:11px;margin-top:4px">${stars} ${dirIcon[e.direction]||'⚪'}</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;margin-top:6px;font-size:11px;color:var(--text-dim)">
+          <span><b>Ticker:</b> ${esc(tick)}</span>
+          <span><b>Typ:</b> ${esc(e.event_type||'-')}</span>
+          <span><b>Score:</b> ${e.score!=null?e.score:'-'}%</span>
+        </div>
+        ${e.reason ? `<div style="margin-top:5px;font-size:12px;color:var(--text-soft)">${esc(e.reason)}</div>` : ''}
+      </div>`;
+    }).join('');
+    box.innerHTML = `<h2 style="margin:0 0 12px">📰 News-Bewertungen (KI)</h2>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:12px">${data.length} Bewertungen · P0=dringend, P3=Info · ${dirIcon.positive} positiv ${dirIcon.negative} negativ</div>
+      ${rowsHtml}`;
+  }).catch(e => { box.innerHTML = "<div class='surface' style='padding:16px'>Fehler: " + e.message + "</div>"; });
+}
+
+// ─── Lerneffekte (pending_rules.json) ───
+function renderLernen() {
+  const box = document.getElementById("lernenBox");
+  if (!box) return;
+  box.innerHTML = "lädt…";
+  fetch('/api/pending_rules').then(r => r.json()).then(rules => {
+    const data = Array.isArray(rules) ? rules : [];
+    if (!data.length) {
+      box.innerHTML = "<div class='surface' style='padding:16px'><div style='font-size:13px;color:var(--text-dim)'>Noch keine automatischen Lerneffekte. Das System sammelt aus Trades Regeln und schlägt sie hier vor.</div></div>";
+      return;
+    }
+    const card = (r) => {
+      const typCol = (r.typ === 'positiv') ? 'var(--green)' : (r.typ === 'negativ') ? 'var(--danger)' : 'var(--slate)';
+      return `<div class="glass" style="padding:12px 14px;margin-bottom:8px;border-left:4px solid ${typCol}">
+        <div style="font-size:13px;font-weight:600;color:var(--text)">${esc(r.regel||'(keine Regel)')}</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:4px">Muster: ${esc(r.muster||'-')}</div>
+        <div style="display:flex;gap:14px;margin-top:6px;font-size:11px;color:var(--text-dim)">
+          <span><b>Gewicht:</b> ${r.gewicht!=null?r.gewicht:'-'}</span>
+          <span><b>Bestätigt:</b> ${r.support_count||0}×</span>
+          <span><b>Verletzt:</b> ${r.violation_count||0}×</span>
+          <span><b>Status:</b> ${esc(r.status||'offen')}</span>
+        </div>
+      </div>`;
+    };
+    box.innerHTML = `<h2 style="margin:0 0 4px">📚 Lerneffekte</h2>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:12px">${data.length} vorgeschlagene Regeln aus Trade-Auswertung</div>
+      ${data.map(card).join('')}`;
+  }).catch(e => { box.innerHTML = "<div class='surface' style='padding:16px'>Fehler: " + e.message + "</div>"; });
 }
 
 // ─── Märkte-Tab (Bootstrap) ───
@@ -3044,7 +3197,14 @@ function setRiskAppetite(v) {
   document.getElementById('raLabel').textContent = label;
   fetch('/api/risk_appetite?value=' + pct)
     .then(r => r.json())
-    .then(j => { if (!j.ok) alert('Fehler: ' + (j.error||'unbekannt')); })
+    .then(j => {
+      if (!j.ok) { alert('Fehler: ' + (j.error||'unbekannt')); return; }
+      if (j.profil) {
+        document.getElementById('raHinweis').innerHTML =
+          '<b>Was dieser Regler steuert:</b> ' + esc(j.profil.ki_regel) +
+          '<br><span style="opacity:.75">Die KI hält sich an diese Strategie-Regel bei allen neuen Kauf-/Verkaufs-Entscheidungen.</span>';
+      }
+    })
     .catch(e => alert('Netzwerk-Fehler: ' + e.message));
 }
 
@@ -3057,6 +3217,11 @@ function loadRiskAppetite() {
         document.getElementById('raVal').textContent = j.value;
         const pct = j.value;
         document.getElementById('raLabel').textContent = pct < 25 ? 'Sehr konservativ' : pct < 45 ? 'Konservativ' : pct < 60 ? 'Ausgewogen' : pct < 80 ? 'Aggressiv' : 'Sehr aggressiv';
+        if (j.profil) {
+          document.getElementById('raHinweis').innerHTML =
+            '<b>Was dieser Regler steuert:</b> ' + esc(j.profil.ki_regel) +
+            '<br><span style="opacity:.75">Die KI hält sich an diese Strategie-Regel bei allen neuen Kauf-/Verkaufs-Entscheidungen.</span>';
+        }
       }
     })
     .catch(() => {});

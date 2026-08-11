@@ -28897,5 +28897,37 @@
     "reason": "Langsamere Wirtschaftsentwicklung drückt Sentiment",
     "link": "https://www.nytimes.com/2026/07/30/business/economy/us-economy-gdp-growth.html",
     "dedup_id": "1bb6ad7a2331"
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-11T15:03:05.925046",
+    "aktion": "KI Risk 30",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 30"
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-11T15:03:06.131233",
+    "aktion": "KI Risk 80",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 80"
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-11T15:03:10.579746",
+    "aktion": "KI Risk 30",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 30"
+  },
+  {
+    "typ": "decision",
+    "zeit": "2026-08-11T15:03:10.976002",
+    "aktion": "KI Risk 80",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 80"
   }
 ]

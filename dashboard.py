@@ -1283,23 +1283,65 @@ def pause_trading():
 @app.route("/api/risk_appetite")
 def risk_appetite():
     """Liest/Schreibt den globalen Risiko-Appetit (0-100%) aus config.json.
-    P3 (2026-08-10): Slider im Dashboard -> KI-Strategie (aggressiv/konservativ)."""
+    P3 (2026-08-10): Slider im Dashboard -> KI-Strategie (aggressiv/konservativ).
+    Erweitert 2026-08-11: KI-Strategie-Profile + Merge-Schutz fuer config.json."""
     cf = os.path.join(BASE, "config.json")
     if request.args.get("value") is not None:
         try:
             v = max(0, min(100, int(request.args.get("value"))))
-            data = {"risk_appetite": v, "risk_appetite_updated": time.strftime("%Y-%m-%dT%H:%M:%S")}
+            # Merge-Schutz: bestehende config erhalten (keine Keys loeschen)
+            cur = {}
+            if os.path.exists(cf):
+                try:
+                    cur = json.load(open(cf, encoding="utf-8"))
+                except Exception:
+                    cur = {}
+            cur["risk_appetite"] = v
+            cur["risk_appetite_updated"] = time.strftime("%Y-%m-%dT%H:%M:%S")
             with open(cf, "w") as f:
-                json.dump(data, f, indent=2)
-            return {"ok": True, "value": v}
+                json.dump(cur, f, indent=2)
+            return {"ok": True, "value": v, "profil": risk_appetite_profil(v)}
         except Exception as e:
             return {"ok": False, "error": str(e)}
     try:
-        with open(cf) as f:
+        with open(cf, encoding="utf-8") as f:
             d = json.load(f)
-        return {"ok": True, "value": d.get("risk_appetite", 50)}
+        v = int(d.get("risk_appetite", 50))
+        return {"ok": True, "value": v, "profil": risk_appetite_profil(v)}
     except Exception:
-        return {"ok": True, "value": 50}
+        return {"ok": True, "value": 50, "profil": risk_appetite_profil(50)}
+
+
+def risk_appetite_profil(v):
+    """KI-Strategie-Profil aus Risiko-Appetit (0-100%).
+    Steuert das KI-Verhalten (siehe ki_decisions.py Prompt-Injektion)."""
+    if v < 25:
+        return {"stufe": "sehr_konservativ", "label": "Sehr konservativ",
+                "ki_regel": "Nur A-/B-Klassen-Titel. Minimale Positionen, kein Hebel, keine Spekulation. Konfidenz-Schwellen hoch (>=75)."}
+    if v < 45:
+        return {"stufe": "konservativ", "label": "Konservativ",
+                "ki_regel": "Bevorzuge Aktien/ETF mit klarem Setup. Spekulation nur bei sehr starker Lage. Max 1 neue Position pro Lauf."}
+    if v < 60:
+        return {"stufe": "ausgewogen", "label": "Ausgewogen",
+                "ki_regel": "Normale Regeln. Aktien/ETF/Spekulation ausgewogen, bis zu 2 neue Positionen pro Lauf."}
+    if v < 80:
+        return {"stufe": "aggressiv", "label": "Aggressiv",
+                "ki_regel": "Mehr Spekulation erlaubt. Konfidenz-Schwellen moderat (>=55). Bis zu 3 neue Positionen, höheres Risiko-Budget."}
+    return {"stufe": "sehr_aggressiv", "label": "Sehr aggressiv",
+            "ki_regel": "Volle Spekulations-Freigabe. Konfidenz >=50. Aggressive Positionierung, Risiko-Budget maximal."}
+
+@app.route("/api/pending_rules")
+def api_pending_rules():
+    """Lerneffekte: automatisch vorgeschlagene Regeln aus pending_rules.json."""
+    p = os.path.join(BASE, "pending_rules.json")
+    if not os.path.exists(p):
+        return []
+    try:
+        with open(p, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
 
 @app.route("/api/close_portfolio")
 def close_portfolio():
@@ -1388,13 +1430,31 @@ def broker_status():
         sb_acct = sb.get_account()
         # Sync-Status: paper_orders vs. paper_positions
         sync = "SYNCED"
+        pos_count = 0
+        order_count = 0
+        top_positions = []
         try:
             import db as _db
             m = _db.MTDB()
             try:
                 orders = m.conn.execute("SELECT COUNT(*) AS n FROM paper_orders").fetchone()
                 pos = m.conn.execute("SELECT COUNT(*) AS n FROM paper_positions").fetchone()
-                sync = "SYNCED" if (orders["n"] if orders else 0) or (pos["n"] if pos else 0) else "LEER"
+                pos_count = pos["n"] if pos else 0
+                order_count = orders["n"] if orders else 0
+                sync = "SYNCED" if (order_count or pos_count) else "LEER"
+                # Top 5 Positionen nach Wert (fuer Broker-Tab-Anzeige)
+                try:
+                    rows = m.conn.execute(
+                        "SELECT ticker, markt, shares, avg_cost, current_price FROM paper_positions "
+                        "ORDER BY (shares*COALESCE(current_price,avg_cost)) DESC LIMIT 8").fetchall()
+                    for r in rows:
+                        wert = (r["shares"] or 0) * (r["current_price"] or r["avg_cost"] or 0)
+                        top_positions.append({
+                            "ticker": r["ticker"], "markt": r["markt"],
+                            "shares": r["shares"], "wert": round(wert, 2)
+                        })
+                except Exception:
+                    pass
             finally:
                 m.close()
         except Exception:
@@ -1417,6 +1477,9 @@ def broker_status():
             "sync_status": sync,
             "key_hinweis": "kein Key — reine Simulatoren, keine Live-Orders (PAPER_ONLY)",
             "letzter_check": time.strftime("%H:%M:%S"),
+            "positionen_anzahl": pos_count,
+            "orders_anzahl": order_count,
+            "top_positionen": top_positions,
         }
     except Exception as e:
         return {"ok": False, "error": str(e)}
@@ -1764,6 +1827,8 @@ def clear_cache():
 def api_ki_log():
     # PHASE 4: Tenant-Scope — nur Eintraege des aktiven Tenants
     kip = os.path.join(BASE, "ki_log.json")
+    typ = request.args.get("typ")
+    tage = request.args.get("tage")
     if not os.path.exists(kip):
         return []
     try:
@@ -1777,7 +1842,17 @@ def api_ki_log():
             tid = _get_tid()
         except Exception:
             tid = 1
-        return [e for e in data if e.get("tenant_id", 1) == tid]
+        data = [e for e in data if e.get("tenant_id", 1) == tid]
+        if typ:
+            data = [e for e in data if e.get("typ") == typ]
+        if tage:
+            try:
+                from datetime import datetime as _dt, timedelta as _td
+                cutoff = (_dt.utcnow() - _td(days=int(tage))).isoformat()
+                data = [e for e in data if (e.get("zeit") or "") >= cutoff]
+            except Exception:
+                pass
+        return data
     return data
 
 
