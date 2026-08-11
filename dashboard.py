@@ -1368,6 +1368,31 @@ def suspend_trading():
             pass
     return {"ok": True, "suspended": False}
 
+@app.route("/api/broker_status")
+def broker_status():
+    """Broker-Status (Roadmap Punkt 8): PaperBrokerAdapter + Sync-Zustand.
+    Zeigt NIE Keys — nur Status/Umgebung (Sicherheits-Regel)."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    try:
+        pb = sec.PaperBrokerAdapter()
+        conn = pb.connect()
+        health = pb.health_check()
+        acct = pb.get_account()
+        return {
+            "ok": True,
+            "broker": "PaperBrokerAdapter (Simulator)",
+            "umgebung": "PAPER",
+            "status": "verbunden" if health.get("ok") else "getrennt",
+            "portfolios": acct.get("portfolios", 0),
+            "wert": acct.get("wert", 0.0),
+            "key_hinweis": "kein Key — reiner Simulator, keine Live-Orders",
+            "letzter_check": time.strftime("%H:%M:%S"),
+        }
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
 def _depot_pfad_aus_id(depot_id):
     """'spec:BBAI' -> spec_depots/BBAI.json | 'aktien:50' -> depot_050_paper.json | 'etf:30' -> etf_030_paper.json"""
     try:

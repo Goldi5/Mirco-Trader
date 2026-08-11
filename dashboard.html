@@ -549,6 +549,7 @@ canvas{display:block;max-width:100%}
       <button class="nav-item" data-area="aktivitaet" onclick="showTab('news')">Aktivität</button>
       <button class="nav-item" data-area="ki" onclick="showTab('ki')">KI</button>
       <button class="nav-item" data-area="system" onclick="showTab('log')">System</button>
+      <button class="nav-item" data-area="broker" onclick="showTab('broker')">Broker</button>
       <button class="nav-item" data-area="settings" onclick="showTab('settings')">Einstellungen</button>
     </nav>
     <div class="hdr-right">
@@ -646,6 +647,7 @@ canvas{display:block;max-width:100%}
   <div class="ki-subpanel" data-ki="was-lernt" style="display:none"><div class="surface" id="kiLernErklaerungBox">lädt…</div></div>
 </div>
 <div id="panel-log" class="panel"><div class="surface" id="logBox">lädt…</div></div>
+<div id="panel-broker" class="panel" style="display:none"><div class="surface" id="brokerBox">lädt…</div></div>
 <div id="panel-spec" class="panel"></div>
 <div id="panel-detail" class="panel"></div>
 
@@ -871,8 +873,40 @@ function showTab(name) {
   if (name === "settings") renderSettings();
   if (name === "alle") renderPortfoliosUebersicht();
   if (name === "charts") renderMaerkte();
+  if (name === "broker") renderBroker();
   // scroll to top
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ─── Broker-Tab (Roadmap Punkt 8) ───
+function renderBroker() {
+  const box = document.getElementById("brokerBox");
+  if (!box) return;
+  box.innerHTML = "lädt…";
+  fetch('/api/broker_status')
+    .then(r => r.json())
+    .then(j => {
+      if (!j.ok) { box.innerHTML = '<b>Fehler:</b> ' + (j.error || 'unbekannt'); return; }
+      const st = j.status === 'verbunden' ? '🟢' : '🔴';
+      box.innerHTML = `
+        <h3 style="margin-bottom:10px;font-size:14px;font-weight:600">Broker-Verbindung</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div class="stat"><div class="num">${st} ${j.status}</div><div class="lbl">Status</div></div>
+          <div class="stat"><div class="num">${j.umgebung}</div><div class="lbl">Umgebung</div></div>
+          <div class="stat"><div class="num">${j.portfolios}</div><div class="lbl">Paper-Portfolios</div></div>
+          <div class="stat"><div class="num">$${(j.wert||0).toFixed(2)}</div><div class="lbl">Sim-Wert</div></div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:var(--text-dim)">
+          <b>Adapter:</b> ${j.broker}<br>
+          <b>Keys:</b> ${j.key_hinweis}<br>
+          <b>Letzter Check:</b> ${j.letzter_check}
+        </div>
+        <div style="margin-top:12px;padding:10px;border:1px dashed var(--border);border-radius:8px;font-size:11px;color:var(--text-dim)">
+          Roadmap: PaperBrokerAdapter aktiv (Simulator). Live-Broker (Alpaca Europe, Xetra für DE verfügbar)
+          erst nach Freigabeprozess — Sandbox/Paper-Test jederzeit möglich.
+        </div>`;
+    })
+    .catch(e => { box.innerHTML = '<b>Netzwerk-Fehler:</b> ' + e.message; });
 }
 
 // ─── Märkte-Tab (Bootstrap) ───
