@@ -1368,6 +1368,132 @@ def suspend_trading():
             pass
     return {"ok": True, "suspended": False}
 
+def _depot_pfad_aus_id(depot_id):
+    """'spec:BBAI' -> spec_depots/BBAI.json | 'aktien:50' -> depot_050_paper.json | 'etf:30' -> etf_030_paper.json"""
+    try:
+        kat, key = depot_id.split(":", 1)
+    except Exception:
+        return None
+    if kat == "spec":
+        f = os.path.join(BASE, "spec_depots", f"{key}.json")
+        return f if os.path.exists(f) else None
+    if kat == "etf":
+        for cand in [os.path.join(BASE, f"etf_{int(key):03d}_paper.json"),
+                     os.path.join(BASE, f"etf_{int(key):03d}.json")]:
+            if os.path.exists(cand):
+                return cand
+        return None
+    if kat == "aktien":
+        for cand in [os.path.join(BASE, f"depot_{int(key):03d}_paper.json"),
+                     os.path.join(BASE, f"depot_{int(key):03d}.json")]:
+            if os.path.exists(cand):
+                return cand
+        return None
+    return None
+
+@app.route("/api/depot_pause")
+def depot_pause():
+    """Pausiert/Resumt EIN Depot (depot_pause.json, pro Depot-ID).
+    Toggle: 1. Aufruf pausiert, 2. hebt Pause auf."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    depot_id = request.args.get("id", "")
+    pf = os.path.join(BASE, "depot_pause.json")
+    flags = {}
+    if os.path.exists(pf):
+        try:
+            flags = json.load(open(pf))
+        except Exception:
+            flags = {}
+    aktuell = bool(flags.get(depot_id, {}).get("paused"))
+    flags[depot_id] = {"paused": not aktuell, "zeit": time.strftime("%Y-%m-%d %H:%M")}
+    with open(pf, "w") as f:
+        json.dump(flags, f, indent=2)
+    return {"ok": True, "paused": not aktuell, "depot": depot_id}
+
+@app.route("/api/depot_verkaufen")
+def depot_verkaufen():
+    """Verkauft ALLE Positionen eines Depots (Paper-Sim), behält Depot offen."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    depot_id = request.args.get("id", "")
+    f = _depot_pfad_aus_id(depot_id)
+    if not f:
+        return {"ok": False, "error": "Depot nicht gefunden: " + depot_id}
+    try:
+        d = json.load(open(f, encoding="utf-8"))
+        from marktdaten import hole_kurs
+        erloes = 0
+        # Format A: Spec (top-level shares)
+        sh = d.get("shares", 0) or 0
+        if sh > 0:
+            k = hole_kurs(d.get("ticker", "")) or d.get("avg_price", 0) or 0
+            erloes += sh * k
+            d["bargeld"] = (d.get("bargeld", 0) or 0) + erloes
+            d["shares"] = 0
+        # Format B: positions-dict
+        pos = d.get("positions", {})
+        if isinstance(pos, dict) and pos:
+            for t, p in pos.items():
+                psh = p.get("shares", 0) or 0
+                k = hole_kurs(t) or p.get("avg_price", 0) or 0
+                erloes += psh * k
+            d["bargeld"] = (d.get("bargeld", 0) or 0) + erloes
+            d["positions"] = {}
+        json.dump(d, open(f, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
+        return {"ok": True, "erloes": round(erloes, 2), "depot": depot_id}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+@app.route("/api/depot_schliessen")
+def depot_schliessen():
+    """Schließt ein Depot: verkauft alles + Zustand CLOSED + Pause-Flag."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    depot_id = request.args.get("id", "")
+    f = _depot_pfad_aus_id(depot_id)
+    if not f:
+        return {"ok": False, "error": "Depot nicht gefunden: " + depot_id}
+    try:
+        # Erst verkaufen
+        d = json.load(open(f, encoding="utf-8"))
+        from marktdaten import hole_kurs
+        erloes = 0
+        sh = d.get("shares", 0) or 0
+        if sh > 0:
+            k = hole_kurs(d.get("ticker", "")) or d.get("avg_price", 0) or 0
+            erloes += sh * k
+            d["bargeld"] = (d.get("bargeld", 0) or 0) + erloes
+            d["shares"] = 0
+        pos = d.get("positions", {})
+        if isinstance(pos, dict) and pos:
+            for t, p in pos.items():
+                psh = p.get("shares", 0) or 0
+                k = hole_kurs(t) or p.get("avg_price", 0) or 0
+                erloes += psh * k
+            d["bargeld"] = (d.get("bargeld", 0) or 0) + erloes
+            d["positions"] = {}
+        d["zustand"] = "CLOSED"
+        d["closed_at"] = time.strftime("%Y-%m-%dT%H:%M:%S")
+        json.dump(d, open(f, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
+        # Pause-Flag setzen
+        pf = os.path.join(BASE, "depot_pause.json")
+        flags = {}
+        if os.path.exists(pf):
+            try:
+                flags = json.load(open(pf))
+            except Exception:
+                flags = {}
+        flags[depot_id] = {"paused": True, "zustand": "CLOSED", "zeit": time.strftime("%Y-%m-%d %H:%M")}
+        with open(pf, "w") as f:
+            json.dump(flags, f, indent=2)
+        return {"ok": True, "erloes": round(erloes, 2), "zustand": "CLOSED", "depot": depot_id}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
 
 
 def _ist_pausiert():

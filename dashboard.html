@@ -1119,6 +1119,11 @@ function showDepot(dep, typ) {
         <div class="stat"><div class="num">${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)}</div><div class="lbl">Gewinn/Verlust</div></div>
         <div class="stat"><div class="num">$${(dep.bargeld||0).toFixed(2)}</div><div class="lbl">Cash</div></div>
       </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        <button style="flex:1;min-width:120px;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:12px;font-family:inherit" onclick="toggleDepotPause('${typ}','${dep.ticker||''}','${dep.risk!=null?dep.risk:''}')">⏸ Depot pausieren</button>
+        <button style="flex:1;min-width:120px;padding:8px 10px;border-radius:8px;border:1px solid var(--danger);background:rgba(220,38,38,.08);color:var(--danger);cursor:pointer;font-size:12px;font-family:inherit" onclick="depotVerkaufen('${typ}','${dep.ticker||''}','${dep.risk!=null?dep.risk:''}')">💸 Alles verkaufen</button>
+        <button style="flex:1;min-width:120px;padding:8px 10px;border-radius:8px;border:1px solid var(--danger);background:var(--danger);color:#fff;cursor:pointer;font-size:12px;font-family:inherit" onclick="depotSchliessen('${typ}','${dep.ticker||''}','${dep.risk!=null?dep.risk:''}')">🔒 Depot schließen</button>
+      </div>
       ${ki ? `<div class="glass" style="padding:8px 12px;margin-bottom:8px;border-left:3px solid ${ki.aktion === 'kaufen' ? 'var(--green)' : ki.aktion === 'verkaufen' ? 'var(--red)' : 'var(--orange)'}">
         <div style="display:flex;align-items:center;gap:8px;font-size:12px">
           <span style="font-size:16px">${kiIcon}</span>
@@ -3015,6 +3020,52 @@ function loadRiskAppetite() {
       }
     })
     .catch(() => {});
+}
+
+// ── Depot-Steuerung (P4/P5): Pause / Verkaufen / Schließen pro Depot ──
+function depotIdent(typ, ticker, risk) {
+  if (typ === 'spec') return 'spec:' + (ticker || '');
+  if (typ === 'etf') return 'etf:' + (risk != null && risk !== '' ? risk : '?');
+  return 'aktien:' + (risk != null && risk !== '' ? risk : '?');
+}
+
+function toggleDepotPause(typ, ticker, risk) {
+  const id = depotIdent(typ, ticker, risk);
+  fetch('/api/depot_pause?id=' + encodeURIComponent(id))
+    .then(r => r.json())
+    .then(j => {
+      if (!j.ok) { alert('Fehler: ' + (j.error || 'unbekannt')); return; }
+      const next = j.paused ? 'pausiert' : 'aktiv';
+      alert('Depot ' + id + ' ist jetzt ' + next + '.');
+      showTab('overview');
+    })
+    .catch(e => alert('Netzwerk-Fehler: ' + e.message));
+}
+
+function depotVerkaufen(typ, ticker, risk) {
+  const id = depotIdent(typ, ticker, risk);
+  if (!confirm('Wirklich ALLE Positionen von ' + id + ' verkaufen? (Paper-Simulation)')) return;
+  fetch('/api/depot_verkaufen?id=' + encodeURIComponent(id))
+    .then(r => r.json())
+    .then(j => {
+      if (!j.ok) { alert('Fehler: ' + (j.error || 'unbekannt')); return; }
+      alert('Verkauft: ' + (j.erloes != null ? j.erloes.toFixed(2) + ' $ Erlös' : 'ok'));
+      showTab('overview');
+    })
+    .catch(e => alert('Netzwerk-Fehler: ' + e.message));
+}
+
+function depotSchliessen(typ, ticker, risk) {
+  const id = depotIdent(typ, ticker, risk);
+  if (!confirm('Wirklich Depot ' + id + ' SCHLIESSEN? Alle Positionen werden verkauft, Trading gestoppt.')) return;
+  fetch('/api/depot_schliessen?id=' + encodeURIComponent(id))
+    .then(r => r.json())
+    .then(j => {
+      if (!j.ok) { alert('Fehler: ' + (j.error || 'unbekannt')); return; }
+      alert('Depot ' + id + ' geschlossen. (Zustand: CLOSED)');
+      showTab('overview');
+    })
+    .catch(e => alert('Netzwerk-Fehler: ' + e.message));
 }
 
 function wechselProfil(name) {
