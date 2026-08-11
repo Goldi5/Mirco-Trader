@@ -2,56 +2,6 @@
   {
     "typ": "good",
     "text": "Risk 25: +14.17% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 35: +5.51% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 50: +14.14% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 55: +14.01% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 70: +10.41% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 75: +34.37% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 80: +13.95% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 85: +15.57% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 90: +29.83% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 95: +15.16% Rendite",
-    "zeit": "2026-08-11T14:56:22.333570"
-  },
-  {
-    "typ": "good",
-    "text": "Risk 25: +14.17% Rendite",
     "zeit": "2026-08-11T14:58:34.539340"
   },
   {
@@ -248,5 +198,55 @@
     "typ": "good",
     "text": "Risk 95: +15.16% Rendite",
     "zeit": "2026-08-11T15:04:24.038068"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 25: +14.17% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 35: +5.51% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 50: +14.14% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 55: +14.01% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 70: +10.41% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 75: +34.37% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 80: +13.95% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 85: +15.57% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 90: +29.83% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
+  },
+  {
+    "typ": "good",
+    "text": "Risk 95: +15.16% Rendite",
+    "zeit": "2026-08-11T15:06:23.283380"
   }
 ]
