@@ -1,8 +1,8 @@
 {
-  "zeit": "2026-08-11T02:41:26.469027",
+  "zeit": "2026-08-11T13:37:03.662530",
   "aktien": {
     "name": "Aktien",
-    "depots": 21,
+    "depots": 22,
     "total_trades": 796,
     "buys": 89,
     "sells": 64,
@@ -434,21 +434,21 @@
   },
   "spekulation": {
     "name": "Spekulation",
-    "depots": 20,
-    "total_trades": 279,
-    "buys": 96,
-    "sells": 84,
-    "wert": 2054.22,
-    "start": 2000.0,
-    "rendite": 2.71,
+    "depots": 10,
+    "total_trades": 142,
+    "buys": 56,
+    "sells": 48,
+    "wert": 1052.75,
+    "start": 1000.0,
+    "rendite": 5.28,
     "top_ticker": [
       [
         "?",
         {
-          "buys": 189,
-          "sells": 84,
-          "volume": 27742.21996915001,
-          "trades": 273
+          "buys": 90,
+          "sells": 48,
+          "volume": 14208.55809869,
+          "trades": 138
         }
       ],
       [
@@ -457,15 +457,6 @@
           "buys": 1,
           "sells": 0,
           "volume": 90.000097,
-          "trades": 1
-        }
-      ],
-      [
-        "JDST",
-        {
-          "buys": 1,
-          "sells": 0,
-          "volume": 89.999564,
           "trades": 1
         }
       ],
@@ -488,15 +479,6 @@
         }
       ],
       [
-        "SCO",
-        {
-          "buys": 1,
-          "sells": 0,
-          "volume": 90.00104400000001,
-          "trades": 1
-        }
-      ],
-      [
         "TNA",
         {
           "buys": 1,
@@ -507,22 +489,22 @@
       ]
     ],
     "grund_stats": {
-      "Neutraler Trend, RSI": 13,
-      "uptrend": 6,
-      "Neutrales Setup (RSI": 6,
-      "neutrale Trend, RSI ": 6,
-      "Watchlist-Ticker mit": 5,
-      "Keine Position, Cash": 5,
-      "Gelernte Regeln verb": 5,
+      "Neutraler Trend, RSI": 5,
+      "uptrend": 4,
       "Abwärtstrend intakt ": 4,
-      "Anti-Hold-Regel für ": 4,
-      "Explizite Kaufanweis": 3
+      "Watchlist-Ticker mit": 3,
+      "Neutrales Setup (RSI": 3,
+      "Abwärtstrend, sehr n": 2,
+      "Explizite Kaufanweis": 2,
+      "Intakter Abwärtstren": 2,
+      "Keine Position, Cash": 2,
+      "RSI extrem überverka": 2
     },
     "risk_perf": [
       {
         "risk": 0,
-        "trades": 279,
-        "volume": 28282.22
+        "trades": 142,
+        "volume": 14568.56
       }
     ]
   },
@@ -783,7 +765,7 @@
   "risiko_spekulation": {
     "name": "Spekulation",
     "max_drawdown": 6.6,
-    "ges_drawdown": -1703.7,
+    "ges_drawdown": -824.4,
     "depot_details": [
       {
         "risk": "?",
@@ -799,43 +781,13 @@
       },
       {
         "risk": "?",
-        "wert": 100.4,
-        "dd": 4.2,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
-        "wert": 99.94,
-        "dd": 4.2,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
         "wert": 101.44,
         "dd": 4.2,
         "positionen": 0
       },
       {
         "risk": "?",
-        "wert": 100.39,
-        "dd": 4.2,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
         "wert": 108.62,
-        "dd": 4.2,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
-        "wert": 100.86,
-        "dd": 4.2,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
-        "wert": 98.67,
         "dd": 4.2,
         "positionen": 0
       },
@@ -859,31 +811,7 @@
       },
       {
         "risk": "?",
-        "wert": 100.0,
-        "dd": 6.6,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
         "wert": 105.57,
-        "dd": 6.6,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
-        "wert": 100.05,
-        "dd": 6.6,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
-        "wert": 100.16,
-        "dd": 6.6,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
-        "wert": 101.13,
         "dd": 6.6,
         "positionen": 0
       },
@@ -896,12 +824,6 @@
       {
         "risk": "?",
         "wert": 103.19,
-        "dd": 6.6,
-        "positionen": 0
-      },
-      {
-        "risk": "?",
-        "wert": 99.87,
         "dd": 6.6,
         "positionen": 0
       }

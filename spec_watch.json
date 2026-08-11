@@ -13,7 +13,7 @@
     "sharpe": -1.18,
     "woche": 12.94,
     "monat": -7.18,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   },
   "FNGU": {
     "name": "MicroSectors FANG+ 3x",
@@ -29,7 +29,7 @@
     "sharpe": 1.0,
     "woche": 16.89,
     "monat": 40.59,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   },
   "QS": {
     "name": "QuantumScape Corp.",
@@ -45,7 +45,7 @@
     "sharpe": -1.26,
     "woche": 15.92,
     "monat": -13.55,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   },
   "SOUN": {
     "name": "SoundHound AI",
@@ -61,7 +61,7 @@
     "sharpe": -0.4,
     "woche": 22.3,
     "monat": 16.38,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   },
   "NRGU": {
     "name": "MicroSectors FANG+ 3x",
@@ -77,7 +77,7 @@
     "sharpe": 1.41,
     "woche": 6.3,
     "monat": 49.3,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   },
   "BB": {
     "name": "BlackBerry Ltd.",
@@ -93,23 +93,7 @@
     "sharpe": 2.17,
     "woche": 3.64,
     "monat": -22.54,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "IONQ": {
-    "name": "IonQ Inc.",
-    "kategorie": "ai",
-    "hebel": 1,
-    "aktuell": 42.53,
-    "tagesrendite": -4.28,
-    "sma20": 36.96,
-    "sma50": 48.12,
-    "uptrend": 0.5,
-    "volatilitaet": 93.9,
-    "max_drawdown": -55.6,
-    "sharpe": -0.69,
-    "woche": 9.47,
-    "monat": -13.75,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   },
   "MRNA": {
     "name": "Moderna Inc.",
@@ -125,7 +109,7 @@
     "sharpe": 1.31,
     "woche": 8.47,
     "monat": -11.09,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   },
   "PLTR": {
     "name": "Palantir Technologies",
@@ -141,7 +125,7 @@
     "sharpe": 1.87,
     "woche": 39.46,
     "monat": 55.17,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   },
   "TNA": {
     "name": "Direxion SmallCap Bull 3x",
@@ -157,7 +141,7 @@
     "sharpe": 1.33,
     "woche": 3.52,
     "monat": 0.35,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   },
   "CRSP": {
     "name": "CRISPR Therapeutics",
@@ -173,150 +157,6 @@
     "sharpe": 0.38,
     "woche": 7.95,
     "monat": -2.57,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "SCO": {
-    "name": "ProShares UltraShort Crude",
-    "kategorie": "commodity",
-    "hebel": -2,
-    "aktuell": 26.2,
-    "tagesrendite": -10.91,
-    "sma20": 27.93,
-    "sma50": 29.56,
-    "uptrend": 0,
-    "volatilitaet": 83.0,
-    "max_drawdown": -64.3,
-    "sharpe": 0.59,
-    "woche": -9.53,
-    "monat": -26.4,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "RKLB": {
-    "name": "Rocket Lab USA",
-    "kategorie": "space",
-    "hebel": 1,
-    "aktuell": 80.04,
-    "tagesrendite": -3.37,
-    "sma20": 70.29,
-    "sma50": 89.19,
-    "uptrend": 0.5,
-    "volatilitaet": 95.5,
-    "max_drawdown": -61.0,
-    "sharpe": -1.33,
-    "woche": 13.64,
-    "monat": -5.32,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "JDST": {
-    "name": "Direxion Gold Miners Bear 2x",
-    "kategorie": "lev-bear",
-    "hebel": -2,
-    "aktuell": 25.97,
-    "tagesrendite": -2.29,
-    "sma20": 38.8,
-    "sma50": 38.89,
-    "uptrend": 0,
-    "volatilitaet": 110.6,
-    "max_drawdown": -45.5,
-    "sharpe": 0.34,
-    "woche": -33.58,
-    "monat": -35.48,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "FAZ": {
-    "name": "Direxion Financial Bear 3x",
-    "kategorie": "lev-bear",
-    "hebel": -3,
-    "aktuell": 31.5,
-    "tagesrendite": -0.85,
-    "sma20": 32.98,
-    "sma50": 36.98,
-    "uptrend": 0,
-    "volatilitaet": 32.2,
-    "max_drawdown": -44.1,
-    "sharpe": -3.76,
-    "woche": -1.9,
-    "monat": -20.27,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "BOIL": {
-    "name": "ProShares Ultra NatGas 2x",
-    "kategorie": "commodity",
-    "hebel": 2,
-    "aktuell": 20.71,
-    "tagesrendite": 8.32,
-    "sma20": 20.99,
-    "sma50": 24.73,
-    "uptrend": 0,
-    "volatilitaet": 62.5,
-    "max_drawdown": -53.8,
-    "sharpe": -0.98,
-    "woche": 0.1,
-    "monat": -27.74,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "BITX": {
-    "name": "Volatility Bitcoin 2x",
-    "kategorie": "crypto",
-    "hebel": 2,
-    "aktuell": 12.02,
-    "tagesrendite": -3.14,
-    "sma20": 12.31,
-    "sma50": 12.22,
-    "uptrend": 0.5,
-    "volatilitaet": 51.4,
-    "max_drawdown": -50.9,
-    "sharpe": -2.47,
-    "woche": 0.25,
-    "monat": 12.25,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "TQQQ": {
-    "name": "ProShares UltraPro QQQ 3x",
-    "kategorie": "lev-bull",
-    "hebel": 3,
-    "aktuell": 73.8,
-    "tagesrendite": -0.9,
-    "sma20": 68.69,
-    "sma50": 74.09,
-    "uptrend": 0.5,
-    "volatilitaet": 75.2,
-    "max_drawdown": -33.6,
-    "sharpe": 0.15,
-    "woche": 8.59,
-    "monat": 2.74,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "RGTI": {
-    "name": "Rigetti Computing",
-    "kategorie": "ai",
-    "hebel": 1,
-    "aktuell": 17.65,
-    "tagesrendite": -1.62,
-    "sma20": 15.44,
-    "sma50": 18.36,
-    "uptrend": 0.5,
-    "volatilitaet": 102.7,
-    "max_drawdown": -51.1,
-    "sharpe": 0.42,
-    "woche": 10.17,
-    "monat": -3.87,
-    "letztes_update": "2026-08-10T22:17:37.788865"
-  },
-  "QQQ": {
-    "name": "Invesco QQQ Trust",
-    "kategorie": "index",
-    "hebel": 1,
-    "aktuell": 720.87,
-    "tagesrendite": -0.3,
-    "sma20": 700.8,
-    "sma50": 714.03,
-    "uptrend": 0.5,
-    "volatilitaet": 25.3,
-    "max_drawdown": -11.2,
-    "sharpe": 0.28,
-    "woche": 2.97,
-    "monat": 2.03,
-    "letztes_update": "2026-08-10T22:17:37.788865"
+    "letztes_update": "2026-08-11T13:06:41.847075"
   }
 }

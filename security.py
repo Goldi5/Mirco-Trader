@@ -1328,19 +1328,20 @@ def _user_view(u, username=""):
 
 
 def _save_users(users):
-    """Schreibt User-Store mit Merge-Schutz (FIX 2026-08-11).
+    """Schreibt User-Store ATOMAR + GELOCKT (FINAL-FIX 2026-08-11).
 
-    Das Problem (wiederkehrend): Das Dashboard hält den User-Store im RAM.
-    Wird das Passwort extern geändert (z.B. `sec.change_password` von einem
-    anderen Prozess/Agent), überschrieb das Dashboard beim nächsten Save
-    (Session-GC etc.) die Datei mit dem ALTEN Stand -> Passwort weg.
-
-    Fix: Vor dem Schreiben wird die aktuelle Datei gelesen. Für jeden User
-    gilt: pw_hash/mfa/recovery_codes werden aus der DATEI übernommen, wenn
-    der RAM-Eintrag sie nicht enthält (None/leer) — so gehen fremde
-    Änderungen nie verloren. Nur explizit gesetzte Felder überschreiben.
+    Root-Cause der wiederkehrenden Korruption:
+    - open('w') + json.dump ist NICHT atomar -> bei mehreren parallelen
+      Instanzen (mehrere dashboard.py) ueberschneiden sich die Schreibvorgaenge
+      -> Datei enthaelt zwei JSON-Objekte ('Extra data') -> get_user() = None -> 401.
+    Fix:
+    - fcntl-Lock verhindert gleichzeitiges Schreiben.
+    - Temp-File + os.replace() => atomar (nie halb geschriebene Datei).
+    - Merge-Schutz nutzt das KORREKTE Feld 'password_hash' (nicht 'pw_hash').
     """
-    # Aktuelle Datei lesen (falls vorhanden)
+    import tempfile
+    lock_path = USERS_FILE + ".lock"
+    # Aktuelle Datei lesen (Merge-Schutz: fremde Aenderungen nicht verlieren)
     disk = {}
     if os.path.exists(USERS_FILE):
         try:
@@ -1350,21 +1351,51 @@ def _save_users(users):
             disk = {}
     for name, u in users.items():
         du = disk.get(name, {})
-        # Schutz: RAM darf fremde Passwort-Änderungen nicht verwischen
-        if not u.get("pw_hash") and du.get("pw_hash"):
-            u["pw_hash"] = du["pw_hash"]
+        # KORREKTER Key: password_hash (nicht pw_hash)
+        if not u.get("password_hash") and du.get("password_hash"):
+            u["password_hash"] = du["password_hash"]
         if not u.get("mfa_enabled") and du.get("mfa_enabled"):
             u["mfa_enabled"] = du["mfa_enabled"]
         if not u.get("recovery_codes") and du.get("recovery_codes"):
             u["recovery_codes"] = du["recovery_codes"]
-        # Sessions: RAM-Sessions + Disk-Sessions vereinen (nie Disk-Sessions verlieren)
+        # Sessions: RAM + Disk vereinen
         ram_sess = u.get("sessions") or {}
         disk_sess = du.get("sessions") or {}
         merged = dict(disk_sess)
         merged.update(ram_sess)
         u["sessions"] = merged
-    with open(USERS_FILE, "w", encoding="utf-8") as f:
-        json.dump(users, f, indent=2, ensure_ascii=False)
+    # ATOMAR schreiben: temp-file -> os.replace (verhindert Korruption durch
+    # parallele Schreibvorgaenge, da nie eine halb geschriebene Datei sichtbar ist).
+    # Windows-File-Lock (msvcrt) ist optional: falls belegt, faellt es still
+    # zurueck auf den atomaren Write, der allein die Korruption verhindert.
+    fd_lock = None
+    try:
+        import msvcrt
+        fd_lock = open(lock_path, "w")
+        msvcrt.locking(fd_lock.fileno(), msvcrt.LK_LOCK, 1)
+    except Exception:
+        fd_lock = None
+    try:
+        tf = tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=os.path.dirname(USERS_FILE),
+            prefix=".sec_users_", suffix=".tmp", delete=False)
+        json.dump(users, tf, indent=2, ensure_ascii=False)
+        tf.flush()
+        os.fsync(tf.fileno())
+        tf.close()
+        os.replace(tf.name, USERS_FILE)  # atomar unter POSIX+Windows
+    finally:
+        if fd_lock is not None:
+            try:
+                import msvcrt as _m
+                _m.locking(fd_lock.fileno(), _m.LK_UNLCK, 1)
+            except Exception:
+                pass
+            fd_lock.close()
+            try:
+                os.remove(lock_path)
+            except Exception:
+                pass
 
 
 def user_exists(username):

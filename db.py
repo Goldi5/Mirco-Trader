@@ -1113,7 +1113,7 @@ class MTDB:
         # provider_verteilung
         prov_rows = c.execute(
             "SELECT provider, COUNT(*) FROM ki_decisions WHERE zeit >= ? GROUP BY provider", (since,)).fetchall()
-        provider_vert = {r["provider"]: r["COUNT(*)"] for r in prov_rows}
+        provider_vert = {r["provider"] or "unbekannt": r["COUNT(*)"] for r in prov_rows}
         return {
             "trades_zeitraum": n_trades,
             "ki_entscheidungen": n_ki,
