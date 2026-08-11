@@ -887,23 +887,28 @@ function renderBroker() {
     .then(r => r.json())
     .then(j => {
       if (!j.ok) { box.innerHTML = '<b>Fehler:</b> ' + (j.error || 'unbekannt'); return; }
-      const st = j.status === 'verbunden' ? '🟢' : '🔴';
+      const p = j.paper || {}, s = j.sandbox || {};
+      const pSt = p.status === 'verbunden' ? '🟢' : '🔴';
+      const sSt = s.status === 'verbunden' ? '🟢' : '🔴';
+      const syncCol = j.sync_status === 'SYNCED' ? 'var(--green)' : j.sync_status === 'LEER' ? 'var(--text-dim)' : 'var(--danger)';
       box.innerHTML = `
-        <h3 style="margin-bottom:10px;font-size:14px;font-weight:600">Broker-Verbindung</h3>
+        <h3 style="margin-bottom:10px;font-size:14px;font-weight:600">Broker-Verbindungen</h3>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <div class="stat"><div class="num">${st} ${j.status}</div><div class="lbl">Status</div></div>
-          <div class="stat"><div class="num">${j.umgebung}</div><div class="lbl">Umgebung</div></div>
-          <div class="stat"><div class="num">${j.portfolios}</div><div class="lbl">Paper-Portfolios</div></div>
-          <div class="stat"><div class="num">$${(j.wert||0).toFixed(2)}</div><div class="lbl">Sim-Wert</div></div>
+          <div class="stat"><div class="num">${pSt} ${p.status}</div><div class="lbl">Paper (Simulator)</div></div>
+          <div class="stat"><div class="num">${sSt} ${s.status}</div><div class="lbl">Sandbox</div></div>
+          <div class="stat"><div class="num" style="color:${syncCol}">${j.sync_status}</div><div class="lbl">Order/Pos-Sync</div></div>
+          <div class="stat"><div class="num">${p.portfolios||0}</div><div class="lbl">Paper-Portfolios</div></div>
+          <div class="stat"><div class="num">$${(p.wert||0).toFixed(2)}</div><div class="lbl">Sim-Wert</div></div>
         </div>
         <div style="margin-top:10px;font-size:12px;color:var(--text-dim)">
-          <b>Adapter:</b> ${j.broker}<br>
+          <b>Paper:</b> ${p.broker} · ${p.umgebung}<br>
+          <b>Sandbox:</b> ${s.broker} · ${s.umgebung} · Buying Power $${(s.buying_power||0).toFixed(2)}<br>
           <b>Keys:</b> ${j.key_hinweis}<br>
           <b>Letzter Check:</b> ${j.letzter_check}
         </div>
         <div style="margin-top:12px;padding:10px;border:1px dashed var(--border);border-radius:8px;font-size:11px;color:var(--text-dim)">
-          Roadmap: PaperBrokerAdapter aktiv (Simulator). Live-Broker (Alpaca Europe, Xetra für DE verfügbar)
-          erst nach Freigabeprozess — Sandbox/Paper-Test jederzeit möglich.
+          Roadmap: PaperBrokerAdapter + SandboxBrokerAdapter aktiv (PAPER_ONLY, keine Live-Orders).
+          Live-Broker (Alpaca Europe, Xetra für DE verfügbar) erst nach Freigabeprozess.
         </div>`;
     })
     .catch(e => { box.innerHTML = '<b>Netzwerk-Fehler:</b> ' + e.message; });

@@ -1376,18 +1376,46 @@ def broker_status():
     if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
         return {"ok": False, "error": "unauthorized"}, 401
     try:
+        # PAPER-Simulator
         pb = sec.PaperBrokerAdapter()
-        conn = pb.connect()
+        pb.connect()
         health = pb.health_check()
         acct = pb.get_account()
+        # SANDBOX-Broker
+        sb = sec.SandboxBrokerAdapter()
+        sb.connect()
+        sb_health = sb.health_check()
+        sb_acct = sb.get_account()
+        # Sync-Status: paper_orders vs. paper_positions
+        sync = "SYNCED"
+        try:
+            import db as _db
+            m = _db.MTDB()
+            try:
+                orders = m.conn.execute("SELECT COUNT(*) AS n FROM paper_orders").fetchone()
+                pos = m.conn.execute("SELECT COUNT(*) AS n FROM paper_positions").fetchone()
+                sync = "SYNCED" if (orders["n"] if orders else 0) or (pos["n"] if pos else 0) else "LEER"
+            finally:
+                m.close()
+        except Exception:
+            sync = "BROKER_ERROR"
         return {
             "ok": True,
-            "broker": "PaperBrokerAdapter (Simulator)",
-            "umgebung": "PAPER",
-            "status": "verbunden" if health.get("ok") else "getrennt",
-            "portfolios": acct.get("portfolios", 0),
-            "wert": acct.get("wert", 0.0),
-            "key_hinweis": "kein Key — reiner Simulator, keine Live-Orders",
+            "paper": {
+                "broker": "PaperBrokerAdapter (Simulator)",
+                "umgebung": "PAPER",
+                "status": "verbunden" if health.get("ok") else "getrennt",
+                "portfolios": acct.get("portfolios", 0),
+                "wert": acct.get("wert", 0.0),
+            },
+            "sandbox": {
+                "broker": "SandboxBrokerAdapter",
+                "umgebung": "SANDBOX",
+                "status": "verbunden" if sb_health.get("ok") else "getrennt",
+                "buying_power": sb_acct.get("buying_power", 0.0),
+            },
+            "sync_status": sync,
+            "key_hinweis": "kein Key — reine Simulatoren, keine Live-Orders (PAPER_ONLY)",
             "letzter_check": time.strftime("%H:%M:%S"),
         }
     except Exception as e:
