@@ -1780,10 +1780,12 @@ def _konfidenz_caps_als_regeln(bins):
             if lo >= 60 and b["n"] >= 5 and b["quote"] < 30:
                 # Cap auf Bin-Untergrenze (die KI darf nicht höher als lo angeben)
                 cap_wert = lo
-                schwere = round((30 - b["quote"]) / 10.0, 1)  # je niedriger quote, desto härter
-                muster = f"[Meta] Konfidenz-Cap {cap_wert} (Bin {b['bin']}: {int(b['quote'])}% Treffer, n={b['n']})"
-                # bestehende Regel suchen (gleiches Muster)
-                ex = next((r for r in regeln if r.get("muster") == muster), None)
+                schwere = round((30 - b["quote"]) / 10.0, 1)  # je niedriger quote, desto haerter
+                # Stabile Dedup-Key (OHNE Live-Werte quote/n -> sonst bei jedem Lauf neue Regel)
+                dedup_key = f"[Meta] Konfidenz-Cap {cap_wert}"
+                muster = f"{dedup_key} (Bin {b['bin']}: {int(b['quote'])}% Treffer, n={b['n']})"
+                # bestehende Regel suchen (stabiler Schluessel, nicht das volatile Muster)
+                ex = next((r for r in regeln if r.get("muster", "").startswith(dedup_key)), None)
                 neu = {
                     "muster": muster,
                     "regel": f"KI überschätzt sich im Konfidenz-Bin {b['bin']} "

@@ -1,5 +1,5 @@
 {
-  "zeit": "2026-08-11T15:17:30.000507",
+  "zeit": "2026-08-11T15:31:26.594799",
   "total": 55,
   "relevant": 38,
   "headlines": [
@@ -60,12 +60,44 @@
       ]
     },
     {
+      "title": "Earnings live updates: Plug Power stock jumps on improved margins, On Holding tanks",
+      "link": "https://finance.yahoo.com/markets/live/earnings-live-updates-plug-power-stock-jumps-on-improved-margins-on-holding-tanks-202302733.html",
+      "date": "2026-08-10T20:23:02Z",
+      "topics": [
+        "earnings"
+      ]
+    },
+    {
+      "title": "Stock market today: Dow, S&P 500, Nasdaq futures waver as US, Iran reach impasse",
+      "link": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-august-11-dow-sp-500-nasdaq-102827503.html",
+      "date": "2026-08-11T10:28:27Z",
+      "topics": [
+        "market"
+      ]
+    },
+    {
+      "title": "Daily Spotlight: Sovereign Debt Yields",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_47879_MarketOutlook_1786447655000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-11T11:27:35Z",
+      "topics": [
+        "tech"
+      ]
+    },
+    {
       "title": "Microsoft stock just cleared a big hurdle but still trails the S&P 500",
       "link": "https://finance.yahoo.com/markets/stocks/article/microsoft-stock-just-cleared-a-big-hurdle-but-still-trails-the-sp-500-130843662.html",
       "date": "2026-08-11T13:08:43Z",
       "topics": [
         "tech",
         "market"
+      ]
+    },
+    {
+      "title": "The Changing Dynamics Behind Micron Technology (MU)",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/changing-dynamics-behind-micron-technology-130614043.html",
+      "date": "2026-08-11T13:06:14Z",
+      "topics": [
+        "tech"
       ]
     },
     {
@@ -77,17 +109,17 @@
       ]
     },
     {
-      "title": "United Airlines Holdings Inc. (UAL) Wanted to Merge With Delta Air Lines Inc. (DAL). Here Is Why It Never Happened.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/united-airlines-holdings-inc-ual-125618628.html",
-      "date": "2026-08-11T12:56:18Z",
+      "title": "Technical Assessment: Bullish in the Intermediate-Term",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_47878_TechnicalAnalysis_1786447618000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "date": "2026-08-11T11:26:58Z",
       "topics": [
         "tech"
       ]
     },
     {
-      "title": "Daily Spotlight: Sovereign Debt Yields",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47879_MarketOutlook_1786447655000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-11T11:27:35Z",
+      "title": "United Airlines Holdings Inc. (UAL) Wanted to Merge With Delta Air Lines Inc. (DAL). Here Is Why It Never Happened.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/united-airlines-holdings-inc-ual-125618628.html",
+      "date": "2026-08-11T12:56:18Z",
       "topics": [
         "tech"
       ]
@@ -114,36 +146,12 @@
       ]
     },
     {
-      "title": "Bitcoin and ethereum prices today, Tuesday, August 11, 2026: Opening prices fall back ahead of inflation reports this week",
-      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-tuesday-august-11-2026-opening-prices-fall-back-ahead-of-inflation-reports-this-week-124608146.html",
-      "date": "2026-08-11T12:46:08Z",
+      "title": "NYSE Parent ICE Kicks Off Bond Sale for MarketAxess Takeover",
+      "link": "https://www.bloomberg.com/news/articles/2026-08-11/nyse-parent-ice-kicks-off-bond-sale-for-marketaxess-takeover",
+      "date": "Tue, 11 Aug 2026 13:18:02 GMT",
       "topics": [
-        "inflation",
-        "crypto"
-      ]
-    },
-    {
-      "title": "Technical Assessment: Bullish in the Intermediate-Term",
-      "link": "https://finance.yahoo.com/research/reports/ARGUS_47878_TechnicalAnalysis_1786447618000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
-      "date": "2026-08-11T11:26:58Z",
-      "topics": [
-        "tech"
-      ]
-    },
-    {
-      "title": "Eli Lilly and Company (LLY) vs. Novo Nordisk A/S (NVO): Is Lilly Pulling Ahead in the $100 Billion Obesity Market?",
-      "link": "https://finance.yahoo.com/healthcare/articles/eli-lilly-company-lly-vs-124416743.html",
-      "date": "2026-08-11T12:44:16Z",
-      "topics": [
+        "merger",
         "market"
-      ]
-    },
-    {
-      "title": "Operational Recovery Positions Advance Auto Parts (AAP) for Gains",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/operational-recovery-positions-advance-auto-124310032.html",
-      "date": "2026-08-11T12:43:10Z",
-      "topics": [
-        "tech"
       ]
     },
     {
@@ -253,17 +261,6 @@
       "date": "Tue, 11 Aug 2026 11:43:50 GMT",
       "topics": [
         "energy"
-      ]
-    },
-    {
-      "title": "Gold Pulls Back From Two-Month High as Focus Shifts to Inflation",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-10/gold-touches-4-400-as-traders-turn-focus-to-us-inflation-data",
-      "date": "Mon, 10 Aug 2026 23:33:50 GMT",
-      "topics": [
-        "inflation"
-      ],
-      "tickers": [
-        "F"
       ]
     },
     {
