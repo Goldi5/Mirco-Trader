@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.54.0] - 2026-08-11
+### Roadmap Live-Freigabe: Depotsteuerung + News-Pipeline + MarketSnapshot + Broker
+**P4/P5:** Depot-Steuerung pro Depot (Aktien/ETF/Spec):
+- `/api/depot_pause` (Toggle pro Depot), `/api/depot_verkaufen` (alle Positionen),
+  `/api/depot_schliessen` (CLOSED), `/api/depot_loeschen` (nur in Kette:
+  verkauft + CLOSED → Backup-Verschiebung, kein hartes Löschen)
+- 4 Buttons in jeder Depot-Detailansicht (⏸ 💸 🔒 🗑)
+
+**Roadmap Punkt 2+3 (News-Pipeline):**
+- `news_evaluator.py`: alter OPENCODE_GO/Zen-Direktaufruf → `ki_provider.call_ki`
+  (reparierter Pool: openrouter Primary, nous-hy3/step, zen ling)
+- Ticker-Map aus WATCHLIST/Depots, Dedup via hash(title+url), dedup_id
+- News-Prompt: urgency P0-P3 + event_type + direction (Handoff-V3-Schema)
+
+**Roadmap Punkt 5 (MarketSnapshot):**
+- `market_snapshot.py`: Snapshot-ID (md5), Datenalter-Gate (3 Tage wie
+  paper_eligibility), KI-Prompt-Injektion "MARKTDATEN-SNAPSHOT <id> [frisch|VERALTET]"
+
+**Roadmap Punkt 8 (Broker):**
+- Broker-Tab im Dashboard (`/api/broker_status`, PaperBrokerAdapter, keine Keys)
+- Broker-Check: Alpaca Europe verfügbar (Xetra DE, CNMV/MiFID II), B2B-fokussiert,
+  Live-Zugang für Privatkunden separat prüfen
+- Security-Fix: `_save_users` Merge-Schutz (Passwort-Loop Root-Cause)
+
 ## [2.51.0] - 2026-08-10
 ### Fixed (KI-Provider-Pool repariert — Trading wieder fundiert)
 **Problem:** KI-Entscheidungen im Trader fielen auf Sicherheits-Fallback `halten`
