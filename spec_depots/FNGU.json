@@ -9,78 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-05T20:49:14.702383",
-      "wert": 108.76
-    },
-    {
-      "zeit": "2026-08-05T20:49:26.708458",
-      "wert": 108.89
-    },
-    {
-      "zeit": "2026-08-05T21:02:47.656417",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-05T21:03:34.159698",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-05T21:18:28.237997",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-05T21:19:03.000597",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-05T21:32:50.531783",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-05T21:33:49.642178",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-05T21:34:22.063496",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-05T21:47:33.480282",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-05T21:49:05.589147",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-06T15:32:37.030845",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-06T15:47:42.003584",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-06T15:48:02.413994",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-06T16:03:21.587966",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-06T16:17:27.946192",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-06T16:18:26.086680",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-06T16:46:53.096848",
-      "wert": 108.86
-    },
-    {
       "zeit": "2026-08-06T16:47:06.184482",
       "wert": 108.86
     },
@@ -407,6 +335,78 @@
     {
       "zeit": "2026-08-10T21:48:15.756077",
       "wert": 107.79
+    },
+    {
+      "zeit": "2026-08-11T15:32:24.408771",
+      "wert": 108.78
+    },
+    {
+      "zeit": "2026-08-11T15:34:48.331390",
+      "wert": 108.11
+    },
+    {
+      "zeit": "2026-08-11T15:35:44.942123",
+      "wert": 107.63
+    },
+    {
+      "zeit": "2026-08-11T15:47:19.250631",
+      "wert": 106.25
+    },
+    {
+      "zeit": "2026-08-11T15:48:08.308316",
+      "wert": 105.84
+    },
+    {
+      "zeit": "2026-08-11T15:49:06.266740",
+      "wert": 105.55
+    },
+    {
+      "zeit": "2026-08-11T16:47:27.832509",
+      "wert": 107.6
+    },
+    {
+      "zeit": "2026-08-11T16:48:16.506467",
+      "wert": 107.66
+    },
+    {
+      "zeit": "2026-08-11T16:49:59.901941",
+      "wert": 107.92
+    },
+    {
+      "zeit": "2026-08-11T17:02:24.715626",
+      "wert": 108.08
+    },
+    {
+      "zeit": "2026-08-11T17:04:02.761512",
+      "wert": 108.04
+    },
+    {
+      "zeit": "2026-08-11T17:04:15.653065",
+      "wert": 108.04
+    },
+    {
+      "zeit": "2026-08-11T17:17:14.827529",
+      "wert": 106.64
+    },
+    {
+      "zeit": "2026-08-11T17:18:04.901933",
+      "wert": 106.57
+    },
+    {
+      "zeit": "2026-08-11T17:19:14.981689",
+      "wert": 106.67
+    },
+    {
+      "zeit": "2026-08-11T17:32:08.779421",
+      "wert": 106.57
+    },
+    {
+      "zeit": "2026-08-11T17:33:02.523689",
+      "wert": 106.6
+    },
+    {
+      "zeit": "2026-08-11T17:34:13.894749",
+      "wert": 106.6
     }
   ],
   "trades": [
@@ -544,215 +544,15 @@
     }
   ],
   "ki_letzte": {
-    "typ": "decision",
-    "zeit": "2026-08-10T21:47:52.775308",
-    "ticker": "FNGU",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "Aufwärtstrend, RSI 67.5, moderater Volumen, leichte Verlustposition, keine News – HALTEN [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
-    "menge": "voll",
-    "ziel_kurs": null,
-    "kurs": 33.69,
-    "rsi": 67.5,
-    "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": -0.77,
-    "depot_rendite": 7.79,
-    "angewandte_regeln": [
-      {
-        "id": "r_20260802_32531",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_92036",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_09535",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_74417",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_79559",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_18173",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260801_07584",
-        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
-        "typ": "swap",
-        "gewicht": 1.89,
-        "effektiv_gewicht": 1.82,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_1_87577",
-        "muster": "[Anti] halten bei volatility-Titeln",
-        "typ": "anti",
-        "gewicht": -1.87,
-        "effektiv_gewicht": -1.76,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_2_74438",
-        "muster": "[Anti] halten bei lev-bull-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.75,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_5_20387",
-        "muster": "[Anti] halten bei ai-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.75,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_4_69646",
-        "muster": "[Anti] halten bei lev-bear-Titeln",
-        "typ": "anti",
-        "gewicht": -1.71,
-        "effektiv_gewicht": -1.61,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_3_42126",
-        "muster": "[Anti] halten bei crypto-Titeln",
-        "typ": "anti",
-        "gewicht": -1.63,
-        "effektiv_gewicht": -1.54,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      }
-    ],
-    "decision_id": "d_20260810_214752_FNGU_aktien_na",
-    "provider": "openrouter",
-    "fallback": false,
+    "konfidenz": 50,
+    "grund": "KI-Antwort nicht parsebar (Retry fehlgeschlagen) – halte sicher",
+    "decision_id": "d_20260811_173325_FNGU_aktien_na",
     "depot_typ": "aktien",
     "risk": null,
-    "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "open",
-    "rohdaten": {
-      "kurs": 33.69,
-      "sma20": 28.2,
-      "sma50": 28.15,
-      "rsi": 67.5,
-      "atr_pct": 4.71,
-      "vol_ratio": 0.75,
-      "vix": 15.4,
-      "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 7.79
-    },
-    "indikatoren": [
-      "SMA20>28.2",
-      "SMA50>28.1",
-      "RSI68",
-      "ATR4.7%"
-    ],
-    "news_score": null,
-    "regelstand_ref": "v_live",
+    "ticker": "FNGU",
+    "shadow": false,
+    "regelstand_ref": "v_legacy",
     "konflikte": [],
     "prioritaetsreihenfolge": [
       "engine_bremse",
@@ -761,25 +561,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 65.0,
-    "konfidenz_nach_cap": 60,
-    "konfidenz_cap": 60,
-    "erwarteter_ausgang": "unbekannt",
-    "shadow": false,
-    "regelstatus_beim_entscheid": {
-      "r_20260802_32531": "stabil",
-      "r_20260802_92036": "stabil",
-      "r_20260802_09535": "stabil",
-      "r_20260802_74417": "stabil",
-      "r_20260803_79559": "stabil",
-      "r_20260803_18173": "stabil",
-      "r_20260801_07584": "stabil",
-      "r_legacy_1_87577": "stabil",
-      "r_legacy_2_74438": "stabil",
-      "r_legacy_5_20387": "stabil",
-      "r_legacy_4_69646": "stabil",
-      "r_legacy_3_42126": "stabil"
-    }
+    "konfidenz_original": 0,
+    "konfidenz_nach_cap": 0
   },
   "tenant_id": 1,
   "mode": "shadow"

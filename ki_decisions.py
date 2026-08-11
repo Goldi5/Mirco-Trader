@@ -356,7 +356,20 @@ Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "k
                     entscheidung = json.loads(raus2[s2:e2])
                 else:
                     raise json.JSONDecodeError("retry failed", "", 0)
-            except Exception:
+            except Exception as e:
+                # Fix 3: Parse-Fehler sichtbar machen (statt stillem pass)
+                try:
+                    schreibe_ki_log({
+                        "zeit": datetime.now().isoformat(),
+                        "typ": "error",
+                        "ticker": ticker,
+                        "depot_typ": depot_typ,
+                        "fehler": "KI-Antwort nicht parsebar (Retry fehlgeschlagen)",
+                        "detail": str(e)[:200],
+                        "fallback": "halten (konfidenz 50)",
+                    })
+                except Exception:
+                    pass
                 # Sauberer Fallback: halte, aber mit echter (nicht 0) Konfidenz,
                 # damit ausführen() nicht als "unsicher" abbricht und kein Crash entsteht
                 return {"aktion": "halten", "konfidenz": 50,

@@ -1,6 +1,9 @@
-Analysiere 2 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
+Analysiere 5 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
 
-Risk 30: Cash $97.6, Wert $97.6, Pos: keine, Kandidaten: ACHR $6.3 (6% Cash), INVH $29.9 (31% Cash), BTCI $28.5 (29% Cash), JOBY $8.8 (9% Cash), PRTA $9.1 (9% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
-Risk 80: Cash $114.0, Wert $114.0, Pos: keine, Kandidaten: ACHR $6.3 (5% Cash), INVH $29.9 (26% Cash), BTCI $28.5 (25% Cash), JOBY $8.8 (8% Cash), PRTA $9.1 (8% Cash) [LEER: bitte KAUFEN aus den Kandidaten waehlen, die ins Budget passen!]
+Risk 20: Cash $47.0, Wert $101.1, Pos: GPK: 4.48st @$11.90 (Kurs $11.83, P&L -0.59%), UWMC: 0.75st @$1.26 (Kurs $1.51, P&L +19.37%), Kandidaten: ACHR $6.3 (13% Cash), JOBY $8.8 (19% Cash), PRTA $9.1 (19% Cash), SNAP $5.3 (11% Cash), BCRX $9.8 (21% Cash)
+Risk 70: Cash $0.0, Wert $110.5, Pos: CLOU: 3.93st @$27.28 (Kurs $28.11, P&L +3.04%), Kandidaten: keine
+Risk 80: Cash $0.0, Wert $124.1, Pos: ACHR: 18.20st @$6.26 (Kurs $6.82, P&L +8.94%), Kandidaten: keine
+Risk 90: Cash $0.0, Wert $131.7, Pos: ALLO: 61.82st @$2.01 (Kurs $2.13, P&L +6.23%), Kandidaten: keine
+Risk 40: Cash $46.2, Wert $100.8, Pos: AA: 0.16st @$42.71 (Kurs $53.10, P&L +24.32%), INVH: 1.55st @$29.89 (Kurs $29.82, P&L -0.23%), Kandidaten: ACHR $6.3 (14% Cash), JOBY $8.8 (19% Cash), PRTA $9.1 (20% Cash), JKS $16.9 (37% Cash), SRPT $17.2 (37% Cash)
 
 Antworte NUR mit JSON [{"risk":0, "aktionen":[{"ticker":"AAPL","aktion":"kaufen"|"verkaufen"|"halten","menge":"voll"|"teil","grund":"..."}]}]

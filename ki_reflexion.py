@@ -400,7 +400,7 @@ Max. 2 Regeln. Gewicht >1.0 = starkes Fehlermuster."""
 
     _anhangen_ki_log({
         "typ": "reflexion",
-        "zeit": datetime.datetime.now().isoformat(),
+        "zeit": datetime.datetime.datetime.now().isoformat(),
         "einsicht": antwort.get("einsicht", ""),
         "anpassung": antwort.get("anpassung", ""),
         "regeln": len(regeln),
@@ -495,6 +495,13 @@ def reflexion_wochenbericht():
     bestehend.extend(pending)
     with open(pr_pfad, "w", encoding="utf-8") as f:
         json.dump(bestehend, f, ensure_ascii=False, indent=2)
+    # Fix 1: pending -> learned Uebernahme (verhindert ewig 'offene' OOS-Regeln)
+    try:
+        n = uebernehme_pending_in_learned()
+        if n:
+            print(f"  [Uebernahme] {n} pending_rules -> learned_rules")
+    except Exception as e:
+        print(f"  [Uebernahme-Fehler] {e}")
 
     print(f"🪞 Wochenbericht: {len(ents)} Entscheidungen, {len(pending)} Regel-Kandidaten → {summary_pfad}")
     return (len(pending), summary_pfad)
@@ -527,3 +534,55 @@ if __name__ == "__main__":
     print("\n⚖️ Regel-Abweichungen:")
     for a in regel_abweichungen():
         print(f"  '{a['regel'][:50]}' → {a['aktion']}: {a['befolgt']}× befolgt, {a['abgewichen']}× abgewichen")
+
+
+def uebernehme_pending_in_learned(schwelle_viol=5):
+    """Fix 1: Pending-Regeln mit ausreichend Evidenz in learned_rules uebernehmen.
+    Bisher blieben pending_rules ewig 'offen' (OOS offen im Dashboard) weil
+    support_count=0 war. Regeln mit violation_count >= schwelle gelten als
+    validiert (KI verletzt sie systematisch -> Regel greift)."""
+    try:
+        from learned_rules import lade_regeln, speichere_regeln
+    except Exception:
+        return 0
+    pr_pfad = os.path.join(BASE, "pending_rules.json")
+    if not os.path.exists(pr_pfad):
+        return 0
+    pending = json.load(open(pr_pfad, encoding="utf-8"))
+    if not isinstance(pending, list):
+        return 0
+    regeln = lade_regeln(max_alter_tage=365)
+    uebernommen = 0
+    for p in pending:
+        viol = p.get("violation_count", 0)
+        muster = p.get("muster", "")
+        if viol < schwelle_viol:
+            continue
+        if any(r.get("muster") == muster for r in regeln):
+            for r in regeln:
+                if r.get("muster") == muster:
+                    r["violation_count"] = viol
+                    r["last_seen_at"] = datetime.datetime.now().isoformat()
+            continue
+        neu = {
+            "muster": muster,
+            "regel": p.get("regel", ""),
+            "typ": p.get("typ", "anti"),
+            "gewicht": p.get("gewicht", 1.0) + min(viol / 20.0, 1.0),
+            "support_count": 0,
+            "violation_count": viol,
+            "avg_effect_when_applied": 0.0,
+            "kontext": {"asset_klasse": [], "sektor": [], "vix_range": [0, 999],
+                        "trend_4h": "", "regime": [], "min_konfidenz": 0},
+            "created_at": datetime.datetime.now().isoformat(),
+            "updated_at": datetime.datetime.now().isoformat(),
+            "last_seen_at": datetime.datetime.now().isoformat(),
+            "decay_lambda": 0.01,
+            "aus_pending_uebernommen": True,
+        }
+        neu["id"] = f"r_{datetime.datetime.now():%Y%m%d}_{abs(hash(muster)) % 100000}"
+        regeln.append(neu)
+        uebernommen += 1
+    if uebernommen:
+        speichere_regeln(regeln)
+    return uebernommen

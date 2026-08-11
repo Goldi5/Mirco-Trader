@@ -74,6 +74,30 @@ def ticker_map():
                 pass
     return t
 
+
+# Fix 2: Firmenname -> Ticker (fuer News-Fallback, wenn KI nur Namen liefert)
+_STATISCHE_FIRMEN = {
+    "apple": "AAPL", "microsoft": "MSFT", "google": "GOOGL", "alphabet": "GOOGL",
+    "amazon": "AMZN", "meta": "META", "facebook": "META", "tesla": "TSLA",
+    "nvidia": "NVDA", "netflix": "NFLX", "intel": "INTC", "amd": "AMD",
+    "palantir": "PLTR", "nio": "NIO", "coinbase": "COIN", "micron": "MU",
+    "berkshire": "BRK.B", "jpmorgan": "JPM", "goldman sachs": "GS",
+    "boeing": "BA", "exxon": "XOM", "pfizer": "PFE", "moderna": "MRNA",
+    "gamestop": "GME", "amc": "AMC", "robinhood": "HOOD", "uber": "UBER",
+    "airbnb": "ABNB", "salesforce": "CRM", "adobe": "ADBE", "paypal": "PYPL",
+    "biogen": "BIIB", "crispr": "CRSP", "crispr therapeutics": "CRSP",
+    "bbai": "BBAI", "bigbear": "BBAI", "fngu": "FNGU", "fngo": "FNGO",
+}
+def firmenname_map():
+    """Name -> Ticker (aus Depot-Namen + statischer Liste)."""
+    m = {}
+    # aus ticker_map(): Name -> Ticker
+    for tk, name in ticker_map().items():
+        if name and name != tk:
+            m[name] = tk
+    m.update(_STATISCHE_FIRMEN)
+    return m
+
 def dedup_hash(title, link=""):
     return hashlib.md5(f"{title.strip().lower()}|{link}".encode()).hexdigest()[:12]
 
@@ -161,6 +185,14 @@ def main():
             titel = orig.get("title", bw.get("title", ""))
             score = bw.get("score", 50)
             tickers = [t.upper() for t in (bw.get("tickers") or []) if t.upper() in tknown]
+            # Fix 2: Firmenname-Fallback (wenn KI nur Namen nennt, nicht Ticker)
+            if not tickers:
+                fn_map = firmenname_map()
+                titel_l = titel.lower()
+                for name, tk in fn_map.items():
+                    if name.lower() in titel_l and tk in tknown:
+                        tickers = [tk]
+                        break
             neue_eintraege.append({
                 "zeit": jetzt,
                 "typ": "news",

@@ -2,84 +2,12 @@
   "ticker": "CRSP",
   "name": "CRISPR Therapeutics",
   "kategorie": "biotech",
-  "bargeld": 101.44,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 1.89289,
+  "avg_price": 53.59,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-05T19:32:45.812910",
-      "wert": 101.29
-    },
-    {
-      "zeit": "2026-08-05T19:45:22.944816",
-      "wert": 101.29
-    },
-    {
-      "zeit": "2026-08-05T19:46:43.397105",
-      "wert": 101.17
-    },
-    {
-      "zeit": "2026-08-05T20:02:54.983314",
-      "wert": 101.0
-    },
-    {
-      "zeit": "2026-08-05T20:03:03.094475",
-      "wert": 101.12
-    },
-    {
-      "zeit": "2026-08-05T20:18:09.187834",
-      "wert": 101.12
-    },
-    {
-      "zeit": "2026-08-05T20:32:47.756881",
-      "wert": 101.12
-    },
-    {
-      "zeit": "2026-08-05T20:33:05.741917",
-      "wert": 101.25
-    },
-    {
-      "zeit": "2026-08-05T21:02:47.648668",
-      "wert": 100.95
-    },
-    {
-      "zeit": "2026-08-05T21:03:34.149377",
-      "wert": 101.04
-    },
-    {
-      "zeit": "2026-08-05T21:19:02.990968",
-      "wert": 101.04
-    },
-    {
-      "zeit": "2026-08-05T21:33:49.633587",
-      "wert": 100.9
-    },
-    {
-      "zeit": "2026-08-05T21:34:22.055101",
-      "wert": 100.75
-    },
-    {
-      "zeit": "2026-08-05T21:49:02.345066",
-      "wert": 100.54
-    },
-    {
-      "zeit": "2026-08-06T15:47:04.241914",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T15:47:41.982649",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:02:42.458469",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:03:21.578552",
-      "wert": 101.33
-    },
     {
       "zeit": "2026-08-06T16:17:27.215639",
       "wert": 101.33
@@ -407,6 +335,78 @@
     {
       "zeit": "2026-08-10T21:48:15.751256",
       "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T15:32:24.406734",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T15:34:48.328387",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T15:35:44.939120",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T15:47:19.248500",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T15:48:08.301459",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T15:49:06.264669",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T16:47:27.829182",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T16:48:16.503468",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T16:49:59.899941",
+      "wert": 101.44
+    },
+    {
+      "zeit": "2026-08-11T17:02:24.713087",
+      "wert": 101.7
+    },
+    {
+      "zeit": "2026-08-11T17:04:02.759309",
+      "wert": 101.48
+    },
+    {
+      "zeit": "2026-08-11T17:04:15.650914",
+      "wert": 101.65
+    },
+    {
+      "zeit": "2026-08-11T17:17:14.823918",
+      "wert": 101.93
+    },
+    {
+      "zeit": "2026-08-11T17:18:04.899809",
+      "wert": 101.89
+    },
+    {
+      "zeit": "2026-08-11T17:19:14.976047",
+      "wert": 101.84
+    },
+    {
+      "zeit": "2026-08-11T17:32:08.777414",
+      "wert": 101.08
+    },
+    {
+      "zeit": "2026-08-11T17:33:02.521690",
+      "wert": 101.06
+    },
+    {
+      "zeit": "2026-08-11T17:34:13.887328",
+      "wert": 101.08
     }
   ],
   "trades": [
@@ -602,99 +602,37 @@
       "preis": 53.45,
       "grund": "RSI überkauft, neutraler Trend, geringe Nachfrage [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-11T16:48:16.503468",
+      "aktion": "kaufen",
+      "menge": 1.89289,
+      "preis": 53.59,
+      "grund": "RSI überkauft bei neutralem Trend, biotech-Anti-Warnsignal, aber niedriges Volumen erlaubt kleine Position",
+      "ki_konfidenz": 45
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-10T21:47:55.287649",
+    "zeit": "2026-08-11T17:32:51.622173",
     "ticker": "CRSP",
     "aktion": "halten",
-    "konfidenz": 45,
-    "grund": "neutraler Trend, RSI überkauft, kein klares Aufwärtssignal",
+    "konfidenz": 55,
+    "grund": "neutraler Trend, RSI überkauft, anti-biotech-Warnsignal, niedriges Volumen",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 53.41,
-    "rsi": 70.2,
+    "kurs": 53.4,
+    "rsi": 75.4,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-    "p_pnl": 0,
-    "depot_rendite": 1.44,
+    "p_pnl": -0.35,
+    "depot_rendite": 1.08,
     "angewandte_regeln": [
-      {
-        "id": "r_20260802_32531",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=60)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
       {
         "id": "r_20260802_92036",
         "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_09535",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=50)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260802_74417",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=12)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_79559",
-        "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 0% Treffer, n=36)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260803_18173",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=9)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.35,
+        "effektiv_gewicht": 2.5,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -708,7 +646,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.82,
+        "effektiv_gewicht": 1.89,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -722,7 +660,7 @@
         "muster": "[Anti] halten bei volatility-Titeln",
         "typ": "anti",
         "gewicht": -1.87,
-        "effektiv_gewicht": -1.76,
+        "effektiv_gewicht": -1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -736,7 +674,7 @@
         "muster": "[Anti] halten bei lev-bull-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.75,
+        "effektiv_gewicht": -1.86,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -750,7 +688,7 @@
         "muster": "[Anti] halten bei ai-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.75,
+        "effektiv_gewicht": -1.86,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -764,7 +702,21 @@
         "muster": "[Anti] halten bei lev-bear-Titeln",
         "typ": "anti",
         "gewicht": -1.71,
-        "effektiv_gewicht": -1.61,
+        "effektiv_gewicht": -1.71,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_7_07487",
+        "muster": "[Anti] halten bei space-Titeln",
+        "typ": "anti",
+        "gewicht": -1.64,
+        "effektiv_gewicht": -1.64,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -778,7 +730,63 @@
         "muster": "[Anti] halten bei crypto-Titeln",
         "typ": "anti",
         "gewicht": -1.63,
-        "effektiv_gewicht": -1.54,
+        "effektiv_gewicht": -1.63,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_6_42979",
+        "muster": "[Anti] halten bei commodity-Titeln",
+        "typ": "anti",
+        "gewicht": -1.63,
+        "effektiv_gewicht": -1.63,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_8_71340",
+        "muster": "[Anti] halten bei ev-Titeln",
+        "typ": "anti",
+        "gewicht": -1.62,
+        "effektiv_gewicht": -1.62,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_9_23764",
+        "muster": "[Anti] halten bei biotech-Titeln",
+        "typ": "anti",
+        "gewicht": -1.55,
+        "effektiv_gewicht": -1.55,
+        "shadow": false,
+        "live_allowed": true,
+        "freigabe_status": "freigegeben",
+        "status": "unbestätigt",
+        "prioritaet": 1,
+        "wirkung": "gewichtung",
+        "durchgesetzt": false
+      },
+      {
+        "id": "r_legacy_10_24603",
+        "muster": "[Anti] halten bei index-Titeln",
+        "typ": "anti",
+        "gewicht": -1.47,
+        "effektiv_gewicht": -1.47,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -788,7 +796,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260810_214755_CRSP_aktien_na",
+    "decision_id": "d_20260811_173251_CRSP_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -796,20 +804,20 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 53.41,
-      "sma20": 49.33,
-      "sma50": 52.28,
-      "rsi": 70.2,
-      "atr_pct": 3.41,
-      "vol_ratio": 0.59,
-      "vix": 15.4,
+      "kurs": 53.4,
+      "sma20": 49.48,
+      "sma50": 52.22,
+      "rsi": 75.4,
+      "atr_pct": 3.44,
+      "vol_ratio": 0.17,
+      "vix": 15.3,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 1.44
+      "depot_rendite": 1.08
     },
     "indikatoren": [
-      "SMA20>49.3",
-      "SMA50>52.3",
-      "RSI70",
+      "SMA20>49.5",
+      "SMA50>52.2",
+      "RSI75",
       "ATR3.4%"
     ],
     "news_score": null,
@@ -822,24 +830,24 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 45,
-    "konfidenz_nach_cap": 45,
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,
     "regelstatus_beim_entscheid": {
-      "r_20260802_32531": "stabil",
       "r_20260802_92036": "stabil",
-      "r_20260802_09535": "stabil",
-      "r_20260802_74417": "stabil",
-      "r_20260803_79559": "stabil",
-      "r_20260803_18173": "stabil",
       "r_20260801_07584": "stabil",
       "r_legacy_1_87577": "stabil",
       "r_legacy_2_74438": "stabil",
       "r_legacy_5_20387": "stabil",
       "r_legacy_4_69646": "stabil",
-      "r_legacy_3_42126": "stabil"
+      "r_legacy_7_07487": "stabil",
+      "r_legacy_3_42126": "stabil",
+      "r_legacy_6_42979": "stabil",
+      "r_legacy_8_71340": "stabil",
+      "r_legacy_9_23764": "stabil",
+      "r_legacy_10_24603": "stabil"
     }
   },
   "tenant_id": 1,

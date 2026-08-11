@@ -1,121 +1,142 @@
 [
   {
+    "muster": "[Reflexion] halten bei core",
+    "regel": "Halten bei core-Titeln systematisch schlecht (52× LE≤−2, Ø -3.2)",
+    "gewicht": 3.0,
+    "anti": false,
+    "zeit": "2026-08-11T17:34:03"
+  },
+  {
     "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
     "regel": "KI überschätzt sich im Konfidenz-Bin 80-100 (0% Treffer bei n=17). Konfidenz wird auf max. 80 gedeckelt.",
     "gewicht": 3.0,
     "anti": false,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
+  },
+  {
+    "muster": "[Reflexion] halten bei lev-etf",
+    "regel": "Halten bei lev-etf-Titeln systematisch schlecht (15× LE≤−2, Ø -3.9)",
+    "gewicht": 2.75,
+    "anti": true,
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 4% Treffer, n=89)",
     "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (4% Treffer bei n=89). Konfidenz wird auf max. 60 gedeckelt.",
     "gewicht": 2.6,
     "anti": false,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
+  },
+  {
+    "muster": "[Reflexion] halten bei volatility",
+    "regel": "Halten bei volatility-Titeln systematisch schlecht (7× LE≤−2, Ø -4.4)",
+    "gewicht": 2.25,
+    "anti": true,
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
     "regel": "Halte-Positionen liefen Ø +1.0% schlechter als SPY. Bei schwachen Setups in Benchmark-ETF umschichten.",
     "gewicht": 2.0,
     "anti": false,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei volatility-Titeln",
     "regel": "NICHT halten bei volatility-Titeln – systematisch falsch (8/8 widerlegt, Ø -3.4). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.88,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei lev-bull-Titeln",
     "regel": "NICHT halten bei lev-bull-Titeln – systematisch falsch (5/5 widerlegt, Ø -3.6). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.86,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei crypto-Titeln",
     "regel": "NICHT halten bei crypto-Titeln – systematisch falsch (5/6 widerlegt, Ø -2.5). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.82,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei lev-bear-Titeln",
     "regel": "NICHT halten bei lev-bear-Titeln – systematisch falsch (6/6 widerlegt, Ø -3.3). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.69,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei ai-Titeln",
     "regel": "NICHT halten bei ai-Titeln – systematisch falsch (5/5 widerlegt, Ø -3.8). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.69,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei commodity-Titeln",
     "regel": "NICHT halten bei commodity-Titeln – systematisch falsch (5/5 widerlegt, Ø -2.4). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.67,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei space-Titeln",
     "regel": "NICHT halten bei space-Titeln – systematisch falsch (3/3 widerlegt, Ø -4.0). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.64,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei ev-Titeln",
     "regel": "NICHT halten bei ev-Titeln – systematisch falsch (2/3 widerlegt, Ø -2.3). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.62,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei biotech-Titeln",
     "regel": "NICHT halten bei biotech-Titeln – systematisch falsch (2/4 widerlegt, Ø -2.5). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.55,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Konzentration] AMC in 4 Depots (>= 4)",
     "regel": "AMC liegt in 4 Depots (Klumpenrisiko). Käufe dieses Ticklers in weiteren Depots vermeiden, lieber streuen.",
     "gewicht": -1.5,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei index-Titeln",
     "regel": "NICHT halten bei index-Titeln – systematisch falsch (3/3 widerlegt, Ø -2.0). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.47,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[Anti] halten bei meme-Titeln",
     "regel": "NICHT halten bei meme-Titeln – systematisch falsch (2/3 widerlegt, Ø -2.0). Ausnahme nur mit sehr starkem Grund",
     "gewicht": -1.41,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[MTF] Vorsicht Kaufen bei 15min↑/1d↓ (RIVN)",
     "regel": "KI kaufte RIVN bei kurzfristigem Anstieg (15min +2.0%) trotz fallendem Tagestrend (1d -5.2%). Oft eine Falle.",
     "gewicht": -1.0,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   },
   {
     "muster": "[MTF] Vorsicht Kaufen bei 15min↑/1d↓ (ETHA)",
     "regel": "KI kaufte ETHA bei kurzfristigem Anstieg (15min +0.3%) trotz fallendem Tagestrend (1d -2.7%). Oft eine Falle.",
     "gewicht": -1.0,
     "anti": true,
-    "zeit": "2026-08-11T15:32:02"
+    "zeit": "2026-08-11T17:34:03"
   }
 ]

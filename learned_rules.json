@@ -1,13 +1,50 @@
 {
   "schema_version": "2.0",
   "_regelstand": {
-    "regelstand_version": 195,
+    "regelstand_version": 199,
     "regelstand_created_at": "2026-08-03T15:19:11",
-    "regelstand_last_sync": "2026-08-11T15:32:02",
+    "regelstand_last_sync": "2026-08-11T17:34:03",
     "regelstand_status": "shadow",
-    "regelstand_hash": "bd56b478fbad"
+    "regelstand_hash": "44a3733d94e3"
   },
   "rules": [
+    {
+      "id": "r_20260811_74635",
+      "muster": "[Reflexion] halten bei core",
+      "regel": "Halten bei core-Titeln systematisch schlecht (52× LE≤−2, Ø -3.2)",
+      "typ": "positiv",
+      "gewicht": 3.0,
+      "swap_type": null,
+      "support_count": 0,
+      "violation_count": 52,
+      "avg_effect_when_applied": 0.0,
+      "kontext": {
+        "asset_klasse": [],
+        "sektor": [],
+        "vix_range": [
+          0,
+          999
+        ],
+        "trend_4h": "",
+        "regime": [],
+        "min_konfidenz": 0
+      },
+      "benchmark_ticker": null,
+      "conf_cap": null,
+      "created_at": "2026-08-11T17:34:03",
+      "updated_at": "2026-08-11T17:34:03",
+      "last_seen_at": "2026-08-11T17:34:03",
+      "decay_lambda": 0.01,
+      "effektiv_gewicht": 3.0,
+      "shadow": true,
+      "oos_confirmed": false,
+      "freigabe_status": "nicht_freigegeben",
+      "prioritaet": 2,
+      "konfliktgruppe": "[Reflexion] halten bei core",
+      "created_in_version": 198,
+      "last_validated_version": 0,
+      "last_validated_at": null
+    },
     {
       "id": "r_20260802_92036",
       "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
@@ -15,7 +52,7 @@
       "typ": "meta_conf_cap",
       "gewicht": 2.5,
       "swap_type": null,
-      "support_count": 28,
+      "support_count": 17,
       "violation_count": 0,
       "avg_effect_when_applied": 0.0,
       "kontext": {
@@ -31,7 +68,7 @@
       },
       "benchmark_ticker": null,
       "created_at": "2026-08-02T12:35:26",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-08-02T12:35:26",
       "decay_lambda": 0.01,
       "effektiv_gewicht": 3.0,
@@ -47,13 +84,50 @@
       "dup_count": 3
     },
     {
+      "id": "r_20260811_79449",
+      "muster": "[Reflexion] halten bei lev-etf",
+      "regel": "Halten bei lev-etf-Titeln systematisch schlecht (15× LE≤−2, Ø -3.9)",
+      "typ": "anti",
+      "gewicht": 2.75,
+      "swap_type": null,
+      "support_count": 0,
+      "violation_count": 15,
+      "avg_effect_when_applied": 0.0,
+      "kontext": {
+        "asset_klasse": [],
+        "sektor": [],
+        "vix_range": [
+          0,
+          999
+        ],
+        "trend_4h": "",
+        "regime": [],
+        "min_konfidenz": 0
+      },
+      "benchmark_ticker": null,
+      "conf_cap": null,
+      "created_at": "2026-08-11T17:34:03",
+      "updated_at": "2026-08-11T17:34:03",
+      "last_seen_at": "2026-08-11T17:34:03",
+      "decay_lambda": 0.01,
+      "effektiv_gewicht": 2.75,
+      "shadow": true,
+      "oos_confirmed": false,
+      "freigabe_status": "nicht_freigegeben",
+      "prioritaet": 1,
+      "konfliktgruppe": "[Reflexion] halten bei lev-etf",
+      "created_in_version": 198,
+      "last_validated_version": 0,
+      "last_validated_at": null
+    },
+    {
       "id": "r_20260803_73571",
       "muster": "[Meta] Konfidenz-Cap 60 (Bin 60-80: 4% Treffer, n=89)",
       "regel": "KI überschätzt sich im Konfidenz-Bin 60-80 (4% Treffer bei n=89). Konfidenz wird auf max. 60 gedeckelt.",
       "typ": "meta_conf_cap",
-      "gewicht": 2.42,
+      "gewicht": 2.44,
       "swap_type": null,
-      "support_count": 73,
+      "support_count": 58,
       "violation_count": 0,
       "avg_effect_when_applied": 0.0,
       "kontext": {
@@ -70,7 +144,7 @@
       "benchmark_ticker": null,
       "conf_cap": 60,
       "created_at": "2026-08-03T19:06:15",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-08-03T19:06:15",
       "decay_lambda": 0.01,
       "effektiv_gewicht": 2.6,
@@ -84,6 +158,43 @@
       "last_validated_at": null,
       "status": "unbestätigt",
       "dup_count": 30
+    },
+    {
+      "id": "r_20260811_17250",
+      "muster": "[Reflexion] halten bei volatility",
+      "regel": "Halten bei volatility-Titeln systematisch schlecht (7× LE≤−2, Ø -4.4)",
+      "typ": "anti",
+      "gewicht": 2.25,
+      "swap_type": null,
+      "support_count": 0,
+      "violation_count": 7,
+      "avg_effect_when_applied": 0.0,
+      "kontext": {
+        "asset_klasse": [],
+        "sektor": [],
+        "vix_range": [
+          0,
+          999
+        ],
+        "trend_4h": "",
+        "regime": [],
+        "min_konfidenz": 0
+      },
+      "benchmark_ticker": null,
+      "conf_cap": null,
+      "created_at": "2026-08-11T17:34:03",
+      "updated_at": "2026-08-11T17:34:03",
+      "last_seen_at": "2026-08-11T17:34:03",
+      "decay_lambda": 0.01,
+      "effektiv_gewicht": 2.25,
+      "shadow": true,
+      "oos_confirmed": false,
+      "freigabe_status": "nicht_freigegeben",
+      "prioritaet": 1,
+      "konfliktgruppe": "[Reflexion] halten bei volatil",
+      "created_in_version": 198,
+      "last_validated_version": 0,
+      "last_validated_at": null
     },
     {
       "id": "r_20260801_07584",
@@ -105,7 +216,7 @@
       },
       "benchmark_ticker": "SPY",
       "created_at": "2026-08-01T15:31:00",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-08-01T15:31:00",
       "decay_lambda": 0.01,
       "effektiv_gewicht": 2.0,
@@ -147,7 +258,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T21:19:51.324199",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T21:19:51.324199",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.88,
@@ -191,7 +302,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T21:19:51.324199",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T21:19:51.324199",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.86,
@@ -233,7 +344,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T21:19:51.324199",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T21:19:51.324199",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.82,
@@ -277,7 +388,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T21:19:51.324199",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T21:19:51.324199",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.69,
@@ -319,7 +430,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T21:19:51.324199",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T21:19:51.324199",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.69,
@@ -361,7 +472,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T21:19:51.324199",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T21:19:51.324199",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.67,
@@ -403,7 +514,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T20:35:01.698737",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T20:35:01.698737",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.64,
@@ -445,7 +556,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T21:19:51.324199",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T21:19:51.324199",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.62,
@@ -487,7 +598,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T19:50:49.476529",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T19:50:49.476529",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.55,
@@ -524,7 +635,7 @@
       "benchmark_ticker": null,
       "conf_cap": null,
       "created_at": "2026-08-07T17:46:56",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-08-07T17:46:56",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.5,
@@ -567,7 +678,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T20:05:48.223050",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T20:05:48.223050",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.47,
@@ -609,7 +720,7 @@
         "min_konfidenz": 0
       },
       "created_at": "2026-07-31T19:21:59.055290",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-07-31T19:21:59.055290",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.41,
@@ -646,7 +757,7 @@
       "benchmark_ticker": null,
       "conf_cap": null,
       "created_at": "2026-08-03T16:35:42",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-08-03T16:35:42",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.0,
@@ -684,7 +795,7 @@
       "benchmark_ticker": null,
       "conf_cap": null,
       "created_at": "2026-08-03T18:36:07",
-      "updated_at": "2026-08-11T15:32:02",
+      "updated_at": "2026-08-11T17:34:03",
       "last_seen_at": "2026-08-03T18:36:07",
       "decay_lambda": 0.01,
       "effektiv_gewicht": -1.0,
