@@ -2533,10 +2533,41 @@ def login():
         sec.audit_log("login_failed", uname, f"ip={request.remote_addr or '?'} ua={(request.user_agent.string or '?')[:80]}")
         sec.register_login_fail(request.remote_addr or "?", uname)
         return make_response("<h1>Login fehlgeschlagen</h1><a href='/login'>neu</a>"), 401
-    return make_response(
-        "<form method='POST'>Benutzer:<input name='username'><br>"
-        "Passwort:<input name='password' type='password'><br>"
-        "<input type='submit' value='Login'></form>")
+    # GET: gestylte Login-Card (konsistent mit /landing Stil)
+    return make_response(f"""<!doctype html><html lang='de'><head><meta charset='utf-8'>
+<title>Micro-Trader – Anmeldung</title>
+<style>
+body{{font-family:'Segoe UI Variable','Segoe UI',system-ui,sans-serif;margin:0;padding:0;background:#f8fafc;background-image:radial-gradient(ellipse at 15% 0%,rgba(37,99,235,.08) 0%,transparent 55%),radial-gradient(ellipse at 85% 0%,rgba(16,185,129,.05) 0%,transparent 50%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 24px;box-sizing:border-box}}
+.card{{max-width:400px;width:100%;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.95);border-radius:18px;box-shadow:0 24px 48px rgba(61,93,153,.12);overflow:hidden}}
+.banner{{width:100%;height:92px;display:flex;align-items:center;justify-content:center;background:#0f172a;color:#fff;font-size:20px;font-weight:700;letter-spacing:.3px}}
+.banner .dot{{width:10px;height:10px;border-radius:50%;background:#22c55e;margin-right:10px;box-shadow:0 0 0 4px rgba(34,197,94,.25)}}
+.inner{{padding:24px 26px 26px}}
+h2{{font-size:22px;margin:0 0 4px;color:#0f172a}}
+.badge{{display:inline-block;background:#e8f5e9;color:#1b5e20;border-radius:999px;padding:3px 11px;font-size:11.5px;font-weight:600;margin-bottom:14px}}
+label{{display:block;margin-top:14px;font-size:13px;font-weight:600;color:#334155}}
+input{{display:block;width:100%;box-sizing:border-box;margin-top:5px;padding:11px 13px;font-size:14.5px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;font-family:inherit;transition:border-color .15s,box-shadow .15s}}
+input:focus{{outline:none;border-color:#2563eb;box-shadow:0 0 0 4px rgba(37,99,235,.12)}}
+button{{margin-top:18px;width:100%;background:#2563eb;color:#fff;border:none;padding:12px 0;border-radius:12px;font-size:15.5px;font-weight:600;cursor:pointer;transition:background .15s,transform .05s}}
+button:hover{{background:#1d4ed8}}
+button:active{{transform:translateY(1px)}}
+.hint{{margin-top:14px;font-size:11.5px;color:#94a3b8;text-align:center}}
+a{{color:#2563eb;text-decoration:none;font-weight:600}}
+</style></head><body>
+<div class='card'>
+  <div class='banner'><span class='dot'></span>Micro-Trader</div>
+  <div class='inner'>
+    <h2>Anmeldung</h2>
+    <span class='badge'>Paper-/Shadow-Trading · kein Echtgeld</span>
+    <form method='POST'>
+      <label for='u'>Benutzer</label>
+      <input id='u' name='username' autocomplete='username' placeholder='goldi5'>
+      <label for='p'>Passwort</label>
+      <input id='p' name='password' type='password' autocomplete='current-password' placeholder='••••••••'>
+      <button type='submit'>Einloggen</button>
+    </form>
+    <div class='hint'><a href='/landing'>← Zurück zur Übersicht</a></div>
+  </div>
+</div></body></html>""")
 
 
 @ app.route("/logout")
@@ -2545,7 +2576,7 @@ def logout():
     sid = request.cookies.get("sid")
     if uname and sid:
         sec.revoke_session(uname, sid)
-    resp = make_response(redirect("/login"))
+    resp = make_response(redirect("/landing"))
     resp.delete_cookie("username")
     resp.delete_cookie("sid")
     return resp

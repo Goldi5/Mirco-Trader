@@ -1,0 +1,208 @@
+{
+  "admin": {
+    "username": "admin",
+    "display_name": "admin",
+    "email": "",
+    "role": "superadmin",
+    "status": "ACTIVE",
+    "active": true,
+    "created_at": "2026-08-08T11:46:07.601078Z",
+    "updated_at": "2026-08-10T12:36:08.886857Z",
+    "last_login_at": "2026-08-10T12:36:08.886857Z",
+    "last_failed_login_at": "2026-08-10T13:19:46.403928Z",
+    "mfa_enabled": true,
+    "mfa_verified_at": "2026-08-10T12:29:11.434261Z",
+    "created_by": null,
+    "disabled_by": null,
+    "disabled_at": null,
+    "sessions_active": 1,
+    "last_security_action": "2026-08-10T12:34:51.260917Z password_change",
+    "recovery_codes_left": 8,
+    "sessions": {}
+  },
+  "__diag__": {
+    "username": "__diag__",
+    "display_name": "__diag__",
+    "email": "",
+    "role": "admin",
+    "status": "MFA_REQUIRED",
+    "active": true,
+    "created_at": "2026-08-10T06:54:04.748293Z",
+    "updated_at": "2026-08-10T06:54:05.526718Z",
+    "last_login_at": "2026-08-10T06:54:05.526718Z",
+    "last_failed_login_at": null,
+    "mfa_enabled": false,
+    "mfa_verified_at": null,
+    "created_by": "system",
+    "disabled_by": null,
+    "disabled_at": null,
+    "sessions_active": 0,
+    "last_security_action": null,
+    "recovery_codes_left": 0,
+    "sessions": {}
+  },
+  "goldi5": {
+    "username": "goldi5",
+    "display_name": "goldi5",
+    "email": "",
+    "role": "superadmin",
+    "status": "ACTIVE",
+    "active": true,
+    "created_at": "2026-08-10T12:39:30.451816Z",
+    "updated_at": "2026-08-11T11:57:53.719111Z",
+    "last_login_at": "2026-08-11T11:57:53.719111Z",
+    "last_failed_login_at": "2026-08-11T11:37:19.711472Z",
+    "mfa_enabled": false,
+    "mfa_verified_at": null,
+    "created_by": "admin",
+    "disabled_by": null,
+    "disabled_at": null,
+    "sessions_active": 1,
+    "last_security_action": "2026-08-11T11:57:53.672433Z password_change",
+    "recovery_codes_left": 0,
+    "password_hash": "pbkdf2:sha256:1000000$ga1lf1eZVPVu8QRj$2714bb1174d9f2aa4e4351caa513e7ed8e043bd5a7df1c5a06b6cfa0b39ac708",
+    "sessions": {
+      "2BTtDT0CcfT6xW5wpICSZywjfnNZyKquz9CN49mJD5k": {
+        "created": 1786446511,
+        "last_seen": 1786446511,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786446511,
+        "mfa_verified_at": 0
+      },
+      "7gtg_w6ygGNAJwZuli4zo3XWdrnbQZo6Q-fhIT6MTwI": {
+        "created": 1786446511,
+        "last_seen": 1786446515,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786446511,
+        "mfa_verified_at": 0
+      },
+      "_6xRoLsVaNEeut2OgBVFOjBEl0ZyFNN30qvRvni1ndU": {
+        "created": 1786447426,
+        "last_seen": 1786447426,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786447426,
+        "mfa_verified_at": 0
+      },
+      "3z5bpCJm440TC6iEPMPsozCPlLUoJipSgu1W3nh6hZY": {
+        "created": 1786447426,
+        "last_seen": 1786447428,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786447426,
+        "mfa_verified_at": 0
+      },
+      "aYowsEODDjJnmDsUpfZ9MeBYNHffVW6J8TV4P_Mwwsg": {
+        "created": 1786447495,
+        "last_seen": 1786447495,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786447495,
+        "mfa_verified_at": 0
+      },
+      "U5vMzjFNXIAUB0WdEEqXE_NXSr-LicyjJsrvgQ36-os": {
+        "created": 1786447495,
+        "last_seen": 1786448272,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786447495,
+        "mfa_verified_at": 0
+      },
+      "lx2WmzM7V0Yet61ChUA1r6TK9Iqe87FiUznIRuNicYE": {
+        "created": 1786447915,
+        "last_seen": 1786447915,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786447915,
+        "mfa_verified_at": 0
+      },
+      "21kfupCpreKRNAXQ1pCAJSTVuBSZr66-vHuSvNolvVQ": {
+        "created": 1786447915,
+        "last_seen": 1786447936,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786447915,
+        "mfa_verified_at": 0
+      },
+      "wHpQtW1rtQMTLtPIUb4LaS8g_YnR2i91fNfOWhIu7tI": {
+        "created": 1786447963,
+        "last_seen": 1786447963,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786447963,
+        "mfa_verified_at": 0
+      },
+      "XFgUo8sgR3xGWY97ILNRLGNHzSGjM9K21rRr7RpPL-o": {
+        "created": 1786447963,
+        "last_seen": 1786448005,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786447963,
+        "mfa_verified_at": 0
+      },
+      "dOwtsNsecAw0oEfkyZgE4pVXaL0BFj461Ont2LdNcEM": {
+        "created": 1786448052,
+        "last_seen": 1786448052,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786448052,
+        "mfa_verified_at": 0
+      },
+      "NXOgZw1Uvgn9BSfi0EKUkCgvjS0mkVDMYTa0vDpEPxE": {
+        "created": 1786448052,
+        "last_seen": 1786448056,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786448052,
+        "mfa_verified_at": 0
+      },
+      "7zihMBbUNVe7H5-mqAFG4KQ_mbG-SzpM0s9o7_9cGVg": {
+        "created": 1786448086,
+        "last_seen": 1786448086,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786448086,
+        "mfa_verified_at": 0
+      },
+      "Nhz5VhRtnOQfmdYOfBTP6MQ08Z5mxXdv_2PTu3AGYjs": {
+        "created": 1786448086,
+        "last_seen": 1786448086,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786448086,
+        "mfa_verified_at": 0
+      },
+      "If8dhErQFGrk3x5laUASpOAxGegLlbU2ul7uVJMPwOA": {
+        "created": 1786448130,
+        "last_seen": 1786448130,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786448130,
+        "mfa_verified_at": 0
+      },
+      "HVcajT-eMOuKN6x_OIRSGn9VUZrivOdnErLdOw9GdHs": {
+        "created": 1786448130,
+        "last_seen": 1786448130,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786448130,
+        "mfa_verified_at": 0
+      },
+      "NGkNdWPn7rJKjFV4hTM2GNhcbxAUHAJtAfFp-210DjA": {
+        "created": 1786448968,
+        "last_seen": 1786448968,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786448968,
+        "mfa_verified_at": 0
+      },
+      "QFGbirr-nmrkaznDGRw9U38pX7GENoP_NtU4dwOoT9g": {
+        "created": 1786448968,
+        "last_seen": 1786448973,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786448968,
+        "mfa_verified_at": 0
+      },
+      "ud3k_pPaRN4Lx_5EohgCIah0QEDkgak_9EqWTH1mMko": {
+        "created": 1786449345,
+        "last_seen": 1786449345,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786449345,
+        "mfa_verified_at": 0
+      },
+      "r2Fir--fSOqgUr1UcYLKoiElJ5QaKFXghdnMAQGXgOM": {
+        "created": 1786449345,
+        "last_seen": 1786449358,
+        "ip": "127.0.0.1",
+        "rotated_at": 1786449345,
+        "mfa_verified_at": 0
+      }
+    },
+    "last_login": "2026-08-11T11:57:53.719111Z"
+  }
+}
