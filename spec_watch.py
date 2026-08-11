@@ -26,20 +26,10 @@ WATCHLIST = {
     "SOUN":  {"name": "SoundHound AI",             "kat": "ai",        "hebel": 1},
     "NRGU":  {"name": "MicroSectors FANG+ 3x",    "kat": "commodity",  "hebel": 3},
     "BB":    {"name": "BlackBerry Ltd.",           "kat": "meme",      "hebel": 1},
-    "IONQ":  {"name": "IonQ Inc.",                 "kat": "ai",        "hebel": 1},
     "MRNA":  {"name": "Moderna Inc.",              "kat": "biotech",   "hebel": 1},
     "PLTR":  {"name": "Palantir Technologies",     "kat": "ai",        "hebel": 1},
     "TNA":   {"name": "Direxion SmallCap Bull 3x","kat": "lev-bull",  "hebel": 3},
     "CRSP":  {"name": "CRISPR Therapeutics",       "kat": "biotech",   "hebel": 1},
-    "SCO":   {"name": "ProShares UltraShort Crude","kat":"commodity",  "hebel": -2},
-    "RKLB":  {"name": "Rocket Lab USA",            "kat": "space",     "hebel": 1},
-    "JDST":  {"name": "Direxion Gold Miners Bear 2x","kat":"lev-bear","hebel": -2},
-    "FAZ":   {"name": "Direxion Financial Bear 3x","kat": "lev-bear", "hebel": -3},
-    "BOIL":  {"name": "ProShares Ultra NatGas 2x","kat": "commodity",  "hebel": 2},
-    "BITX":  {"name": "Volatility Bitcoin 2x",     "kat": "crypto",    "hebel": 2},
-    "TQQQ":  {"name": "ProShares UltraPro QQQ 3x","kat": "lev-bull",   "hebel": 3},
-    "RGTI":  {"name": "Rigetti Computing",         "kat": "ai",        "hebel": 1},
-    "QQQ":   {"name": "Invesco QQQ Trust",         "kat": "index",     "hebel": 1},
 }
 
 CACHE_FILE = os.path.join(BASE, ".spec_cache.json")

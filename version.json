@@ -1,8 +1,8 @@
 {
-  "version": "2.51.1",
-  "build": "2026-08-10_2230",
-  "released_at": "2026-08-10 22:30",
-  "codename": "Daily-Report Fix (Paper-Only Datenquellen + echte Provider-Liste)",
+  "version": "2.53.0",
+  "build": "2026-08-11_0930",
+  "released_at": "2026-08-11 09:30",
+  "codename": "P1-P5: markt_daten, Rate-Limit, Risiko-Slider, Depot-Reduktion 10, Kill-Switch",
   "changes": [
     {
       "version": "2.51.0",

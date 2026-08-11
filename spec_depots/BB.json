@@ -2,7 +2,7 @@
   "ticker": "BB",
   "name": "BlackBerry Ltd.",
   "kategorie": "meme",
-  "bargeld": 0.0,
+  "bargeld": 0,
   "shares": 11.552339,
   "avg_price": 8.98,
   "start": 100,
@@ -873,5 +873,6 @@
     }
   },
   "tenant_id": 1,
-  "mode": "shadow"
+  "mode": "shadow",
+  "positions": {}
 }

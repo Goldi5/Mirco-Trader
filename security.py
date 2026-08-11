@@ -1328,6 +1328,41 @@ def _user_view(u, username=""):
 
 
 def _save_users(users):
+    """Schreibt User-Store mit Merge-Schutz (FIX 2026-08-11).
+
+    Das Problem (wiederkehrend): Das Dashboard hält den User-Store im RAM.
+    Wird das Passwort extern geändert (z.B. `sec.change_password` von einem
+    anderen Prozess/Agent), überschrieb das Dashboard beim nächsten Save
+    (Session-GC etc.) die Datei mit dem ALTEN Stand -> Passwort weg.
+
+    Fix: Vor dem Schreiben wird die aktuelle Datei gelesen. Für jeden User
+    gilt: pw_hash/mfa/recovery_codes werden aus der DATEI übernommen, wenn
+    der RAM-Eintrag sie nicht enthält (None/leer) — so gehen fremde
+    Änderungen nie verloren. Nur explizit gesetzte Felder überschreiben.
+    """
+    # Aktuelle Datei lesen (falls vorhanden)
+    disk = {}
+    if os.path.exists(USERS_FILE):
+        try:
+            with open(USERS_FILE, encoding="utf-8") as f:
+                disk = json.load(f)
+        except Exception:
+            disk = {}
+    for name, u in users.items():
+        du = disk.get(name, {})
+        # Schutz: RAM darf fremde Passwort-Änderungen nicht verwischen
+        if not u.get("pw_hash") and du.get("pw_hash"):
+            u["pw_hash"] = du["pw_hash"]
+        if not u.get("mfa_enabled") and du.get("mfa_enabled"):
+            u["mfa_enabled"] = du["mfa_enabled"]
+        if not u.get("recovery_codes") and du.get("recovery_codes"):
+            u["recovery_codes"] = du["recovery_codes"]
+        # Sessions: RAM-Sessions + Disk-Sessions vereinen (nie Disk-Sessions verlieren)
+        ram_sess = u.get("sessions") or {}
+        disk_sess = du.get("sessions") or {}
+        merged = dict(disk_sess)
+        merged.update(ram_sess)
+        u["sessions"] = merged
     with open(USERS_FILE, "w", encoding="utf-8") as f:
         json.dump(users, f, indent=2, ensure_ascii=False)
 

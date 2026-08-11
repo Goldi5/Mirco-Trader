@@ -1301,20 +1301,98 @@ def risk_appetite():
     except Exception:
         return {"ok": True, "value": 50}
 
+@app.route("/api/close_portfolio")
+def close_portfolio():
+    """P5 (2026-08-11): Schließt ALLE Positionen eines Portfolios (Paper-Simulation).
+    Verkauft alle shares zu aktuellem Kurs, Cash ins Bargeld, Zustand CLOSED.
+    Nur admin (goldi5)."""
+    u = sec.current_user()
+    if not u or u.get("role") != "superadmin":
+        return {"ok": False, "error": "nur superadmin"}, 403
+    pfad = request.args.get("pfad", "")
+    if not pfad or not os.path.exists(os.path.join(BASE, pfad)):
+        return {"ok": False, "error": "Depot-Pfad fehlt/ungueltig"}
+    try:
+        f = os.path.join(BASE, pfad)
+        d = json.load(open(f, encoding="utf-8"))
+        from marktdaten import hole_kurs
+        erloes = 0
+        # Format A: Spec-Depot (shares/avg_price auf Top-Level)
+        sh = d.get("shares", 0) or 0
+        if sh > 0:
+            t = d.get("ticker", "")
+            k = hole_kurs(t) or d.get("avg_price", 0) or 0
+            erloes += sh * k
+            d["bargeld"] = (d.get("bargeld", 0) or 0) + erloes
+            d["shares"] = 0
+        # Format B: Aktien/ETF (positions-dict)
+        pos = d.get("positions", {})
+        if isinstance(pos, dict) and pos:
+            for t, p in pos.items():
+                psh = p.get("shares", 0) or 0
+                k = hole_kurs(t) or p.get("avg_price", 0) or 0
+                erloes += psh * k
+            d["bargeld"] = (d.get("bargeld", 0) or 0) + erloes
+            d["positions"] = {}
+        d["zustand"] = "CLOSED"
+        d["closed_at"] = time.strftime("%Y-%m-%dT%H:%M:%S")
+        json.dump(d, open(f, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
+        return {"ok": True, "pfad": pfad, "erloes": round(erloes, 2), "zustand": "CLOSED"}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+@app.route("/api/suspend_trading")
+def suspend_trading():
+    """P5 (2026-08-11): Härtester Notfall-Schalter. Pausiert Pipeline + KI +
+    markt_daten + News (suspend_flag.json). Nur superadmin."""
+    u = sec.current_user()
+    if not u or u.get("role") != "superadmin":
+        return {"ok": False, "error": "nur superadmin"}, 403
+    sf = os.path.join(BASE, "suspend_flag.json")
+    state = request.args.get("state", "").lower()
+    if state in ("on", "off"):
+        suspended = state == "on"
+        grund = request.args.get("grund", "manuell (Kill-Switch)")
+        try:
+            with open(sf, "w") as f:
+                json.dump({"suspended": suspended, "grund": grund,
+                           "zeit": time.strftime("%Y-%m-%d %H:%M")}, f)
+            return {"ok": True, "suspended": suspended, "grund": grund}
+        except Exception as e:
+            return {"ok": False, "error": str(e)}
+    if os.path.exists(sf):
+        try:
+            with open(sf) as f:
+                return {"ok": True, **json.load(f)}
+        except Exception:
+            pass
+    return {"ok": True, "suspended": False}
+
 
 
 def _ist_pausiert():
-    """Liest das Pause-Flag (v2.16.2)."""
+    """Liest das Pause-Flag (v2.16.2) + Kill-Switch suspend_flag (P5, v2.53.0)."""
+    # Kill-Switch (härteste Stufe) schlägt alles
+    sf = os.path.join(BASE, "suspend_flag.json")
+    if os.path.exists(sf):
+        try:
+            with open(sf) as f:
+                sd = json.load(f)
+            if sd.get("suspended"):
+                return {"paused": True, "grund": "KILL-SWITCH: " + str(sd.get("grund", "")),
+                        "zeit": sd.get("zeit", ""), "kill_switch": True}
+        except Exception:
+            pass
     pf = os.path.join(BASE, "pause_flag.json")
     if os.path.exists(pf):
         try:
             with open(pf) as f:
                 d = json.load(f)
             return {"paused": bool(d.get("paused")), "grund": d.get("grund", ""),
-                    "zeit": d.get("zeit", "")}
+                    "zeit": d.get("zeit", ""), "kill_switch": False}
         except Exception:
             pass
-    return {"paused": False, "grund": "", "zeit": ""}
+    return {"paused": False, "grund": "", "zeit": "", "kill_switch": False}
 
 
 
