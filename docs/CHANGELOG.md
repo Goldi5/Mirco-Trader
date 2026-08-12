@@ -1,3 +1,29 @@
+## [2.57.0] - 2026-08-12
+### Feature: Mehrere Depots pro Risiko-Stufe (eindeutige depot_uid)
+
+**PROBLEM:** User legte Aktien-Depot mit Risk 100 an -> "Depot existiert schon:
+aktien:100". `risk` war als Depot-ID/Dateiname hartcodiert -> zwei Depots
+gleichen Risikos kollidierten. Dashboard zeigte nur 20 (RISK_STUFEN).
+
+**LOESUNG (Option A):** Eindeutige `depot_uid` durchgängig.
+- `depot_erstellen`: Dateiname `depot_{risk:03d}_{seq:02d}_paper.json`,
+  `depot_id = aktien:{risk}` (Legacy, seq=0) oder `aktien:{risk}:{seq}`.
+- Jede Depot-Datei bekommt Feld `depot_id` + `seq`.
+- `_depot_pfad_aus_id` parst `aktien:100:1` -> `depot_100_01_paper.json`.
+- `/data` nutzt `depot_raw_list` (Liste, nicht Dict nach risk) -> mehrere
+  Depots pro risk sichtbar. Jedes Depot-Dict hat `"id"`.
+- `/depot_json` akzeptiert `id=`-Parameter (Fallback auf `risk=`).
+- Frontend: `depotIdent(typ,ticker,risk,id)`, `showDepot` ruft
+  `/depot_json?id=...`, Aktions-Buttons (Pause/Verkaufen/Schließen/Löschen)
+  übergeben `dep.id`.
+- `batch_trader` erfasst neue Dateien automatisch (Glob-Scan).
+
+**VERIFIKATION:** 2 Depots Risk 100 (aktien:100:1, aktien:100:2) + Legacy
+aktien:100 + Risk 55 (aktien:55) erscheinen ALLE in /data. batch_trader
+scannt alle. Frontend-Buttons verdrahtet. Keine Kollision mehr.
+
+---
+
 ## [2.56.1] - 2026-08-12
 ### Fix: Neue Depots mit Risk > 95 erscheinen nicht in Aktien-Liste
 

@@ -1,8 +1,8 @@
 {
-  "version": "2.56.1",
-  "build": "2026-08-12_1030",
-  "released_at": "2026-08-12 10:30",
-  "codename": "Fix: Neue Depots mit Risk>95 erscheinen nicht in Aktien-Liste",
+  "version": "2.57.0",
+  "build": "2026-08-12_1130",
+  "released_at": "2026-08-12 11:30",
+  "codename": "Einzel-Depots: eindeutige depot_uid (mehrere Depots pro Risiko)",
   "changes": [
     {
       "version": "2.51.0",

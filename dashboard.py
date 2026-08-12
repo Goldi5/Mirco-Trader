@@ -735,18 +735,18 @@ def data():
 
     depots = []
     ALLE_TICKER = set()
-    depot_raw = {}
+    depot_raw_list = []
     # PHASE 4: Tenant-Scope — nur Dateien des aktiven Tenants (PHASE 3: _tid
     # stammt aus dem Cache-Check oben, kein zweiter Lookup)
     # PHASE 5: + Portfolio-Modus-Filter
     _scoped = _tenant_scoped_depot_files(_tid, mode=_pmode)
-    # Aktien-Depots (nur Tenant)
+    # Aktien-Depots (nur Tenant) — Liste (mehrere Depots pro risk moeglich, Option A)
     for dp in _scoped["depot"]:
         try:
             risk = int(os.path.basename(dp).split("_")[1].split(".")[0])
             with open(dp) as f:
                 d = json.load(f)
-            depot_raw[risk] = d
+            depot_raw_list.append((risk, d, dp))
             for s, pos_obj in d.get("positions", {}).items():
                 if pos_obj.get("shares", 0) > 0:
                     ALLE_TICKER.add(s)
@@ -787,11 +787,10 @@ def data():
         except Exception:
             pass  # Netz-Probleme -> avg_price aus Depot nutzen
 
-    for risk in sorted(depot_raw.keys()):
-        d = depot_raw.get(risk)
-        if d is None:
-            continue
+    for risk, d, _dp in depot_raw_list:
         p = get_params(risk)
+        # depot_id: aus Datei (neu) oder aus risk (Legacy)
+        depot_id = d.get("depot_id") or f"aktien:{risk}"
         wert = d.get("bargeld", 0)
         for s, pos_obj in d.get("positions", {}).items():
             aktuell = kurse.get(s)
@@ -813,6 +812,7 @@ def data():
                     max_dd = dd
 
         depots.append({
+            "id": depot_id,
             "risk": risk,
             "wert": round(wert, 2),
             "cash": round(d.get("bargeld", 0), 2),
@@ -1500,8 +1500,16 @@ def _depot_pfad_aus_id(depot_id):
                 return cand
         return None
     if kat == "aktien":
-        for cand in [os.path.join(BASE, f"depot_{int(key):03d}_paper.json"),
-                     os.path.join(BASE, f"depot_{int(key):03d}.json")]:
+        # key kann "100" (Legacy) oder "100:1" (seq) sein
+        if ":" in key:
+            rk, sk = key.split(":", 1)
+            cands = [os.path.join(BASE, f"depot_{int(rk):03d}_{int(sk):02d}_paper.json"),
+                     os.path.join(BASE, f"depot_{int(rk):03d}_{int(sk):02d}.json")]
+        else:
+            rk = key
+            cands = [os.path.join(BASE, f"depot_{int(rk):03d}_paper.json"),
+                     os.path.join(BASE, f"depot_{int(rk):03d}.json")]
+        for cand in cands:
             if os.path.exists(cand):
                 return cand
         return None
@@ -1524,10 +1532,21 @@ def depot_erstellen(kat, risk, budget, name=None):
         pfad = os.path.join(BASE, "spec_depots", f"{key}.json")
         depot_id = f"spec:{key}"
     elif kat in ("aktien", "etf"):
-        key = risk
         prefix = "depot" if kat == "aktien" else "etf"
-        pfad = os.path.join(BASE, f"{prefix}_{key:03d}_paper.json")
-        depot_id = f"{kat}:{key}"
+        # Eindeutige seq finden: depot_<risk>_<seq:02d>_paper.json
+        # Legacy-Depots (depot_<risk>_paper.json, seq=00) bleiben erhalten.
+        seq = 0
+        while True:
+            if seq == 0:
+                pfad = os.path.join(BASE, f"{prefix}_{risk:03d}_paper.json")
+            else:
+                pfad = os.path.join(BASE, f"{prefix}_{risk:03d}_{seq:02d}_paper.json")
+            if not os.path.exists(pfad):
+                break
+            seq += 1
+            if seq > 99:
+                return None, "Zu viele Depots mit diesem Risiko"
+        depot_id = f"{kat}:{risk}" if seq == 0 else f"{kat}:{risk}:{seq}"
     else:
         return None, "Falsche Kategorie (aktien/etf/spec)"
     if os.path.exists(pfad):
@@ -1542,6 +1561,8 @@ def depot_erstellen(kat, risk, budget, name=None):
         "erstellt_am": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "name": name or f"{kat.title()} {risk}",
         "mode": "paper",
+        "depot_id": depot_id,
+        "seq": seq,
     }
     with open(pfad, "w", encoding="utf-8") as f:
         json.dump(d, f, indent=2, ensure_ascii=False)
@@ -2396,12 +2417,19 @@ def api_db_karten():
 
 @app.route("/depot_json")
 def depot_json():
+    depot_id_arg = request.args.get("id", "")
     risk = request.args.get("risk", type=int)
-    if risk is None:
-        return {"error": "risk parameter required"}
-    dp = depot_pfad(risk)
-    if not os.path.exists(dp):
-        return {"error": "not found"}
+    # Neue Depots: id=aktien:100:1 -> _depot_pfad_aus_id
+    if depot_id_arg:
+        dp = _depot_pfad_aus_id(depot_id_arg)
+        if not dp:
+            return {"error": "not found"}
+    else:
+        if risk is None:
+            return {"error": "risk or id parameter required"}
+        dp = depot_pfad(risk)
+        if not os.path.exists(dp):
+            return {"error": "not found"}
     # PHASE 4: Tenant-Scope
     try:
         import security as _sec, json as _j
