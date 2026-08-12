@@ -90,19 +90,20 @@ def update_news():
 
     # Relevante Headlines
     relevant = []
+    seen_titles = set()  # Phase 4: Deduplizierung
     for item in alle:
+        title_norm = item["title"].strip().lower()
+        if title_norm in seen_titles:
+            continue  # Duplikat ueberspringen
+        seen_titles.add(title_norm)
         cats = classify_headline(item["title"])
         if cats:
             relevant.append({**item, "topics": cats})
 
-    # Nach Aktien tickern suchen
+    # Nach Tickern suchen (Phase 4: zentrale Mapping-Tabelle)
+    from news_ticker_map import find_tickers
     for item in relevant:
-        tickers_found = []
-        for ticker in ["AAPL","MSFT","TSLA","NVDA","AMD","META","AMZN","GOOGL",
-                       "JPM","BAC","COIN","GME","PLTR","LCID","RIVN","F","GM",
-                       "HOOD","SOFI","TQQQ","MARA"]:
-            if ticker in item["title"] or f"${ticker}" in item["title"]:
-                tickers_found.append(ticker)
+        tickers_found = find_tickers(item["title"])
         if tickers_found:
             item["tickers"] = tickers_found
 
