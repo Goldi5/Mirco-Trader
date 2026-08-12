@@ -118,6 +118,36 @@ class BrokerSimulator(BrokerAdapter):
     def get_positions(self):
         return dict(self.positions)
 
+    def reconcile(self, depot_json_pfad):
+        """Phase 10: Reconciliation — gleicht Sim-Positionen mit Depot-Datei ab.
+        Returns: {match: bool, unterschiede: [...], sim_cash, depot_bargeld}."""
+        try:
+            d = json.load(open(depot_json_pfad, encoding="utf-8"))
+        except Exception as e:
+            return {"match": False, "fehler": str(e)}
+        # Depot-Positionen sammeln (Format B: positions-dict)
+        dep_pos = {}
+        pos = d.get("positions", {})
+        if isinstance(pos, dict):
+            for t, p in pos.items():
+                dep_pos[t] = (p.get("shares", 0) or 0)
+        # Format A: Spec top-level shares
+        if d.get("ticker") and d.get("shares"):
+            dep_pos[d["ticker"]] = d["shares"]
+        unterschiede = []
+        alle = set(self.positions) | set(dep_pos)
+        for t in alle:
+            sim_q = self.positions.get(t, 0)
+            dep_q = dep_pos.get(t, 0)
+            if abs(sim_q - dep_q) > 1e-6:
+                unterschiede.append({"ticker": t, "sim": sim_q, "depot": dep_q})
+        return {
+            "match": len(unterschiede) == 0,
+            "unterschiede": unterschiede,
+            "sim_cash": round(self.cash, 2),
+            "depot_bargeld": d.get("bargeld", 0),
+        }
+
 
 if __name__ == "__main__":
     sim = BrokerSimulator(cash=200)
