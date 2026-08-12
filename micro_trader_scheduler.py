@@ -196,6 +196,15 @@ def run_once():
             start_pipeline("ki_welle", extra_args=[f"--welle", str(welle)])
             time.sleep(180)
             pruefe_pipeline_ergebnis()
+            # ── PHASE 5: News-KI in Trading-Kontext (P0-Blocker) ──
+            # news_evaluator bewertet neue Headlines via ki_provider.call_ki
+            # und schreibt sie als typ='news' in ki_log (von ki_decisions gelesen).
+            try:
+                from news_evaluator import main as news_eval_main
+                news_eval_main()
+                log("Scheduler: News-Evaluierung gelaufen")
+            except Exception as e:
+                log(f"Scheduler: News-Evaluierung fehlgeschlagen: {e}")
         else:
             log(f"Scheduler: US offen -> Engine (Daten, KI-Welle in >{KI_INTERVAL_MIN}min, {status})")
             start_pipeline("engine")
