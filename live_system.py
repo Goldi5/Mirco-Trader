@@ -132,6 +132,42 @@ class LiveSystem:
             },
         }
 
+    # ── Phase 13: Micro-Live-Vorbereitung ──
+    def vorbereiten_micro_live(self):
+        """Setzt Micro-Live-Zielkonfiguration (1 Portfolio, harte Limits).
+        AKTIV bleibt False (keine Aktivierung ohne Phase-14-Freigabe)."""
+        self.config.update({
+            "aktiv": False,               # unveraendert: PAPER_ONLY
+            "modus": "MICRO_LIVE_TARGET",
+            "max_positions": 1,          # Micro-Live: 1 Portfolio
+            "max_pos_groesse": 100.0,    # harte Limits (Auftrag §13)
+            "tagesverlust_limit": 10.0,
+            "gesamtverlust_limit": 20.0,
+            "drawdown_limit": 15.0,
+            "vorbereitet": _now(),
+        })
+        self.speichern()
+        self._audit("MICRO_LIVE_VORBEREITET", "1 Portfolio, Limits gesetzt")
+        return self.config
+
+    def validiere_limits(self, positionen_anzahl, pos_groesse, tagesverlust, gesamtverlust):
+        """Prüft ob Live-Parameter innerhalb der harten Limits bleiben.
+        Returns: (ok, gruende[])."""
+        gruende = []
+        if positionen_anzahl > self.config.get("max_positions", 1):
+            gruende.append(f"zu viele Positionen ({positionen_anzahl} > "
+                           f"{self.config.get('max_positions')})")
+        if pos_groesse > self.config.get("max_pos_groesse", 100):
+            gruende.append(f"Position zu gross ({pos_groesse} > "
+                           f"{self.config.get('max_pos_groesse')})")
+        if tagesverlust > self.config.get("tagesverlust_limit", 10):
+            gruende.append(f"Tagesverlust ueberschritten ({tagesverlust} > "
+                           f"{self.config.get('tagesverlust_limit')})")
+        if gesamtverlust > self.config.get("gesamtverlust_limit", 20):
+            gruende.append(f"Gesamtverlust ueberschritten ({gesamtverlust} > "
+                           f"{self.config.get('gesamtverlust_limit')})")
+        return (len(gruende) == 0, gruende)
+
 
 class ReleaseRegistry:
     """Phase 8: Registry + Gate für freigegebene Releases.
