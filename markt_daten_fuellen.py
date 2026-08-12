@@ -64,10 +64,9 @@ def sma(hist, n):
     except Exception:
         return None
 
-def main():
+def fuelle_markt_daten():
     from marktdaten import hole_kurs
     tickers = ticker_liste()
-    print(f"Ticker zu fuellen: {len(tickers)}")
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     conn = sqlite3.connect(DB)
     c = conn.cursor()
@@ -81,7 +80,6 @@ def main():
             kurs = hole_kurs(t)
             if not kurs or kurs <= 0:
                 continue
-            # Historie laden (falls depots historie haben)
             hist = []
             for f in glob.glob(os.path.join(BASE, "spec_depots", f"{t}.json")):
                 d = json.load(open(f, encoding="utf-8"))
@@ -97,6 +95,10 @@ def main():
     conn.commit()
     conn.close()
     print(f"markt_daten gefuellt: {ok}/{len(tickers)} Ticker geschrieben.")
+    return ok
+
+def main():
+    fuelle_markt_daten()
 
 if __name__ == "__main__":
     main()

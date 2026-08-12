@@ -205,6 +205,18 @@ def run_once():
     else:
         log(f"Scheduler: Alle Börsen zu ({status}) -> kein Start")
 
+    # ── PHASE 1 P1: markt_daten persistieren (Blocker Shadow->Paper) ──
+    # Nur wenn US offen (Kurse verfügbar). Schreibt Kurs/RSI/SMA pro Ticker
+    # in SQLite markt_daten (siehe markt_daten_fuellen.py).
+    if us_offen:
+        try:
+            from markt_daten_fuellen import fuelle_markt_daten
+            n = fuelle_markt_daten()
+            if n:
+                log(f"Scheduler: markt_daten persistiert ({n} Ticker)")
+        except Exception as e:
+            log(f"Scheduler: markt_daten_fuellen fehlgeschlagen: {e}")
+
 
 def main():
     log(f"Scheduler gestartet (Interval {INTERVAL_MIN} min)")
