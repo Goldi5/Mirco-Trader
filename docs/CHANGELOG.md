@@ -1,3 +1,22 @@
+## [2.56.1] - 2026-08-12
+### Fix: Neue Depots mit Risk > 95 erscheinen nicht in Aktien-Liste
+
+**BUG:** User legte Aktien-Depot mit Risk 100 an (Name "Neue Aktien Test").
+Erschien NICHT in der Aktien-Uebersicht.
+
+**ROOT-CAUSE:**  /data Route iterierte 
+(RISK_STUFEN = range(0,100,5) = max 95). Depots mit Risk 100 (oder andere
+nicht-Stufen-Werte) wurden vom Rendering uebersprungen, obwohl die Datei
+existierte und  sie korrekt erfasste.
+
+**FIX:**  -> 
+(alle geladenen Depots, nicht nur RISK_STUFEN).
+
+**VERIFIKATION:** depot_100_paper.json (risk 100, name "Neue Aktien Test")
+wird jetzt in /data erfasst. batch_trader (Task 4 Scan) handelt es ohnehin.
+
+---
+
 # Changelog
 
 ## [2.56.0] - 2026-08-12

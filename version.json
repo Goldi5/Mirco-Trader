@@ -1,8 +1,8 @@
 {
-  "version": "2.56.0",
-  "build": "2026-08-12_1000",
-  "released_at": "2026-08-12 10:00",
-  "codename": "Einzel-Depots neu eröffnen (Budget + Risiko)",
+  "version": "2.56.1",
+  "build": "2026-08-12_1030",
+  "released_at": "2026-08-12 10:30",
+  "codename": "Fix: Neue Depots mit Risk>95 erscheinen nicht in Aktien-Liste",
   "changes": [
     {
       "version": "2.51.0",

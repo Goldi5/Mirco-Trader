@@ -787,7 +787,7 @@ def data():
         except Exception:
             pass  # Netz-Probleme -> avg_price aus Depot nutzen
 
-    for risk in RISK_STUFEN:
+    for risk in sorted(depot_raw.keys()):
         d = depot_raw.get(risk)
         if d is None:
             continue
