@@ -134,7 +134,99 @@ class LiveSystem:
         }
 
 
+class ReleaseRegistry:
+    """Phase 8: Registry + Gate für freigegebene Releases.
+
+    Flow (Auftrag §Freigabemodell):
+      Learning/Paper -> Rule Candidate -> Validation -> Review -> Approval
+      -> Signed/Hashed Release -> Live-Release-Gate -> Live-System
+
+    Diese Klasse verwaltet die Registry (live_requests Tabelle) + das Gate.
+    PAPER_ONLY: keine echte Aktivierung, nur Struktur/Metadaten.
+    """
+
+    def __init__(self, tenant_id=1):
+        self.tenant_id = tenant_id
+
+    def _conn(self):
+        return sqlite3.connect(DB)
+
+    def _migrate(self):
+        """Erweitert live_requests um Release-Gate-Spalten (idempotent)."""
+        conn = self._conn()
+        try:
+            conn.execute("ALTER TABLE live_requests ADD COLUMN release_hash TEXT")
+            conn.execute("ALTER TABLE live_requests ADD COLUMN signatur TEXT")
+            conn.execute("ALTER TABLE live_requests ADD COLUMN freigegeben TEXT")
+            conn.commit()
+        except Exception:
+            pass  # Spalten existieren schon
+        finally:
+            conn.close()
+
+    def registrieren(self, release_hash, meta=None):
+        """Registriert ein Release (aus Learning/Paper validiert). Status PENDING."""
+        self._migrate()
+        meta = meta or {}
+        conn = self._conn()
+        try:
+            conn.execute(
+                """INSERT INTO live_requests
+                   (tenant_id, requested_by, status, release_hash, note, requested_at)
+                   VALUES (?, 'system', 'PENDING', ?, ?, ?)""",
+                (self.tenant_id, release_hash, json.dumps(meta, ensure_ascii=False), _now()))
+            conn.commit()
+            return True
+        except Exception as e:
+            print(f"ReleaseRegistry.registrieren Fehler: {e}")
+            return False
+        finally:
+            conn.close()
+
+    def approve(self, release_hash, approved_by, signatur=None):
+        """Approval (Vier-Augen, MFA) -> Status APPROVED + Signatur."""
+        conn = self._conn()
+        try:
+            conn.execute(
+                """UPDATE live_requests SET status='APPROVED', reviewed_by=?,
+                   signatur=?, freigegeben=? WHERE release_hash=? AND tenant_id=?""",
+                (approved_by, signatur or "", _now(), release_hash, self.tenant_id))
+            conn.commit()
+            return True
+        except Exception as e:
+            print(f"ReleaseRegistry.approve Fehler: {e}")
+            return False
+        finally:
+            conn.close()
+
+    def status(self, release_hash):
+        conn = self._conn()
+        try:
+            row = conn.execute(
+                "SELECT status, reviewed_by, signatur FROM live_requests WHERE release_hash=?",
+                (release_hash,)).fetchone()
+            return dict(zip(["status", "approved_by", "signatur"], row)) if row else None
+        finally:
+            conn.close()
+
+    def liste(self, status=None):
+        conn = self._conn()
+        try:
+            if status:
+                rows = conn.execute(
+                    "SELECT release_hash, status, reviewed_by FROM live_requests WHERE status=?",
+                    (status,)).fetchall()
+            else:
+                rows = conn.execute(
+                    "SELECT release_hash, status, reviewed_by FROM live_requests").fetchall()
+            return [dict(zip(["hash", "status", "by"], r)) for r in rows]
+        finally:
+            conn.close()
+
+
 if __name__ == "__main__":
     ls = LiveSystem(tenant_id=1)
     print(json.dumps(ls.status(), indent=2, ensure_ascii=False))
     print("Kill-Switch aktiv?", ls.ist_gestoppt)
+    rr = ReleaseRegistry(1)
+    print("Release-Registry bereit:", hasattr(rr, "registrieren"))
