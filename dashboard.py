@@ -1767,6 +1767,103 @@ def depot_neu():
     return {"ok": True, "depot_id": depot_id, "pfad": pfad,
             "depot": {"risk": risk, "budget": budget, "kategorie": kat, "name": name}}
 
+@app.route("/api/ops_system")
+def api_ops_system():
+    """Phase 2: Operations Center — zentraler SystemStatus."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    from ops_status import build_system_status
+    try:
+        return {"ok": True, "status": build_system_status()}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
+@app.route("/api/ops_news")
+def api_ops_news():
+    """Phase 2/5: News-Cockpit-Daten (Priorität, Ticker, Impact)."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    try:
+        if not os.path.exists(NEWS_CACHE):
+            return {"ok": True, "news": [], "feed_status": {}}
+        nc = json.load(open(NEWS_CACHE, encoding="utf-8"))
+        return {"ok": True, "news": nc.get("headlines", []),
+                "feed_status": nc.get("feed_status", {}),
+                "total": nc.get("total"), "relevant": nc.get("relevant")}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
+@app.route("/api/ops_provider")
+def api_ops_provider():
+    """Phase 2/8: Provider-/Broker-Cockpit."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    from ops_status import build_provider_status
+    try:
+        return {"ok": True, "providers": build_provider_status()}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
+@app.route("/api/ops_release")
+def api_ops_release():
+    """Phase 2/7: Release-/Freigabe-Cockpit."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    from ops_status import build_release_status
+    try:
+        return {"ok": True, "release": build_release_status()}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
+@app.route("/api/ops_risk")
+def api_ops_risk():
+    """Phase 2/6: Portfolio-/Risiko-Cockpit."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    from ops_status import build_portfolio_status
+    try:
+        return {"ok": True, "portfolios": build_portfolio_status()}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
+@app.route("/api/ops_recon")
+def api_ops_recon():
+    """Phase 2/9: Reconciliation-Cockpit."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    from ops_status import build_reconciliation_status
+    try:
+        return {"ok": True, "reconciliation": build_reconciliation_status()}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
+@app.route("/api/ops_staging", methods=["POST"])
+def api_ops_staging():
+    """Phase 2/11: Staging E2E-Durchlauf (PAPER_ONLY, Test-Tenant).
+    Fuehrt die Kette News→KI→Snapshot→Order-Intent→Recon aus (Simulator)."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "ADMIN"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    try:
+        from ops_staging import run_staging
+        result = run_staging()
+        return {"ok": True, "staging": result}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
 @app.route("/api/live_kill_switch", methods=["POST"])
 def api_live_kill_switch():
     """Phase 11: Manueller Kill-Switch für Live-System (PAPER_ONLY: nur Struktur).

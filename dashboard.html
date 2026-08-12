@@ -547,6 +547,7 @@ canvas{display:block;max-width:100%}
       <button class="nav-item" data-area="maerkte" onclick="showTab('charts')">Märkte</button>
       <button class="nav-item" data-area="analyse" onclick="showAnalyse()">Analyse</button>
       <button class="nav-item" data-area="aktivitaet" onclick="showTab('news')">Aktivität</button>
+      <button class="nav-item" data-area="operations" onclick="showOperations()">Operations</button>
       <button class="nav-item" data-area="ki" onclick="showTab('ki')">KI</button>
       <button class="nav-item" data-area="system" onclick="showTab('log')">System</button>
       <button class="nav-item" data-area="broker" onclick="showTab('broker')">Broker</button>
@@ -653,6 +654,25 @@ canvas{display:block;max-width:100%}
 <div id="panel-broker" class="panel" style="display:none"><div class="surface" id="brokerBox">lädt…</div></div>
 <div id="panel-spec" class="panel"></div>
 <div id="panel-detail" class="panel"></div>
+<div id="panel-operations" class="panel" style="display:none">
+  <div class="ops-wrap" style="max-width:1440px;margin:0 auto;padding:16px">
+    <div id="ops-kpi" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px" id="ops-grid">
+      <div class="surface" id="ops-system-box"><b>System</b><div id="ops-system">lädt…</div></div>
+      <div class="surface" id="ops-news-box"><b>News-Cockpit</b><div id="ops-news">lädt…</div></div>
+      <div class="surface" id="ops-risk-box"><b>Portfolio-/Risiko</b><div id="ops-risk">lädt…</div></div>
+      <div class="surface" id="ops-provider-box"><b>Provider/Broker</b><div id="ops-provider">lädt…</div></div>
+      <div class="surface" id="ops-release-box"><b>Release/Freigabe</b><div id="ops-release">lädt…</div></div>
+      <div class="surface" id="ops-recon-box"><b>Reconciliation</b><div id="ops-recon">lädt…</div></div>
+    </div>
+    <div class="surface" style="margin-top:14px" id="ops-emergency-box">
+      <b>⚠️ Notfallsteuerung</b>
+      <div id="ops-emergency" style="margin-top:8px"></div>
+      <button class="btn-danger" id="ops-staging-btn" style="margin-top:10px">Staging-Durchlauf starten (PAPER)</button>
+      <div id="ops-staging-result" style="margin-top:8px;font-size:12px"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ── NEUES DEPOT Modal ── -->
 <button id="depot-neu-btn" class="btn-primary" style="position:fixed;bottom:20px;right:20px;z-index:50;border-radius:50px;padding:12px 20px;box-shadow:0 8px 24px rgba(37,99,235,.35)">+ Neues Depot</button>
@@ -3529,6 +3549,142 @@ function anLaden2() {
       });
     })
     .catch(e => { console.warn("Karten-Fehler:", e.message); });
+}
+
+// ─── OPERATIONS CENTER (Phase 2-11) ───
+function showOperations() {
+  document.querySelectorAll(".nav-item").forEach(t =>
+    t.classList.toggle("active", t.dataset.area === "operations"));
+  document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+  const panel = document.getElementById("panel-operations");
+  if (panel) panel.classList.add("active");
+  document.getElementById("subnavWrap").classList.remove("active");
+  renderOpsSystem(); renderOpsNews(); renderOpsRisk();
+  renderOpsProvider(); renderOpsRelease(); renderOpsRecon(); renderOpsEmergency();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function opsKPI(cards) {
+  const box = document.getElementById("ops-kpi");
+  box.innerHTML = "";
+  cards.forEach(c => {
+    const d = document.createElement("div");
+    d.className = "surface";
+    d.style.cssText = "padding:10px 14px;min-width:120px";
+    d.innerHTML = `<div style="font-size:11px;opacity:.7">${c[0]}</div><div style="font-size:16px;font-weight:700;color:${c[2]||'var(--text)'}">${c[1]}</div>`;
+    box.appendChild(d);
+  });
+}
+
+function renderOpsSystem() {
+  fetch('/api/ops_system').then(r=>r.json()).then(j=>{
+    if(!j.ok){document.getElementById("ops-system").innerHTML='Fehler: '+(j.error||'');return;}
+    const s=j.status;
+    const hColor = s.health==='HEALTHY'?'var(--success)':s.health==='SAFE_STOP'?'var(--danger)':'var(--warning)';
+    document.getElementById("ops-system").innerHTML =
+      `<div>Umgebung: <b>${s.environment}</b> / Modus: <b>${s.mode}</b></div>
+       <div>PAPER_ONLY: <b>${s.paper_only?'AKTIV':'NEIN'}</b></div>
+       <div>System: <b style="color:${hColor}">${s.health}</b> — ${s.health_reason||''}</div>
+       <div>Release: ${s.active_release_id||'KEINER'}</div>
+       <div>Letzter News-Lauf: ${s.last_news_run||'nie'}</div>
+       <div>Alerts: <b>${s.active_alert_count}</b> | Safe-Stop: <b>${s.safe_stop}</b></div>`;
+    opsKPI([
+      ["Systemstatus", s.health, hColor],
+      ["Datenqualität", s.provider_status, s.provider_status==='OK'?'var(--success)':'var(--warning)'],
+      ["Newsstatus", (s.last_news_run?'OK':'KEIN'), "var(--text)"],
+      ["Risiko", s.risk_status, "var(--text)"],
+      ["Broker", s.broker_status, "var(--text)"],
+      ["Warnungen", s.active_alert_count, s.active_alert_count>0?'var(--danger)':'var(--success)']
+    ]);
+  }).catch(e=>document.getElementById("ops-system").innerHTML='Fehler: '+e.message);
+}
+
+function renderOpsNews() {
+  fetch('/api/ops_news').then(r=>r.json()).then(j=>{
+    if(!j.ok){document.getElementById("ops-news").innerHTML='Fehler';return;}
+    const items=(j.news||[]).slice(0,12);
+    if(!items.length){document.getElementById("ops-news").innerHTML='Keine News.';return;}
+    document.getElementById("ops-news").innerHTML = items.map(h=>
+      `<div style="padding:4px 0;border-bottom:1px solid var(--border);font-size:12px">
+        <span style="color:var(--warning)">${h.urgency||'P2'}</span>
+        ${esc(h.title||'').slice(0,80)} ${h.tickers?('<b>'+h.tickers.join(',')+'</b>'):''}
+        ${h.score?('· '+h.score):''}</div>`).join('');
+  }).catch(e=>document.getElementById("ops-news").innerHTML='Fehler: '+e.message);
+}
+
+function renderOpsRisk() {
+  fetch('/api/ops_risk').then(r=>r.json()).then(j=>{
+    if(!j.ok){document.getElementById("ops-risk").innerHTML='Fehler';return;}
+    const ps=j.portfolios||[];
+    if(!ps.length){document.getElementById("ops-risk").innerHTML='Keine Portfolios.';return;}
+    document.getElementById("ops-risk").innerHTML = ps.slice(0,10).map(p=>
+      `<div style="padding:4px 0;border-bottom:1px solid var(--border);font-size:12px">
+        ${esc(p.portfolio_id)} — <b>${p.value}</b> € · ${p.risk_state}
+        · Pos: ${p.open_positions} · ${p.status}</div>`).join('');
+  }).catch(e=>document.getElementById("ops-risk").innerHTML='Fehler: '+e.message);
+}
+
+function renderOpsProvider() {
+  fetch('/api/ops_provider').then(r=>r.json()).then(j=>{
+    if(!j.ok){document.getElementById("ops-provider").innerHTML='Fehler';return;}
+    document.getElementById("ops-provider").innerHTML = (j.providers||[]).map(p=>{
+      const col = p.status==='NOT_AVAILABLE'?'var(--text-secondary)':p.status==='ERROR'?'var(--danger)':'var(--success)';
+      const key = p.api_key_configured ? 'Key: ••••••••ABCD' : 'Key: —';
+      return `<div style="padding:4px 0;border-bottom:1px solid var(--border);font-size:12px">
+        <b>${esc(p.provider_name)}</b> [${p.provider_type}] — <span style="color:${col}">${p.status}</span><br>
+        <span style="opacity:.6;font-size:11px">${key} · ${p.environment}</span></div>`;
+    }).join('');
+  }).catch(e=>document.getElementById("ops-provider").innerHTML='Fehler: '+e.message);
+}
+
+function renderOpsRelease() {
+  fetch('/api/ops_release').then(r=>r.json()).then(j=>{
+    if(!j.ok){document.getElementById("ops-release").innerHTML='Fehler';return;}
+    const r=j.release||{};
+    document.getElementById("ops-release").innerHTML =
+      `<div>Status: <b>${r.status||'NONE'}</b></div>
+       <div>Hash: ${r.release_id||'—'}</div>
+       <div>Freigegeben von: ${r.approved_by||'—'}</div>
+       <div>Gültig: ${r.is_valid?'Ja':'Nein'}</div>`;
+  }).catch(e=>document.getElementById("ops-release").innerHTML='Fehler: '+e.message);
+}
+
+function renderOpsRecon() {
+  fetch('/api/ops_recon').then(r=>r.json()).then(j=>{
+    if(!j.ok){document.getElementById("ops-recon").innerHTML='Fehler';return;}
+    const rc=j.reconciliation||{};
+    document.getElementById("ops-recon").innerHTML =
+      `<div>Status: <b>${rc.status||'—'}</b></div>
+       <div>Blocking: ${rc.blocking?'Ja':'Nein'}</div>
+       <div>${rc.reason||''}</div>`;
+  }).catch(e=>document.getElementById("ops-recon").innerHTML='Fehler: '+e.message);
+}
+
+function renderOpsEmergency() {
+  const box=document.getElementById("ops-emergency");
+  box.innerHTML = `<button class="btn-danger" onclick="opsKillSwitch()" style="margin-right:8px">KILL-SWITCH aktivieren</button>
+    <span style="opacity:.7;font-size:11px">Nur ADMIN. PAPER_ONLY: keine echten Orders.</span>`;
+  const sb=document.getElementById("ops-staging-btn");
+  if(sb) sb.onclick=()=>opsRunStaging();
+}
+
+function opsKillSwitch() {
+  if(!confirm("KILL-SWITCH wirklich aktivieren? (Stoppt Live-Bereich)")) return;
+  const grund=prompt("Grund:", "Manueller Not-Stop")||"Manuell";
+  fetch('/api/live_kill_switch',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({aktion:'on',grund})}).then(r=>r.json()).then(j=>{
+    alert(j.ok?'Kill-Switch aktiviert.':'Fehler: '+(j.error||''));
+    renderOpsSystem();
+  });
+}
+
+function opsRunStaging() {
+  const res=document.getElementById("ops-staging-result");
+  res.innerHTML='Staging läuft…';
+  fetch('/api/ops_staging',{method:'POST'}).then(r=>r.json()).then(j=>{
+    if(!j.ok){res.innerHTML='Fehler: '+(j.error||'');return;}
+    res.innerHTML='<pre style="white-space:pre-wrap;font-size:11px">'+esc(JSON.stringify(j.staging,null,2))+'</pre>';
+  }).catch(e=>res.innerHTML='Fehler: '+e.message);
 }
 </script>
 
