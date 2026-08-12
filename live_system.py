@@ -106,13 +106,12 @@ class LiveSystem:
 
     # ── Release-Gate (Phase 8): nur freigegebene Releases ausführen ──
     def release_erlaubt(self, release_hash):
-        """Prüft ob Release im live_release Gate freigegeben ist.
-        Platzhalter: Phase 8 implementiert Registry."""
-        from db import MTDB
+        """Prüft ob Release im live_release Gate freigegeben ist (live_releases Tabelle)."""
+        import sqlite3
         try:
-            row = MTDB().conn.execute(
-                "SELECT status FROM live_requests WHERE release_hash=?",
-                (release_hash,)).fetchone()
+            row = sqlite3.connect(DB).execute(
+                "SELECT status FROM live_releases WHERE release_hash=? AND tenant_id=?",
+                (release_hash, self.tenant_id)).fetchone()
             return bool(row and row[0] == "APPROVED")
         except Exception:
             return False
@@ -152,15 +151,25 @@ class ReleaseRegistry:
         return sqlite3.connect(DB)
 
     def _migrate(self):
-        """Erweitert live_requests um Release-Gate-Spalten (idempotent)."""
+        """Erstellt eigene live_releases-Tabelle für Release-Gate (idempotent)."""
         conn = self._conn()
         try:
-            conn.execute("ALTER TABLE live_requests ADD COLUMN release_hash TEXT")
-            conn.execute("ALTER TABLE live_requests ADD COLUMN signatur TEXT")
-            conn.execute("ALTER TABLE live_requests ADD COLUMN freigegeben TEXT")
+            conn.execute(
+                """CREATE TABLE IF NOT EXISTS live_releases (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    tenant_id INTEGER NOT NULL DEFAULT 1,
+                    release_hash TEXT NOT NULL,
+                    status TEXT NOT NULL DEFAULT 'PENDING',
+                    meta TEXT,
+                    requested_by TEXT,
+                    reviewed_by TEXT,
+                    signatur TEXT,
+                    freigegeben TEXT,
+                    erstellt TEXT
+                )""")
             conn.commit()
-        except Exception:
-            pass  # Spalten existieren schon
+        except Exception as e:
+            print(f"ReleaseRegistry._migrate Fehler: {e}")
         finally:
             conn.close()
 
@@ -171,9 +180,9 @@ class ReleaseRegistry:
         conn = self._conn()
         try:
             conn.execute(
-                """INSERT INTO live_requests
-                   (tenant_id, requested_by, status, release_hash, note, requested_at)
-                   VALUES (?, 'system', 'PENDING', ?, ?, ?)""",
+                """INSERT INTO live_releases
+                   (tenant_id, release_hash, status, meta, requested_by, erstellt)
+                   VALUES (?, ?, 'PENDING', ?, 'system', ?)""",
                 (self.tenant_id, release_hash, json.dumps(meta, ensure_ascii=False), _now()))
             conn.commit()
             return True
@@ -188,7 +197,7 @@ class ReleaseRegistry:
         conn = self._conn()
         try:
             conn.execute(
-                """UPDATE live_requests SET status='APPROVED', reviewed_by=?,
+                """UPDATE live_releases SET status='APPROVED', reviewed_by=?,
                    signatur=?, freigegeben=? WHERE release_hash=? AND tenant_id=?""",
                 (approved_by, signatur or "", _now(), release_hash, self.tenant_id))
             conn.commit()
@@ -203,7 +212,7 @@ class ReleaseRegistry:
         conn = self._conn()
         try:
             row = conn.execute(
-                "SELECT status, reviewed_by, signatur FROM live_requests WHERE release_hash=?",
+                "SELECT status, reviewed_by, signatur FROM live_releases WHERE release_hash=?",
                 (release_hash,)).fetchone()
             return dict(zip(["status", "approved_by", "signatur"], row)) if row else None
         finally:
@@ -214,11 +223,11 @@ class ReleaseRegistry:
         try:
             if status:
                 rows = conn.execute(
-                    "SELECT release_hash, status, reviewed_by FROM live_requests WHERE status=?",
+                    "SELECT release_hash, status, reviewed_by FROM live_releases WHERE status=?",
                     (status,)).fetchall()
             else:
                 rows = conn.execute(
-                    "SELECT release_hash, status, reviewed_by FROM live_requests").fetchall()
+                    "SELECT release_hash, status, reviewed_by FROM live_releases").fetchall()
             return [dict(zip(["hash", "status", "by"], r)) for r in rows]
         finally:
             conn.close()
