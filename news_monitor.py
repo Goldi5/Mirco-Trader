@@ -2,7 +2,7 @@
 """
 News-Monitor – holt stündlich Wirtschafts- und Aktien-Headlines.
 """
-import json, os, time
+import json, os, time, socket
 from datetime import datetime
 import urllib.request, urllib.error
 import xml.etree.ElementTree as ET
@@ -34,7 +34,8 @@ KEYWORDS = {
 }
 
 def fetch_rss(url, timeout=10):
-    """Holt einen RSS-Feed und gibt Headlines zurück."""
+    """Holt einen RSS-Feed und gibt (items, fehler) zurück.
+    fehler: None | 'timeout' | 'http' | 'parse' | 'other' (für Fehlerklassen-Tracking)."""
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=timeout) as resp:
@@ -47,9 +48,17 @@ def fetch_rss(url, timeout=10):
             pubdate = item.findtext("pubDate", "")
             if title:
                 items.append({"title": title.strip(), "link": link, "date": pubdate})
-        return items
+        return items, None
+    except urllib.error.HTTPError as e:
+        # 429 = Rate-Limit, 403 = forbidden, 404 = not found
+        kind = "ratelimit" if e.code == 429 else "http"
+        return [], kind
+    except (urllib.error.URLError, socket.timeout, TimeoutError):
+        return [], "timeout"
+    except ET.ParseError:
+        return [], "parse"
     except Exception as e:
-        return []
+        return [], "other"
 
 def classify_headline(title):
     """Klassifiziert eine Headline nach relevanten Themen."""
@@ -65,10 +74,17 @@ def classify_headline(title):
 def update_news():
     """Holt aktuelle News und speichert sie."""
     alle = []
+    feed_status = {}  # url -> (count, fehler) für Monitoring
     for url in FEEDS:
-        items = fetch_rss(url)
-        if items:
-            print(f"  ✅ {len(items)} von {url.split('/')[2]}")
+        items, fehler = fetch_rss(url)
+        host = url.split('/')[2]
+        if fehler:
+            feed_status[host] = (0, fehler)
+            print(f"  ⚠️ {host}: FEHLER ({fehler})")
+        else:
+            feed_status[host] = (len(items), None)
+            if items:
+                print(f"  ✅ {len(items)} von {host}")
         alle.extend(items[:15])  # max 15 pro Feed
         time.sleep(1)
 
@@ -94,6 +110,7 @@ def update_news():
         "zeit": datetime.now().isoformat(),
         "total": len(alle),
         "relevant": len(relevant),
+        "feed_status": feed_status,
         "headlines": relevant[:30] if relevant else [{"title": "Keine relevanten News"}],
     }
     with open(NEWS_CACHE, "w") as f:
