@@ -17,11 +17,13 @@ MAX_ALTER = timedelta(days=3)  # wie paper_eligibility (markt_daten < 3 Tage)
 
 
 class MarketSnapshot:
-    def __init__(self, ticker_liste=None, max_alter=MAX_ALTER):
+    def __init__(self, ticker_liste=None, max_alter=MAX_ALTER, tenant_id=1, workspace_id=None):
         self.max_alter = max_alter
         self.zeit = datetime.now()
         self.snapshot_id = None
         self.ticker_liste = ticker_liste or []
+        self.tenant_id = tenant_id
+        self.workspace_id = workspace_id
         self.daten = {}
         self.alter_tage = {}
         self.alle_frisch = False
@@ -66,7 +68,8 @@ class MarketSnapshot:
             return "MARKTDATEN: kein Snapshot verfügbar (markt_daten leer)"
         alt = "frisch" if self.alle_frisch else "VERALTET"
         return (f"MARKTDATEN-SNAPSHOT {self.snapshot_id} [{alt}]: "
-                + ", ".join(f"{t}={self.daten[t]['kurs']:.2f}" for t in self.ticker_liste[:15]))
+                + ", ".join(f"{t}={self.daten[t]['kurs']:.2f}" for t in self.ticker_liste[:15]
+                            if t in self.daten))
 
 
 def hole_snapshot(ticker_liste):
