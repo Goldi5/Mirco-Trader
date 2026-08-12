@@ -3301,7 +3301,7 @@ function depotIdent(typ, ticker, risk, id) {
 }
 
 function toggleDepotPause(typ, ticker, risk, id) {
-  const id = depotIdent(typ, ticker, risk, id);
+  if (!id) id = depotIdent(typ, ticker, risk);
   fetch('/api/depot_pause?id=' + encodeURIComponent(id))
     .then(r => r.json())
     .then(j => {
@@ -3314,7 +3314,7 @@ function toggleDepotPause(typ, ticker, risk, id) {
 }
 
 function depotVerkaufen(typ, ticker, risk, id) {
-  const id = depotIdent(typ, ticker, risk, id);
+  if (!id) id = depotIdent(typ, ticker, risk);
   if (!confirm('Wirklich ALLE Positionen von ' + id + ' verkaufen? (Paper-Simulation)')) return;
   fetch('/api/depot_verkaufen?id=' + encodeURIComponent(id))
     .then(r => r.json())
@@ -3327,7 +3327,7 @@ function depotVerkaufen(typ, ticker, risk, id) {
 }
 
 function depotSchliessen(typ, ticker, risk, id) {
-  const id = depotIdent(typ, ticker, risk, id);
+  if (!id) id = depotIdent(typ, ticker, risk);
   if (!confirm('Wirklich Depot ' + id + ' SCHLIESSEN? Alle Positionen werden verkauft, Trading gestoppt.')) return;
   fetch('/api/depot_schliessen?id=' + encodeURIComponent(id))
     .then(r => r.json())
@@ -3340,7 +3340,7 @@ function depotSchliessen(typ, ticker, risk, id) {
 }
 
 function depotLoeschen(typ, ticker, risk, id) {
-  const id = depotIdent(typ, ticker, risk, id);
+  if (!id) id = depotIdent(typ, ticker, risk);
   if (!confirm('Wirklich Depot ' + id + ' LÖSCHEN?\n\nNur möglich in der Kette:\n1. Alles verkaufen\n2. Depot schließen\n3. Dann löschen\n\nDie Datei wird nach .backup/geloeschte_depots/ verschoben (kein hartes Löschen).')) return;
   fetch('/api/depot_loeschen?id=' + encodeURIComponent(id))
     .then(r => r.json())

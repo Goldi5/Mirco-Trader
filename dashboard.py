@@ -3943,15 +3943,25 @@ if __name__ == "__main__":
     # (Hermes auto-restart, background-starts, Doppelklicks) und sich gegenseitig
     # den Port 5300 wegnehmen + security_users.json korrumpiert.
     import socket as _sock
-    _s = _sock.socket(_sock.AF_INET, _sock.SOCK_STREAM)
+    # Echter Listener-Check: wenn ein Server auf 5300 ANTWORTET -> belegt.
+    # Reines bind() schlaegt bei TIME_WAIT-Sockets fehl (Ghost-Belegung).
+    _probe = _sock.socket(_sock.AF_INET, _sock.SOCK_STREAM)
+    _probe.settimeout(1.5)
     try:
-        _s.bind(("127.0.0.1", PORT))
-        _s.close()
-    except OSError:
-        print("[GUARD] Port %d bereits belegt — beende diese Instanz." % PORT)
+        _probe.connect(("127.0.0.1", PORT))
+        _probe.close()
+        print("[GUARD] Port %d bereits belegt (Listener aktiv) — beende diese Instanz." % PORT)
         sys.exit(0)
+    except (OSError, ConnectionRefusedError):
+        # Kein Listener -> Port frei, wir duerfen starten
+        pass
+    finally:
+        try:
+            _probe.close()
+        except Exception:
+            pass
     print("Dashboard -> http://localhost:%d" % PORT)
     # PHASE 2 (Server-Sicherheit): nur intern binden, niemals 0.0.0.0 (Regel 4).
     # Interner Port bleibt 5300; der Reverse Proxy (Phase 3) ist der einzige
     # öffentliche Einstiegspunkt. Flask darf niemals direkt public sein.
-    app.run(host="127.0.0.1", port=PORT, debug=False)
+    app.run(host="127.0.0.1", port=PORT, debug=False, threaded=True)
