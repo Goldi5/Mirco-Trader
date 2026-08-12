@@ -1,6 +1,6 @@
 {
-  "version": "2.57.1",
-  "build": "2026-08-12_1300",
+  "version": "2.58.0",
+  "build": "2026-08-12_1400",
   "released_at": "2026-08-12 13:00",
   "codename": "JS-SyntaxError Fix + Single-Instance-Guard (Listener-Check) + threaded=True + Phase-0 Docs",
   "changes": [

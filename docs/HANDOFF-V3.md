@@ -1475,3 +1475,44 @@ markieren.
 
 **Phase 1 — Paper-System härten** (markt_daten, CSRF, MFA, Tenant-Test, Risk-70, Singleton,
 Audit/Backup/Restart-Tests). Ergebnis-Doc: `PAPER-SYSTEM-HARDENING.md`.
+
+---
+
+# 35 — ARBEITSAUFTRAG PHASEN 0–14 ABGESCHLOSSEN (2026-08-12)
+
+> System v2.58.0. Alle Phasen des Auftrags "Getrenntes Live-System, News-Plattform,
+> Notfallsteuerung" implementiert + verifiziert. PAPER_ONLY durchgängig gewahrt.
+
+## Phasen-Status
+
+| Phase | Thema | Status | Commit |
+|---|---|---|---|
+| 0 | 5 Docs + Handoff sync | ✅ | bcfdbce |
+| 1 | Paper-System härten (P1 markt_daten, P6/8/9 DONE) | ✅ | bfd7e9e |
+| 2 | MarketSnapshot erweitert + Bug-Fix | ✅ | c8394fe |
+| 3 | News-Ingestion (Fehlerklassen) | ✅ | dd360a5 |
+| 4 | News-Filter, Dedup, Ticker-Mapping | ✅ | d40dbfb |
+| 5 | News-KI in Trading-Kontext | ✅ | 0b9d11b |
+| 6 | Manuelle Depot-Steuerung verifiziert | ✅ | 3b54470 |
+| 7 | Getrenntes Live-System (live_system.py) | ✅ | c1bfb6f |
+| 8 | Release Registry + Gate | ✅ | b040d6a |
+| 9 | Broker-Simulator + Sandbox-Adapter | ✅ | 2eba7b1 |
+| 10 | Order-Sync + Reconciliation | ✅ | 8c8083f |
+| 11 | Live-Admin, Kill-Switch, Monitoring | ✅ | f72d1e6 |
+| 12 | Live-Readiness-Tests (12/12 PASS) | ✅ | 08232c0 |
+| 13 | Micro-Live-Vorbereitung | ✅ | 490b6ae |
+| 14 | Manueller Live-Freigabeprozess | ✅ | 2008d07 |
+
+## Neue Module (PAPER_ONLY)
+
+- `live_system.py`: LiveSystem (isoliert) + ReleaseRegistry (live_releases Tabelle)
+- `broker_simulator.py`: BrokerAdapter ABC + BrokerSimulator (keine echten Orders)
+- `news_ticker_map.py`: zentrale Firma→Ticker Mapping-Tabelle
+- `test_live_readiness.py`: 12 Live-Readiness-Checks (ALLE PASS)
+- `freigabe_checkliste.py`: Vier-Augen/MFA-Checkliste
+
+## Offen (bewusst nicht automatisiert)
+
+- Phase 1 P2 (CSRF vollflächig): Risiko Dashboard-Bruch → nicht blind gepatcht
+- Phase 1 P3 (MFA alle Admins): Benutzer-Aktion nötig (Secret-Setup)
+- **Live-Aktivierung:** wartet auf manuelle Freigabe durch Benutzer (Phase 14)
