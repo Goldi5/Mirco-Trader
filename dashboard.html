@@ -654,6 +654,72 @@ canvas{display:block;max-width:100%}
 <div id="panel-spec" class="panel"></div>
 <div id="panel-detail" class="panel"></div>
 
+<!-- ── NEUES DEPOT Modal ── -->
+<button id="depot-neu-btn" class="btn-primary" style="position:fixed;bottom:20px;right:20px;z-index:50;border-radius:50px;padding:12px 20px;box-shadow:0 8px 24px rgba(37,99,235,.35)">+ Neues Depot</button>
+<div id="depot-neu-modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:100;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:18px;padding:24px 26px;width:340px;box-shadow:0 24px 48px rgba(61,93,153,.25)">
+    <h3 style="margin:0 0 16px;color:#0f172a;font-size:19px">Neues Depot eröffnen</h3>
+    <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-top:10px">Kategorie</label>
+    <select id="dep-kat" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px;margin-top:5px;font-size:14px">
+      <option value="aktien">Aktien</option>
+      <option value="etf">ETF</option>
+      <option value="spec">Spekulation</option>
+    </select>
+    <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-top:14px">Risiko: <span id="dep-risk-val" style="color:#2563eb">20</span></label>
+    <input id="dep-risk" type="range" min="0" max="100" value="20" style="width:100%;margin-top:5px">
+    <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-top:14px">Budget ($)</label>
+    <input id="dep-budget" type="number" value="100" min="1" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px;margin-top:5px;font-size:14px">
+    <label style="display:block;font-size:13px;font-weight:600;color:#334155;margin-top:14px">Name (optional, bei Spec nötig)</label>
+    <input id="dep-name" type="text" placeholder="z.B. Mein-ETF-2" style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px;margin-top:5px;font-size:14px">
+    <div style="display:flex;gap:10px;margin-top:20px">
+      <button id="dep-neu-cancel" style="flex:1;padding:11px;border:1px solid #cbd5e1;background:#fff;border-radius:12px;font-weight:600;cursor:pointer">Abbrechen</button>
+      <button id="dep-neu-save" style="flex:1;padding:11px;border:none;background:#2563eb;color:#fff;border-radius:12px;font-weight:600;cursor:pointer">Eröffnen</button>
+    </div>
+    <div id="dep-neu-msg" style="margin-top:12px;font-size:12.5px;color:#94a3b8"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('depot-neu-btn').onclick = () => {
+  document.getElementById('depot-neu-modal').style.display = 'flex';
+};
+document.getElementById('dep-neu-cancel').onclick = () => {
+  document.getElementById('depot-neu-modal').style.display = 'none';
+};
+document.getElementById('dep-risk').oninput = (e) => {
+  document.getElementById('dep-risk-val').textContent = e.target.value;
+};
+document.getElementById('dep-neu-save').onclick = async () => {
+  const kat = document.getElementById('dep-kat').value;
+  const risk = document.getElementById('dep-risk').value;
+  const budget = document.getElementById('dep-budget').value;
+  const name = document.getElementById('dep-name').value || null;
+  const msg = document.getElementById('dep-neu-msg');
+  msg.style.color = '#94a3b8';
+  msg.textContent = 'Eröffne...';
+  try {
+    const r = await fetch('/api/depot_neu', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({kategorie: kat, risk: risk, budget: budget, name: name})
+    });
+    const j = await r.json();
+    if (j.ok) {
+      msg.style.color = '#16a34a';
+      msg.textContent = '✅ Depot ' + j.depot_id + ' eröffnet!';
+      setTimeout(() => location.reload(), 800);
+    } else {
+      msg.style.color = '#dc2626';
+      msg.textContent = '❌ ' + (j.error || 'Fehler');
+    }
+  } catch (e) {
+    msg.style.color = '#dc2626';
+    msg.textContent = '❌ ' + e;
+  }
+};
+</script>
+
+
 <!-- ── DETAIL-DRAWER (Phase 5) ── -->
 <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
 <div id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">

@@ -1,5 +1,28 @@
 # Changelog
 
+## [2.56.0] - 2026-08-12
+### Einzel-Depots neu eröffnen (Budget + Risiko)
+
+**Feature:** User kann im Dashboard ein NEUES Aktien-/ETF-/Spec-Depot eröffnen
+(analog zu Schließen/Löschen), mit eigener Budget-Höhe ($) + eigenem Risiko (0-100).
+Erscheint in derselben Liste wie die bestehenden Depots.
+
+**Änderungen:**
+- `depot_erstellen(kat, risk, budget, name)` Helfer in `dashboard.py` (schreibt neue Depot-JSON)
+- API-Route `POST /api/depot_neu` (kategorie, risk, budget, name) — Auth-Pflicht
+- Dashboard-UI: Button "+ Neues Depot" (fixed bottom-right) + Modal (Kategorie-Dropdown,
+  Risiko-Slider 0-100, Budget $, Name) — Glassmorphism #2563eb
+- `batch_trader.py`: Depot-Scan auf ALLE `depot_*.json`/`etf_*.json`/`spec_depots/*.json`
+  umgestellt (statt nur `RISK_STUFEN`) → neu eröffnete Depots werden AUTOMATISCH gehandelt
+- `laden_aus_datei()` Helfer (lädt Depot aus existiender Datei)
+
+**Verifikation:** Route existiert (401 ohne Login), `depot_erstellen()` schreibt Datei,
+Scan erfasst `depot_042_paper.json` (Risk 42) korrekt.
+
+---
+
+# Changelog
+
 ## [2.55.0] - 2026-08-11
 ### Dashboard-Stabilität + KI-Ketten-Beobachtung (P11-User-Feedback)
 

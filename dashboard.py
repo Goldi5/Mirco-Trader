@@ -1507,6 +1507,47 @@ def _depot_pfad_aus_id(depot_id):
         return None
     return None
 
+def depot_erstellen(kat, risk, budget, name=None):
+    """Erstellt ein NEUES Depot der Kategorie kat (aktien/etf/spec).
+    risk: 0-100 (bei aktien/etf = Dateiname-Nummer), budget: $ Startkapital.
+    Gibt (depot_id, pfad) zurueck, oder (None, Fehlermeldung) wenn schon existiert.
+    Andockpunkt: analog zu depot_schliessen()/depot_loeschen()."""
+    try:
+        risk = int(risk)
+        budget = float(budget)
+    except (ValueError, TypeError):
+        return None, "risk/budget muessen Zahlen sein"
+    if kat == "spec":
+        key = (name or f"SPEC{risk:03d}").strip()
+        if not key:
+            return None, "Spec-Depot braucht einen Namen"
+        pfad = os.path.join(BASE, "spec_depots", f"{key}.json")
+        depot_id = f"spec:{key}"
+    elif kat in ("aktien", "etf"):
+        key = risk
+        prefix = "depot" if kat == "aktien" else "etf"
+        pfad = os.path.join(BASE, f"{prefix}_{key:03d}_paper.json")
+        depot_id = f"{kat}:{key}"
+    else:
+        return None, "Falsche Kategorie (aktien/etf/spec)"
+    if os.path.exists(pfad):
+        return None, f"Depot existiert schon: {depot_id}"
+    d = {
+        "risk": risk,
+        "bargeld": budget,
+        "start_wert": budget,
+        "positions": {},
+        "shares": 0,
+        "zustand": "ACTIVE",
+        "erstellt_am": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "name": name or f"{kat.title()} {risk}",
+        "mode": "paper",
+    }
+    with open(pfad, "w", encoding="utf-8") as f:
+        json.dump(d, f, indent=2, ensure_ascii=False)
+    return depot_id, pfad
+
+
 @app.route("/api/depot_pause")
 def depot_pause():
     """Pausiert/Resumt EIN Depot (depot_pause.json, pro Depot-ID).
@@ -1678,6 +1719,32 @@ def _ist_pausiert():
 
 
 
+
+@app.route("/api/depot_neu", methods=["POST"])
+def depot_neu():
+    """Erstellt ein NEUES Depot (aktien/etf/spec) mit Budget + Risiko.
+    Andockpunkt: analog zu depot_schliessen()/depot_loeschen()."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    try:
+        data = request.get_json(force=True, silent=True) or {}
+    except Exception:
+        data = {}
+    kat = (data.get("kategorie") or "aktien").lower()
+    if kat not in ("aktien", "etf", "spec"):
+        return {"ok": False, "error": "Falsche Kategorie (aktien/etf/spec)"}
+    try:
+        risk = int(data.get("risk", 20))
+        budget = float(data.get("budget", 100))
+    except (ValueError, TypeError):
+        return {"ok": False, "error": "risk/budget muessen Zahlen sein"}
+    name = data.get("name") or None
+    depot_id, pfad = depot_erstellen(kat, risk, budget, name)
+    if depot_id is None:
+        return {"ok": False, "error": pfad}
+    return {"ok": True, "depot_id": depot_id, "pfad": pfad,
+            "depot": {"risk": risk, "budget": budget, "kategorie": kat, "name": name}}
 
 @app.route("/api/profil_karten")
 def api_profil_karten():

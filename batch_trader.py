@@ -98,6 +98,19 @@ def laden_oder_erstellen(risk, mode="shadow"):
         d.speichern()
         return d
 
+def laden_aus_datei(pfad):
+    """Laedt ein Depot aus einer existierenden Datei (fuer neu erstellte Depots)."""
+    with open(pfad, encoding="utf-8") as f:
+        data = json.load(f)
+    d = Depot(start_wert=data.get("start_wert", 100), risk=data.get("risk", 20), depot_pfad=pfad)
+    d.bargeld = data.get("bargeld", 100)
+    d.positions = data.get("positions", {})
+    d.historie = data.get("historie", [])
+    d.trades = data.get("trades", [])
+    d.ki_letzte = data.get("ki_letzte")
+    d.mode = data.get("mode", "paper")
+    return d
+
 def main():
     # ── PHASE 4 (§8): Trading-Mode-Gate — bei PAUSED/SUSPENDED/REVOKED/LIVE_*
     #    wird KEIN Handel ausgefuehrt. Nur SHADOW und PAPER erlauben Trading
@@ -132,10 +145,31 @@ def main():
     ergebnisse = []
 
     # Sammle alle Depot-Kontexte für parallele KI-Calls
+    # FIX v2.56: alle vorhandenen Depot-Dateien scannen (nicht nur RISK_STUFEN),
+    # damit neu eroeffnete Depots (depot_erstellen im Dashboard) automatisch gehandelt werden.
     depot_kontexte = []
-    for risk in RISK_STUFEN:
-        params = fuer_risk_stufe(risk)
-        depot = laden_oder_erstellen(risk, mode=_depot_mode)
+    _depot_pfade = []
+    _depot_pfade += glob.glob(os.path.join(BASE, "depot_*_paper.json"))
+    _depot_pfade += glob.glob(os.path.join(BASE, "depot_*.json"))
+    _depot_pfade += glob.glob(os.path.join(BASE, "etf_*_paper.json"))
+    _depot_pfade += glob.glob(os.path.join(BASE, "etf_*.json"))
+    _depot_pfade += glob.glob(os.path.join(BASE, "spec_depots", "*.json"))
+    _depot_pfade += glob.glob(os.path.join(BASE, "spec_depots_paper", "*.json"))
+    _seen = set()
+    for _pf in _depot_pfade:
+        if _pf in _seen:
+            continue
+        _seen.add(_pf)
+        try:
+            with open(_pf, encoding="utf-8") as _fh:
+                _dd = json.load(_fh)
+            risk = int(_dd.get("risk", 20))
+            params = fuer_risk_stufe(risk)
+            depot = laden_aus_datei(_pf) if os.path.exists(_pf) else laden_oder_erstellen(risk, mode=_depot_mode)
+        except Exception as _e:
+            if not QUIET:
+                print(f"   ⚠ Depot uebersprungen ({os.path.basename(_pf)}): {_e}", flush=True)
+            continue
         budget = depot.start_wert
         # 🛡 v2.16.8: Aktien-Liste NACH Preis filtern BEVOR bewertet wird.
         # bewerte() vergibt hohe Scores an teure Large-Caps -> top[:10] waeren fast
