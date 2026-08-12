@@ -1849,6 +1849,20 @@ def api_ops_recon():
         return {"ok": False, "error": str(e)}
 
 
+@app.route("/api/ops_alerts")
+def api_ops_alerts():
+    """Phase 12: Monitoring/Alerts."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    from ops_alerts import evaluate_alerts, list_alerts
+    try:
+        new = evaluate_alerts()
+        return {"ok": True, "new_alerts": len(new), "alerts": list_alerts()}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
 @app.route("/api/ops_staging", methods=["POST"])
 def api_ops_staging():
     """Phase 2/11: Staging E2E-Durchlauf (PAPER_ONLY, Test-Tenant).

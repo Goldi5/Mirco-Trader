@@ -664,6 +664,7 @@ canvas{display:block;max-width:100%}
       <div class="surface" id="ops-provider-box"><b>Provider/Broker</b><div id="ops-provider">lädt…</div></div>
       <div class="surface" id="ops-release-box"><b>Release/Freigabe</b><div id="ops-release">lädt…</div></div>
       <div class="surface" id="ops-recon-box"><b>Reconciliation</b><div id="ops-recon">lädt…</div></div>
+      <div class="surface" id="ops-alerts-box" style="grid-column:1/-1"><b>🔔 Monitoring / Alerts</b><div id="ops-alerts">lädt…</div></div>
     </div>
     <div class="surface" style="margin-top:14px" id="ops-emergency-box">
       <b>⚠️ Notfallsteuerung</b>
@@ -3561,6 +3562,7 @@ function showOperations() {
   document.getElementById("subnavWrap").classList.remove("active");
   renderOpsSystem(); renderOpsNews(); renderOpsRisk();
   renderOpsProvider(); renderOpsRelease(); renderOpsRecon(); renderOpsEmergency();
+  renderOpsAlerts();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -3658,6 +3660,20 @@ function renderOpsRecon() {
        <div>Blocking: ${rc.blocking?'Ja':'Nein'}</div>
        <div>${rc.reason||''}</div>`;
   }).catch(e=>document.getElementById("ops-recon").innerHTML='Fehler: '+e.message);
+}
+
+function renderOpsAlerts() {
+  fetch('/api/ops_alerts').then(r=>r.json()).then(j=>{
+    if(!j.ok){document.getElementById("ops-alerts").innerHTML='Fehler';return;}
+    const al=j.alerts||[];
+    if(!al.length){document.getElementById("ops-alerts").innerHTML='Keine offenen Alerts.';return;}
+    const col=s=>s==='CRITICAL'?'var(--danger)':s==='HIGH'?'var(--warning)':s==='MEDIUM'?'var(--warning)':'var(--text-secondary)';
+    document.getElementById("ops-alerts").innerHTML = al.slice(0,15).map(a=>
+      `<div style="padding:4px 0;border-bottom:1px solid var(--border);font-size:12px">
+        <span style="color:${col(a.severity)};font-weight:700">${a.severity}</span>
+        <b>${esc(a.title)}</b> <span style="opacity:.6">${a.category}</span>
+        ${a.resolved?'<span style="color:var(--success)">✓</span>':''}</div>`).join('');
+  }).catch(e=>document.getElementById("ops-alerts").innerHTML='Fehler: '+e.message);
 }
 
 function renderOpsEmergency() {
