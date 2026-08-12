@@ -1767,6 +1767,45 @@ def depot_neu():
     return {"ok": True, "depot_id": depot_id, "pfad": pfad,
             "depot": {"risk": risk, "budget": budget, "kategorie": kat, "name": name}}
 
+@app.route("/api/live_kill_switch", methods=["POST"])
+def api_live_kill_switch():
+    """Phase 11: Manueller Kill-Switch für Live-System (PAPER_ONLY: nur Struktur).
+    Body: {aktion:'on'|'off', grund:'...'}"""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "ADMIN"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    try:
+        data = request.get_json(force=True, silent=True) or {}
+    except Exception:
+        data = {}
+    aktion = data.get("aktion", "on")
+    grund = data.get("grund", "Manuell")
+    try:
+        from live_system import LiveSystem
+        ls = LiveSystem(tenant_id=int(u.get("tenant_id", 1)))
+        if aktion == "off":
+            ls.kill_switch_freigeben(grund)
+        else:
+            ls.kill_switch_aktivieren(grund)
+        return {"ok": True, "safe_stop": ls.ist_gestoppt, "grund": grund}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
+@app.route("/api/live_status")
+def api_live_status():
+    """Phase 11: Monitoring-Schicht — Live-System-Status (PAPER_ONLY)."""
+    u = sec.current_user()
+    if not u or not sec.access_level_met(u["role"], "AUTHENTICATED"):
+        return {"ok": False, "error": "unauthorized"}, 401
+    try:
+        from live_system import LiveSystem
+        ls = LiveSystem(tenant_id=int(u.get("tenant_id", 1)))
+        return {"ok": True, "status": ls.status()}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
 @app.route("/api/profil_karten")
 def api_profil_karten():
     """Phase 11 (§18): Profil-/Markt-Karten für Dashboard-Steuerzentrale.
