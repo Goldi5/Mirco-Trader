@@ -1,3 +1,29 @@
+## [2.57.1] - 2026-08-12
+### Fix: JS SyntaxError + Dashboard startet sauber (Phase 0 Vorbereitung)
+
+**PROBLEM 1:** Browser-Konsole `Uncaught SyntaxError: Identifier 'id' has already
+declared` (dashboard.html Z3304). `toggleDepotPause/depotVerkaufen/depotSchliessen/
+depotLoeschen` hatten `id` als Parameter UND `const id = depotIdent(...)` im Body.
+
+**FIX 1:** `if (!id) id = depotIdent(typ, ticker, risk);` (Parameter wins, Fallback nur
+wenn nicht übergeben). node --check: OK.
+
+**PROBLEM 2:** Dashboard lief nicht zuverlässig. Single-Instance-Guard nutzte blindes
+`bind()` -> Ghost-Belegung durch TIME_WAIT nach Prozess-Kill -> "Port belegt, beende".
+Flask `app.run(debug=False)` ohne `threaded=True` -> single-thread, langsamer /data
+blockierte alle Requests.
+
+**FIX 2:** Guard nutzt echten Listener-Check (`connect` statt `bind`). `app.run(threaded=True)`.
+
+**PROBLEM 3 (aus Arbeitsauftrag):** User konnte kein zweites Depot gleichen Risikos
+anlegen ("Depot existiert schon"). Bereits in v2.57.0 gelöst (eindeutige depot_uid).
+
+**PHASE 0 DOKUMENTATION:** 5 Bestandsaufnahme-Docs erstellt (kein Code-Change):
+`LIVE-NEWS-INVENTORY.md`, `LIVE-PREPARATION-ROADMAP.md`, `PAPER-SYSTEM-BASELINE.md`,
+`NEWS-SOURCE-MATRIX.md`, `NEWS-LICENSE-REVIEW.md`. Basis für Live-System + News-Plattform.
+
+---
+
 ## [2.57.0] - 2026-08-12
 ### Feature: Mehrere Depots pro Risiko-Stufe (eindeutige depot_uid)
 

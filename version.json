@@ -1,8 +1,8 @@
 {
-  "version": "2.57.0",
-  "build": "2026-08-12_1130",
-  "released_at": "2026-08-12 11:30",
-  "codename": "Einzel-Depots: eindeutige depot_uid (mehrere Depots pro Risiko)",
+  "version": "2.57.1",
+  "build": "2026-08-12_1300",
+  "released_at": "2026-08-12 13:00",
+  "codename": "JS-SyntaxError Fix + Single-Instance-Guard (Listener-Check) + threaded=True + Phase-0 Docs",
   "changes": [
     {
       "version": "2.51.0",

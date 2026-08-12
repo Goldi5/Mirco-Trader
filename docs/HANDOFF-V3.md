@@ -10,17 +10,23 @@
 # 00 — DOCUMENT CONTROL
 
 ```text
-Handoff Version:     V3 (2026-08-09)
-System Version:      v2.43.0
-Build:               2026-08-09_1600
+Handoff Version:     V3 (2026-08-09, aktualisiert 2026-08-12)
+System Version:      v2.57.1
+Build:               2026-08-12_1300
 Repository:          https://github.com/Goldi5/Mirco-Trader.git (HTTPS, SSH:22 geblockt)
-Commit:              a673c52 (Phase 5, v2.43.0) — HEAD
+Commit:              b61f480 (FIX v2.57.1: JS SyntaxError + Dashboard startet sauber) — HEAD
 Generated:           2026-08-09
-Last Verified:       2026-08-09
+Last Verified:       2026-08-12
 Environment:         Windows 10 (PC Christian Glaser, remote 1200km), Python venv
                      C:/Users/goldi/AppData/Local/hermes/hermes-agent/venv
 Document Status:     CURRENT (mit HISTORICAL-Abschnitten §20)
 ```
+
+> **2026-08-11 UPDATE (v2.55.0):** Dashboard-Stabilität + KI-Ketten-Beobachtung.
+> Commits seit v2.43.0: 527ada6 (security_users Fix), c1c2e52 (Single-Instance-Guard),
+> c11cc65 (Login-Page), 48c1004 (5 Dashboard-Fixes), 4f81aa6 (v2.55.0),
+> f1b60a5 (Nav-Trennung), f9cff2d (Konfidenz-Cap Dedup), a5aa78f (Fix 1-3),
+> 8cdc0e6 (FIX 4: ki_log Reset). Details in repo `docs/CHANGELOG.md` §[2.55.0].
 
 Vorgänger: Handoff-Complete v2.38.0 (2026-08-09, 151 Tests) → Diese V3 reorganisiert
 und beweisgestützt, ergänzt um Phasen 0–5 (v2.38.1–v2.43.0, 273 Tests).
@@ -82,11 +88,12 @@ Evidence:      batch_trader.py main() (Mode-Gate Z~89, Pipeline Z108-170),
                engine.py scan_markt/bewerte/ausführen; Tests 7m–7r
 Code:          IMPLEMENTED
 Tests:         VERIFIED (273 OK, 0 FAIL)
-Runtime:       Cron Mo-Fr 15-22 MEZ (Batch */15, Engine, KI 15min)
+Runtime:       Market-Gate (boersen.py: US-Börse offen ±15min, Cron */5 15-22 Mo-Fr);
+               Pipeline+Depot-Audit nur wenn Markt aktiv (Singleton-Guard in pipeline)
 Production:    Aktiv im Paper-Betrieb (PAPER_ONLY)
 Current Scope: SHADOW/PAPER; LIVE_* blockiert (kein Broker-Adapter)
 Limitations:   kauf_budget-Fallback Risk 70 (siehe BUG-002); Depot.laden() leer (Falle §19)
-Last Verified: 2026-08-09
+Last Verified: 2026-08-11
 Confidence:    HIGH
 ```
 
@@ -817,6 +824,20 @@ tenant-scoped.
 | Shadow→Paper (§9) | 7r (+14) | VERIFIED |
 | Regression | gesamte Suite | 273 OK, 0 FAIL |
 
+**Ad-hoc Verification (2026-08-11, v2.55.0 — keine grüne Test-Suite neu, aber Live-Checks gegen laufendes System):**
+| Check | Ergebnis | Evidence |
+|---|---|---|
+| 5 Dashboard-Fixes | 17/17 PASS | hermes-verify-5punkte.py gegen Port 5300 |
+| Nav-Trennung | 12/12 PASS | hermes-verify-nav.py (Analyse≠Aktivität≠KI) |
+| OOS-Regel-Fix | 6/6 PASS | Dedup stabil bei 2 Läufen |
+| Fix 1-3 (Regeln/News/Fehler) | 11/11 PASS | pending→learned 17→20, News 57%→70% |
+| Fix 4 (ki_log-Reset) | 5/5 PASS | 1 Prozess exakt +150, kein Leeren |
+| Singleton-Guard (pipeline) | VERIFIED | 2 Instanzen parallel → 2. beendet sich |
+| Market-Gate (boersen.py) | VERIFIED | Jetzt (22:5x) US geschlossen → Pipeline nicht gestartet |
+
+> Hinweis: Grüne Test-Suite (test_server_security.py, 273) wird nicht bei jeder
+> Session gerannt — Ad-hoc Verifies sind Live-Checks, keine Regression.
+
 **Test-Hygiene (Lessons):** 7q merkt Ausgangs-Mode und stellt ihn über erlaubten
 REVOKED-Pfad wieder her (kein hartes SHADOW); nach Testabsturz DB manuell auf
 SHADOW zurückgesetzt; eine MTDB()-Verbindung pro Test (nicht zwei Instanzen).
@@ -947,8 +968,32 @@ Evidence: Sektion 7q
 | BUG-007 | whatsapp_cloud.enabled MUSS false bleiben | HOCH (Betrieb) | WORKAROUND | — | — |
 | BUG-008 | Depot.laden() leer (engine Z82) — nie nutzen | MEDIUM | WORKAROUND | — | — |
 | BUG-009 | Dashboard hängt an Tab — pythonw detached | MEDIUM | WORKAROUND | — | — |
+| BUG-010 | ki_log.json Vollverlust bei Concurrent-Writes | HIGH | FIXED | v2.55.0 | Ad-hoc (Fix4) |
+| BUG-011 | Multi-Instance: 3-5 Pipeline/Batch parallel | HIGH | FIXED | v2.55.0 | Ad-hoc (Guard) |
 
 **Bug-Details (Pflichtfelder für die wichtigsten):**
+
+```text
+BUG-010: ki_log.json Vollverlust
+First Seen: 2026-08-11 (KI-Ketten-Überwachung, Lauf 1→2: 280→21 Einträge)
+Affected Version: v2.54.0; Current: v2.55.0
+Symptom: ki_log.json wurde periodisch geleert (Historie ~1h weg)
+Root Cause: schreibe_ki_log() Read-Modify-Write-Race; bei fremdem Schreibvorgang
+  json.load(JSONDecodeError) -> except fing auf log=[] -> komplett geleert
+Fix: ki_decisions.schreibe_ki_log -> atomarer Write (temp+os.replace) + Optimistic-Retry;
+  bei Parse-Fehler wird NICHT geleert (Fix4, 8cdc0e6)
+Current Impact: behoben — ki_log stabil (132→380+ Einträge, wächst)
+
+BUG-011: Multi-Instance (Doppel-Scheduler)
+First Seen: 2026-08-11 (KI-Ketten-Überwachung, Punkt H: 3 Pipeline + 2 Batch)
+Affected Version: alle; Current: v2.55.0
+Symptom: 3-5 parallele Pipeline/Batch-Trader (Racing bei DB-Writes, Doppel-Orders-Risiko)
+Root Cause: 3 Cronjobs (Batch/Engine/KI) starteten alle 15min Pipeline OHNE Guard
+Fix: (1) Singleton-Guard in micro-trader-pipeline.py (Lock + psutil.pid_exists)
+     (2) Cron-Konsolidierung 3→1 (Market-Gate, boersen.py gesteuert)
+     (3) KI-Ketten-Watcher als eigener Cron
+Current Impact: behoben — max. 1 Pipeline-Instanz (Guard greift)
+```
 
 ```text
 BUG-003: markt_daten leer
@@ -1097,6 +1142,18 @@ FIX:     Bridge neu verbinden; deliver='origin'
 - security.py refactoren (ADR-002, ~1782 Zeilen).
 - nginx + Tailscale-Funnel installieren (Reverse-Proxy produktiv).
 - Audit-Log-Rotation (DSGVO).
+
+## P1.5 — BEobACHTUNG (2026-08-11, v2.55.0)
+- **KI-Cooldown:** openrouter rate_limit aktiv (ki_cooldown.json) — KI macht
+  Pause, Läufe blockiert. Temporär, läuft nach ~1h aus. Kein Eingriff, aber
+  beobachten ob häufiger (Provider-Rotation prüfen).
+- **0 Orders/1h:** Folge des Cooldowns (KI zurückhaltend). Nicht kritisch,
+  aber Ursache klären (Drawdown-Sperre vs. Signal-Mangel).
+- **WOL-Verify-Cron (a3e5557b2813):** läuft auf Hermes — stirbt mit PC-Shutdown.
+  Für dauerhafte PC-Aus-Verifikation braucht es 24/7-Knoten (FritzBox-Scripting
+  oder zweites Gerät) + echte PC-IP/MAC in wol-verify-cron.py (TODO-Platzhalter).
+- **Market-Gate:** boersen.py nur US (Watchlist 100% US). Falls DE/Xetra-Ticker
+  dazukommen → Gate erweitern (offene_boersen() statt ist_offen('US')).
 
 ## P4 — FUTURE
 - Live-Architektur (nur nach Phase 18 des Auftrags; PAPER_ONLY bis dahin).
@@ -1346,15 +1403,7 @@ markieren.
 
 ---
 
-*Handoff V3 — generiert 2026-08-09 · Basis: Handoff-Complete v2.38.0 + Phasen
-0–5 (v2.38.1–v2.43.0) + Code-Verifikation · Commit-Stand: a673c52*<｜end▁of▁thinking｜>Teil 1 geschrieben. **Teil 2 — Kapitel 11–22** anhängen:
-
-<｜｜DSML｜｜tool_calls>
-<｜｜DSML｜｜invoke name="patch">
-<｜｜DSML｜｜parameter name="mode" string="true">replace
----
-
-## UI-REDESIGN „CALM TRADING COMMAND CENTER" — STATUS (2026-08-09)
+## UI-REDESIGN „CALM TRADING COMMAND CENTER“ — STATUS (2026-08-09)
 
 > **STATUS:** ABGESCHLOSSEN (Phasen 2–13 implementiert + verifiziert, v2.44.0 → v2.44.8)
 > **EVIDENCE:** `git log --oneline` zeigt Commits `e32ca85` (Phase 0), `bda81fa` (2–5), `76bba94` (6), `2692af2` (7), `a196960` (8), `10a6794` (9), `a8b025a` (10), `396520b` (11), `893155d` (12), `d9c92cf` (13/14-Doku)
@@ -1383,3 +1432,46 @@ markieren.
 - JS-Syntax: `node --check` auf extrahiertem `<script>` → clean
 - Live: Login HTTP 200/302, `/data` Struktur (depots=20/etf=20/spec=49), Dashboard-Marker (panel-alle, table-scroll, ki-subtab, skip-link, role=main, drawer)
 - Visuell: Browser-Screenshot bestätigt Calm-Trading-Optik (dunkle Topbar, opake Flächen, Slate-Blau, keine Glass-Blöcke)
+
+---
+
+# 34 — PHASE 0 LIVE-SYSTEM / NEWS-ARBEITSAUFTRAG (2026-08-12)
+
+> Basis: Obsidian `Projekte/Micro-Trader/LIVE-SYSTEM-UND-NEWS-ARBEITSAUFTRAG.md`
+> (vollständiger Auftrag). Phasen 0–14 verbindlich in Reihenfolge (Auftrag §4).
+> **Phase 0 = Dokumentation + Bestandsaufnahme, KEINE funktionalen Codeänderungen.**
+
+## Phase 0 — erstellte Docs (repo `docs/`)
+
+| Doc | Zweck | Status |
+|---|---|---|
+| `LIVE-NEWS-INVENTORY.md` | News-Komponenten + 5 RSS-Feeds inventarisieren | ERSTELLT |
+| `LIVE-PREPARATION-ROADMAP.md` | Phasen 0–14 Roadmap + Freigabemodell + Blocker | ERSTELLT |
+| `PAPER-SYSTEM-BASELINE.md` | Baseline Paper-/Shadow-System (21 DB-Tabellen, Depots) | ERSTELLT |
+| `NEWS-SOURCE-MATRIX.md` | Quellenmatrix S1–S5 + Fehlerklassen + Ticker-Mapping | ERSTELLT |
+| `NEWS-LICENSE-REVIEW.md` | Lizenzprüfung (STATUS: UNVERIFIED, keine Freigabe) | ERSTELLT |
+
+## Bestandsaufnahme (Phase 0 Fakten, gegen echten Code)
+
+- **System:** v2.57.1, PAPER_ONLY hart, Dashboard Flask 127.0.0.1:5300.
+- **Depots:** Aktien/ETF/Spec (Spec 13 Dateien: BB, BBAI, CRSP, FNGU, MRNA, NRGU, PLTR, QS, SOUN, TNA …).
+  Neu v2.57.0: eindeutige `depot_uid` (mehrere Depots pro Risiko: `aktien:100`, `aktien:100:1`).
+- **DB:** 21 Tabellen (sqlite `micro_trader.db`). `markt_daten` **LEER** (P0-Blocker Phase 2).
+  `live_requests` vorhanden (späteres Gate). 1 Tenant (id=1).
+- **News:** 5 RSS-Feeds (Bloomberg, DowJones/MarketWatch, Yahoo, NYT, Investopedia).
+  `news_evaluator.py` veraltet (alter API-Key → P0-Blocker Phase 5).
+- **Prozesse:** Dashboard läuft (pythonw PID 9616 + python.exe PID 996 auf 5300 — Doppelinstanz
+  aus Hintergrund-Session, nach Phase 0 bereinigen).
+- **Security:** 3 User (admin, __diag__, goldi5), 41 Permissions, MFA für Admin, Tenant-Isolation verifiziert.
+
+## P0-Blocker (für spätere Phasen)
+
+1. `markt_daten` persistieren (Phase 2).
+2. `news_evaluator.py` → `ki_provider.call_ki` umstellen (Phase 5).
+3. Ticker-Mapping fehlt (Phase 4).
+4. Kill-Switch im Paper-Modus fehlt (Phase 11).
+
+## Nächste Phase
+
+**Phase 1 — Paper-System härten** (markt_daten, CSRF, MFA, Tenant-Test, Risk-70, Singleton,
+Audit/Backup/Restart-Tests). Ergebnis-Doc: `PAPER-SYSTEM-HARDENING.md`.
