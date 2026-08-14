@@ -712,6 +712,9 @@ def index():
 
 @app.route("/data")
 def data():
+    # Modus-Filter aus Query (?mode=shadow|paper|beide) — Frontend waehlt ueber
+    # PF_FILTER.modus. Default "beide" = shadow + paper als GETRENUTE Karten.
+    _req_mode = request.args.get("mode", "beide")
     # ── Cache: nur alle 60s neu berechnen (yfinance entlasten) ──
     # PHASE 3 (Tenant-Isolation): Cache ist TENANT-SCOPED — Tenant B bekommt
     # nie die gecachten Portfolio-Daten von Tenant A (Forderung §2.3).
@@ -727,9 +730,11 @@ def data():
     # PAPER -> paper-Depots. Cache ist tenant- UND mode-keyed, damit ein
     # Moduswechsel nie gecachte Daten des anderen Portfolios liefert.
     _pmode = "paper" if _dmode == "PAPER" else "shadow"
+    # Cache-Key = gewaehlter Request-Mode (shadow/paper/beide)
+    _cache_mode = (_req_mode or "beide")
     if hasattr(data, "_cache") and data._cache and \
             getattr(data, "_cache_tid", None) == _tid and \
-            getattr(data, "_cache_mode", None) == _pmode and \
+            getattr(data, "_cache_mode", None) == _cache_mode and \
             (now - data._cache_ts) < 60:
         return data._cache
 
@@ -738,15 +743,35 @@ def data():
     depot_raw_list = []
     # PHASE 4: Tenant-Scope — nur Dateien des aktiven Tenants (PHASE 3: _tid
     # stammt aus dem Cache-Check oben, kein zweiter Lookup)
-    # PHASE 5: + Portfolio-Modus-Filter
-    _scoped = _tenant_scoped_depot_files(_tid, mode=_pmode)
-    # Aktien-Depots (nur Tenant) — Liste (mehrere Depots pro risk moeglich, Option A)
+    # PHASE 5: + Portfolio-Modus-Filter — lade Modi je nach _req_mode.
+    # Der User waehlt im Frontend (PF_FILTER.modus: shadow/paper/alle), das
+    # Backend liefert bei "alle"/"beide" BEIDE als GETRENUTE Karten (kein Merge).
+    _mode = (_req_mode or "beide").lower()
+    if _mode in ("shadow",):
+        _scoped = _tenant_scoped_depot_files(_tid, mode="shadow")
+    elif _mode in ("paper",):
+        _scoped = _tenant_scoped_depot_files(_tid, mode="paper")
+    else:  # beide / alle
+        _scoped_shadow = _tenant_scoped_depot_files(_tid, mode="shadow")
+        _scoped_paper = _tenant_scoped_depot_files(_tid, mode="paper")
+        _scoped = {
+            "depot": _scoped_shadow["depot"] + _scoped_paper["depot"],
+            "etf": _scoped_shadow["etf"] + _scoped_paper["etf"],
+            "spec": _scoped_shadow["spec"] + _scoped_paper["spec"],
+        }
+    # Aktien-Depots (nur Tenant) — Liste (mehrere Depots pro risk moeglich).
+    # KEINE Merge mehr: shadow und paper bleiben GETRENUTE Karten mit eigenem
+    # modus-Feld ("shadow"/"paper"). Das Frontend filtert ueber PF_FILTER.modus.
+    depot_raw_list = []
     for dp in _scoped["depot"]:
         try:
-            risk = int(os.path.basename(dp).split("_")[1].split(".")[0])
             with open(dp) as f:
                 d = json.load(f)
-            depot_raw_list.append((risk, d, dp))
+            _m = d.get("mode", "shadow")
+            _bn = os.path.basename(dp).split(".")[0]
+            _rk = _bn.split("_")[1]
+            risk = int(_rk.split("_")[0]) if _rk.split("_")[0].isdigit() else int(_rk)
+            depot_raw_list.append((risk, d, dp, {_m}))
             for s, pos_obj in d.get("positions", {}).items():
                 if pos_obj.get("shares", 0) > 0:
                     ALLE_TICKER.add(s)
@@ -787,7 +812,7 @@ def data():
         except Exception:
             pass  # Netz-Probleme -> avg_price aus Depot nutzen
 
-    for risk, d, _dp in depot_raw_list:
+    for risk, d, _dp, _modes in depot_raw_list:
         p = get_params(risk)
         # depot_id: aus Datei (neu) oder aus risk (Legacy)
         depot_id = d.get("depot_id") or f"aktien:{risk}"
@@ -814,6 +839,7 @@ def data():
         depots.append({
             "id": depot_id,
             "risk": risk,
+            "mode": d.get("mode", "beide" if len(_modes) > 1 else list(_modes)[0]),
             "wert": round(wert, 2),
             "cash": round(d.get("bargeld", 0), 2),
             "start": d.get("start_wert") or 100,
@@ -1175,7 +1201,7 @@ def data():
     data._cache = result
     data._cache_ts = time.time()
     data._cache_tid = _tid
-    data._cache_mode = _pmode
+    data._cache_mode = _req_mode or "beide"
     return result
 
 

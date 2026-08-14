@@ -40,14 +40,14 @@ def ticker_zu_tier():
 # ─── Depot-Klasse ────────────────────────────────────────────
 class Depot:
     def __init__(self, start_wert=100, risk=50, depot_pfad=None):
-        self.start_wert = start_wert
-        self.risk = risk
-        self.bargeld = start_wert
-        self.positions = {}        # {ticker: {"shares": x, "avg_price": y, "stop_loss": z, "take_profit": w}}
-        self.historie = []
-        self.trades = []
-        self.ki_letzte = None
-        self.depot_pfad = depot_pfad or os.path.join(BASE_DIR, f"depot_{risk:03d}.json")
+            self.start_wert = start_wert
+            self.risk = risk
+            self.bargeld = start_wert
+            self.positions = {}        # {ticker: {"shares": x, "avg_price": y, "stop_loss": z, "take_profit": w}}
+            self.historie = []
+            self.trades = []  # Immer Liste
+            self.ki_letzte = None
+            self.depot_pfad = depot_pfad or os.path.join(BASE_DIR, f"depot_{risk:03d}.json")
 
     def wert(self):
         w = self.bargeld
@@ -492,8 +492,11 @@ try:
 except Exception:
     get_broker_adapter = None
 
-def ausführen(depot, aktionen, params, broker=None):
-    """Führt Aktionen aus, aktualisiert Depot."""
+def ausführen(depot, aktionen, params, broker=None, alternatives=None):
+    """Führt Aktionen aus, aktualisiert Depot.
+    `alternatives`: Liste weiterer Kauf-Kandidaten (je {'ticker','preis',...}),
+    die bei einer Konzentrations-Bremse als Ausweich-Kandidaten versucht werden,
+    damit leere Depots nicht unnötig leer bleiben."""
     for a in aktionen:
         if a["typ"] == "kaufen":
             kosten = a["menge"] * a["preis"]
@@ -503,18 +506,38 @@ def ausführen(depot, aktionen, params, broker=None):
             try:
                 from ki_kontext import ticker_konzentration
                 from ki_decisions import QUIET
-                anz = ticker_konzentration(ticker)
                 max_dt = max_depot_pro_ticker()
+                anz = ticker_konzentration(ticker)
                 if anz >= max_dt:
-                    if not QUIET:
-                        print(f"   🛑 BREMSE {ticker}: bereits in {anz} Depots (Max {max_dt}) — Kauf blockiert", flush=True)
-                    depot.trades.append({
-                        "typ": "kauf_blockiert", "ticker": ticker,
-                        "menge": a["menge"], "preis": round(a["preis"], 2),
-                        "grund": f"Konzentrations-Bremse: bereits in {anz} Depots",
-                        "zeit": datetime.now().isoformat(),
-                    })
-                    continue
+                    # Ausweich-Kandidaten versuchen (bei leeren Depots sinnvoll)
+                    _alt = None
+                    if alternatives:
+                        for alt in alternatives:
+                            at = alt.get("ticker")
+                            if at and at != ticker and ticker_konzentration(at) < max_dt:
+                                _alt = alt
+                                break
+                    if _alt:
+                        if not QUIET:
+                            print(f"   🛑 BREMSE {ticker} (Max {max_dt}) — Ausweich auf {_alt['ticker']}", flush=True)
+                        ticker = _alt["ticker"]
+                        _alt_preis = _alt.get("preis", a["preis"])
+                        # Menge an neuen Preis anpassen (budgetbasiert), damit der
+                        # Kauf nicht am zu teuren Ersatz-Titel scheitert.
+                        _budget = depot.bargeld  # volle Kauf-Budget
+                        _neue_menge = _budget / _alt_preis if _alt_preis > 0 else a["menge"]
+                        a = dict(a, ticker=ticker, preis=_alt_preis, menge=_neue_menge)
+                        kosten = a["menge"] * a["preis"]
+                    else:
+                        if not QUIET:
+                            print(f"   🛑 BREMSE {ticker}: bereits in {anz} Depots (Max {max_dt}) — Kauf blockiert", flush=True)
+                        depot.trades.append({
+                            "typ": "kauf_blockiert", "ticker": ticker,
+                            "menge": a["menge"], "preis": round(a["preis"], 2),
+                            "grund": f"Konzentrations-Bremse: bereits in {anz} Depots",
+                            "zeit": datetime.now().isoformat(),
+                        })
+                        continue
             except Exception:
                 pass
             if kosten <= depot.bargeld:

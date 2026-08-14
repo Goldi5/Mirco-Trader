@@ -1,149 +1,149 @@
 {
-  "zeit": "2026-08-11T18:20:25.186569",
+  "zeit": "2026-08-13T21:57:45.393227",
   "depots": 20,
-  "gesamtwert": 755.11,
-  "gesamt_rendite": -62.24,
-  "trades": 0,
+  "gesamtwert": 2000.34,
+  "gesamt_rendite": 0.02,
+  "trades": 20,
   "detail": [
     {
       "risk": 0,
-      "wert": 8.57,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.0,
+      "rendite": 0.0,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 5,
-      "wert": 18.1,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.0,
+      "rendite": -0.0,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 10,
-      "wert": 27.54,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.91,
+      "rendite": -0.09,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 15,
-      "wert": 17.0,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.85,
+      "rendite": -0.15,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 20,
-      "wert": 17.0,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.85,
+      "rendite": -0.15,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 25,
-      "wert": 7.93,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.01,
+      "rendite": 0.01,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 30,
-      "wert": 8.15,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.01,
+      "rendite": 0.01,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 35,
-      "wert": 34.28,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.82,
+      "rendite": -0.18,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 40,
-      "wert": 34.28,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.82,
+      "rendite": -0.18,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 45,
-      "wert": 43.93,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.58,
+      "rendite": -0.42,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 50,
-      "wert": 42.0,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.35,
+      "rendite": 0.35,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 55,
-      "wert": 42.69,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.26,
+      "rendite": 0.26,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 60,
-      "wert": 42.69,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.26,
+      "rendite": 0.26,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 65,
-      "wert": 62.7,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.07,
+      "rendite": 0.07,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 70,
-      "wert": 62.7,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.07,
+      "rendite": 0.07,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 75,
-      "wert": 62.7,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 100.81,
+      "rendite": 0.81,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 80,
-      "wert": 52.63,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.93,
+      "rendite": -0.07,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 85,
-      "wert": 52.63,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.93,
+      "rendite": -0.07,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 90,
-      "wert": 61.71,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.93,
+      "rendite": -0.07,
+      "pos": 1,
+      "trades": 1
     },
     {
       "risk": 95,
-      "wert": 55.88,
-      "rendite": 0,
-      "pos": 0,
-      "trades": 0
+      "wert": 99.87,
+      "rendite": -0.13,
+      "pos": 1,
+      "trades": 1
     }
   ]
 }

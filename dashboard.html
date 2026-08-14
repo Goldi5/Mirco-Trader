@@ -904,7 +904,7 @@ function renderPortfoliosUebersicht() {
         <select onchange="PF_FILTER.kat=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
           ${opt("alle", "Kategorie: Alle")}${opt("stocks", "Aktien")}${opt("etf", "ETF")}${opt("spec", "Spekulation")}
         </select>
-        <select onchange="PF_FILTER.modus=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
+        <select onchange="PF_FILTER.modus=this.value;load().then(renderPortfoliosUebersicht)" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
           ${opt("alle", "Modus: Alle")}${opt("shadow", "Shadow")}${opt("paper", "Paper")}${opt("live", "Live")}
         </select>
         <select onchange="PF_FILTER.risiko=this.value;renderPortfoliosUebersicht()" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit">
@@ -1705,7 +1705,9 @@ function renderSpecTab(specDepots, specKeys, specData) {
 
 async function load() {
   try {
-    const r = await fetch(API);
+    // Mode-Parameter aus PF_FILTER (shadow/paper/beide) an /data haengen
+    const _m = (PF_FILTER.modus && PF_FILTER.modus !== "alle") ? "?mode=" + PF_FILTER.modus : "";
+    const r = await fetch(API + _m);
     const d = await r.json();
     savedData = d;
     VERLAUF = d.portfolio_verlauf || null;
