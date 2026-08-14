@@ -1546,59 +1546,8 @@ def list_users():
 
 
 # ─── MFA (TOTP RFC 6238, HMAC-SHA1 über cryptography) ────────────────────────
-def _b32_decode(secret):
-    # Normalisiert secret (Entfernt Leerzeichen, Großbuchstaben)
-    s = secret.strip().upper().replace(" ", "")
-    # Base32-Padding korrigieren
-    pad = (-len(s)) % 8
-    return base64.b32decode(s + "=" * pad)
-
-
-def generate_mfa_secret():
-    """32 Byte Zufall → Base32 (TOTP-Standard)."""
-    return base64.b32encode(secrets.token_bytes(20)).decode("ascii").rstrip("=")
-
-
-def _totp(secret_b32, timestamp, digits=6, period=30):
-    """RFC 6238 TOTP. Nutzt cryptography.hazmat HMAC (FIPS-validiert)."""
-    counter = int(timestamp // period)
-    msg = counter.to_bytes(8, "big")
-    h = chmac.HMAC(_b32_decode(secret_b32), hashes.SHA1())
-    h.update(msg)
-    digest = h.finalize()
-    offset = digest[-1] & 0x0F
-    binary = ((digest[offset] & 0x7F) << 24
-              | (digest[offset + 1] & 0xFF) << 16
-              | (digest[offset + 2] & 0xFF) << 8
-              | (digest[offset + 3] & 0xFF))
-    return str(binary % (10 ** digits)).zfill(digits)
-
-
-def verify_mfa(secret_b32, code, window=1):
-    """Prüft TOTP mit ±window Halbminuten-Toleranz."""
-    now = int(time.time())
-    for w in range(-window, window + 1):
-        if _totp(secret_b32, now + w * 30) == code:
-            return True
-    return False
-
-
-def mfa_provisioning_uri(secret_b32, username, issuer="MicroTrader"):
-    """otpauth:// URI für Authenticator-Apps."""
-    label = f"{issuer}:{username}"
-    return (f"otpauth://totp/{label}?secret={secret_b32}"
-            f"&issuer={issuer}&algorithm=SHA1&digits=6&period=30")
-
-
-def _generate_recovery_codes(count=RECOVERY_CODE_COUNT):
-    """Phase 1 (§6): 8 einmalige Recovery-Codes (Basis32, ohne 0/O/1/I)."""
-    alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
-    codes = []
-    for _ in range(count):
-        codes.append("".join(secrets.choice(alphabet)
-                             for _ in range(RECOVERY_CODE_LENGTH)))
-    return codes
-
+from totp_util import (generate_mfa_secret, _totp, verify_mfa,
+                        mfa_provisioning_uri, _generate_recovery_codes)
 
 def enable_mfa(username, code):
     """Phase 1 (§6): Aktiviert MFA, generiert Recovery-Codes, Status -> ACTIVE."""
@@ -1784,7 +1733,19 @@ def verify_csrf_token(token, max_age=3600):
 
 # ─── Audit-Log (manipulationssicher: append-only JSON-Lines) ────────────────
 def audit_log(action, actor, detail=""):
-    """Schreibt Append-Only Audit-Eintrag. Nicht nachträglich änderbar."""
+    """Schreibt Append-Only Audit-Eintrag. Nicht nachträglich änderbar."""    # BUG-Audit-Rotation: bei >10MB als .1 archivieren (max 5 Gen), append-only erhalten
+    try:
+        if os.path.exists(AUDIT_FILE) and os.path.getsize(AUDIT_FILE) > 10 * 1024 * 1024:
+            for gen in range(5, 0, -1):
+                old_f = f"{AUDIT_FILE}.{gen}"
+                prev = f"{AUDIT_FILE}.{gen-1}" if gen > 1 else AUDIT_FILE
+                if os.path.exists(prev):
+                    if os.path.exists(old_f):
+                        os.remove(old_f)
+                    os.rename(prev, old_f)
+    except Exception:
+        pass
+
     entry = {
         "ts": datetime.utcnow().isoformat() + "Z",
         "action": action, "actor": actor, "detail": detail,

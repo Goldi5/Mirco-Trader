@@ -1,8 +1,8 @@
 {
-  "version": "2.58.2",
-  "build": "2026-08-14_1300",
-  "released_at": "2026-08-14 13:00",
-  "codename": "Open-Work BUG-002/003/005/006 geschlossen (markt_daten persistiert, CSRF-Schutz, MFA-Enrollment, Risk-70-Budget)",
+  "version": "2.58.3",
+  "build": "2026-08-14_1630",
+  "released_at": "2026-08-14 16:30",
+  "codename": "Open-Work P1-P3 geschlossen: Scheduler gestartet, Regel-Gate, decision_id Risk-Level, Audit-Rotation, security.py Refactor (totp_util), nginx-Template",
   "changes": [
     {
       "version": "2.51.0",

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """KI-Trader – LLM-gestützte Trading-Entscheidungen pro Ticker.
 
 Sammelt pro Ticker: Kurs, Trend, RSI, Position (shares/P&L), KI-bewertete News,
@@ -327,6 +327,9 @@ Format: {{"ticker": "{ticker}", "aktion": "kaufen", "konfidenz": 75, "grund": "k
         from ki_provider import call_ki, ki_faehig
         if not ki_faehig():
             return {"aktion": "halten", "konfidenz": 0, "grund": "Kein API-Key",
+                    "decision_id": f"d_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{ticker}_{depot_typ}_{risk if risk is not None else 'na'}",
+                    "depot_typ": depot_typ, "risk": risk, "ticker": ticker,
+                    "shadow": False, "regelstand_ref": "v_legacy", "konflikte": [],
                     "provider": "none", "fallback": True}
         # Settings: KI-Temperatur (Default 0.1)
         # P3: Risiko-Appetit aus config.json laden (Slider im Dashboard)

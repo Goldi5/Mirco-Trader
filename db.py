@@ -359,23 +359,34 @@ class MTDB:
         return dict(row) if row else None
 
     def effective_rules(self, tenant_id):
-        """PHASE 11: Tenant-Regeln ∪ globale learned_rules.json (Tenant gewinnt bei ID-Kollision)."""
+        """PHASE 11 + BUG-Regel-Review: Tenant-Regeln ∪ globale learned_rules.json
+        (Tenant gewinnt bei ID-Kollision). PFLICHT-GATE (Regel-Review-Workflow):
+        nur Regeln mit status ACTIVATED (oder APPROVED bei globalen Regeln mit
+        freigabe_status='freigegeben') sind wirksam. Unreviewed/PENDING/IN_REVIEW
+        Regeln werden NICHT angewendet."""
         out = {}
         # Global-Basis
         try:
             import json
             g = json.load(open("learned_rules.json", encoding="utf-8"))
             for r in g.get("rules", []):
+                status = r.get("status", "aktiv")
+                freigabe = r.get("freigabe_status", "nicht_freigegeben")
+                # Global: nur freigegebene
+                if freigabe != "freigegeben":
+                    continue
                 out[r["id"]] = {"id": r["id"], "muster": r.get("muster"),
-                                "regel": r.get("regel"), "status": r.get("status", "aktiv"),
-                                "freigabe_status": r.get("freigabe_status", "nicht_freigegeben"),
+                                "regel": r.get("regel"), "status": status,
+                                "freigabe_status": freigabe,
                                 "shadow": bool(r.get("shadow", False)),
                                 "typ": r.get("typ", ""),
                                 "source": "global"}
         except Exception:
             pass
-        # Tenant ueberschreibt
+        # Tenant ueberschreibt — aber nur ACTIVATED (Pflicht-Gate!)
         for r in self.rule_list(tenant_id):
+            if r.get("status") != "ACTIVATED":
+                continue
             out[r["rule_id"]] = {"id": r["rule_id"], "muster": r.get("muster"),
                                  "regel": r["regel"], "status": r["status"],
                                  "freigabe_status": "freigegeben", "shadow": False,
