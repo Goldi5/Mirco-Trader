@@ -1067,7 +1067,9 @@ def data():
                      glob.glob(os.path.join(BASE, "spec_depots", "*.json"))
             if files:
                 newest = max(os.path.getmtime(f) for f in files)
-                akt = time.strftime("%d.%m.%Y %H:%M", time.localtime(newest))
+                # ISO-Format liefern (nicht DE-Format!), damit formatDeutsch()
+                # im Frontend es per new Date() parsen kann (sonst NaN.NaN).
+                akt = time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime(newest))
         except Exception:
             akt = "-"
 

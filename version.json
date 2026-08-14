@@ -1,8 +1,8 @@
 {
-  "version": "2.58.4",
-  "build": "2026-08-14_1750",
-  "released_at": "2026-08-14 17:50",
-  "codename": "BUG-Fix: 'Stand'-Zeitstempel zeigt echte letzte Aktualisierung (mtime Depot-Dateien) statt eingefrorenem Umbau-Stichtag",
+  "version": "2.58.5",
+  "build": "2026-08-14_1920",
+  "released_at": "2026-08-14 19:20",
+  "codename": "BUG-Fix: 'Stand' NaN (Backend lieferte DE-Format, Frontend formatDeutsch braucht ISO) -> ISO-Timestamp",
   "changes": [
     {
       "version": "2.51.0",
