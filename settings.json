@@ -16,7 +16,7 @@
     "lern_modus": "auto"
   },
   "engine_bremsen": {
-    "max_depot_pro_ticker": 4,
+    "max_depot_pro_ticker": 8,
     "drawdown_sperre_prozent": 30,
     "wochenende_handel": false
   },

@@ -2,208 +2,12 @@
   "ticker": "CRSP",
   "name": "CRISPR Therapeutics",
   "kategorie": "biotech",
-  "bargeld": 101.04,
-  "shares": 0,
-  "avg_price": 0,
+  "bargeld": 0.0,
+  "shares": 1.83145,
+  "avg_price": 53.99,
   "start": 100,
   "exchange": "US",
   "historie": [
-    {
-      "zeit": "2026-08-06T16:47:16.546423",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T16:47:44.508971",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T17:01:52.895020",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T17:17:16.079041",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T17:17:31.435756",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T17:32:16.061593",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T17:32:33.532228",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T17:47:59.272529",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T18:02:43.886027",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T18:26:46.337646",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T18:33:46.603868",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T18:48:25.040321",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T19:02:18.590290",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T19:03:17.936635",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T19:35:08.688649",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T19:36:44.624845",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T19:47:29.469840",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T20:03:44.935055",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T20:48:26.269005",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T20:48:55.945947",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T20:48:57.311994",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T20:54:21.757710",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:00:03.378911",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:01:54.643873",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:03:05.875144",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:05:12.541851",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:09:21.997802",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:17:54.848174",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:19:57.879134",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:28:50.561707",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:34:36.269526",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T21:48:15.434073",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-06T22:07:07.144227",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T15:48:30.662939",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T15:49:11.800270",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T15:50:09.601682",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T16:02:56.160449",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T16:04:03.341618",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T16:18:03.651752",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T16:34:01.775821",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T16:34:09.860698",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T16:34:49.663864",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T17:03:01.628135",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T17:47:28.019320",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T18:03:03.318161",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T18:32:50.078246",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T18:33:17.249207",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T19:32:40.435512",
-      "wert": 101.33
-    },
-    {
-      "zeit": "2026-08-07T19:33:08.809699",
-      "wert": 101.33
-    },
     {
       "zeit": "2026-08-07T20:02:41.876775",
       "wert": 101.33
@@ -407,6 +211,202 @@
     {
       "zeit": "2026-08-11T18:19:16.112197",
       "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:33:34.422753",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:34:16.906977",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:47:19.589218",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:48:28.299039",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T18:48:55.278578",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T19:02:32.747698",
+      "wert": 101.04
+    },
+    {
+      "zeit": "2026-08-11T19:03:33.275730",
+      "wert": 101.02
+    },
+    {
+      "zeit": "2026-08-11T19:04:36.151777",
+      "wert": 100.96
+    },
+    {
+      "zeit": "2026-08-11T19:17:38.422771",
+      "wert": 100.98
+    },
+    {
+      "zeit": "2026-08-11T19:18:16.510437",
+      "wert": 100.98
+    },
+    {
+      "zeit": "2026-08-11T19:19:24.351279",
+      "wert": 100.98
+    },
+    {
+      "zeit": "2026-08-11T19:32:19.367191",
+      "wert": 100.98
+    },
+    {
+      "zeit": "2026-08-11T19:33:53.251258",
+      "wert": 100.98
+    },
+    {
+      "zeit": "2026-08-11T19:34:54.166901",
+      "wert": 100.98
+    },
+    {
+      "zeit": "2026-08-11T19:47:06.012647",
+      "wert": 100.98
+    },
+    {
+      "zeit": "2026-08-11T19:48:51.499634",
+      "wert": 100.94
+    },
+    {
+      "zeit": "2026-08-11T19:49:02.659479",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T20:02:26.672381",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T20:03:24.700912",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T20:04:47.801411",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T20:17:21.867223",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T20:19:43.270202",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T20:33:09.520186",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T20:33:52.044105",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T20:35:27.012000",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T20:47:59.050402",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T21:02:38.542001",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T21:04:16.881283",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T21:06:00.398093",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T21:21:05.589478",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T21:25:20.229494",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T21:36:05.895064",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T21:39:31.904067",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T21:47:25.209224",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-11T21:52:52.577779",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-12T15:40:47.133050",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-12T15:47:47.177052",
+      "wert": 100.89
+    },
+    {
+      "zeit": "2026-08-12T15:52:37.329860",
+      "wert": 100.17
+    },
+    {
+      "zeit": "2026-08-12T15:58:13.937454",
+      "wert": 99.93
+    },
+    {
+      "zeit": "2026-08-12T16:16:10.874073",
+      "wert": 98.88
+    },
+    {
+      "zeit": "2026-08-12T16:28:28.757895",
+      "wert": 98.88
+    },
+    {
+      "zeit": "2026-08-12T16:34:51.451072",
+      "wert": 98.88
+    },
+    {
+      "zeit": "2026-08-12T16:53:08.566929",
+      "wert": 98.88
+    },
+    {
+      "zeit": "2026-08-12T17:08:16.832750",
+      "wert": 98.88
+    },
+    {
+      "zeit": "2026-08-12T17:18:09.881753",
+      "wert": 98.88
+    },
+    {
+      "zeit": "2026-08-12T17:27:35.327057",
+      "wert": 98.88
+    },
+    {
+      "zeit": "2026-08-12T17:38:11.465651",
+      "wert": 98.88
+    },
+    {
+      "zeit": "2026-08-12T17:47:53.659532",
+      "wert": 98.88
+    },
+    {
+      "zeit": "2026-08-12T18:08:30.365523",
+      "wert": 98.88
     }
   ],
   "trades": [
@@ -618,29 +618,85 @@
       "preis": 53.38,
       "grund": "RSI überkauft, geringe Liquidität, biotech-Anti-Signal [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-11T19:02:32.747698",
+      "aktion": "kaufen",
+      "menge": 1.88402,
+      "preis": 53.63,
+      "grund": "neutrale Trend, überkauftes RSI, biotech-Anti-Signal, geringe Volumen",
+      "ki_konfidenz": 45
+    },
+    {
+      "zeit": "2026-08-11T19:18:16.510437",
+      "aktion": "verkaufen",
+      "menge": 1.88402,
+      "preis": 53.6,
+      "grund": "RSI 76.2 überkauft, biotech-Anti-Signal, niedriges Volumen [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-11T19:47:06.012647",
+      "aktion": "kaufen",
+      "menge": 1.888889,
+      "preis": 53.46,
+      "grund": "neutrale Trend, RSI überkauft, geringe Volumen, biotech-Anti-Signal, daher kleine Position",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-11T19:49:02.659479",
+      "aktion": "verkaufen",
+      "menge": 1.888889,
+      "preis": 53.41,
+      "grund": "RSI überkauft, anti-biotech-Warnung, geringe Volumen-Ratio, keine Aufwärtssignale [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-12T15:47:47.177052",
+      "aktion": "kaufen",
+      "menge": 1.841394,
+      "preis": 54.79,
+      "grund": "RSI überkauft, geringe Volumen, biotech-Anti-Warnung, aber Cash verfügbar",
+      "ki_konfidenz": 55
+    },
+    {
+      "zeit": "2026-08-12T16:16:10.874073",
+      "aktion": "verkaufen",
+      "menge": 1.841394,
+      "preis": 53.7,
+      "grund": "RSI überkauft, biotech-Warnsignal, niedriges Volumen, keine klaren Aufwärtssignale [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
+    },
+    {
+      "zeit": "2026-08-12T18:08:30.365523",
+      "aktion": "kaufen",
+      "menge": 1.83145,
+      "preis": 53.99,
+      "grund": "neutrale Trend, RSI überkauft, geringe Volumen, biotech-Anti-Signal, aber Cash verfügbar, leichte Aufwärtschance [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-11T18:18:12.653017",
+    "zeit": "2026-08-12T18:06:48.044551",
     "ticker": "CRSP",
-    "aktion": "halten",
-    "konfidenz": 55,
-    "grund": "RSI überkauft, anti-biotech-Warnung, niedriges Volumen, keine klare Aufwärtssignale",
+    "aktion": "kaufen",
+    "konfidenz": 60,
+    "grund": "neutrale Trend, RSI überkauft, geringe Volumen, biotech-Anti-Signal, aber Cash verfügbar, leichte Aufwärtschance [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 53.56,
-    "rsi": 76.2,
+    "kurs": 53.99,
+    "rsi": 76.1,
     "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
     "p_pnl": 0,
-    "depot_rendite": 1.04,
+    "depot_rendite": -1.12,
     "angewandte_regeln": [
       {
         "id": "r_20260802_92036",
         "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.5,
+        "effektiv_gewicht": 2.48,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -654,7 +710,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -668,7 +724,7 @@
         "muster": "[Anti] halten bei volatility-Titeln",
         "typ": "anti",
         "gewicht": -1.87,
-        "effektiv_gewicht": -1.87,
+        "effektiv_gewicht": -1.85,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -682,7 +738,7 @@
         "muster": "[Anti] halten bei lev-bull-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.86,
+        "effektiv_gewicht": -1.84,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -696,7 +752,7 @@
         "muster": "[Anti] halten bei ai-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.86,
+        "effektiv_gewicht": -1.84,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -710,7 +766,7 @@
         "muster": "[Anti] halten bei lev-bear-Titeln",
         "typ": "anti",
         "gewicht": -1.71,
-        "effektiv_gewicht": -1.71,
+        "effektiv_gewicht": -1.69,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -724,7 +780,7 @@
         "muster": "[Anti] halten bei space-Titeln",
         "typ": "anti",
         "gewicht": -1.64,
-        "effektiv_gewicht": -1.64,
+        "effektiv_gewicht": -1.62,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -738,7 +794,7 @@
         "muster": "[Anti] halten bei crypto-Titeln",
         "typ": "anti",
         "gewicht": -1.63,
-        "effektiv_gewicht": -1.63,
+        "effektiv_gewicht": -1.61,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -752,7 +808,7 @@
         "muster": "[Anti] halten bei commodity-Titeln",
         "typ": "anti",
         "gewicht": -1.63,
-        "effektiv_gewicht": -1.63,
+        "effektiv_gewicht": -1.61,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -766,7 +822,7 @@
         "muster": "[Anti] halten bei ev-Titeln",
         "typ": "anti",
         "gewicht": -1.62,
-        "effektiv_gewicht": -1.62,
+        "effektiv_gewicht": -1.6,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -780,7 +836,7 @@
         "muster": "[Anti] halten bei biotech-Titeln",
         "typ": "anti",
         "gewicht": -1.55,
-        "effektiv_gewicht": -1.55,
+        "effektiv_gewicht": -1.53,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -794,7 +850,7 @@
         "muster": "[Anti] halten bei index-Titeln",
         "typ": "anti",
         "gewicht": -1.47,
-        "effektiv_gewicht": -1.47,
+        "effektiv_gewicht": -1.46,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -804,7 +860,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260811_181812_CRSP_aktien_na",
+    "decision_id": "d_20260812_180648_CRSP_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -812,18 +868,18 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 53.56,
-      "sma20": 49.49,
+      "kurs": 53.99,
+      "sma20": 49.65,
       "sma50": 52.23,
-      "rsi": 76.2,
-      "atr_pct": 3.43,
-      "vol_ratio": 0.21,
-      "vix": 15.3,
+      "rsi": 76.1,
+      "atr_pct": 3.36,
+      "vol_ratio": 0.19,
+      "vix": 14.8,
       "trend": "Neutral (Kurs zwischen SMA20/SMA50)",
-      "depot_rendite": 1.04
+      "depot_rendite": -1.12
     },
     "indikatoren": [
-      "SMA20>49.5",
+      "SMA20>49.6",
       "SMA50>52.2",
       "RSI76",
       "ATR3.4%"
@@ -838,8 +894,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 55,
-    "konfidenz_nach_cap": 55,
+    "konfidenz_original": 65.0,
+    "konfidenz_nach_cap": 60,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

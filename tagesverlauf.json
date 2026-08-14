@@ -123,5 +123,55 @@
       }
     },
     "ki_konfidenz": 54.5
+  },
+  {
+    "datum": "2026-08-12",
+    "ges_wert": 3519.1,
+    "ges_start": 6200.0,
+    "pnl": -2680.9,
+    "pnl_pct": -43.24,
+    "kategorien": {
+      "spec": {
+        "wert": 1054.01,
+        "start": 1000.0,
+        "pnl_pct": 5.4
+      },
+      "aktien": {
+        "wert": 1220.2,
+        "start": 3200,
+        "pnl_pct": -61.87
+      },
+      "etf": {
+        "wert": 1244.89,
+        "start": 2000.0,
+        "pnl_pct": -37.76
+      }
+    },
+    "ki_konfidenz": 55.8
+  },
+  {
+    "datum": "2026-08-13",
+    "ges_wert": 6477.49,
+    "ges_start": 10470.0,
+    "pnl": -3992.51,
+    "pnl_pct": -38.13,
+    "kategorien": {
+      "spec": {
+        "wert": 946.18,
+        "start": 900.0,
+        "pnl_pct": 5.13
+      },
+      "aktien": {
+        "wert": 2921.4,
+        "start": 5570.0,
+        "pnl_pct": -47.55
+      },
+      "etf": {
+        "wert": 2609.91,
+        "start": 4000.0,
+        "pnl_pct": -34.75
+      }
+    },
+    "ki_konfidenz": 51.6
   }
 ]

@@ -1,305 +1,9 @@
 {
-  "ticker": "FNGU",
-  "name": "MicroSectors FANG+ 3x",
-  "kategorie": "lev-bull",
+  "start_wert": 100,
+  "risk": 20,
   "bargeld": 0.0,
-  "shares": 3.199411,
-  "avg_price": 33.95,
-  "start": 100,
-  "exchange": "US",
+  "positions": {},
   "historie": [
-    {
-      "zeit": "2026-08-06T18:17:34.964329",
-      "wert": 108.86
-    },
-    {
-      "zeit": "2026-08-06T18:26:46.346913",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T19:03:17.947015",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T19:33:20.125505",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T19:35:08.724597",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T19:36:44.655035",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T20:03:44.965342",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T20:48:55.957900",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T20:48:57.322822",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T20:48:57.598840",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T20:54:21.767032",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T21:00:03.388457",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T21:01:54.651416",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T21:02:08.197386",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T21:17:54.861033",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T21:19:57.890866",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T21:28:50.570501",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T21:34:36.279338",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T21:47:06.203606",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T21:48:15.448517",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-06T22:13:16.082511",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T15:47:07.088156",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T15:47:07.789273",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T15:47:11.417364",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T15:48:30.700708",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T15:49:11.837631",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T15:50:09.620116",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T16:02:56.169818",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T16:04:03.355703",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T16:05:01.181118",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T16:18:03.663053",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T16:19:32.307708",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T16:34:49.675868",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T16:47:10.980619",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T17:17:35.259540",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T17:32:43.309439",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T17:47:28.028728",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T18:17:53.667300",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T18:33:17.263020",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T18:47:09.240369",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T19:02:39.027556",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T19:17:35.793659",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T19:32:40.447782",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T19:33:08.828524",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T20:02:41.885291",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T20:17:19.817594",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T20:33:10.247048",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T20:46:44.451504",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T21:17:58.551829",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T21:33:16.449103",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T21:52:20.201561",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T21:52:32.635029",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-07T21:52:37.808916",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-10T15:55:59.438395",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-10T19:33:08.320211",
-      "wert": 108.62
-    },
-    {
-      "zeit": "2026-08-10T19:33:58.228331",
-      "wert": 108.4
-    },
-    {
-      "zeit": "2026-08-10T20:04:37.891997",
-      "wert": 108.01
-    },
-    {
-      "zeit": "2026-08-10T20:24:33.431305",
-      "wert": 107.79
-    },
-    {
-      "zeit": "2026-08-10T20:46:04.364769",
-      "wert": 108.08
-    },
-    {
-      "zeit": "2026-08-10T20:47:02.595992",
-      "wert": 108.04
-    },
-    {
-      "zeit": "2026-08-10T20:48:14.730832",
-      "wert": 108.01
-    },
-    {
-      "zeit": "2026-08-10T21:01:02.914362",
-      "wert": 108.3
-    },
-    {
-      "zeit": "2026-08-10T21:01:58.213615",
-      "wert": 108.3
-    },
-    {
-      "zeit": "2026-08-10T21:03:29.190789",
-      "wert": 108.36
-    },
-    {
-      "zeit": "2026-08-10T21:16:17.927334",
-      "wert": 108.17
-    },
-    {
-      "zeit": "2026-08-10T21:18:54.482344",
-      "wert": 108.17
-    },
-    {
-      "zeit": "2026-08-10T21:20:55.930675",
-      "wert": 108.17
-    },
-    {
-      "zeit": "2026-08-10T21:31:17.729320",
-      "wert": 107.85
-    },
-    {
-      "zeit": "2026-08-10T21:32:08.161052",
-      "wert": 107.88
-    },
-    {
-      "zeit": "2026-08-10T21:33:11.505288",
-      "wert": 107.88
-    },
-    {
-      "zeit": "2026-08-10T21:46:26.914806",
-      "wert": 107.88
-    },
-    {
-      "zeit": "2026-08-10T21:47:08.477981",
-      "wert": 107.79
-    },
-    {
-      "zeit": "2026-08-10T21:48:15.756077",
-      "wert": 107.79
-    },
     {
       "zeit": "2026-08-11T15:32:24.408771",
       "wert": 108.78
@@ -407,6 +111,319 @@
     {
       "zeit": "2026-08-11T18:19:16.115636",
       "wert": 105.55
+    },
+    {
+      "zeit": "2026-08-11T18:32:37.118946",
+      "wert": 105.23
+    },
+    {
+      "zeit": "2026-08-11T18:33:34.424254",
+      "wert": 105.2
+    },
+    {
+      "zeit": "2026-08-11T18:34:16.911731",
+      "wert": 105.1
+    },
+    {
+      "zeit": "2026-08-11T18:47:19.592279",
+      "wert": 105.26
+    },
+    {
+      "zeit": "2026-08-11T18:48:28.303437",
+      "wert": 105.2
+    },
+    {
+      "zeit": "2026-08-11T18:48:55.281280",
+      "wert": 105.13
+    },
+    {
+      "zeit": "2026-08-11T19:02:32.752655",
+      "wert": 105.2
+    },
+    {
+      "zeit": "2026-08-11T19:03:33.278055",
+      "wert": 105.2
+    },
+    {
+      "zeit": "2026-08-11T19:04:36.156465",
+      "wert": 105.13
+    },
+    {
+      "zeit": "2026-08-11T19:17:38.425428",
+      "wert": 104.72
+    },
+    {
+      "zeit": "2026-08-11T19:18:16.513605",
+      "wert": 104.72
+    },
+    {
+      "zeit": "2026-08-11T19:19:24.351279",
+      "wert": 104.84
+    },
+    {
+      "zeit": "2026-08-11T19:32:19.369771",
+      "wert": 105.2
+    },
+    {
+      "zeit": "2026-08-11T19:33:53.255852",
+      "wert": 105.2
+    },
+    {
+      "zeit": "2026-08-11T19:34:54.169083",
+      "wert": 105.2
+    },
+    {
+      "zeit": "2026-08-11T19:47:06.016304",
+      "wert": 105.45
+    },
+    {
+      "zeit": "2026-08-11T19:48:51.502595",
+      "wert": 105.48
+    },
+    {
+      "zeit": "2026-08-11T19:49:02.664044",
+      "wert": 105.42
+    },
+    {
+      "zeit": "2026-08-11T20:02:26.675045",
+      "wert": 105.32
+    },
+    {
+      "zeit": "2026-08-11T20:03:24.703487",
+      "wert": 105.29
+    },
+    {
+      "zeit": "2026-08-11T20:04:47.802410",
+      "wert": 105.29
+    },
+    {
+      "zeit": "2026-08-11T20:17:21.869777",
+      "wert": 105.0
+    },
+    {
+      "zeit": "2026-08-11T20:18:03.307145",
+      "wert": 104.91
+    },
+    {
+      "zeit": "2026-08-11T20:19:43.273362",
+      "wert": 104.91
+    },
+    {
+      "zeit": "2026-08-11T20:33:09.523055",
+      "wert": 104.14
+    },
+    {
+      "zeit": "2026-08-11T20:33:52.047145",
+      "wert": 104.24
+    },
+    {
+      "zeit": "2026-08-11T20:35:27.015277",
+      "wert": 104.33
+    },
+    {
+      "zeit": "2026-08-11T20:47:59.052398",
+      "wert": 104.2
+    },
+    {
+      "zeit": "2026-08-11T20:48:53.633650",
+      "wert": 104.24
+    },
+    {
+      "zeit": "2026-08-11T20:49:50.866628",
+      "wert": 104.3
+    },
+    {
+      "zeit": "2026-08-11T21:02:38.545707",
+      "wert": 104.43
+    },
+    {
+      "zeit": "2026-08-11T21:04:16.885590",
+      "wert": 104.33
+    },
+    {
+      "zeit": "2026-08-11T21:06:00.399605",
+      "wert": 104.4
+    },
+    {
+      "zeit": "2026-08-11T21:21:05.591524",
+      "wert": 104.65
+    },
+    {
+      "zeit": "2026-08-11T21:36:05.898086",
+      "wert": 104.62
+    },
+    {
+      "zeit": "2026-08-11T21:39:31.906102",
+      "wert": 104.68
+    },
+    {
+      "zeit": "2026-08-11T21:41:06.735256",
+      "wert": 104.65
+    },
+    {
+      "zeit": "2026-08-11T21:52:52.580879",
+      "wert": 104.68
+    },
+    {
+      "zeit": "2026-08-12T15:40:47.138182",
+      "wert": 105.39
+    },
+    {
+      "zeit": "2026-08-12T15:47:47.180100",
+      "wert": 104.81
+    },
+    {
+      "zeit": "2026-08-12T15:52:37.332260",
+      "wert": 105.16
+    },
+    {
+      "zeit": "2026-08-12T15:58:13.940587",
+      "wert": 104.33
+    },
+    {
+      "zeit": "2026-08-12T16:16:10.876353",
+      "wert": 104.49
+    },
+    {
+      "zeit": "2026-08-12T16:28:28.761894",
+      "wert": 104.4
+    },
+    {
+      "zeit": "2026-08-12T16:34:51.454081",
+      "wert": 103.95
+    },
+    {
+      "zeit": "2026-08-12T16:53:08.568478",
+      "wert": 103.63
+    },
+    {
+      "zeit": "2026-08-12T17:08:16.832750",
+      "wert": 103.37
+    },
+    {
+      "zeit": "2026-08-12T17:18:09.884884",
+      "wert": 103.56
+    },
+    {
+      "zeit": "2026-08-12T17:27:35.332262",
+      "wert": 103.18
+    },
+    {
+      "zeit": "2026-08-12T17:38:11.465651",
+      "wert": 103.09
+    },
+    {
+      "zeit": "2026-08-12T17:47:53.660591",
+      "wert": 102.99
+    },
+    {
+      "zeit": "2026-08-12T18:08:30.369037",
+      "wert": 103.05
+    },
+    {
+      "zeit": "2026-08-12T19:44:49.963585",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T09:40:59.301379",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T09:49:06.808384",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T09:50:50.182207",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T09:52:20.997817",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T09:55:00.238713",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T09:56:50.080395",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T09:59:16.290897",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T10:03:09.896460",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T10:05:42.016046",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T10:07:50.672624",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T10:11:24.963714",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T10:19:01.814190",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T10:33:23.248665",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T21:00:09.303318",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T21:00:37.878012",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T21:01:53.237964",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T21:02:06.787869",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T21:40:44.878425",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T21:40:57.641296",
+      "wert": 0.0,
+      "bargeld": 0.0
+    },
+    {
+      "zeit": "2026-08-13T22:01:24.927644",
+      "wert": 0.0,
+      "bargeld": 0.0
     }
   ],
   "trades": [
@@ -415,7 +432,7 @@
       "aktion": "kaufen",
       "menge": 4.266212,
       "preis": 23.44,
-      "grund": "RSI überverkauft (30.3) signalisiert mögliche Erholung, aber Abwärtstrend und gehebeltes Produkt erhöhen Risiko.",
+      "grund": "RSI \u00fcberverkauft (30.3) signalisiert m\u00f6gliche Erholung, aber Abw\u00e4rtstrend und gehebeltes Produkt erh\u00f6hen Risiko.",
       "ki_konfidenz": 65,
       "typ": "kaufen"
     },
@@ -424,7 +441,7 @@
       "aktion": "verkaufen",
       "menge": 4.266212,
       "preis": 25.36,
-      "grund": "Abwärtstrend, RSI unter 50, Gewinn sichern",
+      "grund": "Abw\u00e4rtstrend, RSI unter 50, Gewinn sichern",
       "ki_konfidenz": 60,
       "typ": "verkaufen"
     },
@@ -442,7 +459,7 @@
       "aktion": "verkaufen",
       "menge": 3.350573,
       "preis": 32.46,
-      "grund": "Halten bei 3x Bull-ETF negativ; Trend neutral, Volumenratio 0.73, geringe Bestätigung; Gewinn sichern.",
+      "grund": "Halten bei 3x Bull-ETF negativ; Trend neutral, Volumenratio 0.73, geringe Best\u00e4tigung; Gewinn sichern.",
       "ki_konfidenz": 60,
       "typ": "verkaufen"
     },
@@ -451,7 +468,7 @@
       "aktion": "kaufen",
       "menge": 3.368225,
       "preis": 32.29,
-      "grund": "Keine Position, Watchlist und verfügbares Cash; RSI leicht über 50, aber neutrale Trendlage, daher moderater Kauf.",
+      "grund": "Keine Position, Watchlist und verf\u00fcgbares Cash; RSI leicht \u00fcber 50, aber neutrale Trendlage, daher moderater Kauf.",
       "ki_konfidenz": 60,
       "typ": "kaufen"
     },
@@ -460,7 +477,7 @@
       "aktion": "verkaufen",
       "menge": 3.368225,
       "preis": 32.32,
-      "grund": "Explizite gelernte Regel: VERBOT/MEIDE halten bei lev-bull-Titeln (Gewicht -1.84). FNGU ist 3x Hebel-Bull-ETF. Position ist flach (+0.09%), kein Cash für Nachkauf, Kapital blockiert Benchmark. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "grund": "Explizite gelernte Regel: VERBOT/MEIDE halten bei lev-bull-Titeln (Gewicht -1.84). FNGU ist 3x Hebel-Bull-ETF. Position ist flach (+0.09%), kein Cash f\u00fcr Nachkauf, Kapital blockiert Benchmark. [Konfidenz auf 60 gedeckelt: KI \u00fcbersch\u00e4tzt sich in hohen Bereichen]",
       "ki_konfidenz": 60,
       "typ": "verkaufen"
     },
@@ -478,7 +495,7 @@
       "aktion": "verkaufen",
       "menge": 3.397628,
       "preis": 32.04,
-      "grund": "Gelernte Regeln verbieten Halten von lev-bull-Titeln (Gewicht -1.84) und AI-Titeln (-1.84). FNGU ist 3x Hebel auf FANG+/Tech. Position bei 0% P&L glattstellen vor Volatilitätsausweitung (VIX 15.9 niedrig). [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "grund": "Gelernte Regeln verbieten Halten von lev-bull-Titeln (Gewicht -1.84) und AI-Titeln (-1.84). FNGU ist 3x Hebel auf FANG+/Tech. Position bei 0% P&L glattstellen vor Volatilit\u00e4tsausweitung (VIX 15.9 niedrig). [Konfidenz auf 60 gedeckelt: KI \u00fcbersch\u00e4tzt sich in hohen Bereichen]",
       "ki_konfidenz": 60,
       "typ": "verkaufen"
     },
@@ -487,7 +504,7 @@
       "aktion": "kaufen",
       "menge": 3.397628,
       "preis": 32.04,
-      "grund": "Neutraler Trend, RSI 59.7, VIX niedrig; Watchlist-Signal, aber hohe Volatilität und Meta-Caps limitieren Konfidenz.",
+      "grund": "Neutraler Trend, RSI 59.7, VIX niedrig; Watchlist-Signal, aber hohe Volatilit\u00e4t und Meta-Caps limitieren Konfidenz.",
       "ki_konfidenz": 45,
       "typ": "kaufen"
     },
@@ -496,7 +513,7 @@
       "aktion": "verkaufen",
       "menge": 3.397628,
       "preis": 32.04,
-      "grund": "Anti-Halten-Regel für leveraged/Volatilitätstitel; Position schließen.",
+      "grund": "Anti-Halten-Regel f\u00fcr leveraged/Volatilit\u00e4tstitel; Position schlie\u00dfen.",
       "ki_konfidenz": 60,
       "typ": "verkaufen"
     },
@@ -514,7 +531,7 @@
       "aktion": "verkaufen",
       "menge": 3.397628,
       "preis": 32.04,
-      "grund": "Explizite Verbot-Regeln gegen Halten von lev-bull-Titeln (Gewicht -1.82), volatility-Titeln (-1.83) und ai-Titeln (-1.82). FNGU ist 3x gehebelt, hochvolatil und tech-lastig - triple Whammy. Position erst gerade eröffnet (P&L 0%), sofort auflösen um Kapital freizumachen. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "grund": "Explizite Verbot-Regeln gegen Halten von lev-bull-Titeln (Gewicht -1.82), volatility-Titeln (-1.83) und ai-Titeln (-1.82). FNGU ist 3x gehebelt, hochvolatil und tech-lastig - triple Whammy. Position erst gerade er\u00f6ffnet (P&L 0%), sofort aufl\u00f6sen um Kapital freizumachen. [Konfidenz auf 60 gedeckelt: KI \u00fcbersch\u00e4tzt sich in hohen Bereichen]",
       "ki_konfidenz": 60,
       "typ": "verkaufen"
     },
@@ -523,7 +540,7 @@
       "aktion": "kaufen",
       "menge": 3.39975,
       "preis": 32.02,
-      "grund": "Geringes Volumen und neutraler Trend, aber Watchlist-Cash verfügbar; Kauf mit Vorsicht.",
+      "grund": "Geringes Volumen und neutraler Trend, aber Watchlist-Cash verf\u00fcgbar; Kauf mit Vorsicht.",
       "ki_konfidenz": 60
     },
     {
@@ -531,7 +548,7 @@
       "aktion": "verkaufen",
       "menge": 3.39975,
       "preis": 31.95,
-      "grund": "Neutraler Trend, RSI 66.4, sehr niedriges Volumen (0.34x), multiple ANTI-Regeln gegen lev-bull/AI/Volatility-Titel, Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz, Position leicht im Minus, kein Cash für Nachkauf",
+      "grund": "Neutraler Trend, RSI 66.4, sehr niedriges Volumen (0.34x), multiple ANTI-Regeln gegen lev-bull/AI/Volatility-Titel, Meta-Regeln zeigen 0% Trefferquote bei hoher Konfidenz, Position leicht im Minus, kein Cash f\u00fcr Nachkauf",
       "ki_konfidenz": 55
     },
     {
@@ -539,248 +556,20 @@
       "aktion": "kaufen",
       "menge": 3.199411,
       "preis": 33.95,
-      "grund": "Klarer Aufwärtstrend (Kurs > SMA20 > SMA50), RSI 67.9 nicht überkauft, niedriger VIX (15.3). 3x Hebel-ETF erfordert kleine Positionsgröße (max 30% Cash ~$32) per Strategie. Volumen-Ratio 0.7x akzeptabel. [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+      "grund": "Klarer Aufw\u00e4rtstrend (Kurs > SMA20 > SMA50), RSI 67.9 nicht \u00fcberkauft, niedriger VIX (15.3). 3x Hebel-ETF erfordert kleine Positionsgr\u00f6\u00dfe (max 30% Cash ~$32) per Strategie. Volumen-Ratio 0.7x akzeptabel. [Konfidenz auf 60 gedeckelt: KI \u00fcbersch\u00e4tzt sich in hohen Bereichen]",
       "ki_konfidenz": 60
     }
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-11T18:18:23.763747",
-    "ticker": "FNGU",
-    "aktion": "halten",
-    "konfidenz": 55,
-    "grund": "lev-bull Anti-Regel, RSI nahe Overbought, niedriges Volumen, bestehende Verlustposition",
-    "menge": "voll",
-    "ziel_kurs": null,
-    "kurs": 32.99,
-    "rsi": 68.1,
-    "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": -2.83,
-    "depot_rendite": 5.55,
-    "angewandte_regeln": [
-      {
-        "id": "r_20260802_92036",
-        "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
-        "typ": "meta_conf_cap",
-        "gewicht": 2.5,
-        "effektiv_gewicht": 2.5,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 2,
-        "wirkung": "befolgen",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_20260801_07584",
-        "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
-        "typ": "swap",
-        "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_1_87577",
-        "muster": "[Anti] halten bei volatility-Titeln",
-        "typ": "anti",
-        "gewicht": -1.87,
-        "effektiv_gewicht": -1.87,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_2_74438",
-        "muster": "[Anti] halten bei lev-bull-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.86,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_5_20387",
-        "muster": "[Anti] halten bei ai-Titeln",
-        "typ": "anti",
-        "gewicht": -1.86,
-        "effektiv_gewicht": -1.86,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_4_69646",
-        "muster": "[Anti] halten bei lev-bear-Titeln",
-        "typ": "anti",
-        "gewicht": -1.71,
-        "effektiv_gewicht": -1.71,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_7_07487",
-        "muster": "[Anti] halten bei space-Titeln",
-        "typ": "anti",
-        "gewicht": -1.64,
-        "effektiv_gewicht": -1.64,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_3_42126",
-        "muster": "[Anti] halten bei crypto-Titeln",
-        "typ": "anti",
-        "gewicht": -1.63,
-        "effektiv_gewicht": -1.63,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_6_42979",
-        "muster": "[Anti] halten bei commodity-Titeln",
-        "typ": "anti",
-        "gewicht": -1.63,
-        "effektiv_gewicht": -1.63,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_8_71340",
-        "muster": "[Anti] halten bei ev-Titeln",
-        "typ": "anti",
-        "gewicht": -1.62,
-        "effektiv_gewicht": -1.62,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_9_23764",
-        "muster": "[Anti] halten bei biotech-Titeln",
-        "typ": "anti",
-        "gewicht": -1.55,
-        "effektiv_gewicht": -1.55,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      },
-      {
-        "id": "r_legacy_10_24603",
-        "muster": "[Anti] halten bei index-Titeln",
-        "typ": "anti",
-        "gewicht": -1.47,
-        "effektiv_gewicht": -1.47,
-        "shadow": false,
-        "live_allowed": true,
-        "freigabe_status": "freigegeben",
-        "status": "unbestätigt",
-        "prioritaet": 1,
-        "wirkung": "gewichtung",
-        "durchgesetzt": false
-      }
-    ],
-    "decision_id": "d_20260811_181823_FNGU_aktien_na",
-    "provider": "openrouter",
-    "fallback": false,
-    "depot_typ": "aktien",
-    "risk": null,
-    "quelle": "ki_decisions.entscheide_ticker",
-    "regime": "open",
-    "rohdaten": {
-      "kurs": 32.99,
-      "sma20": 28.4,
-      "sma50": 28.11,
-      "rsi": 68.1,
-      "atr_pct": 4.91,
-      "vol_ratio": 0.3,
-      "vix": 15.3,
-      "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 5.55
-    },
-    "indikatoren": [
-      "SMA20>28.4",
-      "SMA50>28.1",
-      "RSI68",
-      "ATR4.9%"
-    ],
-    "news_score": null,
-    "regelstand_ref": "v_live",
-    "konflikte": [],
-    "prioritaetsreihenfolge": [
-      "engine_bremse",
-      "meta_cap",
-      "news_swap",
-      "exit_score",
-      "ki"
-    ],
-    "konfidenz_original": 55,
-    "konfidenz_nach_cap": 55,
-    "konfidenz_cap": 60,
-    "erwarteter_ausgang": "unbekannt",
-    "shadow": false,
-    "regelstatus_beim_entscheid": {
-      "r_20260802_92036": "stabil",
-      "r_20260801_07584": "stabil",
-      "r_legacy_1_87577": "stabil",
-      "r_legacy_2_74438": "stabil",
-      "r_legacy_5_20387": "stabil",
-      "r_legacy_4_69646": "stabil",
-      "r_legacy_7_07487": "stabil",
-      "r_legacy_3_42126": "stabil",
-      "r_legacy_6_42979": "stabil",
-      "r_legacy_8_71340": "stabil",
-      "r_legacy_9_23764": "stabil",
-      "r_legacy_10_24603": "stabil"
-    }
+    "zeit": "2026-08-13T21:39:05.510372",
+    "aktion": "KI Risk 20",
+    "konfidenz": 50,
+    "analyse": "",
+    "ticker": "Risk 20"
   },
+  "aktualisiert": "2026-08-13T22:01:24.927644",
   "tenant_id": 1,
-  "mode": "shadow"
+  "mode": "shadow",
+  "exchanges": {}
 }

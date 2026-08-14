@@ -9,210 +9,6 @@
   "exchange": "US",
   "historie": [
     {
-      "zeit": "2026-08-04T21:48:28.676337",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-04T21:48:42.370195",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T15:56:40.812952",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T16:32:16.147080",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T16:49:54.880910",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T17:30:57.298073",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T17:47:22.370232",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T18:17:51.314677",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T18:32:34.055156",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T18:47:38.069031",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T19:45:22.980453",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T20:18:09.217849",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T20:19:18.765234",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T20:49:14.719175",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T21:03:34.178401",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T21:18:28.256637",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T21:19:03.019935",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T21:32:50.552006",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T21:33:49.661171",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T21:34:22.082260",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T21:47:33.501710",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-05T21:49:05.609658",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T15:32:37.064447",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T15:47:42.051953",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T16:03:21.606006",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T16:31:12.518244",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T16:47:06.254703",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T16:47:12.945796",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T16:47:44.581021",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T17:01:53.026394",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T17:17:16.103452",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T17:32:16.103839",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T17:32:33.564882",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T17:47:59.191984",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T18:17:41.353978",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T18:26:46.367759",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T20:49:21.991519",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T21:01:54.671778",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T21:02:08.219453",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T21:05:12.569080",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-06T21:17:54.883679",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T15:47:07.126891",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T15:47:11.456670",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T15:48:30.759852",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T15:49:11.935554",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T15:50:09.660329",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T16:02:56.194952",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T16:04:03.383451",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T16:18:03.689946",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T16:19:32.332992",
-      "wert": 103.95
-    },
-    {
-      "zeit": "2026-08-07T18:17:53.715679",
-      "wert": 103.95
-    },
-    {
       "zeit": "2026-08-07T18:33:17.291492",
       "wert": 103.95
     },
@@ -407,6 +203,210 @@
     {
       "zeit": "2026-08-11T18:19:16.121271",
       "wert": 111.11
+    },
+    {
+      "zeit": "2026-08-11T18:32:37.125754",
+      "wert": 110.62
+    },
+    {
+      "zeit": "2026-08-11T18:33:34.427826",
+      "wert": 110.62
+    },
+    {
+      "zeit": "2026-08-11T18:34:16.919865",
+      "wert": 110.62
+    },
+    {
+      "zeit": "2026-08-11T18:47:19.599284",
+      "wert": 110.4
+    },
+    {
+      "zeit": "2026-08-11T18:48:28.309010",
+      "wert": 110.4
+    },
+    {
+      "zeit": "2026-08-11T18:48:55.283321",
+      "wert": 110.4
+    },
+    {
+      "zeit": "2026-08-11T19:02:32.758756",
+      "wert": 110.64
+    },
+    {
+      "zeit": "2026-08-11T19:03:33.282132",
+      "wert": 110.64
+    },
+    {
+      "zeit": "2026-08-11T19:04:36.162572",
+      "wert": 110.64
+    },
+    {
+      "zeit": "2026-08-11T19:17:38.428010",
+      "wert": 110.55
+    },
+    {
+      "zeit": "2026-08-11T19:18:16.522164",
+      "wert": 110.55
+    },
+    {
+      "zeit": "2026-08-11T19:19:24.360666",
+      "wert": 110.55
+    },
+    {
+      "zeit": "2026-08-11T19:32:19.377729",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T19:33:53.262741",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T19:34:54.175126",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T19:47:06.022419",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T19:48:51.508833",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T19:49:02.668463",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T20:02:26.679298",
+      "wert": 110.55
+    },
+    {
+      "zeit": "2026-08-11T20:03:24.707074",
+      "wert": 110.55
+    },
+    {
+      "zeit": "2026-08-11T20:04:47.806931",
+      "wert": 110.55
+    },
+    {
+      "zeit": "2026-08-11T20:17:21.875300",
+      "wert": 110.62
+    },
+    {
+      "zeit": "2026-08-11T20:18:03.311256",
+      "wert": 110.62
+    },
+    {
+      "zeit": "2026-08-11T20:19:43.276407",
+      "wert": 110.62
+    },
+    {
+      "zeit": "2026-08-11T20:33:09.527640",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T20:33:52.050687",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T20:35:27.019334",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T20:47:59.055683",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T20:48:53.638749",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T20:49:50.873992",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T21:02:38.553067",
+      "wert": 109.98
+    },
+    {
+      "zeit": "2026-08-11T21:04:16.893254",
+      "wert": 109.98
+    },
+    {
+      "zeit": "2026-08-11T21:06:00.403318",
+      "wert": 110.33
+    },
+    {
+      "zeit": "2026-08-11T21:36:05.902955",
+      "wert": 110.88
+    },
+    {
+      "zeit": "2026-08-11T21:39:31.910102",
+      "wert": 110.88
+    },
+    {
+      "zeit": "2026-08-11T21:41:06.739289",
+      "wert": 110.88
+    },
+    {
+      "zeit": "2026-08-11T21:52:52.585617",
+      "wert": 110.76
+    },
+    {
+      "zeit": "2026-08-12T15:40:47.144005",
+      "wert": 108.25
+    },
+    {
+      "zeit": "2026-08-12T15:47:47.186876",
+      "wert": 108.25
+    },
+    {
+      "zeit": "2026-08-12T15:52:37.341639",
+      "wert": 110.1
+    },
+    {
+      "zeit": "2026-08-12T15:58:13.946452",
+      "wert": 110.1
+    },
+    {
+      "zeit": "2026-08-12T16:16:10.883358",
+      "wert": 111.59
+    },
+    {
+      "zeit": "2026-08-12T16:28:28.768283",
+      "wert": 111.23
+    },
+    {
+      "zeit": "2026-08-12T16:34:51.460838",
+      "wert": 111.23
+    },
+    {
+      "zeit": "2026-08-12T16:53:08.572575",
+      "wert": 110.19
+    },
+    {
+      "zeit": "2026-08-12T17:08:16.832750",
+      "wert": 110.85
+    },
+    {
+      "zeit": "2026-08-12T17:18:09.887476",
+      "wert": 110.85
+    },
+    {
+      "zeit": "2026-08-12T17:27:35.332262",
+      "wert": 110.85
+    },
+    {
+      "zeit": "2026-08-12T17:38:11.469723",
+      "wert": 110.85
+    },
+    {
+      "zeit": "2026-08-12T17:47:53.665827",
+      "wert": 110.24
+    },
+    {
+      "zeit": "2026-08-12T18:08:30.374876",
+      "wert": 109.86
     }
   ],
   "trades": [
@@ -509,25 +509,25 @@
   ],
   "ki_letzte": {
     "typ": "decision",
-    "zeit": "2026-08-11T18:18:41.342030",
+    "zeit": "2026-08-12T18:07:29.226826",
     "ticker": "NRGU",
     "aktion": "halten",
-    "konfidenz": 60,
-    "grund": "aufwärtstrend und moderater RSI, jedoch leveraged ETF mit starkem Anti-Warnsignal und niedrigem Volumen – vorsichtige Haltung [Konfidenz auf 60 gedeckelt: KI überschätzt sich in hohen Bereichen]",
+    "konfidenz": 55,
+    "grund": "bestehende Position, Aufwärtstrend aber leveraged ETF mit niedrigem Volumen und Anti-Regel für lev-bull-Titel",
     "menge": "voll",
     "ziel_kurs": null,
-    "kurs": 47.0,
-    "rsi": 54.5,
+    "kurs": 46.47,
+    "rsi": 52.5,
     "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-    "p_pnl": 6.89,
-    "depot_rendite": 11.11,
+    "p_pnl": 5.69,
+    "depot_rendite": 9.86,
     "angewandte_regeln": [
       {
         "id": "r_20260802_92036",
         "muster": "[Meta] Konfidenz-Cap 80 (Bin 80-100: 0% Treffer, n=17)",
         "typ": "meta_conf_cap",
         "gewicht": 2.5,
-        "effektiv_gewicht": 2.5,
+        "effektiv_gewicht": 2.48,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -541,7 +541,7 @@
         "muster": "[Swap] Kapital in Positionen blockiert Benchmark (SPY)",
         "typ": "swap",
         "gewicht": 1.89,
-        "effektiv_gewicht": 1.89,
+        "effektiv_gewicht": 1.87,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -555,7 +555,7 @@
         "muster": "[Anti] halten bei volatility-Titeln",
         "typ": "anti",
         "gewicht": -1.87,
-        "effektiv_gewicht": -1.87,
+        "effektiv_gewicht": -1.85,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -569,7 +569,7 @@
         "muster": "[Anti] halten bei lev-bull-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.86,
+        "effektiv_gewicht": -1.84,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -583,7 +583,7 @@
         "muster": "[Anti] halten bei ai-Titeln",
         "typ": "anti",
         "gewicht": -1.86,
-        "effektiv_gewicht": -1.86,
+        "effektiv_gewicht": -1.84,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -597,7 +597,7 @@
         "muster": "[Anti] halten bei lev-bear-Titeln",
         "typ": "anti",
         "gewicht": -1.71,
-        "effektiv_gewicht": -1.71,
+        "effektiv_gewicht": -1.69,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -611,7 +611,7 @@
         "muster": "[Anti] halten bei space-Titeln",
         "typ": "anti",
         "gewicht": -1.64,
-        "effektiv_gewicht": -1.64,
+        "effektiv_gewicht": -1.62,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -625,7 +625,7 @@
         "muster": "[Anti] halten bei crypto-Titeln",
         "typ": "anti",
         "gewicht": -1.63,
-        "effektiv_gewicht": -1.63,
+        "effektiv_gewicht": -1.61,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -639,7 +639,7 @@
         "muster": "[Anti] halten bei commodity-Titeln",
         "typ": "anti",
         "gewicht": -1.63,
-        "effektiv_gewicht": -1.63,
+        "effektiv_gewicht": -1.61,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -653,7 +653,7 @@
         "muster": "[Anti] halten bei ev-Titeln",
         "typ": "anti",
         "gewicht": -1.62,
-        "effektiv_gewicht": -1.62,
+        "effektiv_gewicht": -1.6,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -667,7 +667,7 @@
         "muster": "[Anti] halten bei biotech-Titeln",
         "typ": "anti",
         "gewicht": -1.55,
-        "effektiv_gewicht": -1.55,
+        "effektiv_gewicht": -1.53,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -681,7 +681,7 @@
         "muster": "[Anti] halten bei index-Titeln",
         "typ": "anti",
         "gewicht": -1.47,
-        "effektiv_gewicht": -1.47,
+        "effektiv_gewicht": -1.46,
         "shadow": false,
         "live_allowed": true,
         "freigabe_status": "freigegeben",
@@ -691,7 +691,7 @@
         "durchgesetzt": false
       }
     ],
-    "decision_id": "d_20260811_181841_NRGU_aktien_na",
+    "decision_id": "d_20260812_180729_NRGU_aktien_na",
     "provider": "openrouter",
     "fallback": false,
     "depot_typ": "aktien",
@@ -699,21 +699,21 @@
     "quelle": "ki_decisions.entscheide_ticker",
     "regime": "open",
     "rohdaten": {
-      "kurs": 47.0,
-      "sma20": 41.74,
-      "sma50": 36.95,
-      "rsi": 54.5,
-      "atr_pct": 6.16,
-      "vol_ratio": 0.24,
-      "vix": 15.3,
+      "kurs": 46.47,
+      "sma20": 42.23,
+      "sma50": 37.12,
+      "rsi": 52.5,
+      "atr_pct": 6.0,
+      "vol_ratio": 0.21,
+      "vix": 14.8,
       "trend": "Aufwärtstrend (Kurs > SMA20 > SMA50)",
-      "depot_rendite": 11.11
+      "depot_rendite": 9.86
     },
     "indikatoren": [
-      "SMA20>41.7",
-      "SMA50>37.0",
-      "RSI54",
-      "ATR6.2%"
+      "SMA20>42.2",
+      "SMA50>37.1",
+      "RSI52",
+      "ATR6.0%"
     ],
     "news_score": null,
     "regelstand_ref": "v_live",
@@ -725,8 +725,8 @@
       "exit_score",
       "ki"
     ],
-    "konfidenz_original": 65.0,
-    "konfidenz_nach_cap": 60,
+    "konfidenz_original": 55,
+    "konfidenz_nach_cap": 55,
     "konfidenz_cap": 60,
     "erwarteter_ausgang": "unbekannt",
     "shadow": false,

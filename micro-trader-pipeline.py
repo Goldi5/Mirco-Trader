@@ -226,7 +226,7 @@ try:
             run("skill_sync.py", timeout=120)
             # ETF-Trader läuft immer (US & DE)
             run("etf_trader.py", timeout=120)
-            run("batch_trader.py", timeout=120)
+            run("batch_trader.py", timeout=200)
             log.info("=== KI-Lauf fertig ===\n")
             try:
                 from system_log import log_eintrag

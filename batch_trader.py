@@ -3,7 +3,7 @@
 Batch-Trader v3 – 20 Depots mit Tier-basiertem Risiko (0–95).
 Scannt einmal, bewertet je Risk-Stufe mit Tier-Bonus und füllt alle Depots.
 """
-import sys, os, json, time
+import sys, os, json, time, glob
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -88,7 +88,9 @@ def laden_oder_erstellen(risk, mode="shadow"):
         d.bargeld = data.get("bargeld", 100)
         d.positions = data.get("positions", {})
         d.historie = data.get("historie", [])
-        d.trades = data.get("trades", [])
+        # trades defensiv: liste oder int -> liste
+        _tr = data.get("trades", [])
+        d.trades = _tr if isinstance(_tr, list) else []
         d.ki_letzte = data.get("ki_letzte")
         d.mode = data.get("mode", mode)
         return d
@@ -106,7 +108,9 @@ def laden_aus_datei(pfad):
     d.bargeld = data.get("bargeld", 100)
     d.positions = data.get("positions", {})
     d.historie = data.get("historie", [])
-    d.trades = data.get("trades", [])
+    # trades defensiv: liste oder int -> liste
+    _tr = data.get("trades", [])
+    d.trades = _tr if isinstance(_tr, list) else []
     d.ki_letzte = data.get("ki_letzte")
     d.mode = data.get("mode", "paper")
     return d
@@ -344,7 +348,9 @@ def main():
             
             prompt = f"Analysiere {len(chunk)} Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.\n\n"
             prompt += "\n".join(depot_infos)
-            prompt += "\n\nAntworte NUR mit JSON [{\"risk\":0, \"aktionen\":[{\"ticker\":\"AAPL\",\"aktion\":\"kaufen\"|\"verkaufen\"|\"halten\",\"menge\":\"voll\"|\"teil\",\"grund\":\"...\"}]}]\n"
+            prompt += "\n\nAntworte NUR mit JSON-Array (KEIN Text, KEINE Erklärung):\n"
+            prompt += '[{"risk": 55, "aktionen": [{"ticker": "SYMBOL", "aktion": "kaufen", "menge": "voll", "grund": "Depot leer, passender Kandidat"}]}, {"risk": 93, "aktionen": [{"ticker": "SYMBOL", "aktion": "kaufen", "menge": "voll", "grund": "Depot leer, passender Kandidat"}]}]'
+            prompt += "\nWICHTIG: risk MUSS exakt die Risk-Zahl des Depots sein. Bei leeren Depots (Cash verfügbar, Pos: keine) -> IMMER KAUFEN aus den Kandidaten (erste Aktion = kaufen). Niemals leere aktionen bei leerem Depot.\n"
             # TEMP-DEBUG (v2.16.8): Prompt fuer Diagnose loggen
             try:
                 if any(f"Risk {c[0]}:" in prompt for c in chunk):
@@ -390,9 +396,37 @@ def main():
             entscheidungen = _parse_ki_json(raus)
             if entscheidungen is None:
                 if not QUIET:
-                    print(f"   ⚠ KI-JSON ungültig, Fallback auf 'halten'", flush=True)
+                    print(f"   ⚠ KI-JSON ungültig, Fallback für LEERE Depots = KAUFEN", flush=True)
                     print(f"   🔍 KI-RAW: {raus[:500]}", flush=True)  # DEBUG: raw response
+                # Fallback: leere Depots (Cash, keine Positionen) kriegen einen
+                # Kauf-Auftrag aus ihren Kandidaten — sonst würden sie bei KI-Fehlern
+                # für immer leer bleiben. Depots MIT Positionen -> halten.
                 entscheidungen = []
+                # Konzentrations-Bremse respektieren: freien Kandidaten suchen
+                try:
+                    from ki_kontext import ticker_konzentration
+                    from engine import max_depot_pro_ticker
+                    _max_dt = max_depot_pro_ticker()
+                    def _frei(t):
+                        try:
+                            return ticker_konzentration(t) < _max_dt
+                        except Exception:
+                            return True
+                except Exception:
+                    def _frei(t):
+                        return True
+                for _c in chunk:
+                    _risk, _params, _dep, _kands, _prio = _c
+                    if not _dep.get("positions") and _kands:
+                        # ersten Kandidaten wählen, der die Konzentrations-Bremse
+                        # noch nicht auslöst (sonst bleibt das Depot leer).
+                        _gewaehlt = next((k for k in _kands if _frei(k["ticker"])), None)
+                        if _gewaehlt:
+                            entscheidungen.append({
+                                "risk": _risk,
+                                "aktionen": [{"ticker": _gewaehlt["ticker"], "aktion": "kaufen",
+                                              "menge": "voll", "grund": "Fallback: KI-JSON fehlgeschlagen, Depot leer -> Kauf aus freien Kandidaten"}]
+                            })
             
             # Konvertiere zu depot_action Format
             for ed in entscheidungen:
@@ -410,13 +444,44 @@ def main():
                             grund = a.get("grund", "KI-Entscheidung")
                             if akt == "kaufen":
                                 cand = next((k for k in (kandidaten or []) if k["ticker"] == ticker), None)
+                                # 🛡 Konzentrations-Bremse schon hier respektieren: wenn der
+                                # KI-Ticker die Depot-Grenze erreicht hat (oder allgemein der
+                                # am wenigsten konzentrierte Kandidat gewählt wird), auf einen
+                                # Ausweich-Kandidaten mit der niedrigsten Depot-Konzentration
+                                # ausweichen, damit Käufe über alle Kandidaten verteilt werden
+                                # und leere Depots nicht unnötig leer bleiben.
+                                try:
+                                    from ki_kontext import ticker_konzentration as _tk
+                                    from engine import max_depot_pro_ticker as _mdt
+                                    _max_dt = _mdt()
+                                    # Kandidat mit der geringsten aktuellen Konzentration wählen
+                                    # (schließt den bereits gewählten ticker mit ein, falls frei)
+                                    _freie = [k for k in (kandidaten or [])
+                                              if k.get("preis", 0) > 0 and _tk(k["ticker"]) < _max_dt]
+                                    if _freie:
+                                        _alt = min(_freie, key=lambda k: _tk(k["ticker"]))
+                                        if _alt["ticker"] != ticker:
+                                            ticker = _alt["ticker"]
+                                            cand = _alt
+                                            grund = (grund or "") + " [Bremse: Ausweich-Kandidat]"
+                                except Exception:
+                                    pass
                                 if cand and cand.get("preis", 0) > 0:
+                                    menge_faktor = 1.0 if a.get("menge") == "voll" else 0.5
                                     # 🛡 PHASE 12 (v2.35.0): Tenant-Risiko- und Regel-Enforcement
                                     try:
                                         import security as _sec12
                                         _tid12 = _sec12.resolve_tenant_for_user({"username": "admin"}) or 1
+                                        # 🛡 Positionsgröße auf Tenant-Limit clampsen, sonst
+                                        # blockt enforce_risk_limits hochriskante Depots (>35%) sich selbst.
+                                        _max_pos = 0.35
+                                        try:
+                                            _eff = _sec12.risk_get(_tid12, params.get("modus", "moderate"))
+                                            _max_pos = float(_eff.get("position_size") or 0.35)
+                                        except Exception:
+                                            pass
                                         # Positionsgroesse in % des Depotwerts (bargeldbasiert, konservativ)
-                                        pos_pct = menge_faktor * params.get("position_size", 0.35)
+                                        pos_pct = min(menge_faktor * params.get("position_size", 0.35), _max_pos)
                                         r12 = _sec12.enforce_risk_limits(
                                             _tid12, params.get("modus", "moderate"),
                                             pos_pct, depot_obj.start_wert)
@@ -433,8 +498,16 @@ def main():
                                             continue
                                     except Exception:
                                         pass  # Enforcement nie fatal (PAPER_ONLY)
-                                    menge_faktor = 1.0 if a.get("menge") == "voll" else 0.5
-                                    budget = depot_obj.bargeld * menge_faktor
+                                    # 🛡 Positionsgröße auf Tenant-Limit (max_pos) clampsen,
+                                    # sonst blockt enforce_risk_limits hochriskante Depots (>35%).
+                                    _max_pos = 0.35
+                                    try:
+                                        _eff = _sec12.risk_get(_tid12, params.get("modus", "moderate"))
+                                        _max_pos = float(_eff.get("position_size") or 0.35)
+                                    except Exception:
+                                        pass
+                                    _pos_frac = min(params.get("position_size", 0.35), _max_pos) * menge_faktor
+                                    budget = depot_obj.bargeld * _pos_frac
                                     menge = budget / cand["preis"]
                                     # 🛡 PHASE 13 (v2.36.0): Order-Intent MUSS vor jeder
                                     # Ausfuehrung als Objekt entstehen (Auftrag §11).
@@ -511,25 +584,32 @@ def main():
     else:
         ki_ergebnisse = {}
     
-    # Restliche Depots: Cache verwenden oder leer
-    for risk in RISK_STUFEN:
-        if risk not in ki_ergebnisse:
-            depot = laden_oder_erstellen(risk, mode=_depot_mode)
-            params = fuer_risk_stufe(risk)
-            # Cache-Eintrag?
-            cached = cache.get(str(risk), {})
-            if cached and jetzt_ts - cached.get("ts", 0) < KI_CACHE_DAUER:
-                # Verwende gecachte Entscheidung
-                ki_letzte_cached = cached.get("ki_letzte")
-                aktionen_cached = cached.get("aktionen", [])
-                ki_ergebnisse[risk] = (depot, params, {"aktionen": aktionen_cached, "ki_letzte": ki_letzte_cached})
-                if not QUIET and ki_letzte_cached:
-                    print(f"   💾 Cache[Risk {risk}]: {len(aktionen_cached)} Aktionen", flush=True)
-            else:
-                ki_ergebnisse[risk] = (depot, params, {"aktionen": [], "ki_letzte": depot.ki_letzte})
+    # Restliche Depots: Cache verwenden oder leer.
+    # PHASE: nutze die gesammelten depot_kontexte (inkl. custom Depots wie 55/93/97/100),
+    # NICHT nur die hartkodierten RISK_STUFEN — sonst werden neu angelegte Depots
+    # vom Ausführungs-Loop (for risk in RISK_STUFEN) nie erreicht.
+    for _ctx in depot_kontexte:
+        risk = _ctx[0]
+        if risk in ki_ergebnisse:
+            continue
+        depot = _ctx[2]
+        params = _ctx[1]
+        # Cache-Eintrag?
+        cached = cache.get(str(risk), {})
+        if cached and jetzt_ts - cached.get("ts", 0) < KI_CACHE_DAUER:
+            ki_letzte_cached = cached.get("ki_letzte")
+            aktionen_cached = cached.get("aktionen", [])
+            ki_ergebnisse[risk] = (depot, params, {"aktionen": aktionen_cached, "ki_letzte": ki_letzte_cached})
+            if not QUIET and ki_letzte_cached:
+                print(f"   💾 Cache[Risk {risk}]: {len(aktionen_cached)} Aktionen", flush=True)
+        else:
+            ki_ergebnisse[risk] = (depot, params, {"aktionen": [], "ki_letzte": depot.ki_letzte})
 
-    # Ausführen (sequentiell, da Datei-IO)
-    for risk in RISK_STUFEN:
+    # Ausführen (sequentiell, da Datei-IO).
+    # PHASE: über alle entschiedenen Depots iterieren (inkl. custom), nicht nur RISK_STUFEN.
+    # Kandidaten-Map für Ausweich-Käufe bei Konzentrations-Bremse.
+    _kandidaten_map = {_c[0]: _c[3] for _c in depot_kontexte}
+    for risk in list(ki_ergebnisse.keys()):
         if risk not in ki_ergebnisse:
             continue
         depot, params, ki_ergebnis = ki_ergebnisse[risk]
@@ -540,9 +620,10 @@ def main():
         buys = [a for a in aktionen if a["typ"] == "kaufen"]
         sells = [a for a in aktionen if a["typ"] == "verkaufen"]
 
+        _alts = _kandidaten_map.get(risk) or []
         for a in aktionen:
             broker = get_broker_adapter(getattr(depot, "tenant_id", 1)) if get_broker_adapter else None
-            ausführen(depot, [a], params, broker=broker)
+            ausführen(depot, [a], params, broker=broker, alternatives=_alts)
             if not QUIET:
                 t = a["ticker"]
                 if a["typ"] == "kaufen":
@@ -559,10 +640,11 @@ def main():
         ergebnisse.append((risk, wert, depot.bargeld, rendite_pct, len(depot.positions), len(depot.trades)))
 
     # ─── Ergebnis-Tabelle ────────────────────────────────
+    _n_depots = len(ergebnisse)
     ges_wert = sum(e[1] for e in ergebnisse)
-    ges_start = len(RISK_STUFEN) * 100
+    ges_start = _n_depots * 100
     print(f"\n{'='*60}", flush=True)
-    print(f"📊 {len(RISK_STUFEN)} Depots | Trades: {sum(e[5] for e in ergebnisse)} | Gesamtwert: ${ges_wert:.2f}", flush=True)
+    print(f"📊 {_n_depots} Depots | Trades: {sum(e[5] for e in ergebnisse)} | Gesamtwert: ${ges_wert:.2f}", flush=True)
     print(f"{'='*60}", flush=True)
     print(f" {'Risk':>5} {'Wert':>8} {'Cash':>7} {'Rendite':>8} {'Pos':>3} {'Trades':>6}", flush=True)
     print(f"{'─'*42}", flush=True)
@@ -584,7 +666,7 @@ def main():
     # Save summary
     summary = {
         "zeit": datetime.now().isoformat(),
-        "depots": len(RISK_STUFEN),
+        "depots": _n_depots,
         "gesamtwert": round(ges_wert, 2),
         "gesamt_rendite": round(gesamt_rendite, 2),
         "best_risk": best[0],
@@ -603,7 +685,7 @@ def main():
     try:
         from trader_status import update_status
         update_status("batch_trader", {
-            "depots": len(RISK_STUFEN),
+            "depots": _n_depots,
             "trades": sum(e[5] for e in ergebnisse),
             "rendite": round(gesamt_rendite, 2),
         })
