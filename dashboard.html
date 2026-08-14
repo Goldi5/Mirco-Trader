@@ -226,6 +226,8 @@ h3{font-size:14px;font-weight:600}
 .kpi-card .kpi-value{font-size:26px;font-weight:700;letter-spacing:-0.6px;color:var(--text)}
 .kpi-card .kpi-change{font-size:13px;font-weight:600;margin-top:3px}
 .kpi-card .kpi-meta{font-size:11px;color:var(--text-muted);margin-top:5px}
+.kpi-card .kpi-compare{font-size:10.5px;color:var(--text-secondary);margin-top:5px;line-height:1.5;border-top:1px dashed var(--border);padding-top:5px}
+.kpi-card .kpi-compare b{color:var(--text);font-weight:600}
 
 /* ── ZWEI-SPALTIG (Chart | Aktivität) ── */
 .main-grid{display:grid;grid-template-columns:8fr 4fr;gap:16px;margin-bottom:20px}
@@ -701,6 +703,25 @@ canvas{display:block;max-width:100%}
 </div>
 
 <script>
+// ── Vergleichs-Zeile fuer KPI-Karten (Stand gestern / Trades heute / Schnitt) ──
+function vergleichZeile(d, kat) {
+  const v = (d && d.vergleich) || {};
+  const parts = [];
+  if (v.gestrig) {
+    const g = (v.gestrig.kategorien && v.gestrig.kategorien[kat]) || {};
+    const wert = g.wert != null ? g.wert : v.gestrig.ges_wert;
+    const pnl = g.pnl_pct != null ? g.pnl_pct : v.gestrig.pnl_pct;
+    parts.push('Gestern <b>$' + Math.round(wert).toLocaleString('de-DE') + '</b> (' + (pnl>=0?'+':'') + (pnl!=null?pnl.toFixed(1):'?') + '%)');
+  }
+  if (v.trades_heute) {
+    const t = v.trades_heute.kaufen + v.trades_heute.verkaufen;
+    if (t > 0) parts.push('<b>' + t + '</b> Trades heute');
+  }
+  if (v.schnitt_pro_tag != null) {
+    parts.push('Ø ' + Math.round(v.schnitt_pro_tag).toLocaleString('de-DE') + '$/Tag');
+  }
+  return parts.length ? parts.join(' · ') : '';
+}
 document.getElementById('depot-neu-btn').onclick = () => {
   document.getElementById('depot-neu-modal').style.display = 'flex';
 };
@@ -1873,18 +1894,21 @@ async function load() {
           <div class="kpi-value">$${aktienTotal.toFixed(0)}</div>
           <div class="kpi-change ${aktienRendite>=0?'positiv':'negativ'}">${aktienRendite>=0?'+':''}${aktienRendite.toFixed(2)}%</div>
           <div class="kpi-meta">${active} aktive Depots · ${d.depots.length} gesamt</div>
+          <div class="kpi-compare">${vergleichZeile(d, 'aktien')}</div>
         </div>
         <div class="kpi-card" onclick="showPortfolios()">
           <div class="kpi-label">📦 ETF</div>
           <div class="kpi-value">$${etfTotal.toFixed(0)}</div>
           <div class="kpi-change ${etfRendite>=0?'positiv':'negativ'}">${etfRendite>=0?'+':''}${etfRendite.toFixed(2)}%</div>
           <div class="kpi-meta">${(d.etf_depots||[]).filter(x=>x.positionen>0).length} aktive · ${(d.etf_depots||[]).reduce((s,x)=>s+x.trades,0)} Trades</div>
+          <div class="kpi-compare">${vergleichZeile(d, 'etf')}</div>
         </div>
         <div class="kpi-card" onclick="showPortfolios()">
           <div class="kpi-label">🔥 Spekulation</div>
           <div class="kpi-value">$${specTotal.toFixed(0)}</div>
           <div class="kpi-change ${specRendite>=0?'positiv':'negativ'}">${specRendite>=0?'+':''}${specRendite.toFixed(2)}%</div>
           <div class="kpi-meta">${d.spec_depots.filter(x=>x.shares>0).length} in Position</div>
+          <div class="kpi-compare">${vergleichZeile(d, 'spec')}</div>
         </div>
         <div class="kpi-card" onclick="showTab('log')">
           <div class="kpi-label">🩺 System</div>

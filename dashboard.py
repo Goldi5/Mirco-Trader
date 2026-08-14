@@ -710,6 +710,46 @@ def index():
     return send_from_directory(BASE, "dashboard.html")
 
 
+def _build_vergleich():
+    """Vergleichs-Daten fuer Dashboard-Karten: Stand gestern Abend, Trades heute,
+    Tages-Schnitt. Liest tagesverlauf.json (Tages-Snapshots) + ki_log.json.
+    Fails soft: bei Fehler leeres Dict (Karten zeigen nichts Extra)."""
+    import json as _json
+    out = {"gestrig": None, "trades_heute": {"kaufen": 0, "verkaufen": 0},
+           "schnitt_pro_tag": None, "tage": 0}
+    try:
+        # 1) tagesverlauf.json -> letzter Eintrag = Stand gestern Abend
+        tv = os.path.join(BASE, "tagesverlauf.json")
+        if os.path.exists(tv):
+            verl = _json.load(open(tv, encoding="utf-8"))
+            if isinstance(verl, list) and verl:
+                letzter = verl[-1]  # neueste = gestern (heute wird abends erst geschrieben)
+                out["gestrig"] = {
+                    "datum": letzter.get("datum"),
+                    "ges_wert": letzter.get("ges_wert"),
+                    "pnl_pct": letzter.get("pnl_pct"),
+                    "kategorien": letzter.get("kategorien", {}),
+                }
+                # Schnitt: Ø taegliche Aenderung ges_wert ueber die Historie
+                werte = [e.get("ges_wert") for e in verl if e.get("ges_wert")]
+                if len(werte) >= 2:
+                    # Ø absolute Aenderung pro Schritt
+                    diffs = [abs(werte[i] - werte[i-1]) for i in range(1, len(werte))]
+                    out["schnitt_pro_tag"] = round(sum(diffs) / len(diffs), 2)
+                    out["tage"] = len(werte)
+        # 2) ki_log.json -> Trades heute (seit 00:00 Uhr lokal)
+        kl = os.path.join(BASE, "ki_log.json")
+        if os.path.exists(kl):
+            heute = time.strftime("%Y-%m-%d")
+            log = _json.load(open(kl, encoding="utf-8"))
+            k = sum(1 for e in log if str(e.get("zeit", "")).startswith(heute) and e.get("aktion") == "kaufen")
+            v = sum(1 for e in log if str(e.get("zeit", "")).startswith(heute) and e.get("aktion") == "verkaufen")
+            out["trades_heute"] = {"kaufen": k, "verkaufen": v}
+    except Exception:
+        pass
+    return out
+
+
 @app.route("/data")
 def data():
     # Modus-Filter aus Query (?mode=shadow|paper|beide) — Frontend waehlt ueber
@@ -1181,6 +1221,7 @@ def data():
             'news_by_ticker': news_by_ticker,
             'summary': summary,
             'spec_watch': spec_watch,
+            'vergleich': _build_vergleich(),
             'aktualisiert': akt_dt,
             'markt_status': mk_status,
             'markt_label': mk_label,

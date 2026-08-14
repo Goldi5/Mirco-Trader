@@ -1,8 +1,8 @@
 {
-  "version": "2.58.6",
-  "build": "2026-08-14_1930",
-  "released_at": "2026-08-14 19:30",
-  "codename": "BUG-Fix: Risk-Level wird in KI-Entscheidung durchgereicht (decision_id zeigt Risk-Stufe statt 'na')",
+  "version": "2.58.7",
+  "build": "2026-08-14_1955",
+  "released_at": "2026-08-14 19:55",
+  "codename": "Feature: KPI-Karten Vergleichszeile (Stand gestern Abend, Trades heute, Tages-Schnitt) aus tagesverlauf.json + ki_log.json",
   "changes": [
     {
       "version": "2.51.0",
