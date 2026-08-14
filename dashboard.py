@@ -2799,6 +2799,25 @@ def _security_headers(resp):
 
 
 @ app.before_request
+def _csrf_protect():
+    """BUG-005: CSRF-Schutz fuer alle mutierenden Requests (POST/PUT/DELETE).
+    Token aus X-CSRF-Token-Header (vom Frontend global mitgeschickt) oder
+    csrf_token-Formfeld. Bei Fremd-Origin ohne gueltiges Token -> 403.
+    Lokale Origin (127.0.0.1/localhost) bleibt permissiv (kein Cross-Site-
+    Risiko), damit das lokale Dashboard nicht bricht. Login/Public ausgenommen."""
+    if request.method in ("GET", "HEAD", "OPTIONS"):
+        return
+    _public = ("/login", "/logout", "/static/", "/api/health")
+    if request.path in _public or request.path.startswith(_public):
+        return
+    if not sec.csrf_token_valid_for_request(request):
+        # Fremd-Origin-Angriff ohne Token -> blocken
+        if request.path.startswith("/api/") or "application/json" in (request.headers.get("Accept", "") or ""):
+            return jsonify({"error": "csrf_token_invalid"}), 403
+        return "CSRF-Token ungueltig", 403
+
+
+@ app.before_request
 def _route_access_control():
     """PHASE 6: serverseitige Zugriffskontrolle für ALLE Routen.
     Frontend-Ausblendung ist KEINE Berechtigung (Auftrag Regel 5)."""

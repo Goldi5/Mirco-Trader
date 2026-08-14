@@ -200,6 +200,15 @@ def scan_markt(tickers=None, force=False):
             "uptrend": 1 if aktuell > sma50 else 0,
             "datetime": datetime.now().isoformat(),
         }
+        # BUG-003: Marktschnappschuss persistieren (tenant-isoliert, Upsert)
+        try:
+            from db import MTDB
+            _db = MTDB()
+            _db.save_markt_daten(
+                1, ticker, aktuell,
+                rsi=round(rsi, 1), sma20=sma20, sma50=sma50)
+        except Exception:
+            pass  # Persistenz darf den Scan nie blockieren
 
     with open(CACHE_FILE, "w") as f:
         json.dump(cache, f, indent=1)

@@ -547,6 +547,42 @@ class MTDB:
             (sign * q * float(price), portfolio_id, tenant_id))
         self.conn.commit()
 
+    # ── PHASE 1/BUG-003: markt_daten persistieren ──────────────────────────
+    def ensure_markt_daten_columns(self):
+        """BUG-003: tenant_id-Spalte sicherstellen (Tabelle war urspruenglich
+        tenant-agnostisch). Idempotent via PRAGMA-Check."""
+        cols = [r[1] for r in self.conn.execute("PRAGMA table_info(markt_daten)")]
+        if "tenant_id" not in cols:
+            self.conn.execute("ALTER TABLE markt_daten ADD COLUMN tenant_id INTEGER DEFAULT 1")
+            self.conn.commit()
+
+    def save_markt_daten(self, tenant_id, ticker, kurs, rsi=None, sma20=None, sma50=None):
+        """BUG-003: aktuellen Marktschnappschuss persistieren. Upsert pro
+        (tenant_id, ticker) — behaelt nur den letzten Stand je Ticker."""
+        self.ensure_markt_daten_columns()
+        self.conn.execute(
+            "DELETE FROM markt_daten WHERE tenant_id=? AND ticker=?",
+            (tenant_id, ticker))
+        self.conn.execute(
+            "INSERT INTO markt_daten (zeit, ticker, kurs, rsi, sma20, sma50, tenant_id) "
+            "VALUES (datetime('now'), ?, ?, ?, ?, ?, ?)",
+            (ticker, float(kurs), rsi, sma20, sma50, tenant_id))
+        self.conn.commit()
+
+    def get_markt_daten(self, tenant_id, ticker=None, limit=100):
+        """BUG-003: gespeicherte Marktdaten lesen (fuer Shadow->Paper-Eligibility
+        'Providerdaten stabil' + Dashboard-Anzeige)."""
+        self.ensure_markt_daten_columns()
+        if ticker:
+            rows = self.conn.execute(
+                "SELECT * FROM markt_daten WHERE tenant_id=? AND ticker=? "
+                "ORDER BY zeit DESC LIMIT ?", (tenant_id, ticker, limit)).fetchall()
+        else:
+            rows = self.conn.execute(
+                "SELECT * FROM markt_daten WHERE tenant_id=? ORDER BY zeit DESC LIMIT ?",
+                (tenant_id, limit)).fetchall()
+        return [dict(r) for r in rows]
+
     # ── PHASE 7: Provider-Connection-Manager (Sektion 10) ──
     def provider_connection_add(self, tenant_id, provider_type, provider_name,
                                 environment, permissions, secret_reference,

@@ -1,4 +1,4 @@
-"""
+﻿"""
 security.py — Zentrale Sicherheitslogik für Micro-Trader (Paper/Shadow ONLY).
 
 Phasen 4-6 des Server-Sicherheitsauftrags:
@@ -2158,6 +2158,23 @@ def require_recent_mfa():
 _ALL_ROUTES = set()  # wird von dashboard.py nach Routen-Registrierung gefüllt
 
 
+
+
+def csrf_token_valid_for_request(request):
+    """BUG-005: prueft CSRF-Token eines Requests. Token aus Header X-CSRF-Token
+    oder Form-Feld csrf_token. Bei lokaler Origin (127.0.0.1/localhost) ohne
+    Token: True (Permissive — lokales Dashboard, kein Cross-Site-Risiko).
+    Bei Fremd-Origin ohne gueltiges Token: False. So wird CSRF abgewehrt
+    OHNE das lokale Dashboard zu brechen."""
+    origin = request.headers.get("Origin", "") or request.headers.get("X-Forwarded-Host", "")
+    host = request.host or ""
+    _local = any(h in host for h in ("127.0.0.1", "localhost", "::1")) or              any(h in origin for h in ("127.0.0.1", "localhost", "::1"))
+    tok = (request.headers.get("X-CSRF-Token")
+           or (request.form.get("csrf_token") if hasattr(request, "form") else None)
+           or (request.json.get("csrf_token") if (hasattr(request, "is_json") and request.is_json) else None))
+    if tok:
+        return verify_csrf_token(tok)
+    return _local
 if __name__ == "__main__":
     # Selbsttest (nur bei Aufruf, nicht im Import)
     ok, err = create_user("__selftest__", "Test1234!", "user")

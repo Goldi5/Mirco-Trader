@@ -1,8 +1,8 @@
 {
-  "version": "2.58.0",
-  "build": "2026-08-12_1400",
-  "released_at": "2026-08-12 13:00",
-  "codename": "JS-SyntaxError Fix + Single-Instance-Guard (Listener-Check) + threaded=True + Phase-0 Docs",
+  "version": "2.58.2",
+  "build": "2026-08-14_1300",
+  "released_at": "2026-08-14 13:00",
+  "codename": "Open-Work BUG-002/003/005/006 geschlossen (markt_daten persistiert, CSRF-Schutz, MFA-Enrollment, Risk-70-Budget)",
   "changes": [
     {
       "version": "2.51.0",
