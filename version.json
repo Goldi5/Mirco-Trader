@@ -1,8 +1,8 @@
 {
-  "version": "2.58.3",
-  "build": "2026-08-14_1630",
-  "released_at": "2026-08-14 16:30",
-  "codename": "Open-Work P1-P3 geschlossen: Scheduler gestartet, Regel-Gate, decision_id Risk-Level, Audit-Rotation, security.py Refactor (totp_util), nginx-Template",
+  "version": "2.58.4",
+  "build": "2026-08-14_1750",
+  "released_at": "2026-08-14 17:50",
+  "codename": "BUG-Fix: 'Stand'-Zeitstempel zeigt echte letzte Aktualisierung (mtime Depot-Dateien) statt eingefrorenem Umbau-Stichtag",
   "changes": [
     {
       "version": "2.51.0",

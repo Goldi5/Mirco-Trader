@@ -1056,9 +1056,20 @@ def data():
 
     akt = "-"
     if depots and len(depots) > 1:
-        h = depots[-1].get("historie", [])
-        if h:
-            akt = h[-1].get("zeit", "-")
+        # BUG-FIX (2026-08-14): "Stand" = echte letzte Aktualisierung =
+        # aeltestes mtime der Depot-Dateien auf Disk (wann Pipeline zuletzt
+        # geschrieben hat), NICHT der alte Historie-Eintrag (der beim Umbau
+        # eingefroren wurde und nie aktualisiert wird).
+        try:
+            import glob
+            files = glob.glob(os.path.join(BASE, "depot_*.json")) + \
+                     glob.glob(os.path.join(BASE, "etf_*.json")) + \
+                     glob.glob(os.path.join(BASE, "spec_depots", "*.json"))
+            if files:
+                newest = max(os.path.getmtime(f) for f in files)
+                akt = time.strftime("%d.%m.%Y %H:%M", time.localtime(newest))
+        except Exception:
+            akt = "-"
 
     # Ranking (sortiert nach Rendite absteigend)
     ranking = sorted(depots, key=lambda d: d["rendite"], reverse=True)
