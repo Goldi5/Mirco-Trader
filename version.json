@@ -1,8 +1,8 @@
 {
-  "version": "2.58.5",
-  "build": "2026-08-14_1920",
-  "released_at": "2026-08-14 19:20",
-  "codename": "BUG-Fix: 'Stand' NaN (Backend lieferte DE-Format, Frontend formatDeutsch braucht ISO) -> ISO-Timestamp",
+  "version": "2.58.6",
+  "build": "2026-08-14_1930",
+  "released_at": "2026-08-14 19:30",
+  "codename": "BUG-Fix: Risk-Level wird in KI-Entscheidung durchgereicht (decision_id zeigt Risk-Stufe statt 'na')",
   "changes": [
     {
       "version": "2.51.0",

@@ -555,6 +555,7 @@ def entscheide_spec_batch(ticker_data_list, max_workers=1):
                 sektor=td.get("sektor", ""),
                 atr_pct=td.get("atr_pct"),
                 vol_ratio=td.get("vol_ratio"),
+                risk=td.get("risk", 20),
             )
         except Exception as e:
             ergebnisse[i] = {"aktion": "halten", "fehler": str(e)[:80]}
