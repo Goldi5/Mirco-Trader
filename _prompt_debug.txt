@@ -1,9 +1,0 @@
-Analysiere 5 Aktien-Depots. Entscheide pro Depot: Welche Positionen KAUFEN/VERKAUFEN/HALTEN.
-
-Risk 75: Cash $0.0, Wert $135.4, Pos: ALLO: 28.98st @$2.01 (Kurs $2.13, P&L +6.48%), CLOU: 1.33st @$27.28 (Kurs $28.04, P&L +2.79%), LGI: 1.96st @$18.45 (Kurs $18.47, P&L +0.11%), Kandidaten: keine
-Risk 95: Cash $4.4, Wert $118.7, Pos: ALLO: 20.97st @$2.01 (Kurs $2.13, P&L +6.48%), SENS: 8.28st @$7.02 (Kurs $7.88, P&L +12.18%), CRON: 1.42st @$3.10 (Kurs $3.01, P&L -2.90%), Kandidaten: CVM $1.5 (34% Cash), ALLO $2.1 (48% Cash), VFF $2.4 (54% Cash), AMC $2.4 (55% Cash), PLUG $2.1 (48% Cash)
-Risk 15: Cash $75.1, Wert $99.7, Pos: DOMO: 6.19st @$3.67 (Kurs $3.96, P&L +7.89%), Kandidaten: ACHR $6.3 (8% Cash), JOBY $8.8 (12% Cash), PRTA $9.1 (12% Cash), JKS $16.9 (23% Cash), SRPT $17.2 (23% Cash)
-Risk 85: Cash $108.4, Wert $116.6, Pos: VFF: 3.33st @$2.08 (Kurs $2.46, P&L +18.51%), Kandidaten: ACHR $6.3 (6% Cash), INVH $29.9 (28% Cash), BTCI $28.5 (26% Cash), JOBY $8.8 (8% Cash), PRTA $9.1 (8% Cash)
-Risk 50: Cash $60.9, Wert $115.4, Pos: DOMO: 12.24st @$3.67 (Kurs $3.96, P&L +7.89%), VFF: 2.41st @$2.08 (Kurs $2.46, P&L +18.51%), Kandidaten: ACHR $6.3 (10% Cash), JOBY $8.8 (14% Cash), PRTA $9.1 (15% Cash), JKS $16.9 (28% Cash), SRPT $17.2 (28% Cash)
-
-Antworte NUR mit JSON [{"risk":0, "aktionen":[{"ticker":"AAPL","aktion":"kaufen"|"verkaufen"|"halten","menge":"voll"|"teil","grund":"..."}]}]

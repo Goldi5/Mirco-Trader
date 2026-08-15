@@ -32,3 +32,29 @@ _budget_debug.txt
 .hermes-tmp.*
 _monitor_tmp*.py
 *.tmp
+.daily_report_sent*
+
+# ── Laufzeit-Daten (Trading, nicht ins Repo) ──
+etf_*.json
+spec_depots/*.json
+spec_depots_paper/
+ki_log.json
+ki_cache_batch.json
+analysis_cache.json
+news_cache.json
+monitor_status_last.json
+notifications.json
+ops_alerts.json
+spec_log.json
+spec_watch.json
+etf_summary.json
+_budget_debug.txt
+cookies.txt
+nul
+.prompt_debug.txt
+_prompt_debug.txt
+
+# Hermes-Interne (nicht ins Repo)
+.hermes/
+*.bak
+depot_audit_report.py
